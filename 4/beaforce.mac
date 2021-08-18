@@ -1,0 +1,95 @@
+! Macro BeaForce
+! Pressure distribution for approximation of bearing force
+
+!   - Macro for ANSYS 5.7.1 by JKT
+!   - Siirretty yleisiin vektoroinnin jälkeen 24.10.2001
+!
+!   - The pressure is considered for selected elements
+!     on nodes defined by the coordinates in arguments
+
+!   - The result is accurate only if all elements end at same angle value and
+!     there is a element division at the force direction (if triangle is used)
+
+!   - Arg9 does not consider if the end node is corner or center - that's up to you!!! 
+
+! Arg1 = Bearing force
+! Arg2 = Bearing diameter
+! Arg3 = Bearing width
+! Arg4 = Bearing center in CS Arg5
+! Arg5 = Cylindrical CS, with Z-axis coaxial with the bearing
+! Arg6 = Direction of force
+! Arg7 = Width of support angle
+! Arg8 = Split of load between even and triangle (1 = even)
+! Arg9 = Check max angle? (-1 = no)
+
+*GET,_PrOut,active,,prkey
+/NOP
+
+CM,Nodes_,node      $CM,Elem_,elem
+
+*GET,Ar90,active,,csys
+CSYS,Arg5
+CLOC,99,1,0,0,Arg4,Arg6
+
+NSEL,s,loc,x, Arg2/2
+NSEL,r,loc,z,-Arg3/2, Arg3/2
+NSEL,r,loc,y,-Arg7/2, Arg7/2
+
+*GET,Ar11,node,,mxloc,y         $*GET,Ar12,node,,mnloc,y
+*IF,Arg9,eq,-1,then
+   Ar11=Arg7/2
+*ELSEIF,-Ar12,gt,Ar11,then
+   Ar11=-Ar12
+*ENDIF
+CM,tuki_,node
+
+! Select elements which could have pressure
+ESLN         $CMSE,r,Elem_
+
+! Calculate pressure for each node
+Ar20=Arg1*   Arg8 /Arg2/Arg3/sin(Ar11)                   ! Tasainen paine
+Ar21=Arg1*(1-Arg8)/Arg2/Arg3*(pi/180*Ar11)/(1-cos(Ar11)) ! Kolmiopaineen huippuarvo
+
+! Calculation:  np=Ar20+Ar21*(1-abs(ny(xx))/Ar11)
+*GET,Ar50,node,,num,max
+*DIM,Apu_,,Ar50            $*DIM,np_,,Ar50
+*VGE,Apu_(1),node,1,nsel   !$*VFI,Nds_(1),ramp,1,1
+*VMA,Apu_(1)               $*VGE,np_(1),node,1,loc,y
+*VMA,Apu_(1)    $*VAB,,1   $*VOP,np_(1),np_(1),div ,Ar11
+*VMA,Apu_(1)               $*VOP,np_(1),    1 ,sub ,np_(1)
+*IF,Ar21,gt,0,then
+   *VMA,Apu_(1)            $*VOP,np_(1),np_(1),mult,Ar21
+*ELSE
+   *VMA,Apu_(1)            $*VOP,np_(1),np_(1),sub ,np_(1)
+*ENDIF
+*VMA,Apu_(1)               $*VOP,np_(1),np_(1),add ,Ar20
+APu_=
+
+! Go through elements and assign pressure if all face nodes are selected
+*GET,Ar51,elem,,num,max
+*DIM,Apu_,,Ar51            $*DIM,Elm_,,Ar51
+*VGE,Apu_(1),elem,1,esel   $*VFI,Elm_(1),ramp,1,1
+*VMA,Apu_(1)               $*VFU,Elm_(1),comp,Elm_(1)
+Apu_=
+
+SFCU,pres,add
+*DO,xx,1,elmiqr(0,13)
+   Ar30=nmface(Elm_(xx))
+   *IF,Ar30,eq,0,cycle
+   *DO,yy,1,4
+      Ar3%yy%=ndface(Elm_(xx),Ar30,yy)
+   *ENDDO
+   SFE,Elm_(xx),Ar30,pres,,np_(Ar31),np_(Ar32),np_(Ar33),np_(Ar34)
+*ENDDO
+Elm_=           $np_=
+
+SFCU,pres,repl
+
+CSYS,Ar90
+CSDE,99         ! Why is this not defined?
+CMSE,s,Nodes_   $CMDE,Nodes_
+CMSE,s,Elem_    $CMDE,Elem_
+
+*IF,_PrOut,eq,1,then   $/GO   $*ENDIF
+
+/eof

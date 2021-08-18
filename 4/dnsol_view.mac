@@ -1,0 +1,96 @@
+! it is recommended that you issue numcmp,nodes, prior to running macro.
+!
+! GLOBAL INFO: This macro is basically just a couple of routines that 
+! use dnsol to align two nodes (arg1 and arg2) on the theoretically fixed body,
+! and adjusts the rest of the nodal results accordingly.
+!
+! I needed to do this with a multi-body model where I wanted to look at the 
+!  motion of one body relative to another with the motion of the first body subtracted 
+!  from the global result. 
+! 
+! Part 1 subtracts the translation, in 2 dimensions, of arg1 node 
+! from all nodes from global post-processed result.
+!
+! Part 2 uses the 'x' and 'y' displacements of arg2 and, given 'alpha', the 
+! inclination angle of each node with reference to the 'x' axis, calculates 
+! the displacement of each node as if it were arg2. Then this result is subtracted
+! from each nodal actual post-processed displacement.
+!
+! macro assumes a csys 4, with the origin on node arg1 and the 'x' axis
+! on arg2. The 'x-y' plane is the plane of translation and rotation. 
+!
+!Begin Part 1
+!
+!/graphics,full
+!
+/post1
+!
+*get,disp_x,node,arg1,u,x
+*get,disp_y,node,arg1,u,y
+*get,nmax,node,,num,max     
+*DO,i,1,nmax,1
+	*get,u_x,node,i,u,x
+	*GET,u_y,node,i,u,y
+	dnsol,i,u,x,u_x-disp_x,u_y-disp_y,0
+*enddo
+!
+! Begin Part 2
+!
+/post1
+csys,4	
+rsys,4
+dsys,4
+!						
+*get,loc_x,node,arg2,loc,x				
+*get,loc_y,node,arg2,loc,y				
+*get,dispx,node,arg2,u,x			
+*get,dispy,node,arg2,u,y			
+!
+! 'h' is the displacement master displacement vector
+!
+h=sqrt(dispx**2+dispy**2)
+!
+! Beta is the angle subtended by the master displacement vector and the vertical
+! ('y') axis
+!
+! The '1e-10' factor exists to prevent dividing by zero errors
+!
+Beta=atan(dispx/(dispy+1e-10))
+!
+alpha=-atan(loc_y/(loc_x+1e-10))					
+!
+eps_0=alpha-Beta
+!
+! 'r' is the length of the radius from pivot point (0,0,0 in csys 4) to the master node
+!			
+r=sqrt((loc_x**2)+(loc_y**2))										
+!
+! for each node, calculate its displacement as if it were the master node
+!						
+*do,j,1,nmax,1
+	*get,loc_xj,node,j,loc,x		
+	*get,loc_yj,node,j,loc,y		
+	*get,disp_xj,node,j,u,x			
+	*get,disp_yj,node,j,u,y			
+	alpha_j=-atan(loc_yj/(loc_xj+1e-10))		
+	r_j=sqrt(loc_xj**2+loc_yj**2)						
+!
+! ux_j and uy_j are theoretical displacements: the displacement of each node due to
+! displacements of master node; 'r_i/r' is a distance (from pivot) factor 
+!
+! The 'nint(loc_yj/abs(loc_yj+1e-10))' and the 'nint(-loc_xj/abs(loc_xj+1e-10))'terms 
+! exist to give the theoretical displacement vectors the correct sign	
+!
+	ux_j=(r_j/r)*nint(loc_yj/abs((loc_yj+1e-10)))*h*abs(sin(alpha_j-eps_0))
+	uy_j=(r_j/r)*nint(-loc_xj/abs((loc_xj+1e-10)))*h*abs(cos(alpha_j-eps_0))
+!
+! finally, 'dval_x' and 'dval_y' are net displacements of each node in csys 4
+!
+	dval_x=(disp_xj-ux_j)			
+	dval_y=(disp_yj-uy_j)			
+! 
+! ta da
+!
+	dnsol,j,u,x,dval_x,dval_y,0
+*enddo
+dsys,0

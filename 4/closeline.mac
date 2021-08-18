@@ -1,0 +1,132 @@
+/nopr
+/PMACRO
+*AFUN,deg
+
+cm,keepkp,KP      ! store current sets of lines and kp
+cm,keepl,LINES
+
+*get,linum,LINES,,COUNT
+KSLL
+cm,keepk,KP       ! keep only KPs used by lines
+KSEL,NONE
+LSEL,NONE
+
+! Pick a location inside/outside of closed loop of lines
+
+K,,P
+lastk=KPNEXT(0)
+
+! Get nearest KP to start with
+ 
+CMSEL,A,keepk
+currk=KNEAR(lastk)
+
+startk=currk      ! Remember where you started
+
+! Select KPs connected to currkp
+KSEL,S,,,currk
+LSLK
+KSLL
+
+*GET,knum,KP,,COUNT
+! If knum is less than 3 -> error message here
+
+! Find starting line
+
+KSEL,A,,,currk
+nkp=0
+angmin=360
+
+*do,il,1,knum
+nkp=KPNEXT(nkp)
+
+*if,nkp,ne,currk,then
+    *if,nkp,eq,lastk,then
+     nkp=KPNEXT(nkp)
+    *endif
+
+winkel=ANGLEK(currk,lastk,nkp)
+
+    *if,winkel,lt,angmin,then
+     angmin=winkel
+     nextk=nkp
+    *endif
+
+*endif
+
+*enddo
+
+KSEL,S,KP,,currk
+KSEL,A,KP,,nextk,
+LSLK,S,1
+*get,lnum,LINE,,NUM,MAX
+CM,arlin,LINE    ! Start a component with lines selected for area
+
+KSEL,A,KP,,lastk
+
+CSKP,77,1,currk,nextk,lastk
+WPCSYS,-1
+KWPAVE,nextk
+CSWPLA,77,1
+
+kdel,lastk       ! delete the picked aux. KP 
+
+! -------------------------------------------
+*do,loop,1,linum
+
+*if,nextk,ne,startk,then
+
+lastk=currk
+currk=nextk
+
+! Select KPs connected to currk
+KSEL,S,,,currk
+LSLK
+KSLL
+
+*GET,knum,KP,,COUNT
+! If knum is less than 3 -> error
+
+KSEL,U,,,currk
+KSEL,U,,,lastk
+
+nkp=0
+
+angmax=-360
+*do,il,1,knum-2
+nkp=KPNEXT(nkp)
+
+
+winkel=KY(nkp)
+
+    *if,winkel,gt,angmax,then
+     angmax=winkel
+     nextk=nkp
+    *endif
+
+
+*enddo
+
+KSEL,S,KP,,currk
+KSEL,A,KP,,nextk
+LSLK,S,1
+*get,lnum,LINE,,NUM,MAX
+CMSEL,A,arlin
+CM,arlin,LINE   
+
+KWPAVE,nextk
+WPROT,angmax
+CSWPLA,77,1
+
+
+*endif
+
+*enddo
+
+cmsel,s,arlin
+al,all
+
+cmsel,s,keepl
+cmsel,s,keepkp
+
+/gopr

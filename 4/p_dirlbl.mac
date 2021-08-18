@@ -1,0 +1,452 @@
+! Think Peak, Inc. Copyright 1999
+! Chris Kennedy - Author
+! /com $Id: P_DIRLBL.MAC $
+!
+! P_DIRLBL.MAC
+!
+! No warranty implied.
+! This should work in 5.3, 5.4, 5.5 and 5.6
+! Uses the 8 character parameter limitation.
+!
+! Visit our website at http://www.thinkpeak.com
+!
+! If the directory that is displayed in the graphics window is 
+! '...command did not function properly' then the BAT file or 
+! Unix shell script did not function properly.
+!
+/NOPR
+!
+! arg1: toggle - 0 read directory or use P_DIRI_ setting
+!                1 set P_DIRI_=0 to force re-reading of directory
+!
+! arg2: toggle - 0 no jobname
+!                1 display current jobname
+!
+! arg3: toggle - 0 display date & time   (extracts from OS)
+!                1 do not display date and time
+! arg4: toggle - 0 output information
+!                1 suppress writing of output 'to Output Window'
+P_LOGO2
+!
+!
+*IF,arg1,ne,0,then
+    P_DIRI_=0
+*ELSE
+    /uis,msgpop,2
+*ENDIF
+!
+!
+*IF,P_DIRI_,lt,1,then
+    *IF,arg4,eq,0,then
+        /com
+        /com  http://www.thinkpeak.com
+        /com  Reading Directory Information...
+        /com  ................................
+    *ENDIF
+        *GET,P_SYSNM_,active,,syname,,start,7
+        *create,zpta_path
+        :/com Directory command did not function properly.
+        *end
+        !
+    *IF,P_SYSNM_,eq,'NT',then
+        !
+        ! make a file to list, controls size of 'dir' listing by specifying a single file.
+        *create,zpta_inp
+        :http://www.thinkpeak.com 
+        *end
+        !
+        ! create a BAT file
+        !
+        *CFOPEN,ZPTDIR,BAT
+        *VWRITE
+        ('  @echo off')
+        *VWRITE
+        ('  dir zpta_inp > zpta_path')
+        *VWRITE
+        ('  set COMPUTERNAME > zpta_name')
+        !
+        *CFCLOSE
+        /sys, ZPTDIR.BAT
+        !
+    *ELSE
+        *CFOPEN,zptdir,sh
+        *VWRITE
+        ('#! /bin/sh')
+        *VWRITE
+        (' pwd > zpta_path')
+        *VWRITE
+        (' hostname > zpta_name')
+        *CFCLOSE
+        /sys, /bin/sh ./zptdir.sh
+    *ENDIF
+    !
+    ! *UILIST,zpta_path
+    !
+    *DEL,_P_CDIR(1)
+    *DIM,_P_CDIR,char,256*6,1,1
+    !
+    *DEL,_P_CNAM(1)
+    *DIM,_P_CNAM,char,64,1,1
+    !
+    ! ================================================================
+    *IF,P_SYSNM_,eq,'NT',then
+        !
+        P_DRL_=0
+        ar11=1
+        ! look for word 'Director' and then construct pathname
+        ! from array of single characters
+        *VREAD,_P_cdir(1),zpta_path
+        (1x,A8,A5,254A1)
+            *DO,ar10,1,256*6
+              *if,_P_cdir(ar10),eq,'Director',then
+                ar11=ar10+2
+                P_DRL_=1
+              *endif
+              *if,_P_cdir(ar10),eq,'Director',EXIT
+            *ENDDO
+            *if,P_DRL_,eq,0,then
+              /com
+              /com Directory information from NT system not read in.
+              /com
+            *endif
+    *ELSE
+        !
+        *VREAD,_P_cdir(1),zpta_path
+        (255A1)
+        ar11=1   ! unix pwd starts at first 'column'
+    *ENDIF
+    !
+    
+    ! =========================COMPUTERNAME==========================
+    *IF,P_SYSNM_,eq,'NT',then
+        !
+        P_CNAM_=0
+        ar21=1
+        ! look for word 'COMPUTER' and then construct systemhname
+        ! from array of single characters
+        *VREAD,_P_cnam(1),zpta_name
+        (A8,A5,62A1)
+            *DO,ar10,1,64
+              *if,_P_cnam(ar10),eq,'COMPUTER',then
+                ar21=ar10+2
+                P_CNAM_=1
+              *endif
+              *if,_P_cnam(ar10),eq,'COMPUTER',EXIT
+            *ENDDO
+            *if,P_CNAM_,eq,0,then
+              /com
+              /com Computer name from NT system not read in.
+              /com
+            *endif
+            !
+            !
+            !
+            !
+    *ELSE
+        !
+        *VREAD,_P_cnam(1),zpta_name
+        (64A1)
+        ar21=1   ! unix hostname starts at first 'column'
+    *ENDIF
+    !
+    !
+    *CFOPEN,zname
+    *VWRITE
+    ('/tlabel,-0.9,.8985,',$)
+    *DO,ar10,ar21,64
+        *IF,strleng(_P_CNAM(ar10)),eq,1,then
+            *VLEN,1
+            *VWRITE,_P_CNAM(ar10)
+            (A1,$)
+        *ELSE
+            *VWRITE
+            ('   ')
+            !
+        *ENDIF
+        *IF,strleng(_P_CNAM(ar10)),ne,1,EXIT
+    *ENDDO
+    *VWRITE
+    ('/rmtemp')
+    *CFCLOSE
+    !
+    ! =========================COMPUTERNAME==============================
+     
+    *DO,ar10,1,256/8
+      P_PH%ar10%_=''
+    *ENDDO
+    !
+    !
+    *IF,ar11,lt,1,then
+      ar11=1
+    *ENDIF
+    !
+    P_AC_=0   ! alpha characters read counter
+    P_PC_=1   ! parameter counter, when P_AC_>8, P_PC_ increments, P_AC_=0
+    P_SPC_=' '
+    *DO,ar10,ar11,ar11+254
+        P_AC_=P_AC_+1
+        *if,P_AC_,gt,8,then
+          P_AC_=1
+          P_PC_=P_PC_+1   ! 8 char text parameter counter
+        *endif
+          *IF,strleng(_P_CDir(ar10)),eq,1,then
+             P_PH%P_PC_%_=strcat(P_PH%P_PC_%_,_P_CDir(ar10))
+          *else
+             P_PH%P_PC_%_=strcat(P_PH%P_PC_%_,P_SPC_)
+          *ENDIF
+    *enddo
+    !
+    !
+    *DEL,_PT(1)
+    *DIM,_PT,char,32
+    P_DRL_=0
+    *DO,ar10,1,256/8
+      _PT(ar10)=P_PH%ar10%_
+      *IF,strleng(_PT(ar10)),eq,0,then
+         P_DRL_=ar10-1
+      *ENDIF
+      P_PH%ar10%_=
+    *ENDDO
+    !
+    !/GO
+    !
+    *DO,ar20,1,32
+      _P%ar20%='    '
+    *ENDDO
+    !
+    *DO,ar20,1,P_DRL_
+      _P%ar20%=_PT(ar20)
+    *ENDDO
+    !
+    *IF,arg4,eq,0,then
+        /com  ---------------------
+        /com  Current Directory
+        *vwrite,_P1,_P2,_P3,_P4,_P5,_P6,_P7,_P8,_P9,_P10
+        (4x,10A8)
+        !
+        *IF,P_DRL_,ge,11,then
+            *vwrite,_P11,_P12,_P13,_P14,_P15,_P16,_P17,_P18,_P19,_P20
+            (4x,10A8)
+        *ENDIF
+        *IF,P_DRL_,ge,21,then
+            *vwrite,_P21,_P22,_P23,_P24,_P25,_P26,_P27,_P28,_P29,_P30
+            (4x,10A8)
+        *ENDIF
+        *IF,P_DRL_,ge,31,then
+            *vwrite,_P31,_P32
+           (4x,2A8)
+        *ENDIF
+        /com  -------------------------------------------------
+    *ENDIF
+    !
+    !
+    ! create quick macro for loading directory info
+    !   *CFOPEN,p_peakdl,mac
+    !   *DO,ar10,1,32
+    !       *VWRITE,chrval(ar10),_P%ar10%
+    !       ('*SET,_P'A1','A8)
+    !   *ENDDO
+    !   *CFWRITE,*SET,P_DIRI_=1
+    !   *CFCLOSE
+    !
+    P_DIRI_=1   ! set when info is first read in. Within Ansys, cannot change directory without restarting.
+    !
+*ELSE
+    *IF,arg4,eq,0,then
+        /com Directory information already obtained.
+        /com Set P_DIRI_=0 to force a re-read of the current directory.
+        /com Current Directory
+        !
+        !
+            *vwrite,_P1,_P2,_P3,_P4,_P5,_P6,_P7,_P8,_P9,_P10
+            (4x,10A8)
+        !
+        *IF,P_DRL_,ge,11,then
+            *vwrite,_P11,_P12,_P13,_P14,_P15,_P16,_P17,_P18,_P19,_P20
+            (4x,10A8)
+        *ENDIF
+        *IF,P_DRL_,ge,21,then
+            *vwrite,_P21,_P22,_P23,_P24,_P25,_P26,_P27,_P28,_P29,_P30
+            (4x,10A8)
+        *ENDIF
+        *IF,P_DRL_,ge,31,then
+            *vwrite,_P31,_P32
+           (4x,2A8)
+        *ENDIF
+        !
+        /com  -------------------------------------------------
+    *ENDIF
+*ENDIF   
+!
+    PT__D1=''
+    PT__D2=''
+    PT__D3=''
+    PT__D4=''
+    PT__T1=''
+!
+*IF,arg3,eq,0,then
+    ! display date and time
+        *GET,P_SYSNM_,active,,syname,,start,7
+        *create,zpta_dt
+        :/com Date and/or Time command did not function properly.
+        *end
+        !
+    *IF,P_SYSNM_,eq,'NT',then
+        !
+        !
+        ! create a BAT file
+        !
+        *CFOPEN,ZPTDIR,BAT
+        *VWRITE
+        ('  @echo off')
+        *VWRITE
+        ('  date /t > zpta_dt')
+        *VWRITE
+        ('  time /t >> zpta_dt')
+        *CFCLOSE
+        /sys, ZPTDIR.BAT
+        ! date is 14 char long
+        ! time is 6 char long
+        P_DLEN=14
+        P_TLEN=6
+        !
+    *ELSE
+        *CFOPEN,zptdir,sh
+        *VWRITE
+        ('#! /bin/sh')
+        *VWRITE
+        (' date > zpta_dt')
+        *CFCLOSE
+        /sys, /bin/sh ./zptdir.sh
+        ! unix (solaris) is 28 char long, date and time
+        P_DLEN=28
+    *ENDIF
+    !
+    ! *UILIST,zpta_dt
+    !
+    *DEL,_P_CDIR(1),,NOPR
+    *DIM,_P_CDIR,char,28,1,1
+    !
+    !
+    ! ================================================================
+    ! ------------------------------------------------
+    !
+    PT_AC=0   ! alpha characters read counter
+    PT_PC=1   ! parameter counter, when PT_AC>8, PT_PC increments, PT_AC=0
+    PT__D1=''
+    PT__D2=''
+    PT__D3=''
+    PT__D4=''
+    PT__T1=''
+    PT_SPC='_'  ! replace space char with underscore
+    !
+    ar11=1
+    *VLEN,P_DLEN
+    *VREAD,_P_cdir(1),zpta_dt
+    (28A1)
+    !
+    *DO,PT_J,1,P_DLEN
+        PT_AC=PT_AC+1
+        *if,PT_AC,gt,8,then
+          PT_AC=1
+          PT_PC=PT_PC+1   ! 8 char text parameter counter
+        *endif
+          *IF,strleng(_P_CDIR(PT_J)),eq,1,then
+             PT__D%PT_PC%=strcat(PT__D%PT_PC%,_P_CDIR(PT_J))
+          *else
+             PT__D%PT_PC%=strcat(PT__D%PT_PC%,PT_SPC)
+          *ENDIF
+    *ENDDO
+    !
+    *IF,P_SYSNM_,eq,'NT',then
+        *VLEN,P_TLEN
+        *VREAD,_P_cdir(1),zpta_dt,,,,,,,1
+        (6A1)
+        !
+        PT_PC=1
+        *DO,PT_J,1,P_TLEN
+              *IF,strleng(_P_CDIR(PT_J)),eq,1,then
+                 PT__T%PT_PC%=strcat(PT__T%PT_PC%,_P_CDIR(PT_J))
+              *else
+                 PT__T%PT_PC%=strcat(PT__T%PT_PC%,PT_SPC)
+              *ENDIF
+        *ENDDO
+    *ENDIF
+    !
+    *DEL,_P_CDIR(1),,NOPR
+*ENDIF    
+    
+!
+! draw black rectangle to overwrite any previous info (although it will be cleaned up during
+! the next plotting action).
+!
+/ANUM ,0,     5, 0.22470    , 0.94401   
+/LSPEC,    15,     0, 1.000 
+/PSPEC,     0,     1,     0 
+/POLY,4,-0.928, 0.89, 1.00, 0.89, 1.00, 0.999,-0.928, 0.999 
+!
+! place directory name on plot for documentating location, etc.
+! directory name thru _P11 is the max for a single /TLABEL command,
+! thus you can have a directory name
+! with up to 88 characters. If you need more add another /TLABEL command
+! and locate the _P12 thru _Pn parameters on the next line or to the right
+! of the first 88 characters.
+!
+! NOTE: /tlabel TEXT is limited to 60 characters. 
+!       Is that before or after character substitution?
+!
+/tspec,15,.7,1,0,15
+!/tlabel,-0.9,.895,%_P1%%_P2%%_P3%%_P4%%_P5%%_P6%%_P7%%_P8%%_P9%%_P10%%_P11%
+!/tlabel,-0.9,.895,%_P1%%_P2%%_P3%%_P4%%_P5%%_P6%%_P7%%_P8%%_P9%
+/tlabel,-0.45,.8985,%_P1%%_P2%%_P3%%_P4%%_P5%%_P6%%_P7%%_P8%%_P9%
+!
+    /input,zname
+    
+    
+! Reset text attibutes.
+!
+*IF,arg2,eq,1,then
+    *DEL,_ZC(1)
+    *DIM,_ZC,char,4
+    *DO,ar10,0,3
+        *GET,_ZC(ar10+1),active,,jobnam,,start,ar10*8+1
+    *ENDDO
+    *CFOPEN,zpt_job,txt
+    *VLEN,1
+    *VWRITE,_ZC(1),_ZC(2),_ZC(3),_ZC(4)
+    (' /tlabel,-.45,.825,',4A8)
+    *CFWRITE,/rmtemp
+    *CFCLOSE
+    /input,zpt_job,txt
+*ENDIF
+!
+*CFOPEN,zpt_dt,txt
+*VLEN,1
+*VWRITE,PT__D1,PT__D2,PT__D3,PT__D4,PT__T1
+(' /tlabel,-.45,.95,',4A,2x,A)
+*CFWRITE,/rmtemp
+*CFCLOSE
+/input,zpt_dt,txt
+!
+/TSPEC,14,1,1,0,0
+/TSPEC,15,1,1,0,0
+P_PC_=
+P_AC_=
+P_SPC_=
+*DEL,_P_CDIR(1)
+*DEL,_PT(1)
+PT_J=
+PT_AC=
+PT_PC=
+PT__D1=
+PT__D2=
+PT__D3=
+PT__D4=
+PT__T1=
+PT_SPC=
+P_DLEN=
+P_TLEN=
+
+!    
+!
+/GO

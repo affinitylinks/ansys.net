@@ -1,0 +1,211 @@
+!
+!
+! If the directory that is displayed in the graphics window is
+! '...command did not function properly' then the BAT file or
+! Unix shell script did not function properly.
+!
+/NOPR
+!    Turn off all WARNING messages
+/uis,msgpop,3
+!
+! arg1: toggle - 0 read directory or use P_DIRI_ setting
+!                1 set PT_DIRI_=0 to force re-reading of directory
+*IF,arg1,ne,0,then
+    P_DIRI_=0
+*ENDIF
+!
+!
+*IF,P_DIRI_,lt,1,then
+    *msg,ui
+     Getting Directory and Jobname information.....
+    *GET,P_SYSNM_,active,,syname,,start,7
+    *create,zpta_path
+    *end
+    !
+*IF,P_SYSNM_,eq,'NT',then
+    !
+    ! make a file to list, controls size of 'dir' listing by
+    ! specifying a single file.
+    *create,zpta_inp
+    *end
+    !
+    ! create a BAT file
+    !
+    *CFOPEN,ZPTDIR,BAT
+    *VWRITE
+    ('  @echo off')
+    *VWRITE
+    ('  dir zpta_inp > zpta_path')
+    *CFCLOSE
+    /sys, ZPTDIR.BAT
+    !
+*ELSE
+    *CFOPEN,zptdir,sh
+    *VWRITE
+    ('#! /bin/sh')
+    *VWRITE
+    (' pwd > zpta_path')
+    *CFCLOSE
+    /sys, /bin/sh ./zptdir.sh
+*ENDIF
+!
+! *UILIST,zpta_path
+!
+*DEL,_P_CDIR(1)
+*DIM,_P_CDIR,char,256*6,1,1
+!
+! ================================================================
+*IF,P_SYSNM_,eq,'NT',then
+    !
+    P_DRL_=0
+    ar11=1
+    ! look for word 'Director' and then construct pathname
+    ! from array of single characters
+    *VREAD,_P_cdir(1),zpta_path
+    (1x,A8,A5,254A1)
+        *DO,ar10,1,256*6
+          *if,_P_cdir(ar10),eq,'Director',then
+            ar11=ar10+2
+            P_DRL_=1
+          *endif
+          *if,_P_cdir(ar10),eq,'Director',EXIT
+        *ENDDO
+        *if,P_DRL_,eq,0,then
+          *msg,ui
+          Directory information from NT system not read in.
+          !
+        *endif
+*ELSE
+    !
+    *VREAD,_P_cdir(1),zpta_path
+    (128A1,128A1)
+    ar11=1   ! unix pwd starts at first 'column'
+*ENDIF
+!
+*DO,ar10,1,256/8
+  P_PH%ar10%_=''
+*ENDDO
+!
+!
+*IF,ar11,lt,1,then
+  ar11=1
+*ENDIF
+!
+P_AC_=0   ! alpha characters read counter
+P_PC_=1   ! parameter counter, when P_AC_>8, P_PC_ increments, P_AC_=0
+P_SPC_=' '
+*DO,ar10,ar11,ar11+254
+    P_AC_=P_AC_+1
+    *if,P_AC_,gt,8,then
+      P_AC_=1
+      P_PC_=P_PC_+1   ! 8 char text parameter counter
+    *endif
+      *IF,strleng(_P_CDir(ar10)),eq,1,then
+         P_PH%P_PC_%_=strcat(P_PH%P_PC_%_,_P_CDir(ar10))
+      *else
+         P_PH%P_PC_%_=strcat(P_PH%P_PC_%_,P_SPC_)
+      *ENDIF
+*enddo
+!
+!
+*DEL,_PT(1)
+*DIM,_PT,char,32
+P_DRL_=0
+*DO,ar10,1,256/8
+  _PT(ar10)=P_PH%ar10%_
+  *IF,strleng(_PT(ar10)),eq,0,then
+     P_DRL_=ar10-1
+  *ENDIF
+  P_PH%ar10%_=
+*ENDDO
+!
+!/GO
+!
+!
+*DO,ar20,1,32
+  _P%ar20%='   '
+*ENDDO
+!
+*DO,ar20,1,P_DRL_
+  _P%ar20%=_PT(ar20)
+*ENDDO
+!
+    *vwrite,_P1,_P2,_P3,_P4,_P5,_P6,_P7,_P8,_P9,_P10
+    (4x,10A8)
+!
+*IF,P_DRL_,ge,11,then
+    *vwrite,_P11,_P12,_P13,_P14,_P15,_P16,_P17,_P18,_P19,_P20
+    (4x,10A8)
+*ENDIF
+*IF,P_DRL_,ge,21,then
+    *vwrite,_P21,_P22,_P23,_P24,_P25,_P26,_P27,_P28,_P29,_P30
+    (4x,10A8)
+*ENDIF
+*IF,P_DRL_,ge,31,then
+    *vwrite,_P31,_P32
+   (4x,2A8)
+*ENDIF
+!
+!
+! 
+P_DIRI_=1   ! set when info is first read in. Within Ansys, cannot
+            ! change directory without restarting.
+!
+*ELSE
+    ! Directory information already obtained.
+    ! Set P_DIRI_=0 to force a re-read of the current directory.
+    ! Current Directory
+    !
+    !
+        *vwrite,_P1,_P2,_P3,_P4,_P5,_P6,_P7,_P8,_P9,_P10
+        (4x,10A8)
+    !
+    *IF,P_DRL_,ge,11,then
+        *vwrite,_P11,_P12,_P13,_P14,_P15,_P16,_P17,_P18,_P19,_P20
+        (4x,10A8)
+    *ENDIF
+    *IF,P_DRL_,ge,21,then
+        *vwrite,_P21,_P22,_P23,_P24,_P25,_P26,_P27,_P28,_P29,_P30
+        (4x,10A8)
+    *ENDIF
+    *IF,P_DRL_,ge,31,then
+        *vwrite,_P31,_P32
+       (4x,2A8)
+    *ENDIF
+    !
+!
+*ENDIF
+!
+!
+! place directory name on plot for documentating location, etc.
+! directory name thru _P11 is the max for a single /TLABEL command,
+! thus you can have a directory name
+! with up to 88 characters. If you need more add another /TLABEL command
+! and locate the _P12 thru _Pn parameters on the next line or to the right
+! of the first 88 characters.
+!
+name_=
+*dim,name_,char,4
+*get,name_(1),active,,JOBNAM,,start,1   !Get Jobname
+*get,name_(2),active,,JOBNAM,,start,9   !Get Jobname
+*get,name_(3),active,,JOBNAM,,start,17  !Get Jobname
+*get,name_(4),active,,JOBNAM,,start,25  !Get Jobname
+/tspec,15,0.9,1,0,0
+/tlabel,-0.9,0.95,Dir=%_P1%%_P2%%_P3%%_P4%%_P5%%_P6%
+/tlabel,0.75,0.95,%_P7%%_P8%%_P9%%_P10%%_P11%
+/tlabel,-0.98,.90,  Jobname= %name_(1)%%name_(2)%%name_(3)%%name_(4)%
+!
+! Reset text attibutes.
+!
+/TSPEC,14,1,1,0,0
+/TSPEC,15,1,1,0,0
+!
+P_PC_=
+P_AC_=
+P_SPC_=
+*DEL,_P_CDIR(1)
+*DEL,_PT(1)
+!
+/uis,msgpop,2  !Turn message window back to default settings
+!
+/GO

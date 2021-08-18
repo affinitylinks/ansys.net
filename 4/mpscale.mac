@@ -1,0 +1,35 @@
+!
+! MACRO TO SCALE A MATERIAL PROPERTY
+! SCALE THE PROPERTY AND ENTER INTO NEW MATERIAL
+! REQUIRES Material property label and material number
+! as input args
+! ARG1= Material property label (text string, ie 'EX')
+! ARG2= material number
+! ARG3= Scale Factor (def =1)
+! ARG4= New Property label (ie EY=.5*EX, defaults to ARG2)
+! ARG5= New mat number (Def to ARG1)
+!
+*GET,chk,arg1,arg2,EXIS       ! Does the property exist for this matl?
+*if,chk,eq,1,then
+ *if,arg3,eq,0,then
+  arg3=1
+ *endif
+ chkarg=arg4
+ *get,ctype,parm,chkarg,type
+ *if,ctype,ne,3,then
+  arg4=arg1
+ *endif
+ *if,arg5,eq,0,then
+  arg5=arg2
+ *endif
+ mptres,arg1,arg2
+ *GET,ntmps,arg1,arg2,NTEM       ! Number of temperature values inthe table
+ *do,_i,1,ntmps
+  *GET,tmpi,arg1,arg2,TVAL,_i   ! Temperature value number <i>(start at 1)
+  *GET,propi,arg1,arg2,TEMP,tmpi ! Property value at temperature
+  mpdata,%arg4%,arg5,_i,propi*arg3
+ *enddo
+*else
+ *MSG,WARN
+Input material does not exist
+*endif

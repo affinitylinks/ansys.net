@@ -1,0 +1,4374 @@
+!I have a macro in Ansys for Unix that do it. If you have Windows 2000 (NT), you
+!may change the "grep" command by the "find" command.
+!for shell elements.
+
+/output,null,,/tmp
+
+/prep7
+
+allsel
+
+/sys,wc mallanas.blk > info.blk
+
+*dim,nlin,array,1
+
+*create,ansuitmp
+*vread,nlin(1),info,blk,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*dim,a,char,nlin(1)
+
+*create,ansuitmp
+*vread,a(1),mallanas,blk,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*create,ansuitmp
+*vlen,1
+*vread,nlin(1),info,blk,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+/sys,grep -h 'GRID ' mallanas.blk > grid.txt
+/sys,wc grid.txt > ngrids.txt
+
+*dim,nlinn,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn(1),ngrids,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*dim,grid,array,nlinn(1),6
+
+*create,ansuitmp
+*vlen,nlinn(1)
+*vread,grid(1,1),grid,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn(1)
+*vread,grid(1,2),grid,txt,/tmp,,,,,
+(16X,F8)
+*vlen,nlinn(1)
+*vread,grid(1,3),grid,txt,/tmp,,,,,
+(24X,F8.3)
+*vlen,nlinn(1)
+*vread,grid(1,4),grid,txt,/tmp,,,,,
+(32X,F8.3)
+*vlen,nlinn(1)
+*vread,grid(1,5),grid,txt,/tmp,,,,,
+(40X,F8.3)
+*vlen,nlinn(1)
+*vread,grid(1,6),grid,txt,/tmp,,,,,
+(48X,F8)
+*end
+/input,ansuitmp
+
+
+/sys,grep -h 'CORD2R ' mallanas.blk > cord2r.txt
+/sys,grep -h 'CORD2C ' mallanas.blk > cord2c.txt
+/sys,grep -n 'CORD2R ' mallanas.blk > cord2rr.txt
+/sys,grep -n 'CORD2C ' mallanas.blk > cord2cc.txt
+/sys,wc cord2r.txt > coord2r.txt
+/sys,wc cord2c.txt > coord2c.txt
+
+*dim,nlinn2,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn2(1),coord2r,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn2(1),ne,0,then
+*dim,prim2,char,nlinn2(1),1
+
+*create,ansuitmp
+*vlen,nlinn2(1)
+*vread,prim2(1),cord2rr,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,primmm,array,nlinn2(1)
+
+*do,i,1,nlinn2(1),1
+p = strpos(prim2(i),':')
+pp = strsub(prim2(i),1,p-1)
+ppp = valchr(pp)
+primmm(i)= ppp
+*enddo
+
+*dim,prim,array,nlinn2(1),7
+
+*create,ansuitmp
+*do,i,1,nlinn2(1),1
+*vlen,nlinn2(1)
+*vread,prim(i,1),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(8X,F8)
+*vlen,nlinn2(1)
+*vread,prim(i,2),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(24X,F8.1)
+*vlen,nlinn2(1)
+*vread,prim(i,3),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(32X,F8.1)
+*vlen,nlinn2(1)
+*vread,prim(i,4),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(40X,F8.1)
+*vlen,nlinn2(1)
+*vread,prim(i,5),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(48X,F8.1)
+*vlen,nlinn2(1)
+*vread,prim(i,6),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(56X,F8.1)
+*vlen,nlinn2(1)
+*vread,prim(i,7),mallanas,blk,/tmp,,,1,,primmm(i)-1
+(64X,F8.1)
+*enddo
+*end
+/input,ansuitmp
+*endif
+!!!!!!!
+
+*if,nlinn2(1),ne,0,then
+*dim,seg,array,nlinn2(1),3
+
+*create,ansuitmp
+*do,i,1,nlinn2(1),1
+*vlen,nlinn2(1)
+*vread,seg(i,1),mallanas,blk,/tmp,,,1,,primmm(i)
+(8X,F8.1)
+*vlen,nlinn2(1)
+*vread,seg(i,2),mallanas,blk,/tmp,,,1,,primmm(i)
+(16X,F8.1)
+*vlen,nlinn2(1)
+*vread,seg(i,3),mallanas,blk,/tmp,,,1,,primmm(i)
+(24X,F8.1)
+*enddo
+*end
+/input,ansuitmp
+*endif
+
+*dim,nlinn3,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn3(1),coord2c,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*dim,qrim3,char,nlinn3(1)
+
+*create,ansuitmp
+*vlen,nlinn3(1)
+*vread,qrim3(1),cord2cc,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,qrimmm,array,nlinn3(1)
+
+*do,i,1,nlinn3(1),1
+q = strpos(qrim3(i),':')
+qq = strsub(qrim3(i),1,q-1)
+qqq = valchr(qq)
+qrimmm(i)= qqq
+*enddo
+
+*dim,qrim,array,nlinn3(1),7
+
+*create,ansuitmp
+*do,i,1,nlinn3(1),1
+*vlen,nlinn3(1)
+*vread,qrim(i,1),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(8X,F8)
+*vlen,nlinn3(1)
+*vread,qrim(i,2),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(24X,F8.1)
+*vlen,nlinn3(1)
+*vread,qrim(i,3),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(32X,F8.1)
+*vlen,nlinn3(1)
+*vread,qrim(i,4),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(40X,F8.1)
+*vlen,nlinn3(1)
+*vread,qrim(i,5),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(48X,F8.1)
+*vlen,nlinn3(1)
+*vread,qrim(i,6),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(56X,F8.1)
+*vlen,nlinn3(1)
+*vread,qrim(i,7),mallanas,blk,/tmp,,,1,,qrimmm(i)-1
+(64X,F8.1)
+*enddo
+*end
+/input,ansuitmp
+
+*dim,seg2,array,nlinn3(1),3
+
+*create,ansuitmp
+*do,i,1,nlinn3(1),1
+*vlen,nlinn3(1)
+*vread,seg2(i,1),mallanas,blk,/tmp,,,,,qrimmm(i)
+(8X,F8.1)
+*vlen,nlinn3(1)
+*vread,seg2(i,2),mallanas,blk,/tmp,,,,,qrimmm(i)
+(16X,F8.1)
+*vlen,nlinn3(1)
+*vread,seg2(i,3),mallanas,blk,/tmp,,,,,qrimmm(i)
+(24X,F8.1)
+*enddo
+*end
+/input,ansuitmp
+
+/sys,grep -h 'CQUAD4 ' mallanas.blk > cquad4.txt
+/sys,grep -h 'CTRIA3 ' mallanas.blk > ctria3.txt
+/sys,wc cquad4.txt > cquadd4.txt
+/sys,wc ctria3.txt > ctriaa3.txt
+
+*dim,nlinn4,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn4(1),cquadd4,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn4(1),ne,0,then
+*dim,cuad,array,nlinn4(1),6
+
+*create,ansuitmp
+*vlen,nlinn4(1)
+*vread,cuad(1,1),cquad4,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn4(1)
+*vread,cuad(1,2),cquad4,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn4(1)
+*vread,cuad(1,3),cquad4,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn4(1)
+*vread,cuad(1,4),cquad4,txt,/tmp,,,1
+(32X,F8)
+*vlen,nlinn4(1)
+*vread,cuad(1,5),cquad4,txt,/tmp,,,1
+(40X,F8)
+*vlen,nlinn4(1)
+*vread,cuad(1,6),cquad4,txt,/tmp,,,1
+(48X,F8)
+*end
+/input,ansuitmp
+*endif
+
+*dim,nlinn5,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn5(1),ctriaa3,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn5(1),ne,0,then
+*dim,tria,array,nlinn5(1),5
+
+*create,ansuitmp
+*vlen,nlinn5(1)
+*vread,tria(1,1),ctria3,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn5(1)
+*vread,tria(1,2),ctria3,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn5(1)
+*vread,tria(1,3),ctria3,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn5(1)
+*vread,tria(1,4),ctria3,txt,/tmp,,,1
+(32X,F8)
+*vlen,nlinn5(1)
+*vread,tria(1,5),ctria3,txt,/tmp,,,1
+(40X,F8)
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn4(1),ne,0,then
+*dim,cuad2,array,nlinn4(1)
+*dim,nmask,array,nlinn4(1)
+*vscfun,mmax,max,cuad(1,2)
+
+*do,i,1,mmax,1
+*dim,real%i%,array,nlinn4(1)
+*voper,nmask(1),cuad(1,2),eq,i
+*vmask,nmask(1)
+*vfun,real%i%(1),comp,cuad(1)
+*vscfun,uult,last,real%i%(1)
+*dim,rreal%i%,array,uult
+*vfun,rreal%i%(1),comp,real%i%(1)
+*enddo
+*endif
+
+/sys,grep -h 'PSHELL ' mallanas.blk > real.txt
+/sys,grep -h '+ ' mallanas.blk > real2.txt
+/sys,wc real.txt > rreal.txt
+
+*dim,nlinn30,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn30(1),rreal,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn30(1),ne,0,then
+*dim,r,array,nlinn30(1),8
+*dim,r2,array,nlinn30(1),3
+
+*create,ansuitmp
+*vlen,nlinn30(1)
+*vread,r(1,1),real,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn30(1)
+*vread,r(1,2),real,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn30(1)
+*vread,r(1,3),real,txt,/tmp,,,1
+(24X,F8.3)
+*vlen,nlinn30(1)
+*vread,r(1,4),real,txt,/tmp,,,1
+(32X,F8)
+*vlen,nlinn30(1)
+*vread,r(1,5),real,txt,/tmp,,,1
+(40X,F8.3)
+*vlen,nlinn30(1)
+*vread,r(1,6),real,txt,/tmp,,,1
+(48X,F8)
+*vlen,nlinn30(1)
+*vread,r(1,7),real,txt,/tmp,,,1
+(56X,F8.3)
+*vlen,nlinn30(1)
+*vread,r(1,8),real,txt,/tmp,,,1
+(64X,F8.3)
+*vlen,nlinn30(1)
+*vread,r2(1,1),real2,txt,/tmp,,,1
+(8X,F8.3)
+*vlen,nlinn30(1)
+*vread,r2(1,2),real2,txt,/tmp,,,1
+(16X,F8.3)
+*vlen,nlinn30(1)
+*vread,r2(1,3),real2,txt,/tmp,,,1
+(24X,F8)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'FORCE ' mallanas.blk > force.txt
+/sys,wc force.txt > fforce.txt
+
+*dim,nlinn8,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn8(1),fforce,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn8(1),ne,0,then
+*dim,forc,array,nlinn8(1),7
+
+*create,ansuitmp
+*vlen,nlinn8(1)
+*vread,forc(1,1),force,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn8(1)
+*vread,forc(1,2),force,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn8(1)
+*vread,forc(1,3),force,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn8(1)
+*vread,forc(1,4),force,txt,/tmp,,,1
+(32X,F8.3)
+*vlen,nlinn8(1)
+*vread,forc(1,5),force,txt,/tmp,,,1
+(40X,F8.3)
+*vlen,nlinn8(1)
+*vread,forc(1,6),force,txt,/tmp,,,1
+(48X,F8.3)
+*vlen,nlinn8(1)
+*vread,forc(1,7),force,txt,/tmp,,,1
+(56X,F8.3)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'MOMENT ' mallanas.blk > moment.txt
+/sys,wc moment.txt > mmoment.txt
+
+*dim,nlinn9,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn9(1),mmoment,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn9(1),ne,0,then
+*dim,mom,array,nlinn9(1),7
+
+*create,ansuitmp
+*vlen,nlinn9(1)
+*vread,mom(1,1),moment,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn9(1)
+*vread,mom(1,2),moment,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn9(1)
+*vread,mom(1,3),moment,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn9(1)
+*vread,mom(1,4),moment,txt,/tmp,,,1
+(32X,F8.3)
+*vlen,nlinn9(1)
+*vread,mom(1,5),moment,txt,/tmp,,,1
+(40X,F8.3)
+*vlen,nlinn9(1)
+*vread,mom(1,6),moment,txt,/tmp,,,1
+(48X,F8.3)
+*vlen,nlinn9(1)
+*vread,mom(1,7),moment,txt,/tmp,,,1
+(56X,F8.3)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'SPC ' mallanas.blk > inter.txt
+/sys,grep -v 'AUTOSPC' inter.txt > inter2.txt
+/sys,grep -h 'SPC' inter2.txt > spc.txt
+/sys,wc spc.txt > sspc.txt
+
+*dim,nlinn10,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn10(1),sspc,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn10(1),ne,0,then
+*dim,spc,array,nlinn10(1),7
+
+*create,ansuitmp
+*vlen,nlinn10(1)
+*vread,spc(1,1),spc,txt,/tmp,,,1,,
+(8X,F8)
+*vlen,nlinn10(1)
+*vread,spc(1,2),spc,txt,/tmp,,,1,,
+(16X,F8)
+*vlen,nlinn10(1)
+*vread,spc(1,3),spc,txt,/tmp,,,1,,
+(24X,F8)
+*vlen,nlinn10(1)
+*vread,spc(1,4),spc,txt,/tmp,,,1,,
+(32X,F8.3)
+*vlen,nlinn10(1)
+*vread,spc(1,5),spc,txt,/tmp,,,1,,
+(40X,F8.3)
+*vlen,nlinn10(1)
+*vread,spc(1,6),spc,txt,/tmp,,,1,,
+(48X,F8.3)
+*vlen,nlinn10(1)
+*vread,spc(1,7),spc,txt,/tmp,,,1,,
+(56X,F8.3)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'SPC1 ' mallanas.blk > spc1.txt
+/sys,wc spc1.txt > sspc1.txt
+
+*dim,nlinn11,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn11(1),sspc1,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn11(1),ne,0,then
+*dim,spc1,array,nlinn11(1),8
+
+*create,ansuitmp
+*vlen,nlinn11(1)
+*vread,spc1(1,1),spc1,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,2),spc1,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,3),spc1,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,4),spc1,txt,/tmp,,,1
+(32X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,5),spc1,txt,/tmp,,,1
+(40X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,6),spc1,txt,/tmp,,,1
+(48X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,7),spc1,txt,/tmp,,,1
+(56X,F8)
+*vlen,nlinn11(1)
+*vread,spc1(1,8),spc1,txt,/tmp,,,1
+(56X,F8)
+*end
+/input,ansuitmp
+*endif
+
+!!!!!!!!
+
+/sys,grep -h 'TEMP ' mallanas.blk > temp.txt
+/sys,wc temp.txt > ttemp.txt
+
+*dim,nlinn12,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn12(1),ttemp,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn12(1),ne,0,then
+*dim,t,array,nlinn12(1),7
+
+*create,ansuitmp
+*vlen,nlinn12(1)
+*vread,t(1,1),temp,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn12(1)
+*vread,t(1,2),temp,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn12(1)
+*vread,t(1,3),temp,txt,/tmp,,,1
+(24X,F8.3)
+*vlen,nlinn12(1)
+*vread,t(1,4),temp,txt,/tmp,,,1
+(32X,F8)
+*vlen,nlinn12(1)
+*vread,t(1,5),temp,txt,/tmp,,,1
+(40X,F8.3)
+*vlen,nlinn12(1)
+*vread,t(1,6),temp,txt,/tmp,,,1
+(48X,F8)
+*vlen,nlinn12(1)
+*vread,t(1,7),temp,txt,/tmp,,,1
+(56X,F8.3)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'MPC ' mallanas.blk > mpc.txt
+/sys,wc mpc.txt > mmpc.txt
+
+*dim,nlinn13,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn13(1),mmpc,txt,/tmp,,,1
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn13(1),ne,0,then
+*dim,mpc,array,nlinn13(1),7
+
+*create,ansuitmp
+*vlen,nlinn13(1)
+*vread,mpc(1,1),mpc,txt,/tmp,,,1
+(8X,F8)
+*vlen,nlinn13(1)
+*vread,mpc(1,2),mpc,txt,/tmp,,,1
+(16X,F8)
+*vlen,nlinn13(1)
+*vread,mpc(1,3),mpc,txt,/tmp,,,1
+(24X,F8)
+*vlen,nlinn13(1)
+*vread,mpc(1,4),mpc,txt,/tmp,,,1
+(32X,F8.3)
+*vlen,nlinn13(1)
+*vread,mpc(1,5),mpc,txt,/tmp,,,1
+(40X,F8)
+*vlen,nlinn13(1)
+*vread,mpc(1,6),mpc,txt,/tmp,,,1
+(48X,F8)
+*vlen,nlinn13(1)
+*vread,mpc(1,7),mpc,txt,/tmp,,,1
+(56X,F8.3)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'PLOAD4 ' mallanas.blk > pload4.txt
+/sys,wc pload4.txt > ppload4.txt
+
+*dim,nlinn15,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn15(1),ppload4,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn15(1),ne,0,then
+*dim,pload,array,nlinn15(1),5
+*create,ansuitmp
+*vlen,nlinn15(1)
+*vread,pload(1,1),pload4,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn15(1)
+*vread,pload(1,2),pload4,txt,/tmp,,,,,
+(16X,F8)
+*vlen,nlinn15(1)
+*vread,pload(1,3),pload4,txt,/tmp,,,,,
+(24X,F8.3)
+*vlen,nlinn15(1)
+*vread,pload(1,4),pload4,txt,/tmp,,,,,
+(56X,F8)
+*vlen,nlinn15(1)
+*vread,pload(1,5),pload4,txt,/tmp,,,,,
+(64X,F8)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'RBE3 ' mallanas.blk > rbe3.txt
+/sys,grep -n 'RBE3 ' mallanas.blk > rbe33.txt
+/sys,wc rbe3.txt > rrbe3.txt
+/sys,wc rbe33.txt > rrbe33.txt
+
+*dim,nlinn16,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn16(1),rrbe3,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn16(1),ne,0,then
+*dim,rb3,array,nlinn16(1),7
+*create,ansuitmp
+*vlen,nlinn16(1)
+*vread,rb3(1,1),rbe3,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn16(1)
+*vread,rb3(1,2),rbe3,txt,/tmp,,,,,
+(24X,F8)
+*vlen,nlinn16(1)
+*vread,rb3(1,3),rbe3,txt,/tmp,,,,,
+(32X,F8)
+*vlen,nlinn16(1)
+*vread,rb3(1,4),rbe3,txt,/tmp,,,,,
+(40X,F8.1)
+*vlen,nlinn16(1)
+*vread,rb3(1,5),rbe3,txt,/tmp,,,,,
+(48X,F8)
+*vlen,nlinn16(1)
+*vread,rb3(1,6),rbe3,txt,/tmp,,,,,
+(56X,F8)
+*vlen,nlinn16(1)
+*vread,rb3(1,7),rbe3,txt,/tmp,,,,,
+(64X,F8)
+*end
+/input,ansuitmp
+
+*dim,rbb3,char,nlinn16(1)
+
+*create,ansuitmp
+*vlen,nlinn16(1)
+*vread,rbb3(1),rbe33,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,rrbb3,array,nlinn16(1)
+
+*do,i,1,nlinn16(1),1
+h = strpos(rbb3(i),':')
+hh = strsub(rbb3(i),1,h-1)
+hhh = valchr(hh)
+rrbb3(i)= hhh
+*enddo
+
+maximum = rrbb3(2)-rrbb3(1)
+*do,i,2,nlinn16(1)-1,1
+parcial=rrbb3(i+1)-rrbb3(i)
+*if,parcial,gt,maximum,then
+maximum = parcial
+*endif
+*enddo
+*endif
+
+*if,nlinn16(1),ne,0,then
+*create,ansuitmp
+cont = 1
+*do,i,1,nlinn16(1)-1,1
+*if,rrbb3(i+1)-rrbb3(i)-1,ne,0,then
+*dim,rb3b%cont%,array,maximum,8
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,1),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(8X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,2),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(16X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,3),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(24X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,4),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(32X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,5),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(40X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,6),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(48X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,7),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(56X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,8),mallanas,blk,/tmp,,,1,,rrbb3(i)
+(64X,F8)
+cont = cont + 1
+*endif
+*enddo
+contad = cont - 1
+*if,rrbb3(i+1)-rrbb3(i)-1,ne,0,then
+cont = nlinn16(1)
+*dim,rb3b%cont%,array,maximum,8
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,1),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(8X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,2),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(16X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,3),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(24X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,4),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(32X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,5),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(40X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,6),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(48X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,7),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(56X,F8)
+*vlen,rrbb3(i+1)-rrbb3(i)-1
+*vread,rb3b%cont%(1,8),mallanas,blk,/tmp,,,1,,rrbb3(nlinn16(1))
+(64X,F8)
+*endif
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'RBE2 ' mallanas.blk > rbe2.txt
+/sys,grep -n 'RBE2 ' mallanas.blk > rbe22.txt
+/sys,wc rbe2.txt > rrbe2.txt
+/sys,wc rbe22.txt > rrbe22.txt
+
+*dim,nlinn17,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn17(1),rrbe2,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn17(1),ne,0,then
+*dim,rb2,array,nlinn17(1),8
+*create,ansuitmp
+*vlen,nlinn17(1)
+*vread,rb2(1,1),rbe2,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,2),rbe2,txt,/tmp,,,,,
+(16X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,3),rbe2,txt,/tmp,,,,,
+(24X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,4),rbe2,txt,/tmp,,,,,
+(32X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,5),rbe2,txt,/tmp,,,,,
+(40X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,6),rbe2,txt,/tmp,,,,,
+(48X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,7),rbe2,txt,/tmp,,,,,
+(56X,F8)
+*vlen,nlinn17(1)
+*vread,rb2(1,8),rbe2,txt,/tmp,,,,,
+(64X,F8)
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn17(1),ne,0,then
+*dim,rbb2,char,nlinn17(1)
+
+*create,ansuitmp
+*vlen,nlinn17(1)
+*vread,rbb2(1),rbe22,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,rrbb2,array,nlinn17(1)
+
+*do,i,1,nlinn17(1),1
+h2 = strpos(rbb2(i),':')
+hh2 = strsub(rbb2(i),1,h2-1)
+hhh2 = valchr(hh2)
+rrbb2(i)= hhh2
+*enddo
+
+maximum2 = rrbb2(2)-rrbb2(1)
+*do,i,2,nlinn17(1)-1,1
+parcial2=rrbb2(i+1)-rrbb2(i)
+*if,parcial2,gt,maximum2,then
+maximum2 = parcial2
+*endif
+*enddo
+*endif
+
+*if,nlinn17(1),ne,0,then
+*create,ansuitmp
+cont2 = 1
+*do,i,1,nlinn17(1)-1,1
+*if,rrbb2(i+1)-rrbb2(i)-1,ne,0,then
+*dim,rb2b%cont2%,array,maximum2,8
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,1),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(8X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,2),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(16X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,3),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(24X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,4),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(32X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,5),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(40X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,6),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(48X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,7),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(56X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,8),mallanas,blk,/tmp,,,1,,rrbb2(i)
+(64X,F8)
+cont2 = cont2 + 1
+*endif
+*enddo
+contad2 = cont2 - 1
+cont2=nlinn17(1)
+*if,rrbb2(i+1)-rrbb2(i)-1,ne,0,then
+*dim,rb2b%cont2%,array,maximum2,8
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,1),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(8X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,2),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(16X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,3),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(24X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,4),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(32X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,5),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(40X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,6),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(48X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,7),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(56X,F8)
+*vlen,rrbb2(i+1)-rrbb2(i)-1
+*vread,rb2b%cont2%(1,8),mallanas,blk,/tmp,,,1,,rrbb2(nlinn17(1))
+(64X,F8)
+*endif
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'MAT1 ' mallanas.blk > mat1.txt
+/sys,wc mat1.txt > mmat1.txt
+
+*dim,nlinn18,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn18(1),mmat1,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn18(1),ne,0,then
+*dim,mt1,array,nlinn18(1),6
+*create,ansuitmp
+*vlen,nlinn18(1)
+*vread,mt1(1,1),mat1,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn18(1)
+*vread,mt1(1,2),mat1,txt,/tmp,,,,,
+(16X,F8.1)
+*vlen,nlinn18(1)
+*vread,mt1(1,3),mat1,txt,/tmp,,,,,
+(32X,F8.5)
+*vlen,nlinn18(1)
+*vread,mt1(1,4),mat1,txt,/tmp,,,,,
+(40X,G8.2)
+*vlen,nlinn18(1)
+*vread,mt1(1,5),mat1,txt,/tmp,,,,,
+(48X,G8.2)
+*vlen,nlinn18(1)
+*vread,mt1(1,6),mat1,txt,/tmp,,,,,
+(56X,F8.1)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'MATT1 ' mallanas.blk > matt1.txt
+/sys,wc matt1.txt > mmatt1.txt
+
+*dim,nlinn19,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn19(1),mmatt1,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn19(1),ne,0,then
+*dim,mtt1,array,nlinn19(1),5
+*create,ansuitmp
+*vlen,nlinn19(1)
+*vread,mtt1(1,1),matt1,txt,/tmp,,,,,
+(8X,F8)
+*vlen,nlinn19(1)
+*vread,mtt1(1,2),matt1,txt,/tmp,,,,,
+(16X,F8)
+*vlen,nlinn19(1)
+*vread,mtt1(1,3),matt1,txt,/tmp,,,,,
+(32X,F8)
+*vlen,nlinn19(1)
+*vread,mtt1(1,4),matt1,txt,/tmp,,,,,
+(40X,F8)
+*vlen,nlinn19(1)
+*vread,mtt1(1,5),matt1,txt,/tmp,,,,,
+(48X,F8)
+*end
+/input,ansuitmp
+*endif
+
+/sys,grep -h 'TABLEM1 ' mallanas.blk > tm1.txt
+/sys,grep -n 'TABLEM1 ' mallanas.blk > tm11.txt
+/sys,grep -n 'ENDT' mallanas.blk > tm11b.txt
+/sys,grep -h 'ENDT' mallanas.blk > tm1b.txt
+/sys,wc tm1.txt > tmm1.txt
+
+*dim,nlinn20,array,1
+
+*create,ansuitmp
+*vlen,1
+*vread,nlinn20(1),tmm1,txt,/tmp
+(F8)
+*end
+/input,ansuitmp
+
+*if,nlinn20(1),ne,0,then
+*dim,tm1,array,nlinn20(1),1
+*create,ansuitmp
+*vlen,nlinn20(1)
+*vread,tm1(1,1),tm1,txt,/tmp,,,,,
+(8X,F8)
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn20(1),ne,0,then
+*dim,tm111,char,nlinn20(1)
+
+*create,ansuitmp
+*vlen,nlinn20(1)
+*vread,tm111(1),tm11,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,tmm111,array,nlinn20(1)
+
+*do,i,1,nlinn20(1),1
+n = strpos(tm111(i),':')
+nn = strsub(tm111(i),1,n-1)
+nnn = valchr(nn)
+tmm111(i)= nnn
+*enddo
+*endif
+
+*if,nlinn20(1),ne,0,then
+*dim,tm111b,char,nlinn20(1)
+
+*create,ansuitmp
+*vlen,nlinn20(1)
+*vread,tm111b(1),tm11b,txt,/tmp,,,1
+(A8)
+*end
+/input,ansuitmp
+
+*dim,tmm111b,array,nlinn20(1)
+
+*do,i,1,nlinn20(1),1
+nb = strpos(tm111b(i),':')
+nnb = strsub(tm111b(i),1,nb-1)
+nnnb = valchr(nnb)
+tmm111b(i)= nnnb
+*enddo
+*endif
+
+*if,nlinn20(1),ne,0,then
+*create,ansuitmp
+*do,i,1,nlinn20(1),1
+*do,j,1,nlinn19(1),1
+*if,mtt1(j,2),eq,tm1(i),then
+*dim,m%i%%j%,array,tmm111b(i)-tmm111(i)-1,8
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111(i)
+(8X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111(i)
+(16X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111(i)
+(24X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111(i)
+(32X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111(i)
+(40X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111(i)
+(48X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,7),mallanas,blk,/tmp,,,,,tmm111(i)
+(56X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,8),mallanas,blk,/tmp,,,,,tmm111(i)
+(64X,F8.1)
+*elseif,mtt1(j,3),eq,tm1(i)
+*dim,m%i%%j%,array,tmm111b(i)-tmm111(i)-1,8
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111(i)
+(8X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111(i)
+(16X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111(i)
+(24X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111(i)
+(32X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111(i)
+(40X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111(i)
+(48X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,7),mallanas,blk,/tmp,,,,,tmm111(i)
+(56X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,8),mallanas,blk,/tmp,,,,,tmm111(i)
+(64X,F8.3)
+*elseif,mtt1(j,4),eq,tm1(i)
+*dim,m%i%%j%,array,tmm111b(i)-tmm111(i)-1,8
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111(i)
+(8X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111(i)
+(16X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111(i)
+(24X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111(i)
+(32X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111(i)
+(40X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111(i)
+(48X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,7),mallanas,blk,/tmp,,,,,tmm111(i)
+(56X,F8.1)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,8),mallanas,blk,/tmp,,,,,tmm111(i)
+(64X,G8.2)
+*elseif,mtt1(j,5),eq,tm1(i)
+*dim,m%i%%j%,array,tmm111b(i)-tmm111(i)-1,8
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111(i)
+(8X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111(i)
+(16X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111(i)
+(24X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111(i)
+(32X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111(i)
+(40X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111(i)
+(48X,G8.2)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,7),mallanas,blk,/tmp,,,,,tmm111(i)
+(56X,F8.3)
+*vlen,tmm111b(i)-tmm111(i)-1
+*vread,m%i%%j%(1,8),mallanas,blk,/tmp,,,,,tmm111(i)
+(64X,G8.2)
+*endif
+*enddo
+*enddo
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn20(1),ne,0,then
+*create,ansuitmp
+*dim,f,char,1,4
+*vlen,1
+*vread,f(1,1),tm1b,txt,/tmp,,,,,
+(8X,A8)
+*vlen,1
+*vread,f(1,2),tm1b,txt,/tmp,,,,,
+(24X,A8)
+*vlen,1
+*vread,f(1,3),tm1b,txt,/tmp,,,,,
+(40X,A8)
+*vlen,1
+*vread,f(1,4),tm1b,txt,/tmp,,,,,
+(56X,A8)
+*end
+/input,ansuitmp
+*endif
+
+gg = strpos(f(1,1),'ENDT')
+gg2 = strpos(f(1,2),'ENDT')
+gg3 = strpos(f(1,3),'ENDT')
+gg4 = strpos(f(1,4),'ENDT')
+
+*if,gg,ne,0,then
+nuevdim=0
+*elseif,ne,eq,0
+nuevdim=2
+*elseif,ne,eq,0
+nuevdim=4
+*elseif,ne,eq,0
+nuevdim=6
+*endif
+
+*if,nlinn20(1),ne,0,then
+*if,nuevdim,ne,0,then
+*create,ansuitmp
+*do,i,1,nlinn20(1),1
+*do,j,1,nlinn19(1),1
+*if,mtt1(j,2),eq,tm1(i),then
+*dim,e%i%%j%,array,1,nuevdim
+*if,nuevdim,eq,2,then
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*elseif,nuevdim,eq,4
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.1)
+*elseif,nuevdim,eq,6
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(40X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(48X,F8.1)
+*endif
+*elseif,mtt1(j,3),eq,tm1(i)
+*dim,e%i%%j%,array,1,nuevdim
+*if,nuevdim,eq,2,then
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*elseif,nuevdim,eq,4
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.3)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.3)
+*elseif,nuevdim,eq,6
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.3)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.3)
+*vlen,1
+*vread,e%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(40X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(48X,F8.3)
+*endif
+*elseif,mtt1(j,4),eq,tm1(i)
+*dim,e%i%%j%,array,1,nuevdim
+*if,nuevdim,eq,2,then
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*elseif,nuevdim,eq,4
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.1)
+*elseif,nuevdim,eq,6
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,G8.2)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,G8.2)
+*vlen,1
+*vread,e%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(40X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(48X,G8.2)
+*endif
+*elseif,mtt1(j,5),eq,tm1(i)
+*dim,e%i%%j%,array,1,nuevdim
+*if,nuevdim,eq,2,then
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*elseif,nuevdim,eq,4
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,F8.1)
+*elseif,nuevdim,eq,6
+*vlen,1
+*vread,e%i%%j%(1,1),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(8X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,2),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(16X,G8.2)
+*vlen,1
+*vread,e%i%%j%(1,3),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(24X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,4),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(32X,G8.2)
+*vlen,1
+*vread,e%i%%j%(1,5),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(40X,F8.1)
+*vlen,1
+*vread,e%i%%j%(1,6),mallanas,blk,/tmp,,,,,tmm111b(i)-1
+(48X,G8.2)
+*endif
+*endif
+*enddo
+*enddo
+*end
+/input,ansuitmp
+*endif
+*endif
+
+!!!!!!!!!!
+
+x1 = 'N,' $ x2 = ',' $ x3 = 'clocal,' $ x4 = 0 $ x4b = ',90' $ x4c = ',-90,'
+x5 = 'cs,' $ x6 = 1 $ x7 = 'csys,0' $ x8 = '/PREP7' $ x9 = 'csys,' $ x4d = ',0,'
+x10 = '/out,nul' $ x11 = 'l,,/tmp' $ x12 = 'allsel' $ x13 = 'finish' $ x4e = ',1,'
+x14 = ' ' $ x14b = 'nrotat,a' $ x14c = 'll' $ x4d = ',0,'
+
+*if,nlinn2(1),ne,0,then
+
+*do,i,1,nlinn2(1),1
+*dim,gr%i%,array,nlinn2(1),1
+gr%i%(1,1)=prim(i,1)
+xx = gr%i%(1,1)
+*dim,nr%i%,array,nlinn(1)
+*vlen,nlinn(1),1
+*voper,nr%i%(1),grid(1,6),eq,xx
+*enddo
+*endif
+
+*if,nlinn3(1),ne,0,then
+
+*do,i,1,nlinn3(1),1
+*dim,gc%i%,array,nlinn3(1),1
+gc%i%(1,1)=qrim(i,1)
+xx2 = gc%i%(1,1)
+*dim,nc%i%,array,nlinn(1)
+*vlen,nlinn(1),1
+*voper,nc%i%(1),grid(1,6),eq,xx2
+*enddo
+
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp
+*vlen,1
+*vwrite,x10,x11
+(A8,A7)
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x12
+(A6)
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x13
+(A6)
+*vlen,1
+*vwrite,x8
+(A6)
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x7
+(A6)
+*vlen,1
+*vwrite,x14
+(A6)
+*if,nlinn2(1),ne,0,then
+*do,i,1,nlinn2(1),1
+*vlen,1,1
+*vwrite,x3,prim(i,1),x4d,prim(i,2),x2,prim(i,3),x2,prim(i,4),x4d,x4d,x4d
+(A7,F8,TL1,' ',A3,F2,TL1,' ',2(A1,F8.3),3A2)
+*vscfun,tt,max,nr%i%(1)
+*if,tt,ne,0,then
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1,1
+*vwrite,x9,prim(i,1)
+(A5,F8,TL1,' ')
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*vmask,nr%i%(1)
+*vwrite,x1,grid(1,1),x2,grid(1,3),x2,grid(1,4),x2,grid(1,5)
+(A2,F8,TL1,' ',A1,2(F8.3,A1),F8.2)
+*enddo
+*elseif,nlinn2(1),eq,0
+*vlen,1,1
+*vwrite,x7
+(A6)
+*endif
+
+*if,nlinn2(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x9,xx
+(A5,F8,TL1,' ')
+*vlen,1
+*vwrite,x14b,x14c
+(A8,A2)
+*vlen,1,1
+*vwrite,x7
+(A6)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn3(1),ne,0,then
+*do,i,1,nlinn3(1),1
+*vlen,1,1
+*vwrite,x7
+(A6)
+*vlen,1,1
+*vwrite,x3,qrim(i,1),x4e,qrim(i,2),x2,qrim(i,3),x2,qrim(i,4),x4b,x4b,x4d
+(A7,F8,TL1,' ',A3,F2,TL1,' ',2(A1,F8.3),3A3)
+*vscfun,tt2,max,nc%i%(1)
+*if,tt2,ne,0,then
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1,1
+*vwrite,x9,qrim(i,1)
+(A5,F8,TL1,' ')
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*vmask,nc%i%(1)
+*vwrite,x1,grid(1,1),x2,grid(1,3),x2,grid(1,4),x2,grid(1,5)
+(A2,F8,TL1,' ',A1,2(F8.3,A1),F8.2)
+*enddo
+*elseif,nlinn3(1),eq,0
+*vlen,1,1
+*vwrite,x7
+(A6)
+*endif
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn3(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x9,grid(1,6)
+(A5,F8,TL1,' ')
+*vlen,1
+*vwrite,x14b,x14c
+(A8,A2)
+*vlen,1,1
+*vwrite,x7
+(A6)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+xx = 0
+*dim,n0,array,nlinn(1)
+*vlen,nlinn(1),1
+*voper,n0(1),grid(1,6),eq,xx
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vmask,n0(1)
+*vwrite,x1,grid(1,1),x2,grid(1,3),x2,grid(1,4),x2,grid(1,5)
+(A2,F8,TL1,' ',A1,2(F8.3,A1),F8.2)
+*cfclose
+*end
+/input,ansuitmp
+
+
+x1 = 'N,' $ x2 = ',' $ x3 = 'clocal,' $ x4 = 0
+x5 = 'cs,' $ x6 = 1 $ x7 = 'csys,0' $ x8 = '/PREP7' $ x9 = 'csys,'
+x10 = '/out,nul' $ x11 = 'l,,/tmp' $ x12 = 'allsel' $ x13 = 'finish'
+x14 = ' ' $ x15 = 'et,1,sol' $ x16 = 'id92' $ x17 = 'et,2,she'
+x18 = 'll63'
+
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x15,x16
+(A8,A4)
+*vlen,1
+*vwrite,x17,x18
+(A8,A4)
+*cfclose
+*end
+/input,ansuitmp
+
+w = nlinn20(1)/nlinn19(1)
+*do,i,1,nlinn19(1),1
+*do,j,i+(w-1)*(i-1),w+w*(i-1),1
+conta=1
+*dim,te%i%%j%,array,w*(tmm111b(j)-tmm111(j)-1)
+*do,l,1,tmm111b(j)-tmm111(j)-1,1
+*do,k,1,7,2
+te%i%%j%(conta)=m%j%%i%(l,k)
+conta=conta+1
+*enddo
+*enddo
+*enddo
+*enddo
+
+*do,i,1,nlinn19(1),1
+*do,j,i+(w-1)*(i-1),w+w*(i-1),1
+conta=1
+*if,nuevdim,eq,2,then
+*dim,teb%i%%j%,array,1
+*do,k,1,1,2
+teb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,4
+*dim,teb%i%%j%,array,2
+*do,k,1,3,2
+teb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,6
+*dim,teb%i%%j%,array,3
+*do,k,1,5,2
+teb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,0
+*endif
+*enddo
+*enddo
+
+*do,i,1,nlinn19(1),1
+*do,j,i+(w-1)*(i-1),w+w*(i-1),1
+conta=1
+*dim,ex%i%%j%,array,(nlinn20(1)/nlinn19(1))*(tmm111b(j)-tmm111(j)-1)
+*do,l,1,tmm111b(j)-tmm111(j)-1,1
+*do,k,2,8,2
+ex%i%%j%(conta)=m%j%%i%(l,k)
+conta=conta+1
+*enddo
+*enddo
+*enddo
+*enddo
+
+*do,i,1,nlinn19(1),1
+*do,j,i+(w-1)*(i-1),w+w*(i-1),1
+conta=1
+*if,nuevdim,eq,2,then
+*dim,exb%i%%j%,array,1
+*do,k,2,2,2
+exb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,4
+*dim,exb%i%%j%,array,2
+*do,k,2,4,2
+exb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,6
+*dim,exb%i%%j%,array,3
+*do,k,2,6,2
+exb%i%%j%(conta)=e%j%%i%(1,k)
+conta=conta+1
+*enddo
+*elseif,nuevdim,eq,0
+*endif
+*enddo
+*enddo
+
+x1 = 'N,' $ x2 = ',' $ x3 = 'clocal,' $ x4 = 0
+x5 = 'cs,' $ x6 = 1 $ x7 = 'csys,0' $ x8 = '/PREP7' $ x9 = 'csys,'
+x10 = '/out,nul' $ x11 = 'l,,/tmp' $ x12 = 'allsel' $ x13 = 'finish'
+x14 = ' ' $ x15 = 'et,1,sol' $ x16 = 'id92' $ x17 = 'et,2,she'
+x18 = 'll63' $ x19 = 'mptemp,' $ x20 = 'mpdata,' $ x21 = 'ex,'
+x22 = 'nuxy,' $ x23 = 'dens,' $ x24 = 'alpx,' $ x24b = 'reft,' $ x24c = 1000 $ x24d = 2
+
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*do,i,1,nlinn19(1),1
+*vlen,1
+*vwrite,x14
+(A6)
+ww=i+(w-1)*(i-1)
+*get,dite%i%%ww%,parm,te%i%%ww%,dim,x
+resto=mod(dite%i%%ww%,6)
+coc=nint((dite%i%%ww%-resto)/6)
+*dim,zz,array,6*coc+1
+*vlen,6*coc+1
+*vfill,zz(1),ramp,1,1
+*if,resto,eq,0,then
+*vlen,6*coc,6
+
+*vwrite,x19,zz(1),x2,te%i%%ww%(1),x2,te%i%%ww%(2),x2,te%i%%ww%(3),x2,te%i%%ww%(4),x2,te%i%%ww%
+(5),x2,te%i%%ww%(6)
+(A7,F4,TL1,' ',6(A1,F8.1))
+*vlen,6*coc,1
+*vwrite,x20,x21,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x21,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+*elseif,resto,eq,2
+*vlen,6*coc,6
+
+*vwrite,x19,zz(1),x2,te%i%%ww%(1),x2,te%i%%ww%(2),x2,te%i%%ww%(3),x2,te%i%%ww%(4),x2,te%i%%ww%
+(5),x2,te%i%%ww%(6)
+(A7,F4,TL1,' ',6(A1,F8.1))
+uuu=6*coc
+*vlen,1,1
+*vwrite,x19,6*coc+1,x2,te%i%%ww%(1+uuu)
+(A7,F4,TL1,' ',A1,F8.1)
+*vlen,6*coc,1
+*vwrite,x20,x21,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x21,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+*elseif,resto,eq,4
+*vlen,6*coc,6
+
+*vwrite,x19,zz(1),x2,te%i%%ww%(1),x2,te%i%%ww%(2),x2,te%i%%ww%(3),x2,te%i%%ww%(4),x2,te%i%%ww%
+(5),x2,te%i%%ww%(6)
+(A7,F4,TL1,' ',6(A1,F8.1))
+uuu=6*coc
+*vlen,1,1
+*vwrite,x19,6*coc+1,x2,te%i%%ww%(1+uuu),x2,te%i%%ww%(2+uuu)
+(A7,F4,TL1,' ',2(A1,F8.1))
+*vlen,6*coc,1
+*vwrite,x20,x21,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x21,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A3,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.1)
+*endif
+ww=i+1+(w-1)*(i-1)
+*get,dite%i%%ww%,parm,te%i%%ww%,dim,x
+resto=mod(dite%i%%ww%,6)
+coc=nint((dite%i%%ww%-resto)/6)
+*dim,zz,array,6*coc+1
+*vlen,6*coc+1
+*vfill,zz(1),ramp,1,1
+*if,resto,eq,0,then
+*vlen,6*coc,1
+*vwrite,x20,x22,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x22,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+*elseif,resto,eq,2
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x22,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x22,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+*elseif,resto,eq,4
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x22,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x22,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,F8.3)
+*endif
+ww=i+2+(w-1)*(i-1)
+*get,dite%i%%ww%,parm,te%i%%ww%,dim,x
+resto=mod(dite%i%%ww%,6)
+coc=nint((dite%i%%ww%-resto)/6)
+*dim,zz,array,6*coc+1
+*vlen,6*coc+1
+*vfill,zz(1),ramp,1,1
+*if,resto,eq,0,then
+*vlen,6*coc,1
+*vwrite,x20,x23,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x23,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*elseif,resto,eq,2
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x23,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x23,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*elseif,resto,eq,4
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x23,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x23,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*endif
+ww=i+3+(w-1)*(i-1)
+*get,dite%i%%ww%,parm,te%i%%ww%,dim,x
+resto=mod(dite%i%%ww%,6)
+coc=nint((dite%i%%ww%-resto)/6)
+*dim,zz,array,6*coc+1
+*vlen,6*coc+1
+*vfill,zz(1),ramp,1,1
+*if,resto,eq,0,then
+*vlen,6*coc,1
+*vwrite,x20,x24,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x24,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*elseif,resto,eq,2
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x24,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x24,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*elseif,resto,eq,4
+uuu=6*coc
+*vlen,6*coc,1
+*vwrite,x20,x24,i,x2,zz(1),x2,ex%i%%ww%(1)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+uuu=6*coc
+*vlen,1,1
+*vwrite,x20,x24,i,x2,6*coc+1,x2,ex%i%%ww%(1+uuu)
+(A7,A5,F4,TL1,' ',A1,F4,TL1,' ',A1,G8.2)
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+
+x1 = 'N,' $ x2 = ',' $ x3 = 'clocal,' $ x4 = 0
+x5 = 'cs,' $ x6 = 1 $ x7 = 'csys,0' $ x8 = '/PREP7' $ x9 = 'csys,'
+x10 = '/out,nul' $ x11 = 'l,,/tmp' $ x12 = 'allsel' $ x13 = 'finish'
+x14 = ' ' $ x15 = 'et,1,sol' $ x16 = 'id92' $ x17 = 'et,2,she'
+x18 = 'll63' $ x19 = 'mptemp,' $ x20 = 'mpdata,' $ x21 = 'ex,'
+x22 = 'nuxy,' $ x23 = 'dens,' $ x24 = 'alpx,' $ x24b = 'reft,' $ x24c = 1000 $ x24d = 2
+
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*do,i,1,nlinn19(1),1
+ptp = mt1(i,6)
+*do,j,1,1+uuu,1
+*vlen,1,1
+*vwrite,x20,x24b,i,x2,j,x2,ptp
+(A7,A5,F8,TL1,' ',A1,F8,TL1,' ',A1,F8.1)
+*enddo
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+
+x2 = ',' $ x14 = ' ' $ x6 = 1 $ x29 = 'd,' $ x30 = ',,,,'
+
+*if,nlinn10(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*do,i,1,nlinn10(1),1
+*if,spc(i,5),eq,0,then
+saux=spc(i,3)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*endif
+*if,spos1,eq,0,then
+sdof1=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos2,eq,0,then
+sdof2=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos3,eq,0,then
+sdof3=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos4,eq,0,then
+sdof4=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos5,eq,0,then
+sdof5=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos6,eq,0,then
+sdof6=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos1,ne,0,then
+pri=1 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos2,ne,0,then
+pri=2 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos3,ne,0,then
+pri=3 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos4,ne,0,then
+pri=4 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos5,ne,0,then
+pri=5 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos6,eq,0,then
+pri=6 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*endif
+
+*if,pri,eq,1,then
+*if,spos2,ne,0,then
+se=2 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos3,ne,0
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,2,then
+*if,spos3,ne,0,then
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,3,then
+*if,spos4,ne,0,then
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,4,then
+*if,spos5,ne,0,then
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,5,then
+*if,spos6,ne,0,then
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,se,eq,2,then
+*if,spos3,ne,0,then
+se2=3 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos4,ne,0
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,3,then
+*if,spos4,ne,0,then
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,4,then
+*if,spos5,ne,0,then
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,5,then
+*if,spos6,ne,0,then
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+
+*if,se2,eq,3,then
+*if,spos4,ne,0,then
+se3=4 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos5,ne,0
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,4,then
+*if,spos5,ne,0,then
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,5,then
+*if,spos6,ne,0,then
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se3,eq,4,then
+*if,spos5,ne,0,then
+se4=5 $ se5=10
+tipo=5
+*elseif,spos6,ne,0
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se3,eq,5,then
+*if,spos6,ne,0,then
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se4,eq,5,then
+*if,spos6,ne,0,then
+se5=6
+tipo=6
+*endif
+*endif
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+*if,se2,eq,1,then
+se2b='ux '
+*endif
+*if,se2,eq,2,then
+se2b='uy '
+*endif
+*if,se2,eq,3,then
+se2b='uz '
+*endif
+*if,se2,eq,4,then
+se2b='rotx'
+*endif
+*if,se2,eq,5,then
+se2b='roty'
+*endif
+*if,se2,eq,6,then
+se2b='rotz'
+*endif
+*if,se3,eq,1,then
+se3b='ux '
+*endif
+*if,se3,eq,2,then
+se3b='uy '
+*endif
+*if,se3,eq,3,then
+se3b='uz '
+*endif
+*if,se3,eq,4,then
+se3b='rotx'
+*endif
+*if,se3,eq,5,then
+se3b='roty'
+*endif
+*if,se3,eq,6,then
+se3b='rotz'
+*endif
+*if,se4,eq,1,then
+se4b='ux '
+*endif
+*if,se4,eq,2,then
+se4b='uy '
+*endif
+*if,se4,eq,3,then
+se4b='uz '
+*endif
+*if,se4,eq,4,then
+se4b='rotx'
+*endif
+*if,se4,eq,5,then
+se4b='roty'
+*endif
+*if,se4,eq,6,then
+se4b='rotz'
+*endif
+*if,se5,eq,1,then
+se5b='ux '
+*endif
+*if,se5,eq,2,then
+se5b='uy '
+*endif
+*if,se5,eq,3,then
+se5b='uz '
+*endif
+*if,se5,eq,4,then
+se5b='rotx'
+*endif
+*if,se5,eq,5,then
+se5b='roty'
+*endif
+*if,se5,eq,6,then
+se5b='rotz'
+*endif
+*if,tipo,eq,1,then
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4)
+(A2,F8,TL1,' ',A1,A4,A1,F8.3,TL1,' ')
+*elseif,tipo,eq,2
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4),x30,seb
+(A2,F8,TL1,' ',A1,A4,A1,F8.3,TL1,' ',A4,A4)
+*elseif,tipo,eq,3
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4),x30,seb,x2,se2b
+(A2,F8,TL1,' ',A1,A4,A1,F8.3,TL1,' ',A4,A4,A1,A4)
+*elseif,tipo,eq,4
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4),x30,seb,x2,se2b,x2,se3b
+(A2,F8,TL1,' ',A1,A4,A1,F8.3,TL1,' ',A4,A4,2(A1,A4))
+*elseif,tipo,eq,5
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4),x30,seb,x2,se2b,x2,se3b,x2,se4b
+(A2,F8,TL1,' ',A1,A4,A1,F8.3,TL1,' ',A4,A4,3(A1,A4))
+*elseif,tipo,eq,6
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,prib,x2,spc(i,4),x30,seb,x2,se2b,x2,se3b,x2,se4b
+(A2,F7,TL1,' ',A1,A4,A1,F7.3,TL1,' ',A4,A4,3(A1,A4))
+*vlen,1,1
+*vwrite,x29,spc(i,2),x2,se5b,x2,spc(i,4)
+(A2,F7,TL1,' ',A1,A4,A1,F7.3,TL1,' ')
+*endif
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x2 = ',' $ x14 = ' ' $ x6 = 1 $ x29 = 'd,' $ x30 = ',,,,'
+x31 = 0 $ x32 = ',,' $ x33 = ',1,'
+
+*if,nlinn11(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*do,i,1,nlinn11(1),1
+*if,spc1(i,2),eq,0,then
+saux=spc1(i,2)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*endif
+*if,spos1,eq,0,then
+sdof1=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos2,eq,0,then
+sdof2=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos3,eq,0,then
+sdof3=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos4,eq,0,then
+sdof4=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos5,eq,0,then
+sdof5=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos6,eq,0,then
+sdof6=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos1,ne,0,then
+pri=1 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos2,ne,0,then
+pri=2 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos3,ne,0,then
+pri=3 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos4,ne,0,then
+pri=4 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos5,ne,0,then
+pri=5 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos6,eq,0,then
+pri=6 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*endif
+
+*if,pri,eq,1,then
+*if,spos2,ne,0,then
+se=2 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos3,ne,0
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,2,then
+*if,spos3,ne,0,then
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,3,then
+*if,spos4,ne,0,then
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,4,then
+*if,spos5,ne,0,then
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,5,then
+*if,spos6,ne,0,then
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,se,eq,2,then
+*if,spos3,ne,0,then
+se2=3 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos4,ne,0
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,3,then
+*if,spos4,ne,0,then
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,4,then
+*if,spos5,ne,0,then
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,5,then
+*if,spos6,ne,0,then
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+
+*if,se2,eq,3,then
+*if,spos4,ne,0,then
+se3=4 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos5,ne,0
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,4,then
+*if,spos5,ne,0,then
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,5,then
+*if,spos6,ne,0,then
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se3,eq,4,then
+*if,spos5,ne,0,then
+se4=5 $ se5=10
+tipo=5
+*elseif,spos6,ne,0
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se3,eq,5,then
+*if,spos6,ne,0,then
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se4,eq,5,then
+*if,spos6,ne,0,then
+se5=6
+tipo=6
+*endif
+*endif
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+*if,se2,eq,1,then
+se2b='ux '
+*endif
+*if,se2,eq,2,then
+se2b='uy '
+*endif
+*if,se2,eq,3,then
+se2b='uz '
+*endif
+*if,se2,eq,4,then
+se2b='rotx'
+*endif
+*if,se2,eq,5,then
+se2b='roty'
+*endif
+*if,se2,eq,6,then
+se2b='rotz'
+*endif
+*if,se3,eq,1,then
+se3b='ux '
+*endif
+*if,se3,eq,2,then
+se3b='uy '
+*endif
+*if,se3,eq,3,then
+se3b='uz '
+*endif
+*if,se3,eq,4,then
+se3b='rotx'
+*endif
+*if,se3,eq,5,then
+se3b='roty'
+*endif
+*if,se3,eq,6,then
+se3b='rotz'
+*endif
+*if,se4,eq,1,then
+se4b='ux '
+*endif
+*if,se4,eq,2,then
+se4b='uy '
+*endif
+*if,se4,eq,3,then
+se4b='uz '
+*endif
+*if,se4,eq,4,then
+se4b='rotx'
+*endif
+*if,se4,eq,5,then
+se4b='roty'
+*endif
+*if,se4,eq,6,then
+se4b='rotz'
+*endif
+*if,se5,eq,1,then
+se5b='ux '
+*endif
+*if,se5,eq,2,then
+se5b='uy '
+*endif
+*if,se5,eq,3,then
+se5b='uz '
+*endif
+*if,se5,eq,4,then
+se5b='rotx'
+*endif
+*if,se5,eq,5,then
+se5b='roty'
+*endif
+*if,se5,eq,6,then
+se5b='rotz'
+*endif
+*if,tipo,eq,1,then
+*vlen,1,1
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33
+(A2,F8,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3)
+*elseif,tipo,eq,2
+*vlen,1,1
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33,seb
+(A2,F8,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3,A4)
+*elseif,tipo,eq,3
+*vlen,1,1
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33,seb,x2,se2b
+(A2,F8,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3,A4,A1,A4)
+*elseif,tipo,eq,4
+*vlen,1,1
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33,seb,x2,se2b,x2,se3b
+(A2,F8,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3,A4,2(A1,A4))
+*elseif,tipo,eq,5
+*vlen,1,1
+
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33,seb,x2,se2b,x2,se3b,x2,se4b
+(A2,F8,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3,A4,3(A1,A4))
+*elseif,tipo,eq,6
+*vlen,1,1
+
+*vwrite,x29,spc1(i,3),x2,prib,x2,x31,x32,spc1(i,4),x33,seb,x2,se2b,x2,se3b,x2,se4b
+(A2,F7,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3,A4,3(A1,A4))
+*vlen,1,1
+*vwrite,x29,spc1(i,3),x2,se5b,x2,x31,x32,spc1(i,4),x33
+(A2,F7,TL1,' ',A1,A4,A1,F8,TL1,' ',A2,F8,TL1,' ',A3)
+*endif
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn12(1),ne,0,then
+*dim,tmaska,array,nlinn12(1)
+*voper,tmaska(1),t(1,4),ne,0
+*dim,tc2(1),array,nlinn12(1)
+*dim,temc2(1),array,nlinn12(1)
+*vmask,tmaska(1)
+*vfun,tc2(1),comp,t(1,4)
+*vmask,tmaska(1)
+*vfun,temc2(1),comp,t(1,5)
+*vscfun,ulttc2,last,tc2(1)
+*vscfun,ulttemc2,last,temc2(1)
+*dim,ttc2,array,ulttc2
+*dim,ttemc2,array,ulttemc2
+*vlen,ulttc2,1
+*vfun,ttc2(1),comp,tc2(1)
+*vlen,ulttemc2,1
+*vfun,ttemc2(1),comp,temc2(1)
+
+*dim,tmaskb,array,nlinn12(1)
+*voper,tmaskb(1),t(1,6),ne,0
+*dim,tc3(1),array,nlinn12(1)
+*dim,temc3(1),array,nlinn12(1)
+*vmask,tmaskb(1)
+*vfun,tc3(1),comp,t(1,6)
+*vmask,tmaskb(1)
+*vfun,temc3(1),comp,t(1,7)
+*vscfun,ulttc3,last,tc3(1)
+*vscfun,ulttemc3,last,temc3(1)
+*dim,ttc3,array,ulttc3
+*dim,ttemc3,array,ulttemc3
+*vlen,ulttc3,1
+*vfun,ttc3(1),comp,tc3(1)
+*vlen,ulttemc3,1
+*vfun,ttemc3(1),comp,temc3(1)
+
+x34 = 'bf,' $ x35 = ',temp,'
+
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,nlinn12(1),1
+*vwrite,x34,t(1,2),x35,t(1,3)
+(A3,F8,TL1,' ',A6,F8.3)
+*vlen,ulttc2,1
+*vwrite,x34,ttc2(1),x35,ttemc2(1)
+(A3,F8,TL1,' ',A6,F8.3)
+*vlen,ulttc3,1
+*vwrite,x34,ttc3(1),x35,ttemc3(1)
+(A3,F8,TL1,' ',A6,F8.3)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x2 = ',' $ x14 = ' ' $ x6 = 1 $ x29 = 'd,' $ x30 = ',,,,'
+x31 = 0 $ x32 = ',,' $ x33 = ',1,'
+x34 = 'sf,' $ x35 = ',temp,' $ x36 = 'sfe,' $ x37 = 'pres,'
+x38 = ',2,' $ x39 = ',3,' $ x40 = ',4,'
+
+*if,nlinn15(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,nlinn15(1),1
+*vwrite,x36,elem(1,1),x33,x37,x2,pload(1,3)
+(A4,F8,TL1,' ',A3,A5,A1,F8.3)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x2 = ',' $ x14 = ' ' $ x6 = 1 $ x29 = 'd,' $ x30 = ',,,,'
+x31 = 0 $ x32 = ',,' $ x33 = ',1,'
+x34 = 'sf,' $ x35 = ',temp,' $ x36 = 'sfe,' $ x37 = 'pres,'
+x38 = ',2,' $ x39 = ',3,' $ x40 = ',4,' $ x41 = 'ce,'
+
+*if,nlinn13(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+numce = 1
+*do,i,1,nlinn13(1),1
+saux=mpc(i,3)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*if,spos1,eq,0,then
+sdof1=0
+*endif
+*if,spos2,eq,0,then
+sdof2=0
+*endif
+*if,spos3,eq,0,then
+sdof3=0
+*endif
+*if,spos4,eq,0,then
+sdof4=0
+*endif
+*if,spos5,eq,0,then
+sdof5=0
+*endif
+*if,spos6,eq,0,then
+sdof6=0
+*endif
+*if,spos1,ne,0,then
+pri=1
+*elseif,spos2,ne,0,then
+pri=2
+*elseif,spos3,ne,0,then
+pri=3
+*elseif,spos4,ne,0,then
+pri=4
+*elseif,spos5,ne,0,then
+pri=5
+*elseif,spos6,eq,0,then
+pri=6
+*endif
+
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+
+saux2=mpc(i,6)
+ssaux2=chrval(saux2)
+sposb1=strpos(ssaux2,'1')
+sposb2=strpos(ssaux2,'2')
+sposb3=strpos(ssaux2,'3')
+sposb4=strpos(ssaux2,'4')
+sposb5=strpos(ssaux2,'5')
+sposb6=strpos(ssaux2,'6')
+*if,sposb1,ne,0,then
+sdofb1='ux '
+*endif
+*if,sposb2,ne,0,then
+sdofb2='uy '
+*endif
+*if,sposb3,ne,0,then
+sdofb3='uz '
+*endif
+*if,sposb4,ne,0,then
+sdofb4='rotx'
+*endif
+*if,sposb5,ne,0,then
+sdofb5='roty'
+*endif
+*if,sposb6,ne,0,then
+sdofb6='rotz'
+*endif
+*if,sposb1,eq,0,then
+sdofb1=0
+*endif
+*if,sposb2,eq,0,then
+sdofb2=0
+*endif
+*if,sposb3,eq,0,then
+sdofb3=0
+*endif
+*if,sposb4,eq,0,then
+sdofb4=0
+*endif
+*if,sposb5,eq,0,then
+sdofb5=0
+*endif
+*if,sposb6,eq,0,then
+sdofb6=0
+*endif
+*if,sposb1,ne,0,then
+se=1
+*elseif,sposb2,ne,0,then
+se=2
+*elseif,sposb3,ne,0,then
+se=3
+*elseif,sposb4,ne,0,then
+se=4
+*elseif,sposb5,ne,0,then
+se=5
+*elseif,sposb6,eq,0,then
+se=6
+*endif
+
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+
+*vlen,1,1
+
+*vwrite,x41,numce,x2,mpc(i,4),x2,mpc(i,2),x2,prib,x2,mpc(i,7),x2,mpc(i,5),x2,seb
+(A3,F8,TL1,' ',2(A1,F8.3,A1,F8,TL1,' ',A1,A4))
+numce=numce+1
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x2 = ',' $ x14 = ' ' $ x6 = 1 $ x29 = 'd,' $ x30 = ',,,,'
+x31 = 0 $ x32 = ',,' $ x33 = ',1,' $ x42 = 'f,' $ x43 = ',fx,' $ x44 = ',fy,'
+x45 = ',fz,' $ x46 = ',mx,' $ x47 = ',my,' $ x48 = ',mz,' $ x9 = 'csys,'
+
+*if,nlinn8(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*if,nlinn2(1),ne,0,then
+*if,nlinn3(1),ne,0,then
+*vlen,1
+*vwrite,x9,forc(1,3)
+(A5,F8,TL1,' ')
+*endif
+*else
+*if,nlinn3(1),ne,0,then
+*vlen,1
+*vwrite,x9,forc(1,3)
+(A5,F8,TL1,' ')
+*else
+*vlen,1
+*vwrite,x7
+(A6)
+*endif
+*endif
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn8(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,nlinn8(1),1
+*vwrite,x42,forc(1,2),x43,(forc(1,4)*forc(1,5))
+(A2,F8,TL1,' ',A4,F8.3)
+*vlen,nlinn8(1),1
+*vwrite,x42,forc(1,2),x44,(forc(1,4)*forc(1,6))
+(A2,F8,TL1,' ',A4,F8.3)
+*vlen,nlinn8(1),1
+*vwrite,x42,forc(1,2),x45,(forc(1,4)*forc(1,7))
+(A2,F8,TL1,' ',A4,F8.3)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn9(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*if,nlinn2(1),ne,0,then
+*if,nlinn3(1),ne,0,then
+*vlen,1
+*vwrite,x9,mom(1,3)
+(A5,F8,TL1,' ')
+*endif
+*else
+*if,nlinn3(1),ne,0,then
+*vlen,1
+*vwrite,x9,mom(1,3)
+(A5,F8,TL1,' ')
+*else
+*vlen,1
+*vwrite,x7
+(A6)
+*endif
+*endif
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn9(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,nlinn9(1),1
+*vwrite,x42,mom(1,2),x46,(mom(1,4)*mom(1,5))
+(A2,F8,TL1,' ',A4,F8.3)
+*vlen,nlinn9(1),1
+*vwrite,x42,mom(1,2),x47,(mom(1,4)*mom(1,6))
+(A2,F8,TL1,' ',A4,F8.3)
+*vlen,nlinn9(1),1
+*vwrite,x42,mom(1,2),x48,(mom(1,4)*mom(1,7))
+(A2,F8,TL1,' ',A4,F8.3)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x49 = 'r,' $ x50 = 'rmore,' $ x51 = 'real,' $ x52 = 'mat,' $ x53 = 'type,' $
+x54 = 1
+x55 = 'en,' $ x55b = 2 $ x28b = 'shpp,off'
+
+*if,nlinn30(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*do,i,1,nlinn30(1),1
+*vwrite,x49,i,x2,r(1,3),x2,x2,x2,x2,x2
+(A2,F8,TL1,' ',A1,F8.3,5A1)
+*vwrite,x50,r(1,5),r2(1,1),r2(1,2),x2,x2,x2
+(A6,3F8.3,3A1)
+*vwrite,x50,r(1,8)
+(A6,F8.3)
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+*if,nlinn30(1),ne,0,then
+*do,i,1,nlinn30(1),1
+*dim,rect%i%,array,nlinn4(1)
+*dim,remask%i%,array,nlinn4(1)
+*voper,remask%i%(1),cuad(1,2),eq,i
+*vmask,remask%i%(1)
+*vfun,rect%i%(1),comp,cuad(1)
+*vscfun,rult,last,rect%i%(1)
+*dim,rrect%i%,array,rult
+*vfun,rrect%i%(1),comp,rect%i%(1)
+*dim,tr%i%,array,nlinn5(1)
+*dim,trmask%i%,array,nlinn5(1)
+*voper,trmask%i%(1),tria(1,2),eq,i
+*vmask,trmask%i%(1)
+*vfun,tr%i%(1),comp,cuad(1)
+*vscfun,tult,last,tr%i%(1)
+*dim,ttr%i%,array,tult
+*vfun,ttr%i%(1),comp,ttr%i%(1)
+*enddo
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1,1
+*vwrite,x53,x55b
+(A5,F8,TL1,' ')
+*vlen,1
+*vwrite,x28b
+(A8)
+*do,i,1,nlinn30(1),1
+*vlen,1,1
+*vwrite,x51,i
+(A5,F8,TL1,' ')
+*vlen,1,1
+*vwrite,x52,r(i,2)
+(A4,F8,TL1,' ')
+*vmask,remask%i%(1)
+*vwrite,x55,cuad(1,1),x2,cuad(1,3),x2,cuad(1,4),x2,cuad(1,5),x2,cuad(1,6)
+(A3,F8,TL1,' ',4(A1,F8,TL1,' '))
+*vmask,trmask%i%(1)
+*vwrite,x55,tria(1,1),x2,tria(1,3),x2,tria(1,4),x2,tria(1,5)
+(A3,F8,TL1,' ',3(A1,F8,TL1,' '))
+*enddo
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x56 = 'nsel,s,,' $ x2 = ',' $ x57 = 'nsel,a,,' $ x58 = 'rbe3,'
+x59 = ',all,' $ x60 = 'nsel,all'
+
+*if,nlinn16(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*do,i,1,nlinn16(1),1
+*dim,barr%i%1,array,maximum
+*dim,barr%i%2,array,maximum
+*dim,barr%i%3,array,maximum
+*dim,barr%i%4,array,maximum
+*dim,barr%i%5,array,maximum
+*dim,barr%i%6,array,maximum
+*dim,barr%i%7,array,maximum
+*dim,barr%i%8,array,maximum
+*voper,barr%i%1(1),rb3b%i%(1,1),ne,0
+*voper,barr%i%2(1),rb3b%i%(1,2),ne,0
+*voper,barr%i%3(1),rb3b%i%(1,3),ne,0
+*voper,barr%i%4(1),rb3b%i%(1,4),ne,0
+*voper,barr%i%5(1),rb3b%i%(1,5),ne,0
+*voper,barr%i%6(1),rb3b%i%(1,6),ne,0
+*voper,barr%i%7(1),rb3b%i%(1,7),ne,0
+*voper,barr%i%8(1),rb3b%i%(1,8),ne,0
+saux=rb3(i,5)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*if,spos1,eq,0,then
+sdof1=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos2,eq,0,then
+sdof2=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos3,eq,0,then
+sdof3=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos4,eq,0,then
+sdof4=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos5,eq,0,then
+sdof5=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos6,eq,0,then
+sdof6=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos1,ne,0,then
+pri=1 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos2,ne,0,then
+pri=2 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos3,ne,0,then
+pri=3 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos4,ne,0,then
+pri=4 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos5,ne,0,then
+pri=5 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos6,eq,0,then
+pri=6 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*endif
+
+*if,pri,eq,1,then
+*if,spos2,ne,0,then
+se=2 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos3,ne,0
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,2,then
+*if,spos3,ne,0,then
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,3,then
+*if,spos4,ne,0,then
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,4,then
+*if,spos5,ne,0,then
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,5,then
+*if,spos6,ne,0,then
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,se,eq,2,then
+*if,spos3,ne,0,then
+se2=3 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos4,ne,0
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,3,then
+*if,spos4,ne,0,then
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,4,then
+*if,spos5,ne,0,then
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,5,then
+*if,spos6,ne,0,then
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+
+*if,se2,eq,3,then
+*if,spos4,ne,0,then
+se3=4 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos5,ne,0
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,4,then
+*if,spos5,ne,0,then
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,5,then
+*if,spos6,ne,0,then
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se3,eq,4,then
+*if,spos5,ne,0,then
+se4=5 $ se5=10
+tipo=5
+*elseif,spos6,ne,0
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se3,eq,5,then
+*if,spos6,ne,0,then
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se4,eq,5,then
+*if,spos6,ne,0,then
+se5=6
+tipo=6
+*endif
+*endif
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+*if,se2,eq,1,then
+se2b='ux '
+*endif
+*if,se2,eq,2,then
+se2b='uy '
+*endif
+*if,se2,eq,3,then
+se2b='uz '
+*endif
+*if,se2,eq,4,then
+se2b='rotx'
+*endif
+*if,se2,eq,5,then
+se2b='roty'
+*endif
+*if,se2,eq,6,then
+se2b='rotz'
+*endif
+*if,se3,eq,1,then
+se3b='ux '
+*endif
+*if,se3,eq,2,then
+se3b='uy '
+*endif
+*if,se3,eq,3,then
+se3b='uz '
+*endif
+*if,se3,eq,4,then
+se3b='rotx'
+*endif
+*if,se3,eq,5,then
+se3b='roty'
+*endif
+*if,se3,eq,6,then
+se3b='rotz'
+*endif
+*if,se4,eq,1,then
+se4b='ux '
+*endif
+*if,se4,eq,2,then
+se4b='uy '
+*endif
+*if,se4,eq,3,then
+se4b='uz '
+*endif
+*if,se4,eq,4,then
+se4b='rotx'
+*endif
+*if,se4,eq,5,then
+se4b='roty'
+*endif
+*if,se4,eq,6,then
+se4b='rotz'
+*endif
+*if,se5,eq,1,then
+se5b='ux '
+*endif
+*if,se5,eq,2,then
+se5b='uy '
+*endif
+*if,se5,eq,3,then
+se5b='uz '
+*endif
+*if,se5,eq,4,then
+se5b='rotx'
+*endif
+*if,se5,eq,5,then
+se5b='roty'
+*endif
+*if,se5,eq,6,then
+se5b='rotz'
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x56,x2,rb3(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb3(i,6)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb3(i,7)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%1(1)
+*vwrite,x57,x2,rb3b%i%(1,1)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%2(1)
+*vwrite,x57,x2,rb3b%i%(1,2)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%3(1)
+*vwrite,x57,x2,rb3b%i%(1,3)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%4(1)
+*vwrite,x57,x2,rb3b%i%(1,4)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%5(1)
+*vwrite,x57,x2,rb3b%i%(1,5)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%6(1)
+*vwrite,x57,x2,rb3b%i%(1,6)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%7(1)
+*vwrite,x57,x2,rb3b%i%(1,7)
+(A8,A1,F9,TL1,' ')
+*vmask,barr%i%8(1)
+*vwrite,x57,x2,rb3b%i%(1,8)
+(A8,A1,F9,TL1,' ')
+*if,tipo,eq,1,then
+rb3dof=pri
+*vlen,1,1
+*vwrite,x58,rb3(i,2),x2,rb3dof,x59,rb3(i,4)
+(A5,F9,TL1,' ',A1,A4,A5,F8.3)
+*elseif,tipo,eq,3,then
+*if,se,eq,'ux',then
+rb3dof='uxyz'
+*elseif,se,eq,'uy'
+rb3dof='uxyz'
+*elseif,se,eq,'uz'
+rb3dof='uxyz'
+*elseif,se,eq,'rotx'
+rb3dof='rxyz'
+*elseif,se,eq,'roty'
+rb3dof='rxyz'
+*elseif,se,eq,'rotz'
+rb3dof='rxyz'
+*endif
+*vlen,1,1
+*vwrite,x58,rb3(i,2),x2,rb3dof,x59,rb3(i,4)
+(A5,F9,TL1,' ',A1,A4,A5,F8.3)
+*elseif,tipo,eq,6,then
+rb3dof='all'
+*vlen,1,1
+*vwrite,x58,rb3(i,2),x2,rb3dof,x59,rb3(i,4)
+(A5,F9,TL1,' ',A1,A3,A5,F8.3)
+*endif
+*enddo
+*vlen,1,1
+*vwrite,x60
+(A8)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+x56 = 'nsel,s,,' $ x2 = ',' $ x57 = 'nsel,a,,' $ x61 = 'cerig,'
+x59 = ',all,' $ x60 = 'nsel,all'
+
+*if,nlinn17(1),ne,0,then
+*create,ansuitmp
+*cfopen,mallaans2,blk,/tmp,append
+*do,i,1,contad2,1
+*dim,bbrr%i%1,array,maximum2
+*dim,bbrr%i%2,array,maximum2
+*dim,bbrr%i%3,array,maximum2
+*dim,bbrr%i%4,array,maximum2
+*dim,bbrr%i%5,array,maximum2
+*dim,bbrr%i%6,array,maximum2
+*dim,bbrr%i%7,array,maximum2
+*dim,bbrr%i%8,array,maximum2
+*voper,bbrr%i%1(1),rb2b%i%(1,1),ne,0
+*voper,bbrr%i%2(1),rb2b%i%(1,2),ne,0
+*voper,bbrr%i%3(1),rb2b%i%(1,3),ne,0
+*voper,bbrr%i%4(1),rb2b%i%(1,4),ne,0
+*voper,bbrr%i%5(1),rb2b%i%(1,5),ne,0
+*voper,bbrr%i%6(1),rb2b%i%(1,6),ne,0
+*voper,bbrr%i%7(1),rb2b%i%(1,7),ne,0
+*voper,bbrr%i%8(1),rb2b%i%(1,8),ne,0
+saux=rb2(i,3)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*if,spos1,eq,0,then
+sdof1=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos2,eq,0,then
+sdof2=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos3,eq,0,then
+sdof3=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos4,eq,0,then
+sdof4=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos5,eq,0,then
+sdof5=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos6,eq,0,then
+sdof6=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos1,ne,0,then
+pri=1 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos2,ne,0,then
+pri=2 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos3,ne,0,then
+pri=3 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos4,ne,0,then
+pri=4 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos5,ne,0,then
+pri=5 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos6,eq,0,then
+pri=6 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*endif
+
+*if,pri,eq,1,then
+*if,spos2,ne,0,then
+se=2 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos3,ne,0
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,2,then
+*if,spos3,ne,0,then
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,3,then
+*if,spos4,ne,0,then
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,4,then
+*if,spos5,ne,0,then
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,5,then
+*if,spos6,ne,0,then
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,se,eq,2,then
+*if,spos3,ne,0,then
+se2=3 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos4,ne,0
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,3,then
+*if,spos4,ne,0,then
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,4,then
+*if,spos5,ne,0,then
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,5,then
+*if,spos6,ne,0,then
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+
+*if,se2,eq,3,then
+*if,spos4,ne,0,then
+se3=4 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos5,ne,0
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,4,then
+*if,spos5,ne,0,then
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,5,then
+*if,spos6,ne,0,then
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se3,eq,4,then
+*if,spos5,ne,0,then
+se4=5 $ se5=10
+tipo=5
+*elseif,spos6,ne,0
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se3,eq,5,then
+*if,spos6,ne,0,then
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se4,eq,5,then
+*if,spos6,ne,0,then
+se5=6
+tipo=6
+*endif
+*endif
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+*if,se2,eq,1,then
+se2b='ux '
+*endif
+*if,se2,eq,2,then
+se2b='uy '
+*endif
+*if,se2,eq,3,then
+se2b='uz '
+*endif
+*if,se2,eq,4,then
+se2b='rotx'
+*endif
+*if,se2,eq,5,then
+se2b='roty'
+*endif
+*if,se2,eq,6,then
+se2b='rotz'
+*endif
+*if,se3,eq,1,then
+se3b='ux '
+*endif
+*if,se3,eq,2,then
+se3b='uy '
+*endif
+*if,se3,eq,3,then
+se3b='uz '
+*endif
+*if,se3,eq,4,then
+se3b='rotx'
+*endif
+*if,se3,eq,5,then
+se3b='roty'
+*endif
+*if,se3,eq,6,then
+se3b='rotz'
+*endif
+*if,se4,eq,1,then
+se4b='ux '
+*endif
+*if,se4,eq,2,then
+se4b='uy '
+*endif
+*if,se4,eq,3,then
+se4b='uz '
+*endif
+*if,se4,eq,4,then
+se4b='rotx'
+*endif
+*if,se4,eq,5,then
+se4b='roty'
+*endif
+*if,se4,eq,6,then
+se4b='rotz'
+*endif
+*if,se5,eq,1,then
+se5b='ux '
+*endif
+*if,se5,eq,2,then
+se5b='uy '
+*endif
+*if,se5,eq,3,then
+se5b='uz '
+*endif
+*if,se5,eq,4,then
+se5b='rotx'
+*endif
+*if,se5,eq,5,then
+se5b='roty'
+*endif
+*if,se5,eq,6,then
+se5b='rotz'
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*vlen,1
+*vwrite,x56,x2,rb2(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,4)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,5)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,6)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,7)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,8)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%1(1)
+*vwrite,x57,x2,rb2b%i%(1,1)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%2(1)
+*vwrite,x57,x2,rb2b%i%(1,2)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%3(1)
+*vwrite,x57,x2,rb2b%i%(1,3)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%4(1)
+*vwrite,x57,x2,rb2b%i%(1,4)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%5(1)
+*vwrite,x57,x2,rb2b%i%(1,5)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%6(1)
+*vwrite,x57,x2,rb2b%i%(1,6)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%7(1)
+*vwrite,x57,x2,rb2b%i%(1,7)
+(A8,A1,F9,TL1,' ')
+*vmask,bbrr%i%8(1)
+*vwrite,x57,x2,rb2b%i%(1,8)
+(A8,A1,F9,TL1,' ')
+*if,tipo,eq,1,then
+rb2dof=pri
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*elseif,tipo,eq,2,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb
+(A6,F9,TL1,' ',A5,A1,A4)
+*elseif,tipo,eq,3,then
+*if,seb,eq,'ux ',then
+rb2dof='uxyz'
+*elseif,seb,eq,'uy '
+rb2dof='uxyz'
+*elseif,seb,eq,'uz '
+rb2dof='uxyz'
+*elseif,seb,eq,'rotx'
+rb2dof='rxyz'
+*elseif,seb,eq,'roty'
+rb2dof='rxyz'
+*elseif,seb,eq,'rotz'
+rb2dof='rxyz'
+*endif
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*elseif,tipo,eq,4,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb,x2,se2b,x2,se3b
+(A6,F9,TL1,' ',A5,3(A1,A4))
+*elseif,tipo,eq,5,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb,x2,se2b,x2,se3b,x2,se4b
+(A6,F9,TL1,' ',A5,4(A1,A4))
+*elseif,tipo,eq,6,then
+rb2dof='all'
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*endif
+*enddo
+
+*do,i,nlinn17(1)-contad2,nlinn17(1),1
+saux=rb2(i,3)
+ssaux=chrval(saux)
+spos1=strpos(ssaux,'1')
+spos2=strpos(ssaux,'2')
+spos3=strpos(ssaux,'3')
+spos4=strpos(ssaux,'4')
+spos5=strpos(ssaux,'5')
+spos6=strpos(ssaux,'6')
+*if,spos1,ne,0,then
+sdof1='ux '
+*endif
+*if,spos2,ne,0,then
+sdof2='uy '
+*endif
+*if,spos3,ne,0,then
+sdof3='uz '
+*endif
+*if,spos4,ne,0,then
+sdof4='rotx'
+*endif
+*if,spos5,ne,0,then
+sdof5='roty'
+*endif
+*if,spos6,ne,0,then
+sdof6='rotz'
+*endif
+*if,spos1,eq,0,then
+sdof1=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos2,eq,0,then
+sdof2=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos3,eq,0,then
+sdof3=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos4,eq,0,then
+sdof4=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos5,eq,0,then
+sdof5=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos6,eq,0,then
+sdof6=0 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+*endif
+*if,spos1,ne,0,then
+pri=1 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos2,ne,0,then
+pri=2 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos3,ne,0,then
+pri=3 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos4,ne,0,then
+pri=4 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos5,ne,0,then
+pri=5 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*elseif,spos6,eq,0,then
+pri=6 $ se=10 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=1
+*endif
+
+*if,pri,eq,1,then
+*if,spos2,ne,0,then
+se=2 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos3,ne,0
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,2,then
+*if,spos3,ne,0,then
+se=3 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos4,ne,0
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,3,then
+*if,spos4,ne,0,then
+se=4 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos5,ne,0
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,4,then
+*if,spos5,ne,0,then
+se=5 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*elseif,spos6,ne,0
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,pri,eq,5,then
+*if,spos6,ne,0,then
+se=6 $ se2=10 $ se3=10 $ se4=10 $ se5=10
+tipo=2
+*endif
+*endif
+*if,se,eq,2,then
+*if,spos3,ne,0,then
+se2=3 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos4,ne,0
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,3,then
+*if,spos4,ne,0,then
+se2=4 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos5,ne,0
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,4,then
+*if,spos5,ne,0,then
+se2=5 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*elseif,spos6,ne,0
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+*if,se,eq,5,then
+*if,spos6,ne,0,then
+se2=6 $ se3=10 $ se4=10 $ se5=10
+tipo=3
+*endif
+*endif
+
+*if,se2,eq,3,then
+*if,spos4,ne,0,then
+se3=4 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos5,ne,0
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,4,then
+*if,spos5,ne,0,then
+se3=5 $ se4=10 $ se5=10
+tipo=4
+*elseif,spos6,ne,0
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se2,eq,5,then
+*if,spos6,ne,0,then
+se3=6 $ se4=10 $ se5=10
+tipo=4
+*endif
+*endif
+*if,se3,eq,4,then
+*if,spos5,ne,0,then
+se4=5 $ se5=10
+tipo=5
+*elseif,spos6,ne,0
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se3,eq,5,then
+*if,spos6,ne,0,then
+se4=6 $ se5=10
+tipo=5
+*endif
+*endif
+*if,se4,eq,5,then
+*if,spos6,ne,0,then
+se5=6
+tipo=6
+*endif
+*endif
+*if,pri,eq,1,then
+prib='ux '
+*endif
+*if,pri,eq,2,then
+prib='uy '
+*endif
+*if,pri,eq,3,then
+prib='uz '
+*endif
+*if,pri,eq,4,then
+prib='rotx'
+*endif
+*if,pri,eq,5,then
+prib='roty'
+*endif
+*if,pri,eq,6,then
+prib='rotz'
+*endif
+*if,se,eq,1,then
+seb='ux '
+*endif
+*if,se,eq,2,then
+seb='uy '
+*endif
+*if,se,eq,3,then
+seb='uz '
+*endif
+*if,se,eq,4,then
+seb='rotx'
+*endif
+*if,se,eq,5,then
+seb='roty'
+*endif
+*if,se,eq,6,then
+seb='rotz'
+*endif
+*if,se2,eq,1,then
+se2b='ux '
+*endif
+*if,se2,eq,2,then
+se2b='uy '
+*endif
+*if,se2,eq,3,then
+se2b='uz '
+*endif
+*if,se2,eq,4,then
+se2b='rotx'
+*endif
+*if,se2,eq,5,then
+se2b='roty'
+*endif
+*if,se2,eq,6,then
+se2b='rotz'
+*endif
+*if,se3,eq,1,then
+se3b='ux '
+*endif
+*if,se3,eq,2,then
+se3b='uy '
+*endif
+*if,se3,eq,3,then
+se3b='uz '
+*endif
+*if,se3,eq,4,then
+se3b='rotx'
+*endif
+*if,se3,eq,5,then
+se3b='roty'
+*endif
+*if,se3,eq,6,then
+se3b='rotz'
+*endif
+*if,se4,eq,1,then
+se4b='ux '
+*endif
+*if,se4,eq,2,then
+se4b='uy '
+*endif
+*if,se4,eq,3,then
+se4b='uz '
+*endif
+*if,se4,eq,4,then
+se4b='rotx'
+*endif
+*if,se4,eq,5,then
+se4b='roty'
+*endif
+*if,se4,eq,6,then
+se4b='rotz'
+*endif
+*if,se5,eq,1,then
+se5b='ux '
+*endif
+*if,se5,eq,2,then
+se5b='uy '
+*endif
+*if,se5,eq,3,then
+se5b='uz '
+*endif
+*if,se5,eq,4,then
+se5b='rotx'
+*endif
+*if,se5,eq,5,then
+se5b='roty'
+*endif
+*if,se5,eq,6,then
+se5b='rotz'
+*endif
+*vlen,1
+*vwrite,x14
+(A6)
+*if,rb2(i,6),eq,0,then
+*vlen,1
+*vwrite,x56,x2,rb2(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,4)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,5)
+(A8,A1,F9,TL1,' ')
+*elseif,rb2(i,7),eq,0
+*vlen,1
+*vwrite,x56,x2,rb2(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,4)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,5)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,6)
+(A8,A1,F9,TL1,' ')
+*elseif,rb2(i,8),eq,0,then
+*vlen,1
+*vwrite,x56,x2,rb2(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,4)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,5)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,6)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,7)
+(A8,A1,F9,TL1,' ')
+*else
+*vlen,1
+*vwrite,x56,x2,rb2(i,2)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,4)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,5)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,6)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,7)
+(A8,A1,F9,TL1,' ')
+*vlen,1
+*vwrite,x57,x2,rb2(i,8)
+(A8,A1,F9,TL1,' ')
+*endif
+*if,tipo,eq,1,then
+rb2dof=pri
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*elseif,tipo,eq,2,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb
+(A6,F9,TL1,' ',A5,A1,A4)
+*elseif,tipo,eq,3,then
+*if,seb,eq,'ux ',then
+rb2dof='uxyz'
+*elseif,seb,eq,'uy '
+rb2dof='uxyz'
+*elseif,seb,eq,'uz '
+rb2dof='uxyz'
+*elseif,seb,eq,'rotx'
+rb2dof='rxyz'
+*elseif,seb,eq,'roty'
+rb2dof='rxyz'
+*elseif,seb,eq,'rotz'
+rb2dof='rxyz'
+*endif
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*elseif,tipo,eq,4,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb,x2,se2b,x2,se3b
+(A6,F9,TL1,' ',A5,3(A1,A4))
+*elseif,tipo,eq,5,then
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,prib,x2,seb,x2,se2b,x2,se3b,x2,se4b
+(A6,F9,TL1,' ',A5,4(A1,A4))
+*elseif,tipo,eq,6,then
+rb2dof='all'
+*vlen,1,1
+*vwrite,x61,rb2(i,2),x59,rb2dof
+(A6,F9,TL1,' ',A5,A4)
+*endif
+*enddo
+*vlen,1,1
+*vwrite,x60
+(A8)
+*cfclose
+*end
+/input,ansuitmp
+*endif
+
+/input,mallaans2,blk,/tmp
+
+/sys,rm /tmp/null
+/sys,rm /tmp/info.blk
+/sys,rm /tmp/ngrids.txt
+/sys,rm /tmp/cord2r.txt
+/sys,rm /tmp/cord2c.txt
+/sys,rm /tmp/cord2rr.txt
+/sys,rm /tmp/cord2cc.txt
+/sys,rm /tmp/coord2r.txt
+/sys,rm /tmp/coord2c.txt
+/sys,rm /tmp/cquad4.txt
+/sys,rm /tmp/ctria3.txt
+/sys,rm /tmp/cquadd4.txt
+/sys,rm /tmp/ctriaa3.txt
+/sys,rm /tmp/real.txt
+/sys,rm /tmp/real2.txt
+/sys,rm /tmp/rreal.txt
+/sys,rm /tmp/force.txt
+/sys,rm /tmp/fforce.txt
+/sys,rm /tmp/moment.txt
+/sys,rm /tmp/mmoment.txt
+/sys,rm /tmp/spc.txt
+/sys,rm /tmp/sspc.txt
+/sys,rm /tmp/spc1.txt
+/sys,rm /tmp/sspc1.txt
+/sys,rm /tmp/temp.txt
+/sys,rm /tmp/ttemp.txt
+/sys,rm /tmp/mpc.txt
+/sys,rm /tmp/mmpc.txt
+/sys,rm /tmp/mpcb.txt
+/sys,rm /tmp/mmpcb.txt
+/sys,rm /tmp/pload4.txt
+/sys,rm /tmp/ppload4.txt
+/sys,rm /tmp/rbe3.txt
+/sys,rm /tmp/rbe33.txt
+/sys,rm /tmp/rrbe3.txt
+/sys,rm /tmp/rrbe33.txt
+/sys,rm /tmp/rbe2.txt
+/sys,rm /tmp/rbe22.txt
+/sys,rm /tmp/rrbe2.txt
+/sys,rm /tmp/rrbe22.txt
+/sys,rm /tmp/mat1.txt
+/sys,rm /tmp/mmat1.txt
+/sys,rm /tmp/tm1.txt
+/sys,rm /tmp/tm11.txt
+/sys,rm /tmp/tm11b.txt
+/sys,rm /tmp/tmm1.txt
+/sys,rm /tmp/tm1b.txt
+/sys,rm ansuitmp
+
+*del,all
+
+/out,TERM

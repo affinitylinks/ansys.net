@@ -1,0 +1,362 @@
+/com
+/com *** EMTGEN Command Macro
+/com
+!/com   *************************************************
+!/com,	ElectroMechanical Transducer (TRANS126) Element Generation Macro
+!/com,
+!/com,  TRANS126 elements may be used for simulating fully coupled electrostatic
+!/com,	structural coupling between a MEMS device and ground provided the gap
+!/com, 	distance between the device and the ground is small compared to the
+!/com,  overall surface area dimensions of the device.  This assumption allows
+!/com, 	for a point-wise closed-form solution of capacitance between the surface
+!/com,	nodes and ground; ie  CAP = EPS*AREA/GAP  where EPS is the free-space
+!/com,  permittivity, AREA is the area associated with the node, and GAP is the
+!/com,  gap between the node and ground. The area for each node is computed using
+!/com,  the ARNODE function in ANSYS.
+!/com,
+!/com,  With TRANS126 elements attached directly to the structure and ground,
+!/com,  a full compliment of simulations can be performed including static
+!/com,  analysis, modal analysis, pre-stressed modal analysis, harmonic analysis,
+!/com,  pre-stressed harmonic analysis, and large signal transient analysis.  The
+!/com,  TRANS126 element also employs a node-to-node gap feature so that "fold-
+!/com,  up type simulations can be performed.
+!/com,
+!/com,	This macro is used to attach TRANS126 elements from a set of surface
+!/com,	nodes of a device to ground. The macro generates one TRANS126 element for
+!/com,	every surface node. Nodes are created at a specfied offset representing
+!/com,  the ground location.     
+!/com,
+!/com                           ARGUMENTS
+!/com
+!/com,	arg1 = Component name of TRANS126 elements to be generated.
+!/com,         Enclose in single quotes (Defaults to EMTELM)
+!/com,  arg2 = Active structural DOF for TRANS126 elements (UX, UY, UZ)
+!/com,         Enclose in single quotes.  Global cartesian CS only.
+!/com,  arg3 = Voltage boundary condition flag
+!/com,		0 - Unknown voltage drop across TRANS126 elements
+!/com,		1 - Known (applied) voltage drop across TRANS126 elements
+!/com,	arg4 = Initial gap distance from the surface nodes (use correct sign
+!/com,		in the global cartesian coordinate system)
+!/com,  arg5 = Minimum gap distance allowed (GAPMIN real constant)
+!/com           Defaults to abs(arg4)*0.05
+!/com,  arg6 = Young's Modulus of elasticity of contact region (used for
+!/com,         computing contact stiffness)
+!/com,  arg7 = Component name of surface nodes attaching to TRANS126 elements
+!/com          Enclose in single quotes (no defaults allowed)
+!/com
+!/com   Note: 
+!/com          If other than MKS system of units is used in problem - the
+!/com          free-space permittivity should be defind by EMUNIT command.
+!/com
+!/com   *************************************************
+/nopr
+
+_ok3=0                   ! initialize for checking
+_status=0
+*get,_gui,active,0,int
+*get,_mnu,active,,menu
+
+_qq=
+_qq=arg1
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,eq,0,then
+  *if,_qq,ne,0,then
+   *msg,error
+Elements component name must be alphanumeric string enclosed in single quotes
+   _ok3=1
+  *else
+      _trel='EMTELM'
+  *endif
+*else
+   *if,_ptyp,eq,3,then
+      *if,_qq,eq,' ',then
+        _trel='EMTELM'
+      *else
+        _trel=_qq
+      *endif
+   *else
+      *msg,error
+      EMT elements component name must be an alphanumeric string
+      _ok3=1
+   *endif
+*endif
+_qq=
+_qq=arg2
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,eq,0,then
+  *if,_qq,ne,0,then
+   *msg,error
+TRANS126 active DOF must be UX, UY or UZ - string, enclosed in single quotes
+   _ok3=1
+  *endif
+*else
+   _dir=_qq
+   *if,_ptyp,eq,3,then
+      _direc=0
+      *if,_qq,eq,'UX',then
+         _direc=1
+      *endif
+      *if,_qq,eq,'ux',then
+         _direc=1
+      *endif
+      *if,_qq,eq,'UY',then
+         _direc=2
+      *endif
+      *if,_qq,eq,'uy',then
+         _direc=2
+      *endif
+      *if,_qq,eq,'UZ',then
+         _direc=3
+      *endif
+      *if,_qq,eq,'uz',then
+         _direc=3
+      *endif
+      *if,_direc,eq,0,then
+        *msg,error
+           TRANS126 active DOF must be only UX, UY or UZ.
+        _ok3=1
+      *endif
+   *else
+      *msg,error
+      TRANS126 active DOF must be only UX, UY or UZ.
+      _ok3=1
+   *endif
+*endif
+_qq=
+_qq=arg3
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,ne,0,then
+   *msg,error
+   Input value for voltage flag must be numeric
+   _ok3=1
+*else
+   *if,_qq,lt,0,then
+     *msg,error
+        Voltage flag value must not be negative
+     _ok3=1
+   *endif
+   *if,_qq,gt,0,then
+      _vfl=1
+   *else
+      _vfl=0
+   *endif
+*endif
+_qq=
+_qq=arg4
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,ne,0,then
+   *msg,error
+   Input value for initial gap must be numeric
+   _ok3=1
+*else
+   *if,_qq,eq,0,then
+     *msg,error
+        Initial EMT element gap value must not equal zero
+     _ok3=1
+   *endif
+*endif
+_gap=arg4
+_qq=
+_qq=arg5
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,ne,0,then
+   *msg,error
+   Input value for minimal gap must be numeric
+   _ok3=1
+*else
+   *if,_qq,lt,0,then
+     *msg,error
+        Minimal EMT element gap value must not be negative
+     _ok3=1
+   *endif
+*endif
+_gapmin=arg5
+_qq=
+_qq=arg6
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,ne,0,then
+   *msg,error
+   Input value for EMT Young's modulus must be numeric
+   _ok3=1
+*else
+   *if,_qq,le,0,then
+     *msg,error
+        EMT Young's modulus must be positive number
+     _ok3=1
+   *endif
+*endif
+_stif=arg6
+_qq=
+_qq=arg7
+*get,_ptyp,parm,_qq,type  ! obtain type of parameter
+*if,_ptyp,eq,0,then
+  *if,_qq,ne,0,then
+   *msg,error
+Component name must be alphanumeric string enclosed in single quotes
+   _ok3=1
+  *else
+   *msg,error
+ Component of EMT boundary nodes must be defined
+   _ok3=1
+  *endif
+*else
+   *if,_ptyp,eq,3,then
+      _trno=_qq
+   *else
+      *msg,error
+ Component name of EMT boundary nodes must be an alphanumeric string
+      _ok3=1
+   *endif
+*endif
+*if,_trno,ne,' ',then
+   *get,_cmt2,comp,_trno,type
+   *if,_cmt2,ne,1,then
+      *msg,error,_trno
+         Component %c of must consist of boundary nodes.
+      _ok3=1
+   *endif
+*endif
+
+
+cm,_elm,elem
+cm,_nod,node
+
+
+*if,_ok3,ne,1,then
+
+_gep=abs(_gap)
+_cost=_stif/_gep
+*if,_gapmin,le,0,then
+ _gapmin=_gep*0.05
+*endif
+
+_emte=etyiqr(0,14)+1
+_rec0=rlinqr(0,14)+1
+
+*get,_nomax,node,0,num,max
+*get,_epzero,common,,soptcm,,real,8
+
+*get,_rout,active,0,rout
+*if,_rout,ne,17,then
+ /prep7
+*endif
+
+et,_emte,126,,_direc,,_vfl
+type,_emte
+
+cmsel,s,_trno
+*get,_numb,node,0,count
+
+_kr=_rec0
+_n0=0
+_k=1
+
+!!!----------------------------
+
+*do,_i,1,_numb
+
+_n0=ndnext(_n0)
+*if,_n0,eq,0,exit
+_n2=_n0
+_x2=nx(_n2)
+_y2=ny(_n2)
+_z2=nz(_n2)
+*if,_direc,eq,3,then
+ _z1=_z2+_gap
+ _x1=_x2
+ _y1=_y2
+*elseif,_direc,eq,2,then
+ _y1=_y2+_gap
+ _x1=_x2
+ _z1=_z2
+*else
+ _x1=_x2+_gap
+ _y1=_y2
+ _z1=_z2
+*endif
+_n1=_nomax+_k
+
+n,_n1,_x1,_y1,_z1
+
+_aaa=arnode(_n2)
+_cap=_aaa*_epzero
+_kn=_aaa*_cost
+
+r,_kr,,,_gep,_gapmin,_kn
+rmore,_cap
+real,_kr
+
+*if,_gap,lt,0,then
+ e,_n1,_n2
+*else
+ e,_n2,_n1
+*endif
+
+_k=_k+1
+_kr=_kr+1
+
+*enddo
+
+!!!----------------------------
+
+esel,s,type,,_emte
+*get,_numeml,elem,0,count
+cm,_trel,elem
+
+/title, %_numeml% EMT elements generated by EMTGEN macro
+*if,_gui,gt,0,then
+ immed,0
+*endif
+allsel,all
+eplot
+/title
+
+/out,_emtgen,out
+ *msg,info
+%/____________________ EMTGEN MACRO SUMMARY ________________________
+  *msg,info,_numeml
+ %/ Macro has generated successfully %i TRANS126 elements.
+  *msg,info,_trel
+ %/ Component name of generated EMT elements = %c .
+  *msg,info,_dir
+ Active structural DOF for TRANS126 elements = %c .
+  *msg,info,_vfl
+ DC voltage drop flag value = %i .
+  *msg,info,_gap
+ Initaial gap between I and J nodes of EMT element = %g .
+  *msg,info,_gapmin
+ Minimal gap between I and J nodes = %g .
+  *msg,info,_stif
+ Young modulus for EMT element normal stiffness = %g .
+  *msg,info,_trno
+ Component of structural boundary nodes: %c .
+  *msg,info
+%/______________________________________________________________________
+
+/out
+*list,_emtgen,out
+*if,_mnu,ne,0,then
+  *uilist,_emtgen,out
+*endif
+
+cmsel,s,_elm
+cmsel,s,_nod
+cmdel,_elm
+cmdel,_nod
+
+*endif  ! of _ok3
+
+*if,_rout,eq,21,then
+ fini
+ /solu
+*elseif,_rout,ne,17,then
+ fini
+*endif
+
+
+_ok3= $_status= $_gui= $_mnu= $_elm= $_nod= $_emte= $_dir= $_vfl=
+_qq= $_ptyp= $_gap= $_gapmin= $_stif= $_trno= $_trel= $_rec0=
+_i= $_cmt2= $_rout= $_cost= $_nomax= $_epzero= $_kr= $_k= $_numb=
+_n0= $_n1= $_n2= $_x1= $_y1= $_z1= $_x2= $_y2= $_z2= $_direc=
+_aaa= $_cap= $_kn= $_numeml= $_emtgen= $_gep=
+

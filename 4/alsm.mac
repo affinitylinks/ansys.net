@@ -1,0 +1,94 @@
+/nopr
+!
+!  alsm.mac  a macro that selects or reselects areas that
+!            are meshed.
+!
+!  usage:  aslm,select
+!
+!    where:  select=0 for select from whole set
+!            select=1 to reselect from selected set
+!            select=2 to unselect from selected set
+!
+!  written by:  John Crawford  1-24-00
+!
+!  delete pre-existing trailing undercore parameters
+*del,,prm_
+!  check to see if we want to select or reselect
+*if,arg1,eq,0,then
+asel,all
+*endif
+!
+!  if any areas are selected then loop through them and
+!  unselect or reselect those areas that are not meshed
+*if,arinqr(0,13),ne,0,then
+!
+*if,arg1,eq,0,then
+*msg,info
+SELECTING MESHED AREAS FROM ALL AREAS IN MODEL
+!
+*elseif,arg1,eq,1
+*msg,info
+RESELECTING MESHED AREAS FROM SELECTED AREAS
+!
+*elseif,arg1,eq,2
+*msg,info
+UNSELECTING MESHED AREAS FROM SELECTED AREAS
+*endif
+!
+!  set area id parameter to zero
+anum_=0
+!
+!  set the beginning number of selected areas
+astart_=arinqr(0,13)
+!
+!  begin looping
+*do,i_,1,astart_
+!
+!  get next area ID number
+anum_=arnext(anum_)
+!
+!  set up and display progress bar
+*abset,'CHECKING MESHED AREAS',bar
+p_=nint(100*i_/astart_)
+*abcheck,p_,'CHECKING MESHED AREAS %p_%%'
+!
+!*msg,info,anum_,arinqr(anum_,-6)
+!Area %i has %i elements associated with it
+!
+!  arinqr(anum_,-6) is the inquiry statement that returns the 
+!  number of elements associated with an area
+*if,arg1,eq,2,then
+!
+*if,arinqr(anum_,-6),gt,0,then
+!*msg,info,anum_
+!Unselecting Meshed Area %i
+asel,u,area,,anum_,
+*endif
+!
+*elseif,arg1,le,1
+!
+*if,arinqr(anum_,-6),le,0,then
+!*msg,info,anum_
+!Unselecting Unmeshed Area %i
+asel,u,area,,anum_,
+*endif
+!
+*endif
+!
+*enddo
+!
+!  finish the progress counter
+*abfini
+!
+!  if the number of seleted areas equals zero then display
+!  a message informing the user of this
+*else
+*msg,info
+NO AREAS ARE CURRENTLY SELECTED - SELECT AREAS AND TRY AGAIN
+*endif
+!
+!  clean up the parameters we used
+*del,,prm_
+!
+/gopr
+

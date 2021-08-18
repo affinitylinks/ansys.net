@@ -1,0 +1,54 @@
+/nopr
+!
+!  hpkp.mac  a macro which creates a hardpoint on an area using
+!            existing keypoints.
+!
+!  usage: hpkp,area,kpid
+!
+!         Entering a keypoint ID will create a keypoint from only 
+!         that keypoint.  If a keypoint ID is not entered, the 
+!         macro will try to create hardpoints from all the 
+!         currently selected keypoints.
+!
+!  written by: John Crawford  date: 12-3-99
+!
+!
+!  remove pre-existing parameters
+!
+*del,prm_
+!
+!  if kpid is zero, then create hardpoints from all the
+!  currently selected keypoints
+!
+*if,arg2,le,0,then
+*msg,info
+Creating Hardpoints From Selected Keypoints
+kp_=0
+*do,i_,1,kpinqr(0,13)
+!
+!  get the next kp id
+!
+kp_=kpnext(kp_)
+!
+!  display a message telling the user what's happening
+!
+*msg,info,arg1,kp_
+Creating Hardpoint on Area %i From Keypoint %i
+!
+!  create the hardpoint
+!
+hptcreate,area,arg1,,coord,kx(kp_),ky(kp_),kz(kp_)
+*enddo
+!
+!  otherwise try to create a hardpoint using kpid
+!
+*else
+*msg,info,arg1,arg2
+Creating Hardpoint on Area %i From Keypoint %i
+hptcreate,area,arg1,,coord,kx(arg2),ky(arg2),kz(arg2)
+*endif
+!
+!  clean up the parameters
+!
+*del,prm_
+/gopr

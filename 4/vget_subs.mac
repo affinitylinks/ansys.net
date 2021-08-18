@@ -1,0 +1,287 @@
+!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!
+! DESCRIPTION: 
+! 
+! THIS MACRO STORES THE INFORMATION REQUESTED BY THE USER FOR A SELECTED
+! SET OF NODES OR ELEMENTS IN AN ARRAY CALLED RESULT_COMP. THIS INFORMATION
+! CAN BE ANY THING THAT IS  IN THE COMMAND *VGET,FOR NODES & ELEMENTS. THE 
+! REASON FOR THIS MACRO IS THAT WHEN USING *VGET THE NODE OR ELEM NUMBERS MUST 
+! BE SEQUENTIAL, IN ORDER TO GET ANY INFORMATION. THIS MACRO DEALS WITH THAT 
+! i.e. BY USING *VMASK, ONE CAN ALWAYS DO THIS MANUALLY, HOWEVER THIS MACRO IS
+! HELPFULL WHEN NEEDED TO USE REGULARLY 
+! THIS MACRO ALSO CREATES A TXT FILE FOR THE REQUESTED INFORMATION.
+!
+!
+! MACRO CREATED BY:  KIRAN SREERAM 
+! MACRO LANGUAGE:    ANSYS PARAMETRIC DESIGN LANGUAGE (APDL)
+! ANALYSIS SOFTWARE: ANSYS 7.1 
+!
+!     
+!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!
+!MACRO SYNTAX FOR BATCH OPERATION: 
+!
+!VGET_SUBS,arg1,arg2
+!
+!WHERE:
+!                         FIELD INPUT DESCRIPTION
+!
+!
+!  Input                     Parameter                             
+!Parameter                  Description                           
+!   ID 
+!
+!  arg1          SHOULD BE ELEM OR NODE, ENCLOSED IN SINGLE QUOTES.
+!                FOR ENTITY = NODE. CAN BE PREP7 AND POST1 ITEM1.
+!
+!  arg2          MUST BE CHARACTER VALUE. CAN BE ANY VALUE  GIVEN IN  
+!                *VGET  COMMAND FOR ITEM1 FOR ENTITY = NODE. CAN BE PREP7 
+!				 AND POST1 ITEM1.
+!                      
+!
+!  arg3          CAN BE ANY IT1NUM VALUE FOR ENTITY = NODE IN THE
+!				 *VGET COMMAND                                  
+!
+! example of *vget
+! *VGET,RESULTPRM(1),NODE,NODE NUMBER,ARG1,ARG2,               
+!                                
+!
+!SAMPLE SYNTAX FOR BATCH INPUT (SEE ABOVE DEFINITIONS):
+!
+!VGET_SUBS,'NODE','LOC','X'
+!
+!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!
+!PARAMETER    TYPE                          DESCRIPTION
+!
+!CUR_ROUT_  SCALAR                - STORES THE ACTIVE ROUTINE.
+!NODE_MIN             (SCALAR)    - MININMUM NODE NUMBER
+!NODE_MAX             (SCALAR)    - MAXIMUM NODE NUMBER
+!NODE_ARRAY           (ARRAY)
+!NODE_MASK            (ARRAY)
+!NODE_TEMP            (ARRAY)
+!RESULT_COMP          (ARRAY)     - FINAL ARRAY WITH COMPRESSED NODE OR ELEMENT  
+!                                   NUMBERS SORTED BY COORDINATES.
+!
+!
+!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+!                       START OF EXECUTION OF THE MACRO
+!~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      *MSG,UI,
+       EXECUTING THE MACRO VGET_SUBS 
+       /wait,1
+
+/NOPR                       ! SUPRESS DISPLAY OF FOLLOWING WARNING MESAGES:
+/UIS,MSGPOP,3               ! SET MSG POP LEVEL ONLY TO ERRORS
+*GET,AR21,PARM,ARG1,TYPE    ! WHAT TYPE WAS ITEM1_  
+*GET,AR22,PARM,ARG2,TYPE    ! WHAT TYPE WAS ITEM1_
+*GET,AR23,PARM,ARG3,TYPE    ! WHAT TYPE WAS ITEM1_
+
+!*************************************************************************
+! CODE TO GIVE ERROR MSGS IF INTERACTIVE AND WARNING IF BATCH MODE
+!
+*GET,AR51,ACTIVE,0,INT       !RETRIVE INTERACTIVE OR BATCH MODE
+*IF,AR51,EQ,2,THEN
+      AR50='error'
+   *ELSE
+      AR50='UI'
+*ENDIF
+
+*IF,AR21,NE,3,THEN,
+     *MSG,%AR50%,
+      ARGUMENT 1 NOT ENTERED CORRECTLY. ARGUMENT 1 HAS TO BE EITHER  %/&
+      ELEM OR NODE AND SHOULD BE ENTERED WITHIN SINGLE QUOTES. %/&
+       ***************** MACRO IS BEING TERMINATED ******************
+     *RETURN,-1
+ *ELSE
+     ARG1 = UPCASE(ARG1)
+    *IF,ARG1,NE,'ELEM',THEN,
+      *IF,ARG1,NE,'NODE',THEN,
+	*MSG,%AR50%,
+         ARGUMENT 1 NOT ENTERED CORRECTLY. ARGUMENT 1 HAS TO BE EITHER  %/& 
+	 ELEM OR NODE AND SHOULD BE ENTERED WITHIN SINGLE QUOTES.%/&
+           ***************** MACRO IS BEING TERMINATED ******************
+	*RETURN,-1
+      *ENDIF
+   *ENDIF
+*ENDIF
+
+*IF,AR22,NE,3,THEN
+    *MSG,%AR50%,
+     ARGUMENT 2 NOT ENTERED CORRECTLY. ARGUMENT 2 HAS TO BE ALPHABETS%/&
+     AND SHOULD BE ENTERED WITHIN SINGLE QUOTES. %/&
+      ***************** MACRO IS BEING TERMINATED ******************
+    *RETURN,-1
+*ENDIF
+
+*IF,AR23,EQ,0,THEN
+   *IF,ARG3 ,LE,0,OR,ARG3,GE,3,THEN
+     *MSG,%AR50%,
+      ARGUMENT 3 NOT ENTERED CORRECTLY. CHECK,IF ALPHABETS THEN PLEASE%/&
+       ENTER WITHIN  SINGLE QUOTES.  %/&
+       ***************** MACRO IS BEING TERMINATED ****************** 
+     *RETURN,-1
+   *ENDIF
+*ENDIF
+
+  ENT_ = ARG1
+  ITEM1_  = ARG2
+  IT1NUM_ = ARG3
+!
+/INQUIRE,USR_NAME_,USER         ! USER NAME PARA
+!
+/INQUIRE,JNAME_,JOBNAME         ! JOBNAME PARAMETER RETRIEVAL
+!
+/INQUIRE,CURDIR_,DIRECTORY      ! CURRENT WORKING DIRECTORY PARAMETER 
+						        ! RETRIEVAL
+! RETRIEVE UNIX DATE AND TIME
+!
+*GET,AR20,ACTIVE,,DATE          ! GET WALLCLOCK DATE
+ AR31 = MOD(AR20,100)
+ AR32 = (MOD(AR20,10000)-AR31)/100
+ AR33 = (AR20-MOD(AR20,10000))/10000
+*IF,AR31,LT,10,THEN $ AR31='0%AR31%' $ *ELSE $ AR31='%AR31%' $ *ENDIF
+*GET,AR30,ACTIVE,,TIME,WALL  ! GET WALLCLOCK TIME
+ AR34 = NINT(AR30-0.5)
+*IF,AR34,LT,10,THEN $ AR54='0%AR34%' $ *ELSE $ AR54='%AR34%' $ *ENDIF
+ AR35 = NINT((AR30-AR34)*60-0.5)
+*IF,AR35,LT,10,THEN $ AR55='0%AR35%' $ *ELSE $ AR55='%AR35%' $ *ENDIF
+ AR36 = NINT((AR30-(AR34+AR35/60))*3600)
+*IF,AR36,LT,10,THEN $ AR56='0%AR36%' $ *ELSE $ AR56='%AR36%' $ *ENDIF
+*SET,MONTH_ $ *DIM,MONTH_,CHAR,12
+*SET,MONTH_(1),'JAN','FEB','MAR','APR','MAY','JUN'
+*SET,MONTH_(7),'JUL','AUG','SEP','OCT','NOV','DEC'
+ TIME_ = '%AR54%:%AR55%:%AR56%'
+ DATE_ = '%AR31%-%MONTH_(AR32)%-%AR33%'
+
+!------------------------------------------------------------------------------------
+!GETTING THE INFORMATION OF THE RESULTS SET CURRENTLY BEING USED.
+!
+*GET, ACTSTP_, ACTIVE, , SET,LSTP, 
+*GET, ACTTIM_, ACTIVE, , SET,TIME,   
+!-------------------------------------------------------------------------------------
+*GET,CUR_ROUT,ACTIVE,,ROUT
+!-------------------------------------------------------------------------------
+/POST1
+ *GET,AR37,ACTIVE,0,CSYS          ! RETRIVE THE ACTIVE COORDINATE SYSTEM
+ *GET,AR38,ACTIVE,0,RSYS	  ! RETRIVE THE ACTIVE RESULTS COORDINATE SYSTEM
+
+*IF,ENT_,eq,'ELEM',then
+  ENTVAL_ = 1
+  ETABLE,ELSTRS_,% ITEM1_ %,IT1NUM_
+ *ELSE
+  ENTVAL_ = 0
+*ENDIF
+  
+!********GETTING THE DESIRED VALUES INTO ARRAYS FOR NODE NUMBERS***************
+
+*GET,%ENT_%MN,%ENT_%,,NUM,MIN                 ! MIN NODE NUMBER OF SELECTED SET
+*GET,%ENT_%MX,%ENT_%,,NUM,MAX                 ! MAX NODE NUMBER OF SELECTED SET
+*DIM,%ENT_%AR,,(%ENT_%MX-%ENT_%MN)+1,2        ! ARRAY THAT ENCOMPASSES SELECTED SET
+*DIM,%ENT_%MK,,(%ENT_%MX-%ENT_%MN)+1          ! MASK ARRAY ENCOMPASSES SELECTED SET
+!
+*IF,ENTVAL_,EQ,1,THEN,
+   *VGET,%ENT_%MK(1),%ENT_%,%ENT_%MN,ESEL     ! FILL MASK ARRAY WITH SELECTION STATUS  
+*ELSE
+   *VGET,%ENT_%MK(1),%ENT_%,%ENT_%MN,NSEL
+*ENDIF
+*VMASK,%ENT_%MK(1)                            ! DECLARE MASK FOR NEXT OPERATION
+*VFILL,%ENT_%AR(1,1),RAMP,%ENT_%MN,1          ! NUMBERS OF SELECTED NODES, WITH "HOLES"
+*IF,ENTVAL_,EQ,1,THEN,
+   *VGET,%ENT_%AR(1,2),%ENT_%,%ENT_%MN,ETAB,ELSTRS_ ! OBTAIN THE REQUESTED DATA IN ITEM1_ AND IT1NUM_ 
+*ELSE
+   *VGET,%ENT_%AR(1,2),%ENT_%,%ENT_%MN,ITEM1_ ,%IT1NUM_%
+*ENDIF
+!
+*DIM,%ENT_%TEMP,ARRAY,%ENT_%MX-%ENT_%MN+1,2   ! NODE NUMBERS WITH HOLES REMOVED
+*VMASK,%ENT_%MK(1)                            ! DECLARE MASK FOR NEXT OPERATION
+*VFUN,%ENT_%TEMP(1,1),COMP,%ENT_%AR(1,1)      ! COMPRESS OUT THE HOLES
+*VMASK,%ENT_%MK(1)                            ! DECLARE MASK FOR NEXT OPERATION
+*VFUN,%ENT_%TEMP(1,2),COMP,%ENT_%AR(1,2)      ! COMPRESS OUT THE HOLES
+*DEL,%ENT_%MK,,NOPR                           ! SILENT DELETE (UNDOCUMENTED ARGUMENT)
+*DEL,%ENT_%AR,,NOPR                           ! SILENT DELETE (UNDOCUMENTED ARGUMENT)
+!
+*GET,%ENT_%COUNT,%ENT_%,,COUNT                ! HOW MANY NODES SELECTED
+ RESULT_COMP =
+*DIM,RESULT_COMP,ARRAY,%ENT_%COUNT,2          ! MIN LENGTH ARRAY, NODE NUMBERS
+*VFUN,RESULT_COMP(1,1),COPY,%ENT_%TEMP(1,1)   ! STORE IN MINIMUM LENGTH ARRAY
+*VFUN,RESULT_COMP(1,2),COPY,%ENT_%TEMP(1,2)
+
+*DEL,%ENT_%TEMP,,NOPR                         ! SILENT DELETE (UNDOCUMENTED ARGUMENT)
+*DIM,GARBAGE,ARRAY,%ENT_%COUNT
+*MOPER,GARBAGE(1),RESULT_COMP(1,1),SORT,RESULT_COMP(1,1)
+%ENT_%MN=                                      ! DELETE VARIABLES
+%ENT_%MNAX=
+%ENT_%COUNT=
+ GARBAGE = 
+!
+!
+
+!***********WRITING THE RESULTING PARAMETER TO A TXT FILE********************
+/nopr
+
+/output,%ENT_%%ITEM1_%%IT1NUM_%,txt
+
+/COM,            +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+/COM,            |                                                 |
+/COM,            |            GE POWER SYSTEMS. ON %DATE_%   |
+/COM,            |                                                 |
+/COM,            |                                                 |
+/COM,            |                  VGET_SUBS.MAC                  |
+/COM,            |                                                 |
+/COM,            |          VERSION 1 , DATE: JULY 20, 2004        |
+/COM,            |                                                 |
+/COM,            +=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+=+
+/COM,
+/COM,USER NAME                              :%USR_NAME_(1)%
+/COM,CURRENT WORKING DIRECTORY              :%CURDIR_(1)%
+/COM,JOB NAME                               :%JNAME_(1)%
+/COM,THIS MACRO WAS EXECUTED ON             :%DATE_% AT %TIME_%
+/COM,CURRENT LOADSTEP                       :%ACTSTP_%
+/COM,TIME ASSOCIATED WITH LOADSTEP          :%ACTTIM_%
+/COM,ACTIVE COORDINATE SYSTEM (CSYS)        :%AR37%
+/COM,ACTIVE RESULTS COORDINATE SYSTEM (RSYS):%AR38%
+/COM,-----------------------------------
+/COM,|    %ENT_% NUMBER  |        % ITEM1_ % %IT1NUM_%      |
+/COM, -----------------------------------
+*vwrite,' |',RESULT_COMP(1,1),'|',RESULT_COMP(1,2),'|'
+%C %-15I %C %15.3F %C
+/COM, -----------------------------------
+/output,term
+!------------------------------------------------------------------------------
+*IF,%AR51%,eq,2,THEN
+	*UILIST,%ENT_%%ITEM1_%%IT1NUM_ %,txt
+*ENDIF
+
+!
+!**************************************************************************************
+*IF,CUR_ROUT,EQ,0,THEN,
+                          FINISH
+	  *ELSEIF,CUR_ROUT,EQ,17,THEN,
+                	  /PREP7
+	  *ELSEIF,CUR_ROUT,EQ,21,THEN,
+                	  /SOLUTION
+	  *ELSEIF,CUR_ROUT,EQ,31,THEN,
+                	  /POST1
+	  *ELSEIF,CUR_ROUT,EQ,36,THEN,
+                	  /POST26		       		       		        
+	  *ELSEIF,CUR_ROUT,EQ,41,THEN,
+                	 /OPT
+	  *ELSEIF,CUR_ROUT,EQ,52,THEN,
+                	  /AUX2
+	  *ELSEIF,CUR_ROUT,EQ,62,THEN,
+                	  /AUX12
+	  *ELSEIF,CUR_ROUT,EQ,65,THEN,
+                	  /AUX15
+	  *ELSEIF,CUR_ROUT,EQ,71,THEN,
+                	  /RUNSTAT
+*ENDIF
+
+*DEL,TIME_   ,,NOPR $*DEL,PARR_   ,,NOPR  $*DEL,ACTSTP_ ,,NOPR 
+*DEL,ITEM1_  ,,NOPR $*DEL,IT1NUM_ ,,NOPR  $*DEL,MONTH_  ,,NOPR
+*DEL,ENTVAL_ ,,NOPR $*DEL,ENT_ ,,NOPR     $*DEL,USR_NAME_,,NOPR
+*DEL,DATE_   ,,NOPR $*DEL,CUR_ROUT,,NOPR  $*DEL,ACTTIM_ ,,NOPR 
+*DEL,JNAME_  ,,NOPR $*DEL,CURDIR_ ,,NOPR  
+
+/GOPR
+/EOF

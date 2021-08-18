@@ -1,0 +1,129 @@
+!----------------------------------------
+! quick example of contact offset defined
+! by real constant rather than geometry
+!
+! by sheldon
+!----------------------------------------
+finish
+/clear
+
+*set,MYCNOF  ,0.05
+
+/color,pbak,off
+/auto
+/triad,lbot
+/view,1,1,2,3
+/plopt,minm,off
+
+/prep7
+et,1,45
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+
+et,2,170
+et,3,173
+keyopt,3,9,2
+r,3
+!****************************************
+! define contact offset
+! (can change ftoln, if needed)
+!****************************************
+rmodif,3,10,MYCNOF
+mp,mu  ,3,0.0
+
+et,4,170
+et,5,173
+keyopt,5,9,2
+r,5
+mp,mu  ,5,0.0
+
+!----------------------------------------
+! two sets of blocks
+!----------------------------------------
+block,0,1,0,1,,1
+block,0,1,1,2,,1
+block,2,3,0,1,,1
+!****************************************
+! change to
+!   block,2,3,1-MYCNOF,2,,1
+!****************************************
+block,2,3,1-MYCNOF,2-MYCNOF,,1
+
+vatt,1,1,1
+esize,,1
+vmesh,all
+
+!----------------------------------------
+! blocks 1 & 2
+!----------------------------------------
+vsel,s,volu,,1
+aslv
+asel,r,loc,y,1
+nsla,s,1
+type,3$mat,3$real,3
+esurf
+
+vsel,s,volu,,2
+aslv
+asel,r,loc,y,1
+nsla,s,1
+type,2$mat,3$real,3
+esurf
+
+!----------------------------------------
+! blocks 3 & 4
+!----------------------------------------
+vsel,s,volu,,3
+aslv
+asel,r,loc,y,1
+nsla,s,1
+type,5$mat,5$real,5
+esurf
+
+vsel,s,volu,,4
+aslv
+asel,r,loc,y,1-MYCNOF
+nsla,s,1
+type,4$mat,5$real,5
+esurf
+
+allsel,all
+finish
+
+/solu
+antype,static,new
+rescon,define,none
+nsubst,5,100,2
+nlgeom,on
+outres,all,last
+
+asel,s,loc,y,0
+asel,a,loc,x,0
+asel,a,loc,x,2
+asel,a,loc,z,0
+asel,a,loc,y,2
+asel,a,loc,y,2-MYCNOF
+da,all,symm
+
+allsel,all
+/title,Example using CNOF for contact offset
+solve
+finish
+
+/post1
+set,last
+
+esel,s,real,,3
+nsle
+fsum,,cont
+*get,MYFORCE1,fsum,,item,fy
+
+esel,s,real,,5
+nsle
+fsum,,cont
+*get,MYFORCE2,fsum,,item,fy
+
+allsel,all
+/dscale,1,1
+/title,Left block: CNOF offset %MYFORCE1%, Right block, Geometric offset %MYFORCE2%
+ples,s,eqv

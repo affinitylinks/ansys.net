@@ -1,0 +1,57 @@
+
+! Macro which creates a mask vector for array values which
+! fall between specified minimuim and maximum values.  Will
+! also return parameters containing the index location of the
+! first and last array elements meeting the criteria, as well
+! as the number of array elements which meet the criteria.
+
+! This macro has not been QA'd.  Use at your own risk.
+
+! History:
+! 11-25-2000 MRV Created.
+
+
+! Usage:
+! VRANGE,'ARRAY_NAME',MIN,MAX
+
+! Arguments:
+! arg1 (char) = ARRAY_NAME = array name to be searched
+! arg2        = MIN        = minimum value to look for in array
+! arg3        = MAX        = maximum value to look for in array
+
+! Parameters returned:
+! mask_                    = Mask vector with mask values set to TRUE (1) for
+!                            those array values falling between the specified
+!                            minimum and maximum.
+!
+! pos_1st_                 = Position of first value within desired range.
+! pos_lst_                 = Position of last value withing desired range.
+! numval_                  = Number of values within desired range.
+
+! Macro currently only works for one dimensional arrays.  User will have
+! to modify macro if they wish to operate on two or three dimensional arrays,
+! or if they wish to only search a restricted part of the array.
+
+
+! Example data.  Comment out when using macro in production.
+*set,a
+*dim,a,array,10
+*set,a(1),3,3,10,9,11
+*set,a(6),1,1,6,5,4
+! End of example data.
+
+
+*get,len_,parm,%arg1%,dim,x
+*dim,mask_,array,len_			! Mask vector
+*set,len_
+
+*voper,mask_(1),%arg1%(1),ge,arg2
+*vmask,mask_(1)
+*voper,mask_(1),%arg1%(1),le,arg3
+
+*vmask,mask_(1)
+*vscfun,pos_1st_,first,%arg1%(1)
+*vmask,mask_(1)
+*vscfun,pos_lst_,last,%arg1%(1)
+*vmask,mask_(1)
+*vscfun,numval_,num,%arg1%(1)

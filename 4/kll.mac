@@ -1,0 +1,48 @@
+/com, This Macro joins all the broken lines of the selected volumes.
+/com, It works on lines which are part of volumes only and not for independent areas or lines.
+/com, - by G.N.S.Prakash
+
+/prep7
+immed,0
+
+cm,kll_k,kp
+cm,kll_l,line
+cm,kll_a,area
+cm,kll_v,volu
+
+allsel,below,volu
+*get,kpcount,kp,0,count  	
+*dim,kp_sel,array,kpcount,1,1,
+
+*get,kp_sel(1,1,1),kp,0,num,min
+
+
+*do,i,2,kpcount
+	*get,kp_sel(i,1,1),kp,kp_sel((i-1),1,1),nxth
+*enddo
+!*get,kp_sel((2:kpcount),1,1),kp,kp_sel((1:kpcount-1),1,1),nxth
+
+*do,i,1,kpcount
+	ksel,s,,,kp_sel(i,1,1)
+	lslk
+	*get,licount,line,0,count
+	*if,licount,eq,2,then
+		lcomb,all
+	*endif
+*enddo
+
+cmsel,s,kll_k
+cmsel,s,kll_l
+cmsel,s,kll_a
+cmsel,s,kll_v
+
+lplo
+
+kp_sel=
+kpno=
+licount=
+i=
+kpcount=
+
+immed,1
+

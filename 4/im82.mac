@@ -1,0 +1,77 @@
+! *****************************************************************************
+! IM82.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! To look for loops of lines in selected line set.
+! Puts loops of lines into components called LOOPx,
+! where x is no. of loops found.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   ANSYS  Description
+!
+! 19/09/00 PRM  5.6   Initial release developed using 5.6.1 UP20000209
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Notes :
+! 1. does not stop at T-junctions at this release.
+! 2. works like loop picking i.e. will loop on lines until no more are found,
+! 	so will not necessarily create a closed loop (a single line not
+!	attached to any others will be saved as a loop component
+!
+! Output is :
+!
+! Loops of lines into components called LOOPx.
+! Parameter LOOPCNT = number of loops found.
+! 
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+*GET,TOTL,LINE,0,COUNT
+CM,L_TEMP,LINE
+LOOPCNT=0
+
+*DO,I,1,TOTL,1
+
+  LOOPCNT=LOOPCNT+1
+
+  *GET,LLOW,LINE,0,NUM,MIN
+  LSEL,S,,,LLOW
+  OLDLSEL=1
+  KSLL,S
+
+  *DO,J,1,TOTL,1
+    LSLK,S 
+    *GET,NEWLSEL,LINE,0,COUNT
+      *IF,NEWLSEL,EQ,OLDLSEL,THEN
+        *EXIT
+      *ENDIF
+    KSLL,S
+    OLDLSEL=NEWLSEL
+  *ENDDO
+
+  CM,LOOP%LOOPCNT%,LINE
+
+  CMSEL,S,L_TEMP
+
+  *DO,K,1,LOOPCNT,1
+    CMSEL,U,LOOP%K%
+  *ENDDO
+
+  *GET,LINECNT,LINE,0,COUNT
+  *IF,LINECNT,EQ,0,THEN
+    *EXIT
+  *ENDIF
+
+*ENDDO
+
+ALLSEL
+CMDELE,L_TEMP

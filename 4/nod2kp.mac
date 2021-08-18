@@ -1,0 +1,16 @@
+! ANSYS Macro to move an existing node to the location of an
+!  existing keypoint. User picks single node to be moved, 
+!  then picks single keypoint to move it to.
+/pmacro
+nsel,s,p			
+*get,nodenum,node,0,num,max	
+
+ksel,s,p			
+*get,kpnum,kp,0,num,max		
+xx=kx(kpnum)			
+yy=ky(kpnum)			
+zz=kz(kpnum)			
+nmodif,nodenum,xx,yy,zz		
+
+nsel,all			
+ksel,all			

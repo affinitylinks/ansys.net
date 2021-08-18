@@ -1,0 +1,31 @@
+!ANOL.MAC adds annotation to the left side of screen. 
+!First argument is how many lines above the title.
+!Second argument is how many characters (approximate) offset to the right.
+!Third and fourth arguments are the annotation text (must be in single quotes,
+!limited to 32 char each, or 59 total).
+!by Bram Weisman, June 20, 2003.  ANSYS 7.1
+!
+line_=arg1  !Lines above Title
+offs_=arg2 !Characters offset from Left
+*dim,MYANNO,string,128
+MYANNO(1)=strcat(arg3,arg4)
+*if,line_,lt,39,then
+  !*if,arg4,eq,,then
+  !arg4=''
+  !*endif
+  *cfopen,anol,tmp
+  *vwrite,
+/ANUM,      ,     1,-0.98+offs_*0.03    ,-0.98+0.05*line_
+  *vwrite
+/TSPE, 15, 1.000,   1,   0,   0
+  *vwrite,MYANNO(1)
+/TLAB,-0.98+offs_*0.03,-0.98+0.05*line_,%s
+  *cfclos
+  /inp,anol,tmp
+  /del,anol,tmp
+*else
+  *msg,warn
+  Line values greater than 38 are not acceptable.
+*endif
+MYANNO(1)=
+/eof

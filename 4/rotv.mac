@@ -1,0 +1,144 @@
+/nopr
+!
+!  rotv.mac   a macro to rotate the currently selected volumes
+!             about an axis.  
+!
+!  usage:  rotv,x1,y1,z1,x2,y2,z2,rotangle,flag,coord,gran
+!
+!  where: x1,y1,z1=the coordinates of a point along the rotation axis
+!         x2,y2,z2=the coordinates of another point along the rotation axis
+!         rotangle=rotation angle in degrees using right hand rule
+!         flag    =0 for move, 1 for copy
+!         coord   =0 for global coordinate system, 1 for local coordinate system
+!                 (coordinate system the two points are described in.)
+!         gran    =1 if this macro is called from a granule
+!                 (activates the component commands to retrieve the originally
+!                 selected volumes stored in the component _Y1.)
+!
+!         the granule has already stored the originally selected volumes in the
+!         component _Y1.  This component is retrieved and added to the set of
+!         volumes used in the macro.  The component is then deleted.
+!
+!  written by John Crawford  4-30-96
+!
+!  variable definition
+!  ar20=csid coordinate system ID active in the original model
+!  ar21=kpmax  max keypoint ID in the original model
+!  ar22=lsmax  max line number used in the original model
+!  ar23=csmax  max coordinate system number used in the original model
+!
+!*msg,info,arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9
+!rotv.mac %g %g %g %g %g %g %g %i %i %i
+!  check to make sure that the distance between location 1 and location 2 is
+!  nonzero
+*if,((arg1-arg4)**2+(arg2-arg5)**2+(arg3-arg6)**2),gt,0,then
+!
+!  the rotation macro begins here
+!
+!  save the view data
+/gsave,_Y1
+!  set the screen distance, etc., using /user
+/user
+imme,off
+/uis,replot
+!
+!  get the current coordinate system ID number
+*get,ar20,active,,csys
+!
+!  get the highest coordinate system ID in the model
+ar23=csyiqr(0,14)
+!  get the highest keypoint number in the model
+ar21=kpinqr(0,14)
+!
+!  create a local coordinate system at the work plane location, so we can
+!  return the work plane to it's original location when the macro is finished
+!  running.  it is given an ID number which is 11 greater than the previously
+!  highest ID number.
+cswpla,ar23+11,0
+!
+!  create the local cylindrical coordinate system using coordinates 1 and 2
+!  by creating three temporary keypoints at these locations.
+!  
+!  choose the coordinate system in which keypoints will be generated
+*if,arg9,eq,0,then
+csys
+*else
+csys,ar20
+*endif
+!
+k,ar21+1,arg1,arg2,arg3
+k,ar21+2,arg4,arg5,arg6
+!
+!  return to the temporary local coordinate system
+csys,ar23+11
+!
+!  get the highest line ID which exists, and then set numst,line to this plus 1
+ar22=lsinqr(0,14)
+numstr,line,ar22+1
+!
+!  create a line between these two points
+l,ar21+1,ar21+2
+!
+!  align the working plane to this location at point 1
+lwplan,-1,ar22+1
+!
+!  remove the line
+ldel,ar22+1
+!
+!  delete the temporary keypoints we just made
+kdel,ar21+1,ar21+2
+!
+!  reset numstr for lines and keypoints
+numstr,line,ar22+1
+numstr,kp,ar21+1
+!
+!  create local coordinate system which is aligned with the work plane
+cswpla,ar23+12,1
+!
+!imme,on
+!  do an lgen on the selected volumes
+*if,arg8,eq,0,then
+!  if moving, then do this
+vgen,,all,,,,arg7,,,1,1
+*elseif,arg8,eq,1,then
+!  if copying, then do this
+vgen,2,all,,,,arg7,,,,0
+*endif
+!
+!  return the work plane to it's original location
+wpcsys,-1,ar23+11
+!  return to the original coordinate system
+csys,ar20
+!
+! delete the temporary coordinate systems
+csde,ar23+11
+csde,ar23+12
+!
+!  additionally select the originally selected volumes
+*if,ar10,eq,1,then
+cmse,a,_Y1
+*endif
+!
+*else
+*msg,info
+*** Coordinates for rotation axis are coincident ***
+*msg,info
+******** Re-enter coordinates and try again ********
+*endif
+!
+*if,ar10,eq,1,then
+!  additionally select the originally selected volumes
+cmse,a,_Y1
+!
+!  delete the temporary component
+cmde,_Y1
+*endif
+!
+/plopt,wp,off
+/gresume,_Y1
+/sys,rm -f _Y1
+!  turn the working plane display symbol off
+wpstyl,,,,,,,,0
+vplo
+/gopr
+

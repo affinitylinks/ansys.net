@@ -1,0 +1,19 @@
+! Think Peak, Inc. Copyright 1999
+! Chris Kennedy - Author
+!/com $Id: FCLEAR.MAC $
+!
+! FCLEAR.MAC - fast /CLEAR of ansys
+!
+*CFOPEN,ansuitmpp
+*CFWRITE,finish
+*CFWRITE,/clear
+*CFWRITE,/rmtemp
+*CFCLOSE
+!
+/input,ansuitmpp
+!
+! /RMTEMP is an 'undocumented' command that will remove the file
+! specified on /INPUT after it is read. /RMTEMP should be the
+! last command in the input file. Contact your ASD for more info
+! on it.
+!

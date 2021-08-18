@@ -1,0 +1,131 @@
+
+
+/com, Macro for APDL Guru at PADT
+/com, Written by Vlad I. Suprunov
+/com,  
+/com,
+/com,
+/com,
+/nopr
+/pmacro
+*get,cc,active,0,rout
+*if,cc,ne,17,then
+/prep7
+*endif
+lsel,none
+/ui,lsel,s
+*if,lsinqr(0,13),ne,2,then
+	*msg,ui,
+	You should choose only two lines
+	*go,:label
+*endif
+ksll,s
+*if,kpinqr(0,13),lt,4,then
+*msg,ui
+Lines have common point. No action to do.
+*go,:label
+*endif
+l_number1=lsnext(0)$l_number2=lsnext(l_number1)
+*do,i,1,2
+*get,k%i%_l1,line,l_number%i%,kp,1
+*get,k%i%_l2,line,l_number%i%,kp,2
+x%i%1=kx(k%i%_l1)
+x%i%2=kx(k%i%_l2)
+y%i%1=ky(k%i%_l1)
+y%i%2=ky(k%i%_l2)
+*if,x%i%1,gt,x%i%2,then		!x%i%2 should be more than x%i%1
+	cc=x%i%1
+	x%i%1=x%i%2
+	x%i%2=cc
+	tr%i%=1
+*endif
+a%i%=(y%i%2-y%i%1)/(x%i%2-x%i%1)
+b%i%=y%i%1-a%i%*x%i%1
+*enddo
+x_c=(b2-b1)/(a1-a2)
+y_c=a1*x_c+b1
+cc=kpinqr(0,14)+1
+k,cc,x_c,y_c,0
+*do,i,1,2
+*if,x_c,lt,x%i%1,then
+	d%i%=0
+*elseif,x_c,gt,x%i%2
+	d%i%=2
+*else
+	d%i%=1
+*endif
+*enddo
+*if,d1,gt,d2,then
+cc1=d1
+d1=d2
+d2=cc1
+cc1=k1_l1
+k1_l1=k2_l1
+k2_l1=cc1
+cc1=k1_l2
+k1_l2=k2_l2
+k2_l2=cc1
+cc1=l_number1
+l_number1=l_number2
+l_number2=cc1
+*endif
+*if,d1,eq,0,and,d2,eq,0,then
+ 	*do,i,1,2
+ 		*if,tr%i%,eq,0,then
+ 			 l,k%i%_l1,cc
+ 		*else
+ 			l,k%i%_l2,cc
+ 		*endif
+ 	*enddo
+*endif
+*if,d1,eq,0,and,d2,eq,1,then
+	ldele,l_number2,,,0
+	l,k2_l1,cc
+	l,k2_l2,cc
+	*if,tr1,eq,0,then
+		l,k1_l1,cc
+	*elseif,tr1,eq,1
+		l,k1_l2,cc
+	 *endif
+*endif
+*if,d1,eq,0,and,d2,eq,2,then
+	 *if,tr1,eq,0,then
+		 l,k1_l1,cc
+	 *else
+		 l,k1_l2,cc
+	 *endif
+	 *if,tr2,eq,0,then
+		 l,k2_l2,cc
+	 *else
+		 l,k2_l1,cc
+	 *endif
+ *endif
+ *if,d1,eq,1,and,d2,eq,1,then
+	 ldele,l_number1,,,0
+	 ldele,l_number2,,,0
+	 l,k1_l1,cc
+	 l,k1_l2,cc
+	 l,k2_l1,cc
+	 l,k2_l2,cc
+ *endif
+ *if,d1,eq,1,and,d2,eq,2,then
+	 ldele,l_number1,,,0
+	 *if,tr2,eq,0,then
+		 l,k2_l2,cc
+	 *else
+		 l,k2_l1,cc
+	 *endif
+	 l,k1_l1,cc
+	 l,k1_l2,cc
+ *endif
+ *if,d1,eq,2,and,d2,eq,2,then
+ 	*do,i,1,2
+ 		*if,tr%i%,eq,0,then
+ 			l,k%i%_l2,cc
+ 		*else
+ 			l,k%i%_l1,cc
+ 		*endif
+ 	*enddo
+ *endif
+ /gopr
+ :label

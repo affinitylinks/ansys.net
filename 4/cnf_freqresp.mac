@@ -1,0 +1,132 @@
+/com,
+/com, ===================================================================
+/com, 
+/com, cnf_freqresp.mac
+/com, 
+/com, exports selected elements nodal disp to cnf (comet neutral format)
+/com,
+/com, ARG1 = filename.cnf to be exported (in single quotes 'filename')
+/com,
+/com, First go for a single frequency. Could be made automatic for all freq
+/com, in a result file.
+/com, 
+/com, 
+/com, 
+/com, Created  RCM 20010426
+/com,
+/com, Modified 
+/com,
+/com,
+/com, ===================================================================
+/com,
+!/nopr
+
+! change to csys,0
+csys,0
+
+! archive currently selected nodes and elements in groups
+cm,tmpnd_,node
+cm,tmpel_,elem
+
+! selects nodes beneath these elements
+nsle,s
+
+*get,nmax_,node,0,num,max
+*del,nmask_,,nopr
+*dim,nmask_,,nmax_
+*vget,nmask_(1),node,0,nsel
+
+*del,nvelr_,,nopr
+*dim,nvelr_,,nmax_,3
+
+*del,nveli_,,nopr
+*dim,nveli_,,nmax_,3
+
+! make sure we're in postprocessor
+finish
+/post1
+
+!load in real part
+set,1,last,1,0
+
+! get the nodal disp
+*vmask,nmask_(1) $ *vget,nvelr_(1,1),node,0,u,x
+*vmask,nmask_(1) $ *vget,nvelr_(1,2),node,0,u,y
+*vmask,nmask_(1) $ *vget,nvelr_(1,3),node,0,u,z
+
+!load in imaginary part
+set,1,last,1,1
+
+! get the nodal disp
+*vmask,nmask_(1) $ *vget,nveli_(1,1),node,0,u,x
+*vmask,nmask_(1) $ *vget,nveli_(1,2),node,0,u,y
+*vmask,nmask_(1) $ *vget,nveli_(1,3),node,0,u,z
+
+! write the results out
+*cfopen,%ARG1%,cnf
+
+*vwrite
+('$ -----------------------------------------------')
+*vwrite
+('$ Ansys output file -> comet neutral file format')
+*vwrite
+('$ file containing nodal displcements.           ')
+*vwrite
+('$ -----------------------------------------------')
+*vwrite
+('VERSION 4.0')
+*vwrite
+('Creation Date : 10-Aug-1997')
+*vwrite
+('Creation Time : 12:46:29')
+*vwrite
+('$ -----------------------------------------------')
+*vwrite
+('BEGIN_SET : FREQ_RESP')
+*vwrite
+('BEGIN_CASE : 1')
+*vwrite
+('FREQUENCY : 34.313 HZ')
+*vwrite                  
+('DATA_TYPE : DISPLACEMENT')
+*vwrite                  
+('DATA_FORMAT : REAL-IMAG')
+                          
+*do,ii_,1,nmax_
+
+*if,nmask_(1),eq,1,then
+
+*vlen,1
+*vwrite,ii_,nvelr_(ii_,1),nvelr_(ii_,2),nvelr_(ii_,3)
+(F8.0,tl1,' ',3(2x,E15.6))
+
+*vlen,1
+*vwrite,nveli_(ii_,1),nveli_(ii_,2),nveli_(ii_,3)
+('        ',3(2x,E15.6))
+
+*endif
+
+*enddo
+
+*vwrite
+('END_CASE')
+*vwrite
+('END_SET')
+*vwrite
+('$ -----------------------------------------------')
+*cfclose
+
+!*del,nmask_,,nopr
+!*del,nvelr_,,nopr
+!*del,nveli_,,nopr
+!nmax_=
+!emax_=
+!
+!cmsel,s,tmpel_
+!cmsel,s,tmpnd_
+!
+!cmdel,tmpel_
+!cmdel,tmpnd_
+!
+!/gopr
+!

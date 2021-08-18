@@ -1,0 +1,81 @@
+! Macro to convert MESH200 to FLUID142 tets
+! written by Sheldon
+
+!
+! ARG1 - element type # for conversion
+!        of MESH200 4-node tet to FLUID142 4-node tet
+
+! AR20 - check flag for ARG1
+! AR30 - element type element name
+! AR31 - element type keyoption 1
+! AR32 - max defined element type number
+! AR40 - max element number
+
+! STITEMP1 - array of element nodes
+! STITEMP2 - mask array
+
+/nopr
+
+*get,AR20,parm,ARG1,type
+*if,AR20,eq,0,then
+  *if,ARG1,ne,0,then
+    *get,AR30,etyp,ARG1,attr,enam
+    *if,AR30,eq,200,then
+      *get,AR31,etyp,ARG1,attr,kop1
+      *if,AR31,eq,8,then
+        /prep7
+        *get,AR32,etyp,,num,max
+        et,AR32+1,142
+        
+        cm,TEMPELEM,elem
+        cm,TEMPNODE,node
+        esel,s,type,,ARG1
+        nsle
+        
+        *get,AR40,elem,,num,max
+        *dim,STITEMP1,array,AR40,4
+        *dim,STITEMP2,array,AR40
+        
+        *vget,STITEMP2(1),elem,,esel
+        *vmas,STITEMP2(1)
+        *vget,STITEMP1(1,1),elem,,node,1
+        *vmas,STITEMP2(1)
+        *vget,STITEMP1(1,2),elem,,node,2
+        *vmas,STITEMP2(1)
+        *vget,STITEMP1(1,3),elem,,node,3
+        *vmas,STITEMP2(1)
+        *vget,STITEMP1(1,4),elem,,node,4
+        
+        shpp,off
+        emodif,all,type,AR32+1
+        emodif,all,real,AR32+1
+        emodif,all,mat ,AR32+1
+        *vmas,STITEMP2(1)
+        emodif,(1:AR40),-4,STITEMP1(1:AR40,3),STITEMP1(1:AR40,4),STITEMP1(1:AR40,4),STITEMP1(1:AR40,4),STITEMP1(1:AR40,4)
+        shpp,on
+        
+        cmsel,s,TEMPELEM
+        cmsel,s,TEMPNODE
+        cmdele,TEMPELEM
+        cmdele,TEMPNODE
+      *else
+        *msg,warn,ARG1
+        Element type %1i does not use a MESH200 4-node tetra option.  Exiting.
+      *endif
+    *else
+      *msg,warn,ARG1
+      Element type %1i is not a MESH200 element.  Exiting.
+    *endif
+  *else
+    *msg,warn
+    No argument supplied for this macro.  Exiting.
+  *endif
+*else
+  *msg,warn
+  First argument for this macro should be an integer.  Exiting.  
+*endif
+
+*del,STITEMP1,,nopr
+*del,STITEMP2,,nopr
+
+/gopr

@@ -1,0 +1,65 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION & MACRO REVISION:
+/com,  Gets mass of 2D axisymmetric model
+/com,
+/com,USAGE OF MACRO:
+/com,  Just type 'getmass'
+/com,
+/com,OUTPUT OF MACRO:
+/com,  Printout of mass and volume
+/com,  Stores in parameter as well
+/com,
+/com,Comments:
+/com,  This is not vectorized.  maybe look into that later...
+/com,  Does not take into temp-dependency.  easy to adjust...
+/com,
+
+/nopr
+*set,ICOUNT_
+*set,MASSEL_
+*set,VOLUEL_
+*set,ATTREL_
+*set,MASSTOT
+*set,VOLUTOT
+*set,ECOUNT_
+
+*get,ECOUNT_,elem,,count
+*set,NEXTEL_,0
+*set,MASSTOT,0
+*set,VOLUTOT,0
+*do,ICOUNT_,1,ECOUNT_,1
+  NEXTEL_=elnext(NEXTEL_)
+  *get,VOLUEL_,elem,NEXTEL_,volu
+  *get,ATTREL_,elem,NEXTEL_,attr,mat
+  *get,DENSEL_,dens,ATTREL_,temp,0.0
+  MASSEL_=VOLUEL_*DENSEL_
+  VOLUTOT=VOLUTOT+VOLUEL_
+  MASSTOT=MASSTOT+MASSEL_
+*enddo
+
+*del,ICOUNT_
+*del,MASSEL_
+*del,VOLUEL_
+*del,ATTREL_
+*del,ECOUNT_
+*del,DENSEL_
+*del,VOLUEL_
+/gopr
+
+*msg,note,VOLUTOT,MASSTOT
+%/&
+ Total volume  of selected elements is %g.%/&
+ Total mass of selected elements is %g.%/&
+%/
+

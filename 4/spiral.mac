@@ -1,0 +1,34 @@
+/prep7
+rect,.1,.2,0,.1
+et,1,63
+et,2,45
+esize,.02
+eshap,2
+type,1
+amesh,1
+type,2
+ninc=40
+local,11,1,,,,,-90
+!>>> The key: Ngen in a cylindrical csys,
+!>>> incrementing in R as well as theta
+ngen,100,ninc,all,,,.005,8
+*get,nelem,elem,,count
+*do,el,1,nelem
+n1=nelem(el,1)
+n2=nelem(el,2)
+n3=nelem(el,3)
+n4=nelem(el,4)
+e,n1,n2,n3,n4,n1+ninc,n2+ninc,n3+ninc,n4+ninc
+*enddo
+esel,s,type,,2
+egen,99,ninc,all
+allsel
+aclear,all
+/view,1,1,1,1
+/auto
+eplot
+
+/eof
+Keith DiRienz
+here came up with this macro which is an elegant and simple solution to model a spiral
+

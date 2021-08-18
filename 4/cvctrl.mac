@@ -1,0 +1,162 @@
+!
+/com CVCTRL.MAC macro.
+
+/nopr
+!
+! CVCTRL.MAC - contour control macro using /CVAL
+!
+! Prompts for yield stress of material and uses it to set up
+! /CVAL command so that post-processing plots will show elements
+! that exceed the YIELD stress value as red, and elements which have
+! a compressive stress lower than -YIELD as blue. If the minimum stress
+! is not less than -YIELD than the actual minimum is used instead of
+! -YIELD.
+!
+! User can bypass prompts by providing arguments to macro.
+!  arg1 - the material yield stress
+!  arg2 - 0/1 toggle, when set to 1 force +- YIELD spread on contour legend
+!  arg3 - 0/1 toggle, when set to 1 hide min and max values in
+!                     legend and replace with MIN/MAX label.
+!  arg4 - 0/1 toggle, if 1 then ERNORM,ON is set. (wish I could *GET ERNORM status)
+!
+!
+! Chris Kennedy  
+!
+!
+! ar20 - material yield stress
+! ar22 - the increment
+!
+!
+! /CVAL,wn, v1, v2, v3, v4, v5, v6, v7, v8
+!
+!
+*DIM,_V,,8
+_err=0
+
+*if,arg1,eq,0,then
+    *do,j,1,5
+     *ASK,ar20,'the material yield stress ',10000
+     *if,ar20,gt,0,then
+       *exit
+     *endif
+    *enddo
+*else
+    ar20=arg1
+*endif
+
+  ar20=abs(ar20)
+
+    !
+    *get,_mx,plnsol,,max
+    *get,_mn,plnsol,,min
+    !
+    !
+    *IF,_mn,gt,ar20,then
+      *MSG,WARN,_mn,ar20
+      The minimum stress value is %G, the requested range is +- %G. &
+      This is not possible in CVCTRL.
+      _err=1
+    *ELSE
+    
+    *if,_mx,eq,0,then
+       _mx=10*ar20             ! set the V8 value high.
+       _v(8)=_mx
+    *elseif,_mx,lt,ar20,then   ! say the maximum stress is less than yeild.
+       _v(8)=ar20
+       ar20=_mx
+    *elseif,_mx,ge,ar20,then
+       _v(8)=_mx
+    *endif  
+    
+!    *IF,_MN,gt,0,then
+!        *IF,_mn,lt,1,then
+!            _mn=0
+!        *ENDIF
+!    *ENDIF
+!    *if,_mn,eq,0,then
+!       _mn=-ar20
+!    *endif
+        *if,arg2,eq,1,then
+           ! arg2 = 1 Set +- YIELD.
+           _mn=-ar20
+        *endif
+    *ENDIF
+    !
+    !
+    _v(1)=_mn    ! the first value is _mn, everything below is blue
+    _v(7)=ar20
+    ar22=(ar20-_mn)/6             ! the increment
+    
+    *DO,JJJ,2,7
+      _v(JJJ)=_mn+ar22*(JJJ-1)
+    *ENDDO
+
+
+*IF,_err,eq,1,then
+   _v(1)=
+   /EOF
+*ENDIF
+
+!
+!
+/CVAL,all,_v(1),_v(2),_v(3),_v(4),_v(5),_v(6),_v(7),_v(8)
+!
+    *if,arg4,eq,1,then 
+      ! legend values are shifted down
+      _ysh=-.042
+      ! ernorm,on
+    *else
+      _ysh=0
+      ! ernorm,off
+    *endif
+!
+!
+/replot
+!
+*if,arg3,eq,10,then
+    !
+    !
+    ! Cover up the min and max values.
+    ! 0 - black
+    ! 15 - white
+    !
+    /ANUM ,0,     4, .9    , 0.24600   
+    /LSPEC,   0,     0, 12.000 
+    /LINE, 1.140, 0.246+_ysh, 1.440, 0.246+_ysh   
+    /ANUM ,0,     4, .9    ,-0.0960   
+    /LINE, 1.140,-0.095+_ysh, 1.440,-0.095+_ysh   
+    !
+    ! MIN & MAX
+    ! 4 - blue
+    ! 12 - red
+    ! 10 - yellow
+    !
+    /ANUM ,0,     1,  .9    , 0.24   
+    /TSPEC, 10, 0.65,   1,   0,   0
+    /TLAB, 1.16, 0.237+_ysh,MIN 
+    /ANUM ,0,     1,  .9    ,-0.11100   
+    /TSPEC, 10, 0.65,   1,   0,   0
+    /TLAB, 1.16,-0.108+_ysh,MAX 
+*endif
+
+*IF,arg3,eq,1,then
+    /ANUM ,0,     5,  1.3355    , 0.20633   
+    /LSPEC,    15,     0, 1.000 
+    /PSPEC,     4,     1,     0 
+    /POLY,4, 1.205, 0.179, 1.465, 0.179, 1.465, 0.233, 1.205, 0.233 
+    /ANUM ,0,     5,  1.3199    ,-0.29677   
+    /PSPEC,    12,     1,     0 
+    /POLY,4, 1.194,-0.321, 1.446,-0.321, 1.446,-0.273, 1.194,-0.273 
+    /ANUM ,0,     1,  1.3421    ,-0.31231   
+    /TSPEC, 10, 1.000,   1,   0,   0
+    /TLAB, 1.220,-0.312,MAX STR 
+    /ANUM ,0,     1,  1.3477    , 0.18230   
+    /TLAB, 1.225, 0.182,MIN STR 
+*ENDIF
+
+/go
+jjj=
+
+! parsav,all,PARM,tmp
+_v(1)=
+/GO
