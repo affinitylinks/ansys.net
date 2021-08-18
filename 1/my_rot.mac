@@ -1,0 +1,44 @@
+! ------------------------------------------------------------
+! MY_ROT.MAC       A quick-and-dirty animation of rotation
+! ------------------------------------------------------------
+!
+! Plots are based on /REPLOT so an initial plot has to have been
+! performed by the user.
+!
+! For information only -- use at your own risk!!!
+!
+! The resulting animation file (Windows NT) gets saved using the jobname
+!   and the extension ".avi". The animation file usually compresses well.
+! The user should set the size of the graphics window so the animation
+!   graphics window is of satisfactory shape and size.
+!
+! NO Error Checking Is Performed ! ! ! ! !
+!
+! What will be plotted is based on /REPLO therefore on the last user plot
+! Scaling, etc. are all based on the last user plot.
+! It may be desirable to have /ZOOM level set explicitly so the model
+!   does not move in and out as the model rotates.
+! The use may wish to modify number of frames in the *do statement below.
+!
+! Time delay apparently is limited to 1.0 seconds max
+!
+!       Call with:
+!
+!            my_rot, time_delay_for_frame
+!
+ar11=arg1
+*if,arg1,eq,0,then
+  ar11=0.1
+*endif
+/NOPR
+/gsav,xxx,gsav,,temp
+/seg,delete
+/seg,multi,,ar11
+*do,iii_,0,355,5
+   /angle,all,iii_,ys,0
+   /replot
+*enddo
+/seg,off
+anim,1,1,ar11
+/gres,xxx,gsav
+/GOPR

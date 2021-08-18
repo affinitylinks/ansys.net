@@ -1,0 +1,38 @@
+/uis,msgpop,3 
+! Multiprompt for origin of ellipse 
+multipro,'start',3 
+*cset,1,3,x0,'X-coordinate of ellipse center',0 
+*cset,4,6,y0,'Y-coordinate of ellipse center',0 
+*cset,7,9,z0,'Z-coordinate of ellipse center',0 
+*cset,61,62,'The ELLIPSE macro generates',' an ellipse at a specified' 
+*cset,63,64,'location and orientation.' 
+multipro,'end' 
+! Multiprompt for major axis 
+multipro,'start',4 
+*cset,1,3,xmcomp,'Major axis X-component vector',1 
+*cset,4,6,ymcomp,'Major axis Y-component vector',0 
+*cset,7,9,zmcomp,'Major axis Z-component vector',0 
+*cset,10,12,major,'Major axis length',24 
+multipro,'end' 
+! Multiprompt for minor axis 
+multipro,'start',4 
+*cset,1,3,xncomp,'Minor axis X-component vector',0 
+*cset,4,6,yncomp,'Minor axis Y-component vector',1 
+*cset,7,9,zncomp,'Minor axis Z-component vector',0 
+*cset,10,12,minor,'Minor axis length',12 
+multipro,'end' 
+ratio=minor/major 
+/prep7 
+csys,0 
+wplane,,x0,y0,z0,x0+xmcomp*major,y0+ymcomp*major,z0+zmcomp*major,x0+xncomp*minor,y0+yncomp*minor,z0+zncomp*minor 
+cswpla,11,1,ratio,1 
+k,,major,,, 
+k,,major,90,, 
+k,,major,180,, 
+k,,major,270,, 
+l,kp(major,0,0),kp(major,90,0) 
+l,kp(major,90,0),kp(major,180,0) 
+l,kp(major,180,0),kp(major,270,0) 
+l,kp(major,270,0),kp(major,0,0) 
+/uis,msgpop,2 
+csys,0

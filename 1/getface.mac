@@ -1,0 +1,46 @@
+! 1. Select area first
+! 2. Run this macro
+
+cm,N_TEMP,node
+cm,E_TEMP,elem
+
+esel,none
+cm,E_FACE1,elem
+cm,E_FACE2,elem
+cm,E_FACE3,elem
+cm,E_FACE4,elem
+
+nsla,s,1
+esln
+!esel,r,ename,,168
+*get,AR99,elem,,count
+AR70=0
+*do,AR98,1,AR99
+  AR70=elnext(AR70)
+  esel,none
+  *if,nmface(AR70),eq,1,then
+    cmsel,s,E_FACE1
+    esel,a,elem,,AR70
+    cm,E_FACE1,elem
+  *elseif,nmface(AR70),eq,2
+    cmsel,s,E_FACE2
+    esel,a,elem,,AR70
+    cm,E_FACE2,elem
+  *elseif,nmface(AR70),eq,3
+    cmsel,s,E_FACE3
+    esel,a,elem,,AR70
+    cm,E_FACE3,elem
+  *elseif,nmface(AR70),eq,4
+    cmsel,s,E_FACE4
+    esel,a,elem,,AR70
+    cm,E_FACE4,elem
+  *endif
+  esln
+*enddo
+
+cmsel,s,N_TEMP
+cmsel,s,E_TEMP
+cmdele,N_TEMP
+cmdele,E_TEMP
+
+cmsel,all

@@ -1,0 +1,166 @@
+/nopr
+!
+!  lproj.mac    a macro to project the selected lines onto the
+!               working plane.  50 points are created to describe
+!               the new line.
+!
+!  lnum = number of originally selected lines
+!  lmax = max line ID number in the original set
+!  kmax = max kp ID number in the original set
+!
+!  written by: John Crawford
+!
+!  make sure we're in prep7
+/prep7
+!
+!  get the current coordinate system ID number
+*get,csid,active,,csys
+!  create a local coordinate system at the workplane origin
+cswpla,999
+!  create a component of the original lines
+cm,lines,line
+!
+!  get the number of selected lines
+*get,lnum,line,,count
+!
+!  select the keypoints on the line
+ksll
+!
+!  get the highest line ID in the model
+lsel,all
+*get,lmax,line,,num,max
+!
+!  start with the lowest line ID
+lineid=0
+!
+*do,j,1,lnum
+!  get the originally selected lines
+cmse,s,lines
+!
+!  start with the next highest line ID
+lineid=lsnext(lineid)
+!*msg,info,lineid,j
+!Lineid = %i j =  %i
+!
+!  get the highest keypoint ID in the model
+ksel,all
+*get,kpmax,kp,,num,max
+!
+!  get the two keypoints for this line
+*get,kp1,line,lineid,kp,1
+*get,kp2,line,lineid,kp,2
+!
+!  turn immediate mode off so the keypoints don't show up as they
+!  are generated
+imme,0
+!  make 50 keypoints along the length of line lineid
+*do,i,1,50,1
+k,kpmax+i,lx(lineid,(i-1)/49),ly(lineid,(i-1)/49),0
+!*msg,info,kpmax+i
+!Just made keypoint %i
+*enddo
+!
+!  turn immediate mode on again
+imme,1
+!
+!  create the new line
+flst,3,50,3
+fitem,3,kpmax+1
+fitem,3,kpmax+2
+fitem,3,kpmax+3
+fitem,3,kpmax+4
+fitem,3,kpmax+5
+fitem,3,kpmax+6
+fitem,3,kpmax+7
+fitem,3,kpmax+8
+fitem,3,kpmax+9
+fitem,3,kpmax+10
+fitem,3,kpmax+11
+fitem,3,kpmax+12
+fitem,3,kpmax+13
+fitem,3,kpmax+14
+fitem,3,kpmax+15
+fitem,3,kpmax+16
+fitem,3,kpmax+17
+fitem,3,kpmax+18
+fitem,3,kpmax+19
+fitem,3,kpmax+20
+fitem,3,kpmax+21
+fitem,3,kpmax+22
+fitem,3,kpmax+23
+fitem,3,kpmax+24
+fitem,3,kpmax+25
+fitem,3,kpmax+26
+fitem,3,kpmax+27
+fitem,3,kpmax+28
+fitem,3,kpmax+29
+fitem,3,kpmax+30
+fitem,3,kpmax+31
+fitem,3,kpmax+32
+fitem,3,kpmax+33
+fitem,3,kpmax+34
+fitem,3,kpmax+35
+fitem,3,kpmax+36
+fitem,3,kpmax+37
+fitem,3,kpmax+38
+fitem,3,kpmax+39
+fitem,3,kpmax+40
+fitem,3,kpmax+41
+fitem,3,kpmax+42
+fitem,3,kpmax+43
+fitem,3,kpmax+44
+fitem,3,kpmax+45
+fitem,3,kpmax+46
+fitem,3,kpmax+47
+fitem,3,kpmax+48
+fitem,3,kpmax+49
+fitem,3,kpmax+50
+!
+!  set the starting number for creating lines
+numstr,line,lmax+j
+bsplin,,p51x
+!
+*msg,info,lmax+j,j,lnum
+Just created spline %i , number %i of %i total splines
+!
+imme,0
+!  delete unneeded keypoints
+kdel,kpmax+2,kpmax+49
+!
+imme,1
+!  finished creating this spline, go back to the top or quit
+*enddo
+!
+!
+!  select the new lines
+lsel,s,line,,lmax+1,lmax+j
+!  select their keypoints
+ksll
+!  merge their keypoints
+numm,kpoi,1e-4,1e-4
+!  additionally select the original lines
+cmse,a,lines
+!
+!  select their keypoints
+ksll
+!
+!  delete the temporary component
+cmde,lines
+!  go back to the original coordinate system
+csys,csid
+!
+!  delete the temporary coordinate system
+csde,999
+!
+!  clean up various parameters
+csid=
+i=
+j=
+kp1=
+kp2=
+kpmax=
+lineid=
+lmax=
+lnum=
+/gopr
+

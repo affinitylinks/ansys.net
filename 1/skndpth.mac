@@ -1,0 +1,41 @@
+! PROMPT FOR RESISTIVITY, RELATIVE PERMEABILITY
+! AND FREQUENCY USING PREVIOUS VALUES IF THEY
+! EXIST
+
+*get,dfnd,parm,resis_,type
+*if,dfnd,gt,-1,then
+ *ask,resis_,the conductivity (ohm-m),resis_
+*else
+ *ask,resis_,the conductivity (ohm-m)
+*endif
+
+*get,dfnd,parm,mur_,type
+*if,dfnd,gt,-1,then
+ *ask,mur_,the relative permeability (dimensionless),mur_
+*else
+ *ask,mur_,the relative permeability (dimensionless)
+*endif
+
+*get,dfnd,parm,frqncy_,type
+*if,dfnd,gt,-1,then
+ *ask,frqncy_,the effective operating frequency (s^-1),frqncy_
+*else
+ *ask,frqncy_,the effective operating frequency (s^-1)
+*endif
+
+! CALCULATE SKIN DEPTH
+*afun,rad
+pi=acos(-1)
+mu0=pi*4e-7
+skndpth=((pi*frqncy_*mur_*mu0)/resis_)
+skndpth=1/(sqrt(skndpth))
+
+! REPORT SKIN DEPTH
+*msg,ui,resis_,mur_,frqncy_,skndpth
+Given the following input: %/ &
+Resistivity = %G ohm-m %/ &
+Relative permeability = %G %/ &
+Operating frequency = %G s^-1 %/ &
+The skin depth is %G m (saved as parameter "skndpth")
+
+

@@ -1,0 +1,121 @@
+
+
+! Store and sum reaction forces for specified/selected nodes
+! into POST26 variables.
+
+
+! 9-18-97, Mitch Voehl, CEC Corporation
+! This macro has not been QA'd.  Use at your own risk.
+
+
+
+
+
+! Usage:
+
+! ez_rfor,IR,NODE,NAME
+
+
+
+! Arguments:
+
+! arg1 = IR	= reference number for (first) result variable.
+! arg2 = NODE	= node for which RFOR is to be stored (0 = all selected nodes).
+! arg3 = NAME	= Six character prefix for variable names.  Only used
+!		  when arg2 (node number) is non-zero.  If all selected
+!		  nodes are used, or no NAME is given, node number is used
+!		  as the default prefix.  'ux', 'uy', or 'uz' will be
+!		  appended, as appropriate, to the prefix to indicate
+!		  the direction of the response.
+
+
+! Examples:
+
+! ez_rfor,5,200,'pointA'		! Store RX, RY, & RZ for node 200 into
+					! variables 5, 6, & 7.  Name variables
+					! 'pointArx', 'pointAry', and 'pointArz'.
+
+! ez_rfor,2,node(5,10,2),'strut_'	! Store RX, RY, & RZ for the node closest
+					! to (5,10,2) into variables 2, 3, & 4.
+					! Name the variables 'strut_rx', 'strut_ry',
+					! and 'strut_rz'.
+
+! ez_rfor,2,0				! Store RX, RY, & RZ for all selected nodes
+					! into variables beginning with variable number
+					! 2.  The node number will be used as the
+					! variable name prefix.  Then compute sum of
+					! all RX components, all RY components, and
+					! all RZ components, and store the sums into
+					! last three variables.  For instance if two nodes
+					! are selected, nodal reaction forces will be
+					! stored in variables 2 - 7, summed reaction forces
+					! will be stored in variables 8 - 10.
+
+
+!------------------------------------------------------------------------------
+
+! varnam,1,Freq				! Optional
+
+
+arg1=(arg1>2)				! Don't overwrite variable 1
+arg2=(arg2>0)				! NODE must be >= 0
+
+
+! Set up variable name prefix when single NODE is specified.
+
+ar48='%arg3%'				! variable name prefix
+*if,ar48,eq,'0',then
+  ar48='%arg2%'				! Defaults to node number
+*endif
+*if,ar48,eq,'0',then
+  ar48=''				! If still undefined, leave blank.
+*endif
+
+
+ar13 = 1				! number of nodes to process
+*if,arg2,eq,0,then
+  *get,ar13,node,,count			! process all selected nodes
+*endif
+
+
+ar12 = 0				! initialize node number
+
+
+*do,ar11,arg1,(arg1+(ar13*3)-1),3	! loop on variable number
+					! (3 variables / node)
+
+  *if,arg2,gt,0,then
+    ar12 = arg2				! node number for NSOL
+  *else
+    ar12 = ndnext(ar12)
+    *if,ar12,le,0,exit
+  *endif
+  
+  *if,ar13,gt,1,then			! For sets of selected nodes,
+    ar48='%ar12%'			! NAME prefix is the node number.
+  *elseif,ar48,eq,'        ',then
+    ar48='%ar12%'			! NAME prefix is the node number.
+  *endif
+
+  rfor,ar11,ar12,f,x,'%ar48%rx'		! Store reaction forces
+  rfor,ar11+1,ar12,f,y,'%ar48%ry'
+  rfor,ar11+2,ar12,f,z,'%ar48%rz'
+  
+*enddo
+
+! Sum up reaction forces.
+
+ar14 = ar11 + 3
+fill,ar14,,,,0.
+fill,ar14+1,,,,0.
+fill,ar14+2,,,,0.
+
+*do,ar11,arg1,(arg1+(ar13*3)-1),3	! loop on variable number
+  add,ar14,ar14,ar11
+  add,ar14+1,ar14+1,ar11+1
+  add,ar14+2,ar14+2,ar11+2
+*enddo
+
+varnam,ar14,RX
+varnam,ar14+1,RY
+varnam,ar14+2,RZ

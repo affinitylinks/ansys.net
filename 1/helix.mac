@@ -1,0 +1,27 @@
+! helix 
+! radius = arg1
+! pitch = arg2
+! number of coils= arg3
+
+r=arg1
+p=arg2
+n=arg3
+tlen=arg3*arg2
+
+*get,mxkp,kp,,num,max
+
+csys,0
+*afun,rad
+pi=acos(-1)
+*do,i,1,(4*n+1),1
+kpno=mxkp+i
+x=r*cos((i-1)*(pi/2))
+y=r*sin((i-1)*(pi/2))
+z=tlen*((i-1)/(4*n))
+k,kpno,x,y,z
+*enddo
+csys,1
+krotate,all
+l,mxkp,mxkp+1
+*repeat,(4*n),1,1
+csys,0

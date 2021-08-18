@@ -1,0 +1,179 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION & MACRO REVISION:
+/com,  This macro creates four windows with four modeshapes.
+/com,  Uses current graphics settings.
+/com,  Useful for modal analyses
+/com,    99.04.13 re-wrote macro
+/com,    99.12.07 fixed variables
+/com,
+/com,USAGE OF MACRO:
+/com,    arg1 = first mode shape number  (default: 1)
+/com,    arg2 = second mode shape number (default: 2)
+/com,    arg3 = third mode shape number  (default: 3)
+/com,    arg4 = fourth mode shape number (default: 4)
+/com,    arg5 = info on or off (1=on, 0=off, default: 0)
+/com,
+/com,OUTPUT OF MACRO:
+/com,  plots
+/com,
+/com,OTHER MACROS REQUIRED:
+/com,  none
+/com,
+/com,COMMENTS, ASSUMPTIONS, LOCAL VARIABLES DEFINED & RELEASED:
+/com,  copies current window attributes
+/com,  uses /rep, /gline,1,1
+/com,  then returns option to /erase w/ window 1 full
+/com,  To-do:
+/com,    Clear/fix comments
+/com,    Add annotation option (on/off)
+/com,    Add check to see if ANTYPE is MODAL
+/com,    verify that we're in /POST1
+/com,    check to see if result set > 4
+/com,    check to see if sets 1-4 are valid selections
+/com,    check to see if arguments (e.g. info on/off) are valid
+  /nopr
+  !------------------------------------------------------------
+  ! modeno_ specifies the mode shape (result set) number
+  !------------------------------------------------------------
+  *set,modeno_,
+  *dim,modeno_,array,4
+  !------------------------------------------------------------
+  ! freqno_ specifies the frequency value of mode (i)
+  !------------------------------------------------------------
+  *set,freqno_,
+  *dim,freqno_,array,4
+  !------------------------------------------------------------
+  ! infoon_ specifies whether "info" is on or off
+  !------------------------------------------------------------
+  *set,infoon_,
+  !------------------------------------------------------------
+  ! annolx_ specifies y-loc of frequency annotation
+  !------------------------------------------------------------
+  *set,annolx_,
+  *dim,annolx_,array,4  
+  !------------------------------------------------------------
+  ! annoly_ specifies y-loc of frequency annotation
+  !------------------------------------------------------------
+  *set,annoly_,
+  *dim,annoly_,array,4
+  !
+  *set,modeno_(1),arg1
+  *if,modeno_(1),eq,0,then
+    *set,modeno_(1),1
+  *endif
+  *set,modeno_(2),arg2
+  *if,modeno_(2),eq,0,then
+    *set,modeno_(2),2
+  *endif
+  *set,modeno_(3),arg3
+  *if,modeno_(3),eq,0,then
+    *set,modeno_(3),3
+  *endif
+  *set,modeno_(4),arg4
+  *if,modeno_(4),eq,0,then
+    *set,modeno_(4),4
+  *endif
+  *set,infoon_,arg5
+  !------------------------------------------------------------
+  ! window options
+  !------------------------------------------------------------
+  /gsav,s_temp,gsav
+  /plopts,info,infoon_
+  /plopts,leg2,off
+  /plopts,wp,0
+  /triad,off  
+!  /dscale,1,auto
+!  /edge,1,1
+!  /gline,1,1
+  !------------------------------------------------------------
+  ! plot 4 shapes
+  !------------------------------------------------------------
+  /erase
+  /window,all,off
+  set,1,modeno_(1),
+  *get,freqno_(1),active,,set,freq
+  /window,1,ltop
+  /rep
+  /noerase
+  set,1,modeno_(2)
+  *get,freqno_(2),active,,set,freq
+  /window,1,off
+  /window,2,rtop,,,,1
+  /rep
+  set,1,modeno_(3)
+  *get,freqno_(3),active,,set,freq
+  /window,2,off
+  /window,3,lbot,,,,1
+  /rep
+  set,1,modeno_(4)
+  *get,freqno_(4),active,,set,freq
+  /window,3,off
+  /window,4,rbot,,,,1
+  !------------------------------------------------------------
+  ! annotations
+  ! round to nearest hundreth
+  !------------------------------------------------------------
+  *set,freqno_(1),nint(freqno_(1)*100)/100
+  *set,freqno_(2),nint(freqno_(2)*100)/100
+  *set,freqno_(3),nint(freqno_(3)*100)/100
+  *set,freqno_(4),nint(freqno_(4)*100)/100
+  !------------------------------------------------------------
+  ! set x- and y-loc coordinates, depending on status of info
+  !------------------------------------------------------------
+  *if,infoon_,eq,0,then
+    *set,annolx_(1),-0.025
+    *set,annolx_(2),0.45
+    *set,annolx_(3),-0.025
+    *set,annolx_(4),0.45
+    *set,annoly_(1),0.085
+    *set,annoly_(2),0.085
+    *set,annoly_(3),-0.125
+    *set,annoly_(4),-0.125
+  *elseif,infoon_,eq,1
+    *set,annolx_(1),-0.30
+    *set,annolx_(2),0.100
+    *set,annolx_(3),-0.30
+    *set,annolx_(4),0.100
+    *set,annoly_(1),0.085
+    *set,annoly_(2),0.085
+    *set,annoly_(3),-0.125
+    *set,annoly_(4),-0.125
+  *endif
+  /anum,     1,     1, 0.56885e-01, 0.87891e-01
+  /tspe, 15, 0.700,   1,   0,   0
+  /tlab,annolx_(1),annoly_(1),%freqno_(1)% Hz  
+  /anum,     2,     1, 0.51843    , 0.84106e-01
+  /tlab,annolx_(2),annoly_(2),%freqno_(2)% Hz 
+  /anum,     3,     1, 0.53101e-01,-0.12537    
+  /tlab,annolx_(3),annoly_(3),%freqno_(3)% Hz  
+  /anum,     4,     1, 0.51538    ,-0.13196    
+  /tlab,annolx_(4),annoly_(4),%freqno_(4)% Hz
+  !------------------------------------------------------------
+  ! restore options
+  !------------------------------------------------------------
+  /replot
+  /erase
+  /window,all,off
+  /window,1,full
+!  /gline,1
+  /annot,dele
+  *set,modeno_,
+  *set,freqno_,
+  *set,infoon_,
+  *set,annolx_,
+  *set,annoly_,
+  /gresume,s_temp,gsav
+  /delete,s_temp,gsav
+  /gopr
+

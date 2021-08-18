@@ -1,0 +1,38 @@
+/COM, 
+/COM, 
+/COM, Area selection Macro
+/COM, Written by Joe Woodward
+/COM, 
+/COM, Select the volumes.
+/COM, Select the areas that bound the openings of the volume.
+/COM, Run: ars1,ARG1
+/COM,    ARG1 is an area within the group that you are trying to get.
+/COM
+/COM
+/nopr
+*if,arg1,LT,1,:end
+cm,_cvol,volu  !Grab current volumes
+cm,_arnot,area   !all selected areas become the constraining set.
+aslv
+asel,s,ext
+cm,_extarea,area
+asel,s,,,arg1
+_acn=0
+:nextset
+_aco=_acn
+lsla
+asll
+cmsel,r,_extarea
+cmsel,u,_arnot
+*get,_acn,area,0,count
+*if,_acn,NE,_aco,:nextset
+lsla
+ksll
+aplot
+cmdel,_cvol
+cmdel,_arnot
+cmdel,_extarea
+_acn=
+_aco=
+:end
+/gopr

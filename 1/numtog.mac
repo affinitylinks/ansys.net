@@ -1,0 +1,170 @@
+/nopr
+!
+!  numtog.mac  a macro that toggles ID numbers off and on for
+!              keypoints, lines, areas, volumes, nodes, and elements.
+!
+!  usage:  numtog,idnum
+!
+!    where:  idnum=1 for keypoints
+!                  2 for lines
+!                  3 for areas
+!                  4 for volumes
+!                  5 for nodes
+!                  6 for elements
+!                  7 for line direction
+!                  8 for nodal coordinate system
+!                  9 for element coordinate system
+!                 10 for coordinate system
+!                 11 for vector or raster display
+!                  
+!
+*if,arg1,eq,1,then
+!  get the /pnum status for keypoints
+*get,ar20,common,,d3com,,int,104
+*if,ar20,eq,0,then
+/pnum,kpoi,1
+*msg,info
+%/Keypoint numbers are now on
+*else
+/pnum,kpoi,0
+*msg,info
+%/Keypoint numbers are now off
+*endif
+!
+*elseif,arg1,eq,2,then
+!  get the /pnum status for lines
+*get,ar20,common,,d3com,,int,105
+*if,ar20,eq,0,then
+/pnum,line,1
+*msg,info
+%/Line numbers are now on
+*else
+/pnum,line,0
+*msg,info
+%/Line numbers are now off
+*endif
+!
+*elseif,arg1,eq,3,then
+!  get the /pnum status for areas
+*get,ar20,common,,d3com,,int,106
+*if,ar20,eq,0,then
+/pnum,area,1
+*msg,info
+%/Area numbers are now on
+*else
+/pnum,area,0
+*msg,info
+%/Area numbers are now off
+*endif
+!
+*elseif,arg1,eq,4,then
+!  get the /pnum status for volumes
+*get,ar20,common,,d3com,,int,107
+*if,ar20,eq,0,then
+/pnum,volu,1
+*msg,info
+%/Volume numbers are now on
+*else
+/pnum,volu,0
+*msg,info
+%/Volume numbers are now off
+*endif
+!
+*elseif,arg1,eq,5,then
+!  get the /pnum status for nodes
+*get,ar20,common,,d3com,,int,96
+*if,ar20,eq,0,then
+/pnum,node,1
+*msg,info
+%/Node numbers are now on
+*else
+/pnum,node,0
+*msg,info
+%/Node numbers are now off
+*endif
+!
+*elseif,arg1,eq,6,then
+!  get the /pnum status for elems
+*get,ar20,common,,d3com,,int,97
+*if,ar20,eq,0,then
+/pnum,elem,1
+*msg,info
+%/Element numbers are now on
+*else
+/pnum,elem,0
+*msg,info
+%/Element numbers are now off
+*endif
+!
+!
+*elseif,arg1,eq,7,then
+!  get the /psym status for line direction
+*get,ar20,common,,d3com,,int,141
+*if,ar20,eq,0,then
+/psym,ldir,1
+*msg,info
+%/Line direction arrows are now on
+*else
+/psym,ldir,0
+*msg,info
+%/Line direction arrows are now off
+*endif
+!
+!
+*elseif,arg1,eq,8,then
+!  get the /psym status for nodal coordinate system
+*get,ar20,common,,d3com,,int,139
+*if,ar20,eq,0,then
+/psym,ndir,1
+*msg,info
+%/Nodal coordinate system symbols are now on
+*else
+/psym,ndir,0
+*msg,info
+%/Nodal coordinate system symbols are now off
+*endif
+!
+!
+*elseif,arg1,eq,9,then
+!  get the /psym status for elemement coordinate system
+*get,ar20,common,,d3com,,int,143
+*if,ar20,eq,0,then
+/psym,esys,1
+*msg,info
+%/Element coordinate system symbols are now on
+*else
+/psym,esys,0
+*msg,info
+%/Element coordinate system symbols are now off
+*endif
+!
+!
+*elseif,arg1,eq,10,then
+!  get the /psym status for coordinate system symbol
+*get,ar20,common,,d3com,,int,142
+*if,ar20,eq,0,then
+/psym,cs,1
+*msg,info
+%/Coordinate system symbols are now on
+*else
+/psym,cs,0
+*msg,info
+%/Coordinate system symbols are now off
+*endif
+!
+!
+*elseif,arg1,eq,11,then
+!  get the display mode status, either raster or vector
+*get,ar20,graph,,display
+*if,ar20,eq,0,then
+/device,vector,1
+*msg,info
+%/Vector display mode is now active
+*else
+/device,vector
+*msg,info
+%/Raster display mode is now active
+*endif
+!
+*endif
+/gopr

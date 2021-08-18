@@ -1,0 +1,95 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-cae.com
+/com,
+/com,DESCRIPTION 
+/com,Example of running a sprectrum analysis in ANSYS
+/com,Acceleration Sprectrum
+/com,
+
+
+finish
+/clear
+/PREP7  
+!*  
+ET,1,SHELL43
+!*  
+R,1,.1, , , , , 
+!*  
+UIMP,1,EX, , ,30e6, 
+UIMP,1,DENS, , ,.000729,
+UIMP,1,NUXY, , ,.3, 
+!*  
+RECTNG,10,,.25,,
+ESHAPE,2,0  
+AMESH,all 
+!*  
+FINISH  
+/SOLU   
+DK,1, , , ,1,ALL 
+DK,4, , , ,1,ALL 
+save
+!*  
+ANTYPE,2
+MXPAND,20, , ,1,.1 
+!*  
+MODOPT,lanb,20  
+EQSLV,FRONT 
+LUMPM,0 
+PSTRES,0
+!*  
+MODOPT,lanb,20,0,0, ,OFF
+save
+solve   
+FINISH  
+!
+!
+/SOLU   
+!*  
+ANTYPE,8
+SPOPT,SPRS,20,1 
+!SVTYP,3,1,                      ! displacement spectrum
+!SVTYP,0,1,                      ! velocity spectrum
+SVTYP,2,1,                      ! acceleration spectrum
+SED,0,1,0,  
+MCOMB,SRSS,0.001,
+!*
+pi=3.141592654
+fq1=1*2*pi
+fq2=32*2*pi
+fq3=100*2*pi
+fq4=10000*2*pi  
+!
+FREQ,1,32,100,10000,
+!*  
+!SV,.0001,.01,.01,.01,.01,                 ! displacements
+!SV,.0001,.01*fq1,.01*fq2,.01*fq3,.01*fq4,  ! velocity
+SV,.0001,.01*fq1*fq1,.01*fq2*fq2,.01*fq3*fq3,.01*fq4*fq4,  ! acceleration
+!*  
+OUTRES,ALL,ALL, 
+save
+solve   
+SED,0,0,1,
+solve
+FINISH 
+ 
+/POST1  
+*GET,mcoef,MODE,1,MCOEF 
+*GET,mcoef2,MODE,2,MCOEF
+*GET,mcoef3,MODE,3,MCOEF
+/INPUT,file,mcom,,1,0   
+pldisp  
+plns,u,z
+!
+!
+

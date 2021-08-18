@@ -1,0 +1,115 @@
+!***********************
+!*** CLEAN.MAC ***
+!**********************
+!
+! Tom Glade 12/31/96
+!
+! CLEAN.MAC deletes unused attributes (TYPE, REAL, MAT)
+!
+! Display the 'before' stats
+!
+Fnc_GlobalStat
+!
+! Display only error messages.
+!
+/uis,msgpop,3
+/nopr
+finish
+/prep7
+!
+! Clean up NODES
+!
+allse
+modmsh,check
+nsle
+nsel,inve
+ndele,all
+nsel,all
+!nummrg,nodes
+numcmp,nodes
+!
+! Cleanup ELEMENTS
+!
+allse
+!numm,elem
+numcmp,elem
+!
+! Check TYPEs
+!
+allse
+nummrg,type
+numcmp,type
+*get,etmax,etyp,,num,max
+*do,ityp,1,etmax
+   /nopr
+   *msg,NOTE,ityp,etmax
+Checking Type No. %I of %I
+   esel,none
+   esel,a,type,,ityp
+   znum=0
+   *get,znum,elem,,count
+   *if,znum,eq,0,then
+      etdele,ityp
+   *endif
+*enddo
+numcmp,type
+!
+! Check REAL SETs
+! Do NOT Compress Real Sets!
+!
+numcmp,real
+rmax=rlinqr(0,14)
+allse
+*do,ireal,1,rmax
+   /nopr
+  *msg,NOTE,ireal,rmax
+Checking Real Set No. %I of %I
+   esel,none
+   esel,a,real,,ireal
+   znum=0
+   *get,znum,elem,,count
+   *if,znum,eq,0,then
+      rdele,ireal
+   *endif
+*enddo
+numcmp,real
+!
+! Check MAT's
+!
+allse
+nummrg,mat
+numcmp,mat
+mpmax=mpinqr(0,0,14)
+*do,imat,1,mpmax
+   /nopr
+   *msg,NOTE,imat,mpmax
+Checking Material No. %I of %I
+
+   esel,none
+   esel,a,mat,,imat
+   znum=0
+   *get,znum,elem,,count
+   *if,znum,eq,0,then
+      mpdel,all,imat
+   *endif
+*enddo
+numcmp,mat
+!
+! Delete parameters.
+!
+itype=
+etmax=
+ireal=
+rmax=
+imat=
+mpmax=
+!
+! Display the 'after' stats
+!
+Fnc_GlobalStat
+!
+! Change displayed messages and quit.
+!
+csys,0
+/uis,msgpop,2
+!/replot

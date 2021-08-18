@@ -1,0 +1,27 @@
+!   Macro to set line divisions equal to current mesh divisions in 5.6 and higher
+!
+!   ARG1 = 0 (or blank) change all selected line divisions
+!        = 1 change only currently unset line divisions
+!
+!  Jim Kosloski,  4/6/2000
+!
+*GET,_z9,ACTIVE,,KEYWORD,,PREP7
+*IF,_z9,EQ,0,THEN
+   *MSG,WARN
+    FIXDIVS only works in PREP7
+*ELSE
+*get,ar10,line,,count
+ar12=0
+*do,ar11,1,ar10
+ar12=lsnext(ar12)
+*get,ar13,line,ar12,attr,ndiv
+*get,ar14,line,ar12,attr,spac
+*get,ar15,line,ar12,attr,ndnx
+*if,ar13,gt,0,then
+*if,ar15*arg1,eq,0,then
+lesize,ar12,,,ar13,ar14
+*endif
+*endif
+*enddo
+*ENDIF
+/EOF

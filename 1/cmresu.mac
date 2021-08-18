@@ -1,0 +1,47 @@
+! Macro CMResu for ANSYS Rev. 6.1 by JKT
+
+! This macro resumes selection status saved by CMSave
+
+! Arg1 = 'FileName' (=component name)
+
+*DIM,Apu1_,string,4
+*VRE,Apu1_(1),Arg1,cmp,,,1,,,0
+(A4)
+
+*DIM,Apu2_,array,1
+*VRE,Apu2_(1),Arg1,cmp,,,1,,,1
+(F10.0)
+
+Arg2=Apu1_(1) $Apu1_=
+Ar11=Apu2_(1) $Apu2_=
+
+*IF,Arg2,eq,'node',then
+Ar10=ndinqr(0,14)
+*ELSEIF,Arg2,eq,'elem',then
+Ar10=elmiqr(0,14)
+*ELSEIF,Arg2,eq,'kp',then
+Ar10=kpinqr(0,14)
+*ELSEIF,Arg2,eq,'line',then
+Ar10=lsinqr(0,14)
+*ELSEIF,Arg2,eq,'area',then
+Ar10=arinqr(0,14)
+*ELSEIF,Arg2,eq,'volu',then
+Ar10=vlinqr(0,14)
+*ENDIF
+
+Ar12=strsub(Arg2,1,1)
+Ar12=strcat(Ar12,'sel')
+
+*DIM,Apu2_,array,Ar11
+*VRE,Apu2_(1),Arg1,cmp,,, ,,,2
+(F10.0)
+
+*DIM,Apu1_,array,Ar10
+*VOP,Apu1_(1),1,scat,Apu2_(1)
+%Ar12%,all ! This should not be necessary, but is!!!!
+*VPU,Apu1_(1),Arg2,1,Ar12
+
+Apu1_=
+Apu2_=
+
+/eof

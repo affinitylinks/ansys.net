@@ -1,0 +1,216 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Input file to demonstrate 5.6 thermal contact beta features
+/com,  Can be used w/ 5.5 w/ modifications
+/com,
+
+finish
+/clear
+
+! Turn on thermal contact
+F_CONDUC = 'yes'
+! Turn on convection
+F_CONVEC = 'yes'
+! Turn on radiation
+F_RADIAT = 'no'
+! Block geometric offset
+OFFSET   = 1
+! Element size for blocks
+ELEMSIZ1 = 0.2
+ELEMSIZ2 = 0.3
+
+/title,Simple thermal contact example
+/stitle,1,Example demonstration beta features of surf-to-surf contact elements
+/stitle,2,Not all thermal features shown
+/stitle,3,Symmetric contact pairs used
+
+! Thermal properties
+*if,F_CONDUC,eq,'yes',then
+! Thermal contact resistance (conductance)
+  TH_CONTR = 100
+*endif
+! Ambient far-field temp (radiation/convection)
+TH_AMBNT = 1000
+*if,F_CONVEC,eq,'yes',then
+! Thermal convection (near-field)
+  TH_CONVR = 100
+*endif
+*if,F_RADIAT,eq,'yes',then
+! Radiation viewfactor (near-field)
+  TH_RADVF = 1.0
+! Radiation Stefan-Boltzmann const
+  TH_SBCNT = 5.67e-8
+! Radiation emissivity
+  TH_EMISS = 0.8
+*endif
+! Geometry
+B_WIDTH  = 1
+Y_LOC1   = 0
+Y_LOC2   = Y_LOC1+B_WIDTH+OFFSET
+
+/graph,power
+/triad,lbot
+/view,1,1,1,1
+/auto
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,70
+et,2,70
+et,3,170
+et,4,173
+et,5,170
+et,6,173
+
+keyopt,3,1,0
+! Activate thermal option (UX/UY/UZ/TEMP DOF)
+keyopt,4,1,1
+! Less memory/iteration requirements
+keyopt,4,2,1
+keyopt,4,9,1
+! bonded contact
+!keyopt,4,12,5
+keyopt,5,1,0
+keyopt,6,1,1
+keyopt,6,2,1
+keyopt,6,9,1
+!keyopt,6,12,5
+
+r,1,
+r,2,
+r,4,
+r,6,
+! Pinball
+rmodif,4,6,-0.1
+rmodif,6,6,-0.1
+*if,F_CONDUC,eq,'yes',then
+! Thermal contact resistance
+  rmodif,4,14,TH_CONTR
+  rmodif,6,14,TH_CONTR
+*endif
+! Frictional heating factor
+rmodif,4,15,0
+rmodif,6,15,0
+*if,F_RADIAT,eq,'yes',then
+! Stefan-Boltzmann const
+  rmodif,4,16,TH_SBCNT
+  rmodif,6,16,TH_SBCNT
+! Radiation view factor
+  rmodif,4,17,TH_RADVF
+  rmodif,6,17,TH_RADVF
+*endif
+
+! Need "dummy" EX mat'l properties
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,kxx ,1,167
+mp,ex  ,2,10e6
+mp,nuxy,2,0.3
+mp,kxx ,2,167
+mp,mu  ,4,1e-30
+mp,mu  ,6,1e-30
+*if,F_RADIAT,eq,'yes',then
+  mp,emis,4,TH_EMISS
+  mp,emis,6,TH_EMISS
+*endif
+
+block,0,B_WIDTH,Y_LOC1,Y_LOC1+B_WIDTH,0,B_WIDTH
+vatt,1,1,1
+aesize,all,ELEMSIZ1
+vsel,none
+allsel,below,volu
+block,0,B_WIDTH,Y_LOC2,Y_LOC2+B_WIDTH,0,B_WIDTH
+vatt,2,2,2
+aesize,all,ELEMSIZ2
+
+!esize,0.2
+mshape,0
+mshkey,1
+
+allsel,all
+vmesh,all
+
+type,3
+real,4
+mat,4
+vsel,s,type,,1
+allsel,below
+asel,r,loc,y,Y_LOC1+B_WIDTH
+nsla,r,1
+esurf
+
+type,6
+real,6
+mat ,6
+esel,s,type,,1
+esurf
+
+type,4
+real,4
+mat ,4
+vsel,s,type,,2
+allsel,below
+asel,r,loc,y,Y_LOC2
+nsla,r,1
+esurf
+
+type,5
+real,6
+mat ,6
+esel,s,type,,2
+esurf
+
+allsel,all
+finish
+
+/solu
+antype,static
+! offset needed for radiation
+toff,273.15
+
+! constrain extra UX, UY, UZ DOF
+esel,s,ename,,170,174
+nsle
+d,all,ux
+d,all,uy
+d,all,uz
+
+asel,s,loc,y,0
+nsla,s,1
+d,all,temp,20
+
+asel,s,loc,y,Y_LOC2+B_WIDTH
+nsla,s,1
+d,all,temp,500
+
+esel,s,ename,,173,174
+*if,F_CONVEC,eq,'yes',then
+! Apply film coeff
+  sfe,all,,conv,1,TH_CONVR
+! Apply ambient temp
+  sfe,all,,conv,2,TH_AMBNT
+*elseif,F_RADIAT,eq,'yes'
+! Apply environment temp
+  sfe,all,,conv,2,TH_AMBNT
+*endif
+
+allsel,all
+solve
+finish
+
+/post1
+set,last
+plnsol,temp
+

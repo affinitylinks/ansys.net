@@ -1,0 +1,23 @@
+/nopr
+!
+!  mg.mac  a macro to zoom in and out, or automatically scale the graphics display
+!
+!  usage: mg,zoom factor,window
+!        where zoom factor= the amount you want to zoom in.  
+!                          (defaults to autoscale)
+!              window = the window where the zooming will take 
+!                       place (defaults to 1)
+!
+!  written by: John Crawford
+!
+!  check to see if arg1 is not equal to 0. if so then use arg1 to calculate /dist
+*if,arg1,ne,0,then
+/dist,arg2,1/arg1,1
+*else
+!  otherwise autoscale the graphics window
+/auto,arg2
+*endif
+!  replot the last plot action
+/repl
+!  turn printing back on
+/gopr

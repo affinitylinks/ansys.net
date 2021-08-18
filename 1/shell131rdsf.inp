@@ -1,0 +1,87 @@
+!----------------------------------------
+! Simple example demonstrating use of SHELL131
+! with radiosity solution method
+!
+! by sheldon, 07/14/2008
+!----------------------------------------
+finish
+/clear
+
+DIM_OFFSET = 0.01
+
+/vup,1,z
+/view,1,1,1,1
+/prep7
+et,1,131
+keyopt,1,4,1
+mp,kxx ,1,1
+r,1
+sectype,1,shell
+secdata,0.002,1
+
+rectng,,0.1,,0.1
+wpoffs,,,DIM_OFFSET
+rectng,,0.1,,0.1
+wpoffs,,,DIM_OFFSET
+rectng,,0.1,,0.1
+
+esize,,10
+amesh,all
+
+!----------------------------------------
+! b.c. on bottom plate
+!----------------------------------------
+asel,s,area,,1
+allsel,below,area
+sfe,all,2,rdsf,1,0.5
+sfe,all,2,rdsf,2,1
+d,all,tbot,100
+ic,all,all,100
+cm,E_BOTTOM,elem
+
+!----------------------------------------
+! b.c. on middle plate
+!----------------------------------------
+asel,s,area,,2
+allsel,below,area
+sfe,all,1,rdsf,1,0.75
+sfe,all,1,rdsf,2,1
+sfe,all,2,rdsf,1,0.75
+sfe,all,2,rdsf,2,2
+ic,all,all,500
+cm,E_MIDDLE,elem
+
+!----------------------------------------
+! b.c. on top plate
+!----------------------------------------
+asel,s,area,,3
+allsel,below,area
+sfe,all,1,rdsf,1,0.5
+sfe,all,1,rdsf,2,2
+d,all,ttop,1000
+ic,all,all,1000
+cm,E_TOP,elem
+
+toffst,273
+spctemp,1,20
+spctemp,2,20
+allsel,all
+finish
+
+/solu
+hemiopt,100
+radopt,0.5,1e-6,0
+cutcon,noiterpredict,1
+solve
+finish
+
+/post1
+set,last
+cmsel,s,E_MIDDLE
+!----------------------------------------
+! "TEMP" DOF only works with /ESHAPE,1 for postprocessing
+! In general, SHELL131/132 has other temperature DOF labels
+!----------------------------------------
+/eshape,1
+/graph,power
+plnsol,temp

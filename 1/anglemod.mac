@@ -1,0 +1,304 @@
+/nopr
+!
+!  anglemod.mac  a macro which creates a parametric model of a
+!                stepped cantilever beam with the variables being 
+!                the angle between steps, element size, and meshing
+!                style, element order, fillet radius, element 
+!                density.
+!
+!  usage:  anglemod,angle,size,meshkey,eorder,rad,enumrad,parmkey
+!
+!    where:  angle=angle between 0 and 90 degrees
+!            size=average element size (used if rad=0)
+!            meshkey=0 for mapped, 1 for free
+!            eorder=0 for 42, 1 for 82
+!            rad=optional radius in corner
+!            enumrad=number of elements along radius (used when rad > 0)
+!            parmkey=keep parameters after running (0=no, 1=yes)
+! 
+!
+!  parameter definitions
+!
+!  enum_=number of elements in model
+!  nnum_=number of nodes in model
+!  lfil_=length of fillet, if one is used
+!  etype_=element type being used (42 or 82)
+!  delsig_=difference between avg and unavg stresses
+!  esize_=element size
+!  plnsmx_=averaged max von mises stress
+!  avgmaxc_=max upper bound of averaged von mises stress (corner region)
+!  plesmx_=unaveraged max von mises stress
+!  uvgmaxc_=max upper bound of unaveraged von mises stress (corner region)
+!  avgmaxm_=max upper bound of averaged von mises stress (entire model)
+!  uvgmaxm_=max upper bound of unaveraged von mises stress (entire model)
+!  sdsg_=SDSG value in corner region
+!  lineid_=fillet line ID number
+!  filstat_=fillet radius status number 0 if fillet created, 3 if not created
+!
+!  transfer the input arguments to parameters so we can display the
+!  results again after the macro has run by setting parmkey to 1
+!
+!  remove any trailing underscore parameters
+*del,,prm_
+!
+ang_=arg1
+*if,arg2,le,0,then
+size_=1
+*else
+size_=arg2
+*endif
+meshkey_=arg3
+eorder_=arg4
+rad_=arg5
+enumrad_=arg6
+parmkey_=arg7
+!
+!  check angle input, make sure it's between zero and 135 degrees
+*if,ang_,ge,0,then
+*if,ang_,le,90,then
+!
+!  clean up the database
+!
+!  remove annotations
+/anno,dele
+!  reset graphics settings
+/reset
+!  use full graphics so we can get the SMNB values later on
+/graphics,full
+!  erase anything that happens to be on the screen
+erase
+!  turn off the info column
+/plopt,info,0
+!  make sure we're in /prep7
+/prep7
+!  remove any pre-existing geometry
+*if,vlinqr(0,13),gt,0,then
+vclear,all
+vdel,all
+*endif
+*if,arinqr(0,13),gt,0,then
+aclear,all
+adel,all
+*endif
+*if,lsinqr(0,13),gt,0,then
+ldel,all
+*endif
+*if,kpinqr(0,13),gt,0,then
+kdel,all
+numc,kpoi
+*endif
+*if,elmiqr(0,13),gt,0,then
+edel,all
+*endif
+*if,ndinqr(0,13),gt,0,then
+ndel,all
+*endif
+!   compress all ID numbers
+numc,all
+!  make a dummy plot to clear the screen
+nplo
+!
+!  establish default arguments
+*if,enumrad_,le,0,then
+enumrad_=1
+*endif
+!
+*afun,deg
+!  make the geometry
+k,1,6,1
+k,2,6,2
+k,3,18,2
+k,6,11,1
+l,1,2
+l,2,3
+l,6,1
+*if,ang_,eq,0,then
+k,4,18,1
+l,4,6
+l,3,4
+*else
+*if,11+1/tan(ang_),gt,18,then
+k,4,18,1-7*sin(ang_)
+l,4,6
+l,3,4
+lineid_=6
+*else
+k,4,18,0
+k,5,11+1/tan(ang_)
+l,5,6
+l,3,4
+l,4,5
+lineid_=7
+*endif
+!  if rad>0 then create line fillet
+l1=999
+*if,rad_,gt,0,then
+lfil,3,4,rad_
+filstat_=_status
+!  
+lesize,lineid_,,,enumrad_
+!  calculate default element size
+*get,lfil_,line,lineid_,leng
+esize_=lfil_/enumrad_
+*else
+!  if we don't have a radius, then set the keypoint mesh
+!  size and global element size to size_
+esize_=size_
+kesize,6,esize_
+*endif
+esize,esize_
+*endif
+!
+!  create the area
+al,all
+!  define element type
+*if,eorder_,eq,1,then
+et,1,82
+etype_=82
+*else
+et,1,42
+etype_=42
+*endif
+!  set default element attributes
+type,1
+mat,1
+real,1
+!  enter some material properties
+ex,1,30e6
+nuxy,1,.3
+!  either free mesh or map mesh the area
+*if,meshkey_,eq,1,then
+amesh,1
+*else
+amap,1,1,2,3,4  
+*endif
+!
+!  apply boundary conditions
+!
+!  displacements on keypoints
+dk,3,all,,,1
+dk,4,all,,,1
+!  select the keypoints at the free end of the beam
+ksel,s,kp,,1,2
+!  select the line contained by these keypoints
+lslk,s,1
+!  select the nodes on this line
+nsll,s,1
+!  apply a total force of 100 lbs to these nodes
+f,all,fy,100/ndinqr(0,13)
+!  select everything
+allse
+!
+/solu
+eqslv,pcg
+solve
+!  enter the postprocessor
+/post1
+!
+!  begin by getting the max stress values and bounds for
+!  plns,s,eqv and ples,s,eqv
+!
+!  if we only have a corner, then
+*if,rad_,le,0,then
+!  select the node at the corner and it's associated elements
+nsel,s,node,,node(kx(6),ky(6),kz(6))
+esln
+!  if we have a fillet then
+*else
+!  select the fillet line
+lsel,s,line,,lineid_
+!  if there is only one element we will pick it's end nodes
+*if,enumrad_,eq,1,then
+nsll,s,1
+!  otherwise only pick the interior nodes on the line
+*else
+nsll,s
+*endif
+esln
+*endif
+!  plot averaged von mises stress
+plns,s,eqv
+!  get max stress and max bound stress
+*get,plnsmx_,plnsol,,max  
+*get,avgmaxc_,plnsol,,bmax 
+!  plot unaveraged von mises stress
+ples,s,eqv
+!  get max stress and max bound stress
+!  (getting ples data like this isn't documented but seems to work)
+*get,plesmx_,plnsol,,max  
+*get,uvgmaxc_,plnsol,,bmax  
+!  get sdsg value
+ples,sdsg
+*get,sdsg_,plnsol,,max  
+allse  
+/erase
+!  set up 3 windows
+/win,1,-1,1.666,.333,1
+/win,2,-1,1.666,-.333,.333
+/win,3,-1,1.666,-1,-.333
+!
+/win,1,on
+/win,2,off   
+/win,3,off
+!
+!  get the number of element and nodes in the model
+enum_=elmiqr(0,13)
+nnum_=ndinqr(0,13)
+!
+/tspec,,.7,,,5 
+/tlab,-.1,.29,Max Averaged Von Mises Stress At Corner Is %nint(plnsmx_)%
+/tlab,-.1,.25,Max Upper Bound (SMXB) In Corner Is %nint(avgmaxc_)%
+/tlab,-.1,-.37,Max Unaveraged Von Mises Stress At Corner Is %nint(plesmx_)%
+/tlab,-.1,-.41,Max Upper Bound (SMXB) In Corner Is %nint(uvgmaxc_)%
+/tlab,-.9,.95,Model Generated with Angle= %ang_% ESIZE= %esize_%
+/tlab,.43,.95,RAD= %rad_% ENUMRAD= %enumrad_% ELEMENT TYPE= PLANE%etype_%
+!
+*if,meshkey_,eq,0,then
+/tlab,-.9,.9,Mapped Meshing Yields %enum_% Elements %nnum_% Nodes
+*else
+/tlab,-.9,.9,Free Meshing Yields %enum_% Elements %nnum_% Nodes
+*endif
+/tlab,.43,.9,Nominal Stress Value with Kt=1.0 is 3000 PSI
+!  calculate the difference between avg and unavg stresses
+delsig_=plnsmx_/plesmx_
+/tlab,-.9,.4,Ratio of PLNSMAX/PLESMAX = %delsig_%
+/tlab,-.9,.44,SDSG In Corner Region Is = %nint(sdsg_)%
+erase
+/noer 
+/win,1,on
+/win,2,off
+/win,3,off
+eplo      
+/win,1,off
+/win,2,on   
+/win,3,off  
+plns,s,eqv
+*get,avgmaxm_,plnsol,,bmax 
+/tlab,-.1,.21,Max Upper Bound (SMXB) In Model Is %nint(avgmaxm_)%
+/win,1,off  
+/WIN,2,off  
+/WIN,3,on   
+ples,s,eqv
+*get,uvgmaxm_,plnsol,,bmax 
+/tlab,-.1,-.45,Max Upper Bound (SMXB) In Model Is %nint(uvgmaxm_)%
+!
+/win,all,on
+/erase
+!
+*if,filstat_,eq,3,then
+*msg,ui
+LFIL COULD NOT BE DONE.  DECREASE FILLET RADIUS AND TRY AGAIN
+*endif
+!
+*endif
+!
+*if,parmkey_,eq,0,then
+*del,,prm_
+*endif
+!
+*else
+*msg,ui
+Angle Must Be Between 0 and 90 Degrees
+*endif
+!
+/gopr

@@ -1,0 +1,41 @@
+! MACRO:         varthk.mac
+!
+! Created By:    Computer Aided Engineering Associates Inc.
+!                60 Middle Quarter Mall
+!                Woodbury, CT 06798
+!                (203) 263-4606
+!                http://www.caeai.com/
+!  
+! Date:          June 25, 2002
+! 
+! Disclaimer:    This macro is provided without guarantee, written or implied,
+!                as to the validity of the information that it generates.
+!                It is the responsibility of the user to independently verify
+!                all results.  This macro may be freely distributed as long 
+!                this header remains unchanged.
+!
+! ANSYS Version: 5.7-6.1
+!
+! Description:   This macro applies a varying shell thickness based on a given function
+!
+! Dependencies:  None
+!
+! Usage:         varthk
+!
+!                Edit macro to supply desired function
+!
+! varthk.mac
+!
+! .
+!
+nnod = ndinqr(0,14)			! nnod = highest node number
+*dim,rt,,nnod
+*do,i,1,nnod
+  rt(i) = 0.1 + 0.1*nx(i)		! place function here
+*enddo
+!
+! rthick command will create a real constant set for each element,
+!  with the real constant set = element number
+!
+rthick,rt(1)
+!

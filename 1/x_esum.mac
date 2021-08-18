@@ -1,0 +1,169 @@
+! =========================================
+! Shen-Yeh Chen
+! ??/??/2000
+! =========================================
+! Calculate and print the summary of (selected) elements
+! area or volume, and centroid. The result will be saved 
+! in the parameter _ParName.
+! --------------------------------------------------------
+! Syntax :
+!   x_esum,'_ParName'
+! 
+! Input :
+!   '_ParName' : parameter name to store the summartion of area/volume
+!
+! Output :
+!   ZVSUM : If _ParNAme is blanck, the area/volume will be saved in
+!           the parameter ZVSUM
+!   ZVSUMX : SUM(X(i)*Volume(i))
+!   ZVSUMY : SUM(Y(i)*Volume(i))
+!   ZVSUMZ : SUM(Z(i)*Volume(i))
+!   X_ESUM_XBAR : X coordinate of the centroid
+!   X_ESUM_YBAR : Y coordinate of the centroid
+!   X_ESUM_ZBAR : Z coordinate of the centroid
+!   file : x_esum.v01 : all volumes on one column
+!  
+! =========================================================
+!/NOPR
+*GET,ZNELEM,ELEM,,NUM,MAX
+*GET,ZCOUNT,ELEM,,COUNT
+*DIM,ZX,,ZNELEM
+*DIM,ZY,,ZNELEM
+*DIM,ZZ,,ZNELEM
+*DIM,ZS,,ZNELEM
+*DIM,ZV,,ZNELEM
+*DIM,ZVX,,ZNELEM
+*DIM,ZVY,,ZNELEM
+*DIM,ZVZ,,ZNELEM
+!
+!
+*VMASK
+!
+*VGET,ZS(1),ELEM,1,ESEL
+!
+!
+!ZASUM=0.0D0
+ZVSUM=0.0D0
+ZVAVG=0.0D0
+ZVSUMX=0.0D0
+ZVSUMY=0.0D0
+ZVSUMZ=0.0D0
+!
+!
+!
+*VMASK,ZS(1)
+*VGET,ZV(1),ELEM,1,GEOM
+!
+*VMASK,ZS(1)
+*VGET,ZX(1),ELEM,1,CENT,X
+!
+*VMASK,ZS(1)
+*VGET,ZY(1),ELEM,1,CENT,Y
+!
+*VMASK,ZS(1)
+*VGET,ZZ(1),ELEM,1,CENT,Z
+!
+! ======================================= 
+! ADDING UP ALL NUMBERS
+!*VMASK,ZS(1)
+!*VSCFUN,ZASUM,SUM,ZA(1)
+!
+*VMASK,ZS(1)
+*VSCFUN,ZVSUM,SUM,ZV(1)
+ZVAVG=ZVSUM/ZCOUNT
+!
+*VMASK,ZS(1)
+*VOPER,ZVX(1),ZV(1),MULT,ZX(1)
+!
+*VMASK,ZS(1)
+*VOPER,ZVY(1),ZV(1),MULT,ZY(1)
+!
+*VMASK,ZS(1)
+*VOPER,ZVZ(1),ZV(1),MULT,ZZ(1)
+!
+*VMASK,ZS(1)
+*VSCFUN,ZVSUMX,SUM,ZVX(1)
+!
+*VMASK,ZS(1)
+*VSCFUN,ZVSUMY,SUM,ZVY(1)
+!
+*VMASK,ZS(1)
+*VSCFUN,ZVSUMZ,SUM,ZVZ(1)
+!
+*CFOPEN,x_esum,v01
+*VMASK,ZS(1)
+*VWRITE,ZV(1)
+(E12.5)
+*CFCLOSE
+!
+!*IF,ARG2,EQ,1.0,THEN
+! /SYS,/users/e094729/util/x_esum.exe
+!*ENDIF
+!
+!
+!
+! PRINT THE RESULT
+!
+X_ESUM_XBAR=ZVSUMX/ZVSUM
+X_ESUM_YBAR=ZVSUMY/ZVSUM
+X_ESUM_ZBAR=ZVSUMZ/ZVSUM
+!
+!
+*MSG,UI,ZVSUM,X_ESUM_XBAR,X_ESUM_YBAR,X_ESUM_ZBAR
+ Total A/V : %G. Centroid(V) : %G, %G, %G
+ AR21='%ARG1%'
+ *IF,AR21,NE,'0       ',THEN
+     *SET,%ARG1%,ZVSUM
+     ZVSUM=
+ *ENDIF  
+!
+ZNELEM=
+ZCOUNT=
+!ZASUM=
+!ZVSUM=
+!ZVSUMX=
+!ZVSUMY=
+!ZVSUMZ=
+ZX(1)=
+ZY(1)=
+ZZ(1)=
+ZV(1)=
+ZS(1)=
+ZVX(1)=
+ZVY(1)=
+ZVZ(1)=
+!/GO
+
+
+
+/eof
+===================================
+ANSYS Macro Convention
+===================================
+In order to avoid conflicting betweens the macro, the following convention
+has been adapted for the ANSYS macros here.
+
+1. All macro will have name begin with string "x_". This is to avoid name collision
+   with the existing ANSYS commands.
+2. There is no naming convention for global variables. All variables are
+   considered local
+3. The names of the internal variables will be one of the following
+   (1) Begin with the name of the macro itself first. That is, for the 
+       macro x_noffst.mac, the internal variables are X_NOFFST_X, 
+       X_NOFFST_Y, X_NOFFST_Z etc.
+   (2) Begin with "Z"
+   (3) ARG1 to AR99
+   Note that, ARG1 to AR99 can be heavily used according to the
+   programming convenience (for example, as a loop counter). They are not
+   tracked. There is no rule for using them either.
+4. All local variables, unless necessary for further processing, WILL be
+   deleted in the end of the macro. However, when such variables may
+   be necessary for later process, they will be kept. These variables
+   are listed in the header of the macro.
+5. When there is output file from the macro, their names will begin with 
+   the name of the macro itself first.
+6. The macro will not call each other. That is, each macro will be self-contained.
+
+
+Shen-Yeh Chen
+www.FEA-Optimization.com

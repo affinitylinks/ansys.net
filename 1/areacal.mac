@@ -1,0 +1,16 @@
+! This macro calculates:
+! 1) The area of all selected elements
+! 2) The number of selected elements
+! and stores the results as parameters el_area and elnum
+! Macro written by Carl Ostervig on 2000.02.22
+
+/uis,msgpop
+*msg,note
+Calculation of area of all selected elements %/ Redimensioning of parameter elm_area will take place %/ Written by Carl Ostervig
+*get,max_num,elem,0,num,max ! Get max number of element
+*dim,elm_area,array,max_num,1 ! Dimension array for element areas
+*vget,elm_area(1),elem,1,geom ! Get element areas
+*vscfun,el_area,sum,elm_area(1) ! Calculate sum of areas and store result in parmeter el_area 
+*vscfun,elnum,num,elm_area(1) ! Calculate number of selected elements
+*msg,note,el_area,elnum
+The area of all selected elements is %G %/The number of selected elements is %I %/Area value is stored in parameter el_area 

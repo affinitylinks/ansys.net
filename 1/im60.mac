@@ -1,0 +1,84 @@
+! *****************************************************************************
+! IM60.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! ANSYS Line orientation for beam element meshing
+! 
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 18/10/99 SMV  Initial release
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! IM60 modifies the currently selected line set to have an orientation keypoint,
+! which is required for meshing the lines with either BEAM44 or BEAM188/189. The
+! orientation keypoints are automatically generated and all the line attributes
+! are kept.
+!
+!
+! Required input is :
+!
+! ARG1 - Offset direction in CSYS ARG3 : 1 - X, 2 - Y, 3 - Z
+! ARG2 - Keypoint offset
+! ARG3 - coordinate system for offset to be carried out
+!
+! Output is :
+!
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+CSYS,ARG3
+
+KSLL
+CM,IM60_K,KP
+
+*IF,ARG1,EQ,1,THEN
+  KGEN,2,ALL,,,ARG2
+*ELSEIF,ARG1,EQ,2,THEN
+  KGEN,2,ALL,,,,ARG2
+*ELSEIF,ARG1,EQ,3,THEN
+  KGEN,2,ALL,,,,,ARG2
+*ENDIF
+
+CM,IM60_L,LINE
+*GET,AR21,LINE,,COUNT
+AR23=0
+
+*DO,AR22,1,AR21,1
+  AR23=LSNEXT(AR23)
+  *GET,AR24,LINE,AR23,ATTR,MAT
+  *GET,AR25,LINE,AR23,ATTR,REAL
+  *GET,AR26,LINE,AR23,ATTR,TYPE
+  *GET,AR27,LINE,AR23,ATTR,ESYS
+  *GET,AR28,LINE,AR23,ATTR,REAL     ! Cannot get SEC - try at 5.6
+  *GET,AR29,LINE,AR23,KP,1
+  CMSEL,U,IM60_K
+  *IF,ARG1,EQ,1,THEN
+    AR30=KP(KX(AR29)+ARG2,KY(AR29),KZ(AR29))
+  *ELSEIF,ARG1,EQ,2,THEN
+    AR30=KP(KX(AR29),KY(AR29)+ARG2,KZ(AR29))
+  *ELSEIF,ARG1,EQ,3,THEN
+    AR30=KP(KX(AR29),KY(AR29),KZ(AR29)+ARG2)
+  *ENDIF
+  LSEL,S,LINE,,AR23
+  LATT,AR24,AR25,AR26,AR27,AR30,,AR28
+  CMSEL,S,IM60_L
+  CMSEL,A,IM60_K
+*ENDDO
+
+CMDEL,IM60_K
+CMDEL,IM60_L
+
+! *****************************************************************************
+! End of input
+! *****************************************************************************

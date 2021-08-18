@@ -1,0 +1,68 @@
+/com
+/com Macro to efficiently solve an ANSYS 5 model with gap elements.
+/com Solution is performed by creating a superelement containing the
+/com linear portion of the model, then iterating on the nonlinear portion
+/com in the use pass. This macro performs the superelement generation
+/com pass, use pass, and expansion pass.
+/com
+/com User must predefine components called GAPELEM, and GAPNODES which
+/com contain all the gap elements, and all the nodes connected to gap
+/com elements, respectively.
+/com
+/com ***Note: MASS MATRIX IS GENERATED! If you do not need the mass matrix,
+/com change seopt,linear_,2 to seopt,linear_,1. This should speed up your
+/com analysis.
+/com
+/com The linear results are stored in: linear_.db, linear_.rst
+/com The nonlinear results are stored in: nonlin_.db, nonlin_.rst
+/com
+/com Written by: Joe Metrisin
+/com Date: October 21, 1994.
+/com
+/com Revision 1: 11/13/95: Changed default to generate mass matrix.
+/com
+/com
+/com ********************** GENERATION PASS *********************
+finish
+/filnam,linear_ ! Define superelement matrix file name.
+/solu ! Enter solver.
+antype,substr ! Select superelement analysis type.
+cmsel,s,gapnodes ! Select nodes involving nonlinearities.
+m,all,all ! Set these nodes as master DOF's.
+cmsel,u,gapelem ! Unselect nonlinear portion (gap elements).
+seopt,linear_,2 ! Options to generate stiffness matrix only.
+nsel,all ! Restore all nodes.
+save,linear_,db ! Save superelement (linear model) database.
+solve ! Generate superelement matrix.
+/com
+/com ********************** USE PASS *********************
+fini
+/clear ! Clear database.
+/filnam,nonlin_ ! Define use pass job name (nonlinear model).
+/prep7 ! Enter preprocesser.
+resu,linear_,db ! Resume superelement database.
+et,500,matrix50 ! Define superelement element type.
+type,500 ! Set active element type.
+se,linear_ ! Define superelement.
+esel,s,type,,500 ! Select superelement.
+*get,senum,elem,,num,max ! Retrieve element number of superelement.
+cmsel,s,gapnodes ! Select nonlinear nodes.
+cmsel,a,gapelem ! Add nonlinear elements.
+save ! Save nonlinear model database.
+finish ! Exit preprocessor.
+/solu ! Enter solver.
+antype,static ! Select static analysis.
+sfe,senum,1,selv,,1.0 ! Apply superelement load vector previously generated.
+solve ! Solve the nonlinear model.
+finish
+/com ********************** EXPANSION PASS *********************
+/com
+/clear ! Clear database.
+/filnam,linear_ ! Switch file name to linear model.
+resume ! Resume linear model database.
+/solu ! Enter solver.
+expass,on ! Select expanansion pass.
+seexp,linear_,nonlin_ ! Expand linear model w/results from nonlinear run.
+expsol,1,1 ! Select loadstep 1, substep 1.
+solve ! Perform expansion.
+/com

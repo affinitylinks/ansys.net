@@ -1,0 +1,20 @@
+!      ****** vol.mac  *****
+!    MACRO TO GET TOTAL VOLUME (AREA, LENGTH) OF SELECTED ELEMENTS
+!    Here is a simple macro to get the sum of the volumes of the
+!selected elements.  It is completely vector, so is very fast.
+! The calculated value is now in the variable  _RETURN.
+! JAS SAS, Inc.
+*GET,nelem,ELEM,,NUM,MAX
+*DEL,volume(1),,nopr               ! silent delete of previous array (if any)
+*DIM,volume,,NELEM                 ! array to hold element volumes
+*DIM,mask,,NELEM                   ! array for mask vector
+*VABS,1                            ! volume can be signed for volumes
+*VGET,volume(1),ELEM,1,GEOM        ! get the volumes for the selected elements
+*VGET,mask(1),ELEM,1,ESEL          ! get vector of selected elements
+*VMASK,mask(1)                     ! set mask for next vector operation
+*VSCFUN,total,SUM,volume(1)        ! total is the desired value
+volume(1)=                         ! delete volume vector
+mask(1)=                           ! delete mask vector
+nelem=                             ! delete nelem
+_return=total                      ! set _return value
+total=                             ! and delete total

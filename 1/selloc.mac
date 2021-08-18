@@ -1,0 +1,159 @@
+! selloc macro (for select by location)
+! this is a utility tool to speed up selection of model entities.
+!
+! Instructions:
+! macro for selection of elements, nodes, and geometry
+! based upon user supplied selection criteria.
+! This routine takes global coordinate range minimum and maximum 
+! as supplied by the user and makes selection of entities in
+! co-ordinate range and changes the active set based upon
+! the user's preference. 
+! This is very useful for making global entity selections then 
+! application of boundary conditions to the remianing active entities.
+! Multiple use of the command can be very selective to the 
+! active entity set by either adding, or unselecting portions of a model.
+! Users can get unions, intersection, or specific exclusions.
+!
+! By Don Shaffer
+!
+!  The command is selloc, arg1, arg2, arg3, arg4
+!
+! where   arg1 is the co-ordinate system and axis to be selected
+!         arg1 = 1 X cartesian,   = 2 Y cartesian,       = 3 Z cartesian
+!              =11 R cylindrical, =12 Theta cylindrical, =13 Z cylindrical
+!
+!         arg2 and arg3 are the minimum and maximum co-ordinate along the 
+!         specified co-ordinate system axis. 
+!         (Ansys wants values in ascending order!, i.e. arg2 < arg3 )
+!
+!         arg4 is what selection action to make based on the
+!         typical Ansys selection ordering   1= S , 2= R, 3= A, 4= U
+!         for Select new, Reselect from existing set, Also select, and Unselect
+!
+!  The macro is setup to perform the selection requested upon
+!  all of the entities including kp, lines, areas, volumes, nodes, and elms.
+!  some of the commands use slightly different selections for some geom
+!  based on the entity type to make the routine run better.
+!
+!  Note: current version does not fully clean up afterwards.
+!
+*GET,CURCSYS,ACTIVE,,CSYS  ! get current active dsys csys
+*GET,CURDSYS,ACTIVE,,DSYS
+ULOC=ARG1
+*IF,ARG1,GT,3,THEN
+CSYS,1
+ULOC=ULOC-10
+*ENDIF
+*IF,ARG4,EQ,1,THEN
+*IF,ULOC,EQ,1,THEN
+KSEL,S,LOC,X,ARG2,ARG3
+LSLK,S,1
+ASLL,S,1
+VSLA,S,1
+VSEL,A,LOC,X,ARG2,ARG3
+NSEL,S,LOC,X,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,2,THEN
+KSEL,S,LOC,Y,ARG2,ARG3
+LSLK,S,1
+ASLL,S,1
+VSLA,S,1
+VSEL,A,LOC,Y,ARG2,ARG3
+NSEL,S,LOC,Y,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,3,THEN
+KSEL,S,LOC,Z,ARG2,ARG3
+LSLK,S,1
+ASLL,S,1
+VSLA,S,1
+VSEL,A,LOC,Z,ARG2,ARG3
+NSEL,S,LOC,Z,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*ENDIF
+*IF,ARG4,EQ,2,THEN
+*IF,ULOC,EQ,1,THEN
+VSEL,R,LOC,X,ARG2,ARG3
+ASEL,R,LOC,X,ARG2,ARG3
+LSEL,R,LOC,X,ARG2,ARG3
+KSEL,R,LOC,X,ARG2,ARG3,,0
+NSEL,R,LOC,X,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,2,THEN
+VSEL,R,LOC,Y,ARG2,ARG3
+ASEL,R,LOC,Y,ARG2,ARG3
+LSEL,R,LOC,Y,ARG2,ARG3
+KSEL,R,LOC,Y,ARG2,ARG3,,0
+NSEL,R,LOC,Y,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,3,THEN
+VSEL,R,LOC,Z,ARG2,ARG3,,
+ASEL,R,LOC,Z,ARG2,ARG3,,
+LSEL,R,LOC,Z,ARG2,ARG3,,
+KSEL,R,LOC,Z,ARG2,ARG3,,0
+NSEL,R,LOC,Z,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*ENDIF
+*IF,ARG4,EQ,3,THEN
+*IF,ULOC,EQ,1,THEN
+VSEL,A,LOC,X,ARG2,ARG3,,
+ASEL,A,LOC,X,ARG2,ARG3,,
+LSEL,A,LOC,X,ARG2,ARG3,,
+KSEL,A,LOC,X,ARG2,ARG3,,0
+NSEL,A,LOC,X,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,2,THEN
+VSEL,A,LOC,Y,ARG2,ARG3,,
+ASEL,A,LOC,Y,ARG2,ARG3,,
+LSEL,A,LOC,Y,ARG2,ARG3,,
+KSEL,A,LOC,Y,ARG2,ARG3,,0
+NSEL,A,LOC,Y,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*IF,ULOC,EQ,3,THEN
+VSEL,A,LOC,Z,ARG2,ARG3,,
+ASEL,A,LOC,Z,ARG2,ARG3,,
+LSEL,A,LOC,Z,ARG2,ARG3,,
+KSEL,A,LOC,Z,ARG2,ARG3,,0
+NSEL,A,LOC,Z,ARG2,ARG3
+ESLN,S,1,ALL
+*ENDIF
+*ENDIF
+*IF,ARG4,EQ,4,THEN
+*IF,ULOC,EQ,1,THEN
+VSEL,U,LOC,X,ARG2,ARG3,,
+ASEL,U,LOC,X,ARG2,ARG3,,
+LSEL,U,LOC,X,ARG2,ARG3,,
+KSEL,U,LOC,X,ARG2,ARG3,,0
+NSEL,U,LOC,X,ARG2,ARG3
+ESLN,S,1,ACTIVE
+*ENDIF
+*IF,ULOC,EQ,2,THEN
+VSEL,U,LOC,Y,ARG2,ARG3,,
+ASEL,U,LOC,Y,ARG2,ARG3,,
+LSEL,U,LOC,Y,ARG2,ARG3,,
+KSEL,U,LOC,Y,ARG2,ARG3,,0
+NSEL,U,LOC,Y,ARG2,ARG3
+ESLN,S,1,ACTIVE
+*ENDIF
+*IF,ULOC,EQ,3,THEN
+VSEL,U,LOC,Z,ARG2,ARG3,,
+ASEL,U,LOC,Z,ARG2,ARG3,,
+LSEL,U,LOC,Z,ARG2,ARG3,,
+KSEL,U,LOC,Z,ARG2,ARG3,,0
+NSEL,U,LOC,Z,ARG2,ARG3
+ESLN,S,1,ACTIVE
+*ENDIF
+*ENDIF
+CSYS,CURCSYS
+DSYS,CURDSYS
+/NOPR
+CURCSYS=
+CURDSYS=
+/GOPR

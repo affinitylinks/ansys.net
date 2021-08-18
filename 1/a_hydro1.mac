@@ -1,0 +1,239 @@
+! /nopr
+! *************************  A_HYDRO1.MAC ***********************************
+!
+!      MACRO to calculate hydrostatic loads under an abritary profile
+!
+!   The procedure involves calculating the vertical distance from each
+!   point to be loaded to a ceiling of arbitrary shape, where the ceiling
+!   is defined by triangular patches.
+!
+!   At the end of the macro the following information is stored in the array 
+!   FORAR(n,3) 
+!               (n,1)  -  Node number
+!               (n,2)  -  Ceiling height above node = magnitude of load 
+!               (n,3)  -  Element number detected as the ceiling patch
+!
+!   A warning is given if there are nodes for which no ceiling patch was
+!   found. These nodes can be identified in FORAR(n,3) as the element number 
+!   for the node is zero.
+!   
+! ---------------------------------------------------------------------------
+!   STEPS:
+!
+!     1 - Define the shape of the load (surface of the compost heap)
+!         using three-noded triangular plate elements. 
+!
+!     2 - Define the reference coordinate system to be used with the
+!         Z-direction as the height coordinate
+!
+!     3 - Select the nodes of the structure to be loaded.
+!
+!     4 - Select the elements defining the profile in 1) above.
+!
+!     5 - Execute the macro
+!
+!                                                   A.M.E.S - Sept. 1995
+!
+! Ernst Hustedt
+! *********************************************************************
+
+tol=1e-30                   ! Tolerance for patch detection
+
+*get,numnp,NODE,0,COUNT     ! Get number of nodes to be loaded
+
+*get,numel,ELEM,0,COUNT     ! Get number of elements defining the profile 
+
+*dim,nodar,ARRAY,4          ! Define arrays
+*dim,forar,ARRAY,numnp,3
+
+! ======================= Loop over all selected nodes ================ [1
+!
+np=0           ! Next node number
+num=0          ! Node count
+
+iperco_=0      ! Initialize A_PERCEN macro
+
+*do,i,1,numnp  
+
+a_percen,i,numnp,'A_HYDRO1'
+
+np=NDNEXT(np)
+forar(i,1)=np
+ff=999999
+
+xp=NX(np)
+yp=NY(np)
+zp=NZ(np)
+
+ne=0
+*do,j,1,numel  ! -------- Loop over all profile elements -------------- [2
+ne=ELNEXT(ne)  !   to determine the one that is above the current node
+n1=NELEM(ne,1)
+n2=NELEM(ne,2)
+n3=NELEM(ne,3)
+
+ nn=n1*n2*n3            ! If one of the nodes is zero !!
+ *if,nn,lt,1,then
+ *MEG,WARN,ne,n1,n2,n3
+<A_HYDRO1>:  Element %I is invalid for profile definition, Nodes= %I , %I , %I
+ *go,:term
+ *endif
+
+! -------------------------------------------------------------------
+! x1=NX(n1)                   ! Detect and skip over far away patches 
+! x2=NX(n2)                   ! (slow if number of patches is small)
+! x3=NX(n3)
+! xmax=x1
+! xmin=xmax
+
+! *if,x2,gt,xmax,then
+! xmax=x2
+! *elseif,x3,gt,xmax,then
+! xmax=x3
+! *endif
+! *if,xp,gt,xmax,*CYCLE
+
+! *if,x2,lt,xmin,then
+! xmin=x2
+! *elseif,x3,lt,xmin,then
+! xmin=x3
+! *endif
+! *if,xp,lt,xmin,*CYCLE
+
+! y1=NY(n1)
+! y2=NY(n2)
+! y3=NY(n3)
+! ymax=y1
+! ymin=ymax
+
+! *if,y2,gt,ymax,then
+! ymax=y2
+! *elseif,y3,gt,ymax,then
+! ymax=y3
+! *endif
+! *if,yp,gt,ymax,*CYCLE
+
+! *if,y2,lt,ymin,then
+! ymin=y2
+! *elseif,y3,lt,ymin,then
+! ymin=y3
+! *endif
+! *if,yp,lt,ymin,*CYCLE
+! -------------------------------------------------------------------
+
+nodar(1)=n1   !  Store patch nodes to process each side 
+nodar(2)=n2   !      Side 1   n1 - n2              
+nodar(3)=n3   !      Side 2   n2 - n3
+nodar(4)=n1   !      Side 3   n3 - n4=n1
+
+ipos=0        ! Counts for positive and negative areas
+ineg=0
+
+*do,k,1,3     ! Loop on all sides of this profile element ------------ [3
+na=nodar(k)   ! and calulate the projected areas formed by each side
+nb=nodar(k+1) ! with the projected node NP
+
+xa=NX(na)
+xb=NX(nb)
+
+ya=NY(na)
+yb=NY(nb)
+
+area=xa*yb-xb*ya
+area=area+xb*yp-xp*yb+xp*ya-xa*yp
+
+*if,area,gt,0,then   ! Count positive and negative areas formed
+ipos=ipos+1 
+*else
+ineg=ineg+1
+*endif
+
+! *if,abs(area),le,tol,then  ! If one area is less than TOL, i.e. the projected
+! ipos=ipos+1                ! node is on or close to one side of the projected
+! ineg=ineg+1                ! ceiling patch, add 1 to both counters
+! *endif                     ! making one count to 3 if it was only 2
+
+*enddo        !  End of loop over sides of this element --------------- 3]
+
+isin=0                ! Set flag to NOT UNDER THIS PATCH
+*if,ipos,ge,3,then    ! If all three areas have the same sign, 
+isin=1                ! the node (NP) is under this patch
+*endif
+*if,ineg,ge,3,then
+isin=1
+*endif
+
+*if,isin,eq,0,*CYCLE ! Jump to proceed with next element
+!
+! -------------------------------------------------------------------------
+!              Profile element for this node is found
+!              Determine height of the profile above this node
+! -------------------------------------------------------------------------
+*MSG,INFO, np,ne
+<A_HYDRO1>: Node %I is under patch element %I
+
+x1=NX(n1)
+x2=NX(n2)
+x3=NX(n3)
+
+y1=NY(n1)
+y2=NY(n2)
+y3=NY(n3)
+
+z1=NZ(n1)
+z2=NZ(n2)
+z3=NZ(n3)
+
+x11=xp-x1
+x21=x2-x1
+x31=x3-x1
+
+x12=yp-y1
+x22=y2-y1
+x32=y3-y1
+
+x23=z2-z1
+x33=z3-z1
+
+r1=x11*x22*x33
+r2=x31*x12*x23
+r3=x21*x12*x33
+r4=x11*x32*x23
+r5=x31*x22-x21*x32
+
+*if,abs(r5),lt,tol,then
+*MSG,WARN,ne
+<A_HYDRO1>: Ceiling profile too steep at Element %I (parallel to Z-Dirn??) 
+*go,:term
+*endif
+
+zz=z1+(r1+r2-r3-r4)/r5
+height=zz-zp
+forar(i,2)=height
+forar(i,3)=ne
+num=num+1
+
+f,np,FZ,height
+
+*EXIT
+*enddo
+
+*enddo
+
+
+notdon=numnp-num
+*if,notdon,gt,0,then
+*MSG,WARN,notdon
+<A_HYDRO1>: No ceiling patches found for %I nodes
+*endif
+
+:TERM
+
+nodar=
+
+*MSG,INFO
+<A_HYDRO1>: To modify the forces proportionally to their areas execute the &
+macro A_HYDRO2 after the appropriate load nodes and the elements are selected!
+
+
+/gopr

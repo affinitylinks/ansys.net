@@ -1,0 +1,75 @@
+!Used to evaluate the distance from kp to a line (straight or curved).
+!arg1 - kp-level compt. name
+!arg2 - line no.
+
+/prep7
+stop_flg=0
+cmse,none$ksel,none$lsel,none
+
+!Number of kps.
+cmse,a,arg1$lsel,a,,,arg2
+*get,numkp_,kp,,count
+*if,numkp_,le,0,then
+  stop_flg=1
+  *msg,error
+  There is no kp defined in the input kp-level cmpt.
+*endif
+*if,arg2,le,0,then
+  stop_flg=1
+  *msg,error
+  Wrong line no.
+*endif
+*if,stop_flg,eq,1,:EOF
+
+cmse,a,arg1$lsel,a,,,arg2
+ 
+*dim,kp1_,array,numkp_ ! Generate coincident kps.
+ar61=0
+*do,ar39,1,numkp_
+  ar62=kpnext(ar61) $ar61=ar62$kp1_(ar39)=ar62
+  k,,kx(ar62),ky(ar62),kz(ar62)! !generate coincident kp
+  ldiv,arg2,,ar62,,1! !move the kp to the line location closest to this kp.
+*enddo
+
+!Get newly generated kp. array 
+cmse,u,arg1
+cm,new_k,kp
+stop_flg=0
+*get,numkp1_,kp,,count
+*if,numkp1_,ne,numkp_,then
+  stop_flg=1
+  *msg,error
+  Generated non-equal number of new kps.
+*endif
+*if,stop_flg,eq,1,:EOF
+numkp_=numkp1_
+*del,numkp1_
+
+*if,numkp_,le,0,then
+  stop_flg=1
+  *msg,error
+  NO new kp generated, pls. check
+*endif
+*if,stop_flg,eq,1,:EOF
+
+ar61=0
+*dim,kp2_,array,numkp_
+*do,ar39,1,numkp_
+  ar62=kpnext(ar61)$ar61=ar62$kp2_(ar39)=ar62
+*enddo
+
+!Measure the distance
+
+*dim,distk,array,numkp_
+ksel,none$cmse,none
+cmse,,arg1$cmse,a,new_k
+*do,ar39,1,numkp_
+  kp1=kp1_(ar39)$kp2=kp2_(ar39)
+  distk(ar39)=distkp(kp1,kp2)
+*enddo
+
+! clear all unneeded varaibles.
+*del,all,prm_
+cmdele,new_k
+
+:eof

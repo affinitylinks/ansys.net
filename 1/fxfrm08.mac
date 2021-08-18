@@ -1,0 +1,150 @@
+C*****************************************************************************
+C*****************************************************************************
+C*** MACRO fxfrm08.mac, BILL BULAT, 12/11/96
+C*** PRODUCES FOURIER XFORM OF TIME DOMAIN RESPONSE. RESULTING FOURIER
+C*** COEFFICIENTS ARE READ INTO A POST26 VARIABLE (EVEN TERMS => REAL PART,
+C*** ODD TERMS => IMAGINARY PART) AND AMPLITUDE IS PLOTTED VS FREQUENCY.
+C*** UTILIZES ANSYS [*MFOURIER] COMMAND.
+C******************************************************************************
+C******************************************************************************
+C*** MACRO USEAGE:
+C***              fxfrm08, IR, IA, IB, FREQBEG, FREQEND
+C***
+C***   IR = RESULT VAR NUM TO WHICH FOUR COEFFICIENTS WILL BE WRITTEN
+C***   IA = VAR NUM CONTAINING DISCRETE TRANS RESPONSES
+C***   IB = VAR NUM WILL BE FILLED WITH FREQUENCIES TO WHICH COEFFICIENTS
+C***        IN IR CORRESPOND (THIS IS FOR PLOTTING).
+C***   FREQBEG = BEGINNING FREQUENCY OF PLOT
+C***   FREQEND = HIGHEST FREQ FOR WHICH FOURIER COEFFICIENTS SHALL BE
+C***             EVALUATED.
+C******************************************************************************
+C******************************************************************************
+
+C*** USE FOLLOWING LINES ONLY IN GUI IMPLEMENTATION
+*if,_z1,gt,0.5,then
+
+C*** EVALUATE pi
+*afun,rad
+pi = 4*atan(1)
+
+C*** DETERMINE # OF STORED TIME PTS, FINAL TIME
+*get,n,vari,,nsets
+*get,tfinal,vari,1,extr,vlast
+dim = arg5*tfinal+1  *** DIMENSION FOR ARRAYS BASED ON MAX FREQ & tfinal
+*if,dim,ge,n/2,then
+ dim = nint((n-2)/2)
+*elseif,dim,le,1,then
+ dim = nint((n-2)/2)
+*else
+ dim = nint(dim)
+*endif
+
+C*** ZERO OUT VAR# arg1 (IR)
+filldata,arg1,1,n,1,0,0
+
+C*** FILL VAR# arg3 (IB) WITH FREQUENCIES CORRESPONDING TO ck's
+C*** THESE ARE 0,1/Tf,2/Tf,3/Tf,...
+filldata,arg3,1,1,1,0
+filldata,arg3,2,n,1,1/tfinal,1/tfinal
+
+C*** DIMENSION ARRAYS FOR USE WITH *MFOURIER COMMAND
+*get,dfnd,parm,mode,type
+*if,dfnd,gt,-1,then
+ mode(1)=
+*endif
+*get,dfnd,parm,isym,type
+*if,dfnd,gt,-1,then
+ isym(1)=
+*endif
+*get,dfnd,parm,theta,type
+*if,dfnd,gt,-1,then
+ theta(1)=
+*endif
+*get,dfnd,parm,f_of_t,type
+*if,dfnd,gt,-1,then
+ f_of_t(1)=
+*endif
+*get,dfnd,parm,ck,type
+*if,dfnd,gt,-1,then
+ ck(1)=
+*endif
+*get,dfnd,parm,zero,type
+*if,dfnd,gt,-1,then
+ zero(1)=
+*endif
+*dim,mode,,2*dim
+*dim,isym,,2*dim
+*dim,theta,,n
+*dim,f_of_t,,n
+*dim,ck,,2*dim
+*dim,zero,,n
+
+C*** FILL ARRAYS FOR USE WITH *MFOURIER COMMAND
+*vfil,mode(1),ramp,0,1
+*vfil,mode(dim+1),ramp,0,1
+*vfil,isym(1),ramp,1,0
+*vfil,isym(dim+1),ramp,-1,0
+vget,theta(1),1             *** READ TIME (VAR 1) INTO ARRAY theta
+*vfac,360/tfinal            *** NORMALIZE theta TO 360 DEG (FOR *MFOU)
+*vop,theta(1),theta(1),add
+vget,f_of_t(1),arg2
+*vfil,zero(1),ramp,0,0
+
+C*** ZERO OUT REAL & IMAG PARTS OF VAR# arg1 (IR) FOR BEFORE
+C*** FILLING WITH NEW DATA
+vput,zero(1),arg1,0,0 *** PUT REAL PART INTO VAR ARG1
+vput,zero(1),arg1,0,1 *** PUT IMAG PART INTO VAR ARG1
+
+C*** USE [*MFOURIER] COMMAND TO CALCULATE FOURIER COEFFICIENTS
+*mfou,fit,ck(1),mode(1),isym(1),theta(1),f_of_t(1)
+!*vfil,ck(dim+1),ramp,0
+
+C*** PUT COEFFICIENTS (FREQ RESPONSES) INTO VAR# arg1
+vput,ck(1),arg1,0,0 *** PUT REAL PART INTO VAR ARG1
+vput,ck(dim+1),arg1,0,1 *** PUT IMAG PART INTO VAR ARG1
+
+C*** ZERO OUT REAL PART OF VAR# arg1 (IR) FOR n > dim+1
+C*** ([VPUT] CMD ERRONEOUSLY FILLS THIS PART OF VARIABLE @5.3)
+filldata,arg1,dim+2,n,1,0,0
+
+C*** PLOT RESPONSES vs FREQUENCY
+xvar,arg3
+plcp,0
+/axl,x,FREQ
+/axl,y,FOURIER XFORM
+
+*if,arg5,ne,0,then
+ /xra,arg4,1*arg5
+*else
+ /xra,arg4,dim/tfinal
+*endif
+plvar,arg1
+/axl,x
+/axl,y
+xvar,1
+plcp,2
+/xra
+
+C*** FOLLOWING LINES FOR CHECKING PUPOSES ONLY
+C*** TEMPORARY CALCULATION OF AMPLITUDE (VAR#5) TO DETERMINE TIME OF MAX AMPL
+realvar,5,3,,,real2
+imagin,6,3,,,imag2
+prod,5,5,5
+prod,6,6,6
+add,6,5,6
+sqrt,5,6,,,ampl2
+
+C*** FOLLOWING LINES FOR CHECKING PURPOSES ONLY
+C*** REPORT REAL & IMAG COMPONENTS OF FXFRM @ MAX AMPLITUDE
+!*get,scrapt,vari,5,extrem,tmax
+!*get,scrapr,vari,3,rtime,scrapt
+!*get,scrapi,vari,3,itime,scrapt
+!*msg,ui,scrapr,scrapi
+!real part: %G %/ imag part: %G
+
+C*** USE FOLLOWING LINES ONLY IN GUI IMPLEMENTATION
+*elseif,_z1,eq,0.5,then
+*msg,ui
+No time-history data to make Fourier Transform of.&
+Create time-history plot first.
+*endif

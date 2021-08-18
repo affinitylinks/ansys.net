@@ -1,0 +1,94 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION & MACRO REVISION:
+/com,    This macro redirects scratch files to E:\temp
+/com,    For NT, it changes binary files to internal format (commented out)
+/com,    It automatically deletes binary files after done (commented out)
+/com,      99.04.13
+/com,
+/com,USAGE OF MACRO:
+/com,    "reassign" (no arguments needed)
+/com,
+/com,OUTPUT OF MACRO:
+/com,    No output
+/com,
+/com,OTHER MACROS REQUIRED:
+/com,    JOBNAME.MAC
+/com,
+/nopr
+jobname
+*get,PLATFORM,active,,syname,,start,1
+*if,PLATFORM,eq,'INTEL NT',then
+  *set,PLATFORM,'NT'
+*elseif,PLATFORM,eq,'HPPA 800'
+  *set,PLATFORM,'HP'
+*elseif,PLATFORM,eq,'HP 9000/'
+  *set,PLATFORM,'HP'
+*elseif,PLATFORM,eq,'HPPA 7/8'
+  *set,PLATFORM,'HP'
+*endif
+*get,REVISION,active,,rev
+!*if,PLATFORM,eq,'NT',then
+!  /ftype,emat,int
+!  /ftype,esav,int
+!  /ftype,full,int
+!  /ftype,redm,int
+!  /ftype,sub,int
+!  /ftype,mode,int
+!  /ftype,tri,int
+!  /ftype,dsub,int
+!  /ftype,usub,int
+!  /ftype,erot,int
+!  /ftype,osav,int
+!  /ftype,seld,int
+!*endif
+!/fdele,emat,dele
+!/fdele,esav,dele
+!/fdele,osav,dele
+!/fdele,full,dele
+!/fdele,mode,dele
+!/fdele,tri,dele
+*if,REVISION,le,5.4,then
+  /eof
+*endif
+*if,PLATFORM,eq,'NT',then
+  /assign,emat,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,emat,E:\temp\
+  /assign,esav,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,esav,E:\temp\
+  /assign,erot,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,erot,E:\temp\
+  /assign,osav,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,osav,E:\temp\
+  /assign,full,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,full,E:\temp\
+  /assign,mode,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,mode,E:\temp\
+  /assign,tri,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,tri,E:\temp\
+*elseif,PLATFORM,eq,'HP'
+  /assign,emat,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,emat,~/temp/
+  /assign,esav,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,esav,~/temp/
+  /assign,erot,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,erot,~/temp/
+  /assign,osav,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,osav,~/temp/
+  /assign,full,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,full,~/temp/
+  /assign,mode,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,mode,~/temp/
+  /assign,tri,%C_JOBNAM(1)%%C_JOBNAM(2)%%C_JOBNAM(3)%%C_JOBNAM(4)%,tri,~/temp/
+*endif
+*del,C_JOBNAM
+*del,I_JOBNAM
+*del,C_TITLE
+*del,I_TITLE
+*del,C_SUBT1
+*del,I_SUBT1
+*del,C_SUBT2
+*del,I_SUBT2
+*del,C_SUBT3
+*del,I_SUBT3
+*del,C_SUBT4
+*del,I_SUBT4
+*del,PLATFORM
+/gopr

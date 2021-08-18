@@ -1,0 +1,42 @@
+!  Sample Input file to demonstrate
+! Undocumented DADD command in POST1
+! Keith DiRienz, FEA Technologies 6/5/03
+!
+/prep7
+block,0,1,0,1,0,10
+/view,1,1,2,3
+vplot
+et,1,45
+esize,.5
+vmesh,all
+nsel,s,loc,z,0
+d,all,uz
+nsel,s,loc,z,10
+!
+! Move Large amount in UY and Small amount in UX
+!
+d,all,ux,.01
+d,all,uy,2.5
+allsel
+f,4,fy,10    ! Apply Torsional Load
+f,2,fy,-10
+ex,1,30e6
+nuxy,1,.3
+FINISH
+/solu
+solve
+FINISH
+/post1
+/grap,full
+pldi,1   ! This shows the predominant UY Displ
+prdi
+!
+! Now Subtact out the UY Displ and Replot
+!
+dadd,uy,uy,,1,,-2.5   ! subtract out rigid body UY
+dadd,ux,ux,,1,,-.01   ! subtract out rigid body UX
+!
+/rep    !  This plot shows the Torsion
+!
+prdi   ! List Displacements
+!
