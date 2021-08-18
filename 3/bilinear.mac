@@ -1,0 +1,53 @@
+!     *****   BILINEAR MATERIAL EVALUATION MACRO  *****
+!             MATERIAL 1 is the tension properties 
+!             MATERIAL 2 is the compression properties
+!             ARG1 is the number of iterations (2 default)
+!             Macro is run after a static solution
+
+/NOP
+_niter = arg1                    ! set number of iterations
+*if,_niter,lt,2,then
+   _niter = 2
+*endif
+*do,_iter,1,_niter               ! loop on number of iterations
+/post1
+set,1,1
+ar11=elmiqr(0,14)                ! get number of elements
+*dim,_s1,,ar11                   ! array for element s1
+*dim,_s3,,ar11                   ! array for element s3
+etable,sigmax,s,1                ! s1 is in etable sigmax
+etable,sigmin,s,3                ! s3 is in etable sigmin
+*vget,_s1(1),elem,1,etab,sigmax  ! get element maximum stress in s1
+*vget,_s3(1),elem,1,etab,sigmin  ! get element minimum stress in s3
+*dim,_mask,,ar11                 ! array for mask vector
+*voper,_mask(1),_s1(1),lt,0      ! true if max stress < 0
+*vcum,1                          ! accumulate compression elements
+*vabs,0,1                        ! absolute value of s3
+*voper,_mask(1),_s3(1),gt,_s1(1) ! true if abs(minstr) > maxstr
+finish
+
+/prep7                       ! go to prep7 for element material mods
+
+mat,1                        ! set all materials to tension properties
+emod,all
+
+*vput,_mask(1),elem,1,esel   ! select compression elements
+mat,2                        ! change selected elements to compression
+emod,all
+
+eall                         ! select all elements
+finish
+
+_s1(1)=                      ! cleanup vectors
+_s3(1)=
+_mask(1)=
+
+/solve                       ! rerun the analysis
+solve
+finish
+
+*enddo                       ! end of iterations
+
+_niter=                      ! cleanup iteration counters
+_iter=
+/gop

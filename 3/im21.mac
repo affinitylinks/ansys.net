@@ -1,0 +1,59 @@
+! *****************************************************************************
+! IM21.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM21 is an ANSYS entity number compression macro with a bit extra.
+! IM21 not only compresses entity numbers but enters the max. values into
+! the ANSYS Scalar Parameter Window for further referencing.
+!
+! Overview :
+!
+! IM21 is a general utility that is used to obtain maximum numbers of all
+! entities, with the option to merge and/or compress entity numbers before.
+! This is useful when creating entity generation macros that work on an 
+! existing model.
+!
+!
+! Required input is :
+!              
+! ARG1 - Key : 0 - return maximum numbers only
+!              1 - Compress all entities before returning maximum numbers
+!              2 - Merge and then compress all entities before returning 
+!                  maximum numbers
+! ARG2 - If ARG1 = 2, tolerance for merge
+!
+!
+! Output is :
+!
+! NMAX - Maximum Node number
+! EMAX - Maximum Element number
+! KMAX - Maximum Keypoint number
+! LMAX - Maximum Line number
+! AMAX - Maximum Area number
+! VMAX - Maximum Volume number
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+*IF,ARG1,EQ,2,THEN
+  NUMMRG,ALL,ARG2
+  NUMCMP,ALL
+*ENDIF
+
+*IF,ARG1,EQ,1,THEN
+  NUMCMP,ALL
+*ENDIF
+
+*GET,NMAX,NODE,,NUM,MAX
+*GET,EMAX,ELEM,,NUM,MAX
+*GET,KMAX,KP,,NUM,MAX
+*GET,LMAX,LINE,,NUM,MAX
+*GET,AMAX,AREA,,NUM,MAX
+*GET,VMAX,VOLU,,NUM,MAX
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************

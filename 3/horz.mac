@@ -1,0 +1,40 @@
+!creates long horiz line at specified location
+!Rod Scholl
+!PADT
+
+cm,linehold,line
+ksel,all
+
+*get,kchek1,kp,,count
+*if,kchek1,gt,0,then
+*get,rmax3,kp,,mxloc,y
+*get,rmin3,kp,,mnloc,y
+lsize5=1.5*(rmax3-rmin3)
+*else
+lsize5=1
+*endif
+
+*ask,hzloc,What is the Horiz(X) height?, 0
+*get,maxkp,kp,,num,max
+numstr,kp,maxkp+1
+k,,hzloc,-lsize5,0
+k,,hzloc,lsize5,0
+l,maxkp+1,maxkp+2
+lplot
+cmsel,a,linehold                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                
+                                                                                

@@ -1,0 +1,59 @@
+/prep7
+*if,arg1,gt,0.0,then
+  toler=arg1
+*else
+  toler=0.0001
+*endif
+parsave,scalar
+cm,usrelm,elem
+*get,act_crd,active,,csys
+*get,act_type,cdsy,act_crd,attr,kcs
+*if,act_type,ne,1,then
+  *msg,error,
+  ! Active Coordinate System Must Be Cylidrical. %/&
+  ! No Changes Made.
+  *go,:end
+*endif
+*get,numnod,node,,count
+even=mod(numnod,2)
+*if,even,ne,0,then
+  *msg,error,
+  ! Number of Selected Nodes Must Be Even. %/&
+  ! No Changes Made.
+  *go,:end
+*endif
+*get,oldcpl,active,,cp
+esel,none
+nwri,cysm,node
+shpp,off
+nmodif,all,,0,,0,0,0
+cpintf,ux,toler
+cpintf,uy,toler
+cpintf,uz,toler
+nrea,cysm,node
+shpp,on
+*get,newcpl,active,,cp
+difcpl=newcpl-oldcpl
+precpl=3*numnod/2
+*if,difcpl,lt,precpl,then
+  *msg,warn,difcpl,precpl
+  ! Number of Coupled Sets Generated %i is %/&
+  ! less than expected %i.
+*else
+  *msg,note,difcpl
+  ! Number of Coupled Sets Generated: %i
+*endif
+:end
+cmsel,,usrelm
+cmde,usrelm
+ACT_CRD=
+ACT_TYPE=
+DIFCPL=
+EVEN=
+NEWCPL=
+NUMNOD=
+OLDCPL=
+PRECPL=
+toler=
+parres
+finish

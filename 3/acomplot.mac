@@ -1,0 +1,41 @@
+/nopr
+_asel=
+_atmp=
+cm,_vsl,volume
+cm,_abfr,area
+cm,_lbfr,line
+cm,_kbfr,kp
+allsel,below,volume
+*get,_vcnt,volume,,count
+*get,_amax,area,,num,max
+*dim,_asel,,_amax
+*dim,_atmp,,_amax
+_vv = -1
+*do,i,1,_vcnt
+	_vv = vlnext(_vv)
+	vsel,s,,,_vv,,,1
+	*vget,_atmp(1),area,1,asel
+	*vmask,_atmp(1)
+	*voper,_asel(1),_atmp(1),add,_asel(1)
+	cmsel,s,_vsl
+*enddo
+*vfill,_atmp(1),ramp,-1,0
+*voper,_asel(1),_asel(1),add,_atmp(1)
+*vput,_asel(1),area,1,asel
+cm,acom,area
+cmsel,a,_lbfr
+cmsel,a,_kbfr
+
+/pnum,line,0
+/pnum,area,1
+/num,1
+/gtype,all,node,0
+/gtype,all,elem,0
+/gtype,all,keyp,0
+/gtype,all,line,1
+/gtype,all,area,1
+/gtype,all,volu,0
+gplot
+
+cmsel,s,_vsl
+/go

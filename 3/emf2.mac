@@ -1,0 +1,254 @@
+finish
+/clear
+
+/prep7
+
+delay=0
+
+
+!!/out,emf1,out
+!    example of computing the emf in a coil for a 2D planar model.  The emf is produced
+!    in a coil as a magnet moves across the face of the coil which has a 3 cm inner dimension. CEs
+!    are used to join the two models at the common interface.
+!
+!    For 2D, the flux is the difference in Azs of the coils cross sections factored by the thickness.
+!    The example assumes an average velocity of the magnet. 
+!
+!    This example is for ONLY for the demonstration of the CEs, using Tables, and *voper commands.
+!
+!    left coil section:  real=2 mat=1   (1 cm x 1cm)
+!    right coil section: real=3 mat=1   (1 cm x 1cm)
+!    air    : mat 1
+!    magnet : mat 2  (.5 cm x 1 cm)
+!    interface between models is at y=0
+!
+!    output array:
+!    emft table
+!    emft(i,0) = index is X coordinate of magnet
+!    emft(i,1) = flux in coil for each position of magnet
+!    emft(i,2) = derivative of "1" times factor emffac
+!
+
+
+!/nerr,0,1e5
+
+
+
+et,1,13			!  Plane 13
+tm=2			!  Magnettiefe in inch (?) - british system default
+n_s=22			!  number of solutions for the magnet going from one extreme position to the other
+d_x=.002		!  size of step of magnet motion (distance moved is (n_s-1)*d_x
+freq=60			!  frequency=3600RPM = 60 cycles/sec.  This is used to compute an
+			!  average velocity (av).  average velocity is full distance moved in a cycle/time for cycle
+av=(n_s-1)*d_x*freq
+Nturn=5000		!  number of turns-distributed uniformly
+mp,murx,2,1.1		!  linear magnet
+mp,mgyy,2,8e5		!  magnet Hc (Y)
+mp,murx,1,1		!  air
+wpave,0,-.01		!  Moves the working plane origin to the average of specified points
+
+
+rectan,-.005,.005,-.0025,.0025,
+aatt,2,1,1
+wpave
+rectan,-.1,.1,-.1,0	!  air for bottom section
+/wait,delay
+aovlap,all
+cm,lower,area		!  Area component enthaelt untere Luft sowie den Magneten
+
+lsel,,loc,y
+lplot
+/wait,delay
+cm,low_int,line
+asel,none
+
+!  left coil section
+wpave,-.02,.015
+rectan,-.005,.005,-.005,.005
+aatt,1,2,1
+aplot
+/wait,delay
+
+!   right coil section
+asel,none
+wpave,.02,.015
+rectan,-.005,.005,-.005,.005
+aatt,1,3,1
+aplot
+/wait,delay
+
+!  air for top section
+wpave
+rectan,-.1,.1,0,.1
+aplot
+/wait,delay
+
+aovlap,all
+asel,a,real,,2
+aovlap,all
+allsel
+/NUMBER,1
+/PNUM,MAT,1
+
+GPLOT 
+/wait,delay
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    Meshing
+/COLOR,NUM,BLAC,1
+lsel,,loc,y						! Y - Line
+lesize,all,,,45
+amesh,all
+				
+nsel,,loc,y,0,1						! define element component for upper section of air elements
+esln,,1							! select elements attached to the selected nodes
+
+
+esel,u,real,,2,3
+eplot
+cm,upper,elem
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!   Hilfscomponente
+nsle
+nplot   
+nsel,r,loc,y
+nplot   
+esln
+eplot
+cm,opper,elem
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!    boundary conditions
+esel,all
+nsel,,ext
+nplot
+
+nsel,u,loc,y
+nplot
+
+/title,flux parallel boundary condition on exterior nodes
+/PSF,DEFA,,1,0,1   
+/PBF,DEFA,,1   
+/PIC,DEFA,,1  
+/PSYMB,DOT,1
+/PBC,A,,1
+
+d,all,az
+nplot
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+*set,emft
+*dim,emft,table,n_s,2			! Defines an array parameter and its dimensions.
+
+!    index is X coordinate of magnet
+!    emft(i,1)=flux for each position of magnet
+!    emft(i,2)=derivative of "1" times factor
+
+emft(0,0)=1e-5		! don´t set this to zero, ansys needs a minimum value
+emft(0,1)=1		! flux
+emft(0,2)=2		! emf
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  move magnet to initial position
+
+cmsel,,lower			! area component
+alls,below,area
+
+xc=-d_x*n_s/2-d_x/2
+
+agen,2,all,,,xc,,,,,1		!  move areas and keep meshing
+eplot
+/title
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+*do,_i1,1,n_s			! n_s Schritte fuer Bewegung
+finish
+/prep7
+
+xc=xc+d_x			! increase current position of magnet for one step
+
+nsel,,loc,y			!  waehlt all nodes auf der Y Linie, sowohl Ober- wie auch Unterteil
+nplot
+
+cedele,all,all			!  Loescht constraint equations aus Schleifen Vorgang
+nplot
+
+cmsel,,lower			! untere Area wird ausgewählt
+alls,below,area
+/title, Verschiebung um d_x nach rechts
+gplot
+
+agen,2,all,,,d_x,,,,,1			! move areas and keep meshing
+/title,
+
+esla
+nsle
+nsel,r,loc,y				!  reselects nodes on surface of lower section
+nplot
+cmsel,,upper				!  selects elements on upper section
+gplot
+
+
+ceintf,0.25,az				!  Constraint Equations
+
+/PBC,CE,,1
+/title,Constraint Equations (CE)
+/wait,1
+
+finish
+/solu
+allsel
+
+solve
+finish
+
+/post1
+plf2d
+
+
+esel,,real,,2,3				! beide Spulen selektieren
+etable,az,a,z				! Vektorpotential der Elemente einlesen
+etable,,volu				! single valued element
+smult,azv,az,volu			! Forms an element table item by multiplying two other items
+
+					!  get average AZ for left coil section
+esel,,real,,2
+ssum
+*get,left_az,ssum,,item,azv
+*get,left_v,ssum,,item,volu
+left_az=left_az/left_v
+
+esel,,real,,3				! get right average AZ for right coil section
+ssum
+*get,right_az,ssum,,item,azv
+*get,right_v,ssum,,item,volu
+right_az=right_az/right_v
+
+
+emffac=nturn*av*tm
+						!  store position (m)  and flux  (webers)
+emft(_i1,0)=xc					!  x position
+emft(_i1,1)=(left_az-right_az)			!  (Vektorpotentialdifferenz) 
+*enddo						!  Ruecksprung in den /prep7 Teil (oben)
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Polradspannungsberechnung
+
+
+*voper,emft(1,2),emft(1,1),der1,emft(1,0)	! Az Differenz emft(1,1) abgelitten nach Streckestück xc
+*voper,emft(1,2),emft(1,2),mult,emffac
+
+/grid,1
+/axlab,y,Polradspannung (V)
+/axlab,x,X coordinate (m)
+*vscf,xmin,min,emft(1,0)
+*vscf,xmax,max,emft(1,0)
+/xrange,xmin,xmax
+
+/COLOR,CURVE,blue,1
+
+*vplot,emft(1,0),emft(1,2)
+parsav,all,emft,par
+
+allsel 
+
+/out

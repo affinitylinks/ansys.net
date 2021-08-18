@@ -1,0 +1,48 @@
+! *****************************************************************************
+! IM7.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM7.MAC is used in POST1 of ANSYS 5.3 to read in as element table (ETABLE)
+! items the post data required for element COMBIN39.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 5/2/97   SMV  Initial release
+! 27/6/97  SMV  Documentation added
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+! Etable read in - COMBIN39
+
+ETABLE,FN,SMISC,1
+ETABLE,S,NMISC,5
+ETABLE,USEP,NMISC,1
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************
+

@@ -1,0 +1,37 @@
+! ##############################################################################
+!
+! MAKRO PLOTS MATERIAL PROPERTIES VALUE 
+!
+! AUTOR: psiedlaczek@mesco.com.pl  
+! DATA: 2010 11 29  v.0.0.1
+!
+! NOTES: 
+! use with backup file, temperature plot is achieved by adding boundary condition
+! for solution phase please call backup file
+!  
+! ##############################################################################
+
+MP_TO_PLOT='ALPX'  !EX PRXY DENS
+
+*get,ele_count,ELEM,,count
+
+*DIM,mp_plot,array,ele_count,3,
+
+*VGET,mp_plot(1,1),ELEM,,ELIST
+
+*VGET,mp_plot(1,2),ELEM,mp_plot(1,1),ATTR,MAT
+
+*DO,III,1,ele_count
+	*GET,mp_plot(III,3),%MP_TO_PLOT%,mp_plot(III,2),TEMP, , 
+	BFE,mp_plot(III,1),TEMP,1,mp_plot(III,3), , ,   
+			
+*ENDDO
+
+
+
+/PBF,TEMP, ,1   
+
+/REPLOT
+
+
+

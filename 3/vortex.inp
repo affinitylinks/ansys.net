@@ -1,0 +1,38 @@
+!I have attached the potion of my input file for setting up the CFD problem.
+!It was a two load step run.  The first load step of 50 time steps contained
+!a slight non-zero vertical velocity component, VY, to perturb the flow.
+!Afterwards, VY was reset to zero as normally done.  The key to maintaining
+!the shedding response in the flow is related to using the SUPG advection
+!discretization scheme (2nd order spatial accuracy), as well as zeroing out
+!the damping term, C2TA, in the momentum and pressure equations.
+!
+!Hope this helps.
+!
+!Mark Troscinski
+
+/SOLU
+/TITL,Vortex Shedding Cylinder Re=100
+FLDA,TIME,GLOB,10             
+FLDA,TIME,NUMB,50
+FLDA,TIME,STEP,0.1e-01         
+FLDA,ADVM,MOME,SUPG
+FLDA,ADVM,PRES,SUPG
+FLDA,C2TA,MOME,0.0
+FLDA,C2TA,PRES,0.0
+FLDA,OUTP,SUMF,1
+FLDA,TIME,APPE,0.5             
+FLDA,SOLU,FLOW,T
+FLDA,SOLU,TRAN,T
+FLDA,NOMI,DENS,0.100000E+01   
+FLDA,NOMI,VISC,0.100000E-01   
+save
+fini
+/solu
+solve 
+FLDA,TIME,NUMB,9950             
+cmse,s,inlet
+d,all,vy
+nsel,all
+solve
+fini
+/exit,nosa

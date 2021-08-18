@@ -1,0 +1,21 @@
+!usage: 
+!
+!bbldiv,kp1,kp2,ndiv,sp_rat 
+!
+!where, 
+!
+!kp1, kp2: keypoints straddling line to which you want to assign divisions 
+!ndiv: # of divisions to assign 
+!sp_rat: desired spacing ratio starting from kp1, using the usual ANSYS 
+!convention for spacing ratio assignment 
+
+ksel,s,kp,,arg1 
+ksel,a,kp,,arg2 
+lslk,s,1 
+*get,ln,line,,num,min 
+*get,kp1,line,ln,kp,1 
+*if,kp1,eq,arg1,then 
+ lesi,ln,,,arg3,arg4,,,,0 
+*else 
+ lesi,ln,,,arg3,1/arg4,,,,0 
+*endif 

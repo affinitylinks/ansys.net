@@ -1,0 +1,54 @@
+! === START of MACRO ====
+!
+! Think Peak, Inc.      Copyright 2000
+! Chris Kennedy
+!
+! LSTDBDOC.MAC - strip labels from LGWRITE file and post info in *UILIST
+
+!
+! Uses tools which should be on the OS.
+! WinNT - find ":"
+!
+! Unix - grep ":"
+!
+!
+/nopr
+!
+! Create new file with 'no info' text in
+! case there is a problem with the *get or /SYS command
+! following.
+!
+! To have an input file or macro file copied into the
+! database log record use the command /PMACRO. Place
+! /PMACRO within the file to be copied.
+!
+*CREATE,file-lgwnotes,txt
+:NOTE
+:NOTE The OS operation did not function.
+:NOTE
+:NOTE You don't have "find" or "grep" ??
+:NOTE
+*END
+!
+!
+*GET,ar10,'active',,'syname',,'start',7
+!
+LGWRITE,file,lgw,,NONE
+!
+!
+*IF,ar10,eq,'NT', then  !{
+    !
+    /sys, find ":" file.lgw > file-lgwnotes.txt
+    !
+*ELSE
+    !
+    /sys, grep ":" file.lgw > file-lgwnotes.txt
+    !
+*ENDIF  !}
+!
+*UILIST,file-lgwnotes,txt
+!
+/GO
+
+!  === END OF MACRO ===
+

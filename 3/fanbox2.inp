@@ -1,0 +1,450 @@
+/Batch
+!             The name of this file is "fanbox2"
+/prep7
+!
+!  Heated Solid contained in an enclosed region.
+!             Fan model drive the flow
+!             Two heated slabs
+!  File contains information on the geometry and the meshing.
+!
+et,1,141                           ! The FLOTRAN Element type
+eshape,2                           ! Use all quad elements
+!!!!!!!!!!!!!!!!!!!  -  Mesh Density Controls
+!
+!                    Shape of the Problem Domain
+!   These lines outline the areas chosen. Below are given the mesh
+!   parameters used.
+!
+!                  I         II   III  IIa   E  F     G
+!       __________________________________________________
+!       |\_________________|_____|____|____|__|_|_________/|
+!       ||\________________|_____|____|____|__|_|_________|_ IV
+!       || |               |\ __/|    |\__/|  | |         ||
+!       || |               ||   ||    ||  ||  | |         ||
+!       || |               ||   ||    ||  ||  | |         ||
+!       || |               ||   ||    ||  ||  | |         || V
+!       || |               ||   ||    ||  ||  | |         ||
+!       || |               ||___||    ||__||  | |         ||
+!       ||_|_______________|/____\____|/__\|__|_|_________||
+!       || |               |     |    |    |  | |         ||
+!       || |               |     |    |    |  | |         || VI
+!       || |               |     |    |    |  | |         ||
+!       ||_|_______________|_____|____|____|__|_|_________||
+!       |/_|_______________|_____|____|____|__|_|_________\|
+!
+!                     This is a Schematic - Check dimensions below
+!
+!   delb is the outer layer area thickness - extends all around
+!   dels is the thickness of the boundary area that surrounds the heated solid.
+!           These may be changed by the user
+!           The origin is at the lower left corner.
+!   The fluid is air. SI units are used, so dimensions are meters.
+!
+dxls = 1.7    ! Open space to the left of the box
+dxrs = 1.7    ! Distance between first heat slab and the fan
+dxf  = .20    ! Thickness of the Fan (F)
+dxg  = 1.2    ! Open space to the right of the fan (G)
+bxw  = .20    ! Width of the box
+bxh  = 1.00   ! Height of the box
+dyb  = .75    ! Distance below the box
+dyt  = 0.8    ! Distance above the box
+dxds = dxrs/2. - bxw ! Distance between heat slabs
+xf1  = dxls+bxw+dxrs           ! x position of the fan
+xrt = dxls+bxw+dxrs+dxf+dxg
+ytp = dyb +bxh+dyt
+!!!!!!!!!!!!!!!! Boundary layer size specifications
+delb=.2
+dels=.05
+!
+!    The Roman Numerals outside the figure designate regions.  The
+!    designations are referenced below to determine the mesh region
+!    parameters (enables mesh parameterization)
+!
+!  The parameters for the lesize commands
+!
+nb=5    ! Elements in outside boundary layer (thickness of region is delb)
+rb=3.5    ! Mesh ratio in the outside boundary layer
+no1=7   ! Elements in Region IV (top is in y direction, left side is x)
+ro1=1.5
+nx1=13    ! Elements in x direction - Region I
+rx1=.4
+nx2=5   ! Elements in x direction - Region II
+rx2= -1.5
+nx3= 12    ! Elements in x direction - Region III
+rx3=-2.
+rx3a= -1.5
+nxe = 14
+rxe = -2.5
+nx4 = 3  ! Elements in the fan - Region F
+rx4 = -2
+nx5 = 14  ! Elements in x direction - Region G
+rx5 = -2
+ny1 = 6  ! Elements in y direction - Region VI
+ry1 =1.5
+ny2= 10   ! Elements in y direction - Region V
+ry2 = -2
+ns=4     ! Elements in the boundary layer around the solid
+rs =5
+!!!!!!!!!!!!!!!!!!! Aluminum-Silicon alloy
+mp,kxx,2,2.2E-3           ! Thermal conductivity of solid in the heated box
+mp,c,2,2.496              ! Specific heat of solid in heated solid
+mp,dens,2,8.00E-3         ! Density of the heated solid
+mp,kxx,3,2.0E-3
+mp,c,3,2.0
+mp,dens,3,8.00E-3         ! fan solid
+mp,kxx,3,2.0E-3
+qinsolid=9.4778E-4/(bxh*bxw)! Volumetric heat source/slab (1 watt)
+!!!!!!!!!!!!!!!!!!!!!!  Geometry calculations are based on established
+do1=dyt-delb-dels
+k,1,0,0
+k,2,do1+delb,0
+dx1=dxls-dels
+k,3,dx1,0
+dx2=dxls+bxw+dels
+k,4,dx2,0
+dx3=xrt - 1.5*delb
+k,5,xrt,0
+k,6,delb,delb
+k,7,do1+delb,delb
+k,8,dx1,delb
+k,9,dx2,delb
+k,10,dx3,delb
+dy1=dyb-dels
+k,11,0,dy1
+k,12,delb,dy1
+k,13,do1+delb,dy1
+k,14,dx1,dy1
+k,15,dx2,dy1
+k,16,dx3,dy1
+k,17,xrt,dy1
+k,18,dxls,dyb
+k,19,dxls+bxw,dyb
+k,20,dxls,dyb+bxh
+k,21,dxls+bxw,dyb+bxh
+dy2=dyb+bxh+dels
+k,22,do1+delb,dy2
+k,23,dx1,dy2
+k,24,dx2,dy2
+k,25,dx3,dy2
+k,26,xrt,dy2
+dy3=ytp-delb
+k,27,delb,dy3
+k,28,dx1,dy3
+k,29,dx2,dy3
+k,30,dx3,dy3
+k,31,0,ytp
+k,32,dx1,ytp
+k,33,dx2,ytp
+k,34,xrt,ytp
+!  Outer boundary layer thickness delb lines1-12
+l,1,6
+l,2,7
+l,3,8
+l,4,9
+l,5,10
+l,17,16
+l,26,25
+l,34,30
+l,33,29
+l,32,28
+l,31,27
+l,11,12
+lesize,all,,,nb,rb
+!
+!   Lower vertical lines 13-19 (ny1)
+l,1,11
+l,6,12
+l,7,13
+l,8,14
+l,9,15
+l,10,16
+l,5,17
+lsel,s,,,13,19
+lesize,all,,,ny1,ry1
+!
+!   Second vertical lines 20-28 (ny2)
+l,11,31
+l,12,27
+l,13,22
+l,14,23
+l,18,20
+l,19,21
+l,15,24
+l,16,25
+l,17,26
+lsel,s,,,20,28
+lesize,all,,,ny2,ry2
+lesize,24,,,ny2,ry2*1.5
+lesize,25,,,ny2,ry2*1.5
+!
+!  Wrap around  lines 29-36 (no1)
+l,1,2
+l,6,7
+l,12,13
+l,27,22
+l,28,23
+l,29,24
+l,30,25
+l,34,26
+lsel,s,,,29,36
+lesize,all,,,no1,ro1
+!
+!  First horizontal batch lines 37-42 (nx1)
+l,2,3
+l,7,8
+l,13,14
+l,22,23
+l,27,28
+l,31,32
+lsel,s,,,37,42
+lesize,all,,,nx1,rx1
+!
+! Second horizontal batch lines 43-50 (nx2)
+l,3,4
+l,8,9
+l,14,15
+l,18,19
+l,20,21
+l,23,24
+l,28,29
+l,32,33
+lsel,s,,,43,50
+lesize,all,,,nx2,rx2
+!
+! Third horizontal batch lines 51-56 (nx3)
+l,4,5
+l,9,10
+l,15,16
+l,24,25
+l,29,30
+l,33,34
+lsel,s,,,52,55
+lesize,all,,,nx3,rx3
+lsel,s,,,51,56,5
+lesize,all,,,nx3,-1.5
+!
+! Boundary layer around the solid 57-60 (ns)
+l,18,14
+l,19,15
+l,21,24
+l,20,23
+lsel,s,,,57,60
+lesize,all,,,ns,rs
+alls
+!!!!!!!!!        Create the heated solid first
+a,18,19,21,20           ! Area 1 is the first heat slab
+mat,1
+asel,u,,,1
+a,1,2,7,6
+a,2,3,8,7
+a,3,4,9,8
+a,4,5,10,9
+a,1,6,12,11
+a,6,7,13,12
+a,7,8,14,13
+a,8,9,15,14
+a,9,10,16,15
+a,10,5,17,16
+a,11,12,27,31
+a,12,13,22,27
+a,13,14,23,22
+a,14,18,20,23
+a,14,15,19,18
+a,19,15,24,21
+a,20,21,24,23
+a,15,16,25,24
+a,16,17,26,25
+a,22,23,28,27
+a,23,24,29,28
+a,24,25,30,29
+a,25,26,34,30
+a,27,28,32,31
+a,28,29,33,32
+a,29,30,34,33
+!
+k,35,xf1,-.2
+k,36,xf1,.2+ytp
+l,35,36                ! Line 61
+k,37,xf1+dxf,-.2
+k,38,xf1+dxf,.2+ytp
+l,37,38                ! Line 62
+lsel,s,,,61,62
+asel,s,,,5,10,5
+asel,a,,,19,27,4
+asbl,all,all
+alls
+*get,ode,kp,,num,max
+xsel = dx2+dxds+dels
+xser = xsel + bxw
+k,ode+1,dx2+dxds,-.2
+k,ode+2,dx2+dxds,.2+ytp
+l,ode+1,ode+2                ! Line 51
+k,ode+3,dx2+dxds+2*dels+bxw,-.2
+k,ode+4,dx2+dxds+2*dels+bxw,.2+ytp
+l,ode+3,ode+4                ! Line 52
+asel,s,,,28,31,3
+asel,a,,,32,36,2
+lsel,s,,,51,52
+asbl,all,all
+k,51,xsel,dyb
+k,52,xser,dyb
+k,53,xser,dyb+bxh
+k,54,xsel,dyb+bxh
+lsel,none
+!!!!!!!!! boundary layer lines for second slab
+l,51,55
+l,52,61
+l,53,62
+l,54,56
+l,51,52
+l,54,53
+l,51,54
+l,52,53
+lsel,a,,,111,112
+lsel,a,,,94,105,11
+asel,s,,,51
+asbl,all,all
+llist
+alls
+!!!!!!!!! Redo horizontal lesizes on the right side
+lsel,s,,,88,90
+lsel,a,,,85
+lesize,all,,,nx4
+lsel,s,,,86,87
+lesize,all,,,nx4,rx4
+lsel,s,,,66,67
+lsel,a,,,77,81,4
+lsel,a,,,69,70
+lesize,all,,,nx5,rx5
+!!!!!!!!!!!!!!  Take into account the second slab
+lsel,s,,,53,54
+lsel,a,,,91,93,2
+lsel,a,,,56,61,5
+lesize,all,,,nx3,rx3
+lsel,s,,,111,112
+lsel,a,,,72,73
+lesize,all,,,nx2,rx2
+lsel,s,,,107,110
+lesize,all,,,nx2
+lsel,s,,,96,97
+lsel,a,,,99,100
+lsel,a,,,102,104,2
+lesize,all,,,nxe,rxe
+!!!!!!!!!   Slab Vertical lines
+lsel,all
+lesize,75,,,ny2,ry2*1.5
+lesize,79,,,ny2,ry2*1.5
+lesize,94,,,ny2,ry2
+lesize,105,,,ny2,ry2
+!!!!!!!!  Boundary layer vertical lines
+lsel,s,,,55,65,10
+lsel,a,,,68
+lsel,a,,,98
+lesize,all,,,nb,rb
+lsel,s,,,71,74,3
+lsel,a,,,62
+lsel,a,,,101
+lesize,all,,,nb,1./rb
+mat,2
+asel,s,,,1,36,35   ! Mesh heated solids first
+amesh,all
+alls
+asel,u,,,38,40      ! Unselect non-fluid areas (fan boundary)
+asel,u,,,1,36,35    ! Unselected heated solids
+mat,1
+amesh,all           ! Mesh the fluid regions
+!!!!!!!!!!!         ! Mesh the fan
+asel,s,,,39
+real,2           ! Activate and define real constant set 2.
+r,2,4,1,-.00125,-1.E-6      ! The Fan Constants
+amesh,all
+!!!!!!!!!!!!!!! Solid materials around the fan
+real,1
+mat,3
+asel,s,,,38,40,2
+amesh,all
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  Boundary conditions
+! Right wall boundary condition
+lsel,s,,,28,36,8
+lsel,a,,,19
+nsll,,1
+d,all,vx,0
+d,all,vy,0
+sf,all,CONV,1.0,80.
+! Upper wall condition
+lsel,s,,,42,50,8
+lsel,a,,,70,90,20
+lsel,a,,,61
+lsel,a,,,100,110,10
+nsll,,1
+d,all,vy,0
+d,all,vx,0
+!  Left wall boundary condition
+lsel,s,,,13,20,7
+nsll,,1
+d,all,vx,0
+d,all,vy,0
+sf,all,CONV,1.0,80.
+!!!!  Bottom boundary is Adiabatic
+lsel,s,,,29,37,8
+lsel,a,,,43,53,10
+lsel,a,,,96,107,11
+lsel,a,,,66,85,19
+nsll,,1
+d,all,vx,0
+d,all,vy,0
+!!!!!!!!!!!!!!!!!!!!!!!!!! Apply the volumetric heat source
+asel,s,,,1
+asel,a,,,36
+esel,s,mat,,2
+nsle
+bfe,all,hgen,1,qinsolid
+!!!!!!!!!!!!!!!!!!!!!!!!!! Apply 0 pressure at upper left corner
+nsel,s,loc,x,0
+nsel,r,loc,y,ytp
+d,all,pres,0
+!            The origin is at the lower left corner
+TOFF,460
+alls
+save
+finish
+/solu
+FLDA,SOLU,FLOW,1         ! Select flow option
+FLDA,SOLU,TURB,1         ! Turn on turbulence
+FLDA,OUTP,SUMF,10,       ! Summary frequency, every 10 global iterations
+FLDA,PROT,DENS,AIR-IN    ! Choose AIR-IN, but use a constant reference
+FLDA,PROT,VISC,AIR-IN
+FLDA,PROT,COND,AIR-IN
+FLDA,PROT,SPHT,AIR-IN
+FLDA,PRES,REFE,14.7
+FLDA,TEMP,NOMI,80
+FLDA,TEMP,BULK,80
+FLDA,MAXI,TEMP,1000
+FLDA,TURB,WALL,EQLB
+FLDA,TURB,RATI,100.
+FLDA,METH,PRES,3
+FLDA,CONV,PRES,1e-10
+ACEL,0.,386.4             ! Gravity acts downward
+FLDA,ITER,EXEC,20         ! Do all this for 20 global iterations
+FLDA,STAB,MOME,1
+FLDA,STAB,VISC,1.E-6
+solve
+FLDA,STAB,VISC,0
+FLDA,ITER,EXEC,80        ! Get the solution out to 100 iterations
+solve
+flda,meth,temp,5        ! Invoke direct solve
+flda,srch,temp,20
+flda,conv,temp,1e-16
+flda,relx,temp,1.0
+flda,iter,exec,40
+flda,outp,sumf,1
+flda,solu,temp,1
+flda,solu,flow,0
+solve
+save
+
+finish
+
+/exit
+
+

@@ -1,0 +1,138 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Simple nonlinear problem
+/com,  Rigid ball hitting cantilever plate
+/com,    Rigid-flexible contact
+/com,    BISO (BKIN in 5.6) plasticity
+/com,
+/com,  full vs. reduced
+/com,    increase FKN?
+/com,  pstres modal
+/com,  thermal
+/com,  monitor at pilot node
+/com,
+/com,  BISO and BKIN give same results (as expected)
+/com,  Offset specified for contact elemetns
+/com,    Shell thickness considered in contact
+/com,
+
+*get,STATGUI,active,,int
+*if,STATGUI,eq,0,then
+  /show,file
+*endif
+/triad,lbot
+/gra,power
+/title,Cantilever Plate
+
+*set,THCKNESS,0.5
+
+*set,NUM_SHLL,1
+*set,NUM_CNTC,2
+*set,NUM_TRGT,3
+
+/prep7
+et,NUM_SHLL,181
+!keyopt,NUM_SHLL,3,2
+r ,NUM_SHLL,THCKNESS
+mp,ex  ,NUM_SHLL,10e6
+mp,nuxy,NUM_SHLL,0.3
+mp,dens,NUM_SHLL,0.1/386.4
+!mp,alpx,NUM_SHLL,1.35e-5
+!mp,kxx ,NUM_SHLL,2.0885e-3
+!mp,c   ,NUM_SHLL,88.8
+tb,bkin,NUM_SHLL,1
+!tb,biso,NUM_SHLL,1
+tbtemp,
+tbdata,1,44000,5e5
+
+et,NUM_CNTC,170
+et,NUM_TRGT,173
+keyopt,NUM_TRGT,11,1
+r ,NUM_CNTC,5
+mp,mu  ,NUM_CNTC,1e-31
+
+wprota,,90
+rectng,,5,,20
+areverse,all
+aatt,NUM_SHLL,NUM_SHLL,NUM_SHLL
+esize,0.5
+mshape,0
+mshkey,1
+amesh,all
+
+wpoffs,,18,-9
+csys,wp
+type,NUM_CNTC
+real,NUM_CNTC
+mat ,NUM_CNTC
+tsha,sphe
+nsel,none
+n,10000
+e,ndnext(0)
+
+allsel,all
+csys,0
+asel,s,type,,NUM_SHLL
+nsle
+type,NUM_TRGT
+real,NUM_CNTC
+mat ,NUM_CNTC
+esurf
+allsel,all
+
+/solu
+antype,static
+nlgeom,on
+solcon,on
+lsel,s,loc,z,0
+dl,all,,all,0
+lsel,s,loc,x,0
+dl,all,,symm
+
+nsel,s,node,,10000
+d,all,uy,-6
+allsel,all
+time,1
+nsubs,5,100,2
+
+sbctran
+/view,1,1,1,1
+/auto
+eplot
+solve
+finish
+
+wpstyle,,,,,,,,0
+/eshape,1
+/view,1,-1
+/auto
+
+/post1
+set,last
+/title,von Mises Stress of Cantilever Plate (/ESHAPE ON)
+plnsol,s,eqv
+/eshape,0
+/user,1
+/title,von Mises Stress of Cantilever Plate (/ESHAPE OFF)
+plnsol,s,eqv
+/auto
+/view,1,1,1,1
+/title,Contact Pressure
+esel,s,ename,,173
+plnsol,cont,pres
+finish
+
+*if,STATGUI,eq,0,then
+  /exit
+*endif

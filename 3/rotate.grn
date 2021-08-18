@@ -1,0 +1,139 @@
+:F pwrotaxis.GRN
+:D April 28, 1997.  Joe Metrisin
+:I      0,       0,       0
+:!
+:!  This granual/macro will re-orient a model by rotating a specified angle
+:!  about any of the X,Y,Z axes of the global or currently active coordinate
+:!  system.  The user must choose the item type to be rotated.  All currently
+:!  selected items of that type are operated on.
+:!
+:!  ANSYS hierarchy rules apply for items to be moved.  i.e.
+:!  Rotating lines also rotates attached keypoints and elements.
+:!  Rotating areas also rotates attached lines, keypoints, elements.
+:!  Rotating volumes also rotates attached areas, lines, keypoints, elements.
+:!
+:N Fnc_PWRotaxis
+:S      0,     0,     0
+:T Cmd
+:A Rotate model
+:D      Rotate model about any axis
+:H Hlp_C_PWRotaxis
+:C ! Fnc_PWRotaxis
+!
+ Fld_0
+  Typ_Lab
+  Prm_   Rotate Model about any coordinate system axis:
+ Fld_0
+  Typ_Sep
+!
+Cmd_)*SET,_rotitem
+ Fld_2
+  Prm_Choose items to rotate:
+  Typ_Lis_RadioB
+    Lis_Keypoints       ,1
+    Lis_Lines and Mesh  ,2
+    Lis_Areas and Mesh  ,3
+    Lis_Volumes and Mesh,4
+    Lis_Unattached Mesh ,5
+  Def_4
+ Fld_0
+  Typ_Lab
+  Prm_Lower order entities are moved as well.
+ Fld_0
+  Typ_Lab
+  Prm_i.e. Rotating areas also rotates attached lines, keypoints, mesh.
+ Fld_0
+  Typ_Sep
+!
+Cmd_)*SET,_rotcsys
+ Fld_2
+  Prm_   Coordinate System:
+  Typ_Lis_RadioB
+    Lis_Global CSYS     ,1
+    Lis_Active CSYS     ,2
+ Fld_0
+  Typ_Sep
+!
+Cmd_)*SET,_rotang
+ Fld_2
+  Prm_Choose angle of rotation:
+  Typ_Real
+  Def_90.0
+ Fld_0
+  Typ_Sep
+!
+Cmd_)*SET,_rotaxis
+ Fld_2
+  Prm_   Rotation Axis:
+  Typ_Lis_RadioB
+    Lis_       X-axis   ,1
+    Lis_       Y-axis   ,2
+    Lis_       Z-axis   ,3
+Cal_Fnc_PWRot_X,2,eq,1
+Cal_Fnc_PWRot_Y,2,eq,2
+Cal_Fnc_PWRot_Z,2,eq,3
+:E End
+:!
+:N Fnc_PWRot_X
+:S      0,     0,     0
+:T Cmd
+:C ! Fnc_PWRot_X
+Inp_P
+Cmd_)*get,actcsys,active,,csys
+Cmd_)*IF,_rotcsys,EQ,1,THEN
+Cmd_) local,500001,1,0,0,0,  0,  0, 90
+Cmd_)*else
+Cmd_)clocal,500001,1,0,0,0,  0,  0, 90
+Cmd_)*ENDIF
+Cal_Fnc_PWRot_Model
+:E End
+:!
+:N Fnc_PWRot_Y
+:S      0,     0,     0
+:T Cmd
+:C ! Fnc_PWRot_Y
+Inp_P
+Cmd_)*get,actcsys,active,,csys
+Cmd_)*IF,_rotcsys,EQ,1,THEN
+Cmd_) local,500001,1,0,0,0,  0, 90,  0
+Cmd_)*else
+Cmd_)clocal,500001,1,0,0,0,  0, 90,  0
+Cmd_)*ENDIF
+Cal_Fnc_PWRot_Model
+:E End
+:!
+:N Fnc_PWRot_Z
+:S      0,     0,     0
+:T Cmd
+:C ! Fnc_PWRot_Z
+Inp_P
+Cmd_)*get,actcsys,active,,csys
+Cmd_)*IF,_rotcsys,EQ,1,THEN
+Cmd_) local,500001,1,0,0,0,  0,  0,  0
+Cmd_)*else
+Cmd_)clocal,500001,1,0,0,0,  0,  0,  0
+Cmd_)*ENDIF
+Cal_Fnc_PWRot_Model
+:E End
+:!
+:N Fnc_PWRot_Model
+:S      0,     0,     0
+:T Cmd
+:C ! Fnc_PWRot_Model
+Inp_P
+Cmd_)*if,_rotitem,eq,1,then
+Cmd_)kgen, 1, all, , , , _rotang, , , ,1
+Cmd_)*elseif,_rotitem,eq,2,then
+Cmd_)lgen, 1, all, , , , _rotang, , , ,1
+Cmd_)*elseif,_rotitem,eq,3,then
+Cmd_)agen, 1, all, , , , _rotang, , , ,1
+Cmd_)*elseif,_rotitem,eq,4,then
+Cmd_)vgen, 1, all, , , , _rotang, , , ,1
+Cmd_)*elseif,_rotitem,eq,5,then
+Cmd_)ngen, 2, 0, all, , , , _rotang, , , ,1
+Cmd_)*endif
+Cmd_)csys,actcsys
+Cmd_)csdel,500001
+Cmd_)/replot
+:E End
+:!

@@ -1,0 +1,108 @@
+!----------------------------------------
+! example of EFS vs. contact method
+! written by sheldon, 06/26/08
+!
+! area 1 = EFS method with SURF154
+! area 2 = 17x contact method using MPC
+! results should match
+!
+! if user wants nonlinear spring, replace
+! COMBIN14 appropriately
+! nonlinear spring was not used in this
+! example to show EFS results = contact method
+!----------------------------------------
+finish
+/clear
+
+MY_STIFFNESS = 2e5
+DIM_LENGTH   = 33
+DIM_THICK    = 0.25
+DIM_OFFSET   = 10
+
+/vup,1,z
+/view,1,1,1,1
+
+/prep7
+et,1,181
+et,2,154
+keyopt,2,4,1
+et,3,170
+keyopt,3,2,1
+et,4,173
+keyopt,4,4,1
+keyopt,4,2,2
+keyopt,4,12,5
+et,5,14
+keyopt,5,2,3
+et,6,14,,1
+et,7,14,,2
+et,8,14,,4
+et,9,14,,5
+et,10,14,,6
+
+r,1,DIM_THICK
+r,2,,,,MY_STIFFNESS/DIM_LENGTH/DIM_LENGTH
+r,3
+r,5,MY_STIFFNESS
+
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,dens,1,0.1/386.1
+
+rectng,,DIM_LENGTH,,DIM_LENGTH
+wpoffs,,,DIM_OFFSET
+rectng,,DIM_LENGTH,,DIM_LENGTH
+
+esize,DIM_LENGTH/5
+amesh,all
+
+!----------------------------------------
+! Create SURF154
+!----------------------------------------
+asel,s,area,,1
+allsel,below,area
+type,2$real,2$mat,2
+esurf
+d,all,ux
+d,all,uy
+
+!----------------------------------------
+! Create 17x contact/target w/ COMBIN14
+!----------------------------------------
+asel,s,area,,2
+allsel,below,area
+type,4$real,3$mat,3
+esurf
+d,all,ux
+d,all,uy
+nsel,none
+n,,DIM_LENGTH/2,DIM_LENGTH/2,DIM_OFFSET
+n,,DIM_LENGTH/2,DIM_LENGTH/2,DIM_OFFSET
+MYNODE1=ndnext(0)
+MYNODE2=ndnext(MYNODE1)
+type,3$tshap,pilo
+e,MYNODE1
+type,5$real,5
+e,MYNODE1,MYNODE2
+*do,AR99,6,10
+  r,AR99,1e10
+  type,AR99
+  real,AR99
+  e,MYNODE1,MYNODE2
+*enddo
+d,MYNODE2,all
+
+allsel,all
+acel,0,0,386.1
+finish
+
+/solu
+solve
+finish
+
+!----------------------------------------
+! Both plates should have same displacements
+!----------------------------------------
+/post1
+set,last
+plnsol,u,z

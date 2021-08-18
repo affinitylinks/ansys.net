@@ -1,0 +1,60 @@
+!                 Date: Wed, 31 Mar 1999 14:26:03 -0700
+!                 From: "Imad Tabsh" <ansys@xxxxxxxx.xxxx
+!              Subject: Re: Hydrodynamic lubrication pressure distribution on an area
+!
+!              Brent,
+!
+!              You can apply only constant pressure on an area. What you have to do is
+!              apply the pressure directly on the element face if you have a function that
+!              define a varying pressure.
+!
+!              He is a possible macro to do the job. I am assuming that you have meshed a
+!              solid model with 3D elements. You will need to supply the function that
+!              defines the pressure (see ???? below).
+
+!
+! The macro assumes that an area is selected before calling it.
+! It will probably work if more than one area is selected
+! however you need to make sure that the selected areas define
+! one unique face for the underlying elements.
+!
+NSLA,S,0   ! select all nodes internal to the area(s)
+ESLN,S,0   ! select all elements connected to the nodes
+NSLA,S,1   ! select all nodes internal to the area and
+! on its boundary. By now, you have only
+! the elements that have a face on the area
+! and all the nodes on these faces. You may also
+! have an element that has an edge on the area
+! but that is taken care of later on
+!
+! create the pressure values at the nodes
+!
+*GET,AR10,NODE,,NUM,MAX  ! maximum node number to define array length
+*DIM,PATN_,,AR10         ! array of pressure values
+*GET,AR11,NODE,,COUNT    ! number of selected nodes
+AR12=0
+*DO,AR13,1,AR11          ! loop on all selected nodes
+AR12=NDNEXT(AR12)       ! node number in the list
+PATN_(AR12)=????        ! define pressure at node AR12 using your function
+! you can get nodal X,Y,Z coordinates using
+! NX(AR12), NY(AR12), NZ(AR12). Values are
+! provided in the currently active coordinate
+system
+*ENDDO
+!
+! loop on elements and apply the pressure
+!
+*GET,AR11,ELEM,,COUNT    ! number of selected elements
+AR12=0
+*DO,AR13,1,AR11          ! loop on all selected nodes
+AR12=ELNEXT(AR12)       ! element number in the list
+AR14=NMFACE(AR12)       ! face number
+*IF,AR14,LE,0,CYCLE      ! skip if face is not in the area
+AR15=PATN_(NDFACE(AR12,AR14,1)) ! pressure at node 1 on the face
+AR16=PATN_(NDFACE(AR12,AR14,2)) ! pressure at node 2 on the face
+AR17=PATN_(NDFACE(AR12,AR14,3)) ! pressure at node 3 on the face
+AR18=PATN_(NDFACE(AR12,AR14,4)) ! pressure at node 4 on the face
+SFE,AR12,AR14,PRES,,AR15,AR16,AR17,AR18 ! apply pressure on the face
+*ENDDO
+*DEL,PATN_               ! delete temp array of pressur
+

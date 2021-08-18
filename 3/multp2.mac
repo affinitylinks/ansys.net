@@ -1,0 +1,16 @@
+!
+! This macro will allow you to bring in multiple
+! parts through the connection for Pro/E
+!
+! To use, before import of 2nd, 3rd, etc. part, run this macro
+!
+finish
+/prep7
+numcmp,all                ! compress all enties numbers
+!
+! Offset kp,line,area numbers.
+numoff,kp,10000
+numoff,line,10000
+numoff,area,10000
+numoff,volu,10000
+!

@@ -1,0 +1,105 @@
+!  ***************************************************************
+!  FILE:         DCONTOUR.MAC
+!  AUTHOR:       Doug Woolridge
+!  ANSYS REV:    5.6
+!
+!  USAGE:        DCONTOUR,scale_factor,'unit_text'
+!
+!  FILES REQ'D:  x
+!
+!  TEXT KEYS:    x
+!
+!  FILES CREATD: x
+!
+!  DESCRIPTION:  Creates a second contour using 2D annotation
+!                under the original color contour.  The values
+!                on the new contour are scaled by 'scale_factor'.
+!                View portion of the legend cannot be displayed
+!                withoug interference (/PLOPTS,LEG2,OFF).
+!                Uncomment the    *IF,ARG2,EQ,0,THEN
+!                                   ARG2=' '
+!                                 *ENDIF
+!                lines if you want to get rid of the '0' in the
+!                plot when a 'unit_text' is not specified.
+!                This will create an ERROR message when you specify
+!                a 'unit_text', but the macro will still function
+!                fine.  If the values of the CONT_xx variables
+!                change, the numbers on the plot will change.
+!
+!                NOTE:  This macro deletes all existing annotations.
+!
+!  LOCAL VARS:   ARG1 = scale_factor
+!                ARG2 = 'unit_text'
+!
+!                AR20 = Number of contours / Minimum contour value
+!                AR21 = Contour increment
+!                AR22 = Vertical spacing bewteen legend rectangles   
+!                AR23 = Y-Location of new legend (screen coordinates)
+!                AR24 = Y-Depth of contour rectangles
+!                AR25 = X-Location of new legend (screen coordinates)
+!                AR26 = X-Length of contour rectangles
+!                AR27 = Counter variable
+!
+!  INPUT VALS:   x
+!
+!  RETRUN VALS:  x
+!
+!  LIMITATIONS:  1) Functions only with the default 9-color
+!                   contour display.
+!                2) LEG2 must be off for proper alignment.
+!                3) 'unit_text' is limited to 8 characters
+!
+!  REVISION:     01 - mm/dd/yy - who - description
+!  *****************************************************************
+
+*GET,AR20,GRAPH,,CONTOUR,NCONT
+*IF,AR20,EQ,9,THEN
+
+  *IF,ARG1,EQ,0,THEN
+    ARG1=1
+  *ENDIF
+
+!  *IF,ARG2,EQ,0,THEN
+!    ARG2=' '
+!  *ENDIF
+
+  AR22=0.050
+  AR23=-0.350
+  AR24=0.037
+  AR25=1.049
+  AR26=0.100
+
+  *GET,AR20,GRAPH,,CONTOUR,VMIN
+  *GET,AR21,GRAPH,,CONTOUR,VINC
+
+  /ANN,DELE
+
+  *DO,AR27,0,8,1
+    /PSPEC,(AR27+4),1,1
+    /POLY,4,AR25,AR23-(AR27*AR22),AR25+AR26,AR23-
+(AR27*AR22),AR25+AR26,AR23-AR24-(AR27*AR22),AR25,AR23-AR24-(AR27*AR22)
+
+    CONT_%AR27%=CHRVAL(ARG1*(AR20+AR27*AR21-AR21))
+  *ENDDO
+
+  CONT_9=CHRVAL(ARG1*(AR20+9*AR21-AR21))
+  CONT_10='%ARG2%'
+
+  /TLABEL,1.223,AR23-(0*AR22)-0.005,%CONT_0%
+  /TLABEL,1.223,AR23-(1*AR22)-0.005,%CONT_1%
+  /TLABEL,1.223,AR23-(2*AR22)-0.005,%CONT_2%
+  /TLABEL,1.223,AR23-(3*AR22)-0.005,%CONT_3%
+  /TLABEL,1.223,AR23-(4*AR22)-0.005,%CONT_4%
+  /TLABEL,1.223,AR23-(5*AR22)-0.005,%CONT_5%
+  /TLABEL,1.223,AR23-(6*AR22)-0.005,%CONT_6%
+  /TLABEL,1.223,AR23-(7*AR22)-0.005,%CONT_7%
+  /TLABEL,1.223,AR23-(8*AR22)-0.005,%CONT_8%
+  /TLABEL,1.223,AR23-(9*AR22)-0.005,%CONT_9%
+
+  /TLABEL,1.100,AR23+0.050,%CONT_10%
+
+*ELSE
+  *MSG,UI
+This macro only functions with 9 color contours.
+
+*ENDIF

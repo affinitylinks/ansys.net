@@ -1,0 +1,145 @@
+!
+!  Microwave Oven (Coupled HF Emag + Thermal)
+!  10/17/2001
+!
+/uis,msgpop,3 
+/nerr,5,1000000,
+/title, dielectric load in a rectangular cavity
+/filn,dielectric
+/view,1,1,1,1 ! isometric view
+
+wgw=0.078 ! waveguide width
+wgh=0.018 ! waveguide height
+wgl=0.05 ! waveguide length 
+cw=0.270 ! cavity width
+ch=0.188 ! cavity height
+cl=0.267 ! cavity length 
+freq=2.45e9 ! frequency (hz)
+speed=3e8 ! speed of light
+epw=10 ! elements/wavelength (>=10)
+es=(speed/freq)/epw ! average element size
+thermal=1 ! thermal soln. 0=no, 1=yes
+
+/prep7
+! create air cavity
+block,wgl,wgl+cl,wgh-ch,wgh,-0.096,0.174
+! create dielectric load
+block,0.133,0.234,-0.17,-0.145,-0.011,0.089
+vovlap,all
+! create waveguide
+block,0,wgl,0,wgh,0,wgw
+vglue,all
+! high frequency solid tetrahedral
+et,1,119
+! electrical permittivity in waveguide
+mp,perx,1,1.0
+! relative permeability in waveguide
+mp,murx,1,1.0
+! electrical permittivity in cavity
+mp,perx,2,1.0
+! relative permeability in cavity 
+mp,murx,2,1.0
+! electrical permittivity of dielectric load
+mp,perx,3,5.0
+! relative permeability of dielectric load
+mp,murx,3,1.0
+! loss tangent of dielectric load
+mp,lsst,3,0.3
+esize,es
+mat,1
+vsel,s,volu,,1
+vmesh,all ! mesh waveguide
+mat,3
+vsel,s,volu,,2
+vmesh,all ! mesh dielectric load
+mat,2
+vsel,s,volu,,4
+vmesh,all ! mesh cavity
+finish
+/solu
+allsel
+!define electric wall boundaries
+asel,s,ext
+asel,u,loc,x,0
+da,all,ax,0,0  
+allsel
+!define local coordinate system at inlet port
+local,11,0,0,0,0.078/2
+asel,s,loc,x,0
+sfa,all,,port,1
+portopt,1,te10,11,wgw,wgh,1.0
+allsel
+asel,s,loc,x,wgl
+asel,r,loc,y,0,wgh
+sfa,all,,port,2
+portopt,2,te10,11,wgw,wgh,
+csys,0
+allsel
+antype,harm
+eqslv,sparse
+harfrq,freq
+! write hf emag physics file
+physics,write,emag
+finish
+*if,thermal,eq,1,then
+/prep7
+! thermal model
+allsel
+lsclear,all
+physics,clear
+et,1,87
+! thermal conductivity (waveguide)
+mp,kxx,1,0.0002
+! thermal conductivity (cavity)
+mp,kxx,2,0.0002
+! thermal conductivity (dielectric)
+mp,kxx,3,0.6
+finish
+/solu
+! convection at top surface of dielectric
+asel,s,loc,y,-0.145
+sfa,all,,conv,10
+antype,static
+allsel
+sfadel,all,,port
+sfedele,all,all,all 
+save
+! write thermal physics file
+physics,write,thermal
+physics,clear
+finish
+save
+*endif
+/solu
+physics,clear
+physics,read,emag
+solve
+save
+fini
+/post1
+physics,clear
+physics,read,emag
+set,first
+esel,s,mat,,3
+nsle,s,1
+plesol,jheat, ,0,
+finish
+*if,thermal,eq,1,then
+/solu
+physics,clear
+physics,read,thermal
+! read hgen loads 
+ldread,hgen,last,,,2,dielectric,rmg
+/psf,conv,hcoe,1,0,1
+/pbf,hgen, ,1   
+/pbc,all, ,1
+esel,s,mat,,3
+nsle,s,1
+eplot
+allsel
+solve   
+finish  
+/post1  
+set,last
+plnsol,temp, ,0,
+*endif

@@ -1,0 +1,130 @@
+! by G.N.S.Prakash
+
+/nopr
+/pmacro
+
+
+cm,ltmp1,line
+cm,ktmp,kp
+ksel,all
+*get,kmax,kp,0,num,max
+
+*do,i,1,1000
+lsel,s,p
+*get,lc,line,0,count
+*if,lc,eq,2,then
+*exit
+*endif
+*enddo
+cm,ltmp2,line
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+*get,l1,line,0,num,min
+*get,l2,line,0,num,max
+
+lsel,s,,,l1
+ksll
+*get,k1,kp,0,num,min
+*get,k2,kp,0,num,max
+lsel,s,,,l2
+ksll
+*get,k3,kp,0,num,min
+*get,k4,kp,0,num,max
+cmsel,s,ltmp2
+
+x1=kx(k1)
+y1=ky(k1)
+x2=kx(k2)
+y2=ky(k2)
+
+x3=kx(k3)
+y3=ky(k3)
+x4=kx(k4)
+y4=ky(k4)
+
+nume_a = (x4-x3)*(y1-y3)-(y4-y3)*(x1-x3)
+
+nume_b = (x2-x1)*(y1-y3)-(y2-y1)*(x1-x3)
+
+deno = (y4-y3)*(x2-x1)-(x4-x3)*(y2-y1)
+
+*if,deno,eq,0, then
+*msg,note,
+Lines are parallel
+*go,stop
+*endif
+
+div_a = nume_a/deno
+div_b = nume_b/deno
+
+intx = x1+div_a*(x2-x1)
+inty = y1+div_a*(y2-y1)
+
+cmsel,s,ltmp2
+ksll
+k,kmax+1,intx,inty
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*if,div_a,ge,0,and,div_a,le,1,then
+*if,div_b,ge,0,and,div_b,le,1,then
+lptn,all
+*endif
+*endif
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+flag1=0
+flag2=0
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*if,div_a,lt,0,or,div_a,gt,1,then
+	flag1=1
+	kd1=sqrt( ((intx-x1)*(intx-x1)) + ((inty-y1)*(inty-y1)) )
+	kd2=sqrt( ((intx-x2)*(intx-x2)) + ((inty-y2)*(inty-y2)) )
+	lsel,none
+	*if,kd1,lt,kd2,then
+		l,k1,kmax+1
+		*else
+		l,k2,kmax+1
+	*endif
+	lsel,a,,,l1
+	lcomb,all
+*get,l1,line,0,num,min
+*endif
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*if,div_b,lt,0,or,div_b,gt,1,then
+	flag2=1
+	kd3=sqrt( ((intx-x3)*(intx-x3)) + ((inty-y3)*(inty-y3)) )
+	kd4=sqrt( ((intx-x4)*(intx-x4)) + ((inty-y4)*(inty-y4)) )
+	lsel,none
+	*if,kd3,lt,kd4,then
+		l,k3,kmax+1
+		*else
+		l,k4,kmax+1
+	*endif
+	lsel,a,,,l2
+	lcomb,all
+*get,l2,line,0,num,min
+*endif
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+alls
+*if,flag1,eq,1,and,flag2,eq,1,then
+lglu,all
+*endif
+
+*if,flag1,eq,1,and,flag2,eq,0,then
+lsbl,l2,l1
+*endif
+
+*if,flag1,eq,0,and,flag2,eq,1,then
+lsbl,l1,l2
+*endif
+
+alls
+lplo
+
+/gopr
+
+
+!G.N.S.Prakash
+
+

@@ -1,0 +1,77 @@
+!================ fldsurf: Set up Surf152/Fluid116 connection ============
+! Input: area component of surface area with meshed undervolume
+! line component of meshed fluid lines
+!
+!================= Simon X. Shang, Aerojet, Feb. 6, 2002 ==============
+!
+! slightly modified by Jeroen Valensa
+
+_sarea=arg1
+_fline=arg2
+
+*get,_etype,active,,type
+keyopt,_etype,5,0
+keyopt,_etype,6,0
+type,_etype
+
+cmsel,s,_sarea
+lsla
+vsla
+nsla,,1
+eslv
+esurf
+eslv,u
+cm,esurf,elem
+*get,enum,elem,,count
+*del,exnode
+*dim,exnode,array,enum,2
+
+cmsel,s,_fline
+nsll,,1
+cm,nfluid,node
+*get,nnum,node,,count
+ei=0
+*do,i,1,enum
+  ei=elnext(ei)
+  *get,_cx,elem,ei,cent,x
+  *get,_cy,elem,ei,cent,y
+  *get,_cz,elem,ei,cent,z
+  ni=node(_cx,_cy,_cz)
+  exnode(i,2)=ni
+  *if,nelem(ei,4),eq,0,then
+    eni=3
+  *elseif,nelem(ei,5),eq,0,
+    eni=4
+  *elseif,nelem(ei,6),eq,0,
+    eni=5
+  *elseif,nelem(ei,7),eq,0
+    eni=6
+  *elseif,nelem(ei,8),eq,0,
+    eni=7
+  *elseif,nelem(ei,9),eq,0
+    eni=8
+  *endif
+    exnode(i,1)=eni
+*enddo
+
+keyopt,_etype,5,1
+keyopt,_etype,6,0
+cmsel,s,esurf
+nsle
+cmsel,a,nfluid
+
+ei=0
+*do,i,1,enum
+  ei=elnext(ei)
+  *if,exnode(i,1),eq,3,then
+    en,ei,nelem(ei,1),nelem(ei,2),nelem(ei,3),exnode(i,2)
+  *elseif,exnode(i,1),eq,4,
+    en,ei,nelem(ei,1),nelem(ei,2),nelem(ei,3),nelem(ei,4),exnode(i,2)
+  *elseif,exnode(i,1),eq,6,
+    en,ei,nelem(ei,1),nelem(ei,2),nelem(ei,3),nelem(ei,4),nelem(ei,5),nelem(ei,6),exnode(i,2)
+  *else
+    en,ei,nelem(ei,1),nelem(ei,2),nelem(ei,3),nelem(ei,4),nelem(ei,5),nelem(ei,6),nelem(ei,7),nelem(ei,8)
+    emore,exnode(i,2)
+  *endif
+*enddo
+*del,exnode

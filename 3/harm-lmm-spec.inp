@@ -1,0 +1,240 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-cae.com
+/com,
+/com,DESCRIPTION 
+/com,Harmonic Log Sweep Example.  Allows a user to input varibles that are
+/com,consistent with design spec.  Modal super position with the large mass
+/com,method was the solution technique.
+/com,
+
+finish
+/clear
+/PREP7  
+
+xm=1e5       ! mass for the large mass
+g=386.4      ! acceration of gravity
+totg=1       ! total number of g's applied to the model
+xa=g*totg    ! acceleration applied to the model
+xf=xm*xa     ! force required to applied desired acceleration f=ma
+
+pi=3.141592654
+
+/title,LARGE MASS METHOD ACCELERATION INPUT
+
+RECTNG,20,,.25,, 
+ET,1,PLANE42
+UIMP,1,EX, , ,30e6, 
+UIMP,1,NUXY, , ,.3, 
+UIMP,1,DENS, , ,.000729,
+
+LESIZE,2, , ,4, , , , ,1 
+LESIZE,4, , ,4, , , , ,1  
+
+LESIZE,1, , ,80, , , , ,1 
+LESIZE,3, , ,80, , , , ,1 
+
+MSHAPE,0,2D 
+MSHKEY,1
+
+AMESH,all   
+numoff,node,100
+
+!!!!Add large mass!!!
+ET,2,MASS21 
+KEYOPT,2,2,0
+KEYOPT,2,3,0
+R,2,1e5,1e5,1e5,1e5,1e5,1e5, 
+n,1,-1   
+type,2  
+real,2  
+mat,2   
+e,1
+nsel,s,loc,x,-1,0   
+cerig,1,all,all,uxyz
+allsel,all
+numcmp,all 
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FINISH  
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!MODAL ANALYSIS!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/SOLU   
+ANTYPE,2
+EQSLV,SPAR  
+MXPAND,6, , ,0  
+MODOPT,LANB,6,1,0, ,OFF, ,0 
+SOLVE   
+FINISH  
+/POST1  
+
+finish
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!HARMONIC ANALYSIS!!!!!!!!!!!!!!!!!!!!!
+/solu
+
+ANTYPE,3
+!*  
+HROPT,MSUP,0, , 
+HROUT,ON,OFF,0  EQSLV,FRONT,0,  
+
+KBC,1   
+DMPRAT,.03, 
+outres,all,all  
+
+!!!!FIRST SET OF FREQ AND LOAD!!!!
+!!!!Parameters of sine sweep spec!!!!!!!!!!!!!!
+bfreq1=5             ! begining freq
+efreq1=50           ! endding freq
+xload1=(.1*g)        ! acceleration of load
+xoct1=.1             ! oct/time
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Determine how many frequency steps!!!!
+cnt1=0
+*do,i,1,50
+  *if,i,ne,1,then
+    dfreq=dfreq*(1+(xoct1*2))
+  *endif
+
+  *if,i,eq,1,then
+    dfreq=bfreq1
+  *endif
+  
+  *if,dfreq,lt,efreq1,then
+    cnt1=cnt1+1
+  *endif
+
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!dimension freq table col1=freq col2=load!!!!
+*dim,freq1,table,cnt1,2
+*VFILL,freq1(0,0),RAMP,0,1,
+*do,i,1,2
+ *VFILL,freq1(0,i),RAMP,i,1,
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Build freq table, load model, and solve!!!!!!
+*do,i,1,cnt1
+  *if,i,ne,1,then
+    freq1(i,1)=freq1((i-1),1)*(1+(xoct1*2))
+  *endif
+
+  *if,i,eq,1,then
+    freq1(i,1)=bfreq1
+  *endif
+
+  freq1(i,2)=xload1
+
+  f,1,fy,(xm*xload1)
+  
+  harfrq,freq1(i,1),freq1(i,1)
+  nsubst,1
+  
+  solve
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!SECOND SET OF FREQ AND LOAD!!!!
+!!!!Parameters of sine sweep spec!!!!!!!!!!!!!!
+bfreq2=50             ! begining freq
+efreq2=200             ! endding freq
+xload2=(.5*g)          ! acceleration of load
+xoct2=.1              ! oct/time
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Determine how many frequency steps!!!!
+cnt2=1
+*do,i,1,50
+  *if,i,ne,1,then
+    dfreq=dfreq*(1+(xoct2*2))
+  *endif
+
+  *if,i,eq,1,then
+    dfreq=bfreq2
+  *endif
+  
+  *if,dfreq,lt,efreq2,then
+    cnt2=cnt2+1
+  *endif
+
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!dimension freq table col1=freq col2=load!!!!
+*dim,freq2,table,cnt2,2
+*VFILL,freq2(0,0),RAMP,0,1,
+*do,i,1,2
+ *VFILL,freq2(0,i),RAMP,i,1,
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Build freq table, load model, and solve!!!!!!
+*do,i,1,cnt2
+  *if,i,ne,1,then
+    freq2(i,1)=freq2((i-1),1)*(1+(xoct2*2))
+  *endif
+
+  *if,i,eq,1,then
+    freq2(i,1)=bfreq2
+  *endif
+
+  freq2(i,2)=xload2
+
+  f,1,fy,(xm*xload2)
+  
+  harfrq,freq2(i,1),freq2(i,1)
+  nsubst,1
+  
+  solve
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+finish
+!!!!POSTPROCESS TIME HISTORY!!!!!!!!!!!!!!!!!!!!!!
+/POST26 
+file,,rfrq
+
+NSOL,2,83,U,Y,                     ! displacement
+
+PROD,4,1,1, , , , ,2*pi,2*pi,1,    ! omega squared
+PROD,5,2,4, , , , ,1,1,1,          ! acceleration
+PROD,6,5, , , , , ,1/g             ! results in g's
+
+/AXLAB,X,Freqency   
+/AXLAB,Y,Response in G  
+/GROPT,LOGX,ON  
+/GROPT,LOGY,OFF 
+
+PLVAR,6
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!Expansion results to .rst file!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+FINISH  
+/SOLU  
+EXPASS,1
+*do,i,1,cnt1 
+  EXPSOL,,,freq1(i,1) ,1  
+  HREXP,ALL,  
+  SOLVE 
+*enddo  
+!!!!!!!!!!!!!!!!!!
+*do,i,1,cnt2
+  EXPSOL,,,freq2(i,1) ,1  
+  HREXP,ALL,  
+  SOLVE  
+*enddo
+finish
+
+!!!!POSTPROCESS A SINGLE FREQUENCY!!!!
+/post1
+ 
+
+
+

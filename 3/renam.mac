@@ -1,0 +1,24 @@
+/nopr
+!  This is a macro for renaming a group of files in a directory
+!  It works at ansys5.6 and later
+!   arg1 = extension of files to change 
+!   arg2 = string to add to file name
+!      ex:  renam,'tif','_1'
+
+/dirget,_str,all,arg1         ! get list of files with requested extension
+/nop
+*GET,_n,PARM,_str,DIM,z        ! determine number of files
+*if,_n,gt,0,then
+   *dim,_str2,string,64,_n     ! create working array
+   *do,_i,1,_n 
+      _str2(1,_i) = strcat(_str(1,1,_i),arg2) ! add string to filename
+   *enddo
+   *do,_i,1,_n
+      /rename,_str(1,1,_i),_str(1,2,_i),,_str2(1,_i),_str(1,2,_i) ! rename
+   *enddo
+   _i=
+   _str2(1,1)=
+*endif
+_n=
+_str(1,1,1)=
+/gop

@@ -1,0 +1,57 @@
+/nopr
+!  put_amp.mac
+!  Applies J to selected elements for a specified 
+!  current input (A).  Model is assumed to be in SI units.
+!
+!     arg1 = total current (A-T)
+!     arg9 = 0 , no action
+!          = 1 , The user is prompted for the current input (This is set by
+!                abbreviation in the Toolbar)
+_inamp=arg1
+*if,arg9,eq,1,then
+  *ask,_inamp,Enter Total Current (A-T):,0
+*endif
+*get,_elmx,elem,,num,max
+*set,_mskv
+*set,_area
+*dim,_mskv,,_elmx
+*dim,_area,,_elmx
+*vget,_mskv(1),elem,,esel           !  12/15/94
+*voper,_mskv(1),_mskv(1),ge,0       !  12/15/94
+*vmask,_mskv(1)                     !  12/15/94
+*vget,_area(1),elem,1,geom          !  12/15/94
+*vmask,_mskv(1)                     !  12/15/94
+*vscfun,_tarea,sum,_area(1)         !  12/15/94
+bfe,all,js,3,_inamp/_tarea
+*get,_mnu,active,,menu
+*get,_elnum,elem,,count
+/out,put_amp,sum
+*msg,info
+___________APPLICATION OF CURRENT___________
+*msg,info
+
+*msg,info,_inamp
+Total current (A-T):________________ %g
+*msg,info,_tarea
+Area of conductor (m^2):____________ %g
+*msg,info,_inamp/_tarea
+Current density (A-T/m^2):__________ %g
+*msg,info,_elnum
+Number of elements in conductor:____ %i
+
+/out
+*if,_mg1,eq,0,then
+*if,_mnu,ne,0,then
+ *uili,sum
+*else
+ *list,sum
+*endif
+*endif
+
+*set,_mskv
+*set,_area
+_inamp=   $   _tarea=    $ _mnu=    $ _elnum=
+/gopr
+
+
+

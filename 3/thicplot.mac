@@ -1,0 +1,45 @@
+! For plotting thickness contours for non shell99 shell elements.
+! Bill Newland, 1997
+! This macro assigns pressures based on real constant thickness values of
+! shell elements.
+! The shell elements are then plotted with pressure contours having the
+! same values as the thicknesses.
+! 
+! Select the desired shell elements to be plotted before running macro.
+! After running macro, DO NOT SAVE. Exit without saving as erronious 
+! pressures will be applied to model.
+!
+cm,temp,elem
+cm,e_sel,elem
+*get,etot,elem,,count
+E_rmng=etot
+!
+*DO,el,1,etot,1
+cmsel,s,e_sel
+*stat,E_rmng
+*get,enum,elem,,num,min
+*get,rcn,elem,enum,attr,real 
+cmsel,s,e_sel 
+esel,r,real,,rcn
+nsle
+*get,els,elem,,count
+*if,els,eq,0,exit
+!!!!!!!!!!!
+*get,rcn,elem,enum,attr,real 
+*get,thk,rcon,rcn,1
+!!!!
+!
+!
+sfe,all,2,pres,,thk
+sfe,all,1,pres,,the 
+cmsel,s,e_sel
+esel,u,real,,rcn 
+cm,e_sel,elem
+*get,E_rmng,elem,,count
+*ENDDO
+
+/psf,pres,norm,3
+/gline,1,1
+cmsel,s,temp
+nsle
+/auto

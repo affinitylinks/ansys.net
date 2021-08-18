@@ -1,0 +1,311 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Sample input file for acoustics
+/com,  Radiating sphere problem (simple case), compare w/ theory
+/com,
+
+!------------------------------------------------------------
+! Check if running file in batch or interactive mode
+!   If batch mode, redirect plots to GRPH file
+!------------------------------------------------------------
+*get,STATGUI,active,,int
+*if,STATGUI,eq,0,then
+  /show,file
+*endif
+!------------------------------------------------------------
+! Define variables for problem:
+! Radiating Sphere of Radius SPHRRADS with uniform surface
+!   velocity of VELOCITY oscillating at FREQUENC
+!------------------------------------------------------------
+*set,FREQUENC,3000
+*set,VELOCITY,0.005
+*set,PI      ,acos(-1)
+*set,SPHRRADS,0.1
+!------------------------------------------------------------
+! Fluid properties:
+! Density, Speed of sound in water, Reference pressure
+!------------------------------------------------------------
+*set,WATRDENS,1000
+*set,WATRSONC,1500
+*set,REFEPRES,1e-6
+!------------------------------------------------------------
+! Geometry info
+! Infinite radius at INFIRADS meters
+!   INFIXOFF, INFIYOFF not used right now...
+!------------------------------------------------------------
+*set,INFIRADS,5
+*set,INFIXOFF,0.0
+*set,INFIYOFF,0.0
+!------------------------------------------------------------
+! Mesh info
+! Use mapped mesh?  YES=1 NO=0 (use NO for now)
+! Elements per wavelength (EPW)
+!------------------------------------------------------------
+*set,MAPDMESH,0
+*set,TRIMESH ,1
+*set,EPW     ,15
+!------------------------------------------------------------
+! Graphics settings
+!  Set title and subtitles
+!  Make sure the legend is always on (/plopt,info,on)
+!  Put global triad at right top corner (/triad,rtop)
+!  Turn on Full Graphics because of DDTSREP#16215
+!------------------------------------------------------------
+/title,Uniformly Radiating Sphere, EPW=%EPW%
+/stitle,1,Sphere radius of %SPHRRADS%m
+/stitle,2,Frequency at %FREQUENC%Hz
+/stitle,3,Uniform velocity of %VELOCITY%m/s
+/stitle,4,Infinite Boundary of %INFIRADS%m at (%INFIXOFF%,%INFIYOFF%)
+/plopt,info,on
+/triad,rtop 
+/graphics,full
+!------------------------------------------------------------
+! Enter Preprocessor
+!------------------------------------------------------------
+/prep7  
+!------------------------------------------------------------
+! Define elements
+!   1 = fluid w/ structure
+!   2 = fluid no structure
+!   3 = infinite fluid
+! Define elements and keyopts (et) (keyopt)
+! Define real constants (r)
+! Define material properties (mp)
+!------------------------------------------------------------
+et,1,fluid29
+keyopt,1,2,0
+keyopt,1,3,1
+et,2,fluid29
+keyopt,2,2,1
+keyopt,2,3,1
+et,3,fluid129
+keyopt,3,3,1
+r,1,REFEPRES
+r,2,REFEPRES
+r,3,INFIRADS,0,0,  
+mp,dens,1,WATRDENS
+mp,sonc,1,WATRSONC
+mp,dens,2,WATRDENS
+mp,sonc,2,WATRSONC
+mp,sonc,3,WATRSONC
+!------------------------------------------------------------
+! Create geometry
+!   Create five 90 degree quarter circles (pcirc)
+!   Merge keypoints (nummrg,kp)
+!------------------------------------------------------------
+pcirc,1,SPHRRADS,0,90,
+pcirc,2,1,0,90, 
+pcirc,3,2,0,90, 
+pcirc,4,3,0,90, 
+pcirc,5,4,0,90, 
+nummrg,kp   
+!------------------------------------------------------------
+! Mesh
+!   Set global element size based on EPW above
+!   Map with quads, quad-dominant for free mesh (mshape,0)
+!   Mesh mapped or free (mshkey)
+!   Set area attributes (aatt)
+!   Mesh all areas (amesh)
+! Set plot controls based on element type number
+!------------------------------------------------------------
+esize,(WATRSONC/FREQUENC)/EPW
+mshape,TRIMESH
+mshkey,MAPDMESH
+aatt,2,2,2  
+amesh,all
+/pnum,type,1
+/num,1
+/auto
+eplot
+!------------------------------------------------------------
+! Rotate all nodes in cylindrical CS
+!------------------------------------------------------------
+csys,1  
+nrotate,all 
+!------------------------------------------------------------
+! Change elements near center to fluid with struct present
+!------------------------------------------------------------
+type,1
+real,1
+mat,1
+nsel,s,loc,x,SPHRRADS
+esln
+nsle
+emodif,all
+!------------------------------------------------------------
+! Apply struct boundary conditions on element type 1
+!   Constrain all translation DOF (the "free" DOF)
+!   Reapply velocity as displacement on inner nodes in radial dir. (ux)
+!   Apply FSI (fluid-struct interface) flag to active
+!------------------------------------------------------------
+d,all,uy
+d,all,ux
+nsel,s,loc,x,SPHRRADS
+d,all,ux,0,-VELOCITY/(2*PI*FREQUENC)
+sf,all,fsi
+!------------------------------------------------------------
+! Mesh Infinite fluid domain
+!   Instead of meshing, use ESURF to generate elements on existing mesh
+!------------------------------------------------------------
+type,3
+real,3
+mat,3
+esel,all
+nsel,s,loc,x,INFIRADS,INFIRADS+0.0001
+esurf,all   
+allsel,all
+finish  
+!------------------------------------------------------------
+! solution options
+!   Full harmonic analysis
+!   frequency at FREQUENC
+!   select everything & solve
+!------------------------------------------------------------
+/solu   
+antype,harm 
+hropt,full  
+hrout,on
+lumpm,0 
+!eqslv,front
+eqslv,sparse
+harfrq,FREQUENC
+nsubst,
+kbc,0   
+allsel,all
+solve   
+finish  
+!------------------------------------------------------------
+! postprocessing w/ annotations
+!   Load real (set,1,1,1,0) and plot pressure
+!   Load imag (set,1,1,1,1) and plot pressure
+!   do a load case comb. to SRSS for pressure magnitude
+!------------------------------------------------------------
+/post1
+/tsp,,0.75
+/ann,dele
+/tla,-.90,.90,Plot of real part of pressure
+/dscale,1,off   
+set,1,1,1,0
+plnsol,pres 
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+/tsp,,0.75
+/ann,dele
+/tla,-.90,.90,Plot of imag part of pressure
+set,1,1,1,1
+/replot
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+/tsp,,0.75
+/ann,dele
+/tla,-.90,.90,Plot of magnitude of pressure
+lcdef,1,1,1,0
+lcoper,srss,1
+/replot
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+/ann,dele
+!------------------------------------------------------------
+! path operations
+!   this part gets ugly...
+!------------------------------------------------------------
+csys,0
+lsel,s,loc,x,0
+nsll,s,1
+*get,NCOUNT,node,,count
+csys,1
+nsel,s,loc,x,SPHRRADS
+nsel,r,loc,y,90,90.0001
+STRTNODE=ndnext(0)
+nsel,s,loc,x,INFIRADS,INFIRADS+0.0001
+nsel,r,loc,y,90,90.0001
+FININODE=ndnext(0)
+allsel,all
+path,RADIAL,2,30,(NCOUNT-1)
+ppath,1,STRTNODE
+ppath,2,FININODE
+avprin,0,0, 
+set,1,1,1,0
+pdef,REALPRES,pres,,noavg  
+set,1,1,1,1
+pdef,IMAGPRES,pres,,noavg
+!plpath,REALPRES,IMAGPRES
+paget,tracpoin,poin 
+paget,tracdata,tabl 
+paget,traclabl,labe 
+*dim,RADSPATH,table,NCOUNT,7
+*do,ICOUNT,1,NCOUNT
+  WAVENUMB=2*PI*FREQUENC/WATRSONC
+  CURRRADS=TRACDATA(ICOUNT,2,1)
+  TEMPAMPL=WATRDENS*WATRSONC*VELOCITY*WAVENUMB*(SPHRRADS**2)/CURRRADS
+  TEMPAMPL=TEMPAMPL/(1+(WAVENUMB*SPHRRADS)**2)
+  TEMPAMRC=WAVENUMB*SPHRRADS*cos(WAVENUMB*(CURRRADS-SPHRRADS))
+  TEMPAMRS=sin(WAVENUMB*(CURRRADS-SPHRRADS))
+  TEMPAMIC=cos(WAVENUMB*(CURRRADS-SPHRRADS))
+  TEMPAMIS=-WAVENUMB*SPHRRADS*sin(WAVENUMB*(CURRRADS-SPHRRADS))
+  RADSPATH(ICOUNT,1)=TRACDATA(ICOUNT,2,1)
+  RADSPATH(ICOUNT,2)=TRACDATA(ICOUNT,5,1)
+  RADSPATH(ICOUNT,3)=TEMPAMPL*(TEMPAMRC+TEMPAMRS)
+  RADSPATH(ICOUNT,4)=TRACDATA(ICOUNT,6,1)
+  RADSPATH(ICOUNT,5)=TEMPAMPL*(TEMPAMIC+TEMPAMIS)
+  RADSPATH(ICOUNT,6)=sqrt(TRACDATA(ICOUNT,5,1)**2+TRACDATA(ICOUNT,6,1)**2)
+  TEMP1   =TEMPAMPL*(TEMPAMRC+TEMPAMRS)
+  TEMP2   =TEMPAMPL*(TEMPAMIC+TEMPAMIS)
+  RADSPATH(ICOUNT,7)=sqrt(TEMP1**2+TEMP2**2)
+*enddo
+
+/gcolumn,1,ANSYS
+/gcolumn,2,Theory
+/axlab,x,Radial Distance (m)
+/axlab,y,Real Pressure (Pa)
+*vplot,RADSPATH(1,1),RADSPATH(1,2),3
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+/axlab,y,Imaginary Pressure (Pa)
+*vplot,RADSPATH(1,1),RADSPATH(1,4),5
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+/axlab,y,Magnitude of Pressure (Pa)
+*vplot,RADSPATH(1,1),RADSPATH(1,6),7
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+!parsav,all
+finish
+*del,TEMPAMPL
+*del,TEMPAMRC
+*del,TEMPAMRS
+*del,TEMPAMIC
+*del,TEMPAMIS
+*del,TEMP1
+*del,TEMP2
+*del,CURRRADS
+*del,WAVENUMB
+
+!=(DENSITY*SPEED_OF_SOUND*VELOCITY*WAVE_NUMBER*RADIUS*(RADIUS/C2)/(1+(WAVE_NUMBER*RADIUS)^2))*(WAVE_NUMBER*RADIUS*COS(WAVE_NUMBER*(C2-RADIUS))+SIN(WAVE_NUMBER*(C2-RADIUS)))
+!=(DENSITY*SPEED_OF_SOUND*VELOCITY*WAVE_NUMBER*RADIUS*(RADIUS/C2)/(1+(WAVE_NUMBER*RADIUS)^2))*(COS(WAVE_NUMBER*(C2-RADIUS))-WAVE_NUMBER*RADIUS*SIN(WAVE_NUMBER*(C2-RADIUS)))
+*if,STATGUI,eq,0,then
+  /exit
+*endif
+

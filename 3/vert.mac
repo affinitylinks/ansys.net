@@ -1,0 +1,23 @@
+!creates long vertical line at specified location
+!Rod Scholl
+!PADT
+
+cm,linehold,line
+ksel,all
+*get,kchek1,kp,,count
+*if,kchek1,gt,0,then
+*get,rmax3,kp,,mxloc,x
+*get,rmin3,kp,,mnloc,x
+lsize5=1.5*(rmax3-rmin3)
+*else
+lsize5=1
+*endif
+*ask,vyloc,What is the Vertical(Y) Location?, 0
+*get,maxkp,kp,,num,max
+numstr,kp,maxkp+1
+k,,-lsize5,vyloc,0
+k,,lsize5,vyloc,0
+l,maxkp+1,maxkp+2
+lplot
+cmsel,a,linehold                                                                                
+   

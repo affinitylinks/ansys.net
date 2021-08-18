@@ -1,0 +1,32 @@
+
+! Macro to get the number of an area (completely) defined by four keypoints
+
+! Usage:
+! a_num,kp1,kp2,kp3,kp4
+
+! Number of desired area is returned in parameter 'a_num'
+
+
+cm,ktmp,kp			! Save current selected sets as components
+cm,ltmp,line
+cm,atmp,area
+
+asel,none
+ksel,s,kp,,arg1			! Select keypoints
+ksel,a,kp,,arg2
+ksel,a,kp,,arg3
+ksel,a,kp,,arg4
+lslk,s,1			! Select lines attached to keypoints
+asll,s,1			! Select area bounded by lines
+*get,a_num,area,,num,min	! Get the area number
+
+cmsel,s,ktmp			! Restore original selected sets
+cmdel,ktmp
+
+cmsel,s,ltmp
+cmdel,ltmp
+
+cmsel,s,atmp
+cmdel,atmp
+
+*stat,a_num

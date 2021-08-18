@@ -1,0 +1,21 @@
+fini
+/sol
+
+/uis,msgpop,3
+irlf,-1
+psolve,elform
+psolve,elprep
+irlist
+*get,mtot,elem,,mtot,x
+*get,mcx,elem,,mc,x
+*get,mcy,elem,,mc,y
+*get,mcz,elem,,mc,z
+
+/uis,msgpop,2
+*msg,ui,mtot,mcx,mcy,mcz
+Total Mass: %G %/&
+CGX = %G %/&
+CGY = %G %/&
+CGZ = %G
+
+fini

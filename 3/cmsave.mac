@@ -1,0 +1,49 @@
+! Macro CMSave for ANSYS Rev. 6.1 by JKT
+
+! This macro saves selection status
+
+! Arg1 = 'FileName' (=component name)
+
+! Arg2 = Entity type - 'kp'
+! - 'line'
+! - 'area'
+! - 'volu'
+! - 'node'
+! - 'elem'
+
+*IF,Arg2,eq,'node',then
+Ar10=ndinqr(0,14) $Ar11=ndinqr(0,13)
+*ELSEIF,Arg2,eq,'elem',then
+Ar10=elmiqr(0,14) $Ar11=elmiqr(0,13)
+*ELSEIF,Arg2,eq,'kp',then
+Ar10=kpinqr(0,14) $Ar11=kpinqr(0,13)
+*ELSEIF,Arg2,eq,'line',then
+Ar10=lsinqr(0,14) $Ar11=lsinqr(0,13)
+*ELSEIF,Arg2,eq,'area',then
+Ar10=arinqr(0,14) $Ar11=arinqr(0,13)
+*ELSEIF,Arg2,eq,'volu',then
+Ar10=vlinqr(0,14) $Ar11=vlinqr(0,13)
+*ENDIF
+
+Ar12=strsub(Arg2,1,1)
+Ar12=strcat(Ar12,'sel')
+
+*DIM,Apu1_,array,Ar10 $*DIM,Apu2_,array,Ar10
+*VGE,Apu1_(1),Arg2,1,Ar12 $*VFI,Apu2_(1),ramp,1,1
+*VMA,Apu1_(1) $*VFU,Apu2_(1),comp,Apu2_(1)
+Apu1_=
+*DIM,Apu1_,array,Ar11 $*VFU,Apu1_(1),copy,Apu2_(1)
+
+*CFO,Arg1,cmp
+*VWR,Arg2
+%C
+*VWR,Ar11
+%I
+*VWR,Apu1_(1)
+%10I
+*CFC
+
+Apu1_=
+Apu2_=
+
+/eof

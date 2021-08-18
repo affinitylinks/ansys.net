@@ -1,0 +1,76 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  lateral torsional buckling of i-beam, part 2
+/com,  Factor
+/com,    No warp = 387.3
+/com,    Warping = 569.6 (WARP constrained)
+/com,    Warping = 413.8 (WARP not constrained)
+/com,
+/com,COMMENTS, ASSUMPTIONS:
+/com,  use of beam188/189; see part 1 for shell181
+/com,
+
+finish
+/clear
+
+/graphics,power
+/triad,lbot
+/auto
+/view,1,1,1,1
+/eshape,1
+
+/prep7
+et,1,188
+keyopt,1,1,1
+r,1,
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,dens,1,.1/386.1
+sectype,1,beam,i,IBEAM
+secoffset,cent
+secdata,3,3,4,0.2,0.2,0.2
+
+k,1,0,0,0
+k,2,100,0,0
+k,3,50,5,0
+l,1,2
+
+latt,1,1,1,,3,,1
+esize,1
+
+lmesh,all
+finish
+
+/solu
+antype,static
+pstres,on
+
+dk,1,all
+fk,2,fy,1
+
+allsel,all
+solve
+finish
+
+/solu
+antype,buckle
+pstres,on
+bucopt,lanb,10
+mxpand,10,,,yes
+
+solve
+finish
+
+
+

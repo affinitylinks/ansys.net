@@ -1,0 +1,27 @@
+! Stefano Lucarelli 24.02.2000
+!
+! This input file asks for selection of one or more areas
+! and loops until all areas directly or indirectly connected
+! to the original ones are selected
+! then plots them
+
+/pmacro
+
+cm,tmparea_,area
+asel,all
+*get,numarea_,area,,count
+cmsel,s,tmparea_
+
+asel,r,p
+*get,old_num_,area,,count
+
+*do,i_,1,numarea_
+  lsla
+  asll
+  *get,now_num_,area,,count
+  *if,now_num_,eq,old_num_,*exit
+  old_num_=now_num_
+*enddo
+
+lsla
+aplo

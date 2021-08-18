@@ -1,0 +1,834 @@
+/BATCH                     !Batch input
+/FILE,nip                  !Define jobname
+/NOPR                      !Suppress printout
+
+/COM, ==========================================================
+/COM,
+/COM,   ANALYSIS OF A HEAD/MEDIA/ROLLER NIP
+/COM,
+/COM,   June 2000
+/COM,   ANSYS 5.6/ABAQUS 5.8
+/COM,
+/COM, ==========================================================
+/COM,
+/COM,   Dave Lindeman                       ddlindeman@mmm.com
+/COM,   3M SEMS Tech Center                 Tel:  651-733-6383
+/COM,   3M Center 235-1F-36                 FAX:  651-736-7615
+/COM,   St. Paul, MN 55144
+/COM,
+/COM, ==========================================================
+
+/COM, ==========================================================
+/COM,   Define constants
+/COM, ==========================================================
+
+PI   = ACOS(-1)            !Pi
+
+TRUE =   1                 !Logical true
+FALS =   0                 !Logical false
+
+GRAV  = 386.4000           !Gravitational constant (in/sec^2)
+GPRK  =   1.0000E+03       !grams-per-kg
+LPRG  =   2.2050E-03       !lbs-per-g
+
+/COM, ==========================================================
+/COM,   Define control parameters
+/COM, ==========================================================
+
+TENS  =  TRUE              !Include line tension
+
+/COM, ==========================================================
+/COM,   Define independent parameters
+/COM, ==========================================================
+
+RLOD  =   0.7090           !Roller diameter (in)
+SHOD  =   1.2600           !Roller diameter (in)
+RLDX  =   0.0000           !Roller offset (in)
+
+HDRD  =   0.9250           !Head radius (in)
+HDWD  =   0.8350           !Head width (in)
+
+MDWD  =  54.0000           !Media width (in)
+MDTH  =   0.0135           !Media thickness (in)
+
+LGOD  =   0.6300           !Guide roller diameters (in)
+RGOD  =   0.6300
+
+LGRX  =   1.6340           !Guide roller offsets (in)
+LGRY  =   0.8660
+RGRX  =   1.3580
+RGRY  =   0.7930
+
+ESTL  =  30.0000E+06       !Elastic modulus of steel (psi)
+PSTL  =   0.3000           !Poisson's ratio of steel
+DSTL  =   0.2800           !Density of steel (lbs/in^3)
+
+EFOM  =   2.6000E+01       !Elastic modulus of foam (psi)
+PFOM  =   0.4800           !Poisson's ratio of foam
+DFOM  =   0.0400           !Density of foam (lbs/in^3)
+
+EMED  =  16.2323E+04       !Elastic modulus of media (psi)
+PMED  =   0.3500           !Poisson's ratio of media
+DMED  =   0.0349           !Density of media (lbs/in^3)
+
+FRIC  =   0.0000           !Coefficient of friction
+
+LTNS  =   2.5000           !Line tension (kg)
+
+KSPR  =   1.0000E-06       !Spring stiffness (lbs/in)
+
+/COM, ==========================================================
+/COM,   Define dependent parameters
+/COM, ==========================================================
+
+LTNS  = LTNS*GPRK*LPRG     !Line tension (lbs)
+LTNS  = LTNS/MDWD          !Line tension (lbs/in)
+
+/COM, ==========================================================
+/COM,   Define graphics settings
+/COM, ==========================================================
+
+/TITLE,ANALYSIS OF A HEAD/MEDIA/ROLLER NIP
+
+/WIND,1,-1.00, 1.00,-0.88, 1.00
+/DSCALE,1,1.0
+/PNUM,MAT,1
+/TRIAD,OFF
+/TYPE,1,4
+/EDGE,1,0
+/NUM,1
+
+/COM, ==========================================================
+/COM,   Define element types
+/COM, ==========================================================
+
+/PREP7                     !Enter preprocessor
+
+ET,1,PLANE42               !2D structural solid
+
+ET,2,LINK1                 !2D spar
+
+/COM, ==========================================================
+/COM,   Define solid model
+/COM, ==========================================================
+
+PCIRC,(RLOD/2)
+PCIRC,(SHOD/2)
+AOVLAP,1,2
+NUMCMP,ALL
+HPTCR,AREA,1,,COORD,0.0,0.0,0.0
+WPOFF,-LGRX-RLDX,-LGRY
+PCIRC,(LGOD/2)+MDTH
+WPCSYS,1,0
+WPOFF, RGRX-RLDX,-RGRY
+PCIRC,(RGOD/2)+MDTH
+WPCSYS,1,0
+WPOFF,-RLDX,-(SHOD/2)-MDTH-HDRD
+CSWP,11,1
+CSYS,0
+PCIRC,HDRD
+L2ANG,12,18
+L2ANG,17,15
+WPCSYS,1,0
+WPOFF,-LGRX-RLDX,-LGRY
+CSWP,12,1
+*GET,KMAX,KP,,NUM,MAX
+KMAX = KMAX+1
+K,KMAX,(LGOD/2),KY(22)
+CSYS,0
+L,22,KMAX,3
+*GET,LMAX,LINE,,NUM,MAX
+LESIZE,18,MDTH
+LESIZE,23,MDTH
+LESIZE,24,MDTH
+LESIZE,26,MDTH
+ADRAG,LMAX,,,,,,23,18,24,26
+ADELE,3,5,1,1
+LSLA
+LSEL,INVE
+LDELE,ALL,,,1
+ALLSEL
+NUMCMP,ALL
+WPCSYS,1,0
+WPOFF,-RLDX,-(SHOD/2)-MDTH-HDRD
+ASEL,NONE
+PCIRC,HDRD
+RECT,-(HDWD/2), (HDWD/2),(HDRD/2),HDRD+MDTH
+AINA,ALL
+NUMCMP,ALL
+WPSTYL
+/AUTO
+ALLSEL
+AATT,1,1,1
+ASEL,S,,,3,6
+AATT,2,1,1
+ALLSEL
+
+/COM, ==========================================================
+/COM,   Define finite element model
+/COM, ==========================================================
+
+ASEL,S,,,2                 !Element size near nip
+LSLA
+KSLL
+KNUM = KP(0,-(SHOD/2),0)
+KESIZE,KNUM,MDTH
+KNUM = KP(0, (SHOD/2),0)
+KESIZE,KNUM,(SHOD-RLOD)/12
+ALLSEL
+
+ESIZE,(SHOD-RLOD)/15       !Default element size
+
+ASEL,S,,,1                 !Mesh lines
+LSEL,S,EXT
+TYPE,2
+REAL,2
+LMESH,ALL
+ALLSEL
+
+ASEL,S,,,2,6               !Mesh areas
+AMESH,ALL
+ALLSEL
+
+ALLSEL                     !Select all entities
+
+/COM, ==========================================================
+/COM,   Define boundary conditions
+/COM, ==========================================================
+
+CSKP,13,0,10,12,11         !Constrain left end of media
+LSEL,S,,,9
+NSLL,S,1
+NROTAT,ALL
+D, ALL,UX,0.0
+D, ALL,UY,0.0
+
+CSKP,14,0,19,17,18         !Constrain or tension right
+LSEL,S,,,19                !end of media
+NSLL,S,1
+NROTAT,ALL
+*IF,TENS,EQ,TRUE,THEN
+*GET,NMIN,NODE,,NUM,MIN
+F,NMIN,FX,LTNS
+D,NMIN,UY,0.0
+*ELSE
+D, ALL,UX,0.0
+D, ALL,UY,0.0
+*ENDIF
+
+CSYS,0                     !Reset coordinate system
+
+ALLSEL                     !Select all entities
+
+/COM, ==========================================================
+/COM,   Create ABAQUS/Standard input file
+/COM, ==========================================================
+
+ALLSEL                     !Select all entities
+CSYS,0
+
+*CFOPEN,scratch,inp        !Open command file
+
+*VWRITE
+('*HEADING')
+*VWRITE
+('ANALYSIS OF A HEAD/MEDIA/ROLLER NIP')
+*VWRITE
+('*PREPRINT,ECHO=NO,HISTORY=NO,MODEL=NO')
+
+*VWRITE
+('*NODE,NSET=BACKREST')
+ESEL,S,MAT,,1
+ESEL,R,TYPE,,1
+NSLE
+*GET,NNOD,NODE,,COUNT
+*GET,NMAX,NODE,,NUM,MAX
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM,NX(NNUM),NY(NNUM),0.0
+(F7.0,'%',3(',',E16.9))
+*ENDDO
+
+*VWRITE
+('*NODE,NSET=MEDIA')
+ESEL,S,MAT,,2
+ESEL,R,TYPE,,1
+NSLE
+*GET,NNOD,NODE,,COUNT
+*GET,NMAX,NODE,,NUM,MAX
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM,NX(NNUM),NY(NNUM),0.0
+(F7.0,'%',3(',',E16.9))
+*ENDDO
+
+*VWRITE
+('*NODE,NSET=SPRING')
+ALLSEL
+*GET,NSPR,NODE,,NUM,MAX
+NSPR = NSPR+1
+*VWRITE,NSPR,0.0,0.0,0.0
+(F7.0,'%',3(',',E16.9))
+
+*VWRITE
+('*NODE,NSET=HEAD')
+ALLSEL
+NREF = NSPR+1
+*VWRITE,NREF,-RLDX,-(SHOD/2)-MDTH-HDRD,0.0
+(F7.0,'%',3(',',E16.9))
+
+*VWRITE
+('*NSET,NSET=XFIX')
+NSEL,S,D,UX,0
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+ALLSEL
+*VWRITE
+(' ')
+
+*VWRITE
+('*NSET,NSET=YFIX')
+NSEL,S,D,UY,0
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+ALLSEL
+*VWRITE
+(' ')
+
+*VWRITE
+('*NSET,NSET=TOP')
+LSEL,S,,,15,18,3
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*NSET,NSET=BOTTOM')
+LSEL,S,,,11,20,3
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*NSET,NSET=TRAILING')
+LSEL,S,,,9
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*TRANSFORM,NSET=TRAILING')
+CSYS,0
+*GET,RTXY,CDSY,13,ANG,XY
+*AFUN,DEG
+*VWRITE,COS(RTXY),SIN(RTXY),0.0,-SIN(RTXY),COS(RTXY),0.0
+(E12.5,5(',',E12.5))
+
+*VWRITE
+('*NSET,NSET=LEADING')
+LSEL,S,,,19
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+CSYS,0
+*GET,NFRC,NODE,,NUM,MIN
+NSEL,U,,,NFRC
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE
+('*EQUATION')
+*VWRITE
+('2')
+*VWRITE,NNUM,NFRC
+(F7.0,'%,1,1.0,',F7.0,'%,1,-1.0')
+*ENDDO
+
+*VWRITE
+('*TRANSFORM,NSET=LEADING')
+CSYS,0
+*GET,RTXY,CDSY,14,ANG,XY
+*AFUN,DEG
+*VWRITE,COS(RTXY),SIN(RTXY),0.0,-SIN(RTXY),COS(RTXY),0.0
+(E12.5,5(',',E12.5))
+
+*DIM,ETRI,ARRAY,999
+*DO,I,1,2,1
+NTRI = 0
+*IF,I,EQ,1,THEN
+*VWRITE
+('*ELEMENT,TYPE=CPS4,ELSET=FOAM')
+*ELSE
+*VWRITE
+('*ELEMENT,TYPE=CPS4,ELSET=MEDIA')
+*ENDIF
+ESEL,S,MAT,,I
+ESEL,R,TYPE,,1
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,J,1,NELE,1
+ENUM = ELNEXT(ENUM)
+NI = NELEM(ENUM,1)
+NJ = NELEM(ENUM,2)
+NK = NELEM(ENUM,3)
+NL = NELEM(ENUM,4)
+*IF,NL,EQ,NK,THEN
+NTRI = NTRI+1
+ETRI(NTRI) = ENUM
+*ELSE
+*VWRITE,ENUM,NI,NJ,NK,NL
+(F7.0,'%',4(',',F7.0,'%'))
+*ENDIF
+*ENDDO
+*IF,NTRI,GT,0,THEN
+*IF,I,EQ,1,THEN
+*VWRITE
+('*ELEMENT,TYPE=CPS3,ELSET=FOAM')
+*ELSE
+*VWRITE
+('*ELEMENT,TYPE=CPS3,ELSET=MEDIA')
+*ENDIF
+*DO,J,1,NTRI,1
+ENUM = ETRI(J)
+NI = NELEM(ENUM,1)
+NJ = NELEM(ENUM,2)
+NK = NELEM(ENUM,3)
+*VWRITE,ENUM,NI,NJ,NK
+(F7.0,'%',3(',',F7.0,'%'))
+*ENDDO
+*ENDIF
+*ENDDO
+
+*VWRITE
+('*ELEMENT,TYPE=R2D2,ELSET=RIGID')
+ESEL,S,TYPE,,2
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+NI = NELEM(ENUM,1)
+NJ = NELEM(ENUM,2)
+*VWRITE,ENUM,NI,NJ
+(F7.0,'%',2(',',F7.0,'%'))
+*ENDDO
+
+*VWRITE
+('*ELEMENT,TYPE=SPRING1,ELSET=SPRING')
+ALLSEL
+*GET,ESPR,ELEM,,NUM,MAX
+ESPR = ESPR+1
+*VWRITE,ESPR,NSPR
+(F7.0,'%',1(',',F7.0,'%'))
+
+*VWRITE
+('*ELEMENT,TYPE=MASS,ELSET=MASS')
+ALLSEL
+EMSS = ESPR+1
+*VWRITE,EMSS,NSPR
+(F7.0,'%',1(',',F7.0,'%'))
+
+*VWRITE
+('*ELSET,ELSET=LEADING')
+LSEL,S,,,19
+NSLL,S,1
+ESLN
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*VWRITE,ENUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*ELSET,ELSET=FOAM_SRF')
+LSEL,S,,,7,8
+NSLL,S,1
+ESLN
+ESEL,R,MAT,,1
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*VWRITE,ENUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE,NSPR
+('*RIGID BODY,ELSET=RIGID,REF NODE=',F7.0,'%')
+*VWRITE
+('1.0,')
+
+*VWRITE
+('*MASS,ELSET=MASS')
+*VWRITE,(PI/4)*(RLOD**2)*(DSTL/GRAV)
+(E16.9,',')
+
+ALLSEL
+CSYS,0
+LSEL,S,,,23,24
+KSLL
+*GET,XMIN,KP,,MNLOC,X
+*GET,XMAX,KP,,MXLOC,X
+*GET,YMAX,KP,,MXLOC,Y
+*VWRITE,NREF
+('*RIGID SURFACE,TYPE=SEGMENTS,NAME=HEAD,REF NODE=',F7.0,'%')
+KNUM = KP(XMIN,YMAX,0)
+*VWRITE,KX(KNUM),KY(KNUM)
+('START',2(',',E16.9))
+KNUM = KP(-RLDX,YMAX,0)
+*VWRITE,KX(KNUM),KY(KNUM),-RLDX,-(SHOD/2)-MDTH-HDRD
+('CIRCL',4(',',E16.9))
+KNUM = KP(XMAX,YMAX,0)
+*VWRITE,KX(KNUM),KY(KNUM),-RLDX,-(SHOD/2)-MDTH-HDRD
+('CIRCL',4(',',E16.9))
+
+*VWRITE
+('*ELSET,ELSET=TOP')
+LSEL,S,,,15,18,3
+NSLL,S,1
+ESLN
+ESEL,R,MAT,,2
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*VWRITE,ENUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*ELSET,ELSET=BOTTOM')
+LSEL,S,,,11,20,3
+NSLL,S,1
+ESLN
+ESEL,R,MAT,,2
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*VWRITE,ENUM
+(F7.0,'%,')
+*ENDDO
+*VWRITE
+(' ')
+
+*VWRITE
+('*SOLID SECTION,ELSET=FOAM,MATERIAL=FOAM')
+*VWRITE,1.0
+(E12.5,',')
+
+*VWRITE
+('*MATERIAL,NAME=FOAM')
+*VWRITE
+('*DENSITY')
+*VWRITE,(DFOM/GRAV)
+(E12.5,',')
+*VWRITE
+('*ELASTIC')
+*VWRITE,EFOM,PFOM
+(E12.5,',',F7.4)
+
+*VWRITE
+('*SOLID SECTION,ELSET=MEDIA,MATERIAL=MEDIA')
+*VWRITE,1.0
+(E12.5,',')
+
+*VWRITE
+('*MATERIAL,NAME=MEDIA')
+*VWRITE
+('*DENSITY')
+*VWRITE,(DMED/GRAV)
+(E12.5,',')
+*VWRITE
+('*ELASTIC')
+*VWRITE,EMED,PMED
+(E12.5,',',F7.4)
+
+*VWRITE
+('*SPRING,ELSET=SPRING')
+*VWRITE
+('2')
+*VWRITE,KSPR
+(E12.5,',')
+
+*VWRITE
+('*SURFACE DEFINITION,NAME=FOAM')
+*VWRITE
+('FOAM_SRF,')
+*VWRITE
+('*SURFACE DEFINITION,NAME=TOP')
+*VWRITE
+('TOP,')
+*VWRITE
+('*SURFACE DEFINITION,NAME=BOTTOM')
+*VWRITE
+('BOTTOM,')
+
+*VWRITE,(MDTH/2)
+('*CONTACT PAIR,INTERACTION=FRICTION,HCRIT=',E12.5)
+*VWRITE
+('TOP,FOAM')
+*VWRITE
+('BOTTOM,HEAD')
+
+*VWRITE
+('*SURFACE INTERACTION,NAME=FRICTION')
+*VWRITE,1.0
+(E12.5,',')
+*VWRITE
+('*FRICTION')
+*VWRITE,FRIC
+(E12.5,',')
+
+*VWRITE
+('*STEP,NLGEOM,AMPLITUDE=RAMP,INC=100')
+*VWRITE
+('*STATIC')
+*VWRITE,(1.0/4),1.0
+(E12.5,',',E12.5)
+
+*VWRITE
+('*CONTROLS,ANALYSIS=DISCONTINUOUS')
+
+*VWRITE
+('*BOUNDARY')
+*VWRITE
+('XFIX,1, ,0.0')
+*VWRITE
+('YFIX,2, ,0.0')
+*VWRITE
+('SPRING,1, ,0.0')
+*VWRITE,-(MDTH/2)
+('SPRING,2, ,',E16.9)
+*VWRITE
+('SPRING,3, ,0.0')
+*VWRITE
+('SPRING,6, ,0.0')
+*VWRITE
+('HEAD,1,2,0.0')
+*VWRITE
+('HEAD,6, ,0.0')
+
+*VWRITE
+('*DLOAD')
+*VWRITE,GRAV
+('MASS ,GRAV,',E12.5,',0.0,-1.0,0.0')
+*VWRITE,GRAV
+('FOAM ,GRAV,',E12.5,',0.0,-1.0,0.0')
+*VWRITE,GRAV
+('MEDIA,GRAV,',E12.5,',0.0,-1.0,0.0')
+
+*VWRITE
+('*CLOAD')
+*VWRITE,NFRC,-LTNS
+(F7.0,'%,1,',E12.5)
+
+*VWRITE
+('*RESTART,WRITE,FREQ=5,OVERLAY')
+
+*VWRITE
+('*CONTACT PRINT,FREQ=999')
+*VWRITE
+('CAREA,CFN,CFS')
+*VWRITE
+('*EL PRINT,FREQ=0')
+*VWRITE
+('*NODE PRINT,FREQ=0')
+
+*VWRITE
+('*CONTACT FILE,FREQ=999')
+*VWRITE
+('CSTRESS,CDISP')
+*VWRITE
+('*EL FILE,FREQ=0')
+*VWRITE
+('*NODE FILE,FREQ=0')
+
+*VWRITE
+('*END STEP')
+
+*VWRITE
+('*STEP,NLGEOM,AMPLITUDE=RAMP,INC=100')
+*VWRITE
+('*STATIC')
+*VWRITE,(1.0/10),1.0
+(E12.5,',',E12.5)
+
+*VWRITE
+('*BOUNDARY,OP=NEW')
+*VWRITE
+('XFIX,1, ,0.0')
+*VWRITE
+('YFIX,2, ,0.0')
+*VWRITE
+('SPRING,1, ,0.0')
+*VWRITE
+('SPRING,3, ,0.0')
+*VWRITE
+('SPRING,6, ,0.0')
+*VWRITE
+('HEAD,1,2,0.0')
+*VWRITE
+('HEAD,6, ,0.0')
+
+*VWRITE
+('*END STEP')
+
+*CFCLOS                    !Close command file
+
+/SYS,sed 's/.%//g' scratch.inp > nip.inp
+/SYS,rm scratch.inp
+
+/COM, ==========================================================
+/COM,   Create ABAQUS/Post input file
+/COM, ==========================================================
+
+*CFOPEN,scratch,pst        !Open command file
+
+*VWRITE
+('SET,FILL=ON')
+*VWRITE
+('SET,CDIGITSLEGEND=5,CBOXLEGEND=OFF,CLEGEND=0.4')
+*VWRITE
+('SET,OUTLINE=OFF')
+*VWRITE,0.0,-(SHOD/2)
+('SET,CENTER=(',E12.5,',',E12.5,',0.0)')
+*VWRITE
+('ZOOM,FACTOR=4')
+
+*VWRITE
+('SET,HARDCOPY=nip.mpl,OUTPUTFORMAT=ASCII')
+*VWRITE
+('DETAIL,ELSET=FOAM')
+*VWRITE
+('CONT,VAR=SP1')
+
+*VWRITE
+('DETAIL,SURFACE=(TOP,BOTTOM)')
+*VWRITE
+('SET,CTICKMARKS=ON')
+*VWRITE
+('CONT,VAR=CPRESS')
+
+*VWRITE
+('SET,HARDCOPY=OFF')
+
+*VWRITE
+('RESULTS FILE,FILE=nip.fil')
+*VWRITE
+('SET,HISTORY=RESULTS FILE')
+
+*VWRITE
+('SET,REPORTFILE=nip.node')
+*VWRITE
+('PRINT NODES')
+*VWRITE
+('BOTTOM')
+*VWRITE
+(' ')
+
+*VWRITE
+('SET,XYPRINTFILE=nip.cprs')
+*VWRITE
+('READ CURVE,VAR=CPRESS,NAME=CPRS,MASTER=HEAD,SLAVE=BOTTOM,NODE=BOTTOM')
+*VWRITE
+('PRINT CURVE')
+*VWRITE
+('CPRS')
+*VWRITE
+(' ')
+
+*CFCLOS                    !Close command file
+
+/SYS,sed 's/.%//g' scratch.pst > nip.pst
+/SYS,rm scratch.pst
+
+/COM, ==========================================================
+/COM,   Output ABAQUS environment file
+/COM, ==========================================================
+
+*CFOPEN,abaqus,env         !Open command file
+
+*VWRITE
+('cpus="1"')
+*VWRITE
+('scratch=$PWD')
+*VWRITE
+('pre_memory="6000000"')
+*VWRITE
+('pre_buffer="6000000"')
+*VWRITE
+('standard_memory="24000000"')
+*VWRITE
+('standard_buffer="24000000"')
+*VWRITE
+('post_memory="8000000"')
+*VWRITE
+('post_buffer="4000000"')
+
+*CFCLOS                    !Close command file
+
+FINI                       !Exit preprocessor
+
+/COM, ==========================================================
+/COM,   Execute ABAQUS/Standard analysis
+/COM, ==========================================================
+
+/SYS,abaqus job=nip
+
+/COM, ==========================================================
+/COM,   Exit ANSYS
+/COM, ==========================================================
+
+ALLSEL                     !Select all entities
+
+/EXIT                      !Save database
