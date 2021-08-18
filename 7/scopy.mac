@@ -1,0 +1,55 @@
+/com,Macro scopy.mac to copy a meshed sector to make full 360 model
+/com,As always check the results of macro before proceeding.
+/com,Macro assumes mesh is identical at sector edges, use line sizing or cyclic symm commands
+/com,User must recreate any CEs between mismatched DOF elememts, ie: shell-solid interface
+*ask,SECTORANGLE,Angle of sector to be copied,0
+NCOPY=360/SECTORANGLE                   !number of copies
+
+!--------------------------------------------------------------------
+!Determine what types of elements are in model
+!--------------------------------------------------------------------
+
+*ask,ANYBEAMS,1=Yes 2=No - Are beams in this sector to be copied?,2
+*ask,ANYSHELLS,1=Yes 2=No - Are shells in this sector to be copied?,2
+*ask,ANYSOLIDS,1=Yes 2=No - Are solids in this sector to be copied?,2
+
+!--------------------------------------------------------------------
+!Copy solids
+!--------------------------------------------------------------------
+
+*if,ANYSOLIDS,eq,1,then
+  vsel,s,volu,,all
+  eslv                          !select elements attached to volumes
+  csys,1
+  vgen,NCOPY,ALL,,,,SECTORANGLE
+  nummrg,node                   !tolerances subject to model dimensions
+  eplo
+  alls
+*endif
+
+!--------------------------------------------------------------------
+!Copy shells
+!--------------------------------------------------------------------
+
+*if,ANYSHELLS,eq,1,then  
+  aslv,u                        !unselect areas contained in volumes  
+  csys,1
+  agen,NCOPY,ALL,,,,SECTORANGLE
+  !eplo
+  nummrg,node                   !tolerances subject to model dimensions
+  eplo
+  alls
+*endif
+
+!--------------------------------------------------------------------
+!Copy beams
+!--------------------------------------------------------------------
+
+*if,ANYBEAMS,eq,1,then
+  lsla,u                        !unselect lines contained in areas
+  csys,1
+  lgen,NCOPY,ALL,,,,SECTORANGLE  
+  nummrg,node                   !tolerances subject to model dimensions
+  eplo
+  alls
+*endif

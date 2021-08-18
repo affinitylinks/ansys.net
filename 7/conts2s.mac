@@ -1,0 +1,105 @@
+!
+! 	This Macro creates surface to surface contact elements between nodal components with the default options. 
+!	Only nodal components, material number and coefficient of friction can be given as arguments.
+!	Use Contact wizard or your custom code to modify other properties.
+!	This macro is helpful when number of components in ansys models are large or 
+!	sometimes when the Contact wizard becomes slow with large db files and if we need to create a lot of contact pairs.
+!		
+! 	Name: conts2s
+!	Version: 1
+!	Usage:	conts2s,'target comp','contact comp',material no:, cof
+!
+!	Note: arg1 and arg2 must be given in single quotes.
+!
+!	arg1 = target nodes component
+!	arg2 = contact nodes component
+!	arg3 = material no:
+!	arg4 = cof, co-ef of friction
+!
+!	by G N S Prakash / gnsprakash@gmail.com
+
+
+/nopr
+/prep7
+
+/com, Creating Contact Pair...... 
+cm,_nodecm,node 
+cm,_elemcm,elem 
+cm,_linecm,line 
+cm,_areacm,area
+/gsav,cwz,gsav,,temp
+
+mp,mu,arg3,arg4
+mat,arg3
+
+*get,rmax,rcon,,num,max
+r,rmax+1 
+real,rmax+1
+
+et,next,170
+et,next,174
+*get,etmax,etyp,,num,max
+
+keyopt,etmax,9,0
+
+r,rmax+1,
+rmore,  
+rmore,,0
+
+/com, generating target elements   
+
+nsel,s,,,arg1
+cm,_target,node
+type,etmax-1
+esln,s,0
+esurf,all   
+cmsel,s,_elemcm
+
+/com, generating contact elements  
+ 
+nsel,s,,,arg2
+cm,_contact,node
+type,etmax
+esln,s,0
+esurf,all   
+allsel  
+esel,all
+esel,s,type,,etmax-1  
+esel,a,type,,etmax 
+esel,r,real,,etmax
+/psymb,esys,1   
+/pnum,type,1
+/num,1  
+eplot   
+
+esel,all
+esel,s,type,,etmax-1 
+esel,a,type,,etmax  
+esel,r,real,,rmax+1  
+ 
+cmsel,a,_nodecm 
+cmdel,_nodecm   
+cmsel,a,_elemcm 
+cmdel,_elemcm   
+cmsel,s,_linecm 
+cmdel,_linecm   
+cmsel,s,_areacm 
+cmdel,_areacm   
+/gres,cwz,gsav  
+cmdel,_target   
+cmdel,_contact  
+
+etmax=
+rmax= 
+ 
+/com, ....... Done.
+/gopr
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 

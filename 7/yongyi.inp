@@ -1,0 +1,113 @@
+/BATCH,LIST
+/VERIFY,ev171-32s 
+/title,ev171-32s,2D Steady State Conductance versus pressure
+/PREP7  
+et,1,42,,,2 
+rect,,2.5,,2.5  
+rect,,2.5,2.5,5 
+
+LESIZE,ALL, , ,5,1,1
+amesh,all   
+
+UIMP,1,EX, , ,70000,
+UIMP,1,DENS, , ,2.7e-9, 
+UIMP,1,ALPX, , ,23.86e-6,   
+UIMP,1,NUXY, , ,0.3,
+UIMP,1,KXX, , ,150, 
+UIMP,1,C, , ,9e8,   
+
+*dim,tabnam,table,17,,,PRESSURE
+
+r,1
+rmore
+rmore,,%tabnam%
+ tabnam(1,0)=  0.0000000000000000E+00
+ tabnam(1,1)=  0.0000000000000000E+00
+ tabnam(2,0)=  0.1000000000000000    
+ tabnam(2,1)=  5.0836557995411258E-02
+ tabnam(           3,0)=   10.00000000000000    
+ tabnam(           3,1)=   4.038091337195357    
+ tabnam(           4,0)=   20.00000000000000    
+ tabnam(           4,1)=   7.801078244227407    
+ tabnam(           5,0)=   30.00000000000000    
+ tabnam(           5,1)=   11.46677603135510    
+ tabnam(           6,0)=   40.00000000000000    
+ tabnam(           6,1)=   15.07068976176900    
+ tabnam(           7,0)=   50.00000000000000    
+ tabnam(           7,1)=   18.62934742578218    
+ tabnam(           8,0)=   60.00000000000000    
+ tabnam(           8,1)=   22.15235108866110    
+ tabnam(           9,0)=   70.00000000000000    
+ tabnam(           9,1)=   25.64597862701352    
+ tabnam(          10,0)=   80.00000000000000    
+ tabnam(          10,1)=   29.11465348569681    
+ tabnam(          11,0)=   90.00000000000000    
+ tabnam(          11,1)=   32.56165885652888    
+ tabnam(          12,0)=   100.0000000000000    
+ tabnam(          12,1)=   35.98952692545112    
+ tabnam(          13,0)=   200.0000000000000    
+ tabnam(          13,1)=   69.52718303622429    
+ tabnam(          14,0)=   400.0000000000000    
+ tabnam(          14,1)=   134.3176638849926    
+ tabnam(          15,0)=   600.0000000000000    
+ tabnam(          15,1)=   197.4330368963730    
+ tabnam(          16,0)=   800.0000000000000    
+ tabnam(          16,1)=   259.4846223256620    
+ tabnam(          17,0)=   1000.000000000000    
+ tabnam(          17,1)=   320.7569963529800    
+
+et,1,13,4 
+
+et,2,169
+et,3,171
+keyopt,3,1,1
+esel,s,adj,,5   
+nsel,s,loc,y,2.5
+type,2  
+esurf   
+allsel  
+esel,s,adj,,50  
+nsel,s,loc,y,2.5
+type,3  
+esurf   
+ALLSEL,ALL  
+d,all,ux
+nsel,s,loc,y  
+d,all,temp,0
+d,all,uy
+nsel,s,loc,y,5  
+d,all,temp,100
+asel,s,,,2
+nsla,s,1
+ic,all,temp,100
+allsel  
+ALLSEL,ALL 
+/solu
+outres,all,all
+nsub,1,100,1
+time,0.1
+SFL,7,PRES,0.1
+solve
+nsub,10,100,10
+time,100
+SFL,7,PRES,100
+solve
+time,1000
+auto,on
+SFL,7,PRES,1000
+nsub,20,100,5
+solve
+FINISH  
+/post1  
+nsel,s,,,7
+nsel,a,,,38
+/GOPR
+/OUT
+/COM  
+/COM  *****************************************************************
+/com   test from Comp. Meth. Appl. Mech. Eng. vol.113,p301,1994
+/com   target solution
+/COM      Temp(7) = 45.724, TEMP(38) = 54.276
+/COM  *****************************************************************
+/COM  
+prns,temp   

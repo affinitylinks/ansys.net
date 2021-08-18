@@ -1,0 +1,181 @@
+! File: friction_test2.mac
+! Author: Brent L. Bristol
+! Date: March 5, 2001
+! Purpose: This macro demonstrates a method for extracting normal
+!          and tangential friction data from contact172 elements.
+!          It also demonstrates the restarting of a sliding
+!          contact analysis.
+!          This is accomplished through the following steps.
+!
+!          1. create a simple flexible-to-rigid contact model
+!          2. load the flexible portion with a 10 lb down force
+!          3. specify a friction coefficient of 0.1
+!          4. displace the flexible portion laterally 0.25 inch
+!             generating lateral friction forces as well as normal
+!             reactions.
+!          5. select the contact elements and nodes
+!          6. execute fsum,,cont to sum the forces
+!          7. obtain the lateral friction forces by 
+!              *get,fx_fric,fsum,,item,fx
+!          8. obtain the normal contact reactions by
+!              *get,fy_fric,fsum,,item,fy
+!          9. Display contact pressure as plot
+!         10. Display lateral contact friction as plot and report
+!             lateral force and normal force in title
+!         11. store contact forces in a file friction_forces.txt
+!         12. create a third load step with additional lateral
+!             displacement
+!         13. restart the analysis from the last completed loadstep
+!         14. post process the results
+! 
+! Expected Outcome:
+!         
+!           1. lateral friction force fx = -1
+!           2. normal contact reaction fy = 10
+
+fini
+/sys,rm *.jpg
+/sys,erase *.jpg
+
+/clear
+/prep7
+
+fdown=10   ! down force
+mu=.1      ! friction coefficient
+!
+! Define Body 1
+!
+/triad,off ! turn off the global triad display
+/pbc,f,1
+
+k,1,-1,0,0
+k,2, 1,0,0
+k,3, 1,1,0
+k,4,-1,1,0
+
+a,1,2,3,4
+
+aesize,1,.25
+
+! Create rigid target element
+
+et,2,169
+type,2
+r,2
+real,2
+mat,2
+mp,mu,2,.1
+
+n,1,-2,0,0
+n,2, 2,0,0
+n,3, 0,0,0
+tshap,line
+e,2,1
+tshap,pilot
+e,3
+
+! Mesh Body 1
+et,1,82
+type,1
+mp,ex,1,2936
+mp,nuxy,1,.29
+mat,1
+real,1
+mp,ex,1,29e6
+mp,nuxy,1,.29
+real,1
+amesh,1
+
+! Create flexible contact
+
+esel,none
+nsel,none
+et,3,172
+type,3
+real,2 ! same as rigid target
+mat,2
+esel,s,type,,1
+nsle,s
+nsel,r,loc,y,0
+nplot
+esln,s,0
+esurf
+*get,emax,elem,,num,max
+
+! Apply The Down Force
+nsel,s,loc,y,1
+*get,ncnt,node,,count
+f,all,fy,-fdown/ncnt
+
+allsel
+eplot
+nsubst,1,1,1
+lswrit,1
+
+nsel,s,loc,y,1
+d,all,ux,.25
+allsel
+nsubst,1e6,1e8,10
+lswrit,2
+save
+
+/solu
+solcontrol,on,on
+nlgeom,on
+lssolve,1,2
+
+/post1
+set,last
+/title,Contact Pressure Distribution
+plnsol,cont,pres
+/show,jpeg
+plnsol,cont,pres
+/show,close
+
+esel,s,ename,,172
+nsle,s
+AVPRIN,0,.29, 
+/output,friction_forces,txt  
+    nforce,cont
+/output
+fsum,,cont
+*get,fx_fric,fsum,,item,fx
+*get,fy_fric,fsum,,item,fy
+  
+allsel
+/title,Friction Force, fx = %fx_fric%, fy = %fy_fric%
+plnsol,cont,sfric
+/show,jpeg
+plnsol,cont,sfric
+/show,close
+
+fini
+/solu
+! add an additional .25 inch to original .25 inch
+! for a total of 0.50 inch
+nsel,s,loc,y,1
+d,all,ux,.50
+allsel
+nsubst,1e6,1e8,10,1
+lswrit,3
+save
+antype,,rest
+lssolve,3,3
+/post1
+set,last
+esel,s,ename,,172
+nsle,s
+AVPRIN,0,.29, 
+/output,friction_forces2,txt  
+    nforce,cont
+/output
+fsum,,cont
+*get,fx_fric,fsum,,item,fx
+*get,fy_fric,fsum,,item,fy
+  
+allsel
+/title,Friction Force, fx = %fx_fric%, fy = %fy_fric%
+plnsol,cont,sfric
+/show,jpeg
+plnsol,cont,sfric
+/show,close

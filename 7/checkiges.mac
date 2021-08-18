@@ -1,0 +1,72 @@
+!-----------------------------------------------------------------
+!    CHECKIGES.MAC (A)
+!    Macro to find the small lines and possible failures in the model
+!    after importing an .igs file
+!    arg1   Nameoffile
+!
+!    ie,   checkiges,'FILENAME'
+!					Julián Díaz (ITR México)
+!-----------------------------------------------------------------
+
+
+/AUX15  
+IOPTN,IGES,NODEFEAT 
+IOPTN,MERGE,YES 
+IOPTN,SOLID,YES 
+IOPTN,SMALL,YES 
+IOPTN,GTOLER, DEFA  
+IGESIN,'%arg1%','igs',' '
+VPLOT   
+
+
+/prep7
+
+nummrg,kp,all
+allsel,below,area
+*get,lcount,line,,count
+*get,lmin,line,,num,min
+in=0
+lnumber=lmin
+*do,i,1,lcount,1
+   lsel,,,,lnumber
+   lsum
+   *get,lleng,line,,leng
+   *if,lleng,le,1E-1,then
+      ia=1+in
+      *if,ia,eq,1,then
+   	  cm,small_l,line
+   	  in=1
+      *endif
+      cmsel,,small_l
+      lsel,a,,,lnumber
+      cm,small_l,line
+   *endif
+   allsell
+   lnumber=lsnext(lnumber)
+*enddo
+cmsel,,small_l
+asll
+*get,lcount2,line,,count
+*get,acount,area,,count
+
+/prep7
+/nopr
+
+/sys,rm -f dof.txt
+/GRAPHICS,FULL  
+/post1
+*get,TITULO,ACTIVE,0,JOBNAM
+/page,,,999999  ! no page break  
+/out,dof.txt,,,APPEND
+*MSG,info,lcount2,acount
+There are %5i small lines attached to %5i areas that can cause problems with meshing an other operations
+
+/out
+
+/syp,mv dof.txt,%TITULO%'.txt' 
+
+gui
+/PREP7
+/auto,all
+lplot
+cmsel,,small_l

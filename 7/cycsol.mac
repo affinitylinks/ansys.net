@@ -1,0 +1,146 @@
+! ANSYS REVISION 5.5.3, SP with fix to ddts#15063 (internal CEQNs)
+!  -------------------------------------------------------------------------
+!       This macro is designed to solve an eigenvalue problem
+!       for a sector of a model that is cyclic symmetric.
+!
+!       **** This macro runs within SOLUTION **** 
+!
+!       Proper execution of this macro requires the following: 
+!
+!           1. The geometry must be in the global cylindrical coord sys
+!           2. The macro CYCGEN must have been run in PREP7 to double the
+!              geometry.
+!           3. there is an existing database component for the nodes on the
+!              lower angle size of the sector (LOW, for example)
+!           4. A component name (HIGH) is required for the higher angle side
+!              nodes if the nodes do not match the nodes in the LOW side.
+!              If HIGH is not given, the nodes must match
+!
+!       Use this macro as follows:
+!
+!            CYCSOL,ndmin,ndmax,nSector,LOW,[HIGH],tol,kmove,kpairs
+!
+!                 where: ndmin   - lowest nodal diameter in range 
+!                        ndmax   - highest nodal diameter in range
+!                        nSector - number of sectors in full circle
+!                        LOW     - the LOW node component name
+!                        HIGH    - the HIGH node component name (if any)
+!                        tol     - Tolerance for CECYC command
+!                        kmove   - If 1, move nodes to be coincident
+!                        kpairs  - If 1, print pairs of matching nodes
+!  -------------------------------------------------------------------------
+_kpr = wrinqr(1)
+/nop                             ! supress printout
+*if,arg1,lt,0,then
+   *msg,error
+           ABORT  - negative nodal diameter not allowed
+*endif
+!  -------------------------------------------------------------------------
+*if,arg2,lt,0,then
+   *msg,error
+           ABORT  - negative nodal diameter not allowed
+*endif
+!  -------------------------------------------------------------------------
+*if,arg3,le,0,then
+   *msg,error
+        ABORT  - number of sectors < or = zero
+*endif
+!  -------------------------------------------------------------------------
+_nSector = arg3    ! number of sectors in full model
+
+!  -------------------------------------------------------------------------
+
+!          make sure the LOW component is defined
+_nerror = 0
+
+*get,_nLow,COMP,arg4,TYPE
+*if,_nLow,le,0,then
+    *msg,error
+        ABORT - undefined component:  LOW 
+    _nerror = _nerror + 1
+*endif
+
+*get,_nHigh,COMP,arg5,TYPE
+
+!  -------------------------------------------------------------------------
+!          solve  for each nodal diameter
+!  -------------------------------------------------------------------------
+*if,_nerror,le,0,then
+   *get,_ntot,NODE,,NUM,MAX     ! maximum node number
+   LSWRITE,1
+   _kread=0
+   numcmp,cp
+   numcmp,ce
+   _numce = ceinqr(0,14)
+   _numcp = cpinqr(0,14)
+   *do,_nd,arg1,arg2
+      *if,_kread,eq,1,then
+         LSREAD,1
+         _kread = 0
+      *endif
+      *if,_nd,eq,0,then
+         nsel,s,node,,_ntot/2+1,_ntot
+         d,all,all
+         nall
+         _kread = 1
+      *elseif,2*_nd,eq,_nSector,then
+         nsel,s,node,,_ntot/2+1,_ntot
+         d,all,all
+         nall
+         _kread = 1
+      *else
+         cesgen,2,_ntot/2,all
+         cpsgen,2,_ntot/2,all
+      *endif
+
+      *if,_nHigh,gt,0,then
+         CECYC,arg4,arg5,_nSector,_nd,arg6,arg7,arg8
+      *else
+         CECYC,arg4,,_nSector,_nd,arg6,arg7,arg8
+      *endif
+
+      *if,_STATUS,gt,0,then
+         _nerror = _nerror + 1
+      *endif
+
+!  --------------------------------------------------------------------------
+      *if,_nerror,le,0,then
+         *if,_kpr,eq,1,then
+            /go
+         *endif
+         solve
+         /nop
+      *endif
+
+      cedel,_numce+1,ceinqr(0,14)
+      numcmp,ce
+      *if,_numcp,gt,0,then
+         *if,_nd,eq,0,then
+         *elseif,2*_nd,eq,_nSector,then
+         *else
+            cpdel,_numcp+1,cpinqr(0,14)
+            numcmp,cp
+         *endif
+      *endif
+      *if,_kread,eq,1,then
+         ddel,all,all
+      *endif
+   *enddo
+!  -------------------------------------------------------------------------
+*endif
+_kread=
+_ntot=
+_nerror=
+_nHigh=
+_nLow=
+_numce=
+_numcp=
+_nSector=
+_nd=
+*if,_kpr,eq,0,then
+   _kpr=
+*else
+   _kpr=
+   /go
+*endif
+!  -------------------------------------------------------------------------

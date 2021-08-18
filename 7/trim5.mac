@@ -1,0 +1,171 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                               !
+!          trimx.mac            !
+!     Macro to trim lines       !
+!        to intersection        !
+!                   		!
+!	     Rod Scholl		!
+!       Jeffrey T. Strain       !
+!            03/05/02           !
+!                       	!
+!				!
+!	       PADT		!
+!				!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+/pmacro
+
+!Check to make sure user is in PREP7
+*get,proc_,active,0,rout
+
+*if,proc_,ne,17,then
+*msg,error,
+Macro can only be executed in the preprocessor (PREP7) -- Entering /Prep7 now.
+/prep7
+*endif
+immed,off
+!Define component to return user to original selection status
+CM,l_ptr_,LINE
+cm,k_ptr_,kp
+ksll
+*del,lnums
+
+!prompt for which lines to select for trimming
+*msg,ui
+Choose Lines To Trim
+/ui,lsel,r
+!ensure at least 2 lines were selected
+checkln_=lsinqr(0,13)
+*if,checkln_,gt,1,then
+		/nerr,0,,,0,0
+		lptn,all
+		cm,lhold2_,line
+		ksll
+		*if,lsinqr(0,13),gt,checkln_+1,then
+*msg,ui
+Choose line portion(s) to delete
+			/ui,lsel,r
+			ldel_=lsinqr(0,13)
+			*if,lsinqr(0,13),ne,0,then
+				ldele,all,,,1	
+			*endif
+			cmsel,s,lhold2_
+		*elseif,lsinqr(0,13),eq,checkln_,then
+		!no intersection between line
+		cm,lhold2_,line
+		*go,:extend
+		:return1
+		*endif
+
+*else 	!if not enough lines selected according to checkln
+*msg,warn,
+Not enough lines selected!
+*endif
+	
+!select original lines and new lines then replot
+ksll
+cmsel,a,l_ptr_
+cmsel,a,k_ptr_
+immed,on
+lplot
+/nerr,defa
+/eof
+
+:extend
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                               !
+!          extend.mac           !
+!     Macro to extend lines     !
+!        to intersection        !
+!                               !
+!       Jeffrey T. Strain       !
+!            03/05/02           !
+!                               !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!Create a local coordinate system at workplane origin
+cswpla,99,0
+immed,off
+numsell_=lsinqr(0,13)
+
+!Add lines to be extended to array parameter
+*dim,lnums,,2
+*get,lnums(1,1),line,0,num,min
+*get,lnums(2,1),line,0,num,max
+
+!Bunch of tests to make sure the user doesn't mess up
+
+!Check for straightness
+csys,0
+*if,lsx(lnums(1,1),0),ne,lsx(lnums(1,1),1),or,lsx(lnums(2,1),0),ne,lsx(lnums(2,1),1),then
+*msg,error,
+Lines must be straight.  May change in later versions
+*endif
+
+!Check to make sure they're not parallel
+*if,lsx(lnums(1,1),0),eq,lsx(lnums(2,1),0),then
+*msg,error,
+Lines are parallel.  Parallel lines can't be intersected
+*endif
+
+*del,kps
+*dim,kps,,4
+lsel,r,,,lnums(1,1)
+allsel,below,line
+*get,kps(1),kp,0,num,min
+kps(2)=kpnext(kps(1))
+lsel,s,,,lnums(2,1)
+allsel,below,line
+*get,kps(3),kp,0,num,min
+kps(4)=kpnext(kps(3))
+lsel,a,,,lnums(1,1)
+allsel,below,line
+
+wplane,,kx(kps(1)),ky(kps(1)),kz(kps(1)),kx(kps(3)),ky(kps(3)),kz(kps(3)),kx(kps(2)),ky(kps(2)),kz(kps(2))
+
+csys,4
+
+!Check for coplanarity
+*if,kz(kps(4)),ne,0,then
+*msg,error,
+Lines need to be coplanar to intersect
+*endif
+
+!Create keypoint where lines would intersect.
+m1_=(ky(kps(2))-ky(kps(1)))/(kx(kps(2))-kx(kps(1)))
+m2_=(ky(kps(4))-ky(kps(3)))/(kx(kps(4))-kx(kps(3)))
+x_=m2_*kx(kps(3))/(m2_-m1_)
+y_=m1_*x_
+k,,x_,y_
+
+/nerr,0,,,0,0
+*if,distkp(kps(1),kp(x_,y_,0)),lt,distkp(kps(2),kp(x_,y_,0)),then
+kmodif,kps(1),x_,y_
+lextnd,lnums(1,1),kps(1),distkp(kps(1),kp(x_,y_,0))
+*else
+kmodif,kps(2),x_,y_
+lextnd,lnums(1,1),kps(2),distkp(kps(2),kp(x_,y_,0))
+*endif
+
+*if,distkp(kps(3),kp(x_,y_,0)),lt,distkp(kps(4),kp(x_,y_,0)),then
+kmodif,kps(3),x_,y_
+lextnd,lnums(2,1),kps(3),distkp(kps(3),kp(x_,y_,0))
+*else
+kmodif,kps(4),x_,y_
+lextnd,lnums(2,1),kps(4),distkp(kps(4),kp(x_,y_,0))
+*endif
+/nerr,defa
+
+nummrg,kp
+
+!Move workplane back to where it was before extend operation
+wpcsys,-1,99
+
+!Clean up
+csdel,99
+*del,,prm_
+csys
+wpcsys,,0
+/gopr
+
+*go,:return1

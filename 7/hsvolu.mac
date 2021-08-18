@@ -1,0 +1,78 @@
+!----------------------------------------
+/com,****************************************
+/com, Macro to get hotspot of selected volumes
+/com,  Argument ARG1=1 then do verification of hotspot
+/com,
+/com, Output is in array STI_VOLUME_SPOT
+/com,   Dim is 3 x total_selected_volumes
+/com,   Indices are x/y/z vs. volume_number
+/com,
+!
+! Example by sheldon
+!
+! AR20 = max volume number
+! AR21 = CPU time 1
+! AR22 = CPU time 2
+! AR23 = Wall time 1
+! AR24 = Wall time 2
+! AR25 = Total CPU time
+! AR26 = Total Wall time
+! AR30 = temp for *do loop counter
+! AR31 = temp for x loc
+! AR32 = temp for y loc
+! AR33 = temp for z loc
+!----------------------------------------
+/nopr
+*get,AR21,active,,time,cpu
+*get,AR23,active,,time,wall
+*get,AR20,volu,,num,max
+*dim,STI_VOLUME_SPOT,array,3,AR20
+
+*do,AR30,1,AR20
+  *if,vsel(AR30),eq,1,then
+    *vget,STI_VOLUME_SPOT(1,AR30),80,AR30,6,2,,,4
+  *endif
+*enddo
+*get,AR22,active,,time,cpu
+*get,AR24,active,,time,wall
+AR25 = AR22-AR21
+AR26 =(AR24-AR23)*3600
+/com, Took %AR25% CPU seconds
+/com, Total elapsed time: %AR26% seconds
+/com,****************************************
+
+*if,ARG1,eq,1,then
+  /com,****************************************
+  /com, Verification portion:
+  /com,
+  /com, Plot all selected volumes individually
+  /com,****************************************
+  *dim,STI_MASK,array,AR20
+  *vget,STI_MASK(1),volu,,vsel
+  cm,STI_TEMPVOLU,volu
+  vplot
+  /user
+  /show,png
+
+  *do,AR30,1,AR20
+    *if,STI_MASK(AR30),eq,1,then
+      AR31=STI_VOLUME_SPOT(1,AR30)
+      AR32=STI_VOLUME_SPOT(2,AR30)
+      AR33=STI_VOLUME_SPOT(3,AR30)
+      vsel,s,loc,x,AR31
+      vsel,r,loc,y,AR32
+      vsel,r,loc,z,AR33
+      *if,nint(vlnext(0)),ne,nint(AR30),then
+        *msg,error
+        Something went wrong
+      *endif
+      /title,Volume %nint(vlnext(0))%, (%AR31%,%AR32%,%AR33%)
+      vplot
+    *endif
+  *enddo
+  cmsel,s,STI_TEMPVOLU
+  cmdele,STI_TEMPVOLU
+  STI_MASK=
+  /show,close
+*endif
+/gopr

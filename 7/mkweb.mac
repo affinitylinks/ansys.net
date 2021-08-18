@@ -1,0 +1,44 @@
+!
+!
+! Macro to connect a single node by
+! a 'web' of beams using an area
+!
+! 
+/pmacro
+/nopr
+/prep7
+
+! define element type, constants, materials
+!
+
+! ------------ 1 ---------------
+/UIS,MSGPOP,1
+*MSG,NOTE,
+Pick master node where mass element is located
+/UIS,msgpop,DEFA
+nplo
+nsel,s,p
+cm,master,node
+*get,mastnum,node,,num,max
+
+! ------------ 2 ---------------
+/UIS,MSGPOP,1
+*MSG,NOTE,
+Pick areas at hole circumference
+/UIS,msgpop,DEFA
+lplo
+asel,s,p
+nsla,s,1
+cm,circum,node
+*get,ntot1,node,,count,
+
+! ------------ 3 ---------------
+*do,i,1,ntot1,1
+*get,ncirc,node,ncirc,nxth
+e,mastnum,ncirc
+i=i+1
+*enddo
+
+allsel
+/gopr
+!

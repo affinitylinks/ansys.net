@@ -1,0 +1,319 @@
+!----------------------------------------
+! macro to get all type/real/mat/secn for selected elements
+!----------------------------------------
+/nopr
+/com,
+/com, Macro LISTTYPE
+/com,    Written by Sheldon
+/com,    No arguments required
+/com,    Lists all unique attribute combinations of selected elements
+/com,    Namely: TYPE, REAL, MAT, SECN
+/com,
+*cfopen,,txt
+*get,AR61,active,,time,wall
+*get,AR62,active,,time,cpu
+
+!----------------------------------------
+! Define main arrays
+!----------------------------------------
+*get,AR30,elem,,num,max
+*dim,STI_AMASK,array,AR30
+*dim,STI_ARRAY,array,AR30,4
+*dim,STI_ACOMP,array,AR30
+
+!----------------------------------------
+! Get element attributes
+!----------------------------------------
+*vge,STI_AMASK(1),elem,,esel
+!****************************************
+! AR81, will sort last
+!****************************************
+*vma,STI_AMASK(1)
+*vge,STI_ARRAY(1,1),elem,,attr,secn
+!****************************************
+! AR82, will sort second to last
+!****************************************
+*vma,STI_AMASK(1)
+*vge,STI_ARRAY(1,2),elem,,attr,mat
+!****************************************
+! AR83, will sort second
+!****************************************
+*vma,STI_AMASK(1)
+*vge,STI_ARRAY(1,3),elem,,attr,real
+!****************************************
+! AR84, will be primary sort field
+!****************************************
+*vma,STI_AMASK(1)
+*vge,STI_ARRAY(1,4),elem,,attr,type
+
+!----------------------------------------
+! Determine size of numbers
+!----------------------------------------
+*vsc,AR41,max,STI_ARRAY(1,1)
+AR51=nint(log10(AR41))
+*if,log10(AR41),ge,AR51,then
+  AR51=AR51+1
+*endif
+*vsc,AR42,max,STI_ARRAY(1,2)
+AR52=nint(log10(AR42))
+*if,log10(AR42),ge,AR52,then
+  AR52=AR52+1
+*endif
+*vsc,AR43,max,STI_ARRAY(1,3)
+AR53=nint(log10(AR43))
+*if,log10(AR43),ge,AR53,then
+  AR53=AR53+1
+*endif
+*vsc,AR44,max,STI_ARRAY(1,4)
+AR54=nint(log10(AR44))
+*if,log10(AR44),ge,AR54,then
+  AR54=AR54+1
+*endif
+
+!----------------------------------------
+! Make one big array (combination of attribute #)
+!----------------------------------------
+*vma,STI_AMASK(1)
+*vfu,STI_ACOMP(1),copy,STI_ARRAY(1,1)
+*vma,STI_AMASK(1)
+*vfa,1,10**AR51
+*vcu,1
+*vfu,STI_ACOMP(1),copy,STI_ARRAY(1,2)
+*vma,STI_AMASK(1)
+*vfa,1,10**(AR51+AR52)
+*vcu,1
+*vfu,STI_ACOMP(1),copy,STI_ARRAY(1,3)
+*vma,STI_AMASK(1)
+*vfa,1,10**(AR51+AR52+AR53)
+*vcu,1
+*vfu,STI_ACOMP(1),copy,STI_ARRAY(1,4)
+!----------------------------------------
+! Copy STI_ACOMP into first column of STI_ARRAY for later use
+!----------------------------------------
+*vfu,STI_ARRAY(1,1),copy,STI_ACOMP(1)
+
+!----------------------------------------
+! Sort array and compare
+!----------------------------------------
+*vfu,STI_ACOMP(1),asort,STI_ACOMP(1)
+*vop,STI_AMASK(1),STI_ACOMP(1),ne,STI_ACOMP(2)
+*vop,STI_ACOMP(1),STI_ACOMP(1),mult,STI_AMASK(1)
+*vfu,STI_ACOMP(1),asort,STI_ACOMP(1)
+*vma,STI_ACOMP(1)
+*vsc,AR70,num,STI_ACOMP(1)
+!----------------------------------------
+! Create condensed array of just unique IDs
+!----------------------------------------
+*dim,STI_ASORT,array,AR70
+*vfu,STI_ASORT(1),copy,STI_ACOMP(AR30-AR70+1)
+*vwr,
+(' ---------------------------------------------------------------------- ')
+*vwr,AR70
+ %6i unique combinations of attributes for selected elems
+*vwr,
+(' ---------------------------------------------------------------------- ')
+*vwr,
+(' ')
+!****************************************
+! Change headers if you changed sort order
+!****************************************
+*vwr,
+('  Elem Type (Lib)  Real Cons   Material    Section   Num Elem  Comments ')
+*vwr,
+(' ---------------- ---------- ---------- ---------- ----------  -------- ')
+
+!----------------------------------------
+! Write out unique element attributes
+!----------------------------------------
+*do,AR80,1,AR70
+  !----------------------------------------
+  ! Break array into 4 components
+  !----------------------------------------
+  AR91=STI_ASORT(AR80)
+  AR81=mod(AR91,10**AR51)
+  AR91=AR91-AR81
+  AR82=mod(AR91,10**(AR51+AR52))/10**AR51
+  AR91=AR91-AR82*10**AR51
+  AR83=mod(AR91,10**(AR51+AR52+AR53))/10**(AR51+AR52)
+  AR91=AR91-AR83*10**(AR51+AR52)
+  AR84=mod(AR91,10**(AR51+AR52+AR53+AR54))/10**(AR51+AR52+AR53)
+  !****************************************
+  ! Change to AR8x of element type
+  !****************************************
+  *get,AR85,etyp,AR84,attr,enam
+  *del,STI_STRNG,,nopr
+  *dim,STI_STRNG,string,128
+  !========================================
+  ! MPC184 behavior
+  !========================================
+  *if,AR85,eq,184,then
+    *get,AR87,etyp,AR84,attr,kop1
+    *if,AR87,eq,0,then
+      STI_STRNG(1)='Rigid link'
+    *elseif,AR87,eq,1
+      STI_STRNG(1)='Rigid beam'
+    *elseif,AR87,eq,3
+      STI_STRNG(1)='Slider'
+    *elseif,AR87,eq,5
+      STI_STRNG(1)='Spherical joint (old)'
+    *elseif,AR87,eq,6
+      STI_STRNG(1)='Revolute joint'
+    *elseif,AR87,eq,7
+      STI_STRNG(1)='Universal joint'
+    *elseif,AR87,eq,8
+      STI_STRNG(1)='Slot joint'
+    *elseif,AR87,eq,9
+      STI_STRNG(1)='Point-in-plane joint'
+    *elseif,AR87,eq,10
+      STI_STRNG(1)='Translational joint'
+    *elseif,AR87,eq,11
+      STI_STRNG(1)='Cylindrical joint'
+    *elseif,AR87,eq,12
+      STI_STRNG(1)='Planar joint'
+    *elseif,AR87,eq,13
+      STI_STRNG(1)='Weld joint'
+    *elseif,AR87,eq,14
+      STI_STRNG(1)='Orient joint'
+    *elseif,AR87,eq,15
+      STI_STRNG(1)='Spherical joint (11.0)'
+    *elseif,AR87,eq,16
+      STI_STRNG(1)='General joint'
+    *elseif,AR87,eq,2
+      STI_STRNG(1)='Shell-to-solid constraint (undocumented)'
+    *elseif,AR87,eq,4
+      STI_STRNG(1)='Beam-to-solid constraint (undocumented)'
+    *endif
+  !========================================
+  ! CONTA171-177 behavior
+  !========================================
+  *elseif,AR85,ge,171,and,AR85,le,177
+    *get,AR87,etyp,AR84,attr,ko12
+    *if,AR87,eq,0,then
+      STI_STRNG(1)='Standard Contact'
+    *elseif,AR87,eq,1
+      STI_STRNG(1)='Rough Contact'
+    *elseif,AR87,eq,2
+      STI_STRNG(1)='No Separation (sliding permitted)'
+    *elseif,AR87,eq,3
+      STI_STRNG(1)='Bonded'
+    *elseif,AR87,eq,4
+      STI_STRNG(1)='No Separation (always)'
+    *elseif,AR87,eq,5
+      STI_STRNG(1)='Bonded (always)'
+    *elseif,AR87,eq,6
+      STI_STRNG(1)='Bonded (initial)'
+    *endif
+  !========================================
+  ! CONTA178 behavior
+  !========================================
+  *elseif,AR85,eq,178
+    *get,AR87,etyp,AR84,attr,ko10
+    *if,AR87,eq,0,then
+      STI_STRNG(1)='Standard Contact'
+    *elseif,AR87,eq,1
+      STI_STRNG(1)='Rough Contact'
+    *elseif,AR87,eq,2
+      STI_STRNG(1)='No Separation (sliding permitted)'
+    *elseif,AR87,eq,3
+      STI_STRNG(1)='Bonded'
+    *elseif,AR87,eq,4
+      STI_STRNG(1)='No Separation (always)'
+    *elseif,AR87,eq,5
+      STI_STRNG(1)='Bonded (always)'
+    *elseif,AR87,eq,6
+      STI_STRNG(1)='Bonded (initial)'
+    *endif
+  !========================================
+  ! SOLID185-186 composite behavior
+  !========================================
+  *elseif,AR85,eq,185,or,AR85,eq,186
+    *get,AR87,etyp,AR84,attr,kop3
+    *if,AR87,eq,1,then
+      STI_STRNG(1)='Layered (composite) solid'
+    *endif
+  !========================================
+  ! COMBIN14
+  !========================================
+  *elseif,AR85,eq,14
+    *get,AR87,etyp,AR84,attr,kop2
+    *if,AR87,eq,0,then
+      *get,AR97,etyp,AR84,attr,kop3
+      *if,AR97,eq,0,then
+        STI_STRNG(1)='3D longitudinal spring-damper'
+      *elseif,AR97,eq,1
+        STI_STRNG(1)='3D torsinal spring-damper'
+      *elseif,AR97,eq,2
+        STI_STRNG(1)='2D longitudinal spring-damper'
+      *endif
+    *elseif,AR87,eq,1
+      STI_STRNG(1)='UX spring-damper'
+    *elseif,AR87,eq,2
+      STI_STRNG(1)='UY spring-damper'
+    *elseif,AR87,eq,3
+      STI_STRNG(1)='UZ spring-damper'
+    *elseif,AR87,eq,4
+      STI_STRNG(1)='ROTX spring-damper'
+    *elseif,AR87,eq,5
+      STI_STRNG(1)='ROTY spring-damper'
+    *elseif,AR87,eq,6
+      STI_STRNG(1)='ROTZ spring-damper'
+    *elseif,AR87,eq,7
+      STI_STRNG(1)='1D PRES element'
+    *elseif,AR87,eq,8
+      STI_STRNG(1)='1D TEMP element'
+    *endif
+  !========================================
+  ! MASS21
+  !========================================
+  *elseif,AR85,eq,21
+    *get,AR87,etyp,AR84,attr,kop3
+    *if,AR87,eq,0,then
+      STI_STRNG(1)='3D mass with rotary inertia'
+    *elseif,AR87,eq,2
+      STI_STRNG(1)='3D mass without rotary inertia'
+    *elseif,AR87,eq,3
+      STI_STRNG(1)='2D mass with rotary inertia'
+    *elseif,AR87,eq,4
+      STI_STRNG(1)='2D mass without rotary inertia'
+    *endif
+  *endif
+  !----------------------------------------
+  ! Get number of elements with this combination
+  !----------------------------------------
+  *vfi,STI_ARRAY(1,2),ramp,STI_ASORT(AR80),0
+  *vop,STI_ARRAY(1,3),STI_ARRAY(1,1),eq,STI_ARRAY(1,2)
+  *vsc,AR86,sum,STI_ARRAY(1,3)
+
+  !****************************************
+  ! Rearrange however you would like
+  !****************************************
+  *vwr,AR84,AR85,AR83,AR82,AR81,AR86,STI_STRNG(1)
+ %10i (%3i) %10i %10i %10i %10i  %s
+*enddo
+
+!----------------------------------------
+! Display text file to user
+!----------------------------------------
+*cfclos
+*uilist,,txt
+
+!----------------------------------------
+! Clean-up
+!----------------------------------------
+*del,STI_AMASK,,nopr
+*del,STI_ARRAY,,nopr
+*del,STI_ACOMP,,nopr
+*del,STI_AUNIQ,,nopr
+*del,STI_ASORT,,nopr
+*del,STI_STRNG,,nopr
+
+!----------------------------------------
+! Report how long this macro took to execute
+!----------------------------------------
+*get,AR63,active,,time,wall
+*get,AR64,active,,time,cpu
+AR65=AR63-AR61
+AR66=AR64-AR62
+/com, Total CPU time:     %nint(AR66)% seconds
+/com, Total elapsed time: %3600*AR65% seconds
+/gopr

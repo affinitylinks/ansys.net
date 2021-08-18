@@ -1,0 +1,93 @@
+/nopr
+!
+!  vlsm.mac  a macro that selects or reselects volumes that
+!            are meshed.
+!
+!  usage:  vslm,select
+!
+!    where:  select=0 for select from whole set
+!            select=1 to reselect from selected set
+!            select=2 to unselect from selected set
+!
+!  written by:  John Crawford  1-24-00
+!
+!  delete pre-existing trailing undercore parameters
+*del,,prm_
+!  check to see if we want to select or reselect
+*if,arg1,eq,0,then
+vsel,all
+*endif
+!
+!  if any volumess are selected then loop through them and
+!  unselect or reselect those volumes that are not meshed
+*if,vlinqr(0,13),ne,0,then
+!
+*if,arg1,eq,0,then
+*msg,info
+SELECTING MESHED VOLUMES FROM ALL VOLUMES IN MODEL
+!
+*elseif,arg1,eq,1
+*msg,info
+RESELECTING MESHED VOLUMES FROM SELECTED VOLUMES
+!
+*elseif,arg1,eq,2
+*msg,info
+UNSELECTING MESHED VOLUMES FROM SELECTED VOLUMES
+*endif
+!
+!  set volume id parameter to zero
+vnum_=0
+!
+!  set the beginning number of selected volumes
+vstart_=vlinqr(0,13)
+!
+!  begin looping
+*do,i_,1,vstart_
+!
+!  get next volume ID number
+vnum_=vlnext(vnum_)
+!
+!  set up and display progress bar
+*abset,'CHECKING MESHED VOLUMES',bar
+p_=nint(100*i_/vstart_)
+*abcheck,p_,'CHECKING MESHED VOLUMES %p_%%'
+!
+!*msg,info,vnum_,vlinqr(vnum_,-6)
+!Volume %i has %i elements associated with it
+!
+!  vlinqr(vnum_,-6) is the inquiry statement that returns the 
+!  number of elements associated with a volume
+*if,arg1,eq,2,then
+!
+*if,vlinqr(vnum_,-6),gt,0,then
+!*msg,info,vnum_
+!Unselecting Meshed Volume %i
+vsel,u,volu,,vnum_,
+*endif
+!
+*elseif,arg1,le,1
+!
+*if,vlinqr(vnum_,-6),le,0,then
+!*msg,info,vnum_
+!Unselecting Unmeshed Volume %i
+vsel,u,volu,,vnum_,
+*endif
+!
+*endif
+!
+*enddo
+!
+!  finish the progress counter
+*abfini
+!
+!  if the number of seleted volumes equals zero then display
+!  a message informing the user of this
+*else
+*msg,info
+NO VOLUMES ARE CURRENTLY SELECTED - SELECT VOLUMES AND TRY AGAIN
+*endif
+!
+!  clean up the parameters we used
+*del,,prm_
+!
+/gopr

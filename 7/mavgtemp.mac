@@ -1,0 +1,30 @@
+/com                                                                       
+/com  This macro calculates the volume averaged temperature of the         
+/com  currently selected elements from a thermal solution.                 
+/com                                                                       
+/com     Written by:  Joe Metrisin                                         
+/com           Date:  August 1, 1997.                                      
+/com                                                                       
+/nopr                                                                      
+!                                                                          
+cm,tempgrp,elem                   ! Store current element group.           
+!                                                                          
+vtot=0.0                          ! Reset total volume value.              
+totvxt=0.0                        ! Reset total volume times temp. value.  
+etable,tempe,temp                 ! fill tempe with average element temp.  
+etable,volue,volu                 ! fill volue with element volumes        
+smult,vtemp,tempe,volue,1,1       ! multiply tempe*volue for each element  
+ssum                              ! sum the element table entries          
+*get,vtot,ssum,,item,volue        ! get sum of the volumes                 
+*get,totvxt,ssum,,item,vtemp      ! get sum of TAVG*VOLUME                 
+avetemp=totvxt/vtot               ! Calculate average temperature.         
+!                                                                          
+cmsel,s,tempgrp                   ! Restore initial element group.         
+cmdel,tempgrp                     ! Delete temporary element group.        
+!                                                                          
+/gopr                                                                      
+/com                                                                       
+*msg,info,avetemp                                                          
+The average temperature for the current element set is: %g                 
+!                                                                          
+/eof    

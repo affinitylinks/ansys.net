@@ -1,0 +1,124 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION & MACRO REVISION:
+/com,    This macro gets the jobname, title, and subtitles from the
+/com,    current job and places them in character arrays
+/com,      99.04.13
+/com,
+/com,USAGE OF MACRO:
+/com,    "jobname" (no arguments needed)
+/com,
+/com,OUTPUT OF MACRO:
+/com,    Places jobname into array -> "c_jobnam(i)"
+/com,    Places length of jobname  -> "i_jobnam"
+/com,    Places title into array   -> "c_title(i)"
+/com,    Places length of title    -> "i_title"
+/com,    ...same for c_subt1, c_subt2, c_subt3, c_subt4
+/com,       (subtitles /STITLE)
+/com,
+/com,OTHER MACROS REQUIRED:
+/com,    none
+/com,
+/com,COMMENTS, ASSUMPTIONS, LOCAL VARIABLES DEFINED & RELEASED:
+/com,    Only holds first 32 characters
+/com,
+  /nopr
+  *set,i_size,8
+  *set,i_max,4
+  !------------------------------------------------------------
+  ! Get Jobname and put into char array 'c_jobname'
+  !------------------------------------------------------------
+  *set,i_jobnam
+  *set,c_jobnam
+  *dim,c_jobnam,char,i_max
+  *do,i_count,1,i_max
+    *get,c_jobnam(i_count),active,,jobnam,,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_jobnam,i_size*i_max,1,-1
+    *get,c_temp,active,,jobnam,,start,i_jobnam
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Get Title and put into char. array 'c_title'
+  !------------------------------------------------------------
+  *set,i_max,9
+  *set,i_title
+  *set,c_title
+  *dim,c_title,char,i_max
+  *do,i_count,1,i_max
+    *get,c_title(i_count),active,,title,0,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_title,i_size*i_max,1,-1
+    *get,c_temp,active,,title,0,start,i_title
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Get Subtitle1 and put into char. array 'c_subt1'
+  !------------------------------------------------------------
+  *set,i_subt1
+  *set,c_subt1
+  *dim,c_subt1,char,i_max
+  *do,i_count,1,i_max
+    *get,c_subt1(i_count),active,,title,1,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_subt1,i_size*i_max,1,-1
+    *get,c_temp,active,,title,1,start,i_subt1
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Get Subtitle2 and put into char. array 'c_subt2'
+  !------------------------------------------------------------
+  *set,i_subt2
+  *set,c_subt2
+  *dim,c_subt2,char,i_max
+  *do,i_count,1,i_max
+    *get,c_subt2(i_count),active,,title,2,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_subt2,i_size*i_max,1,-1
+    *get,c_temp,active,,title,2,start,i_subt2
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Get Subtitle3 and put into char. array 'c_subt3'
+  !------------------------------------------------------------
+  *set,i_subt3
+  *set,c_subt3
+  *dim,c_subt3,char,i_max
+  *do,i_count,1,i_max
+    *get,c_subt3(i_count),active,,title,3,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_subt3,i_size*i_max,1,-1
+    *get,c_temp,active,,title,3,start,i_subt3
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Get Subtitle4 and put into char. array 'c_subt4'
+  !------------------------------------------------------------
+  *set,i_subt4
+  *set,c_subt4
+  *dim,c_subt4,char,i_max
+  *do,i_count,1,i_max
+    *get,c_subt4(i_count),active,,title,4,start,i_size*(i_count-1)+1
+  *enddo
+  *do,i_subt4,i_size*i_max,1,-1
+    *get,c_temp,active,,title,4,start,i_subt4
+    *if,c_temp,ne,'        ',exit
+  *enddo
+  !------------------------------------------------------------
+  ! Delete unused parameters
+  !------------------------------------------------------------
+  *del,i_size,
+  *del,i_max,
+  *del,c_temp,
+  *del,i_count,
+  /gopr

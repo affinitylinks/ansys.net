@@ -1,0 +1,75 @@
+/nopr
+!
+! ndgroup.mac a macro which creates a macro of nsel commands for the
+! currently selected nodes. this group of nodes can be
+! recovered by running the macro that this macro creates.
+!
+! The macro will prompt the user for the name of
+! the file which will be created. The default name is
+! 'ndgroup.mac'.
+!
+! usage: ndgroup
+!
+! written by John Crawford 4-22-96
+!
+! check to see if any nodes are selected. If so, run the
+! macro. If not, print a message and quit
+*if,ndinqr(0,13),gt,0,then
+!
+fname=
+*ask,fname,Enter File Name,ndgrp1
+!
+*cfopen,fname,mac
+!
+! remove any pre-existing variable named nd, in case a vector parameter exists.
+nd=
+!
+! set initial value for nd
+nd=0
+!
+*msg,info,ndinqr(0,13)
+Writing nsel commands for %i nodes
+!
+! enter the loop which creates the node list
+*do,i,1,ndinqr(0,13)
+!
+nd=ndnext(nd)
+!
+*if,i,eq,1,then
+*vwrite
+('/nopr')
+*vwrite,nd
+('nsel,s,node,,',f7.0)
+*else
+*vwrite,nd
+('nsel,a,node,,',f7.0)
+*if,i,eq,ndinqr(0,13),then
+*vwrite
+('/gopr')
+*endif
+*endif
+!
+*enddo
+!
+! finished writing node and element file
+!
+! close the file
+*cfclose
+!
+! display a message telling the user that the macro is finished
+*msg,info,fname
+Finished writing nsel commands to file %c.mac
+!
+! clean up the parameters
+nd=
+fname=
+i=
+j=
+!
+!
+*else
+*msg,info
+**** NDGROUP Will Not Run Because No Nodes Are Selected ****
+*endif
+! 
+/gopr

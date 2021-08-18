@@ -1,0 +1,197 @@
+/nopr
+!
+!  fildel.mac  a macro to remove a fillet radius and connect the
+!              neighboring two lines with a sharp corner
+!
+!  usage:  fildel,filet
+!
+!  assumptions:  the fillet radius and it's
+!                two lines must lie in a common plane
+!
+!  John Crawford 1-5-95
+!
+!  create a component with the presently selected lines and points in it
+!  so they can be restored when the macro is finished running
+cm,dummyl,line
+cm,dummyk,kp
+!  select the fillet line to be removed
+lsel,s,line,,arg1
+!  select the keypoints associated with this line
+ksll
+!  select all lines associated with these keypoints
+lskp
+!  select all keypoints associated with these lines
+ksll
+!  check for number of lines
+!  if there are 3 lines, than it's okay to proceed
+*get,lnum,line,,count
+*if,lnum,ne,3,then
+!  go to :lines, print a message, and then quit the program
+!  if lnum does not equal 3
+*go,:lines
+*endif
+!
+!  delete the fillet line
+ldel,arg1
+!  get the line numbers of the two remaining lines
+*get,l1,line,,num,min
+*get,l2,line,,num,max
+!  get the points at the ends of each line
+!
+*get,k1,line,l1,kp,1
+*get,k2,line,l1,kp,2
+*get,k3,line,l2,kp,1
+*get,k4,line,l2,kp,2
+!
+!  get the current coordinate system in use
+!
+*get,csid,active,,csys
+!
+!  the coordinates of the line can be automatically obtained by
+!  using kx(n), ky(n), and kz(n)
+!
+!  create a local cartesian coordinate system in the plane of 
+!  the two lines so it's easier to calculate where the 
+!  intersection point is.  The coordinate system is given
+!  the identification number of 9999, and will be deleted when
+!  the macro is finished running.
+!
+imme,0
+!  check if keypoints k1,k2, and k3 are colinear.  if they are, then
+!  make the local coordinate system using k1,k2, and k4.
+*if,(kx(k2)-kx(k1))*(ky(k3)-ky(k1)),eq,(kx(k3)-kx(k1))*(ky(k2)-ky(k1)),then
+cskp,9999,0,k1,k2,k4
+*else
+cskp,9999,0,k1,k2,k3
+*endif
+!
+imme,1
+!  make system 9999 the current coodinate system
+!
+csys,9999
+!
+!  check for parallel lines
+!  if the lines are parallel, then jump to the bottom and quit
+!  (if the lines are parallel, then the y coordinate of line 2's
+!  keypoints will be equal in the local coordinate system)
+!
+*if,ky(k3),eq,ky(k4),then
+*go,:paral
+*endif
+!  calculate the local x coordinate for the intersection point.
+!  remember that the y coordinate is always zero, which is why 
+!  a local coordinate system is used.  Makes things much easier.
+!
+x=kx(k3)-ky(k3)*(kx(k4)-kx(k3))/(ky(k4)-ky(k3))
+!
+!  get the maximum keypoint number in the model
+!  NOTE: this *get command is not documented in the ANSYS documentation
+!        but is from ANSYS 4.4A and still works.
+!
+*get,kmax,mxkp
+!
+!  calculate new keypoint number by incrementing the highest keypoint
+!  number by 1
+!
+nkp=kmax+1
+!
+!  create new keypoint at intersection of the two lines
+!
+k,nkp,x,0
+!
+!  now figure out which end of each line should be relimited
+!  by calculating the distance from each point on the original two
+!  lines to the new point in the corner.  The points closest
+!  to the corner point will be deleted.
+d1=distkp(k1,nkp)
+d2=distkp(k2,nkp)
+d3=distkp(k3,nkp)
+d4=distkp(k4,nkp)
+!
+!  remove the two lines
+ldel,l1
+ldel,l2
+!
+!  figure out which end of the line is to be extended to the newly
+!  created key point.  The end which is closer to the corner point is
+!  the one which is always relimited.
+!  
+!  first do the line with the lower line number, and which used k1 and k2
+!
+*if,d1,lt,d2,then
+   l,k2,nkp
+   kdel,k1
+ *else
+   l,nkp,k1
+   kdel,k2
+*endif
+!
+!  now do the other line, which used k3 and k4
+!
+*if,d3,lt,d4,then
+l,k4,nkp
+kdel,k3
+  *else
+l,nkp,k3
+kdel,k4
+*endif
+!
+!  restore the beginning selected lines and points to the model
+!
+cmsel,a,dummyl
+cmsel,a,dummyk
+!  delete the dummy components
+!cmdele,dummyl
+!cmdele,dummyk
+!
+!  skip over the error messages and go to the :end1
+*go,:end1
+!
+!  this is the error checking routine for parallel lines
+:paral
+*msg,info
+ **** Can not corner these lines because they are parallel!!! ****
+!
+*go,:end1
+:end1
+!
+!  return back to the original coordinate system being used 
+csys,csid
+imme,0
+!  delete the dummy coordinate system used to create the intersection point
+csde,9999
+!
+imme,1
+!
+!  print the message that an incorrect number of lines are connected
+!  to the radius.  There should only be two lines connected.
+:lines
+*msg,info
+ * There are an incorrect number of lines attached to the radius *
+*go,:end2
+:end2
+!
+cmsel,a,dummyl
+cmsel,a,dummyk
+!*stat
+!  remove the local variables used in this macro from the ANSYS database
+csid=
+k1=
+k2=
+k3=
+k4=
+kmax=
+nkp=
+x=
+d1=
+d2=
+d3=
+d4=
+lnum=
+l1=
+l2=
+cmsel,a,dummyl
+cmsel,a,dummyk
+!
+!  all done
+/gopr

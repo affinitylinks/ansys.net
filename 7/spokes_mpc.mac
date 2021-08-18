@@ -1,0 +1,74 @@
+!-------------------------------------------------------------------------------------------------------------
+!                                            SPOKES - MPC MACRO
+!-------------------------------------------------------------------------------------------------------------
+! This Macro forms a 'spider web' like Multipoint constraint for a given set of nodes
+! The user has to just place the clusters of nodes in separate components by names 'NODES1','NODES2'..etc.,
+! The macro automatically finds the 'centre-node' for each node cluster and links it with the surrounding nodes
+! in the cluster to form a 'spokes' pattern using MPC 184 elements with 'Rigid-beam' option 
+!(the element option can be changed by user for his/her requirements)
+
+!This will be useful in cases where multipoint constraint is required for a number of bolt holes 
+
+!----------------Please place the nodes in nodal components with names 'NODES1','NODES2'..etc.,---------------
+
+!-------------------------------------------------------------------------------------------------------------
+! R.Balasubramanian, Senior Engineer-CAE, Brakes India Ltd., Chennai, INDIA
+! rambala@engineer.com
+!-------------------------------------------------------------------------------------------------------------
+
+/nopr
+/prep7
+alls
+
+!Store the active co-ordinate system number
+*get,A_CSYS,active,,csys
+
+!Switch to global cartesian for this macro alone
+csys
+
+*ask,TN,'THE NO.OF CLUSTER NODE COMPONENTS',1
+
+*do,TINDEX,1,TN
+
+   MAX_DEF=ndinqr(0,14)
+   CN=MAX_DEF+1
+   SUCC_NODE=0
+
+   CHAR_TINDEX=chrval(TINDEX)
+   N_COMP=strcat('NODES',CHAR_TINDEX)
+   cmsel,,N_COMP
+   NCOUNT=ndinqr(0,13)
+
+   !Find the centre node location & create the centre node
+   *get,MAX_X,node,,mxloc,x
+   *get,MAX_Y,node,,mxloc,y
+   *get,MAX_Z,node,,mxloc,z
+   *get,MIN_X,node,,mnloc,x
+   *get,MIN_Y,node,,mnloc,y
+   *get,MIN_Z,node,,mnloc,z
+   CNX=(MAX_X+MIN_X)/2
+   CNY=(MAX_Y+MIN_Y)/2
+   CNZ=(MAX_Z+MIN_Z)/2
+   n,CN,CNX,CNY,CNZ
+
+   !Generate the MPC elements with the cluster of nodes
+   et,,184,1
+   TYP_NO=etyiqr(0,14)
+   type,TYP_NO
+
+   *do,INDEX,1,NCOUNT 
+      SUCC_NODE=ndnext(SUCC_NODE)
+      e,CN,SUCC_NODE
+   *enddo
+
+*enddo
+eplo
+
+!Switch back to the original active co-ordinate system
+csys,A_CSYS
+/gopr
+/eof
+
+
+
+

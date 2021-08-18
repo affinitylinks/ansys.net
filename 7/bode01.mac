@@ -1,0 +1,89 @@
+C***********************************************
+C*** MACRO FILE bode.mac PRODUCES A BODE PLOT
+C*** USING 2 PREDEFINED VARIABLES IN POST26,
+C*** (THE TIME-HISTORY PROCESSOR). THE MACRO
+C*** PROMPTS THE USER FOR THE 2 VARIBLE
+C*** NUMBERS REPRESENTING THE OUTPUT AND INPUT.
+C***********************************************
+C*** BILL BULAT 11/16/98
+C*** CSI
+C*** 5962 LAPLACE COURT, SUITE 100
+C*** CARLSBAD, CA 92009
+C*** (760)431-4815 x108
+C*** (760)431-4824 (FAX)
+C*** bill.bulat@csi-ansys.com
+C***********************************************
+! COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+! OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+! LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+! IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+! USEFULNESS OF THE RESULTS.
+! 
+
+C*** PROMPT USER FOR PREDEFINED VARIABLES
+C*** (USE [NSOL] COMMAND IN POST26).
+*ask,output,the output variable number,2
+*ask,input,the input variable number,3
+
+C*** WINDOW AND GRAPHICS CONTROLS
+/win,1,-1,1,0.01,1
+/win,2,-1,1,-1,-0.01
+/grid,1
+/gthk,axis,2
+/gthk,curve,2
+/gropt,axnsc,1.25
+/colo,grid,whit
+/ann,dele
+/tsp,,1.5
+/tla,.05,.90,BODE PLOT
+
+C*** PHASE ANGLE PLOT IN WINDOW 2
+/gropt,logx,on
+/gropt,logy,off
+/axl,x,FREQUENCY (Hz)
+/axl,y,PHASE ANGLE (DEGREES)
+
+/win,1,off
+/win,2,on
+/yrange,-180,180
+/erase
+
+quot,10,output,input,,Phase
+plcplx,1
+plva,10
+
+C*** 20 LOG(AMPLITUDE RATIO) PLOT IN WINDOW 1
+/gropt,logx,on
+/gropt,logy,off
+/axl,x,FREQUENCY (Hz)
+/axl,y,20*LOG[OUTPUT/INPUT]
+
+/win,1,on
+/win,2,off
+/yrange
+/noerase
+
+abs,10,10             ! MAGNITUDE OF |G|
+clog,10,10,,,db,,,,20 ! 20*LOG|G|
+plcplx,0
+plva,10
+
+C*** RESTORE PLOT OPTIONS
+/gropt,logx,off
+/gropt,logy,off
+/gropt,axnsc,1
+/colo,grid
+
+/axl,x
+/axl,y
+
+/win,1,on
+/win,2,off
+/win,1,full
+/yrange
+/erase
+
+/ann,dele
+/tsp
+
+plcplx,0

@@ -1,0 +1,75 @@
+! macro v_by_2a    mw Hiller, mhiller@in2solutions.com  version 9/2/99
+! no warrantee implied or expressed...............
+! create a volume by picking two opposed areas......   automates V,P
+! assumes two areas are picked and, 4 KP per area....
+/pmacro
+
+
+*if,arg1,lt,1,then
+      arg1=1
+*endif
+
+*do,i,1,arg1
+cm,tempa,area
+
+asel,r,p
+
+*del,low_kp,,nopr
+*del,high_kp,,nopr
+
+*get,anum_mx,area,,num,max
+*get,anum_mn,area,,num,min
+
+allsel,below,area
+
+*get,kp_num,kp,,count
+
+*if,kp_num,le,8,then
+
+*dim,low_kp,array,kp_num/2,
+*dim,high_kp,array,kp_num/2
+
+! loop around mx area number
+asel,s,area,,anum_mx
+allsel,below,area
+*get,kpmx1,kp,,num,min
+kpmx2=knear(kpmx1)
+ksel,u,kp,,kpmx1
+kpmx3=knear(kpmx2)
+ksel,u,kp,,kpmx2
+kpmx4=knear(kpmx3)
+
+! loop around mn area number
+asel,s,area,,anum_mn
+allsel,below,area
+
+ksel,a,kp,,kpmx1
+kpmn1=knear(kpmx1)
+ksel,u,kp,,kpmx1
+
+ksel,a,kp,,kpmx2
+kpmn2=knear(kpmx2)
+ksel,u,kp,,kpmx2
+
+ksel,a,kp,,kpmx3
+kpmn3=knear(kpmx3)
+ksel,u,kp,,kpmx3
+
+ksel,a,kp,,kpmx4
+kpmn4=knear(kpmx4)
+
+asel,s,area,,anum_mn
+asel,a,area,,anum_mx
+allsel,below,area
+
+V,kpmx1,kpmx2,kpmx3,kpmx4,kpmn1,kpmn2,kpmn3,kpmn4
+
+cmsel,s,tempa
+allsel,below,area
+vsel,all
+
+*endif
+
+*enddo
+
+/eof

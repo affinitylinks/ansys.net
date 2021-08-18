@@ -1,0 +1,70 @@
+!**************************************************************************************************************************
+!
+! Macro Name:  spider.txt
+!
+! Description: Spider web beam element generator
+!
+! Function:    This macro creates a spider-web that connects a center node with a group of surrounding
+!              nodes on the inside surface of a hole with line elements (beam or link). The modeling
+!              objective is to provide attachment of a single point to the inside surface of a hole
+!              for the transfer of loads or boundary conditions to the model.
+!              This is an approximate method of modeling a shaft support in a hole.
+!
+! Limitations: a.) The hole surface nodes must be in a component node group named N_CIRCLE.
+!              b.) The center node of the hole must be in a component node group named N_CENTER.
+!              c.) This macro only works on one hole at at a time. If you have multiple holes, you
+!                  must redefine the component nodes groups for each hole.
+!
+! REQUIRED     a.) The group of nodes representing the 3-d hole surface must be in a node component
+! INPUT:           group named N_CIRCLE.
+!              b.) The node for the center of the hole must be in a node component group named
+!                  N_CENTER.
+!              c.) The material number, ARG1, real constant number, ARG2, and element type number,
+!                 ARG3 must be defined.      
+!
+! OUTPUT:      Beam or link elements that connect each node on the surface of the hole to the center
+!              of the hole.
+!
+! USAGE:       This macro is run from the command line using the *USE command.
+!              *USE,spider.txt,ARG1,ARG2,ARG3
+!
+!              where, ARG1 = Material number.
+!                     ARG2 = Real constant number.
+!                     ARG3 = Element type number.
+!
+! REVISION     N/C, 12/11/2001, Donald W. Cummings, Tensor Methods, Inc.
+! LEVEL:
+!
+!******************************************************************************************************
+!
+/prep7                                            ! Enter the preprocessor.
+cmsel,s,N_CENTER                                  ! Select the node group for the hole center node.
+!*
+!* Check for Multiple Center Nodes
+!*
+*get,N_TOT_,node,0,count                          ! Get total number of nodes in the hole center node group as N_TOT.
+*if,N_TOT_,NE,1,then
+   *msg,error
+   ABORT - There must exactly 1 center node
+*endif
+*get,NN_CENT,node,0,num,min                       ! Get the node number for the center node as NN_CENT.
+cmsel,s,N_CIRCLE                                  ! Select the node group for the hole surface nodes.
+!*
+!* Check for Hole Surface Nodes
+!*
+*get,N_TOT_,node,0,count                          ! Get the total number of nodes in the hole surface node group as N_TOT.
+*if,N_TOT_,LE,0,then
+   *msg,error
+   ABORT - There must at least 1 circle node
+*endif
+!*
+!* Loop to Generate the Beam Elements
+!*
+*do,i_,1,N_TOT_,1
+   *get,NN_CIRC,node,0,num,min                    ! Get the lowest node number in the current hole surface node set as NN_CIRC.
+   mat,arg1                                       ! Specify material for elements.       
+   real,arg2                                      ! Specify real constant for elements.
+   type,arg3                                      ! Specify line element type for line elements.
+   e,NN_CENT,NN_CIRC                              ! Create the line element.
+   nsel,u,,,NN_CIRC                               ! Remove the current surface node from the node set N_CIRCLE.
+*enddo

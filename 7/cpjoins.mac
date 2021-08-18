@@ -1,0 +1,52 @@
+!a macro to create couples at coincident locations
+!written by mark kessler 8-18-2000
+!usage cpjoins,arg1,arg2,arg3,arg4,arg5,arg6
+!enter a 1 to create a couple any other character ignores the couple
+!where arg1 creates a couple for ux
+!      arg2 creates a couple for uy
+!      arg3 creates a couple for uz
+!      arg4 creates a couple for rotx
+!      arg5 creates a couple for roty
+!      arg6 creates a couple for rotz
+!select the master node then the slave node. 
+!
+!begin program
+/pmacro
+/nopr
+/prep7
+cm,orign_,nodes
+nsel,r,p
+*get,fnode_,node,0,num,max 
+cmsel,s,orign_
+nsel,r,p
+*get,snode_,node,0,num,max 
+cmsel,s,orign_
+*if,arg1,eq,1,then
+cp,next,ux,fnode_,snode_
+*endif
+!
+*if,arg2,eq,1,then
+cp,next,uy,fnode_,snode_
+*endif
+!
+*if,arg3,eq,1,then
+cp,next,uz,fnode_,snode_
+*endif
+!
+*if,arg4,eq,1,then
+cp,next,rotx,fnode_,snode_
+*endif
+!
+*if,arg5,eq,1,then
+cp,next,roty,fnode_,snode_
+*endif
+!
+*if,arg6,eq,1,then
+cp,next,rotz,fnode_,snode_
+*endif
+/pbc,default
+*del,,prm_
+*stat,prm_
+/pbc,cp,1
+nplo
+/gopr

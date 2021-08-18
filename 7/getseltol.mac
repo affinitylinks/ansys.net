@@ -1,0 +1,38 @@
+! getseltol.mac gets the current value of SELTOL and stores it in parameter
+! seltcur
+! A collaboration between James J. Kosloski and Bram D. Weisman, Feb. 12, 2010.
+!
+/nopr
+/pmacro
+cm,_ntemp,node
+/out,_anstmp1,tmp,
+/go
+nsel,s,loc,x,1,0,0
+/nopr
+/out,term
+/out,_anstmp2,tmp,
+/go
+nsel,s,loc,x,2,0,0
+/nopr
+/out,term
+cmsel,s,_ntemp
+*sread,_tols1,_anstmp1,tmp,,128,2,1
+_tols1a=valchr(_tols1(25))
+*sread,_tols2,_anstmp2,tmp,,128,2,1
+_tols2a=valchr(_tols2(25))
+*if,_tols1a,eq,_tols2a,then
+/go
+seltcur=_tols1a
+/nopr
+*else
+/go
+seltcur=0
+/nopr
+*endif
+_tols1=
+_tols2=
+_tols1a=
+_tols2a=
+/delete,_anstmp1,tmp
+/delete,_anstmp2,tmp
+/go

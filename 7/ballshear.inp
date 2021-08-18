@@ -1,0 +1,252 @@
+/batch
+!
+!  RATE-DEPENDENT SOLDER BALL SHEAR TESTING SIMULATION
+!  ===================================================
+!  Using ANSYS Rate-Dependent Pierce Material Model,
+!  this simulation replicates simulation/test data
+!  from the following paper:
+!
+!  "Characterization and Analysis on the Solder Ball 
+!   Shear Testing Conditions, Xingjia Huang, et al.,
+!   2001 IEEE Electronic Components and Technology 
+!   Conference Proceedings, 
+!
+!   /POST26 PLVAR plot (shear force vs. displacement)
+!   is identical to Figure 3 in Huang's paper.
+!
+/gra,power
+/gst,on
+/plo,info,3
+/title,Solder Ball Shear Testing (Shear Rate=100um/s)  
+!*  
+/prep7
+mesh=1
+solve=1
+!
+!******** ELEMENT TYPES ******************
+!
+et,1,plane183,,,2
+et,2,targe169,,1
+et,3,conta172
+r,1,,,,,1.e-2
+r,2,,,1,,3.e-2
+!  
+!******** MATERIAL PROPERTIES ************
+!
+!  Moduli/Stress [Pa]
+!  Time [second]
+!  Density [kg/m3]
+!  Length [m]
+!========================
+!  Copper pad 
+mp,ex,1,128.7e9
+mp,nuxy,1,0.34
+mp,dens,1,8310.
+!  Solder material
+mp,ex,2,29.8e9
+mp,nuxy,2,0.40
+tb,miso,2,,3
+tbpt,defi,0.001,29.8e6
+tbpt,defi,0.002,58.5e6
+tbpt,defi,0.2,58.501e6
+tb,rate,2,,,PEIRCE
+tbdata,1,0.5,5.
+mp,dens,2,8410.
+!  PCB laminate
+mp,ex,3,14.e9
+mp,nuxy,3,0.39
+mp,dens,3,1200.
+!
+!******* GEOMETRY MODEL GENERATION *******
+!
+nyl=4			! no. of y layers
+tsub=0.46e-3            ! thickness of substrate
+sbh=0.64e-3             ! solder ball height
+sw=1.8e-3               ! width of substrate
+smw=0.39e-3             ! half width of solder ball 
+scc=0.5*sw              ! x coordinate of solder ball center
+padw=0.46e-3            ! half width of solder bond pad
+padt=0.01e-3            ! thickness of cu bond pad
+raml=0.65e-3            ! shear ram length
+ramh=0.064e-3           ! y coordinate of shear ram bottom
+!
+*dim,ylayer,array,nyl
+!
+ylayer(1)=0.0
+ylayer(2)=tsub
+ylayer(3)=tsub+padt
+ylayer(4)=tsub+padt+(sbh-smw)
+!
+k,1,0,ylayer(1)
+k,2,sw,ylayer(1)
+k,3,sw,ylayer(2)
+k,4,0,ylayer(2) 
+a,1,2,3,4
+!
+k,5,scc-padw,ylayer(2)
+k,6,scc+padw,ylayer(2)
+k,7,scc+padw,ylayer(3)
+k,8,scc-padw,ylayer(3)
+a,5,6,7,8
+!
+cyl5,scc-smw,ylayer(4),scc+smw,ylayer(4)
+!
+asba,3,all,,,keep
+!
+asel,all
+aglue,all
+/auto
+aplot
+*if,mesh,eq,1,then
+!
+!************* MESHING OPERATIONS ************
+!
+!  solder area
+!
+asel,s,area,,4
+aatt,2,,1
+lesize,10,,,10,0.3
+lesize,14,,,10
+lesize,13,,,10
+lesize,15,,,26
+lesize,9,,,7,3
+esize,80e-6
+amesh,all
+!
+!  copper pad areas
+!
+asel,s,area,,5
+aatt,1,,1
+smrt,1
+amesh,all
+!
+!  laminate substrate areas
+!
+asel,s,area,,3
+aatt,3,,1
+esize,180e-6
+mshkey,0
+amesh,all
+!
+!  rigid target elements of shear ram
+!
+k,101,scc-smw,ylayer(3)+ramh
+k,102,scc-smw,ylayer(3)+ramh+raml
+k,103,scc-smw,ylayer(3)+ramh+0.5*raml
+l,101,102
+type,2
+real,1
+ksel,s,kp,,101,102
+lslk,s
+lmesh,all
+allsel
+kmesh,103
+nsel,s,loc,x,scc-smw
+nsel,r,loc,y,ylayer(3)+ramh+0.5*raml
+*get,pilot,node,,num,max
+allsel
+!
+!  flexible contact elements (solder ball)
+!
+type,3
+real,1
+mat,2
+lsel,s,line,,10,14,4
+nsll,s,1
+esurf
+!
+!  flexible target elements (copper pad)
+!
+type,2
+real,2
+lsel,s,line,,16
+nsll,s,1
+esurf
+!
+!  flexible contact elements (solder ball)
+!
+type,3
+real,2
+mat,2
+lsel,s,line,,13
+nsll,s,1
+esurf
+!
+allsel
+/auto
+eplot
+!
+!******** APPLY BOUNDARY CONDITIONS *********
+!
+nsel,s,loc,x,sw
+dsym,symm,x,0
+
+nsel,s,loc,y,0
+d,all,uy,0
+
+nsel,s,node,,pilot
+d,all,uy,0
+d,all,rotz,0
+!
+!******** GROUP ELEMENTS INTO COMPONENTS *****
+!
+esel,s,mat,,2
+cm,solder,elem
+allsel
+*if,solve,eq,1,then
+!
+!******** SOLVE *********************
+!
+/solu
+!
+outres,all,1
+antype,static,new       
+deltim,.001            
+nlgeom,on
+neqit,30
+!
+nsel,s,node,,pilot
+d,all,ux,0.16e-3   ! prescribed displacement of shear ram
+nsel,all
+!
+time,1.6           ! time = displacement:0.16e-3m / rate:100um/s 
+!
+solve
+save
+finish
+!
+!******* POSTPROCESS ***************
+!
+/plopts,info,0
+!
+/post26 
+!
+nsol,2,pilot,u,x, 
+rforce,3,pilot,f,x,  
+!
+!  force vs. displacement curve
+!  
+!  displacement unit from m to mm
+!  shear force unit from n/m to gf
+!    with an effective thickness 0.6mm   
+!
+prod,4,2, , , , , ,1000, , ,          
+prod,5,3, , ,force, , ,0.06122, , ,
+pltime,0,0  
+xvar,4  
+spread,0
+plcplx,0
+/axlab,y,shear force (g_f)
+/axlab,x,displacment (mm)
+/gropt,view,1   
+/grid,1 
+/gthk,grid,1
+/gropt,cgrid,1
+/ui,raise
+plvar,5
+/ui,copy,save,png,graph,color,reverse,portrait,yes
+finish
+!---------------------------------------------
+*endif
+*endif
+finish

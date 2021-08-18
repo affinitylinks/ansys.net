@@ -1,0 +1,371 @@
+!*********************************************************************
+!  MST Moisture Soak (Diffusion Simulation)
+!  Reference: Ee Hua Wong (IME Singapore, eehua@ime.org.sg)
+!  Compare moisture weight gain predictions for PBGA packages against 
+!  J.Galloway's experimental data
+!  30OCT01
+!*********************************************************************
+!
+/batch,list
+/clear,start
+!
+!  Isometric view
+!
+/vup,1,z
+/view,1,-1,-1,1
+!
+!  Switches for solving & post-processing
+!
+solve=1
+post=1
+!
+!  Level of moisture exposure
+!  level = 1 (85C/85%RH)
+!  level = 2 (30C/60%RH)
+!
+level=1
+!
+/filname,mst%level%
+!
+!  Define geometry and material parameters
+!
+!  Total analysis time = 168 hours (604,800 sec.)
+!
+T=6.048e5
+!
+!  Estimated dry mass of package (gm)
+!
+Mp = 0.607
+!
+!  Define geometry dimension parameters (all units in cm)
+!
+L1=0.008 	$L2=0.03	$L3=0.035	! z dimension
+L4=0.041	$L5=0.081	$L6=0.156
+x1=0.31		$x2=0.47	$x3=0.525	! x dimension
+y1=0.375	$y2=0.675	$y3=0.75	! y dimension
+!
+*if,level,eq,1,then
+!
+/title,Moisture Soak: 85C/85RH
+!
+!  Define material properties  @ 85C/85RH condition
+!  D: diffusivity (cm2/s)
+!  C: saturated concentration (g/cc)
+!  K: conductivity (g/cm-s)
+!
+D1=8.558e-9	$c1=0.02408	$K1=D1*C1	!(BT=BT Laminate)
+D2=1.521e-8	$c2=0.02676	$K2=D2*C2	!(DA=Die Attach)
+D3=2.851e-8	$c3=0.01227	$K3=D3*C3	!(MC=Mold compound)
+D4=2.471e-8	$c4=0.03881	$K4=D4*C4	!(SR=Solder resist)
+D5=1e-10	$c5=1e-3	$K5=D5*C5	!(DIE,Cu)
+*elseif,level,eq,2,then
+!
+/title,Moisture Soak: 30C/60RH	
+!
+!  Define material properties  @ 30C/60RH condition
+!  D: diffusivity (cm2/s)
+!  C: saturated concentration (g/cc)
+!  K: conductivity (g/cm-s)
+!
+D1=1.512e-9	$c1=0.00653	$K1=D1*C1	!(BT=BT Laminate)
+D2=9.39e-10	$c2=0.01468	$K2=D2*C2	!(DA=Die Attach)
+D3=3.13e-9	$c3=0.00780	$K3=D3*C3	!(MC=Mold compound)
+D4=9.263e-9	$c4=0.01654	$K4=D4*C4	!(SR=Solder resist)
+D5=1e-11	$c5=1e-4	$K5=D5*C5	!(DIE,Cu)
+*endif
+!
+Keyw,pr_therm,1	 
+!
+/PREP7  
+!
+!  Element types
+!  Define thermal element type: Plane55=2D / Solid70=3D
+!
+ET,1,PLANE55	$ET,2,SOLID70
+!
+!  Assign material properties to respective layers  
+!
+UIMP,1,DENS, , ,1	$UIMP,1,KXX, , ,k1	$UIMP,1,C, , ,c1 	
+UIMP,2,DENS, , ,1	$UIMP,2,KXX, , ,k2	$UIMP,2,C, , ,c2	 
+UIMP,3,DENS, , ,1	$UIMP,3,KXX, , ,k3	$UIMP,3,C, , ,c3 	
+UIMP,4,DENS, , ,1	$UIMP,4,KXX, , ,k4	$UIMP,4,C, , ,c4	 
+UIMP,5,DENS, , ,1	$UIMP,5,KXX, , ,k5	$UIMP,5,C, , ,c5	 
+!
+! Construction of geometry (Quarter Model)
+!
+k,1,0,0		$k,2,x1,0 	$k,3,x1,y1 	$k,4,0,y1
+k,5,x2,0	$k,6,x2,y1	$k,7,x2,y2	$k,8,x1,y2   	
+k,9,0,y2	$k,10,x3,0	$k,11,x3,y1	$k,12,x3,y2	
+k,13,x3,y3	$k,14,x2,y3	$k,15,x1,y3	$k,16,0,y3  
+A,1,2,3,4	$A,2,5,6,3 	$A,3,6,7,8	$A,4,3,8,9
+A,5,10,11,6 	$A,6,11,12,7 	$A,7,12,13,14
+A,8,7,14,15 	$A,9,8,15,16
+!
+! Meshing construction from 2D element to 3D element
+!
+! Create marco Extru.mac for extrusion
+!
+*creat,extru,mac
+	Asel,s,loc,z,arg1
+	Type,1	$Esize, x2/10	$Amesh,all
+	Type,2	$mat,arg2	$Esize,,arg3
+	Vext,all,,,0,0,arg4		$aclear,all
+*end
+!
+! Macro Usage: Extru, plane, material no, element division, extrusion distance
+!
+! Extrude layer 1 - SR
+!
+Extru,0,4,1,L1
+!
+! Extrude layer 2 - BT
+!
+Extru,L1,1,2,L2-L1
+!
+! Extrude layer 3 - Cu + MC
+!
+Asel,s,loc,z,L2	$Asel,r,loc,x,0,x2	$Asel,r,loc,y,0,y2
+Type,1	$Amesh,all  	$Type,2	$mat,3	$Esize,,1
+Vext,all,,,0,0,L3-L2	$aclear,all
+!
+! Extrude layer 4 - DA + MC
+!
+Extru,L3,3,1,L4-L3
+!
+! Extrude layer 5 - Die + MC
+!
+Extru,L4,3,3,L5-L4
+!
+! Extrude layer 6 - MC
+!
+Extru,L5,3,5,L6-L5
+!
+! Change material number attribute of the elements
+! Layer 3 - change MC to Cu
+!
+Vsel,s,loc,z,L2,L3	$Vsel,r,loc,x,0,x1	
+Vsel,r,loc,y,0,y1	$Eslv,s	$Mpchg,5,all
+!
+! Layer 4 - change MC to DA
+!
+Vsel,s,loc,z,L3,L4	$Vsel,r,loc,x,0,x1	
+Vsel,r,loc,y,0,y1	$Eslv,s	$Mpchg,2,all
+!
+! Layer 5 - change MC to Die
+!
+Vsel,s,loc,z,L4,L5	$Vsel,r,loc,x,0,x1	
+Vsel,r,loc,y,0,y1	$Eslv,s	$Mpchg,5,all
+allsel,all
+!
+/num,1   
+/pnum,MAT,1
+eplot
+finish
+!
+*if,solve,eq,1,then
+!
+!  Solution
+!
+/SOLU
+!
+!  Transient Analysis
+!
+Antype,4	
+!
+!  Iterative solver
+!
+Eqslv,ITER,5 
+!
+!  Boundary condition
+!
+!  Set outer layer (less symmetry planes) to w=1 (i.e., saturated)
+!
+Asel,S,EXT 	$Asel,u,loc,x,0	$Asel,u,loc,y,0	
+Nsla,s,1 	$D,all,TEMP,1, 
+!
+!  Initial condition
+!
+!  Set interior nodes to w=0 (i.e., dry)
+!
+Nsel,inve	$IC,all,temp,0	$allsel,all
+!
+!  Time stepping and solution control 
+!
+!  End time = 604800 sec. = 168 hours
+!
+Time,T	
+Autots,on	
+!
+!  Starting time step = T/500
+!  Minimum time step  = T/1000
+!  Maximum time step  = T/100
+!
+DELTIM,T/500,T/1000,T/10
+!
+!  Linearly ramp boundary conditions
+!
+KBC,1	
+Outres,nsol,all	
+Solve	
+Finish
+!
+*if,post,eq,1,then
+!
+!  Post-processing
+!
+/Post1
+!
+set,last
+!
+/PLOPTS,INFO,2
+/PLOPTS,LEG2,0  
+!
+! ** Define output parameters and arrays
+!
+N=10
+S=2
+P=2+(N-1)*S
+!
+!  No. of experimental data points
+!  Source: J. Galloway, Motorola
+!
+*if,level,eq,1,then
+E=6
+*elseif,level,eq,2,then
+E=5
+*endif
+!
+!  Define tabular & experimental data
+!
+!  MR = Mt/Mp=mass of moisture/dry package (%)
+!  TM = Time (hours)
+!  EXPG = J. Galloway's experimental data
+!  TM1 = Time associated w/ EXPG (hours)
+!
+*del,MR		$ *del,TM	$ *del,EXPG	$ *del,TM1
+*Dim,MR,table,N
+*Dim,TM,table,N
+*Dim,EXPG,table,E
+*Dim,TM1,table,E
+!
+!  **************************************
+!  The following is the experimental data
+!  **************************************
+!
+!  85C/85%RH Experimental Data
+!
+*if,level,eq,1,then
+expg(0)=0.0	$expg(1)=0.254	$expg(2)=0.406
+expg(3)=0.467	$expg(4)=0.492	$expg(5)=0.492
+expg(6)=0.500
+tm1(0)=0	$tm1(1)=7.0	$tm1(2)=20.0
+tm1(3)=106.0	$tm1(4)=120.0	$tm1(5)=144.0
+tm1(6)=168.0
+yrng=0.60
+!
+!  30C/60%RH Experimental Data
+!
+*elseif,level,eq,2,then
+expg(0)=0.0	$expg(1)=0.061	$expg(2)=0.101
+expg(3)=0.122	$expg(4)=0.149	$expg(5)=0.181
+tm1(0)=0	$tm1(1)=7.0	$tm1(2)=24.2
+tm1(3)=50.0	$tm1(4)=96.0	$tm1(5)=168.0
+yrng=0.20
+*endif
+!
+!  Display wetness and concentration contour
+!  Generate wetness (w=temp) and concentration table (C = Csat * w)
+!
+Esel,s,mat,,1	$Etable,wet,temp	$Sadd,cw,wet,,c1	
+Esel,s,mat,,2	$Etable,wet,temp	$Sadd,cw,wet,,c2
+Esel,s,mat,,3	$Etable,wet,temp	$Sadd,cw,wet,,c3
+Esel,s,mat,,4	$Etable,wet,temp	$Sadd,cw,wet,,c4
+Esel,s,mat,,5	$Etable,wet,temp	$Sadd,cw,wet,,c5
+Esel,all
+/ui,raise
+/VIEW, 1 ,,-1 
+/ANNOT,ON
+/TLAB,-0.650, 0.830,Wetness
+/TLAB, 0.350, 0.830,Concentration
+!
+!  Plot wetness contour
+!
+/title,Level(%level%): Wetness & Concentration
+/window,1,left	$Plnsol,temp
+/noerase
+!
+!  Plot concentration contour
+!
+/window,1,right	$pletab,cw
+/ui,copy,save,png,graph,color,reverse,portrait,yes
+/erase
+/anno,dele
+!
+!  Constructs the graph of Mt/Msat Vs Time
+!  Calculate Msat (saturation mass of moisture)
+!  Generate Csat*Vol table for each element
+!
+Esel,s,mat,,1	$Etable,volu,volu	$Sadd,cv,volu,,c1
+Esel,s,mat,,2	$Etable,volu,volu	$Sadd,cv,volu,,c2
+Esel,s,mat,,3	$Etable,volu,volu	$Sadd,cv,volu,,c3
+Esel,s,mat,,4	$Etable,volu,volu	$Sadd,cv,volu,,c4
+Esel,all	$Esel,u,mat,,5		$Ssum
+!
+!  Msat=sum(Vol x Csat)
+!
+*Get,Msat,ssum,0,item,cv
+!	
+!  Calculate mass ratio at each desired time
+!
+*Do,j,p,2,-s
+	Scale=1-log(j-1)/log(p)
+	Time=Scale*T
+	set,,,1,,Time
+!
+!  Generate (C * Vol) table for each element
+!
+	Esel,s,mat,,1	$Etable,wet,temp 	$Smult,cvw,cv,wet
+	Esel,s,mat,,2	$Etable,wet,temp 	$Smult,cvw,cv,wet
+	Esel,s,mat,,3	$Etable,wet,temp 	$Smult,cvw,cv,wet
+	Esel,s,mat,,4	$Etable,wet,temp 	$Smult,cvw,cv,wet
+	Esel,all	$Esel,u,mat,,5		$Ssum
+!
+!  Mt = sum(Vol x Csat x W)
+!
+	*Get,Mt,ssum,0,item,cvw
+!
+!  MR = mass of moisture/mass of dry package (%)
+!
+	MR(n-(j-s)/s)=(Mt*4/Mp)*100
+	TM(n-(j-s)/s)=Time/3600
+*enddo
+!
+!  Plot Mt/Mp Vs Time
+!
+/PLOPTS,INFO,0  
+MR(0,1) =0		$TM(0,1)=0
+/ANNOT,ON
+/TLAB,-0.650, 0.830,Calculated Absorption
+/TLAB, 0.750, 0.830,Galloway Expt. Absorption   
+/title,Level(%level%): Graph of Mt/Mp Vs. Time	
+/axlab,x,Time (Hr)		$/axlab,y,M/Mdry (%)
+$/xrange,0,170	$/yrange,0,yrng	$/gropt,dig2,2
+!
+!  Graph FEA solution on left window
+!
+/window,1,left	$*vplot,TM(0),MR(0)
+/noerase
+!
+!  Graph Galloway experiment data on right window
+!
+/window,1,right	$*vplot,tm1(0),expg(0)
+/ui,copy,save,png,graph,color,reverse,portrait,yes
+/erase
+/WIND,ALL,OFF   
+/WIND,1,FULL
+/anno,dele
+finish
+!
+! ******************** End ********************
+*endif		! end post option
+*endif		! end solve option

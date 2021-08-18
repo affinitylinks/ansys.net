@@ -1,0 +1,41 @@
+/nopr
+!
+!  getal.mac  a macro which loops through a series of asll and lsla
+!             commands
+!
+!  usage:  getal,num  
+!    where:  num=number of loops you want to make
+!                  
+!  written by: John Crawford  revised: 10-7-00
+!                                                    
+ar23=0
+*if,arg1,eq,0,then
+ar24=1
+*endif
+ar21=lsinqr(0,13)
+ar22=arinqr(0,13)
+!
+*do,ar24,1,arg1
+asll
+lsla
+*msg,info,ar24,arinqr(0,13),lsinqr(0,13)
+Doing Loop %i Areas selected = %i Lines selected = %i
+*if,ar21,eq,lsinqr(0,13),then
+*if,ar22,eq,arinqr(0,13),then
+ar23=1
+*endif
+*endif
+*if,ar23,eq,1,then
+*msg,info,arinqr(0,13) ,lsinqr(0,13)
+%/ *** Selecting was automatically stopped because all of *** &
+%/*** the connected areas and lines have been selected. *** &
+%/*** A total of %i area(s) and %i line(s) have been selected. *** 
+*endif
+*if,ar23,eq,1,exit
+ar21=lsinqr(0,13)
+ar22=arinqr(0,13)
+*enddo  
+*msg,info,arinqr(0,12),lsinqr(0,12)
+%/ *** There are %i area(s) and %i lines(s) in the model ***%/    
+! 
+/nopr                                                                           

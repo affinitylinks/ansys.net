@@ -1,0 +1,133 @@
+C*** MACRO FILE indctnc0.mac
+
+C*** CALCULATES INDUCTANCE IN MVP HARMONIC
+C*** RESPONSE EMAG MODEL
+C*** CONTAINING CURRENT FED SOLID (MASSIVE) CONDUCTOR
+C*** FROM REACTANCE (IMAG PART OF IMDEDENCE). IMPEDANCE
+C*** IS CALCULATED FROM REAL AND IMAGINARY PARTS OF
+C*** TOTAL CURRENT AND TIME INTEGRATED ELECTRIC POTENTIAL.
+C*** ALL CALCULATIONS PERFORMED IN POST1.
+
+C*** BILL BULAT
+C*** ANSYS Inc
+
+
+C*********************************************************************
+C*** TEMPORARY COMPONENTS ASSIGNED TO CURRENTLY SELECTED
+C*********************************************************************
+C*** NODES AND ELEMENTS
+cm,temp_e,elem
+cm,temp_n,node
+
+C*********************************************************************
+C*** SELECT LEAD/COIL ELEMENTS
+C*********************************************************************
+esel,s,mat,,2
+
+C*********************************************************************
+C*** IDENTIFY NON-ZERO VOLTAGE NODE FOR DATA RETRIEVAL
+C*********************************************************************
+nsel,s,cp,,1
+*get,v1_node,node,,num,min
+!nsel,s,cp,,2
+!*get,v2_node,node,,num,min
+
+C*********************************************************************
+C*** RETREIVE REAL PART OF CALCULATED QUANTITIES
+C*********************************************************************
+set,,,,0
+nsel,s,cp,,1  ! REAL PART OF CURRENT IN CONDUCTOR 1
+fsum
+*get,I1r,fsum,,item,amps
+I1r=-I1r
+V1r_ans=volt(v1_node) ! REAL PART OF TIME INTEGRATED ELEC POT., COND 2
+
+!nsel,s,cp,,2  ! REAL PART OF CURRENT IN CONDUCTOR 2
+!fsum
+!*get,I2r,fsum,,item,amps
+!I2r=-I2r
+!V2r_ans=volt(v2_node) ! REAL PART OF TIME INTEGRATED ELEC POT., COND 2
+
+C*********************************************************************
+C*** RETRIEVE IMAG PART OF CALCULATED QUANTITIES
+C*********************************************************************
+set,,,,1
+nsel,s,cp,,1  ! IMAG PART OF CURRENT IN CONDUCTOR 1
+fsum
+*get,I1i,fsum,,item,amps
+I1i=-I1i
+V1i_ans=volt(v1_node) ! IMAG PART OF TIME INTEGRATED ELEC POT.
+
+!nsel,s,cp,,2  ! IMAG PART OF CURRENT IN CONDUCTOR 2
+!fsum
+!*get,I2i,fsum,,item,amps
+!I2i=-I2i
+!V2i_ans=volt(v2_node) ! IMAG PART OF TIME INTEGRATED ELEC POT., COND 2
+
+C*********************************************************************
+C*** CONVERT TIME INTEGRATED ELEC POTENTIALS TO PHYSICAL VOLTAGE
+C*********************************************************************
+*get,frqncy,active,,set,freq ! frqncy=FREQUENCY (CYCLES/s)
+*afun,rad
+pi=acos(-1)
+V1r=(-2*pi*frqncy)*(V1i_ans) ! ACTUAL (NOT TIME INTEGRATED) COIL VLTG
+V1i=(2*pi*frqncy)*(V1r_ans) ! ACTUAL (NOT TIME INTEGRATED) COIL VLTG
+!V2r=(-2*pi*frqncy)*(V2i_ans) ! ACTUAL (NOT TIME INTEGRATED) COIL VLTG
+!V2i=(2*pi*frqncy)*(V2r_ans) ! ACTUAL (NOT TIME INTEGRATED) COIL VLTG
+
+C*********************************************************************
+C*** CALCULATE RMS VALUES, ELECTRICAL ANGLES
+C*********************************************************************
+I1rms=((I1r**2+I1i**2)**0.5)/(sqrt(2)) ! RMS COIL1 CURRENT
+V1rms=((V1r**2+V1i**2)**0.5)/(sqrt(2)) ! ACTUAL COIL RMS VOLTAGE
+*afun,deg
+THTA1i=atan(I1i/I1r) ! ELECTRICAL ANGLE OF COIL CURRENT
+THTA1v=atan(V1i/V1r) ! ELECTRICAL ANGLE OF ACTUAL COIL VOLTAGE
+
+C*********************************************************************
+C*** ELECTRICAL POWER (AS MEASURED BY A WATTMETER)
+C*********************************************************************
+PF1=(cos(THTA1v-THTA1i))
+Papprnt1=V1rms*I1rms
+Pelec1=((V1rms*I1rms)*(PF))
+
+C*********************************************************************
+C*** REACTANCE (X) IS IMAGINARY PART OF IMPEDANCE (Z)
+C*********************************************************************
+rctnc1=(V1i*I1r-V1r*I1i)/(I1r**2+I1i**2) ! IM[V1/I1] (L11)
+!rctnc2=(V2i*I1r-V2r*I1i)/(I1r**2+I1i**2) ! IM[V2/I1] (L21)
+
+C*********************************************************************
+C*** INDUCTANCE = REACTANCE/(2*pi*f)
+C*********************************************************************
+indctnc1=rctnc1/(2*pi*frqncy) ! SELF INDUCTANCE
+!indctnc2=rctnc2/(2*pi*frqncy) ! MUTUAL INDUCTANCE
+
+
+/eof
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+C*** DISPLAY RESULTS
+C*** MACRO CALLED w/MENU ON OR OFF?
+
+
+
+*get,_mnu,active,,menu
+*if,_mnu,eq,1,then
+*msg,ui,V1r,V1i,V1rms,I1r,I1i,I1rms,indctnc1,PF1 !,indctnc2
+V1r = %G V %/&
+V1i = %G V %/&
+V1rms = %G V %/&
+I1r = %G A %/&
+I1i = %G A %/&
+I1irms = %G A %/&
+Self Inductance= %G H %/&
+Power Factor= %G
+*endif
+
+
+
+
+
+/eof

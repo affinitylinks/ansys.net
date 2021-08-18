@@ -1,0 +1,116 @@
+!....................................................................................
+!
+!  EXPORT AN ANSYS TETRAHEDRAL MODEL TO ENSIGHT6 (ASCII) FORMAT
+!  ============================================================
+! 
+!  WRITTEN BY: 
+!              RENATO NASCIMENTO ELIAS  
+!              HIGH PERFORMANCE COMPUTING CENTER (NACAD)
+!              FEDERAL UNIVERSITY OF RIO DE JANEIRO (UFRJ)
+!              RIO DE JANEIRO, BRAZIL
+!              MAIL TO: rnelias@gmail.com
+!              http://www.nacad.ufrj.br/~rnelias
+!
+!  LAST UPDATE: 8th of November, 2005
+!
+!  USAGE:
+!        - PUT THIS MACRO IN YOU MACRO'S PATH OR IN THE WORKING DIRECTORY AND CALL 
+!          "ENSIGHT" FROM THE ANSYS COMMAND LINE
+!
+!        - YOU CAN ALSO READ THIS FILE AS AN INPUT FILE
+!
+!  REMARKS:
+!
+!        - THE PRODUCED FILE "JOBNAME.GEO" MAY BE USED IN ENSIGHT AND/OR PARAVIEW 
+!          POSPROCESSORS
+!
+!        - PARAVIEW IS FREELY AVAILABLE AT http://www.paraview.org WEBSITE
+!
+!        - ENSIGHT IS A PROFESSIONAL POST-PROCESSOR SOLD BY CEI
+!          http://www.ceintl.com
+!
+!        - IN ORDER TO READ THE GEOMETRY FILE PRODUCED BY THIS MACRO YOU HAVE
+!          WRITE A SIMPLE ENSIGHT CASE FILE. FOLLOW THE EXAMPLE.CASE THAT FOLLOWS
+!          THIS MACRO
+!
+!        - THIS MACRO WAS TESTED WITH FLOATRAN/FLUID142 ELEMENT BUT I GUESS, IT 
+!          WOULD WORK WITH OTHER SOLID ELEMENTS TOO.
+!
+!        - OTHER PARAVIEW AND ENSIGHT STUFFS WILL BE AVAILABLE IN
+!          http://www.nacad.ufrj.br/~rnelias/paraview
+!
+!
+!  THE AUTHOR WOULD LIKE TO BE REPORTED ABOUT ANY CHANGES, DOUBTS AND/OR IMPROVMENTS
+!
+!....................................................................................
+!
+ALLS $*VMASK $/NOPR
+!....................................................................................
+!                                                                                       
+!           GETTING NODAL COORDINATES AND CONECTIVITY                                    
+!....................................................................................
+
+*GET,NUMEL,ELEM,0,COUNT             ! NUMBER OF ELEMENTS
+*GET,NNOS ,NODE,0,COUNT             ! NUMBER OF NODES
+
+FILENAME=
+*DIM,FILENAME,CHAR,1,20,1, , , 
+/INQUIRE,FILENAME,JOBNAME           ! GET THE JOBNAME
+
+IEN= $XYZ=  $INC=                   ! CLEAN PREVIOUS VECTORS
+*DIM,INC,ARRAY,NNOS,1,2, , ,        ! CREATE DE NODE NUMBER VECTOR
+*DIM,XYZ,ARRAY,NNOS,3,1, , ,        ! CREATE DE NODAL COORDINATES MATRIX
+*DIM,IEN,ARRAY,NUMEL,5,1, , ,       ! CREATE DE CONECTIVITY MATRIX
+
+! ...NODAL COORDINATES...
+!
+ALLS
+*VFILL,INC(1,1),RAMP,1,1            ! FILL IN THE NODE NUMBERS VECTOR
+*VGET ,XYZ(1,1),NODE, ,LOC,X, , ,2  ! GETTING X COORDINATES
+*VGET ,XYZ(1,2),NODE, ,LOC,Y, , ,2  ! GETTING Y COORDINATES
+*VGET ,XYZ(1,3),NODE, ,LOC,Z, , ,2  ! GETTING Z COORDINATES
+
+!
+! ...CONECTIVITY...
+!
+ALLS
+*VFILL,IEN(1,1),RAMP,1,1                 ! 
+*VGET ,IEN(1,2),ELEM, ,NODE,1  , , ,2    ! NODE 1
+*VGET ,IEN(1,3),ELEM, ,NODE,2  , , ,2    ! NODE 2
+*VGET ,IEN(1,4),ELEM, ,NODE,3  , , ,2    ! NODE 3
+*VGET ,IEN(1,5),ELEM, ,NODE,5  , , ,2    ! NODE 4
+
+ALLS
+!
+!..............................................................................................
+!
+*CFOPEN,%FILENAME(1,1)%,geo              ! OPENING ENSIGHT GEOMETRY FILE
+
+*VWRITE,
+Created by Ansys
+*VWRITE,
+Ensight COPPE/UFRJ
+*VWRITE,
+node id given
+*VWRITE,
+element id given
+*VWRITE,
+coordinates
+*VWRITE,NNOS
+%8I
+*VWRITE,INC(1,1),XYZ(1,1),XYZ(1,2),XYZ(1,3)
+%8I%12.5E%12.5E%12.5E
+*VMASK,
+*VWRITE,
+part 1
+*VWRITE,
+Modelo do Ansys
+*VWRITE,
+tetra4
+*VWRITE,NUMEL
+%8I
+*VWRITE,IEN(1,1),IEN(1,2),IEN(1,3),IEN(1,4),IEN(1,5)
+%8I%8I%8I%8I%8I
+*CFCLOS 
+
+IEN= $XYZ=  $INC=                   ! CLEANING VECTORS

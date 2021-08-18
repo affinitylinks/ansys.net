@@ -1,0 +1,131 @@
+!*get,T_START,active,,time,wall
+/nopr
+/com,
+/com, Using SVSEL macro to select volumes based on value of volume
+/com,
+/com,    ARG1 = 'S' (default) or 'R'  [need single quotes]
+/com,    ARG2 = starting value of volumes to select
+/com,    ARG3 = ending value of volumes to select [defaults to ARG2]
+/com,    ARG4 = tolerance [times value] (default=1e-5)
+/com,      Ending value (ARG3) must be greater than starting value (ARG2)
+/com,
+! by sheldon
+
+!----------------------------------------
+! Check to see if we're in the preprocessor
+!----------------------------------------
+*get,STI_ROUT,active,,rout
+*if,STI_ROUT,ne,17,then
+  /com,Entering Preprocessor
+  /prep7
+*endif
+
+!----------------------------------------
+! Get arguments
+!   ARG2 = min value of volu to select
+!   ARG3 = max value of volu to select
+!   ARG4 = tolerance for selection (+/- tol)
+!----------------------------------------
+*if,arg2,eq,0,then
+  STI_VAL1=0
+*else
+  STI_VAL1=arg2
+*endif
+*if,arg3,eq,0,then
+  STI_VAL2=STI_VAL1
+*else
+  STI_VAL2=arg3
+*endif
+*if,arg4,eq,0,then
+  STI_TOLE=1e-5
+*else
+  STI_TOLE=arg4
+*endif
+/com, Selecting volumes of values %STI_VAL1% through %STI_VAL2% with tolerance %STI_TOLE%
+*if,STI_VAL1,eq,STI_VAL2,then
+  STI_TOLE=STI_TOLE*STI_VAL1
+  STI_VAL1=STI_VAL1 - STI_TOLE
+  STI_VAL2=STI_VAL2 + STI_TOLE
+*else
+  STI_TOLE=abs(STI_TOLE*(STI_VAL1-STI_VAL2))
+  STI_VAL1=STI_VAL1 - STI_TOLE
+  STI_VAL2=STI_VAL2 + STI_TOLE
+*endif
+
+!----------------------------------------
+! If ARG1=S, then full select
+! Otherwise, reselect
+!----------------------------------------
+cm,TEMPVOLU,volu
+allsel,all
+*get,STI_TOTA,volu,,count
+*get,STI_FLAG,parm,arg1,type
+*if,STI_FLAG,eq,3,then
+  *if,arg1,eq,'r',or,arg1,eq,'R',then
+    cmsel,s,TEMPVOLU
+  *endif
+*endif
+cmdele,TEMPVOLU
+/output,stiscratch,txt
+asum
+/output
+
+!----------------------------------------
+! Define mask and volume arrays of length=max_volu_no
+!   STI_MASK
+!   STI_VOLU
+!----------------------------------------
+*get,STI_ACNT,volu,,num,maxd
+*dim,STI_MASK,array,STI_ACNT,4
+*dim,STI_VOLU,array,STI_ACNT,3
+*vget,STI_MASK(1,1),volu,,vsel
+
+!----------------------------------------
+! get current and target volu values
+!----------------------------------------
+*vmask,STI_MASK(1,1)
+*vget,STI_VOLU(1,1),volu,,volu
+*vfill,STI_VOLU(1,2),ramp,STI_VAL1,0
+*vfill,STI_VOLU(1,3),ramp,STI_VAL2,0
+*vmask,STI_MASK(1,1)
+*voper,STI_MASK(1,2),STI_VOLU(1,1),ge,STI_VOLU(1,2)
+*vmask,STI_MASK(1,1)
+*voper,STI_MASK(1,3),STI_VOLU(1,1),le,STI_VOLU(1,3)
+*voper,STI_MASK(1,4),STI_MASK(1,2),mult,STI_MASK(1,3)
+*vput,STI_MASK(1,4),volu,,vsel
+
+vplot
+
+*vscfun,STI_SELE,sum,STI_MASK(1,4)
+/com,
+/com, %STI_SELE% VOLUMES (OF %STI_TOTA% DEFINED) SELECTED BY SVSEL MACRO
+/com,
+
+*if,STI_ROUT,eq,0,then
+  finish
+*elseif,STI_ROUT,eq,21
+  /solu
+*elseif,STI_ROUT,eq,31
+  /post1
+*elseif,STI_ROUT,eq,36
+  /post26
+*endif
+
+*del,STI_VAL1
+*del,STI_VAL2
+*del,STI_FLAG
+*del,STI_ROUT
+*del,STI_ACNT
+*del,STI_TOLE
+*del,STI_TOTA
+*del,STI_SELE
+*del,STI_MASK,,nopr
+*del,STI_VOLU,,nopr
+/delete,stiscratch,txt
+/gopr
+
+! to-do list:
+! in future, add unselect logic
+! do more testing (limited testing)
+!*get,T_FINISH,active,,time,wall
+!T_TOTAL=(T_FINISH-T_START)*3600

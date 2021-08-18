@@ -1,0 +1,178 @@
+!               Macro by Ian Sigal   25th March 2005
+!   The macro works for a model formed by Solid92 elements. These are 10-node tetrahedrals
+! however, because I haven't found a way to get stress and strain values for midside nodes
+! this macro only outputs the results on the 4 corner nodes.
+!   The macro works for models with compressed node and element numbers, but I haven't 
+! tested it with non-continuous numbers. I am working on this, but its not ready yet.
+!   For now I only need the deformation, maximum principal strain and von Mises stress
+! so this is all that it outpus. 
+!   Although Amira does not use the element results when reading AVS UCD files, the macro writes
+! them because other UCD programs apparently do.
+
+! If existent remove all arrays
+nmax = 
+emax = 
+insel = 
+iesel = 
+nnum = 
+ienum = 
+nmask = 
+emask = 
+nlx = 
+nly = 
+nlz = 
+nux = 
+nuy = 
+nuz = 
+nseqv = 
+nepto1 = 
+nnum = 
+elemn1 = 
+elemn2 = 
+elemn3 = 
+elemn4 = 
+elemmat = 
+elemseqv =
+elemepto1 =
+
+!---
+NSEL,R,EPTO,EQV,-99999,9999999 ! Picks all nodes that store epto eqv (midside nodes don't have one)                                   
+nmax = ndinqr(0,14)
+emax = elmiqr(0,14)
+*get,insel,node,0,count ! Find number of nodes selected
+*get,iesel,elem,0,count ! Find number of elements selected
+
+
+! Array for node/element number (start from 0 to list only selected nodes/elements)
+*dim,nnum,array,nmax
+*dim,ienum,array,emax
+
+! Arrays for mask to fill arrays using vector operations only on selected nodes/elements
+*dim,nmask,array,nmax
+*dim,emask,array,emax
+
+! Arrays for node locations
+*dim,nlx,array,nmax 
+*dim,nly,array,nmax
+*dim,nlz,array,nmax
+! Arrays for node deformations
+*dim,nux,array,nmax
+*dim,nuy,array,nmax
+*dim,nuz,array,nmax
+! Arrays for node strain/stress
+*dim,nseqv,array,nmax
+*dim,nepto1,array,nmax
+
+! Fill node numbers
+*vfill,nnum(1),ramp,1,1
+
+! Arrays for element nodes
+*dim,elemn1,array,emax
+*dim,elemn2,array,emax
+*dim,elemn3,array,emax
+*dim,elemn4,array,emax
+
+! Arrays for element material, stress and strain
+*dim,elemmat,array,emax
+*dim,elemseqv,array,emax
+*dim,elemepto1,array,emax
+
+! Fill element numbers
+*vfill,ienum(1),ramp,1,1
+
+! Fill node mask for selected nodes
+*vget,nmask,node,1,nsel
+*vget,emask,elem,1,esel
+
+! Use node mask to fill arrays for nodes
+*vmask,nmask(1)
+*vget,nlx(1),node,1,loc,x
+*vmask,nmask(1)
+*vget,nly(1),node,1,loc,y
+*vmask,nmask(1)
+*vget,nlz(1),node,1,loc,z
+
+*vmask,nmask(1)
+*vget,nux(1),node,1,u,x
+*vmask,nmask(1)
+*vget,nuy(1),node,1,u,y
+*vmask,nmask(1)
+*vget,nuz(1),node,1,u,z
+
+*vmask,nmask(1)
+*vget,nseqv(1),node,1,s,eqv
+*vmask,nmask(1)
+*vget,nepto1(1),node,1,epto,1
+
+! Use element mask to fill arrays for element conectivity
+*vmask,emask(1)
+*vget,elemn1(1),elem,1,node,1
+*vmask,emask(1)
+*vget,elemn2(1),elem,1,node,2
+*vmask,emask(1)
+*vget,elemn3(1),elem,1,node,3
+*vmask,emask(1)
+*vget,elemn4(1),elem,1,node,4
+
+! Use element mask to fil arrays for element material
+*vmask,emask(1)
+*vget,elemmat(1),elem,1,attr,mat
+
+! Fill element stress array from element table
+
+ETABLE,inata1,S,EQV 
+
+*vget,elemseqv(1),elem,0,etab,inata1, ,2
+
+ETABLE,inata1,EPTO,1 
+*vget,elemepto1(1),elem,0,etab,inata1, ,2
+
+! Open file  
+*cfopen,'output','inp'
+
+! Write header
+*vwrite
+('# AVS UCD file')
+*vwrite
+('# written by Ian on March 05')
+*vwrite,insel,iesel
+('# nodes=',F7.0,' elements=',F7.0)
+*vwrite,insel,iesel
+%I %I 5 0 0
+
+! Output node locations
+*vmask,nmask(1)
+*vwrite,nnum(1),nlx(1),nly(1),nlz(1)
+%I %15.7F %15.7F %15.7F
+
+! Output element conectivity
+*vmask,emask(1)
+*vwrite,ienum(1),elemmat(1),elemn1(1),elemn2(1),elemn3(1),elemn4(1)
+%I %I tet %I %I %I %I
+
+! Output nodal results
+*vwrite
+('3 3 1 1')
+*vwrite
+('Displacement, mm')
+*vwrite
+('vonMises stress , MPa')
+*vwrite
+('max prin strain, %')
+*vmask,nmask(1)
+*vwrite,nnum(1),nux(1),nuy(1),nuz(1),nseqv(1),nepto1(1)
+%I %15.7F %15.7F %15.7F %15.7F %15.7F
+
+
+! Output element results
+*vwrite
+('2 1 1')
+*vwrite
+('vonMises stress , MPa')
+*vwrite
+('max prin strain, %')
+*vmask,emask(1)
+*vwrite,ienum(1),elemseqv(1),elemepto1(1)
+%I %15.7F %15.7F
+
+*cfclos

@@ -1,0 +1,347 @@
+/BATCH                     !Batch input
+/FILE,punch                !Define jobname
+/NOPR                      !Suppress printout
+
+/COM, ==========================================================
+/COM,
+/COM,   INDENTATION OF A VISCOELASTIC FOAM SPECIMEN
+/COM,   WITH A HEMISPHERICAL PUNCH
+/COM,
+/COM,   ABAQUS Example Problems Manual 1.1.4
+/COM,
+/COM,   December 2000
+/COM,   ANSYS 5.6/ABAQUS 6.1
+/COM,
+/COM, ==========================================================
+/COM,
+/COM,   Dave Lindeman                       ddlindeman@mmm.com
+/COM,   Senior CAE Specialist              3M SEMS Tech Center
+/COM,   Tel:  651-733-6383                 3M Center 235-1F-36
+/COM,   FAX:  651-736-7615                  St. Paul, MN 55144
+/COM,
+/COM, ==========================================================
+
+/COM, ==========================================================
+/COM,   Define independent parameters
+/COM, ==========================================================
+
+FRAD  = 600.0000           !Radius of foam sample (mm)
+FTHK  = 300.0000           !Thickness of foam sample (mm)
+
+PRAD  = 200.0000           !Radius of punch (mm)
+PDSP  =-250.0000           !Displacement of punch (mm)
+
+CFRC  =   0.8000           !Coefficient of friction
+
+TINI  =   0.0015           !Initial time step size (sec)
+TMAX  =   0.0500           !Maximum time step size (sec)
+TTOT  =   1.0000           !Total time step (sec)
+
+*DIM,SUNI,ARRAY,16         !Define uniaxial compression curve
+*DIM,EUNI,ARRAY,16
+
+SUNI( 1) = -0.0217, -0.0317, -0.0367, -0.0402, -0.0433
+SUNI( 6) = -0.0467, -0.0504, -0.0542, -0.0604, -0.0668
+SUNI(11) = -0.0759, -0.0909, -0.1083, -0.1410, -0.1933
+SUNI(16) = -0.2896
+
+EUNI( 1) = -0.0500, -0.1000, -0.1500, -0.2000, -0.2500
+EUNI( 6) = -0.3000, -0.3500, -0.4000, -0.4500, -0.5000
+EUNI(11) = -0.5500, -0.6000, -0.6500, -0.7000, -0.7500
+EUNI(16) = -0.8000
+
+*DIM,SSHR,ARRAY,9          !Define simple shear curve
+*DIM,ESHR,ARRAY,9
+*DIM,TSHR,ARRAY,9
+
+SSHR( 1) =  0.0107,  0.0373,  0.0533,  0.0853,  0.1280
+SSHR( 6) =  0.1653,  0.2080,  0.2560,  0.2987
+
+ESHR( 1) =  0.0800,  0.1600,  0.2400,  0.3200,  0.4000
+ESHR( 6) =  0.4800,  0.5600,  0.6400,  0.7200
+
+TSHR( 1) =  0.0030,  0.0166,  0.0366,  0.0573,  0.0817
+TSHR( 6) =  0.1098,  0.1394,  0.1666,  0.1904
+
+*DIM,SRLX,ARRAY,11         !Define shear relaxation curve
+*DIM,TRLX,ARRAY,11
+
+SRLX( 1) =  1.0000,  0.9695,  0.9417,  0.8722,  0.7913
+SRLX( 6) =  0.7043,  0.6233,  0.5736,  0.5271,  0.5013
+SRLX(11) =  0.5000
+
+TRLX( 1) =  0.0001,  0.0010,  0.0020,  0.0050,  0.0100
+TRLX( 6) =  0.0200,  0.0500,  0.1000,  0.2000,  0.5000
+TRLX(11) =  1.0000
+
+/COM, ==========================================================
+/COM,   Define graphics settings
+/COM, ==========================================================
+
+/TITLE,INDENTATION OF A VISCOELASTIC FOAM SPECIMEN
+
+/WIND,1,-1.00, 1.00,-0.88, 1.00
+/DSCALE,1,1.0
+/PNUM,MAT,1
+/TYPE,1,4
+/EDGE,1,1
+/NUM,1
+
+/COM, ==========================================================
+/COM,   Define element types
+/COM, ==========================================================
+
+/PREP7                     !Enter preprocessor
+
+ET,1,PLANE42               !2D structural solid
+
+/COM, ==========================================================
+/COM,   Define solid model
+/COM, ==========================================================
+
+RECT,0,FRAD,0,FTHK         !Define foam area
+AATT,1,1,1
+
+/COM, ==========================================================
+/COM,   Define finite element model
+/COM, ==========================================================
+
+LESIZE,1,,,30,2.0          !Define line segment divisions
+LESIZE,2,,,18,0.5
+LESIZE,3,,,30,0.5
+LESIZE,4,,,18,2.0
+
+AMESH,ALL                  !Mesh areas
+
+/COM, ==========================================================
+/COM,   Output ABAQUS/Standard input file
+/COM, ==========================================================
+
+*CFOPEN,punch,inp          !Open command file
+
+*VWRITE
+('*HEADING')
+*VWRITE
+('INDENTATION OF A VISCOELASTIC FOAM SPECIMEN')
+*VWRITE
+('*PREPRINT,ECHO=NO,HISTORY=NO,MODEL=NO,CONTACT=NO')
+
+*VWRITE
+('*NODE,NSET=FOAM')
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM,NX(NNUM),NY(NNUM),NZ(NNUM)
+(F7.0,TL1,3(',',E16.9))
+*ENDDO
+
+*VWRITE
+('*ELEMENT,TYPE=CAX4,ELSET=FOAM')
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+NI = NELEM(ENUM,1)
+NJ = NELEM(ENUM,2)
+NK = NELEM(ENUM,3)
+NL = NELEM(ENUM,4)
+*VWRITE,ENUM,NI,NJ,NK,NL
+(F7.0,TL1,4(',',F7.0,TL1),' ')
+*ENDDO
+
+*GET,NMAX,NODE,,NUM,MAX
+NREF = NMAX+1
+*VWRITE
+('*NODE,NSET=NREF')
+*VWRITE,NREF,0.0,FTHK+PRAD,0.0
+(F7.0,TL1,4(',',F7.0,TL1),' ')
+
+*VWRITE
+('*NSET,NSET=NBOT')
+LSEL,S,LOC,Y,0.0
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,TL1,',')
+*ENDDO
+ALLSEL
+
+*VWRITE
+('*NSET,NSET=NTOP')
+LSEL,S,LOC,Y,FTHK
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,TL1,',')
+*ENDDO
+ALLSEL
+
+*VWRITE
+('*NSET,NSET=NCEN')
+LSEL,S,LOC,X,0.0
+NSLL,S,1
+*GET,NNOD,NODE,,COUNT
+NNUM = 0
+*DO,I,1,NNOD,1
+NNUM = NDNEXT(NNUM)
+*VWRITE,NNUM
+(F7.0,TL1,',')
+*ENDDO
+ALLSEL
+
+*VWRITE
+('*ELSET,ELSET=ETOP')
+LSEL,S,LOC,Y,FTHK
+NSLL,S,1
+ESLN
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*VWRITE,ENUM
+(F7.0,TL1,',')
+*ENDDO
+ALLSEL
+
+*VWRITE
+('*SOLID SECTION,ELSET=FOAM,MATERIAL=FOAM,ORIENTATION=RECT')
+*VWRITE
+('*ORIENTATION,NAME=RECT,SYSTEM=RECTANGULAR')
+*VWRITE
+('1.0,0.0,0.0,0.0,1.0,0.0')
+*VWRITE
+('3,0.0')
+
+*VWRITE
+('*MATERIAL,NAME=FOAM')
+*VWRITE
+('*HYPERFOAM,N=2,TEST DATA INPUT,POISSON=0.0,MODULI=INSTANTANEOUS')
+*VWRITE
+('*UNIAXIAL TEST DATA')
+*VWRITE,SUNI(1),EUNI(1)
+(E16.9,',',E16.9)
+*VWRITE
+('*SIMPLE SHEAR TEST DATA')
+*VWRITE,SSHR(1),ESHR(1),TSHR(1)
+(E16.9,2(',',E16.9))
+*VWRITE
+('*VISCOELASTIC,TIME=RELAXATION TEST DATA')
+*VWRITE
+('*SHEAR TEST DATA,SHRINF=0.50')
+*VWRITE,SRLX(1),TRLX(1)
+(E16.9,',',E16.9)
+
+*VWRITE
+('*SURFACE,NAME=FSRF')
+*VWRITE
+('ETOP,S3')
+
+*VWRITE,NREF
+('*RIGID BODY,ANALYTICAL SURFACE=RSRF,REF NODE=',F7.0,TL1,' ')
+
+*VWRITE
+('*SURFACE,TYPE=SEGMENTS,NAME=RSRF')
+*AFUN,DEG
+*VWRITE,(PRAD*COS(45)),FTHK+PRAD+(PRAD*SIN(45))
+('START',2(',',E12.4))
+*VWRITE,-1.0,FTHK,0.0,FTHK+PRAD
+('CIRCL',4(',',E12.4))
+
+*VWRITE
+('*CONTACT PAIR,INTERACTION=ROUGH')
+*VWRITE
+('FSRF,RSRF')
+
+*VWRITE
+('*SURFACE INTERACTION,NAME=ROUGH')
+*VWRITE
+('*FRICTION')
+*VWRITE,CFRC
+(F7.4,',')
+
+*VWRITE
+('*BOUNDARY')
+*VWRITE
+('NBOT,1,2,0.0')
+*VWRITE
+('NCEN,1, ,0.0')
+*VWRITE
+('NREF,1, ,0.0')
+*VWRITE
+('NREF,6, ,0.0')
+
+*VWRITE
+('*STEP,NLGEOM=YES,INC=200,AMPLITUDE=RAMP,UNSYMM=YES')
+*VWRITE
+('*VISCO,CETOL=0.01')
+*VWRITE,TINI,TTOT,TMAX
+(E12.4,',',E12.4,',,',E12.4)
+
+*VWRITE
+('*PRINT,CONTACT=YES')
+*VWRITE
+('*CONTACT CONTROLS,FRICTION ONSET=DELAY')
+*VWRITE
+('*CONTACT FILE,SLAVE=FSRF,FREQUENCY=10')
+
+*VWRITE
+('*BOUNDARY')
+*VWRITE,PDSP
+('NREF,2,,',E12.4)
+
+*VWRITE
+('*RESTART,WRITE,FREQUENCY=10')
+
+*VWRITE
+('*OUTPUT,FIELD,FREQUENCY=5,VARIABLE=PRESELECT')
+*VWRITE
+('*OUTPUT,HISTORY,FREQUENCY=1,VARIABLE=PRESELECT')
+*VWRITE
+('*CONTACT OUTPUT,NSET=NTOP,VARIABLE=PRESELECT')
+*VWRITE
+('*NODE OUTPUT,NSET=NREF')
+*VWRITE
+('U,RF')
+
+*VWRITE
+('*END STEP')
+
+*VWRITE
+('*STEP,NLGEOM=YES,INC=200,AMPLITUDE=RAMP,UNSYMM=YES')
+*VWRITE
+('*VISCO,CETOL=0.01')
+*VWRITE,TINI,TTOT,TMAX
+(E12.4,',',E12.4,',,',E12.4)
+
+*VWRITE
+('*BOUNDARY,OP=MOD')
+*VWRITE
+('NREF,2,,0.0')
+
+*VWRITE
+('*END STEP')
+
+*CFCLOS                    !Close command file
+
+FINI                       !Exit preprocessor
+
+/COM, ==========================================================
+/COM,   Exexute ABAQUS/Standard analysis
+/COM, ==========================================================
+
+/SYS,abaqus611 job=punch
+
+/COM, ==========================================================
+/COM,   Exit ANSYS
+/COM, ==========================================================
+
+ALLSEL                     !Select all entities
+
+/EXIT                      !Save database

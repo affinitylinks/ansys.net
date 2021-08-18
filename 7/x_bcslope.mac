@@ -1,0 +1,124 @@
+! =========================================
+! Shen-Yeh Chen
+! 05/01/1998
+! ==============================================================================
+! This macro will apply slope BC value on the selected nodes
+! according to the active coordinate value in sepcified DOF.
+! ------------------------------------------------------------------------------
+!
+! Syntax
+!   x_bcslope,_DOF,'_BCLabel','_BCItem',_XBgn,_XEnd,_DBgn,_DEnd
+!               1       2         3       4      5     6     7
+! Input :
+!    _DOF                    :  1:X, 2:Y, 3:Z
+!    '_BCLabel', 'BCItem'    :  'F','FX'
+!                               'D','UZ'
+!                               'BF','TEMP'
+!   _XBgn                    : Bgn of coor in specified DOF (_DOF)
+!   _XEnd                    : End of coor in specified DOF (_DOF)
+!   _DBgn                    : Value to be applied on _XBgn
+!   _DEnd                    : Value to be applied on _XEnd
+!
+! Example
+!  x_bcsploe, 2, 'F', 'FY', 0, 30, 100.0, 200.0
+!
+!
+! Output 
+!  X_BCSLOPE_F  : summation of the values applied on all nodes
+!  X_BCSLOPE_FX : summation of F*X applied on all nodes
+!  X_BCSLOPE_FY : summation of F*Y applied on all nodes  
+!  X_BCSLOPE_FZ : summation of F*Z applied on all nodes  
+!
+! External Programs Called :
+!   None
+!
+! ===============================================================
+! AR21 = (_DEnd - _DBgn ) / (_XEnd - X_Bgn)
+! AR22 = 'F'
+! AR23 = 'FY'
+!
+X_BCSLOPE_F=0.0
+X_BCSLOPE_FX=0.0
+X_BCSLOPE_FY=0.0
+X_BCSLOPE_FZ=0.0
+AR21=(ARG7-ARG6)/(ARG5-ARG4)
+AR22=ARG2
+AR23=ARG3
+!
+!
+!
+! AR13 = NODE ID LOOP
+! AR14 = NSEL(AR13)
+! AR11 = MAX NODE ID
+! AR12 = MIN NODE ID 
+! AR15 = COORDINATE
+! AR16 = APPLIED VALUE
+!
+*GET,AR11,NODE,0,NUM,MIN
+*GET,AR12,NODE,0,NUM,MAX
+*DO,AR13,AR11,AR12
+ AR14=NSEL(AR13)
+ *IF,AR14,NE,1,THEN
+  *CYCLE
+ *ENDIF
+!
+ AR31=NX(AR13)
+ AR32=NY(AR13)
+ AR33=NZ(AR13)
+ *IF,ARG1,EQ,1,THEN
+    AR15=AR31
+ *ELSEIF,ARG1,EQ,2,THEN
+    AR15=AR32
+ *ELSEIF,ARGE,EQ,3,THEN
+    AR15=AR33
+ *ENDIF
+!
+! =============================================
+! This is for linear distribution of BC.
+! Modify the formulation below to fit your need
+! =============================================
+! applied value = offset*(value per unit coor) + BgnValue
+! ---------------------------------------------
+ AR16=(AR15-ARG4)*AR21+ARG6
+ X_BCSLOPE_F=X_BCSLOPE_F+AR16 
+ X_BCSLOPE_FX=X_BCSLOPE_FX+AR16*AR31 
+ X_BCSLOPE_FY=X_BCSLOPE_FY+AR16*AR32 
+ X_BCSLOPE_FZ=X_BCSLOPE_FZ+AR16*AR33 
+!
+ %AR22%,AR13,%AR23%,AR16
+! BF,AR13,TEMP,AR16
+*ENDDO
+  
+
+
+/eof
+===================================
+ANSYS Macro Convention
+===================================
+In order to avoid conflicting betweens the macro, the following convention
+has been adapted for the ANSYS macros here.
+
+1. All macro will have name begin with string "x_". This is to avoid name collision
+   with the existing ANSYS commands.
+2. There is no naming convention for global variables. All variables are
+   considered local
+3. The names of the internal variables will be one of the following
+   (1) Begin with the name of the macro itself first. That is, for the 
+       macro x_noffst.mac, the internal variables are X_NOFFST_X, 
+       X_NOFFST_Y, X_NOFFST_Z etc.
+   (2) Begin with "Z"
+   (3) ARG1 to AR99
+   Note that, ARG1 to AR99 can be heavily used according to the
+   programming convenience (for example, as a loop counter). They are not
+   tracked. There is no rule for using them either.
+4. All local variables, unless necessary for further processing, WILL be
+   deleted in the end of the macro. However, when such variables may
+   be necessary for later process, they will be kept. These variables
+   are listed in the header of the macro.
+5. When there is output file from the macro, their names will begin with 
+   the name of the macro itself first.
+6. The macro will not call each other. That is, each macro will be self-contained.
+
+
+Shen-Yeh Chen
+www.FEA-Optimization.com

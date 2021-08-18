@@ -1,0 +1,123 @@
+!
+! MACRO:         rcyl.mac
+!
+! Created By:    Steve Hale
+!                Computer Aided Engineering Associates Inc.
+!                60 Middle Quarter Mall
+!                Woodbury, CT 06798
+!                (203) 263-4606
+!                http://www.caeai.com/
+!  
+! Date:          Oct. 22, 2002
+! 
+! Disclaimer:    This macro is provided without guarantee, written or implied,
+!                as to the validity of the information that it generates.
+!                It is the responsibility of the user to independently verify
+!                all results.  This macro may be freely distributed as long 
+!                this header remains unchanged.
+!
+! ANSYS Version: 6.0
+!
+! Description:   Calculates the final true nodal radial and circumferential  
+!                displacement and puts the value into the following variables 
+!                for plotting:
+!                A.  EPTOT,XY = Radial Displacement
+!                B.  EPTOT,YZ = Circumferential Displacement (degrees)
+!
+! Notes:         You must be in Full Graphics mode when plotting these results
+!                because a *VPUT command was used.
+!
+!                This macro is valid for rotations up to 180 degrees.
+!
+! Dependencies:  None
+!
+! Usage:         rcyl
+!
+!  1) set active coord system to global cartesian, and dimension all vectors
+!
+/uis,msgpop,3
+csys,0
+rsys,0
+*get,dimen,node,,num,max
+*dim,coord,array,dimen,3
+*dim,ccrd,array,dimen,3
+*dim,udis,array,dimen
+*dim,vdis,array,dimen
+*dim,rdis,array,dimen
+*dim,coord2,array,dimen,3
+*dim,ccrd2,array,dimen,3
+*dim,tdis,array,dimen
+*dim,val180,array,dimen
+*dim,val180n,array,dimen
+*dim,val360,array,dimen
+*dim,gt180,array,dimen
+*dim,lt180n,array,dimen
+!
+!  1) get original x and y coordinates for all nodes
+!
+*vget,coord(1,1),node,1,loc,x
+*vget,coord(1,2),node,1,loc,y
+!
+!  2) get current u and v displacements at all nodes
+!
+*vget,udis(1),node,1,u,x
+*vget,vdis(1),node,1,u,y
+!
+!  3) add coordinates and displacements at each node
+!
+*voper,coord2(1,1),coord(1,1),add,udis(1)
+*voper,coord2(1,2),coord(1,2),add,vdis(1)
+!
+!  4) Calculate the initial and final radial and circumferential coordinates
+!
+*vfun,ccrd(1,1),local,coord(1,1),1
+*vfun,ccrd2(1,1),local,coord2(1,1),1
+!
+!  5) subtract original radius from final radius
+!
+*voper,rdis(1),ccrd2(1,1),sub,ccrd(1,1)
+!
+!  6) put the resulting variable, which is the radial displacement of each node,
+!     into the EPTOT XY variable for plotting
+!
+*vput,rdis(1),node,1,eptot,XY
+!
+!  7) subtract the original circumferential location from the final location
+!
+*voper,tdis(1),ccrd2(1,2),sub,ccrd(1,2)
+!
+!  8) Add or subtract 360 degrees if the node crosses from the 2nd to the 3rd 
+!     quadrant (which results in a displacement exceeding 180 degrees).
+!
+*vfill,val180(1),ramp,180,0
+*vfill,val180n(1),ramp,-180,0
+*vfill,val360(1),ramp,360,0
+*voper,gt180(1),tdis(1),gt,val180(1)
+*voper,lt180n(1),tdis(1),lt,val180n(1)
+*vmask,gt180(1)
+*voper,tdis(1),tdis(1),sub,val360(1)
+*vmask,lt180n(1)
+*voper,tdis(1),tdis(1),add,val360(1)
+!
+!  9) put the resulting variable, which is the circumferential displacement of
+!     each node, into the EPTOT YZ variable for plotting
+!
+*vput,tdis(1),node,1,eptot,YZ
+!
+! 10) clear arrays
+!
+dimen=
+coord=
+ccrd=
+udis=
+vdis=
+rdis=
+coord2=
+ccrd2=
+tdis=
+val180=
+val180n=
+val360=
+gt180=
+lt180n=
+/uis,msgpop,2

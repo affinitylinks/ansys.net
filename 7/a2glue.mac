@@ -1,0 +1,131 @@
+!==============================================================================
+!
+!                                                     Phoenix Analysis & Design 
+! PADT-------------------------------------------------------------------------
+!                                                                  Technologies
+!
+!==============================================================================
+!     1-800-293-PADT * 480-813-4884 P * 480-813-4807 F * www.padtinc.com
+!==============================================================================
+!
+!        Name: A2GLUE.MAC
+! Description: Provides workarounds for "un-glueing" of areas caused by
+!		repeated VGLUE commands
+!
+!        Type: ANSYS APDL macro
+!
+! Input Files: none
+!
+!      Author: Eric Miller	PADT
+!
+!   Arguments:
+!    		ARG1-ARG8: Area Numbers
+!			ALL = Do a glue on all selected areas
+!	          	  P = User picks volumes
+!
+!==============================================================================
+/pmacro
+/nopr
+_inum = 0
+_ptmp = arg1
+*get,_ptyp,parm,_ptmp,type
+*if,_ptype,eq,3,then
+	*get,_tmp,comp,_ptmp,type
+	*if,_ptmp,eq,'ALL',then
+		cm,_a2gl,area
+		*get,_inum,area,,count
+	*elseif,_ptmp,eq,'all',then
+		cm,_a2gl,area
+		*get,_inum,area,,count
+	*elseif,_ptmp,eq,'P',then
+		cm,_abfr,area
+		asel,r,p
+		*if,_BUTTON,eq,0,then
+			cm,_a2gl,area
+			*get,_inum,area,,count
+			cmsel,s,_abfr
+		*endif
+	*elseif,_ptmp,eq,'p',then
+		cm,_abfr,area
+		asel,r,p
+		*if,_BUTTON,eq,0,then
+			cm,_a2gl,area
+			*get,_inum,area,,count
+			cmsel,s,_abfr
+		*endif
+	*elseif,_tmp,ne,0,then   
+		cm,_abfr,area
+		cmsel,s,_ptmp
+		cm,_a2gl,area
+		*get,_inum,area,,count
+		cmsel,s,_abfr
+	*endif
+*else
+	cm,_abfr,area
+	asel,u,,,all
+	*do,_i,1,9
+		*if,arg%_i%,ne,0,then
+			asel,a,,,arg%_i%
+			_inum = _inum + 1
+		*endif
+   	*enddo
+	cm,_a2gl,area
+	*get,_inum,area,,count
+	cmsel,s,_abfr
+*endif
+	
+*if,_inum,lt,2,then
+	*msg,error,
+Need at least 2 areas for A2GLUE command.  Please Input Areas
+*else
+	cm,_vbfr,volume
+	cm,_abfr,area
+	cm,_lbfr,line
+	cm,_kbfr,kp
+
+	cmsel,s,_a2gl
+	*dim,_a,,_inum
+	_ii = -1
+	*do,_i,1,_inum
+          _ii = vlnext(_ii) 
+	  _a(_i) = _ii
+        *enddo
+	allsel,below,area
+	cm,_ln1,line
+	lslk,s,1
+	cmsel,u,_ln1
+	*get,_nmln,line,,count
+
+	*if,_nmln,gt,0,then
+		*msg,,_nmln
+Splitting lines to maintain seperate topology on unrelated parts.
+		_ln = -1
+		*do,_i,1,_nmln
+			_ln = lsnext(_ln)
+			*msg,,_ln
+     Line: %g
+			ldiv,_ln,.5
+		*enddo
+	*endif
+	allsel,below,area
+	nummerge,kp,.001,.001
+	/go
+	aglue,all
+	/nopr
+	
+	cmsel,a,_vbfr
+	cmsel,a,_abfr
+	cmsel,a,_lbfr
+	cmsel,a,_kbfr
+*endif
+_a=
+_i=
+_inum=
+_ln=
+cmdel,_a2gl
+cmdel,_vbfr
+cmdel,_abfr
+cmdel,_lbfr
+cmdel,_kbfr
+cmdel,_ln1
+/go

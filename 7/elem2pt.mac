@@ -1,0 +1,27 @@
+!----------------------------------------------------------------
+! ELXY(X,Y) - Returns in the variable ELATXY the number of the
+! element whose centroid is nearest the point (X,Y)
+!---------------------------------------------------------------
+
+x_ = ARG1 $ y_ = ARG2
+
+dmin_ = 1.e20
+emin_ = -99999
+
+loc_ = 1
+n_   = NODE(x_,y_,0)
+e_   = ENEXTN(n_,loc_)
+
+*DOWHILE,e_   
+   d_ = (x_ - CENTRX(e_))**2 + (y_ - CENTRY(e_))**2
+   *if,d_,LT,dmin_,then
+      dmin_ = d_
+      emin_ = e_
+   *endif
+   loc_ = loc_ + 1
+   e_ = ENEXTN(n_,loc_)
+*ENDDO
+
+ELATXY = emin_
+
+*DEL,,PRM_   

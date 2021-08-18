@@ -1,0 +1,93 @@
+! MACRO:         sfmap.mac
+!
+! Created By:    Computer Aided Engineering Associates Inc.
+!                60 Middle Quarter Mall
+!                Woodbury, CT 06798
+!                (203) 263-4606
+!                http://www.caeai.com/
+!  
+! Date:          June 25, 2002
+! 
+! Disclaimer:    This macro is provided without guarantee, written or implied,
+!                as to the validity of the information that it generates.
+!                It is the responsibility of the user to independently verify
+!                all results.  This macro may be freely distributed as long 
+!                this header remains unchanged.
+!
+! ANSYS Version: 6.1
+!
+! Description:   This macro will maps pressures from a different analysis
+!
+! Dependencies:  Require cfdxyz and cfdpres arrays which represent the point
+!		 locations and pressures to be mapped.
+!
+! Usage:
+! This macro is used to map pressure from a CFD mesh onto a structural mesh. The point 
+! XYZ locations from the CFD analysis must exist in an array called cfdxyz(npts,3).
+! A corresponding array called "cfdpres" must be exist also. This array contains the 
+! pressure values corresponding to the point locations.
+!
+! The database must also contain a component consisting of the nodes on the structural model
+! to which the pressure is applied. It must be named "psurf".
+!
+!  
+! define arrays for the pressure mapping onto your structural model
+!
+cmsel,s,psurf
+*get,nnum,node,,count
+*get,nmax,node,,num,max
+*del,nlis1,,nopr
+*del,nlis2,,nopr
+*del,pmapxyz,,nopr
+*del,pmap2xyz,,nopr
+*del,pout,,nopr
+*del,pout2,,nopr
+*del,nmask,,nopr
+!
+*dim,nlis1,array,nmax,1
+*dim,nlis2,array,nnum,1
+*dim,pmapxyz,array,nmax,3
+*dim,pmap2xyz,array,nnum,3
+*dim,pout,array,nmax,1
+*dim,pout2,array,nnum,1
+*dim,nmask,array,nmax
+*vget,nmask(1),node,1,nsel
+!
+!  The mapping operations needs compressed arrays (no gaps)
+!  but the *VGET fill such that row number is node number
+!  So we get the data then we compress it before mapping
+!  Then we expand it again in order to use the SFFUN
+!
+*vfill,nlis1(1,1),ramp,1,1
+*vget,pmapxyz(1,1),node,1,loc,x
+*vget,pmapxyz(1,2),node,1,loc,y
+*vget,pmapxyz(1,3),node,1,loc,z
+!
+*vmask,nmask(1)
+*vfun,nlis1(1),comp,nlis1(1)
+*vfun,nlis2(1),copy,nlis1(1)
+!
+*vmask,nmask(1)
+*vfun,pmapxyz(1,1),comp,pmapxyz(1,1)
+*vmask,nmask(1)
+*vfun,pmapxyz(1,2),comp,pmapxyz(1,2)
+*vmask,nmask(1)
+*vfun,pmapxyz(1,3),comp,pmapxyz(1,3)
+!
+*mfun,pmap2xyz(1,1),copy,pmapxyz(1,1)
+!
+!  Perform mapping
+!
+*moper,pout2(1,1),pmap2xyz(1,1),MAP,cfdpres(1),cfdxyz(1,1),3,.5
+!
+*voper,pout(1),pout2(1),SCAT,nlis2(1)
+!
+! make sure you have the elements attached to these nodes in the active set
+!
+esln,a
+!
+! apply pressure
+!
+sffun,pres,pout(1)
+sf,all,pres
+sffun

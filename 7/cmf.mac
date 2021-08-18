@@ -1,0 +1,141 @@
+! make a compound fillet at two straight lines
+!
+!    USE: 
+!     1: "cmf,line1,line2,rad1,rad2,rdis1"
+! or  2: "cmf,,,rad1,rad2,rdis1"          
+!     which envokes picking of line1 and line2.
+!     Note that if line1 is omitted, line2 is ignored.
+! ------------------------------------------------------------          
+!
+/pmacro
+
+pi=4*atan(1)
+/GSAVE,aaa, ,
+!
+L1_=arg1               ! 1st Line - must be straight
+L2_=arg2               ! 2nd Line - must be straight
+r1_=arg3               ! Big radius at 1st Line
+r2_=arg4               ! Small radius at 2nd line
+r1pos_=arg5            ! Distance of tangent point of big radius r1_
+                       ! on L1_ from intersection point of L1_ + L2_
+
+*if,L1_,lt,1,then  ! Ignore entries for L1_ and L2_
+*msg,UI
+ Pick 2 lines to be modified with compound fillet (OK after each pick)
+
+lsel,s,p
+l1_=LSNEXT(0)
+lsel,s,p
+l2_=LSNEXT(0)
+lsel,a,line,,L1_
+*endif
+
+cm,o_lines_,lines
+cm,o_kps_,kp
+asel,none
+vsel,none
+
+lsel,s,,,l1_
+lsel,a,,,l2_
+cm,n_lines_,lines
+
+ksll
+*get,nkp_,KP,0,COUNT   ! Count keypoints
+
+*if,nkp_,ne,3,then           
+ *MSG,ERROR,line1_,line2_
+  <A_MAXFIL>:   Lines %I and %I must have common KP!
+*else
+
+! Find common KP
+*get,kp11_,LINE,L1_,KP,1
+*get,kp12_,LINE,L1_,KP,2
+*get,kp21_,LINE,L2_,KP,1
+*get,kp22_,LINE,L2_,KP,2
+
+! --- KP11 is Vertex:
+*if,kp11_,eq,kp21_,then
+ kp1_=kp11_
+ kp2_=kp12_
+ kp3_=kp22_ 
+*elseif,kp11_,eq,kp22_,then
+ kp1_=kp11_
+ kp2_=kp12_
+ kp3_=kp21_
+*endif
+
+! --- KP12 is Vertex:
+*if,kp12_,eq,kp21_,then
+ kp1_=kp12_
+ kp2_=kp11_
+ kp3_=kp22_
+*elseif,kp12_,eq,kp22_,then
+ kp1_=kp12_
+ kp2_=kp11_
+ kp3_=kp21_
+*endif
+
+phi_=180-ANGLEK(kp1_,kp2_,kp3_)*180/pi
+
+! Put CSYS 99 on at Vertex with X towards KP1_
+! and then shift into centre of R1
+!
+CSKP,99,1,kp1_,kp2_,kp3_
+WPCSYS,,99
+WPOFFS,r1pos_,r1_
+CSWPLA,99,0,1,1,
+
+
+CYL4,0,0,r1_,270-phi_, ,270    ! create partial circle 
+adel,all                       ! delete created area               
+cm,n_lines_,lines              ! make comp. of new lines
+ksel,r,loc,x,0,0,0             ! select KP at org of CSYS 99
+ksel,r,loc,y,0,0,0
+lslk,r,0                       ! and delete attached lines
+ldel,all,,,1                   ! including KPs
+
+cmsel,s,n_lines_               ! Select remaining lines
+LPTN,all                       ! and partition
+
+cm,n_lines_,lines              ! Store newly created lines
+
+ksel,s,kp,,kp2_                ! Select both endpoints of input lines
+ksel,a,kp,,kp3_
+
+lslk                           ! Select all attached lines 
+cmsel,r,n_lines_               ! and then reselect only the new ones
+ 
+ksll                           ! Select KPs of these lines only
+lslk,s,1                       ! and then the lines completely defined 
+                               ! by these KPs => partially complete fillet;
+cm,n_lines1_,lines             ! store as component
+
+cmsel,s,n_lines_               ! Select lines no longer needed
+cmsel,u,n_lines1_              !
+ldel,all,,,1                   ! and delete including KPs
+
+
+ksel,s,KP,,kp3_                ! Select the two lines still needing 
+lslk                           ! small fillet radius R2
+cmsel,r,n_lines1_ 
+ksll 
+lslk
+cmsel,r,n_lines1_
+l1_=lsnext(0)                  ! get line numbers
+l2_=lsnext(l1_)
+
+LFILLT,l1_,l2_,r2_             ! make Line Fillet
+
+cmsel,a,n_lines1_              ! select all lines of fillet
+ksll                           ! and all KPs
+
+
+*endif
+/GREST,aaa, , 
+allsel
+lplo
+
+:END_
+
+
+

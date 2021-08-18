@@ -1,0 +1,43 @@
+! *****************************************************************************
+! IM29.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM29.MAC is used in POST1 of ANSYS 5.4 to read in as element table (ETABLE)
+! items the post data required for element LINK10.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 12/6/98  SMV  Initial release
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+ETABLE,SAXL,LS,1
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************
+

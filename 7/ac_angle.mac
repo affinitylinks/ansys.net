@@ -1,0 +1,80 @@
+!    ac_angle.mac
+!    Combines the real and imaginary components for a given load set 
+!    to obtain the field at a specified electrical angle.
+!    This will only combine the nodal data and the SMISC element table
+!    items.  For the NMISC element table items, use ac_anget.mac
+!   
+!     arg1 = electrical angle (Deg-electrical)
+!     arg2 = load substep to be used (defaults to load substep 1)
+!
+!    To use this macro:
+!
+!    Enter general post processor
+!    Input in the command line ac_angle,30  (for arg1 = 30)
+!
+!    To turn off the summary at the end of the combination, issue
+!    /nopr in the ANSYS Input box
+!
+rsys,0     !  reset results data coordinate system to global Cartesian system
+*if,arg2,eq,0,then
+  arg2=1
+*endif
+lcdef,1,1,arg2
+lcdef,2,1,arg2,1
+!   check for non-factor conditions-only load the appropriate data-perhaps
+!   with a global factor. No addition required.
+*if,abs(arg1),lt,.0001,then
+   set,1,arg2
+   *get,curfrq,active,,set,freq
+   *get,cursbs,active,,set,sbst
+*elseif,abs(arg1-90),lt,.0001,then
+   set,1,arg2,-1,1
+   *get,curfrq,active,,set,freq
+   *get,cursbs,active,,set,sbst
+*elseif,abs(arg1-180),lt,.0001,then
+   set,1,arg2,-1
+   *get,curfrq,active,,set,freq
+   *get,cursbs,active,,set,sbst
+*elseif,abs(arg1-270),lt,.0001,then
+   set,1,arg2,,1
+   *get,curfrq,active,,set,freq
+   *get,cursbs,active,,set,sbst
+*else
+!  combine the cases
+  *afun,deg
+  lcfac,1,cos(arg1)+1e-8
+  lcfac,2,-sin(arg1)+1e-8
+  lcabs,1,0
+  lcase,1
+  *get,curfrq,active,,set,freq
+  *get,cursbs,active,,set,sbst
+  lcabs,1,0
+  lcabs,2,0
+  lcoper,add,2
+*endif
+!    generate annotation for plots
+_arg1=arg1
+/annot,dele
+/tlab,-.93,.93, Electrical Angle: %_arg1%
+/out,sum
+*msg,info
+_______COMPUTING THE FIELD FOR A SPECIFIED ELECTRICAL ANGLE______
+*msg,info
+
+*msg,info,arg2
+ Current substep:______________________ %i
+*msg,info,curfrq 
+ Current Frequency (Hz):_______________ %g
+*msg,info,arg1
+ Requested Electrical Angle (D-e):_____ %g
+*msg,info
+
+
+*msg,info
+_________________________________________________________________
+
+/out
+*get,_nopr,active,,prkey
+*if,_nopr,ne,0,then
+  *uili,sum
+*endif

@@ -1,0 +1,59 @@
+!!******* Begin APDL code for "inverse TCHG" *******
+!!Disclaimer: Use with care. Degenerate 20-node tets may lead to incorrect results!
+!ALLSEL
+*GET, anzelem, ELEM, 0, COUNT
+*DIM, nodei, ARRAY, anzelem !!for node numbers of existing elements
+*DIM, nodej, ARRAY, anzelem
+*DIM, nodek, ARRAY, anzelem
+*DIM, nodel, ARRAY, anzelem
+*DIM, nodem, ARRAY, anzelem
+*DIM, noden, ARRAY, anzelem
+*DIM, nodeo, ARRAY, anzelem
+*DIM, nodep, ARRAY, anzelem
+*DIM, nodeq, ARRAY, anzelem
+*DIM, noder, ARRAY, anzelem
+*DIM, elmat, ARRAY, anzelem !!for material numbers of existing elements
+*VGET, nodei, ELEM, , NODE,  1, , , 0
+*VGET, nodej, ELEM, , NODE,  2, , , 0
+*VGET, nodek, ELEM, , NODE,  3, , , 0
+*VGET, nodel, ELEM, , NODE,  4, , , 0
+*VGET, nodem, ELEM, , NODE,  5, , , 0
+*VGET, noden, ELEM, , NODE,  6, , , 0
+*VGET, nodeo, ELEM, , NODE,  7, , , 0
+*VGET, nodep, ELEM, , NODE,  8, , , 0
+*VGET, nodeq, ELEM, , NODE,  9, , , 0
+*VGET, noder, ELEM, , NODE, 10, , , 0
+*VGET, elmat, ELEM, , ATTR, MAT, , , 0
+!!replace SOLID87 by SOLID117:
+ESEL, S, ENAME, , SOLID87
+TYPE, etMag !!parameter etMag is the type number of the SOLID117 elements
+*GET, anzelem, ELEM, 0, COUNT
+el=0
+IMMED, 0
+*DO, index, 1, anzelem
+        *IF, MOD(index, 500), EQ, 0, THEN
+                /COM, Status: %index%/%anzelem% (%index/anzelem*100% percent)
+        *ENDIF
+        el=ELNEXT(el)
+        EDELE, el
+        MAT, elmat(el)
+        !! i          j          k          l          m          n   o    p
+        E, nodei(el), nodej(el), nodek(el), nodek(el), nodel(el), nodel(el), nodel(el), nodel(el)
+        !!     q          r          s          t          u          v    w          x
+        EMORE, nodem(el), noden(el), nodek(el), nodeo(el), nodel(el), nodel(el), nodel(el), nodel(el)
+        !!     y          z          a          b
+        EMORE, nodep(el), nodeq(el), noder(el), noder(el)
+*ENDDO
+IMMED, 1
+*DEL, nodei
+*DEL, nodej
+*DEL, nodek
+*DEL, nodel
+*DEL, nodem
+*DEL, noden
+*DEL, nodeo
+*DEL, nodep
+*DEL, nodeq
+*DEL, noder
+*DEL, elmat
+!!*******  End APDL code for "inverse TCHG"  *******

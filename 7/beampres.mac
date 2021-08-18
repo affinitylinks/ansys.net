@@ -1,0 +1,23 @@
+!Macro to apply linearly varying pressure on beams
+!Required parameters below
+!GRADAXIS=  !Axis of pressure gradient: x, y or z (same as SFGRADs SLDIR
+!ZEDCOORD= !Location of zero pressue contribution (same as SFGRADs SLZER)
+!GRADSLOP= !slope of pressue gradient (same as SFGRADs SLOPE)
+!PRESWIDE= !effecitve pressure width of beam element (NEW!)
+!PRESFACE= !face for beam element pressures (for SFBEAMS LKEY)
+!Required parameters above
+
+*get,ECOUNT,elem,0,count !Count the selected elements
+*get,ENUM,elem,0,num,min !Start with the lowest numbered element
+*do,loopno,1,ECOUNT,1 !Loop through the selected elements
+*get,INODE,elem,ENUM,node,1 !Find the i node of subject element
+*get,JNODE,elem,ENUM,node,2 !Find the j node of subject element
+*get,INODELOC,node,INODE,loc,%GRADAXIS% !Find the coordinate of i node
+*get,JNODELOC,node,JNODE,loc,%GRADAXIS% !Find the coordinate of j node
+IPRESS=PRESWIDE*GRADSLOP*(INODELOC-ZEDCOORD) !Calculate i node pressure
+JPRESS=PRESWIDE*GRADSLOP*(JNODELOC-ZEDCOORD) !Calculate j node pressure
+SFBEAM,ENUM,PRESFACE,pres,IPRESS,JPRESS !Apply pressue to subject element
+*get,ENUM,elem,ENUM,nxth !Get the next element number in the selection
+*enddo !Normal end cycle
+!End macro
+
