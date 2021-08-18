@@ -1,0 +1,232 @@
+!
+!	MACRO FILE DISTLOAD.MAC
+!
+!	PROMPTS THE USER THROUGH APPLYING DISTRIBUTED LOADS
+!	THAT ARE USER-DEFINED FUNCTIONS OF POSITION.  THESE FUNCTIONS
+!	ARE DEFINED BY THE USER, USING THE APDL LANGUAGE, AND ARE PLACED
+!	IN FILES.  THE USER WILL BE PROMPTED FOR THE TYPE OF LOADING AND THE FILENAME
+!
+!	ALL LOADS ASSUME THAT X,Y,Z ARE TO BE INTERPRETED IN THE COORDINATE SYSTEM SPECIFIED
+!	BY THE USER. X,Y, AND Z ARE THE COORDINATES OF THE SELECTED NODES FOR
+!	NODAL BASED LOADS(SF,D,F,BF) AND THE COORDINATES OF THE ELEMENT CENTROID FOR ELEMENT
+!	BASED LOADS(SFE,BFE,SFBEAM)
+!
+!	USER FILE WILL CONTAIN INFORMATION IN ONE OF THE FOLLOWING FORMATS:
+!
+!		. SURFACE LOADS USING NODES(SF type)
+!			FILE CONTAINS:
+!	  		         QLAB(1)='lab'    WHERE lab is PRES,CONV, or FLUX
+!			         QVAL1=f1(x,y,z)  WHERE f1 DEFINES THE DISTRIBUTION
+!			 	 QVAL2=f2(x,y,z)  WHERE f2 DEFINES THE OTHER PORTION
+!				        	  OF THE DISTRIBTION, BULK TEMPERATURE
+!						  WHEN lab IS CONV, QVAL2 CNA BE OMITTED
+!                                                 WHEN lab IS FLUX OR PRES
+!
+!			FOR EXAMPLE
+!				QLAB(1)='PRES'
+!				PI=ACOS(-1)
+!				QVAL1=1000*(COS(2*PI*X/20)+400)
+!
+!
+!		. ELEMENT LOADS(SFE,SFBEAM,BFE type)
+!			FILE CONTAINS:
+!				SFE,XNM,LKEY,LAB,KVAL,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+!				BFE,XNM,LAB,STLOC,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+!				SFBEAM,XNM,LKEY,LAB,F1(X,Y,Z),F2(X,Y,Z),,,F5(X,Y,Z),F6(X,Y,Z)
+!
+!			FOR EXAMPLE
+!				SFE,XNM,1,PRES,,100*(2*X+3*Y-6*Z)
+!
+!
+!		. NODAL LOADS(D,F,BF TYPE)
+!			FILE CONTAINS:
+!				D,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z),,,LAB2...LAB6
+!				F,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z)
+!				BF,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+!
+!			FOR EXAMPLE
+!				D,XNM,UX,.01*(2*X+3*Y-6*Z)
+!
+/NOPR
+*SET,IFILE
+*SET,QLAB
+*SET,QPAR1
+*SET,QPAR2
+!*DIM,IFILE,CHAR,1
+*DIM,QLAB,CHAR,1
+CM,LFNOD,NODE
+CM,LFELE,ELEM
+NSEL,ALL
+*GET,NMXMDL,NODE,,NUM,MAX
+CMSEL,S,LFNOD
+*DIM,QPAR1,ARRAY,NMXMDL
+*DIM,QPAR2,ARRAY,NMXMDL
+*GET,ACCSY,ACTIVE,,CSYS
+*GET,ACDSY,ACTIVE,,DSYS
+*MSG,INFO
+
+*MSG,INFO
+*******************************************************************
+*MSG,INFO
+Macro to apply bc's using a user-specified distribution %/
+*MSG,INFO
+Distribution is defined as a function of X, Y, and Z coordinate
+*MSG,INFO
+ values in a previously defined coordinate system. %/
+*MSG,INFO
+Boundary conditions are applied only to selected nodes and elements. %/
+*MSG,INFO
+
+*MSG,INFO
+*******************************************************************
+*MSG,INFO
+Enter type of loading %/
+*MSG,INFO
+Enter 0 for surface loads on selected elements using
+*MSG,INFO
+selected nodes to define the surface (SF) %/
+*MSG,INFO
+Enter 1 for element loads (SFE, SFBEAM, BFE) %/
+*MSG,INFO
+Enter 2 for nodal loads (D, F, BF) %/
+*ASK,TKEY,ENTER:0->SF; 1->SFE; or 2->D/BF/F,0
+*IF,TKEY,LT,0,THEN
+*MSG,WARN,
+TYPE IS NOT EQUAL TO 0,1 OR 2, SURFACE LOADS USING NODES WILL BE APPLIED
+TKEY=0
+ELSEIF,TKEY,GT,2,THEN
+*MSG,WARN,
+TYPE IS NOT EQUAL TO 0,1 OR 2, SURFACE LOADS USING NODES WILL BE APPLIED
+TKEY=0
+*ENDIF
+*ASK,FCS,CS IN WHICH LOADING IS DEFINED,0
+*GET,CDEF,CDSY,FCS,ATTR,KCS
+*IF,CDEF,EQ,-1,THEN
+*MSG,WARN,FCS
+COORDINATE SYSTEM %I IS NOT DEFINED. GLOBAL COORDINATES WILL BE USED
+FCS=0
+*ENDIF
+CSYS,FCS
+DSYS,FCS
+*MSG,INFO
+Specify file name which defines load specification. 
+*IF,TKEY,EQ,1,THEN
+*MSG,INFO
+Data in this file must be of the form: %/
+*MSG,INFO
+SFE,XNM,LKEY,LAB,KVAL,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+*MSG,INFO
+OR %/
+*MSG,INFO
+BFE,XNM,LAB,STLOC,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+*MSG,INFO
+OR %/
+*MSG,INFO
+SFBEAM,XNM,LKEY,LAB,F1(X,Y,Z),F2(X,Y,Z),,,F5(X,Y,Z),F6(X,Y,Z)
+*MSG,INFO
+where F(X,Y,Z) is the user-defined load distribution (using APDL).
+*MSG,INFO
+(X,Y,Z) are the coordinates of the element centroid
+*MSG,INFO
+For example: %/
+*MSG,INFO
+ SFE,XNM,1,PRES,,100*(2*X+3*Y-6*Z) %/
+*ELSEIF,TKEY,EQ,2,THEN
+*MSG,INFO
+Must be of the form: %/
+*MSG,INFO
+D,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z),,,LAB2...LAB6
+*MSG,INFO
+OR %/
+*MSG,INFO
+F,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z)
+*MSG,INFO
+OR %/
+*MSG,INFO
+BF,XNM,LAB,F1(X,Y,Z),F2(X,Y,Z),F3(X,Y,Z),F4(X,Y,Z)
+*MSG,INFO
+where F(X,Y,Z) is the user-defined load distribution (using APDL).
+*MSG,INFO
+(X,Y,Z) are the coordinates of the nodes
+*MSG,INFO
+For example: %/
+*MSG,INFO
+D,XNM,UX,.01*(2*X+3*Y-6*Z) %/
+*ELSEIF,TKEY,EQ,0,THEN
+*MSG,INFO
+Must be of the form: %/
+*MSG,INFO
+QLAB(1)='lab'
+*MSG,INFO
+QVAL1=F1(X,Y,Z)
+*MSG,INFO
+QVAL2=F2(X,Y,Z) %/
+*MSG,INFO
+where:
+*MSG,INFO
+'lab' is any valid surface load label
+*MSG,INFO
+F1(X,Y,Z) is user defined load distribution (using APDL)
+*MSG,INFO
+F2(X,Y,Z) is bulk temp. distribution if 'lab' = CONV %/
+*MSG,INFO
+(X,Y,Z) are the coordinates of the nodes
+*MSG,INFO
+Surface loads are applied using the SF command on the selected
+*MSG,INFO
+set of nodes and elements. For example: %/
+*MSG,INFO
+QLAB(1)='PRES'
+*MSG,INFO
+PI=ACOS(-1)
+*MSG,INFO
+QVAL1=1000*(COS(2*PI*X/20)+400)
+*ENDIF
+*ASK,IFILE,file name in quotes (< 9 char.),pfile
+*IF,TKEY,EQ,1,THEN
+*GET,EMX,ELEM,,COUNT
+*GET,EMIN,ELEM,,NUM,MIN
+ENUM=EMIN-1
+*DO,I,1,EMX
+ENUM=ELNEXT(ENUM)
+*GET,X,ELEM,ENUM,CENT,X
+*GET,Y,ELEM,ENUM,CENT,Y
+*GET,Z,ELEM,ENUM,CENT,Z
+XNM=ENUM
+/INPUT,%IFILE%
+*ENDDO
+*ELSEIF,TKEY,EQ,2,THEN
+*GET,NMX,NODE,,COUNT
+*GET,NMIN,NODE,,NUM,MIN
+NNUM=NMIN-1
+*DO,I,1,NMX
+NNUM=NDNEXT(NNUM)
+X=NX(NNUM)
+Y=NY(NNUM)
+Z=NZ(NNUM)
+XNM=NNUM
+/INPUT,%IFILE%
+*ENDDO
+*ELSEIF,TKEY,EQ,0,THEN
+QVAL2=0
+*GET,NMX,NODE,,COUNT
+*GET,NMIN,NODE,,NUM,MIN
+NNUM=NMIN-1
+*DO,I,1,NMX
+NNUM=NDNEXT(NNUM)
+X=NX(NNUM)
+Y=NY(NNUM)
+Z=NZ(NNUM)
+/INPUT,%IFILE%
+QPAR1(NNUM)=QVAL1
+QPAR2(NNUM)=QVAL2
+*ENDDO
+SFFUN,%QLAB(1)%,QPAR1(1),QPAR2(1)
+SF,ALL,%QLAB(1)%
+SFFUN
+*ENDIF
+CSYS,ACCSY
+DSYS,ACDSY
+CMSEL,S,LFNOD
+CMSEL,S,LFELE
+/GOPR

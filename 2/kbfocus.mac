@@ -1,0 +1,22 @@
+!---------------------------------------------------
+*CREATE,keybfocus,tk
+proc ::AnsysGUI::keybFocus { args } {
+variable ansToolbarArray
+
+set cmdPrompt [array get AnsysGUI::ansToolbarArray *,CmdPrompt,0]
+if {[string match {} cmdPrompt]} {
+return
+} else {
+set cmdPrompt [lindex $cmdPrompt 1]
+if {![regexp ${cmdPrompt}\..* [focus] match]} {
+after 125 [list focus -force [$cmdPrompt component cmdprompt]]
+} else {
+after 125 [list focus -force $AnsysGUI::ansGUIArray(parent)]
+after 125 [list focus -force [$cmdPrompt component cmdprompt]]
+}
+}
+}
+*END
+~eui,'source keybfocus.tk'
+~eui,'file delete -force keybfocus.tk'
+!----------------------------------------------------------------------

@@ -1,0 +1,176 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com, 5.6.1 on NT 4 SP 6a:
+/com,
+/com, Converges w/ LNSRCH,AUTO (or ON)
+/com, Problems w/ LNSRCH,OFF
+/com,
+
+finish
+/clear
+
+/output,temp,txt
+
+PRESLOAD = 1000
+
+/graph,power
+/triad,lbot
+/auto
+/view,1,1,2,3
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,181
+r,1,.1
+mp,ex  ,1,10e6
+mp,nuxy,1,.3
+tb,biso,1,1
+tbtemp,0
+tbdata,1,36000,0
+
+et,2,170
+et,3,173
+keyopt,2,1,0
+keyopt,3,11,1
+r,3
+rmodif,3,5,-1e-3
+rmodif,3,7,-1e-1
+rmodif,3,8,-1e-7
+mp,mu  ,3,1e-31
+
+et,4,154
+keyopt,4,4,1
+keyopt,4,11,0
+keyopt,4,12,1
+r,4,
+
+wpoffs,.55
+cylind,.5,,-1,1,0,90
+cylind,.5,,-1,1,90,180
+cylind,.5,,-1,1,180,270
+cylind,.5,,-1,1,0,-90
+
+wpoffs,-1.1
+wprot,,90
+cylind,.5,,-1,1,0,90
+cylind,.5,,-1,1,90,180
+cylind,.5,,-1,1,180,270
+cylind,.5,,-1,1,0,-90
+
+nummrg,kp
+
+wpcsys,-1,0
+asel,s,ext
+asel,u,loc,z,1
+asel,u,loc,z,-1
+asel,u,loc,y,1
+asel,u,loc,y,-1
+allsel,below,area
+cm,MAINAREA,area
+
+esize,.1
+mshape,0
+mshkey,1
+amesh,all
+
+asel,r,loc,x,0,.55
+nsla,s,1
+type,2
+real,3
+mat,3
+esurf
+
+cmsel,s,MAINAREA
+asel,r,loc,x,0,-.55
+nsla,s,1
+type,3
+esurf
+
+cmsel,s,MAINAREA
+asel,r,loc,x,.55,1.1
+nsla,s,1
+type,4
+real,4
+esurf
+
+vdele,all
+finish
+
+/solu
+antype,static
+solcon,on
+rescon,define,none
+nlgeom,on
+outres,all,all
+nsubst,10,10000,2
+lnsrch,off
+
+cmsel,s,MAINAREA
+allsel,below,area
+lsel,r,loc,z,-1
+nsll,s,1
+d,all,all
+ddele,all,ux
+allsel,below,area
+lsel,r,loc,z,1
+nsll,s,1
+d,all,all
+ddele,all,ux
+allsel,below,area
+lsel,r,loc,y,-1
+nsll,s,1
+d,all,all
+allsel,below,area
+lsel,r,loc,y,1
+nsll,s,1
+d,all,all
+
+esel,s,ename,,154
+sfe,all,5,pres,,PRESLOAD,-1,0,0
+allsel,all
+eplot
+solve
+finish
+
+/output,term
+
+/post1
+set,last
+
+nsel,r,loc,y,.3,-.3
+nsel,r,loc,z,.3,-.3
+esln,s,1
+esel,r,ename,,173,174
+MYELEM=elnext(0)
+esel,s,eleme,,MYELEM
+nsle
+
+etable,CNST_E,nmisc,41
+etable,CNST_I,nmisc,1
+etable,CNST_J,nmisc,2
+etable,CNST_K,nmisc,3
+etable,CNST_L,nmisc,4
+!etable,OLST_I,nmisc,5
+!etable,OLST_J,nmisc,6
+!etable,OLST_K,nmisc,7
+!etable,OLST_L,nmisc,8
+/output,listing,txt
+presol,cont
+prnsol,cont
+pretab
+/output,term
+*uilist,listing.txt
+
+

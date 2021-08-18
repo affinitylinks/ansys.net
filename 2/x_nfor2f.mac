@@ -1,0 +1,124 @@
+! =========================================
+! Shen-Yeh Chen
+! 05/01/1998
+! 12/10/2001
+! =========================================
+!
+! This macro will transfer the element force on the selected
+! node into cross-section force on each node, and write
+! all the force on each node into the "F" command. Note that
+! the macro go through each SELECTED node, sum up all SELECTED
+! elements that are attached to the SELECTED node. Then the
+! force on each nodes is added a negative sign and printed
+! into the 'F' command.
+! ---------------------------------------------------------
+! Syntax :
+!   x_nfor2f
+!
+! Input :
+!   None
+!
+! Output : 
+!   file : x_nfor2f.ans : nodal force for the section load
+!          x_nfor2f.cdb : nodal force & nodal coordinates/ID in
+!                         CDB format
+!   nodal components : x_nfor2f : defined in x_nfor2f.cdb
+!   X_NFOR2F_FX      : summation of FX
+!   X_NFOR2F_FY      : summation of FY
+!   X_NFOR2F_FZ      : summation of FZ
+! Temporary components
+!   X_NFOR2F
+!   X_NFOR2F_E
+!
+! Temporary components
+!   x_nfor2f.db
+!
+! Temporary variables
+!   AR30,AR31,AR32,AR33
+! 
+! External Programs called
+!   None
+!
+!
+! ========================================
+/POST1
+*GET,ZNNODE,NODE,,NUM,MAX
+CM,X_NFOR2F,NODE
+CM,X_NFOR2F_E,ELEM
+ESLN,R
+!
+AR30=0
+*CFOPEN,x_nfor2f,ans
+*VWRITE
+('/PREP7')
+X_FOR2F_FX=0.0
+X_FOR2F_FY=0.0
+X_FOR2F_FZ=0.0
+!
+! LOOP THROUGH ALL SELECTED NODES
+:LINE01
+AR30=NDNEXT(AR30)
+*IF,AR30,EQ,0,THEN
+ *GO,:LINE02
+*ENDIF
+NSEL,R,NODE,,AR30
+FSUM
+!
+!
+! GET THE FORCE
+*GET,AR31,FSUM,0,ITEM,FX
+*GET,AR32,FSUM,0,ITEM,FY
+*GET,AR33,FSUM,0,ITEM,FZ
+!
+AR31=-AR31
+AR32=-AR32
+AR33=-AR33
+X_FOR2F_FX=X_FOR2F_FX+AR31
+X_FOR2F_FY=X_FOR2F_FY+AR32
+X_FOR2F_FZ=X_FOR2F_FZ+AR33
+!
+! WRITE TO FILE
+*VWRITE,AR30,AR31
+('F,',I10,',FX,',E12.5)
+*VWRITE,AR30,AR32
+('F,',I10,',FY,',E12.5)
+*VWRITE,AR30,AR33
+('F,',I10,',FZ,',E12.5)
+!
+! SELECT THE NODES
+CMSEL,,X_NFOR2F
+*GO,:LINE01
+!
+!
+! SAVE THE STATE TO x_nfor2f.db
+:LINE02
+*CFCLOS
+CMSEL,,X_NFOR2F
+CMSEL,,X_NFOR2F_E
+SAVE,x_nfor2f,db
+!
+!
+! PICK THE NODES ONLY
+! READ IN THE NODAL FORCE
+! WRITE CDB FILE
+/PREP7
+EALL
+EDEL,ALL
+NSEL,INVE
+NDEL,ALL
+NALL
+LSCLEAR,ALL
+CPDEL,ALL
+CEDEL,ALL
+ETDEL,ALL
+MPDEL,ALL,ALL
+/INPUT,x_nfor2f,ans
+CDWRITE,DB,x_nfor2f,cdb
+!
+! RESUME ORIGINAL DATA
+FINI
+RESU,x_nfor2f,db
+/DELETE,x_nfor2f,db
+!
+
+

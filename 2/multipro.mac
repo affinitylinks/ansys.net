@@ -1,0 +1,114 @@
+! ANSYS REVISION 5.5, $RCSfile: MULTIPRO.MAC $
+! Modified on $Date: 1999/01/28 18:59:18 $ 
+! Source ID = $Revision: 5.1 $
+)/NOPR
+)ARG1=UPCASE(ARG1)
+)*IF,ARG1,EQ,'START',THEN
+)! Initialize the memory space used for the variables
+   )*CSET,1,3,,,2**(-100)
+   )*CSET,4,6,,,2**(-100)
+   )*CSET,7,9,,,2**(-100)
+   )*CSET,10,12,,,2**(-100)
+   )*CSET,13,15,,,2**(-100)
+   )*CSET,16,18,,,2**(-100)
+   )*CSET,19,21,,,2**(-100)
+   )*CSET,22,24,,,2**(-100)
+   )*CSET,25,27,,,2**(-100)
+   )*CSET,28,30,,,2**(-100)
+)! Initialize the memory space used for the help
+   )*CSET,61,62,2**(-100),
+   )*CSET,63,64,2**(-100),
+)! Initiliaze files used by multi-prompt
+)!
+)! ansuimac file is used to read in the data provide by the cset into
+)! char*8 variables for use in substitution in the function block.
+   )*CREATE,ansuimac
+      )*VREAD,_ask(1),ansuitmp
+      (X,4A)
+      )/RMTEMP
+   )*END
+)!
+)! ansuimac.mac file is used to actually bring up the Multi-Prompt dialog.
+)! This also circumvents a message that is not needed in this case.
+   )*CREATE,ansuimac,mac
+      )!Nothing Done
+      )/RMTEMP
+   )*END
+
+  )!
+  )! Display controls without a default value
+  )*DO,_i,1,10,1
+     )KEYW,MLTPRM%_i%,0
+  )*ENDDO
+  )*IF,ARG2,NE,0,THEN
+     )*DO,_i,1,ARG2,1
+         )KEYW,MLTPRM%_i%,1
+     )*ENDDO
+  )*ENDIF
+
+)!
+)! ansuimac.mac file is used to actually bring up the Multi-Prompt dialog.
+)! This also circumvents a message that is not needed in this case.
+)*ELSEIF,ARG1,EQ,'END',THEN
+   )*CFOPEN,ansuimac,mac
+   )*CFWRITE,/PMACRO
+   )*CFWRITE,Fnc_*ASK
+   )*CFWRITE,*DEL,_ask
+   )*CFWRITE,*DEL,_z
+   )*CFWRITE,*DEL,_h
+   )*CFWRITE,/RMTEMP
+   )*CFCLOSE
+)*ELSEIF,ARG1,EQ,'HELP',THEN
+/OUTPUT,ansuitmp
+/COM,The MULTIPRO macro is used in the following way inside of a macro.
+/COM,
+/COM,   multipro,'start',3
+/COM,   *cset,1,3,beamW,'Enter the overall beam width',12.5
+/COM,   *cset,4,6,beamH,'Enter the beam height',23.345
+/COM,   *cset,7,9,beamL,'Enter the beam length',50.0
+/COM,   multipro,'end'
+/COM,
+/COM,The 'start' argument is used to initialize the Multi-Prompt dialog.
+/COM,The second argument (in the ex. 3) is used only if def_value is omitted.
+/COM,The 'end' argument is used to display the Multi-Prompt dialog.
+/COM,
+/COM,The *cset lines are used to setup each of the prompts in the Multi-Prompt
+/COM,dialog.  You can have up to ten prompts in the Multi-Prompt dialog.  The
+/COM,*cset lines are used as follow:
+/COM,
+/COM,   *cset,strt#,strt#+2,Param_Name,'32 char string for prompt',def_value
+/COM,
+/COM,The quotes must be included around the prompt string.
+/COM,The strt# increments by 3 for each subsquent *cset up to a maximum
+/COM,value of 28.
+/COM,
+/COM,A second argument must be used on multipro, if the default value 
+/COM,(def_value) is omitted in the *cset lines or is a zero value, which
+/COM,is the number of items to be displayed. 
+/COM,
+/COM,Two 64 character lines of help may be included by adding additional
+/COM,*cset commands to the multipro block.  They are as follow:
+/COM,
+/COM,   *cset,61,62,'32 char string for help','32 char string for help'
+/COM,   *cset,63,64,'32 char string for help','32 char string for help'
+/COM,
+/COM,The quotes must be included around the prompt string.
+/COM,
+/COM,A return value, held in _BUTTON, indicates if the OK (_BUTTON=0) or
+/COM,Cancel(_BUTTON=1) button was chosen in the multi-prompt dialog.
+/OUTPUT,TERM   
+*UILIST,ansuitmp
+)!
+)! ansuimac.mac file is used to actually bring up the Multi-Prompt dialog.
+)! This also circumvents a message that is not needed in this case.
+   )*CREATE,ansuimac,mac
+      )!Nothing Done
+      )/RMTEMP
+   )*END
+
+)*ELSE
+   )*MSG,WARN
+   This command only accecpts 'START', 'END' and 'HELP' as arguments
+)*ENDIF
+)ansuimac
+)/GO

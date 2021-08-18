@@ -1,0 +1,71 @@
+! slicepln macro  version 1.0  D Shaffer
+! this macro moves the working plane origin to the
+! specified keypoint and orients it with wz normal
+! to the specified cartesian axis with x=1,y=2 and z=3.
+!
+! use as slicepln,keyptno,cutting_plane_normal_direction
+!
+! BY DON SHAFFER VERSION 1.1
+! 
+/PMACRO
+*GET,CURCSYS,ACTIVE,,CSYS  ! get current active dsys csys
+*GET,CURDSYS,ACTIVE,,DSYS
+
+*IF,ARG1,EQ,0,THEN
+    CM,STATK,KP                ! make components of kp line area volu node and elm
+*IF,LSNEXT(0),GT,0,THEN
+     CM,STATL,LINE
+*ENDIF
+*IF,ARNEXT(0),GT,0,THEN
+    CM,STATA,AREA
+*ENDIF
+*IF,VLNEXT(0),GT,0,THEN
+    CM,STATV,VOLU
+*ENDIF
+*IF,NDNEXT(0),GT,0,THEN
+    CM,STATN,NODE
+*ENDIF
+*IF,ELNEXT(0),GT,0,THEN
+    CM,STATE,ELEM
+*ENDIF
+    /NERR,0,1000000
+    CMGRP,MSTAT,STATK,STATL,STATA,STATV,STATN,STATE ! create assembly of components
+    /NERR,5,1000000
+    KSEL,S,P
+    KPNUM=KPNEXT(0) 
+    CMSEL,S,MSTAT
+*ENDIF
+*IF,ARG1,NE,0,THEN
+    KPNUM=ARG1
+*ENDIF
+CSYS,0
+DSYS,0
+X1=KX(KPNUM)
+Y1=KY(KPNUM)
+Z1=KZ(KPNUM)
+*GET,X2,GRAPH,1,VIEW,X
+*GET,Y2,GRAPH,1,VIEW,Y
+*GET,Z2,GRAPH,1,VIEW,Z
+*IF,ARG2,EQ,1,THEN
+WPLANE,1,X1,Y1,Z1,X1,Y1,Z1-10,X1,Y1+10,Z1
+*ELSEIF,ARG2,EQ,2,THEN
+WPLANE,1,X1,Y1,Z1,X1+10,Y1,Z1,X1,Y1,Z1-10
+*ELSEIF,ARG2,EQ,3,THEN
+WPLANE,1,X1,Y1,Z1,X1+10,Y1,Z1,X1,Y1+10,Z1
+*ENDIF
+/VIEW,1,X2,Y2,Z2
+/PLOPTS,WP,1
+/REPLOT
+CSYS,CURCSYS
+DSYS,CURDSYS
+/NOPR
+KPNUM=
+X1=
+Y1=
+Z1=
+X2=
+Y2=
+Z2=
+/GOPR
+/EOF
+

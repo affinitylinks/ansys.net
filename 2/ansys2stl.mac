@@ -1,0 +1,61 @@
+!**************************************
+!ansys2stl.mac
+!v1.1
+!Author: Iker Gomez Vazquez
+!Date: 14/07/2008
+!Description: Creates ASCII information of the current selected mesh on 
+!STL (StereoLiTography) Format.
+!Created on ITR for GEomagic coamprision purposes
+!WARNING: 
+!It is recommended to mesh with Structural SURFACE Elements SURF154 all the surfaces
+!Then,select only the SURF154 elements before running the macro.
+!**************************************
+/com, This macro only export those selected elements.
+/com, Check the output on Working directory as STL_input.stl
+/com, ****** Iker Gomez Vazquez ITP, S.A. 2008 ****** 
+/nopr
+nsle		
+nsel, r, ext	!only external nodes will be taken into account
+*get, etmax, ETYP,,num, max
+et, etmax+1, 154
+type, etmax+1
+esurf
+esel, s, type,,etmax+1
+*ask, nfile, 'Enter the name of the solid','STL_input'
+*get, elsel, ELEM,,count
+*cfopen, %nfile%, stl
+*vwrite, nfile
+solid %s
+io=0
+*do, i, 1, elsel, 1
+io=elnext(io)
+*get, n1, elem, io, NODE, 1
+*get, n2, elem, io, NODE, 2
+*get, n3, elem, io, NODE, 3
+normmx=normnx(n1, n2, n3)
+normmy=normny(n1, n2, n3)
+normmz=normnz(n1, n2, n3)
+*vwrite, normmx,normmy,normmz
+('facet normal',' ',1PE13.6,' ',1PE13.6,' ',1PE13.6)
+*vwrite
+outer loop
+*vwrite, nx(n1), ny(n1),nz(n1)
+('vertex',' ',1PE13.6,' ',1PE13.6,' ',1PE13.6)
+*vwrite, nx(n2), ny(n2),nz(n2)
+('vertex',' ',1PE13.6,' ',1PE13.6,' ',1PE13.6)
+*vwrite, nx(n3), ny(n3),nz(n3)
+('vertex',' ',1PE13.6,' ',1PE13.6,' ',1PE13.6)
+*vwrite
+endloop
+*enddo
+*vwrite, nfile
+endsolid %s
+*cfclose
+esel, s, type,,etmax+1
+edele, all
+etdele, etmax+1
+/com, Done.
+*vwrite, nfile
+File exported to Working Directory/%s.stl successfully!! 
+/gopr
+

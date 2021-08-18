@@ -1,0 +1,17 @@
+/nopr
+vsel,s,,,arg1
+vsel,a,,,arg2
+allsel,below,volume
+cm,va2,volume
+v1 = vlnext(-1)
+vsel,s,,,v1
+aslv,s,1
+cm,aa1,area
+cmsel,s,va2
+vsel,u,,,v1
+aslv,s,1
+cm,aa2,area
+cmsel,r,aa1
+aplot
+alist
+/go

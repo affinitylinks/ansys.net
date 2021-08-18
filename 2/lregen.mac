@@ -1,0 +1,118 @@
+/nopr
+!
+!  lregen.mac  a macro to recreate the selected lines.
+!              Up to 82 points are created to describe
+!              the new line.
+!
+!  usage: lregen,nkp
+!              where nkp=number of keypoints used to describe
+!                        the new line.  defaults to 30
+!  lnum = number of originally selected lines
+!  lmax = max line ID number in the original set
+!  kmax = max kp ID number in the original set
+!
+!  written by: John Crawford
+!
+!  make sure we're in prep7
+/prep7
+!
+!  check arg1 for number of keypoints along the line
+*if,arg1,le,0,then
+arg1=30
+*endif
+!
+!  check for arg1 > 80
+*if, arg1,gt,80, then
+arg1=80
+*endif
+!
+!  create a temporary component of the selected
+!  keypoints
+cm,_zdummy,kp
+!  get the number of selected lines
+*get,lnum,line,,count
+!
+!  get the highest keypoint ID in the model
+ksel,all
+*get,kpmax,kp,,num,max
+!
+!  select the keypoints on the lines
+ksll
+!
+!  start with the lowest line ID
+lineid=0
+!
+*do,j,1,lnum
+!
+!  start with the next highest line ID
+lineid=lsnext(lineid)
+!*msg,info,lineid,j
+!Lineid = %i j =  %i
+!
+!  get the two keypoints for this line
+*get,kp1,line,lineid,kp,1
+*get,kp2,line,lineid,kp,2
+!
+!  turn immediate mode off so the keypoints don't show up as they
+!  are generated
+imme,0
+!  make arg1 keypoints along the length of line lineid between
+!  kp1 and kp2
+*do,i,1,arg1,1
+kx=lx(lineid,i/(arg1+1))
+ky=ly(lineid,i/(arg1+1))
+kz=lz(lineid,i/(arg1+1))
+k,kpmax+i,kx,ky,kz
+!*msg,info,kpmax+i
+!Just made keypoint %i
+*enddo
+!
+!  turn immediate mode on again
+imme,1
+!
+!  remove the original line
+ldel,lineid
+!
+!  create the new line
+flst,3,arg1+2,3
+fitem,3,kp1
+*do,ll,1,arg1
+fitem,3,kpmax+ll
+*enddo
+fitem,3,kp2
+!
+!  set the starting number for creating lines
+numstr,line,lineid
+bsplin,,p51x
+!
+*msg,info,lineid,j,lnum
+Just recreated spline %i , number %i of %i total splines
+!
+!  finished creating this spline, go back to the top or quit
+*enddo
+!
+!  delete unneeded keypoints
+kdel,kpmax+1,kpmax+arg1
+!
+!  select the originally selected keypoints
+cmse,s,_zdummy
+!
+!  delete the dummy set of keypoints
+cmde,_zdummy
+!  clean up various parameters
+csid=
+i=
+j=
+kp1=
+kp2=
+kpmax=
+lineid=
+lmax=
+lnum=
+ll=
+k=
+/gopr
+
+
+
+

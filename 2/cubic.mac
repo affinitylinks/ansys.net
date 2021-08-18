@@ -1,0 +1,160 @@
+!   CUBIC, 'x', 'y', xint, 'yint'
+!
+!      Performs monotonic cubic interpolation in a table.
+!
+!      USAGE:
+!
+!         CUBIC, 'x', 'y', xint, 'yint'
+!
+!      INPUT:
+!
+!         'x'  = name of an nx1 array of x-values [x(1), x(2), . . ., x(n)]
+!
+!         'y'  = name of an nx1 array of y-values [y(1)=f(x(1)), y(2)=f(x(2)), . . ., y(n)=f(x(n))]
+!
+!         xint = the x-value at which y is to be interpolated
+!
+!      OUTPUT:
+!
+!         yint = the interpolated y-value as yint = f(xint)
+!
+!      LOCAL VARIABLES USED AND RELEASED BY THIS MACRO:
+!         d1_
+!         d2_
+!         delta1_
+!         h1_
+!         i_
+!         idirnx_
+!         ifirst_
+!         ilast_
+!         x1_
+!         xdif_
+!
+!      OTHER MACROS NEEDED:
+!         DYDXI   calculates first derivative at table entry I
+!
+!      LOCAL VARIABLES USED AND RELEASED BY OTHER NEEDED MACROS:
+!         slopem_
+!         slopep_
+!         x2_
+!
+!      COMMENTS:
+!
+!         'x' and 'y' are names of numeric arrays of the same length.  No checking is done to see
+!         if they are the same length.  Results are unpredictable if they are not the same length.
+!         Sample usage is:
+!
+!            *DIM, feet, ARRAY, 8
+!            *DIM, inch, ARRAY, 8
+!
+!            feet(1) = 0,  1,  2,  3,  4,  5,  6,  7,  8
+!            inch(1) = 0, 12, 24, 36, 48, 60, 72, 84, 96
+!
+!            CUBIC, 'feet', 'inch', 2.5, 'yint'       ! this interpolates yint and sets it to 30
+!
+!         Advantage of this algorithm is that y will always be monotonic within any x-segment.
+!         Consider interpolating in the chart below where:
+!
+!                                x   1.5   2.0   3.0   4.0
+!                                y   1.0   3.0   3.2   3.2
+!
+!                        +.........1.........2.........3.........4
+!                        -
+!                        -
+!                        -
+!                        -                             +         +
+!                        3                   +
+!                        -
+!                        -
+!                        -
+!                        -
+!                    Y   2
+!                        -
+!                        -
+!                        -
+!                        -
+!                        1              +
+!                        -
+!                        -
+!                        -
+!                        -
+!                        +.........1.........2.........3.........4
+!
+!                                            X
+!
+!         A traditional interpolating scheme would likely interpolate a value of, say, y=3.8 at
+!         x=2.5 and y =2.8 at x=3.5.  This can cause oscillations to set up in nonlinear problems
+!         that can lead to divergence.
+!
+!         This interpolating algorithm guarantees that y will be bounded between adjacent dependent
+!         variable entries.  For example, y will always have an interpolated value between 3.0 and
+!         3.2 as x varies from 2.0 to 3.0.  And, y will always have an interpolated of 3.2 when x is
+!         between 3.0 and 4.0.  If the 'squiggles' are indeed physical phenomena, one only needs to
+!         insure that the maxima and minima are included in the tables.
+!
+!         If x and y are 2x1 arrays, the scheme defaults to linear interpolation.  No error checking
+!         is done.  Results are unpredictable if xint is outside the range of x-values in the table
+!         and an attempt is made to extrapolate rather than interpolate.
+!
+!         For those interested with such things, the first derivative used in the interpolation
+!         is continuous from one x-segment to the next.  The second derivative is not, however.
+!         Some interpolating schemes will give a different value depending on whether values are
+!         stored in the table in ascending or descending order.  This scheme interpolates the same
+!         value regardless of how the values are stored.
+!
+*GET, nx_, 'PARM', %ARG1%, DIM, X
+*IF, %ARG1%(1), LT, %ARG1%(2),THEN
+   idirnx_ = +1
+   ifirst_ = +1
+   ilast_  = nx_
+*ELSE
+   idirnx_ = -1
+   ifirst_ = nx_
+   ilast_  = +1
+*ENDIF
+*IF, %ARG1%(ifirst_), EQ, ARG3,THEN
+   i_      = ifirst_
+   ifirst_ = 0
+*ELSE
+   *DO, i_, ifirst_+idirnx_, ilast_, idirnx_
+      h1_ = %ARG1%(i_)-ARG3
+      *IF, h1_, LT, 0,THEN
+         *CYC
+      *ELSE
+         *IF, h1_, EQ, 0,THEN
+            ifirst_ = 0
+         *ENDIF
+         *EXI
+      *ENDIF 
+   *ENDDO
+*ENDIF
+*IF, ifirst_, EQ, 0,THEN
+   %ARG4% = %ARG2%(i_)
+*ELSEIF, nx_, EQ, 2,THEN
+   h1_ = %ARG2%(2)-%ARG2%(1)
+   h1_ = h1_/(%ARG1%(2)-%ARG1%(1))
+   %ARG4% = %ARG2%(1)+h1_*(ARG3-%ARG1%(1))
+*ELSE
+   *IF, idirnx_, LT, 0,THEN
+      i_ = i_+1
+   *ENDIF
+   h1_     = %ARG1%(i_)-%ARG1%(i_-1)
+   delta1_ =(%ARG2%(i_)-%ARG2%(i_-1))/h1_
+   dydxi, '%ARG1%', '%ARG2%', i_-1, 'd1_'
+   dydxi, '%ARG1%', '%ARG2%', i_  , 'd2_'
+   xdif_   = ARG3-%ARG1%(i_-1)
+   x1_     = xdif_/h1_
+   x1_     = (2.0D+00*d1_+d2_-3.0D+00*delta1_-(d1_+d2_-2.0D+00*delta1_)*x1_)*x1_
+   %ARG4%  = %ARG2%(i_-1)+(d1_-x1_)*xdif_
+*ENDIF
+d1_     =
+d2_     =
+delta1_ =
+h1_     =
+i_      =
+idirnx_ =
+ifirst_ =
+ilast_  =
+x1_     =
+xdif_   =
+/EOF

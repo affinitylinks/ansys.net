@@ -1,0 +1,140 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!------------------------------------------------------------
+! This macro creates a parabola given 2 points, A & B, on the parabola
+! And Point C that defines the intersection of the slopes at A & B
+! 
+! Author:   Mike Rife
+!           mike.rife@csi-ansys.com
+! Company:  Collaborative Solutions, Inc.
+!           10475 Park Meadows Dr. Suite 600
+!           Littleton, CO  80124
+!           303 256-5725
+! Revision: 15 June 2000 Beta 
+!           19 June 2000 ver 1.0
+!		Added picker support
+!		Added check if user entered invalid kp#
+!	    22 June 2000 ver 1.1
+!		Chagned so the end keypoints are duplicated.  Requested
+!		by Alex S. at Harmon.
+! 
+! To-do:    Add check to see if duplicate kp's selected
+!   
+!------------------------------------------------------------
+!/com,   usage: arg1 = First End Point A
+!/com,          arg2 = Second End point B
+!/com,          arg3 = Third Point C
+!/com		arg4 = Lambda  
+! if L = 1 curve is parabolic
+! if L < 1 curve is an elliptical or circular arc
+! if L > 1 curve is hyperbolic
+
+! uses the conic equation ax^2 + bxy + cy^2 + dx + ey + f =0
+! but a parametric form:
+! x = at^2 + bt + c
+! y = dt^2 + et + f
+
+/pmacro
+/uis,msgpop,0
+
+! Check to see if users needs to enter data
+*if,arg1,eq,0,then
+*msg,note
+Pick the End Keypoints.
+ksel,s,p
+*get,arg1,kp,0,num,max
+*get,arg2,kp,0,num,min
+*endif
+
+*if,arg2,eq,0,then
+*msg,note
+Pick the End Keypoints.
+ksel,s,p
+*get,arg1,kp,0,num,max
+*get,arg2,kp,0,num,min
+*endif
+
+
+*if,arg3,eq,0,then
+*msg,note
+Pick the Slope Intersection Keypoint.
+ksel,s,p
+*get,arg3,kp,0,num,max
+*endif
+
+ksel,a,kp,,arg1
+ksel,a,kp,,arg2
+ksel,a,kp,,arg3
+/uis,msgpop,2
+
+
+*if,arg4,eq,0,then
+*ask,arg4,What is Lambda? (1=parabola),1
+*endif
+
+cm,li_,line
+cm,a_,area
+cm,v_,volu
+cm,n_,node
+cm,e_,elem
+cmgrp,all_,li_,a_,v_,e_,n_
+cmsel,u,all_
+
+! First get the coordinates of the three points
+
+Ax_ = kx(arg1) $ Ay_ = ky(arg1)
+Bx_ = kx(arg2) $ By_ = ky(arg2)
+Cx_ = kx(arg3) $ Cy_ = ky(arg3)
+L_ = arg4
+
+
+k,,kx(arg1),ky(arg1),
+enda_ = _return
+k,,kx(arg2),ky(arg2),
+endb_ = _return
+
+*dim,kpn_,array,9,
+x_ = 0 $ y_ = 0
+*do,i_,.1,.9,.1
+
+x_ = Ax_*(1-i_)*(1-i_) 
+x_ = x_ + 2*L_*Cx_*i_*(1-i_) 
+x_ = x_ + Bx_*i_*i_
+w_ = 1+2*(L_-1)*i_*(1-i_)
+x_ = x_/w_ 
+
+y_ = Ay_*(1-i_)*(1-i_)
+y_ = y_ + 2*L_*Cy_*i_*(1-i_)
+y_ = y_ + By_*i_*i_
+y_ = y_/w_
+
+k,,x_,y_,0
+
+kpn_(i_*10) = _return
+x_ = $ y_ =
+*enddo
+
+FLST,3,11,3
+FITEM,3,enda_
+FITEM,3,kpn_(1)
+FITEM,3,kpn_(2)
+FITEM,3,kpn_(3)
+FITEM,3,kpn_(4)
+FITEM,3,kpn_(5)
+FITEM,3,kpn_(6)
+FITEM,3,kpn_(7)
+FITEM,3,kpn_(8)
+FITEM,3,kpn_(9)
+FITEM,3,endb_
+
+BSPLIN,,P51x
+gplo
+
+! Clean-Up
+*del,all,prm_
+
+

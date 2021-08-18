@@ -1,0 +1,183 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Forced convection problem (2D tri)
+/com,  three "fins" heated
+/com,  just edited "conv_fins.inp" input file...
+/com,
+
+finish
+/clear
+
+! in m/s
+FLOWRATE = 3
+
+/prep7
+et,1,141
+keyopt,1,3,0
+
+flda,prot,dens,AIR-SI_B
+flda,prot,visc,AIR-SI_B
+flda,prot,cond,AIR-SI_B
+flda,prot,spht,AIR-SI_B
+flda,vary,dens,1
+
+rectng,-0.020,0.030,0,0.040
+rectng,,.001,,0.010
+rectng,.005,.006,,0.010
+rectng,.010,.011,,0.010
+asba,1,all
+! -- inlet (change y for height) --
+rectng,-0.020,-0.015,0,0.010
+! -- outlet (change y for height) --
+rectng,0.025,0.030,0.035,0.040
+aovlap,all
+
+mshape,1
+mshkey,0
+esize,.001
+
+lsel,r,loc,x,0,0.011
+lsel,u,loc,y,0.040
+lsel,u,loc,y,0
+lesize,all,0.001/3,,,,,-3,-1.1,0
+cm,TEMPLINE,line
+lsel,inve
+lesize,all,0.001/2,,,,,-1,-1.1,0
+amesh,all
+
+!----------------------------------------
+! Either applied temp or heat flux
+!----------------------------------------
+cmsel,s,TEMPLINE
+!dl,all,,temp,60,1
+sfl,all,hflux,100
+
+! --- maybe put convection instead ---
+lsel,inve
+lsel,u,loc,y,0
+lsel,r,ext
+dl,all,,temp,20,1
+
+lsel,s,ext
+dl,all,,vx,0,1
+dl,all,,vy,0,1
+
+!ksel,s,loc,y,0.040
+!ksel,r,loc,x,-0.020
+!dk,all,pres,0
+
+lsel,s,loc,x,-0.020
+lsel,r,loc,y,0,0.010
+dl,all,,vx,FLOWRATE,1
+dl,all,,vy,0,1
+dl,all,,temp,20,1
+
+lsel,s,loc,x,0.030
+lsel,r,loc,y,0.035,0.040
+dldele,all,vx
+dldele,all,vy
+dldele,all,temp
+dl,all,,pres,0,1
+
+finish
+
+/solu
+!----------------------------------------
+! Steady-state, solve energy eqn, too
+!----------------------------------------
+FLDATA1,SOLU,TRAN,0 
+FLDATA1,SOLU,FLOW,1 
+FLDATA1,SOLU,VOF,0  
+FLDATA1,SOLU,TEMP,1 
+FLDATA1,SOLU,TURB,1
+FLDATA1,SOLU,COMP,0 
+FLDATA1,SOLU,IVSH,0 
+FLDATA1,SOLU,SWRL,0 
+FLDATA1,SOLU,SPEC,0 
+
+!----------------------------------------
+! Set reference info
+!   Need:
+!   Reference pressure (property calc, gas law)
+!   Reference temp TOFFS (property calc, gas law)
+!   grav const ACEL (nat conv)
+!   Optional:
+!   nominal temp (initialization temp)
+!   bulk temp (for film coeff transferred via LDREAD)
+!----------------------------------------
+FLDATA15,PRES,REFE,101350,  
+FLDATA16,BULK,BETA,1e+015,  
+FLDATA17,GAMM,COMP,1.4, 
+FLDATA14,TEMP,NOMI,20,  
+FLDATA14,TEMP,BULK,20,  
+toff,273
+
+acel,,9.81
+
+!----------------------------------------
+! TDMA solver fine for this problem (fluid only)
+!----------------------------------------
+!flda,meth,pres,1
+!flda,meth,temp,1
+
+!----------------------------------------
+! Use iterative solvers instead to speed things up
+!   More RAM requirements, but small model, so OK
+!   PRES = PCG solver
+!   TEMP = PGMR solver
+!----------------------------------------
+flda,meth,pres,3
+flda,conv,pres,1e-10
+flda,meth,temp,4
+flda,conv,temp,1e-12
+
+!----------------------------------------
+! Set relaxation for TEMP and DENS
+!   Speed things up
+!----------------------------------------
+flda,relx,temp,1
+flda,relx,dens,1
+
+flda,advm,mome,msu
+flda,advm,turb,msu
+
+allsel,all
+
+flocheck,1
+
+!----------------------------------------
+! 100 total iterations, save every 25
+!----------------------------------------
+flda,iter,exec,25
+flda,iter,appe,25
+solve
+
+flda,advm,mome,supg
+flda,advm,turb,supg
+flda,advm,temp,supg
+flda,iter,exec,75
+solve
+
+finish
+
+/triad,off
+/plopt,minm,off
+/title,Velocity and Temperature Profiles
+/post1
+set,last
+plnsol,temp
+/noerase
+PLVECT,V, , , ,VECT,ELEM,ON,0   
+/erase
+

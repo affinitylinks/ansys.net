@@ -1,0 +1,49 @@
+!VolsAtElem.mac
+!creates volume at all selected elements
+!only works with 8 noded hex elements
+/prep7
+
+*get,e_min,elem,,num,min
+*get,e_total,elem,,count
+
+/nopr
+!create array which contains element numbers
+*del,e_sub,,nopr
+*dim,e_sub,array,e_total
+e_sub(1)=e_min
+e_select=e_min
+*do,i,2,e_total
+  *get,e_next,elem,e_select,nxth
+  e_sub(i)=e_next
+  e_select=e_next
+*enddo
+
+!create temp array which contains node numbers
+*del,n_tmp,,nopr
+*dim,n_tmp,array,8 !only 8 nodes
+
+!select element and its attributes & nodes
+!create kp's at nodes and then create volume
+!then assign attributes to volume
+*do,i,1,e_total
+  !get element attributes
+  *GET,e_mat,ELEM,e_sub(i),ATTR,MAT
+  *GET,e_type,ELEM,e_sub(i),ATTR,TYPE
+  *GET,e_real,ELEM,e_sub(i),ATTR,REAL
+  *GET,e_esys,ELEM,e_sub(i),ATTR,ESYS
+  !get nodes attached to element & create kp's at nodes
+  *do,j,1,8
+    *GET,n_tmp(j),ELEM,e_sub(i),NODE,j
+    knode,n_tmp(j),n_tmp(j)
+  *enddo
+  !create volume at element
+  vsel,none !needed for VATT
+  v,n_tmp(1),n_tmp(2),n_tmp(3),n_tmp(4),n_tmp(5),n_tmp(6),n_tmp(7),n_tmp(8)
+  vatt,e_mat,e_real,e_type,e_esys
+*enddo
+vsel,all
+edele,all
+ndele,all
+vplot
+save
+/eof

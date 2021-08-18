@@ -1,0 +1,286 @@
+/NOPR                      !Suppress printout
+/PMACRO
+
+/COM, ==========================================================
+/COM,
+/COM,   NAVAL BATTLE
+/COM,
+/COM, ==========================================================
+
+TRUE =    1                !Logical true
+FALS =    0                !Logical false
+
+HORZ =    0                !Horizontal
+VERT =    1                !Vertical
+
+NHOR =   10                !Number of horizontal grids
+NVER =   10                !Number of vertical grids
+
+NSHP =    6                !Number of ships
+
+NSNK =    0                !Number of ships sunk
+NDES =    0                !Number of destroyers sunk
+NSUB =    0                !Number of submarines sunk
+
+NMVE =    0                !Number of moves
+
+*DIM,SSHP,ARRAY,NSHP       !Ship sizes
+SSHP(1) = 5,4,3,3,2,2
+
+*DIM,RSHP,ARRAY,NSHP       !Real constant for each ship
+RSHP(1) = 0,0,0,0,0,0
+
+*DIM,OSHP,ARRAY,NSHP       !Orientation of each ship
+OSHP(1) = 0,0,0,0,0,0
+
+*DIM,XSHP,ARRAY,NSHP       !Horizontal starting grid
+XSHP(1) = 0,0,0,0,0,0
+
+*DIM,YSHP,ARRAY,NSHP       !Vertical starting grid
+YSHP(1) = 0,0,0,0,0,0
+
+*DIM,HSHP,ARRAY,NSHP       !Number of hits on each ship
+HSHP(1) = 0,0,0,0,0,0
+
+*DIM,GRID,ARRAY,NHOR,NVER  !Grid array
+
+/PREP7
+
+/TRIAD,OFF
+
+IMMED,OFF
+
+
+N,1
+N,NHOR+1,NHOR
+FILL,1,NHOR+1
+NGEN,NVER+1,NHOR+1,1,NHOR+1,1,0,1
+ET,1,42
+E,1,2,NHOR+3,NHOR+2
+EGEN,NHOR,1,1,1,1
+EGEN,NVER,NHOR+1,1,NHOR,1
+
+KSHP = 1
+*DO,I,1,999,1
+RSHP(KSHP) = NINT(RAND(2,NSHP+1))
+UNIQ = TRUE
+*DO,J,1,KSHP-1,1
+*IF,RSHP(KSHP),EQ,RSHP(J),THEN
+UNIQ = FALS
+*ENDIF
+*ENDDO
+*IF,UNIQ,EQ,FALS,CYCLE
+KSHP = KSHP+1
+*IF,KSHP,EQ,NSHP+1,EXIT
+*ENDDO
+
+*DO,I,1,NHOR,1
+*DO,J,1,NVER,1
+GRID(I,J) = 0
+*ENDDO
+*ENDDO
+
+KSHP = 1
+*DO,I,1,999,1
+OSHP(KSHP) = NINT(RAND(0,1))
+*IF,OSHP(KSHP),EQ,HORZ,THEN
+XSHP(KSHP) = NINT(RAND(0.51,NHOR-SSHP(KSHP)+0.51))
+YSHP(KSHP) = NINT(RAND(0.51,NVER+0.49))
+*IF,XSHP(KSHP)+SSHP(KSHP),GT,NHOR,CYCLE
+*ELSE
+XSHP(KSHP) = NINT(RAND(0.51,NHOR+0.49))
+YSHP(KSHP) = NINT(RAND(0.51,NVER-SSHP(KSHP)+0.51))
+*IF,YSHP(KSHP)+SSHP(KSHP),GT,NVER,CYCLE
+*ENDIF
+UNIQ = TRUE
+*IF,OSHP(KSHP),EQ,HORZ,THEN
+*DO,J,XSHP(KSHP),XSHP(KSHP)+SSHP(KSHP),1
+*IF,GRID(J,YSHP(KSHP)),EQ,1,THEN
+UNIQ = FALS
+*ENDIF
+*ENDDO
+*ELSE
+*DO,J,YSHP(KSHP),YSHP(KSHP)+SSHP(KSHP),1
+*IF,GRID(XSHP(KSHP),J),EQ,1,THEN
+UNIQ = FALS
+*ENDIF
+*ENDDO
+*ENDIF
+*IF,UNIQ,EQ,FALS,CYCLE
+*IF,OSHP(KSHP),EQ,HORZ,THEN
+*DO,J,XSHP(KSHP),XSHP(KSHP)+SSHP(KSHP)-1,1
+GRID(J,YSHP(KSHP)) = 1
+*ENDDO
+NSEL,S,LOC,X,XSHP(KSHP)-1,XSHP(KSHP)+SSHP(KSHP)-1
+NSEL,R,LOC,Y,YSHP(KSHP)-1,YSHP(KSHP)
+ESLN,S,1
+REAL,RSHP(KSHP)
+EMODIF,ALL,REAL
+ALLSEL
+*ELSE
+*DO,J,YSHP(KSHP),YSHP(KSHP)+SSHP(KSHP)-1,1
+GRID(XSHP(KSHP),J) = 1
+*ENDDO
+NSEL,S,LOC,X,XSHP(KSHP)-1,XSHP(KSHP)
+NSEL,R,LOC,Y,YSHP(KSHP)-1,YSHP(KSHP)+SSHP(KSHP)-1
+ESLN,S,1
+REAL,RSHP(KSHP)
+EMODIF,ALL,REAL
+ALLSEL
+*ENDIF
+KSHP = KSHP+1
+*IF,KSHP,EQ,NSHP+1,EXIT
+*ENDDO
+
+/PNUM,TYPE,1
+/NUM,1
+/PLOPTS,INFO,OFF
+/PLOPTS,LOGO,OFF
+/WIND,1,-1,1,-1,1
+/PLOPTS,WINS,OFF
+EPLOT
+/TSPEC,15,0.8
+/TLABEL,1.05,0.94,NAVAL BATTLE
+/TLABEL,1.05,0.88,by Dave Lindeman
+/TLABEL,1.05,0.76,1 BATTLESHIP - 5 HITS
+/TLABEL,1.05,0.70,1 CRUISER    - 4 HITS
+/TLABEL,1.05,0.64,2 DESTROYERS - 3 HITS
+/TLABEL,1.05,0.58,2 SUBMARINES - 2 HITS
+/PSPEC,15,1,0
+/POLYG,4,1.20,0.20,1.50,0.20,1.50,0.40,1.20,0.40
+FCOL = NINT(RAND(1,11))
+/PSPEC,FCOL,1,0
+/POLYG,3,1.28,0.25,1.42,0.30,1.28,0.35
+/LSPEC,13,0,2
+/LINE,1.20,-0.45,1.20,0.42
+/PSPEC,12,1,0
+/PCIRC,1.35,-0.15,0.25
+/PSPEC,15,1,0
+/PCIRC,1.35,-0.15,0.20
+/PSPEC,12,1,0
+/PCIRC,1.35,-0.15,0.15
+/PSPEC,15,1,0
+/PCIRC,1.35,-0.15,0.10
+/PSPEC,12,1,0
+/PCIRC,1.35,-0.15,0.05
+/NOER
+/USER
+/PNUM,REAL,1
+/NUM,1
+
+*MSG,UI
+To play, simply select one or more elements at a time. %/&
+Moves will not be registered until the Select elements %/&
+dialog box has been closed by pressing the OK button
+
+*GET,EMAX,ELEM,,NUM,MAX
+*DIM,EPCK,ARRAY,EMAX
+*DO,I,1,EMAX,1
+EPCK(I) = 0
+*ENDDO
+
+DONE = FALS
+*DO,I,1,999,1
+ESEL,S,PICK
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,J,1,NELE,1
+ENUM = ELNEXT(ENUM)
+*IF,EPCK(ENUM),EQ,1,CYCLE
+EPCK(ENUM) = 1
+NMVE = NMVE+1
+*GET,RNUM,ELEM,ENUM,ATTR,REAL
+*DO,K,1,NSHP,1
+*IF,RNUM,EQ,RSHP(K),THEN
+HSHP(K) = HSHP(K)+1
+*IF,HSHP(K),EQ,SSHP(K),THEN
+NSNK = NSNK+1
+*IF    ,SSHP(K),EQ,2,THEN
+NSUB = NSUB+1
+/TSPEC, 0,0.8
+*IF,NSUB,EQ,1,THEN
+/TLABEL,1.05,0.58,2
+/TSPEC,15,0.8
+/TLABEL,1.05,0.58,1
+*ELSE
+/TLABEL,1.05,0.58,1 SUBMARINES - 2 HITS
+*ENDIF
+*ELSEIF,SSHP(K),EQ,3,THEN
+NDES = NDES+1
+/TSPEC, 0,0.8
+*IF,NDES,EQ,1,THEN
+/TLABEL,1.05,0.64,2
+/TSPEC,15,0.8
+/TLABEL,1.05,0.64,1
+*ELSE
+/TLABEL,1.05,0.64,1 DESTROYERS - 3 HITS
+*ENDIF
+*ELSEIF,SSHP(K),EQ,4,THEN
+/TSPEC, 0,0.8
+/TLABEL,1.05,0.70,1 CRUISER    - 4 HITS
+*ELSEIF,SSHP(K),EQ,5,THEN
+/TSPEC, 0,0.8
+/TLABEL,1.05,0.76,1 BATTLESHIP - 5 HITS
+*ENDIF
+*IF,NSNK,EQ,NSHP,THEN
+DONE = TRUE
+*EXIT
+*ENDIF
+*ENDIF
+*ENDIF
+*ENDDO
+*ENDDO
+/num,0
+EPLOT
+/num,1
+*IF,DONE,EQ,TRUE,EXIT
+ALLSEL
+*ENDDO
+
+/PSPEC,15,1,0
+/POLYG,4,1.22,0.22,1.48,0.22,1.48,0.38,1.22,0.38
+IMMED,ON
+ESEL,S,REAL,,1
+*GET,NELE,ELEM,,COUNT
+*GET,EMAX,ELEM,,NUM,MAX
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+EPCK(ENUM) = 2
+*ENDDO
+ECNT = 0
+*DO,I,1,999,1
+ENUM = NINT(RAND(0,EMAX))
+ENUM = ELNEXT(ENUM)
+*IF,ENUM,EQ,0,THEN
+ENUM = 1
+*ENDIF
+*IF,EPCK(ENUM),EQ,2,THEN
+EPCK(ENUM) = 0
+ECNT = ECNT+1
+EDELE,ENUM
+*GET,EMAX,ELEM,,NUM,MAX
+*ENDIF
+*IF,ECNT,EQ,NELE,EXIT
+*ENDDO
+
+FINI
+
+*MSG,UI,NMVE
+You sunk my fleet in %I moves!
+
+/WAIT,5
+
+*MSG,UI
+To play another game, enter /CLEAR, then /INPUT,BATTLE
+
+/EOF
+
+-- 
+
+=====================================================================
+
+Dave Lindeman           3M Center 235-1F-36         Tel: 651-733-6383
+CAE Specialist          St. Paul, MN 55144          Fax: 651-736-7615
+
+=====================================================================

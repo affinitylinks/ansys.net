@@ -1,0 +1,79 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-ansys.com
+/com,
+/com,DESCRIPTION 
+/com,User can modify the 1/2 sine input amplitude and duration.
+/com,ANSYS will calculate the fft and give you an input sprectrum
+/com,for later use in a sprectrum analysis.
+/com,
+
+
+finish
+/clear
+
+A=40              ! g's
+xtime=.0075        ! seconds
+
+asize=100         ! data resolution time
+asize2=100        ! data resolution freq
+pi=3.141592654
+
+*dim,xdata,array,asize,1    ! acceleration 1/2 sine 40g peak
+*dim,xfreq,array,asize2,1   ! freq for fft
+*dim,xtime2,array,asize,1   ! time for transient
+
+*afun,rad
+
+*do,i,1,asize
+  xfr=pi*(i/asize)
+  xtime2(i,1)=xtime*(i/asize)          ! time
+  xdata(i,1)=A*sin(xfr)                ! data
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+*do,i,1,asize2
+  xfreq(i,1)=(1/(xtime))*(i/asize2)*2   ! freq in rad
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/prep7
+ET,1,MASS21 
+KEYOPT,1,2,0
+KEYOPT,1,3,4
+R,1,1,  
+n,1
+e,1
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! dummy solve so fft can be done in post26!!!!!!!!!!
+finish
+/solu
+d,all,all
+*do,i,1,asize
+  time,xtime2(i,1)
+  solve
+*enddo
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+finish
+/post26
+NSOL,2,1,U,X,   
+!*  
+PRVAR,2, , , , , ,  
+
+VPUT,xfreq(1,1),3,xtime*(1/asize)   ! freq into vari 3
+vput,xdata(1,1),4,xtime*(1/asize)   ! data into vari 4
+
+RESP,5,3,4,1,0.0,xtime*(1/(2*asize)),,,  ! fft data vs. time per freq.
+XVAR,3  
+!*  
+PLVAR,5, , , , , , , , , ,  
+!
+!The End

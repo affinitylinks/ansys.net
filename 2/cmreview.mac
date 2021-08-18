@@ -1,0 +1,96 @@
+!*****************************
+!*** CMREVIEW.MAC ***
+!*****************************
+!
+! Tom Glade 6/18/98
+!
+! CMREVIEW.MAC reviews components of the type specified by arg1
+! Syntax: cmreview,'node'
+!
+! arg1 = node
+! = elem
+! = kp
+! = line
+! = area
+! = volu
+! 
+! cmtype = the type of component.
+! = 1 - Nodes
+! = 2 - Elements
+! = 6 - Keypoints
+! = 7 - Lines
+! = 8 - Areas
+! = 9 - Volumes
+! > 10 - Assemblies
+!
+*DIM,ctype,CHAR,6
+ctype(1)='node','elem','kp','line','area','volu'
+*DIM,zzplot,CHAR,6
+zzplot(1)='NPLOT','EPLOT','KPLOT','LPLOT','APLOT','VPLOT'
+/UIS,MSGPOP,3 ! Display only error messages.
+/GOPR
+/AUTO
+/TYPE,ALL,6 ! Define type of display as Z-buffered.
+!
+! Determine what type of component is to be reviewed
+!
+jtype=0
+*DO,itype,1,6
+*IF,arg1,EQ,ctype(itype),THEN
+jtype=itype
+zplot=zzplot(itype)
+*ENDIF
+*ENDDO
+!
+! Get the total number of components.
+!
+*GET,ncmtot,COMP,0,NCOM
+!
+! Cycle through all the components to find the specified components.
+!
+ncm=0
+*DO,icm,1,ncmtot
+/GOPR
+!
+! Get the component name.
+!
+*GET,cmname,COMP,icm,NAME
+!
+! Get the component type (elem,area,etc.)
+!
+*GET,cmtype,COMP,cmname,TYPE
+!
+! Plot the component if the component type is appropiate.
+!
+*IF,cmtype,EQ,jtype,THEN
+CMSEL,S,cmname
+/ANNOT,DELE
+/TLABEL,-.9,0.9,%cmname% 
+%zplot%
+/WAIT,1
+*ENDIF
+*ENDDO
+!
+!
+!
+ALLSE
+/AUTO
+/REPLOT
+!
+! Delete parameters.
+!
+cmname=
+cmtype=
+ctype(1)=
+acnt=
+amatl=
+areal=
+atype=
+icm=
+itype=
+ncmtot=
+natot1=
+natot2=
+narea=
+zzplot(1)=
+zplot=

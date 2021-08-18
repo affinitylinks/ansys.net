@@ -1,0 +1,58 @@
+!mpc_gen.mac
+!
+!Macro to create a series of MPC184 elements from
+!a master node to all the other selected nodes.
+!Can be modified to work for other 2-node line 
+!element types.
+!
+!Usage:  Select the desired nodes.  Make sure you
+!        know the node # for the master node, then
+!        run the macro.
+!
+!Ted Harris, PADT, 6/10/03.
+!
+*ask,nmast_,Master Node,0
+*if,nsel(nmast_),eq,1,then
+
+ /prep7
+ nsel,u,,,nmast_
+ *get,num_,node,,count
+ cm,n_tmp,node
+ nsel,a,,,all
+ *get,nmax_,node,,num,max
+ *get,nmin_,node,,num,min
+ cmsel,s,n_tmp
+ *del,nstat_
+ *dim,nstat_,array,nmax_-nmin_+1
+ *del,nfill_
+ *dim,nfill_,array,nmax_-nmin_+1
+ *vfill,nfill_,ramp,nmin_,1
+ *vget,nstat_(1),node,nmin_,nsel
+ *del,ncomp_
+ *dim,ncomp_,array,num_
+ *vmask,nstat_(1)
+ *vfun,ncomp_(1),comp,nfill_(1)
+
+ *get,etmax_,etyp,0,num,max
+ et,etmax_+1,184
+ type,etmax_+1
+  *do,i,1,num_
+   e,nmast_,ncomp_(i)
+  *enddo
+
+ cmsel,s,n_tmp
+ nsel,a,,,nmast_
+ esel,s,type,,etmax_+1
+ eplo
+
+ 
+ cmdel,n_tmp
+ i= $nmast_= $num_= $nmax_= $nmin_= $nstat_= $nfill_=
+ nstat_= $ncomp_= $etmax_= 
+
+*else
+ *msg,ui
+ No Master Specified or Master Not Selected.  Exiting macro.
+
+*endif
+

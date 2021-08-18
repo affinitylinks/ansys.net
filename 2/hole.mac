@@ -1,0 +1,35 @@
+! Displays hole in volume when attempting to create a volume fails 5/24/01
+! First select line number in GUI from from va,all command error message
+
+fini
+/prep7
+/PMACRO
+*if,CHECK,lt,1,then
+VA,ALL
+*ask,LL, THE LINE NUMBER FROM THE ERROR MESSAGE (0 to quit),
+*if,ll,eq,0,then
+/eof
+*endif
+LSEL,S,,,LL
+CHECK=2
+*endif
+*get,count,line,,count
+*if,count,eq,1,then
+/vsca,,5
+sfl,all,pres,1
+/psf,pres,1
+*endif
+CHECK=CHECK+1
+asll
+lsla
+*if,check,eq,3,then
+/auto,1
+*endif
+aplo
+/vsca,,1
+sfld,all,all
+*IF,CHECK,GT,5,THEN
+ CHECK=0
+ *MSG,UI,
+ HOLE HAS BEEN RESET
+*ENDIF

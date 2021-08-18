@@ -1,0 +1,133 @@
+!-------------------------------------------------------------------------------
+!    USE AT YOUR OWN RISK
+!-------------------------------------------------------------------------------
+!
+! NAME: clean_model.mac
+!
+! PURPOSE: Delete unnecessary materials, reals, sections and element types
+!
+! AUTHOR: René Fiege - MEYERWERFT GmbH, Papenburg, Germany
+!
+! DATE: 22/09/2006
+!
+! MODIFICATIONS: -
+!
+! VERSION: 1.0 
+!-------------------------------------------------------------------------------
+! SYNTAX
+!-------------------------------------------------------------------------------
+! clean_model
+!-------------------------------------------------------------------------------
+! DESCRIPTION
+!-------------------------------------------------------------------------------
+! Goes through the attribute definitions and deletes all attributes, which are 
+! not used in the model. 
+! Very useful, if you have a standard numbering system for attributes. 
+!
+! BEWARE: DO NOT USE WITH TAPERED BEAMS (reference sections, which are not used
+! seperately will be deleted)
+!-------------------------------------------------------------------------------
+/pmacro
+/nopr
+/prep7
+allsel  ! necessary, to keep used attributes
+
+*del,emsk,,nopr $ *dim,emsk,,elmiqr(1,14) ! element masking 
+
+!-------------------------------------------------------------------------------
+! REALs
+!-------------------------------------------------------------------------------
+m_x=elmiqr(1,14)>rlinqr(1,14)
+*del,e_att,,nopr $ *dim,e_att,,m_x,2! element attributes
+*del,tmp,,nopr $ *dim,tmp,,m_x      ! temp vector
+
+*vget,emsk(1),elem,e,esel,1
+
+*vmask,emsk(1)
+*vget,e_att(1,1),elem,1,attr,real
+*voper,tmp(1),e_att(1),ge,1    ! create masking vector to filter attributes
+
+*vmask,tmp(1)
+*voper,e_att(1,2),e_att(1,1),scat,e_att(1,1)
+*voper,tmp(1),e_att(1,2),eq,0
+
+! delete not used reals
+m_x=rlinqr(1,14)
+*vmask,tmp(1)
+rdele,(1:m_x),
+
+! for statistics: compress and write used reals:
+!*voper,tmp(1),e_att(1,2),gt,1            ! einsen der Balken löschen
+!*vmask,tmp(1)
+!*vfun,tmp(1),compress,e_att(1,2)
+! ...
+
+!-------------------------------------------------------------------------------
+! SECTIONs
+!-------------------------------------------------------------------------------
+m_x=elmiqr(1,14)>sectinqr(1,14)
+*del,e_att,,nopr $ *dim,e_att,,m_x,2! element attributes
+*del,tmp,,nopr $ *dim,tmp,,m_x      ! temp vector
+
+*vmask,emsk(1)
+*vget,e_att(1,1),elem,1,attr,secnum
+*voper,tmp(1),e_att(1),ge,1    ! create masking vector to filter attributes
+
+*vmask,tmp(1)
+*voper,e_att(1,2),e_att(1,1),scat,e_att(1,1)
+*voper,tmp(1),e_att(1,2),eq,0
+
+! delete not used sections
+m_x=sectinqr(1,14)
+*vmask,tmp(1)
+sdel,(1:m_x)
+
+!-------------------------------------------------------------------------------
+! MATERIALs
+!-------------------------------------------------------------------------------
+m_x=elmiqr(1,14)>mpinqr(1,,14)
+*del,e_att,,nopr $ *dim,e_att,,m_x,2! element attributes
+*del,tmp,,nopr $ *dim,tmp,,m_x      ! temp vector
+
+*vmask,emsk(1)
+*vget,e_att(1,1),elem,1,attr,mat
+*voper,tmp(1),e_att(1),ge,1    ! create masking vector to filter attributes
+
+*vmask,tmp(1)
+*voper,e_att(1,2),e_att(1,1),scat,e_att(1,1)
+*voper,tmp(1),e_att(1,2),eq,0
+
+! delete not used materials
+m_x=mpinqr(1,,14)
+*vmask,tmp(1)
+mpdele,all,(1:m_x)
+
+!-------------------------------------------------------------------------------
+! ELEMENT TYPEs
+!-------------------------------------------------------------------------------
+m_x=elmiqr(1,14)>etyiqr(1,14)
+*del,e_att,,nopr $ *dim,e_att,,m_x,2! element attributes
+*del,tmp,,nopr $ *dim,tmp,,m_x      ! temp vector
+
+*vmask,emsk(1)
+*vget,e_att(1,1),elem,1,attr,type
+*voper,tmp(1),e_att(1),ge,1    ! create masking vector to filter attributes
+
+*vmask,tmp(1)
+*voper,e_att(1,2),e_att(1,1),scat,e_att(1,1)
+*voper,tmp(1),e_att(1,2),eq,0
+
+! delete not used ones
+m_x=etyiqr(1,14)
+*vmask,tmp(1)
+sdel,(1:m_x)
+
+!-------------------------------------------------------------------------------
+! Delete Parameters
+!-------------------------------------------------------------------------------
+*del,emsk,,nopr   ! Element Masking Vekrot
+*del,e_att,,nopr  ! Element Attribute Vector 
+*del,tmp,,nopr    ! Temporary Vector
+m_x=              ! Max defined value
+
+/go

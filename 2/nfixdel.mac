@@ -1,0 +1,73 @@
+/nopr
+!
+!  nfixdel.mac  a macro that removes the selected nodes that are mistakenly
+!               associated with nonexistent geometry in ANSYS.
+!
+!  usage: nfixdel,key
+!     where: key=0 if entered from the command line
+!                1 if called from a granule
+!    
+!
+!  written by: John Crawford   date: 5-17-00
+!                              revised: 9-28-00
+!
+*del,,prm_
+!
+/prep7
+!  generate a point mass element type
+et,etyiqr(0,14)+1,21
+type,etyiqr(0,14)
+/uis,msgpop,3
+!  loop through the nodes, creating a keypoint at each node
+!  location, meshing it, merging it with the original node,
+!  clearing the meshed keypoint, and then removing the keypoint
+!
+nd_=0
+cntr1_=0
+nnum_=ndinqr(0,13)
+cm,nds_,node
+!
+*msg,info
+%/ Deleting any phantom nodes that are selected. %/ &
+%/Phantom nodes are nodes that ANSYS thinks are &
+%/attached to solid model geometry that does not &
+%/exist.  NFIXDEL.MAC creates a keypoint at each &
+%/selected node, meshes it with a dummy MASS21, &
+%/merges it into the phantom node, clears the &
+%/keypoint, and then deletes the keypoint. &
+%/Note: NFIXDEL.MAC changes nodes numbering.
+!
+*do,i_,1,nnum_
+cntr1_=cntr1_+1
+cmse,s,nds_
+nd_=ndnext(nd_)
+*if,cntr1_,ge,100,then
+*msg,info,i_,ndinqr(0,13)
+Processing node %i of %i selected nodes.
+cntr1_=0
+*endif
+nsel,s,node,,nd_
+!
+!
+k,kpinqr(0,14)+1,nx(nd_),ny(nd_),nz(nd_)
+kmesh,kpinqr(0,14)
+numm,node,.000001,,,high
+kclear,kpinqr(0,14)
+kdel,kpinqr(0,14)
+!
+*enddo
+!
+cmse,s,nds_
+cmde,nds_
+!
+*if,arg1,eq,1,then
+cmse,s,y1_
+cmde,y1_
+*endif
+!
+etde,etyiqr(0,14)
+!
+*del,,prm_
+/uis,msgpop,2
+!
+/gopr

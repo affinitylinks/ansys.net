@@ -1,0 +1,171 @@
+/nopr
+! ---------------------------------------------------------------
+! TASK:	Color lines as follows.
+!               Red 	Line connected only to one of selected areas
+!               Yellow   Line connected to two of the selected areas  
+!               Blue     Line connected to three or more selected areas
+!               Magenta  Line is not connected to any of the selected areas
+! ---------------------------------------------------------------
+! CREATED BY :	Jimmy Carlsson AF GROUP, Process
+! ---------------------------------------------------------------
+! Created for ANSYS VERSION: v8.1
+! ---------------------------------------------------------------
+! STRING INPUT EXPLANATION
+!
+! Argument   	Description
+! No arguments needed
+!
+! STRING OUTPUT EXPLANATION
+! No output
+! ---------------------------------------------------------------
+! FILE REV. HISTORY                                           
+! REV.  DATE         RESP. COMMENTS                            
+! 1.0   20050608     JCN   Macro created
+! 1.1   20060226     JCN   Macro modified
+! ---------------------------------------------------------------
+!
+/com,
+/com,   Macro lcolor. Color lines as follows.
+/com,   Red      Line connected to only one of the selected area
+/com,   Yellow   Line connected to two of the selected areas
+/com,   Blue     Line connected to three or more selected areas
+/com,   Magenta  Line is not connected to any of the selected areas
+/com,
+/com,   NOTE! If areas have internal loops (holes) the number of
+/com,         loops must be entered when prompted, otherwise coloring 
+/com,         will be incorrect.
+/com,         Number of loops should equal the maximum number of 
+/com,         holes in any area plus 1.
+/com,
+/com,   INPUT:
+/com,   arg1
+/com,       blank/-1 = Color and plot all selected lines  
+/com,              0 = Plot lines not attached to any selected area
+/com,              1 = Plot lines attached to only one area
+/com,              2 = Plot lines attached to two areas
+/com,              3 = Plot lines attached to three or more areas
+/com,              4 = Plot all lines selected
+/com, 
+/com,    Use /color,defa and /pnum,line,1 to reset colors
+/com,
+/com,   Macro created by Jimmy Carlsson AF Group, Process, Sweden.
+/com,
+
+! Is PARAM in use?
+*get,stat_,PARM,MASK_TO_USE__,TYPE
+cnt_1=0
+! Get number of arguments
+*GET,tmp1_,CMD,,narg
+*if,tmp1_,LT,2,or,arg1,lt,0,:start
+
+pl1=arg1
+*go,:plot
+
+:start2
+/com,*** NOTE ***
+/com,   First time macro is run arg1 must be blank or
+/com,   equal -1. arg1=-1 will be used.
+pl1=0
+
+:start
+cnt_1=1
+MASK_TO_USE__=
+FILL_TO_USE=
+LINES_TO_COLOR=
+
+*ask,pl1,Number of loops on areas (Must be integer > 0),1
+
+!Create components to retrieve at end of macro
+/nopr
+CM,LINES__,line
+CM,AREAS__,area
+
+! get lists of lines
+*get,MAXAREA,area,,num,max
+*get,MAXLINE,line,,num,max
+*dim,LIST_OF_LINE,array,MAXAREA
+*dim,MASK_OF_LINE,array,MAXAREA
+*dim,FILL_TO_USE,array,MAXLINE
+*dim,MASK_TO_USE__,array,MAXLINE
+*dim,LINES_TO_COLOR,array,MAXLINE
+*dim,MASK_OF_SELLINE,array,MAXLINE
+
+*vfil,FILL_TO_USE(1),ramp,1,0
+*vget,MASK_OF_SELLINE(1),LINE,1,lsel
+
+LOOP_=MAXLINE-MAXAREA*3+MAXAREA
+*do,cnt__1,1,pl1,1
+   *do,cnt__2,1,LOOP_
+      /NERR,0,10000, ,0,0
+      *vget,MASK_OF_LINE(1),area,,asel
+      *vmas,MASK_OF_LINE(1)
+      *vget,LIST_OF_LINE(1),AREA,,LOOP,cnt__1,line,CNT__2
+      *vcum,1
+      *vope,MASK_TO_USE__(1),FILL_TO_USE(1),scat,LIST_OF_LINE(1)
+      /Nerr,defa
+   *enddo
+*enddo
+
+! Lines that do not belong to any of the selected areas 
+lsla
+lsel,inve
+/COLOR,LINE,MRED,ALL
+CMSEL,s,LINES__
+
+! Lines that belong to only one area
+*vfil,FILL_TO_USE(1),ramp,1,0
+*voper,LINES_TO_COLOR(1),MASK_TO_USE__(1),eq,FILL_TO_USE(1)
+*vput,LINES_TO_COLOR(1),line,1,lsel
+/COLOR,LINE,RED,ALL
+
+! Lines that belong to two areas
+*vfil,FILL_TO_USE(1),ramp,2,0
+*voper,LINES_TO_COLOR(1),MASK_TO_USE__(1),eq,FILL_TO_USE(1)
+*vput,LINES_TO_COLOR(1),line,1,lsel
+/COLOR,LINE,YELL,ALL
+
+! Lines that belong to three or more areas
+*vfil,FILL_TO_USE(1),ramp,2,0
+*voper,LINES_TO_COLOR(1),MASK_TO_USE__(1),gt,FILL_TO_USE(1)
+*vput,LINES_TO_COLOR(1),line,1,lsel
+/COLOR,LINE,BLUE,ALL
+cmsel,s,LINES__
+lplo
+*go,:cleanup
+
+:plot
+*if,pl1,gt,0,then
+   *if,stat_,eq,-1,AND,cnt_1,eq,0,:start2
+*endif      
+
+*if,pl1,eq,4,then 
+    cmsel,s,lines__    
+*else
+   ! Lines to be plotted
+   *vfil,FILL_TO_USE(1),ramp,pl1,0
+   *voper,LINES_TO_COLOR(1),MASK_TO_USE__(1),eq,FILL_TO_USE(1)
+   *vput,LINES_TO_COLOR(1),line,1,lsel   
+*endif
+
+/graph,full
+lplot
+/graph,power
+
+*get,lnum,line,,count
+*if,lnum,lt,1,then
+*msg,WARN
+No lines slected
+*endif
+
+:cleanup
+! clean up parameters
+MASK_OF_LINE=
+LIST_OF_LINE=
+MAXLINE=
+MAXAREA=
+MASK_OF_SELLINE=
+CNT__1=
+CNT__2=
+LOOP_=
+
+/gopr

@@ -1,0 +1,50 @@
+/nopr
+! ************************ A_HYDRO2.MAC *************************************
+!
+!  MACRO to modify nodal forces calculated in A_HYDRO1.MAC proportionally
+!            to their areas
+!
+!   At the end of the A_HYDRO1 macro the following information is stored 
+!   in the array FORAR(n,3) 
+!
+!               (n,1)  -  Node number
+!               (n,2)  -  Ceiling height above node = magnitude of load 
+!               (n,3)  -  Element number detected as the ceiling patch
+!
+!   FORAR(n,3) is overwritten here with the apportionate area at the node!
+!
+!   The number of nodes must be available as NUMNP and match the number 
+!   of rows in the FORAR array.
+!
+!                                                   A.M.E.S - Sept. 1995
+!
+! *********************************************************************
+
+! ======================= Loop over all selected nodes ================ [1
+!
+num=0          ! Node count
+*do,i,1,numnp  
+np=forar(i,1)
+
+*if,forar(i,3),ne,0,then
+num=num+1
+area=ARNODE(np)
+forar(i,3)=area
+
+ff=forar(i,2)*area
+f,np,fz,-ff
+*endif
+
+
+*enddo
+
+
+notdon=numnp-num
+*if,notdon,gt,0,then
+*MSG,WARN,notdon
+<A_HYDRO2>: %I nodes skipped - no patches found in A_HYDRO1.MAC
+*endif
+
+:TERM
+
+nodar=

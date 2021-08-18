@@ -1,0 +1,277 @@
+/pmacro
+/nopr
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                !
+!           psdout.mac           !
+!           Written by           !
+!         Jeffrey Strain         !
+!     Last updated: 12/21/04     !
+!                                !
+!  Retrieves PSD data in POST26  !
+!  and stores to array PSDDATA   !
+!  for picked nodes with the     !
+!  options of plotting PSD       !
+!  curves and/or expoting data   !
+!  to a text file.               !
+!                                !
+! Send feedback to:              !
+! jeff.strain@padtinc.com        !
+!                                !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!Usage: psdout,dir,plot,list
+!where dir = 'x', 'y', or 'z'
+!plot = 1 to plot PSD curves
+!list = 1 to send PSD to text file psddata.txt
+
+!PSD units are in G^2/Hz
+
+!Acceleration results (load step 5) must be available for this macro to work.
+
+!To remove annotations after plotting, select Utility Menu>PlotCtrls>Annotation>Display Annotation
+!or Utility Menu>PlotCtrls>Annotation>Delete Annotation (/ANNO,DELE)
+
+!psddata.txt can be read into an Excel spreadsheet
+!using the "fixed width" option
+
+!Plotting is done via *VPLOT since array operations were used to remove modes lying outside the spectrum
+!To redisplay legend heading, execute /UDOC,1,TYPE,left
+
+!Set default direction to 'x'
+*get,artype,parm,arg1,type
+
+!Set default to no plotting
+*if,arg2,ne,1,then
+arg2=0
+*endif
+
+!Set default to no text export
+*if,arg3,ne,1,then
+arg3=0
+*endif
+
+*if,artype,eq,0,then
+arg1='x'
+*endif
+
+dir=arg1	!Direction of excitation
+
+!Generate output PSD spectra
+fini
+/post1
+rsys,solu
+set,5,1		!Read in load step 5 (DOF=acceleration)
+NSEL,S,P		!Pick node for which to create output PSD spectrum
+
+!Set up array containing node numbers and GRMS values
+nodearray=
+nodesel=
+grms=
+*dim,nodearray,,ndinqr(0,14)
+*dim,nodesel,,ndinqr(0,14)
+*dim,grms,,ndinqr(0,13),2
+*vfill,nodearray(1),ramp,1,1
+*vget,nodesel(1),node,1,nsel
+*vmask,nodesel(1)
+*vfun,grms(1,1),comp,nodearray(1)
+*do,i,1,ndinqr(0,13)
+grms(i,2)=u%dir%(grms(i,1))/386.4
+grms(i,2)=100*grms(i,2)
+grms(i,2)=nint(grms(i,2))
+grms(i,2)=grms(i,2)/100
+*enddo
+
+!*get,cgnode,node,0,num,min  !Store number of selected node
+!allsel
+
+!Calculate PSD response spectra at selected nodes  
+FINISH  
+/POST26
+reset
+/uis,msgpop,3 
+numvar,(ndinqr(0,13)-1)*3+4
+STORE,PSD,5,	!Store PSD values
+
+*do,j,1,ndinqr(0,13)
+NSOL,(j-1)*3+2,grms(j,1),U,dir,  !Store DOF results in variable 2
+!*  
+RPSD,%(j-1)*3+3%,(j-1)*3+2,,3,1,  		!Convert DOF results to acceleration^2/Hz values and store in variable 3
+PROD,(j-1)*3+4,(j-1)*3+3, , ,%grms(j,2)%GRMS, , ,1/(386.4**2),1,1,   !Convert acceleration^2/Hz to G^2/Hz and store in variable 4
+*enddo
+/uis,msgpop
+
+!Store PSD data to array
+*get,size,vari,,nsets
+
+!Figure out input spectrum start and end frequency
+psds=
+*dim,psds,,size,1+ndinqr(0,13)
+vget,psds(1,1),1
+a=
+*do,a,1,ndinqr(0,13)
+vget,psds(1,1+a),(a-1)*3+4
+*enddo
+ndatpt=0
+n=
+*do,n,1,size
+*if,psds(n,2),ne,0,then
+ndatpt=ndatpt+1
+*endif
+*enddo
+
+!Store variables to an array and compress to remove modes outside spectrum
+psddata=
+*dim,psddata,,ndatpt+2,1+ndinqr(0,13)
+*mfun,psddata(1,2),tran,grms(1,1)
+*vmask,psds(1,2)
+*vfun,psddata(3,1),comp,psds(1,1)
+k=
+*do,k,1,ndinqr(0,13)
+*vmask,psds(1,2)
+*vfun,psddata(3,k+1),comp,psds(1,k+1)
+*enddo
+k=
+
+!Create plot if arg2=1
+*if,arg2,eq,1,then
+*dim,psdcurves,table,ndatpt,1+ndinqr(0,13)
+*mfun,psdcurves(1,1),copy,psddata(3,1)	!PSD values need to be in table array for line plotting
+
+*cfopen,opsdplot,mac
+*vwrite
+('*vplot,psdcurves(3,1),psdcurves(3,2),'$)
+*if,ndinqr(0,13),gt,1,then
+i=
+*do,i,2,ndinqr(0,13)
+*vwrite,i+1
+(F4.0 ',' $)
+*enddo
+i=
+*endif
+*cfclose
+/anno,dele
+/AXLAB,X,Frequency (Hz) 
+/AXLAB,Y,PSD (G**2/Hz)  
+/GTHK,AXIS,2
+/GRTYP,0
+/GROPT,ASCAL,ON 
+/GROPT,LOGX,ON  
+/GROPT,LOGY,ON
+*do,i,1,ndinqr(0,13)
+/gcolumn,i,%psddata(1,i+1)%
+*enddo
+/tspec,15,1.2,1,0,0
+/tlab,-0.2,.6,PSD Curves for Selected Nodes
+/tspec,15,1
+/an3d,anum,0,101,1.15,1.14,0
+i=
+*do,i,1,ndinqr(0,13)
+/an3d,text,1.15,1.14-(i-1)*.14,0,Node %psddata(1,i+1)%
+/an3d,text,1.15,1.08-(i-1)*.14,0,%psddata(2,i+1)% GRMS
+*enddo
+/gropt,curl,0
+/udoc,1,type,0
+opsdplot
+
+/delete,opsdplot,mac
+*endif
+
+*if,arg3,eq,1,then
+!Send PSD data to text file
+*cfopen,curvewrite,mac
+*vwrite
+*cfopen,psddata,txt
+*vwrite
+('*vlen,1')
+*vwrite
+('*vwrite,'$)
+i=
+*do,i,1,ndinqr(0,13)
+*vwrite,i+1
+('psddata(1,' F4.0 '),'$)
+*enddo
+*vwrite
+(' ')
+*vwrite
+('Node %4X '$)
+i=
+*do,i,1,ndinqr(0,13)
+*vwrite
+('%12I '$)
+*enddo
+*vwrite
+(' ')
+
+*vwrite
+('*vlen,1')
+*vwrite
+('*vwrite,'$)
+i=
+*do,i,1,ndinqr(0,13)
+*vwrite,i+1
+('psddata(2,' F4.0 '),'$)
+*enddo
+*vwrite
+(' ')
+*vwrite
+('GRMS %4X '$)
+i=
+*do,i,1,ndinqr(0,13)
+*vwrite
+('%12.2F '$)
+*enddo
+*vwrite
+(' ')
+
+*vwrite
+('*vwrite')
+*vwrite
+('Freq (Hz)   PSD (G^2/Hz)')
+
+*vwrite
+('*vwrite,'$)
+i=
+*do,i,1,1+ndinqr(0,13)
+*vwrite,i
+('psddata(3,' F4.0 '),'$)
+*enddo
+*vwrite
+(' ')
+i=
+*vwrite
+('%9.2F '$)
+*do,i,1,ndinqr(0,13)
+*vwrite
+('%12.4E '$)
+*enddo
+*vwrite
+(' ')
+*vwrite
+('*cfclose')
+
+*cfclose
+
+curvewrite
+/del,curvewrite,mac
+*endif
+
+allsel
+
+!Clean up
+*del,grms,,nopr
+*del,nodearray,,nopr
+*del,nodesel,,nopr
+*del,psds,,nopr
+i=
+dir=
+j=
+n=
+a=
+artype=
+ndatpt=
+size=
+
+/gopr
+
+/eof

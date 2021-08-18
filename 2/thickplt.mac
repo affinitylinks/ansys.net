@@ -1,0 +1,94 @@
+! Plots shell element thickness by utilizing surface pressures.  
+! I recommend plotting nodes with a contour or outline plot of pressure for best results.
+! Element plot can also be used, but pressure colors will conflict with element colors.
+!*msg,warn,
+*ask,erase_,1 plot thickness via pressure,0
+*if,erase_,EQ,1,then
+!*ask,erase_,1 plot thickness via pressure,0
+!*if,erase_,EQ,1,then
+*go,:function
+*elseif,erase_,EQ,0,then
+*go,:end
+*else
+*msg,warn,'Invalid answer, please start over.'
+*go,:end
+:function
+
+/prep7
+/graphics,full
+/go
+/window,1,off
+cm,tempele_,elem
+*dim,realcons,array,4
+esel,s,ename,,63
+*get,ecount,elem,0,count
+*get,elemnum,elem, ,num,min
+*do,loopno,1,ecount,1
+	*get,ereal,elem,elemnum,attr,real
+	*do,numnode,1,4
+		*get,realcons(%numnode%),RCON,ereal,CONST,numnode
+		*if,realcons(%numnode%),eq,0,then
+		*get,realcons(%numnode%),rcon,ereal,1
+		*endif
+	*enddo
+	sfe,elemnum,1:2,pres,,realcons(1),realcons(2),realcons(3),realcons(4),
+	*get,elemnum,elem,elemnum,nxth
+*enddo
+cmsel,s,tempele_
+cmdele,tempele_
+nsle,s
+/PSF,PRES,NORM,3,0,1
+/window,1,full
+nplot
+
+/eof
+!old stuff below required modification of solution data to work.
+/post1
+!cmsel,s,bottom
+!allsel,all
+ETABLE,thicknes,VOLU,  ! False table to be refilled with real constant data
+! store all real constants
+/go
+cm,tempele_,elem
+esel,s,ename,,63
+*get,ecount,elem,0,count
+*get,elemnum,elem, ,num,min
+*get,ereal,elem,elemnum,attr,real
+*get,realcons,RCON,ereal,1
+detab,elemnum,thickness,realcons
+/eof
+*do,loopno,2,ecount,1
+  *get,elemnum,elem,elemnum,nxth
+  *get,ereal,elem,elemnum,attr,real
+  *get,realcons,RCON,ereal,1
+  detab,elemnum,thickness,realcons
+*enddo
+cmsel,s,tempele_
+pletab,thicknes
+*go,:end
+
+fini
+/prep7
+/graphics,full
+dof,temp
+fini
+/post1
+!cmsel,s,bottompl
+!allsel,below,area
+*get,ncount,node,0,count
+*get,nodenum,node,0,num,min
+dnsol,nodenum,temp,,thickno2(nodenum)
+  *do,loopno,2,ncount,1
+  *get,nodenum,node,nodenum,nxth
+  dnsol,nodenum,temp,,thickno2(nodenum)
+  *enddo
+/GTYPE,1,KEYP,0
+/GTYPE,1,LINE,0
+/GTYPE,1,AREA,0
+/GTYPE,1,VOLU,0
+/GTYPE,1,NODE,1
+/GTYPE,1,ELEM,1
+/GCMD,1,PLNS,TEMP,
+gplot
+
+:end

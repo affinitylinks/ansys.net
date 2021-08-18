@@ -1,0 +1,97 @@
+! *****************************************************************************
+! IM12.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM12.MAC is used in POST1 of ANSYS 5.3 to read in as element table (ETABLE)
+! items the post data required for element BEAM44.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 5/2/97   SMV  Initial release
+! 27/6/97  SMV  Documentation added
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+! Etable read in - BEAM44
+
+*IF,ARG1,EQ,1,THEN
+  ETABLE,FXI,SMISC,1
+  ETABLE,MYI,SMISC,5
+  ETABLE,MZI,SMISC,6
+  ETABLE,FXJ,SMISC,7
+  ETABLE,MYJ,SMISC,11
+  ETABLE,MZJ,SMISC,12
+*ELSE
+ETABLE,FXI,SMISC,1
+ETABLE,FYI,SMISC,2
+ETABLE,FZI,SMISC,3
+ETABLE,MXI,SMISC,4
+ETABLE,MYI,SMISC,5
+ETABLE,MZI,SMISC,6
+
+ETABLE,FXJ,SMISC,7
+ETABLE,FYJ,SMISC,8
+ETABLE,FZJ,SMISC,9
+ETABLE,MXJ,SMISC,10
+ETABLE,MYJ,SMISC,11
+ETABLE,MZJ,SMISC,12
+
+ETABLE,SDI,LS,1
+ETABLE,SDJ,LS,6
+
+ETABLE,SBYTI,LS,2
+ETABLE,SBYTJ,LS,7
+ETABLE,SBYBI,LS,3
+ETABLE,SBYBJ,LS,8
+ETABLE,SBZTI,LS,4
+ETABLE,SBZTJ,LS,9
+ETABLE,SBZBI,LS,5
+ETABLE,SBZBJ,LS,10
+
+ETABLE,SMAXI,NMISC,1
+ETABLE,SMAXJ,NMISC,3
+ETABLE,SMINI,NMISC,2
+ETABLE,SMINJ,NMISC,4
+
+ETABLE,SYZI,SMISC,15
+ETABLE,SYZJ,SMISC,18
+ETABLE,SXYI,SMISC,13
+ETABLE,SXYJ,SMISC,16
+ETABLE,SXZI,SMISC,14
+ETABLE,SXZJ,SMISC,17
+
+ETABLE,SAXLISP1,SMISC,19
+ETABLE,SAXLISP2,SMISC,20
+ETABLE,SAXLISP3,SMISC,21
+ETABLE,SAXLISP4,SMISC,22
+ETABLE,SAXLJSP1,SMISC,23
+ETABLE,SAXLJSP2,SMISC,24
+ETABLE,SAXLJSP3,SMISC,25
+ETABLE,SAXLJSP4,SMISC,26
+
+*ENDIF
+

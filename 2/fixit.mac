@@ -1,0 +1,66 @@
+/pmacro
+
+C******************************************************************
+C*** CURRENT STATUS
+C******************************************************************
+cm,sel_n,node
+*get,actvcsys,active,,csys
+
+C******************************************************************
+C*** ACTIVATE GLOBAL CARTESIAN
+C******************************************************************
+csys,0
+
+C******************************************************************
+C*** PROMPT USER TO INTERACTIVELY PICK CORNER AND MIDSIDE NODES
+C******************************************************************
+nsel,none
+*msg,ui
+pick node on crack front %/&
+click middle mouse button twice to accept choice
+
+nsel,s,p
+*get,n_crck,node,,num,min
+
+nsel,none
+*msg,ui
+pick a single corner node away from crack front %/&
+click middle mouse button twice to accept choice
+
+nsel,s,p
+*get,n_crnr,node,,num,min
+
+nsel,none
+*msg,ui
+pick the midside node to relocate to quarter point %/&
+click middle mouse button twice to accept choice
+
+nsel,s,p
+*get,n_mid,node,,num,min
+
+C******************************************************************
+C*** DETERMINE COORDINATES OF DESIRED LOCATION
+C******************************************************************
+nsel,a,node,,n_crnr
+nsel,a,node,,n_crck
+
+xloc=nx(n_crck)+0.25*(nx(n_crnr)-nx(n_crck))
+yloc=ny(n_crck)+0.25*(ny(n_crnr)-ny(n_crck))
+zloc=nz(n_crck)+0.25*(nz(n_crnr)-nz(n_crck))
+
+C******************************************************************
+C*** RELOCATE MISIDE NODE
+C******************************************************************
+modm,noch
+nmod,n_mid,xloc,yloc,zloc
+modm,chec
+
+C******************************************************************
+C*** RESTORE STATUS PRIOR TO MACRO INVOCATION
+C******************************************************************
+cmse,s,sel_n
+
+/sho,,,1
+/typ,1,0
+/gty,all,node,1 $/gty,all,elem,1 $/gty,all,keyp,0 $/gty,all,line,0$/gty,all,area,0 $/gty,all,volu,0
+gplo

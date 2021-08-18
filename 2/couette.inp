@@ -1,0 +1,339 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Couette flow w/ heat transfer
+/com,  SI Units
+/com,  Run in 5.6 and above
+/com,    Viscous heating for incompressible flow
+/com,  
+/com,  Fundamentals of Heat and Mass Transfer
+/com,  Incropera & DeWitt, 4th Ed
+/com,  Example 6.4
+/com,  Run 3 cases:
+/com,    Velocity = 0  : linear variation
+/com,    Velocity = 2  : fluid temp < plate temp
+/com,    Velocity = 10 : fluid temp > plate temp
+/com,  Last updated: 10/10/99
+/com,
+/com,COMMENTS, ASSUMPTIONS:
+/com,  no temp dependency of fluid included
+/com,    can add later; was not added since hand calc
+/com,    did not take this into consideration
+/com,
+
+*get,STATGUI,active,,int
+*if,STATGUI,eq,0,then
+  /show,file
+*endif
+/triad,lbot
+/plopt,info,on
+/plopt,leg2,off
+/plopt,minm,off
+/graphics,full
+
+!----------------------------------------
+! Parameters used in analysis
+!----------------------------------------
+W_FLUID = 0.030
+H_FLUID = 0.003
+X_FLUID = 0.0
+Y_FLUID = 0.0
+
+B_FLUID = W_FLUID/10
+
+TL_FLUID = 10
+TH_FLUID = 30
+
+VELOCITY = 10
+
+OIL_DENS = 888.2
+OIL_VISC = 0.799
+OIL_COND = 0.145
+OIL_SPHT = 1868
+
+!ELEMSIZE = 0.0003
+ELEMSIZE = 0.00015
+
+ACCURACY = 1000
+MAXITER  = 300
+!----------------------------------------
+! Set up element types, etc.
+!----------------------------------------
+/title,Couette Flow w/ Heat Transfer
+/prep7
+et,1,141
+
+!----------------------------------------
+! Simple rectangular geometry
+!----------------------------------------
+rectng,X_FLUID+B_FLUID,X_FLUID+W_FLUID-B_FLUID,Y_FLUID,Y_FLUID+H_FLUID
+rectng,X_FLUID,X_FLUID+W_FLUID,Y_FLUID,Y_FLUID+H_FLUID
+aovlap,all
+
+!----------------------------------------
+! Meshing controls
+!----------------------------------------
+esize,ELEMSIZE
+mshape,0
+mshkey,1
+amesh,all
+finish
+
+/solu
+!----------------------------------------
+! Apply boundary conditions on bottom plate
+!----------------------------------------
+lsel,s,loc,y,Y_FLUID
+dl,all,,temp,TL_FLUID,1
+dl,all,,vx,0,1
+dl,all,,vy,0,1
+
+!----------------------------------------
+! Apply boundary conditions on top (moving) plate
+!----------------------------------------
+lsel,s,loc,y,Y_FLUID+H_FLUID
+dl,all,,temp,TH_FLUID,1
+dl,all,,vx,VELOCITY,1
+dl,all,,vy,0,1
+dl,all,,enke,-1,1
+
+!----------------------------------------
+! Couple ends together
+!----------------------------------------
+lsel,s,loc,x,X_FLUID
+nsll,,1
+*get,NCOUNT,node,,count
+*set,CPLNARRY
+*dim,CPLNARRY,array,NCOUNT
+*set,NEXTNODE,0
+*do,ICOUNT,1,NCOUNT
+  NEXTNODE=ndnext(NEXTNODE)
+  CPLNARRY(ICOUNT)=NEXTNODE
+*enddo
+allsel,all
+*do,ICOUNT,1,NCOUNT
+  THISNODE = CPLNARRY(ICOUNT)
+  cp,next,all,THISNODE,node(nx(THISNODE)+W_FLUID,ny(THISNODE),nz(THISNODE))
+*enddo
+
+!----------------------------------------
+! Flotran general solution options
+!----------------------------------------
+flda,solu,tran,0
+flda,solu,flow,1
+flda,solu,temp,1
+flda,solu,turb,0
+flda,solu,comp,0
+flda,solu,swrl,0
+flda,solu,spec,0
+flda,solu,ivsh,1
+
+!----------------------------------------
+! Steady-state execution options
+!----------------------------------------
+flda,iter,exec,MAXITER
+flda,iter,over,0
+flda,iter,appe,0
+flda,outp,sumf,10
+
+!----------------------------------------
+! Fluid properites (Oil at 20 C)
+!----------------------------------------
+flda,prop,dens,0
+flda,vary,dens,0
+flda,prop,visc,0
+flda,vary,visc,0
+flda,prop,cond,0
+flda,vary,cond,0
+flda,prop,spht,0
+flda,vary,spht,0
+flda,prot,dens,constant
+flda,nomi,dens,OIL_DENS
+flda,prot,visc,constant
+flda,nomi,visc,OIL_VISC
+flda,prot,cond,constant
+flda,nomi,cond,OIL_COND
+flda,prot,spht,constant
+flda,nomi,spht,OIL_SPHT
+
+!----------------------------------------
+! Reference conditions
+!----------------------------------------
+flda,pres,refe,101350
+flda,bulk,beta,1e+15
+flda,temp,nomi,293
+flda,temp,ttot,293
+flda,temp,bulk,293
+toffset,0
+
+!----------------------------------------
+! PRES solver specifications
+!----------------------------------------
+flda,meth,pres,3
+flda,maxi,pres,500
+flda,srch,pres,10
+flda,conv,pres,1e-14
+flda,delt,pres,1e-16
+flda,relx,pres,0.7
+
+!----------------------------------------
+! TEMP solver specifications
+!----------------------------------------
+flda,meth,temp,4
+flda,maxi,temp,500
+flda,srch,temp,20
+flda,conv,temp,1e-18
+flda,delt,temp,1e-20
+flda,relx,temp,0.9
+
+flda,quad,momd,2
+flda,quad,moms,2
+flda,quad,prsd,2
+flda,quad,prss,2
+flda,quad,thrd,2
+flda,quad,thrs,2
+
+flda,advm,mome,supg
+flda,advm,pres,supg
+flda,advm,temp,supg
+
+flocheck,1
+/pbc,all,1
+eplot
+
+solve
+finish
+
+/post1
+set,last
+asel,s,loc,x,X_FLUID+B_FLUID,X_FLUID+W_FLUID-B_FLUID
+allsel,below,area
+/title,Velocity Vectors for Couette Flow
+plvect,v,,,,vect,elem,on,0
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+/title,Temperature Contour for Couette Flow
+plnsol,temp
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+allsel,all
+lsel,s,loc,x,X_FLUID+B_FLUID
+nsll,s,1
+*get,NCOUNT,node,,count
+nsel,r,loc,y,Y_FLUID
+STRTNODE=ndnext(0)
+nsll,s,1
+nsel,r,loc,y,Y_FLUID+H_FLUID
+FININODE=ndnext(0)
+allsel,all
+path,PROFILE,2,30,(ACCURACY-1)
+ppath,1,STRTNODE
+ppath,2,FININODE
+pmap,accurate
+pdef,VELORFL,v,x, ,noavg
+pdef,TEMPRFL,temp,,noavg
+pdef,HFLURFL,hflu,,noavg
+paget,TRACPOIN,poin
+paget,TRACDATA,tabl
+paget,TRACLABL,labe
+*dim,FPROFILE,table,ACCURACY,7
+*do,ICOUNT,1,ACCURACY
+  CURRPOSI = TRACDATA(ICOUNT,2,1)
+  TOTLLNGT = Y_FLUID+H_FLUID
+  FRACLNGT = CURRPOSI/TOTLLNGT
+  TEMPCOE1 = (OIL_VISC/(2*OIL_COND))*(VELOCITY**2)
+  TEMPDAT1 = TEMPCOE1*(FRACLNGT-FRACLNGT**2)
+  TEMPDAT2 = (TH_FLUID-TL_FLUID)*FRACLNGT
+  TEMPPROF = TL_FLUID+TEMPDAT1+TEMPDAT2
+  HFLUDAT1 = TEMPCOE1*((1/TOTLLNGT)-2*CURRPOSI/(TOTLLNGT**2))
+  HFLUDAT2 = (TH_FLUID-TL_FLUID)/TOTLLNGT
+  HFLUPROF = -OIL_COND*(HFLUDAT1+HFLUDAT2)
+
+  FPROFILE(ICOUNT,1) = TRACDATA(ICOUNT,2,1)
+  FPROFILE(ICOUNT,2) = TRACDATA(ICOUNT,5,1)
+  FPROFILE(ICOUNT,3) = FRACLNGT*VELOCITY
+  FPROFILE(ICOUNT,4) = TRACDATA(ICOUNT,6,1)
+  FPROFILE(ICOUNT,5) = TEMPPROF
+  FPROFILE(ICOUNT,6) = TRACDATA(ICOUNT,7,1)
+  FPROFILE(ICOUNT,7) = HFLUPROF
+*enddo
+allsel,all
+
+/gcolumn,1,ANSYS
+/gcolumn,2,Theory
+/axlab,x,Length Between Walls (m)
+/axlab,y,Velocity (m/s)
+/title,Velocity Profile Between Walls
+*vplot,FPROFILE(1,1),FPROFILE(1,2),3
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+/axlab,y,Temperature (degC)
+/title,Temperature Profile Between Walls
+*vplot,FPROFILE(1,1),FPROFILE(1,4),5
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+!----------------------------------------
+! This is ugly...
+!   Clean it up later
+!----------------------------------------
+allsel,all
+lsel,s,loc,x,X_FLUID+B_FLUID
+nsll,s,1
+nsel,r,loc,y,Y_FLUID+H_FLUID
+*get,TEMP1,node,ndnext(0),hflu
+CURRPOSI = Y_FLUID+H_FLUID
+TOTLLNGT = Y_FLUID+H_FLUID
+TEMPCOE1 = (OIL_VISC/(2*OIL_COND))*(VELOCITY**2)
+HFLUDAT1 = TEMPCOE1*((1/TOTLLNGT)-2*CURRPOSI/(TOTLLNGT**2))
+HFLUDAT2 = (TH_FLUID-TL_FLUID)/TOTLLNGT
+HFLUPROF = OIL_COND*(HFLUDAT1+HFLUDAT2)
+TEMP2=HFLUPROF
+!----------------------------------------
+nsll,s,1
+nsel,r,loc,y,Y_FLUID
+*get,TEMP3,node,ndnext(0),hflu
+CURRPOSI = Y_FLUID
+TOTLLNGT = Y_FLUID+H_FLUID
+TEMPCOE1 = (OIL_VISC/(2*OIL_COND))*(VELOCITY**2)
+HFLUDAT1 = TEMPCOE1*((1/TOTLLNGT)-2*CURRPOSI/(TOTLLNGT**2))
+HFLUDAT2 = (TH_FLUID-TL_FLUID)/TOTLLNGT
+HFLUPROF = -OIL_COND*(HFLUDAT1+HFLUDAT2)
+TEMP4=HFLUPROF
+/tsp,,0.75
+/ann,dele
+/tla,-.90,.90,Heat flux through top plate:
+/tla,-.90,.86,  %nint(TEMP1)% (ANSYS)
+/tla,-.90,.82,  %nint(TEMP2)% (Theory)
+/tla,-.90,.78,Heat flux through bottom plate:
+/tla,-.90,.74,  %nint(TEMP3)% (ANSYS)
+/tla,-.90,.70,  %nint(TEMP4)% (Theory)
+asel,s,loc,x,X_FLUID+B_FLUID,X_FLUID+W_FLUID-B_FLUID
+allsel,below,area
+/title,Heat Flux Contour for Couette Flow
+plnsol,hflu
+*if,STATGUI,eq,2,then
+  *ask,Paused,Press Enter to Continue,'pause'
+*endif
+
+finish
+
+*if,STATGUI,eq,0,then
+  /exit
+*endif

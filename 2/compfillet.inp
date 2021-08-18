@@ -1,0 +1,30 @@
+/com 
+/com  Compound fillet example. 
+/com  Written by:  Joe Metrisin 
+/com        Date:  June 27, 2000 
+! 
+finish 
+/clear 
+/prep7 
+! 
+pt4x_=3.0    ! X-coordinate of ellipse endpoint. 
+centx_=3.0   ! X-coordinate of ellipse center. 
+centy_=8.0   ! Y-coordinate of ellipse center. 
+par1_=2.0    ! Ellipse major/minor ratio. 
+! 
+k, 1,     0, 0, 
+k, 2,     5, 0, 
+k, 3,     5, 1, 
+k, 4, pt4x_, 1 
+k, 5,     1, 1, 
+k, 6,     1, 2, 
+k, 7,     0, 2, 
+! 
+l,1,2 
+l,2,3 
+l,3,4 
+l,1,7 
+l,7,6 
+! 
+local,11,1, centx_, centy_, 0, ,,, par1_ 
+l,4,6    

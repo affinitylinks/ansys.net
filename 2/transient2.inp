@@ -1,0 +1,93 @@
+! This log file is modified by Thomas Jin-Chee liu in 2004.
+! Test in ANSYS 7.0 = ok
+! units: SI,   m - degree C - W - kg -sec - J
+! Bi=h*dx/K = 60*0.002/51.9 =  0.0023  < 1
+! F0 = ( Kdt ) / (rho*C*dx^2)
+! assume F0= beta = 0.4
+! dt = (beta*rho*C*dx^2)/K = 0.1179  (sec)
+
+/title,transient analysis 2 (moving heat flux)
+/filnam,transient-2
+/TRIAD,RBOT 
+
+/PREP7  
+
+WPSTYLE,,,,,,,,1
+wpstyle,0.01,0.01,0,0.1,0.003,0,1,,5
+
+BLC4,0,0.1,0.1,-0.1                       !0.1*0.1 m
+CYL4,0.03,0.05,0.01 
+ASBA,       1,       2                    !drill a hole
+  
+BLC4,0.1,0.1,-0.01,-0.1 
+
+FLST,2,2,5,ORDE,2   
+FITEM,2,1   
+FITEM,2,3   
+AOVLAP,P51X 
+
+WPSTYLE,,,,,,,,0
+aplot
+
+ET,1,PLANE55
+KEYOPT,1,1,0
+KEYOPT,1,3,0              !2D plane problem
+KEYOPT,1,4,0
+KEYOPT,1,8,0
+KEYOPT,1,9,0
+                          !AISI 1045 Steel                          
+UIMP,1,DENS, , ,7870 ,      !kg/m3 
+UIMP,1,KXX, , , 51.9 ,      !W/m-C
+UIMP,1,C, , ,   486,        !W-s / kg-C 
+ 
+type,1
+mat,1
+ESIZE,0.002,              !element size = 0.002 m
+MSHKEY,1
+amesh,1
+MSHKEY,0
+amesh,2
+                          !boundary conditions
+/PSF,HFLU, ,2,0 
+                          !convection
+FLST,2,1,4,ORDE,1   
+FITEM,2,4    
+SFL,P51X,CONV,50, ,25,  
+
+finish
+
+/SOLU    
+ANTYPE,trans
+TRNOPT,FULL 
+NROPT,AUTO, ,   
+EQSLV,   
+SOLCONTROL,ON 
+AUTOTS,on
+KBC,1                             !step  
+OUTRES,ALL,ALL,   
+  
+                         !load step 1, initial conditions  25 C
+TIME,0.001 
+DELTIM,0.001,0.001,0.001
+TUNIF,25,  
+solve    
+                         !load step 2..... , apply moving heat flux
+j=1 
+*DO,i,200,80,-5
+  TIME,j  
+  DELTIM,0.11,0.11,0.11,   
+  SFEDELE,i+5,2,HFLUX                        !delete heat flux of previous step
+  SFE,i,2,HFLUX, ,5/0.002/0.002, , ,         !apply heat flux, face 2 , 5 W
+  eplot
+  solve
+  j=j+1
+*ENDDO
+
+finish
+
+/POST1  
+/EFACE,1
+set,last
+
+PLNSOL,TEMP, ,0,
+

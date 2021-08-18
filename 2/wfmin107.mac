@@ -1,0 +1,188 @@
+! -------  MACRO TO OPTIMIZE WAVEFRONT, Ver. 1.0.7 98-08-06  --------------
+!     Written by Jan Christian Anker, ANKER - ZEMER Engineering A/S
+!
+!       Phone: +47-22 13 95 80          FAX: +47-22 13 95 95
+! 
+! -------------------------------------------------------------------------
+!   Run this macro after modeling is finished, i.e. before leaving PREP7
+! -------------------------------------------------------------------------
+!
+*msg,info
+..****  RUNNING WFMIN Ver. 1.0.7 MACRO FOR WAVEFRONT OPTIMIZATION ****
+*msg,info
+.....****  Written by J.C. Anker, ANKER - ZEMER Engineering A/S ****
+
+! ***** NOTE: This macro assumes that the Max CSYS # is less 50 *****
+!             Change "csmax=50" below if you want more or can do with less.
+csmax=50
+! ---- Default is to reduce the RMS Wavefront.
+!      To minimize running time, the RMS Wavefront should be reduced.
+!      To minimize memory needed to keep a large wavefront in memory,
+!       the MAX Wavefront should be reduced
+!      This is being controlled by the parameter "meth"
+
+! *ask,meth,METHOD,'RMS' ! uncomment this line and comment out
+                         ! the two lines below if you want to
+                         ! the macro to prompt you for the method
+meth = 'MAX'
+! meth = 'RMS'
+
+! ---- Turn off Printout to avoid boring messages and warnings
+/nopr
+!
+! ---- Get Information about Initial Wavefront
+*GET,wfsmax,ACTIVE,0,WFRO,MAX
+*GET,wfsrms,ACTIVE,0,WFRO,RMS
+*msg,info,wfsmax
+  INITIAL MAX WAVEFRONT = %I
+*msg,info,wfsrms
+  INITIAL RMS WAVEFRONT = %I 
+! ---- Switch to Global Cartesian System and activate 
+!       all Nodes and Elements
+csys,0
+nall
+eall
+! ---- Reorder, first ANSYS default
+csys,0
+wsort,all
+waves
+*GET,wfsmax,ACTIVE,0,WFRO,MAX
+*GET,wfsrms,ACTIVE,0,WFRO,RMS
+*msg,info,wfsmax
+  ANSYS OPTIMIZED MAX WAVEFRONT = %I
+*msg,info,wfsrms
+  ANSYS OPTIMIZED RMS WAVEFRONT = %I 
+*get,mxno,node,,num,max
+
+! ---- Switch output to "WFMIN.ECH" for inspection if improvement obtained
+!       is unsatisfactory
+/out,WFMIN,ECH
+/gopr
+
+! ==== Use all Coordinate Systems defined and do a WSORT and then WAVES ====
+!      
+
+/nerr,0
+*do,idx1,1,csmax+1
+    /go
+    idxcs = idx1-1
+    *get,nocs,cdsy,idxcs,attr,kcs
+    *if,nocs,ge,0,then
+        csys,idxcs
+        wsort,all,0,,%meth%    ! sorting based on variable "meth"
+
+! ---- Then prepare wavesorting based on ultimate dimensions
+!
+!      Note: If a reasonable wavefront is found based on wavesorting
+!            (see the file "WFMIN.ECH"), the list of starting nodes
+!            should be inspected; then there is a fair chance that you 
+!            may find a 'best' wavefront by experimenting with various
+!            starting list (this is particularily true for tet-meshes).
+!
+
+! ---- Find ultimate dimensions in current CSYS
+        *get,xmax,node,0,mxloc,x
+        *get,ymax,node,0,mxloc,y
+        *get,zmax,node,0,mxloc,z
+        *get,xmin,node,0,mnloc,x
+        *get,ymin,node,0,mnloc,y
+        *get,zmin,node,0,mnloc,z
+!      Use extra nodes to make macro shorter (see DO-loop below)
+        n,mxno+1,xmin,ymin,zmin
+        n,mxno+2,xmax,ymin,zmin
+        n,mxno+3,xmax,ymax,zmin
+        n,mxno+4,xmin,ymax,zmin
+        n,mxno+5,xmin,ymin,zmax
+        n,mxno+6,xmax,ymin,zmax
+        n,mxno+7,xmax,ymax,zmax
+        n,mxno+8,xmin,ymax,zmax
+! ----- wavesorting based on 8 "corners" of model
+!        in the active coordinate system (idxcs)
+!
+        *do,idx2,1,8
+            /go
+            xxx=nx(mxno+idx2)
+            yyy=ny(mxno+idx2)
+            zzz=nz(mxno+idx2)
+!                                                           -> 1.0.7 Start
+            nsel,s,node,,1,mxno
+            nstl = node(xxx,yyy,zzz)
+            nsel,s,node,,nstl
+            esln,s
+            nsle,s
+            werase
+            wstart,all
+            eall
+            nall
+            waves,%meth%  ! optimize using method "meth"
+!                                                           <- 1.0.7 End
+        *enddo
+
+! ---- prepare for mid-sides and -surfaces
+        xmid=(xmax-xmin)/2
+        ymid=(ymax-ymin)/2
+        zmid=(zmax-zmin)/2
+! ---- find middle coordinates at sides
+        n,mxno+1,xmid,ymin,zmin
+        n,mxno+2,xmid,ymax,zmin
+        n,mxno+3,xmid,ymin,zmax
+        n,mxno+4,xmid,ymax,zmax
+        n,mxno+5,xmin,ymid,zmin
+        n,mxno+6,xmax,ymid,zmin
+        n,mxno+7,xmin,ymid,zmax
+        n,mxno+8,xmax,ymid,zmax
+        n,mxno+9,xmin,ymin,zmid
+        n,mxno+10,xmax,ymin,zmid
+        n,mxno+11,xmin,ymax,zmid
+        n,mxno+12,xmax,ymax,zmid
+! ---- find middle coordinates at side faces
+        n,mxno+13,xmin,ymid,zmid
+        n,mxno+14,xmax,ymid,zmid
+        n,mxno+15,xmid,ymin,zmid
+        n,mxno+16,xmid,ymax,zmid
+        n,mxno+17,xmid,ymid,zmin
+        n,mxno+18,xmid,ymid,zmax
+
+! ---- wavesorting based on 12 "midsides" and
+!                             6 "midsides" of model
+!        in the active coordinate system (idxcs)
+!
+        *do,idx3,1,18
+            xxx=nx(mxno+idx3)
+            yyy=ny(mxno+idx3)
+            zzz=nz(mxno+idx3)
+!                                                           -> 1.0.7 Start
+            nsel,s,node,,1,mxno
+            nstl = node(xxx,yyy,zzz)
+            nsel,s,node,,nstl
+            esln,s
+            nsle,s
+            werase
+            wstart,all
+            nall
+            eall
+            waves,%meth%   ! optimize using method "meth"
+!                                                           <- 1.0.7 End
+        *enddo
+    *else
+    *endif
+*enddo
+ndele,mxno+1,mxno+18
+csys,0
+/nerr,defa
+! ----------------
+*GET,wfemax,ACTIVE,0,WFRO,MAX
+*GET,wferms,ACTIVE,0,WFRO,RMS
+! calculate "improvement"
+maximp=wfemax/wfsmax
+rmsimp=wferms/wfsrms
+/go
+/out
+*msg,info,wfsmax,wfemax
+  MAX     WAVEFRONT REDUCED FROM %I TO %I 
+*msg,info,maximp
+  FACTOR COMPARED TO ANSYS = %G
+*msg,info,wfsrms,wferms
+  MAX RMS WAVEFRONT REDUCED FROM %I TO %I, 
+*msg,info,rmsimp
+  FACTOR COMPARED TO ANSYS = %G 

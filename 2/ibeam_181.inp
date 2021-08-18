@@ -1,0 +1,94 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  lateral torsional buckling of i-beam, part 1
+/com,  181 full integration
+/com,  Warping = 560.8 (Concentrated load)
+/com,  Warping = 564.1 (Distributed load)
+/com,
+/com,COMMENTS, ASSUMPTIONS:
+/com,  Use of shell181 elements.  see part 2 for beam188/189 elements
+/com,
+
+finish
+/clear
+
+R_THICK=0.2
+
+/graphics,power
+/triad,lbot
+/auto
+/view,1,1,1,1
+/eshape,1
+
+/prep7
+et,1,181
+keyopt,1,3,2
+r,1,R_THICK
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,dens,1,.1/386.1
+
+k,1,0,0,0
+k,2,0,2-R_THICK/2,0
+k,3,3/2,2-R_THICK/2,0
+k,4,-3/2,2-R_THICK/2,0
+l,1,2
+l,2,3
+l,2,4
+lsymm,y,all
+
+k,10,0,0,100
+l,1,10
+allsel,all
+adrag,1,,,,,,7
+adrag,2,,,,,,7
+adrag,3,,,,,,7
+adrag,4,,,,,,7
+adrag,5,,,,,,7
+adrag,6,,,,,,7
+
+nummrg,kp
+
+esize,1
+mshape,0
+mshkey,1
+amesh,all
+finish
+
+/solu
+antype,static
+pstres,on
+
+lsel,s,loc,z,0
+dl,all,,all
+
+ksel,s,loc,z,100
+ksel,r,loc,y,0
+fk,all,fy,1
+
+allsel,all
+solve
+finish
+
+/solu
+antype,buckle
+pstres,on
+bucopt,lanb,10
+mxpand,10,,,yes
+
+solve
+finish
+
+
+

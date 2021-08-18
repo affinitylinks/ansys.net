@@ -1,0 +1,107 @@
+! ANSYS REVISION 5.3, NORMALS.MAC
+!
+!     TO ACTIVATE AREA ELEMENT NORMAL CHECKING- ENTER:
+!
+!     ASSUMPTIONS:
+!     -THIS MACRO IS FOR USE IN THE ANSYS PROGRAM, REVISION 5.3 OR LATER
+!
+*MSG,INFO
+%/ CHECK FOR CONSISTENT NORMALS FOR ELEMENTS WITHIN EACH SELECTED AREA.
+/NOPR
+!
+!      *** SAVE SELECTED SET OF AREAS
+CM,NRMTEMP1,AREA
+!
+!      *** LOOP THROUGH AREAS ***
+_AREA = 0
+*DO,_I,1,999999,1
+   /GOPR
+   CMSEL,S,NRMTEMP1
+   *GET,_AREA,AREA,_AREA,NXTH
+   *IF,_AREA,EQ,0,EXIT
+
+   ASEL,,,,_AREA
+   ESLA
+   NSLE
+   CM,NRMTEMP2,ELEM
+
+   _ELEMA = 0
+   *DO,_J,1,999999,1
+      /GOPR
+      _DOT = 1
+      *GET,_ELEMA,ELEM,_ELEMA,NXTH
+      *IF,_ELEMA,EQ,0,EXIT
+      _1CHEK = 0
+
+      _N1A = NELEM(_ELEMA,1)
+      _N2A = NELEM(_ELEMA,2)
+      _N3A = NELEM(_ELEMA,3)
+      _N4A = NELEM(_ELEMA,4)
+
+      _NRMXA = NORMNX(_N1A,_N2A,_N3A)
+      _NRMYA = NORMNY(_N1A,_N2A,_N3A)
+      _NRMZA = NORMNZ(_N1A,_N2A,_N3A)
+
+      *DO,_K,1,4
+         /GOPR
+         *IF,_K,EQ,1,THEN
+            _NODE = _N1A
+         *ELSEIF,_K,EQ,2,THEN
+            _NODE = _N2A
+         *ELSEIF,_K,EQ,3,THEN
+            _NODE = _N3A
+         *ELSEIF,_K,EQ,4,THEN
+            _NODE = _N4A
+         *ENDIF
+
+         *DO,_LOC,1,999999
+            /GOPR
+            _ELEMB = ENEXTN(_NODE,_LOC)
+            *IF,_ELEMB,EQ,_ELEMA,CYCLE
+            *IF,_ELEMB,LE,0,EXIT
+            *IF,_1CHEK,EQ,1,THEN
+               *GET,_ESELB,ELEM,_ELEMB,ESEL
+            *ELSE
+               CM,NRMTEMP3,ELEM
+               CMSEL,S,NRMTEMP2
+               *GET,_ESELB,ELEM,_ELEMB,ESEL
+               CMSEL,S,NRMTEMP3
+            *ENDIF
+            *IF,_ESELB,LE,0,CYCLE
+
+            _N1B = NELEM(_ELEMB,1)
+            _N2B = NELEM(_ELEMB,2)
+            _N3B = NELEM(_ELEMB,3)
+
+            _NRMXB = NORMNX(_N1B,_N2B,_N3B)
+            _NRMYB = NORMNY(_N1B,_N2B,_N3B)
+            _NRMZB = NORMNZ(_N1B,_N2B,_N3B)
+
+            _DOT = _NRMXA*_NRMXB + _NRMYA*_NRMYB + _NRMZA*_NRMZB
+
+            *IF,_DOT,LE,0,THEN
+               *MSG,WARN,_ELEMA,_ELEMB
+               Elements %I and %I may not have consistent normal directions.
+               *EXIT
+            *ENDIF
+
+            _1CHEK = 1
+            ESEL,U,,, _ELEMB
+         *ENDDO
+         *IF,_DOT,LE,0,EXIT
+      *ENDDO
+      *IF,_DOT,LE,0,EXIT
+   *ENDDO
+*ENDDO
+ 
+!      *** DELETE TEMPORARY COMPONENTS
+   CMDEL,NRMTEMP1
+   CMDEL,NRMTEMP2
+   CMDEL,NRMTEMP3
+!
+!      *** DELETE TEMPORARY PARAMETERS
+_AREA = $ _I = $ _ELEMA = $ _J = $ _ELEMA = $ _N1A = $ _N2A = 
+_N3A = $ _N4A = $ _NRMXA = $ _NRMYA = $ _NRMZA = $ _K = $ _NODE = 
+_LOC = $ _ELEMB = $ _N1B = $ _N2B = $ _N3B = $ _NRMXB = $ _NRMYB = 
+_NRMZB = $ _DOT = $ _1CHEK =
+/GOPR

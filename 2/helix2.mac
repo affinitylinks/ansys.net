@@ -1,0 +1,39 @@
+/prep7
+
+radius= 5 ! radius
+pitch=10 ! pitch
+ncoils=2 ! number of coils
+rod=1 ! rod radius
+
+tlen=pitch*ncoils
+r=radius
+p=pitch
+n=ncoils
+csys,0
+*afun,rad
+pi=acos(-1)
+*do,i,1,(4*n),1
+csys,0
+kpno=i
+x1=r*cos((i-1)*(pi/2))
+y1=r*sin((i-1)*(pi/2))
+z1=tlen*((i-1)/(4*n))
+k,kpno,x1,y1,z1
+x2=r*cos((i)*(pi/2))
+y2=r*sin((i)*(pi/2))
+z2=tlen*((i)/(4*n))
+k,kpno+1,x2,y2,z2
+csys,1
+krotate,all
+l,i,i+1
+*enddo
+csys,0
+wpro,,90.000000,
+cswpla,11,0,1,1,
+j=0
+cyl4,r,0,rod
+*do,i,1,5*(4*n),5
+j=j+1
+vdrag,i,,,,,,j
+*enddo
+csys,0

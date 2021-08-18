@@ -1,0 +1,154 @@
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!                                        !
+!               random.mac               !
+!    Random Vibration Analysis Macro     !
+!               Created by               !
+!              Jeff Strain               !
+! Phoenix Analysis & Design Technologies !
+!            April 23, 2002              !
+!                                        !
+!     Send comments, questions, and      !
+! corrections to jeff.strain@padtinc.com !
+!                                        !
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+!Performs PSD base excitation analysis on a
+!component in units of G^2/Hz.
+
+!Execute random,1 to perform a modal analysis prior
+!to the PSD analysis.  Execute random with no 
+!arguments to run the PSD solution only.
+
+!Apply constraints before running this macro
+
+!*******User Inputs*******
+
+NUMMODE=15			!Number of modes to extract
+DAMPRAT=.01             !Damping ratio
+DIREX='UY'			!Direction of excitation
+				!('UX', 'UY', or 'UZ')
+
+	!PSD Breakpoints
+
+FREQ1=20	$	PSD1=.075
+FREQ2=100	$	PSD2=.1
+FREQ3=400	$	PSD3=.1
+FREQ4=600	$	PSD4=.025
+FREQ5=	$	PSD5=
+FREQ6=	$	PSD6=
+FREQ7=	$	PSD7=
+FREQ8=	$	PSD8=
+FREQ9=	$	PSD9=	
+FREQ10=	$	PSD10=	
+FREQ11=	$	PSD11=	
+FREQ12=	$	PSD12=	
+FREQ13=	$	PSD13=	
+FREQ14=	$	PSD14=
+
+	!Title
+
+/TITLE,	
+
+!*****End User Input*****
+
+!Perform modal solution
+*if,arg1,eq,1,then
+fini
+/solu
+antype,modal		!Specify modal analysis
+modopt,lanb,nummode	!Specify Block Lanczos
+eqslv,sparse
+*endif
+npt=0
+!Find ending frequency and number of breakpoints
+*do,j,1,14
+*if,freq%j%,gt,0,then
+npt=npt+1
+*if,freq%j+1%,eq,0,then
+freqe=freq%j%
+*endif
+*endif
+*enddo
+*if,arg1,eq,1,then
+!Expand modes
+mxpand,nummode,,,1
+modopt,lanb,nummode,freq1,1.5*freqe,,off
+*endif
+
+*if,arg1,eq,0,then
+/solu
+*endif
+
+lswrite,6
+lsclear,all
+lsread,6
+lsdel,6
+
+
+! Solve modal analysis
+*if,arg1,eq,1,then
+solve
+*endif
+finish
+save
+
+!Perform PSD solution
+/solution
+
+
+antype,spectrum		!Specify spectrum analysis
+
+!Set PSD options
+spopt,psd,,yes		!Set PSD spectrum options
+psdunit,1,accg,386.4	!Specify PSD units
+dmprat,damprat		!Specify damping ratio
+psdfrq			!Clear PSD table
+
+!Set PSD spectrum breakpoints
+*do,k,1,npt
+psdfrq,1,,freq%k%
+psdval,1,psd%k%
+*enddo
+
+!Apply base excitation
+nsel,s,d,u,0,1
+D,all, ,,, , ,UX,uy,uz 
+!d,all,all,0
+d,all,direx,1
+allsel
+
+! compute participation factors
+outres,nsol,all
+pfact,1,base
+
+!Specify PSD solution output
+psdres,disp,rel	!Displacement relative to base
+!psdres,velo,abs	!Velocity absolute	
+psdres,acel,abs	!Acceleration absolute
+
+!Combine modes and solve spectrum analysis
+psdcom
+solve
+finish
+
+!Clean up parameters
+NUMMODE=
+DAMPRAT=
+DIREX=
+FREQ1=	$	PSD1=
+FREQ2=	$	PSD2=
+FREQ3=	$	PSD3=
+FREQ4=	$	PSD4=
+FREQ5=	$	PSD5=
+FREQ6=	$	PSD6=
+FREQ7=	$	PSD7=
+FREQ8=	$	PSD8=
+FREQ9=	$	PSD9=	
+FREQ10=	$	PSD10=	
+FREQ11=	$	PSD11=	
+FREQ12=	$	PSD12=	
+FREQ13=	$	PSD13=	
+FREQ14=	$	PSD14=
+
+j=
+k=

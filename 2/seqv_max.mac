@@ -1,0 +1,32 @@
+! For a selected nodal set, macro creates vector s_eqv of dimension arg1 x 1 and fills it 
+! with successive values of SEQV (Von-Mises stress) max for successive time steps, the 
+! total number of which is specified by arg1
+!
+! macro assumes ultimate time step is number 1; this is easily changed, however
+!
+/post1			
+*del,all,
+inc=1/arg1		!
+*dim,s_eqv,table,arg1	! create arg1x1 array for results
+*get,nmax,node,,num,max	! get highest node number in selected set
+*DO,n_set,inc,1,inc	! outer DO loop; collects data at time intervals of 1/arg1 to 1 by 1/arg1 increments
+!
+set,,,,,n_set		! select result set by time n_set
+!			!
+!
+	*DO,nnum,1,nmax,1			! for each node in selected set...
+!		
+		nsort,s,eqv,node		! sort nodes by seqv (von-mises stress) result
+		*get,seqv_max,sort,,max		! get max value from above and store it in seqv_max
+						
+!	
+	*enddo					! stop doing this when we get to nmax
+!
+*Vfill,s_eqv(n_set*arg1),data,seqv_max,		! for time n_set store seqv_max value in array s_eqv 
+!
+*enddo			! if all goes well, array r_f should contain von-mises stress results
+			! at time increments from inc to 1 by inc. 
+*cfopen,stresses,txt	! write results to a file called stresses.txt
+*vwrite,s_eqv(1)
+(4F8.2)			! Fortran formatting for text file required by ANSYS
+*cfclos

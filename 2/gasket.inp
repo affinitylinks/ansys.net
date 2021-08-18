@@ -1,0 +1,148 @@
+finish
+/clear
+
+DIM_HEIGHT = 10
+DIM_RINNER = 30
+DIM_ANGLE  = 15
+
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,185
+et,2,195,,0
+r,1
+r,2
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+! *** generic data
+tb,gasket,2,1,,para
+tbdata,1,0,0,0
+tb,gasket,2,1,10,comp
+tbpt,, 0.20000e-04, 0.54000e+03
+tbpt,, 0.40000e-04, 0.15150e+04
+tbpt,, 0.60000e-04, 0.24900e+04
+tbpt,, 0.78000e-04, 0.30000e+04
+tbpt,, 0.12000e-03, 0.37200e+04
+tbpt,, 0.19000e-03, 0.47400e+04
+tbpt,, 0.28600e-03, 0.58500e+04
+tbpt,, 0.35800e-03, 0.67350e+04
+tbpt,, 0.43200e-03, 0.78000e+04
+tbpt,, 0.50500e-03, 0.89550e+04
+tb,gasket,2, ,5,nunl
+tbpt,, 0.78000e-04, 0.30000e+04
+tbpt,, 0.66900e-04, 0.24750e+03
+tbpt,, 0.63100e-04, 0.82500e+02
+tbpt,, 0.54100e-04, 0.15000e+02
+tbpt,, 0.00000e+00, 0.00000e+00
+tb,gasket,2, ,5,nunl
+tbpt,, 0.28600e-03, 0.58500e+04
+tbpt,, 0.26400e-03, 0.22350e+03
+tbpt,, 0.26100e-03, 0.90000e+02
+tbpt,, 0.25600e-03, 0.15000e+02
+tbpt,, 0.00000e+00, 0.00000e+00
+tb,gasket,2, ,5,nunl
+tbpt,, 0.50500e-03, 0.89550e+04
+tbpt,, 0.47800e-03, 0.33900e+03
+tbpt,, 0.47500e-03, 0.13500e+03
+tbpt,, 0.46800e-03, 0.15000e+02
+tbpt,, 0.00000e+00, 0.00000e+00
+
+tbplot,gasket,2
+
+wprota,34,25,88
+cswpla,11,1
+
+cylind,DIM_RINNER,DIM_RINNER+1,0,DIM_HEIGHT,0,DIM_ANGLE
+cylind,DIM_RINNER+1,DIM_RINNER+2,0,DIM_HEIGHT,0,DIM_ANGLE
+cylind,DIM_RINNER+2,DIM_RINNER+3,0,DIM_HEIGHT,0,DIM_ANGLE
+nummrg,kp
+
+vsel,s,volu,,1
+vsel,a,volu,,3
+vatt,1,1,1
+vsel,inve
+vatt,2,2,2
+vsel,all
+
+esize,0.5
+vsweep,1
+asel,s,loc,x,DIM_RINNER+1
+MY_SOURCE=arnext(0)
+asel,s,loc,x,DIM_RINNER+2
+MY_TARGET=arnext(0)
+allsel,all
+imesh,area,MY_SOURCE,MY_TARGET,11,1,0,0,1
+vsweep,3
+
+nrota,all
+
+*dim,MY_GAP,table,3,,,z,,,11
+MY_GAP(1,0)=0,DIM_HEIGHT/2,DIM_HEIGHT
+MY_GAP(1,1)=0,0.0001,0
+
+asel,s,area,,MY_TARGET
+nsla,s,1
+cm,N_DISP,node
+
+vsel,s,volu,,3
+allsel,below,volu
+cm,E_GONE,elem
+
+asel,s,loc,y,0
+asel,a,loc,y,DIM_ANGLE
+allsel,below,area
+nsla,s,1
+cm,N_SYMM,node
+
+asel,s,loc,z,0
+asel,a,loc,z,DIM_HEIGHT
+allsel,below,area
+nsla,s,1
+cm,N_BOTT,node
+
+allsel,all
+finish
+
+/solu
+nlgeom,on
+rescon,define,none
+
+ekill,E_GONE
+
+d,all,all
+d,N_DISP,ux,%MY_GAP%
+d,N_DISP,uy,0
+d,N_DISP,uz,0
+
+d,N_SYMM,uy
+d,N_BOTT,uz
+
+/title, First load step: impose displacements
+solve
+
+ealive,E_GONE
+
+ddele,all,all,,,force
+
+d,N_SYMM,uy
+d,N_BOTT,uz
+
+/title, Second load step: activate top material, ramp down displacements
+solve
+
+asel,s,loc,x,DIM_RINNER+3
+nsla,s,1
+sf,all,pres,300
+allsel,all
+
+nsubst,1e2,1e6,1
+
+solve
+
+finish
+
+/post1
+rsys,11
+set,last
+plnsol,u,sum

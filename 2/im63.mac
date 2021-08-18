@@ -1,0 +1,66 @@
+! *****************************************************************************
+! IM63.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! To create a spider between a master node and a selected set of nodes. 
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   ANSYS  Description
+!
+! 14/11/99 SMV  5.5.3  Initial release 
+!
+! *****************************************************************************
+!
+! Overview :
+!
+!  It is optional whether or not the master node is selected.
+!
+!
+! Required input is :
+!              
+!  ARG1 - Element TYPE to be used for spider
+!  ARG2 - Element REAL to be used for spider
+!  ARG3 - Element MAT to be used for spider
+!  ARG4 - Master node
+!
+! Output is :
+!
+! 
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+*IF,ARG1,EQ,0,THEN
+  ARG1=1     ! Element TYPE to be used for spider
+  ARG2=1     ! Element REAL to be used for spider
+  ARG3=1     ! Element MAT to be used for spider
+  ARG4=1     ! Master node
+*ENDIF
+
+TYPE,ARG1
+REAL,ARG2
+MAT,ARG3
+
+NSEL,U,NODE,,ARG4
+*GET,AR21,NODE,,COUNT
+
+AR23=0
+*DO,AR22,1,AR21,1
+  AR23=NDNEXT(AR23)
+  NSEL,A,NODE,,ARG4
+  E,ARG4,AR23
+  NSEL,U,NODE,,AR23
+  NSEL,U,NODE,,ARG4
+*ENDDO
+
+! *****************************************************************************
+! End of input
+! *****************************************************************************
+
+
+

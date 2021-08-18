@@ -1,0 +1,96 @@
+!==============================================================================
+!
+!                                                     Phoenix Analysis & Design 
+! PADT-------------------------------------------------------------------------
+!                                                                  Technologies
+!
+!==============================================================================
+!     1-800-293-PADT * 480-813-4884 P * 480-813-4807 F * www.padtinc.com
+!==============================================================================
+!
+!        Name: GPLT.MAC
+! Description: Simplified way to do gplots
+!		Uses integers to specify common combinations of entity types
+!		that can be plotted, then does a gplot
+!
+!        Type: ANSYS APDL macro
+!
+! Input Files: none
+!
+!      Author: Eric Miller	PADT
+!
+!   Arguments:
+!    		ARG1: Option Number
+!			 0: List options
+!			 1: node, element
+!			 2: keypoint, line
+!			 3: area, volume
+!			 4: node, line
+!			 5: element, line
+!			 6: element, area
+!			 7: keypoint, line, area, volume
+!
+!
+!==============================================================================
+/nopr
+/gtype,all,node,0
+/gtype,all,elem,0
+/gtype,all,keyp,0
+/gtype,all,line,0
+/gtype,all,area,0
+/gtype,all,volu,0
+
+*if,arg1,eq,0,then
+*msg,ui
+GPLT.MAC Input arguments: %/ &
+1: node, element %/ &
+2: keypoint, line %/ &
+3: area, volume %/ &
+4: node, line %/ &
+5: element, line %/ &
+6: element, area %/ &
+7: keypoint, line, area, volume0 
+*endif
+*if,arg1,eq,1,then
+  /gtype,all,node,1
+  /gtype,all,elem,1
+*endif
+
+*if,arg1,eq,2,then
+  /gtype,all,keyp,1
+  /gtype,all,line,1
+*endif
+
+*if,arg1,eq,3,then
+  /gtype,all,area,1
+  /gtype,all,volu,1
+*endif
+
+*if,arg1,eq,4,then
+  /gtype,all,node,1
+  /gtype,all,line,1
+*endif
+
+*if,arg1,eq,5,then
+  /gtype,all,elem,1
+  /gtype,all,line,1
+*endif
+
+*if,arg1,eq,6,then
+  /gtype,all,elem,1
+  /gtype,all,area,1
+*endif
+
+*if,arg1,eq,7,then
+  /gtype,all,keyp,1
+  /gtype,all,line,1
+  /gtype,all,area,1
+  /gtype,all,volu,1
+*endif
+  
+*if,arg1,ne,0,then
+/go
+	gplot
+/nopr
+*endif
+/go
