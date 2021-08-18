@@ -1,0 +1,44 @@
+C****************************************************************
+!Macro to get all Areas in the currently selected set with 4 lines.
+!Component set L4Area is created.  Theses areas can then be used
+!for map meshing.
+
+!Save currently selected lines and areas
+cm,kill_a,area
+cm,kill_l,line
+
+!Create a CM set of 4 line ares
+Tot=arinqr(0,13)
+*get,Anum_,AREA,,NUM,MIN
+cm,L4Area,area
+
+*do,i,1,arinqr(0,13),1
+ !/gopr
+ asel,s,,,Anum_
+ lsla
+ Status_='is a'
+ *if,lsinqr(0,13),ne,4,then
+   Status_='is not a'
+   cmsel,a,L4AREA
+   asel,u,,,Anum_
+   cm,L4Area,Area
+ *endif
+
+ /gopr
+ *msg,INFO,i,tot,ANum_,Status_,
+ (%I of %I): Area %I %C 4 Line area
+ /nopr
+
+ cmsel,s,L4AREA
+ Next_=ARNEXT(Anum_)
+ Anum_=Next_
+
+*enddo
+
+cmsel,s,kill_a
+cmdel,kill_a
+
+cmsel,s,kill_l
+cmdel,kill_l
+
+C****************************************************************

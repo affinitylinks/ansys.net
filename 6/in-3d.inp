@@ -1,0 +1,173 @@
+/batch,list
+/title,  MEMS problem with TRANS126 elements through EMTGEN macro
+/com, ------------------------------------------------------
+/com,          3D Beam under electrostatic load.
+/com,          --------------------------------
+/com,   Compare with 3D model from the paper:
+/com,   J.R.Gilbert, G.K.Ananthasuresh, S.D.Senturia, (MIT)
+/com,   "3D Modelling of Contact Problems and Hysteresis in
+/com,    Coupled Electro-Mechanics", MEMS'96, pp. 127-132.
+/com,
+/com,                       3D Model:
+/com,   Beam is clamped at either end, suspended 0.7um over
+/com,   a ground plane with contact stop at 0.1um above the
+/com,   ground plane.   Beam dimensions and material properties:
+/com,  length bl=80um, width wb=10um, height bh=.5um, E=169GPa, mu=0.25
+/com,   Initial Gap: gap=0.7um , finishing gap gfi=0.1um
+/com,   Maximum displacement is 0.6um (gap-gfi)
+/com,
+/com,           RESULTS:
+/com,      Pull-in  Maximum      
+/com,      Voltage  Displacement 
+/com,       17.5V     0.3       
+/com,       18.0V     0.6      
+/com,                            ANSYS
+/com,           ESSOLV:                     TRANS126:
+/com,      Voltage  Displacement     Voltage  Displacement
+/com,       10.0V     0.062           10.0V     0.060    
+/com,       11.0V     0.077           11.0V     0.075    
+/com,       12.0V     0.095           12.0V     0.093    
+/com,       13.0V     0.117           13.0V     0.114 
+/com,       14.0V     0.143           14.0V     0.138    
+/com,       15.0V     0.174           15.0V     0.169    
+/com,       16.0V     0.214           16.0V     0.208    
+/com,       17.0V     0.278           17.0V     0.265    
+/com,       18.0V     0.600           18.0V     0.604    
+/com, ------------------------------------------------------
+/com
+
+vltg = 10.0   ! initial bias
+vend = 18.0   ! ending bias
+vstep= 1.0
+loop=9
+
+*dim,displ,array,loop
+*dim,volta,array,loop
+volta(1)=vltg
+
+  bl=40
+  bh=.5
+  gap=.7
+  gapmin=0.1
+
+  wb=10
+  ndiv=8
+
+  six=wb/ndiv
+
+/prep7
+emunit,epzro,8.854e-6
+
+et,1,42
+et,5,45
+mp,ex,1,169e3
+mp,nuxy,1,0.25
+mp,ex,5,169e3
+mp,nuxy,5,0.25
+
+rect,,bl,gap,gap+bh
+
+lsel,s,loc,y,gap
+lsel,a,loc,y,gap+bh
+lesize,all,six
+
+lsel,s,loc,x,0
+lsel,a,loc,x,bl
+lesize,all,gap/2
+
+ASEL,S,loc,y,gap+bh/2
+AATT,1,,1
+type,1
+mat,1
+MSHAPE,0,2
+MSHKEY,1
+amesh,all
+
+!!------------------------------
+
+type,5                  ! 3D element type
+mat,5
+
+asel,all
+esize,,ndiv
+extopt,attr,0           ! use type=4, mat=4 during extrusion
+extopt,aclear,1
+vext,all,,,,,wb
+
+alls
+
+nsel,s,loc,x,0     !  fix one end
+d,all,ux,0
+d,all,uy,0
+d,all,uz,0
+nsel,s,loc,x,bl    !  symmetry plane fix
+d,all,ux,0
+d,all,uz,0
+
+nsel,s,ext
+cm,bnode,node
+
+alls
+
+!!!----------------------------
+nsel,s,loc,y,gap
+cm,trup,node
+
+alls
+
+emtgen,,'uy',1,-gap,gapmin,60,'TRUP'
+
+!!!----------------------------
+
+nsel,s,loc,x,0
+d,all,UX,0
+d,all,UY,0
+d,all,UZ,0
+
+nsel,s,loc,y,0
+d,all,volt,0
+d,all,UX,0
+d,all,UY,0
+d,all,UZ,0
+
+allsel,all
+finish
+
+
+!---------------
+/solu
+eqslv,sparse
+!cnvtol,U,1,0.07
+nlgeom,on
+outres,all,last
+
+kk=1
+*do,_ii,1,loop
+cmsel,s,trup
+d,all,volt,vltg
+volta(_ii)=vltg
+vltg=vltg+kk*vstep
+alls
+solve
+*enddo
+
+fini
+
+/post1
+*do,ll,1,loop
+set,ll,last
+cmsel,s,bnode
+nsort,U,sum,1,1
+*get,displ(ll),sort,0,max
+*enddo
+
+
+/nopr
+  *msg,info
+ %/ Voltage  Displacement
+  *vwrite,volta(1),displ(1)
+  (f9.3,f12.4,f12.1)
+ *msg,info
+%/
+
+fini

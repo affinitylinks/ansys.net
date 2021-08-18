@@ -1,0 +1,23 @@
+!!!!Greyscaling Contours!!!!!
+
+!!!number of shades
+num=100
+
+!!!!!!
+!!!Start and end lightness 0=black 100=white!!!
+
+ss=25		!Start Shade
+
+es=95		!End Shade
+!!!!!!!!!!!
+
+!!Color setting
+
+/CONT,1,num,AUTO
+*do,i,1,num+1
+	/RGB,CNTR,es-((es-ss)/num)*(i-1),es-((es-ss)/num)*(i-1),es-((es-ss)/num)*(i-1),i,,,num
+*enddo
+!!
+/replo
+
+!!!!!!!!!!!

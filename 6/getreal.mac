@@ -1,0 +1,48 @@
+
+! bgn REAL definitions
+*DEL, cENAM $ *DIM, cENAM, CHAR, 200
+*DEL, cREAL $ *DIM, cREAL, CHAR, 20, 200
+*DEL, nREAL $ *DIM, nREAL, ARRA, 200
+
+cENAM(  1) = 'LINK1'    $ nREAL(  1) =  2 $ cREAL(1,  1) = 'AREA', 'ISTRN'
+cENAM(  2) = 'PLANE2'   $ nREAL(  2) =  0
+cENAM(  3) = 'BEAM3'    $ nREAL(  3) =  6 $ cREAL(1,  3) = 'AREA', 'IZZ', 'HEIGHT', 'SHEARZ', 'ISTRN', 'ADDMAS'
+! ...
+! ...
+! ...
+cENAM( 12) = 'CONTAC12' $ nREAL(  3) =  7 $ cREAL(1, 12) = 'THETA', 'KN', 'INTF', 'START', 'KS', 'REDFACT'
+! ...
+! ...
+! ...
+cENAM( 92) = 'SOLID92'  $ nREAL(  3) =  7 $ cREAL(1, 12) = 'THETA', 'KN', 'INTF', 'START', 'KS', 'REDFACT'
+! ...
+! ...
+! ...
+cENAM(200) = 'MESH200'  $ nREAL(200) =  0
+! end REAL definitions
+
+
+! to get and write out the element real constants
+*GET, elCOUNT, ELEM,, COUNT
+nELEM = 0
+*CFO, MyELIS, txt
+*DO, i, 1, 3!elCOUNT
+   nELEM = ELNEXT(nELEM)
+   *GET, nENAM, ELEM, nELEM, ATTR, ENAM
+   *GET, nRCON, ELEM, nELEM, ATTR, REAL
+   temp = cENAM(nENAM)
+   *VWR, CHRVAL(nELEM), temp, CHRVAL(nRCON)
+('Elem Nr = ', A10, A8, '  RCON = ', A8)
+   *IF, nREAL(nENAM), EQ, 0, THEN
+      *VWR
+(5X, 'No Real Constants')
+   *ELSE
+      *DO, nPOS, 1, nREAL(nENAM)
+         *GET, nVALUE, RCON, nRCON, CONST, nPOS
+         *VWR, cREAL(nPOS,nENAM), nVALUE
+(5X, A8, ' = ', 1PE13.6)
+      *ENDDO
+   *ENDIF
+*ENDDO
+*CFC
+*UIL, MyELIS, txt

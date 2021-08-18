@@ -1,0 +1,388 @@
+
+!************* SCRIPT TO DETERMINE MINERS RULE *******************************************************************
+!
+!************* ANSYS REV 13  *************************************************************************************
+!
+!************* LARRY.T.BRYANT@comcast.net ************************************************************************
+!
+! This script was constructed to compute the Alternating and mean stresses for loads that change between load 
+! step #2 and step #3 on each of three different databases. Obviously, you will need to change the load case 
+! definitions that are relevant for your situation.
+!
+! I have used a Power curve fit of a fracture criteria that will not apply to your case. You will therefore need 
+! to locate a criteria curve and fit this for your case and replace my equations in order to get good results.
+!
+! Use the exact same database (nodes, elements, must be the same for all loads cases). When you see how simple the
+! the logic actually is, you will be able to add additional load cases without too much trouble.
+!
+! 
+!
+!
+!*****************************************************************************************************************
+!
+!
+
+
+/post1
+
+file,CASE1,rst					!*** First structural results set for CASE1 cycles	
+
+allsel
+
+CMSEL,S,COMPONENT_NAME				!*** Component Name for which calculations are evaluated	
+
+nelem   
+
+csys
+dsys
+rsys
+
+*get,maxnode,node,0,num,max			!*** Max Number Of Nodes on component or Database
+*get,minode,node,0,num,min			!*** Min Number Of Nodes on component or Database
+
+*dim,CASE1_cycles,array,maxnode,1		!*** ARRAY With Number of CASE1 applied cycles
+*dim,allowed_CASE1_cycles,array,maxnode,1	!*** ARRAY With allowed Number of CASE1 cycles	
+*dim,CASE1_cycles_ratio,array,maxnode,1		!*** ARRAY With ratio of applied to allowed Number of CASE1 cycles	
+
+*dim,CASE2_cycles,array,maxnode,1		!*** ARRAY With Number of CASE2 applied cycles
+*dim,allowed_CASE2_cycles,array,maxnode,1	!*** ARRAY With allowed Number of CASE2 cycles	
+*dim,CASE2_cycles_ratio,array,maxnode,1		!*** ARRAY With ratio of applied to allowed Number of CASE2 cycles	
+
+*dim,CASE3_cycles,array,maxnode,1		!*** ARRAY With Number of CASE3 applied cycles
+*dim,allowed_CASE3_cycles,array,maxnode,1	!*** ARRAY With allowed Number of CASE3 cycles	
+*dim,CASE3_cycles_ratio,array,maxnode,1		!*** ARRAY With ratio of applied to allowed Number of CASE3 cycles	
+
+*voper,CASE1_cycles,CASE1_cycles,ADD,25e6	!*** APPLIED NUMBER OF CYCLES for CASE1 stress Database
+*voper,CASE2_cycles,CASE2_cycles,ADD,12.5e6	!*** APPLIED NUMBER OF CYCLES for CASE2 stress Database
+*voper,CASE3_cycles,CASE3_cycles,ADD,75e6	!*** APPLIED NUMBER OF CYCLES for CASE1 stress Database
+
+*dim,WSAV,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS	
+*dim,XSAV,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+*dim,YSAV,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+*dim,ZSAV,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+
+*dim,WSAV2,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+*dim,XSAV2,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+*dim,YSAV2,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+*dim,ZSAV2,array,maxnode,1			!*** ARRAY USED FOR INTERMEDIATE RESULTS
+
+*dim,mean_CASE1,array,maxnode,1			!*** ARRAY USED FOR CASE1 MEAN Stress
+*dim,altern_CASE1,array,maxnode,1		!*** ARRAY USED FOR CASE1 ALTERNATING STRESS
+
+*dim,mean_CASE2,array,maxnode,1			!*** ARRAY USED FOR CASE2 MEAN Stress
+*dim,altern_CASE2,array,maxnode,1		!*** ARRAY USED FOR CASE2 ALTERNATING STRESS
+
+*dim,mean_CASE3,array,maxnode,1			!*** ARRAY USED FOR CASE3 MEAN STRESS
+*dim,altern_CASE3,array,maxnode,1		!*** ARRAY USED FOR CASE3 ALTERNATING STRESS
+
+*dim,miners_sum,array,maxnode,1			!*** ARRAY USED FOR MINERS SUM 
+
+
+!********************** CONSTRUCT CASE1 SOLUTION **************************************************************
+!****
+!**** COMPLETE LCASE COMBINATIIONS AND SAVE LOAD CASES for ALTERNATING & MEAN STRESSES TO DETERMINE ***********
+!****
+!**************************************************************************************************************
+
+!***** CREATE   ALTERNATING  STRESS  LORENTZ LOAD UP - LORENTZ LOAD CASE DOWN
+
+RSYS,SOLU
+
+!*** COMPUTE ALTERNATING STRESS LCASE OPERATIONS *************************************************************
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,20	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,SUB,30	!** SUBTRACT LORENTZ LOAD DOWN FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,40	!** WRITE OUT ALTERNATING STRESSES INTO LCASE #40
+
+LCASE,40	!** READ BACK IN THE LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET ALTERNATING STRESS RESULTS AFTER LCASE COMBINATIONS ************************************************
+
+
+*vget,altern_CASE1(minode),node,minode,s,1
+
+
+!*** COMPARE LCASE OPERATIONS FOR MEAN STRSSES  **************************************************************
+
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,30	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,ADD,20	!** SUBTRACT LORENTZ LOAD DOWN `FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,50	!** WRITE OUT CASE2IVE MEAN STRESSES INTO LCASE #40
+
+LCASE,50	!** READ BACK IN THE CASE2IVE MEAN LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET MEAN STRESS RESULTS AFTER LCASE COMBINATIONS *******************************************************
+
+
+*vget,mean_CASE1(minode),node,minode,s,1
+
+
+/CWD,'E:\  YOUR PATH  \CASE2'		!**** CHANGE WORKING DIRECTORY ***************************************
+
+
+!********************** CONSTRUCT CASE2 SOLUTION **************************************************************
+!****
+!**** COMPLETE LCASE COMBINATIIONS AND SAVE LOAD CASES for ALTERNATING & MEAN STRESSES TO DETERMINE ***********
+!****
+!**************************************************************************************************************
+
+!***** CREATE   ALTERNATING  STRESS  LORENTZ LOAD UP - LORENTZ LOAD CASE DOWN
+
+/post1
+
+
+file,CASE2,rst				!*** Second structural results set for CASE2 cycles	
+
+allsel
+
+CMSEL,S,COMPONENT_NAME
+
+nelem   
+
+
+RSYS,SOLU
+
+
+!*** COMPUTE ALTERNATING STRESS LCASE OPERATIONS *********************************************************
+
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,20	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,SUB,30	!** SUBTRACT LORENTZ LOAD DOWN FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,60	!** WRITE OUT ALTERNATING STRESSES INTO LCASE #40
+
+LCASE,60	!** READ BACK IN THE LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET ALTERNATING STRESS RESULTS AFTER LCASE COMBINATIONS **********************************************
+
+
+*vget,altern_CASE2(minode),node,minode,s,1
+
+
+!*** COMPARE LCASE OPERATIONS FOR MEAN STRSSES  *************************************************************
+
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,30	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,ADD,20	!** SUBTRACT LORENTZ LOAD DOWN FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,70	!** WRITE OUT CASE2IVE MEAN STRESSES INTO LCASE #40
+
+LCASE,70	!** READ BACK IN THE CASE2IVE MEAN LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET MEAN STRESS RESULTS AFTER LCASE COMBINATIONS *******************************************************
+
+
+*vget,mean_CASE2(minode),node,minode,s,1
+
+
+/CWD,'E:\  YOUR PATH  \   \CASE3	!*************************CHANGE WORKING DIRECTORY To CASE3************
+
+
+!********************** CONSTRUCT NON CASE2 SOLUTION **********************************************************
+!****
+!**** COMPLETE LCASE COMBINATIIONS AND SAVE LOAD CASES for ALTERNATING & MEAN STRESSES TO DETERMINE ***********
+!****
+!**************************************************************************************************************
+!
+!***** CREATE   ALTERNATING  STRESS  LORENTZ LOAD UP - LORENTZ LOAD CASE DOWN *********************************
+!
+
+
+file,CASE3,rst				!*** Third structural results set for CASE3 cycles	
+
+CMSEL,S,COMPONENT_NAME
+
+nelem   
+
+
+RSYS,SOLU
+
+
+!*** COMPUTE ALTERNATING STRESS LCASE OPERATIONS **************************************************************
+
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,20	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,SUB,30	!** SUBTRACT LORENTZ LOAD DOWN FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,80	!** WRITE OUT ALTERNATING STRESSES INTO LCASE #40
+
+LCASE,80	!** READ BACK IN THE LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET ALTERNATING STRESS RESULTS AFTER LCASE COMBINATIONS **************************************************
+
+
+*vget,altern_CASE3(minode),node,minode,s,1
+
+
+
+!*** COMPARE LCASE OPERATIONS FOR MEAN STRSSES  ***************************************************************
+
+
+LCDEF,20,2	!** DEFINE LCASE 20 as step 2 Lorentz load down
+
+LCDEF,30,3	!** DEFINE LCASE 30 as step 3 Lorentz load up
+
+LCFACT,20,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD DOWN
+
+LCFACT,30,.5	!** DEFINE LOAD CASE FACTOR FOR ALTERNATING & MEAN STRESS FOR LORENTZ LOAD UP
+
+LCASE,30	!** sET POINTER TO LOENTZ LOAD UP  
+
+LCOPER,ADD,20	!** SUBTRACT LORENTZ LOAD DOWN FROM LORENTZ LOAD UP WITH FACTOR OF 0.5 APPLIED TO BOTH DATA SETS
+
+LCWRITE,90	!** WRITE OUT CASE2IVE MEAN STRESSES INTO LCASE #40
+
+LCASE,90	!** READ BACK IN THE CASE2IVE MEAN LOAD CASE 40 INTO THE DATA BASE.
+
+
+!**** GET MEAN STRESS RESULTS AFTER LCASE COMBINATIONS *********************************************************
+
+
+*vget,mean_CASE3(minode),node,minode,s,1
+
+
+!*********** DETERMINE NUMBER OF ALLOWED CYCLES AT EACH NODE ***************************************************
+
+!*********** ASSUMED CRITERIA CURVE FROM FRACTURE MECHANICS*****************************************************
+
+!*********** EACH USER SHOULD DEFINE THEIR OWN CRITERIA CURVE APPLICABLE TO THEIR CASE *************************
+
+!*********** CYCLES=97210472301.0753*ALTERNATING STRESS^-2.3582 *************************************************
+
+!*********** NOTE: IMPROVE THIS BY ADDING A SECOND RELATIONSHIP AT DIFFERENT MEAN STRESS ************************
+
+!*********** CHANGE CRITERIA CURVE TO TABLE ARRAY AND INTERPOLOATE BETWEEN TWO CURVES ***************************
+
+!***************************************************************************************************************
+
+
+!***** CASE1 CYCLES ********************************************************************************************
+
+*VABS,1
+
+*VOPER,WSAV2(minode),altern_CASE1(minode),DIV,1e6
+
+*VFUN,WSAV(minode),PWR,WSAV2(minode),-2.3582 
+
+*VOPER,allowed_CASE1_cycles(minode),WSAV(minode),MULT,97210472301.0753
+
+*VOPER,CASE1_cycles_ratio(minode),CASE1_cycles(minode),DIV,allowed_CASE1_cycles(minode)
+
+!***** CASE2 CYCLES *********************************************************************************************
+
+*VABS,1
+
+*VOPER,XSAV2(minode),altern_CASE2(minode),DIV,1e6
+
+*VFUN,XSAV(minode),PWR,XSAV2(minode),-2.3582 
+
+*VOPER,allowed_CASE2_cycles(minode),XSAV(minode),MULT,97210472301.0753
+
+*VOPER,CASE2_cycles_ratio(minode),CASE2_cycles(minode),DIV,allowed_CASE2_cycles(minode)
+
+!***** CASE3 CYCLES *********************************************************************************************
+
+*VABS,1
+
+*VOPER,YSAV2(minode),altern_CASE3(minode),DIV,1e6
+
+*VFUN,YSAV(minode),PWR,YSAV2(minode),-2.3582 
+
+*VOPER,allowed_CASE3_cycles(minode),YSAV(minode),MULT,97210472301.0753
+
+*VOPER,CASE3_cycles_ratio(minode),CASE3_cycles(minode),DIV,allowed_CASE3_cycles(minode)
+
+
+!**** COMPUTE MINERS SUMMATION OF THREE LOAD CASES ***************************************************************
+
+*VOPER,ZSAV(minode),CASE1_cycles_ratio(minode),ADD,CASE2_cycles_ratio(minode)
+
+*VOPER,miners_sum(minode),ZSAV(minode),ADD,CASE3_cycles_ratio(minode)
+
+*vput,miners_sum(minode),node,minode,s,1
+
+
+!**** SET CONTOUR  PLOT CONTROLS *********************************************************************************
+
+
+/contour,1,25,0,,1
+/contour,2,25,0,,1
+/GRAPHICS,FULL
+/PLOPTS,INFO,1  
+/PLOPTS,LEG1,1  
+/PLOPTS,LEG2,0  
+/PLOPTS,LEG3,1  
+/PLOPTS,FRAME,1 
+/PLOPTS,TITLE,1 
+/PLOPTS,MINM,1  
+/PLOPTS,FILE,0  
+/PLOPTS,LOGO,1  
+/PLOPTS,WINS,1  
+/PLOPTS,WP,0
+/PLOPTS,DATE,2  
+/TRIAD,ORIG 
+/TITLE,MINERS SUM  
+
+plnsol,s,1
+
+
+
+
+
+
+
+
+
+

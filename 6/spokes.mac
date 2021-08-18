@@ -1,0 +1,266 @@
+! MACRO:         spokes.mac
+!
+! Created By:    Pat Cunningham 
+!		 Computer Aided Engineering Associates Inc.
+!                60 Middle Quarter Mall
+!                Woodbury, CT 06798
+!                (203) 263-4606
+!                http://www.caeai.com/
+!  
+! Date:          March 20, 2002
+! 
+! Disclaimer:    This macro is provided without guarantee, written or implied,
+!                as to the validity of the information that it generates.
+!                It is the responsibility of the user to independently verify
+!                all results.  This macro may be freely distributed as long 
+!                this header remains unchanged.
+!
+! ANSYS Version: 7.0
+!
+! Description:  The macro will create a connection between a selected 
+!		set of nodes and a master node typically located at the 
+!		center of curvature of a line connecting the selected nodes. 
+!		
+!		The user is prompted to input an existing component name 
+!		to specify the nodes to be connected (slave node set). 
+!		If a slave node component does not exist, the user is prompted
+!		to select the desired nodes. 
+!
+!		The user is prompted to input a master node number.  
+!		If a master node does not exist in the model, the master node
+! 		number should be input as 0 (default).  The macro will 
+!		generate a master node at the average location of the slave 
+!		nodes. 
+!
+!
+! 		The connection options are as follows:
+!
+!		1. Rigid connection, small deflection analysis:
+!		The CERIG command is used to define a rigid connection using 
+!		constraint equations. A mass element (mass input by the user) 
+!		will be defined at the master node to allow moment loading for this case. 
+!
+!		2. Rigid connection, large deflection analysis: 
+!		MPC184 elements are defined as a rigid beams with translational and rotational 
+!		degrees of freedom. The MPC184 rigid beams will transmit forces and moments from 
+!		the master node to the slave nodes. No mass element is generated at the master 
+!		node for this type of connection. 
+!
+!		3. Flexible connection, small deflection analysis:
+!		The RBE3 command is used to define a weighted connection between the master node 
+!		and the surrounding slave nodes. An array of the weighting factors for the slave 
+!		nodes must be defined prior to running the macro. If no weighting factor array is 
+!		defined or the specified array does not match the active slave node set, the default 
+!		weighting factor for each node is defined as 1.0.  The user should check the ANSYS
+!		output window to confirm that the correct weighting factors have been applied. 
+!
+! Dependencies:  None
+!
+! Arguments:    None
+!
+!                
+!
+!
+!---------------------------------------------------------------------------------------------
+!
+!
+fini
+/prep7
+/pmacro
+!
+*dim,ans,char,4
+ans(3)='y'
+ans(4)='n'
+!
+*dim,c_name,char,1
+*dim,wt_name,char,1
+!
+! define or select the slave nodes
+*ask,ans(1),Do you have a nodal component defined for the slave nodes?,'y'
+!
+	*if,ans(1),eq,ans(3),then
+	*ask,c_name(1),Please enter the slave node component name,' '
+	cmsel,s,c_name(1)
+	cm,s_node,node
+	*else
+		*msg,ui
+		Pick the slave nodes and press OK
+!
+		nsel,s,p
+		cm,s_node,node
+	*endif
+!	
+!
+! fill an array with the selected nodes
+*get,slv_num,node,,count
+*dim,slv_node,array,slv_num
+*get,n_active,node,,num,min
+slv_node(1)=n_active
+*do,i,2,slv_num
+	*get,n_next,node,n_active,nxth
+	slv_node(i)=n_next
+	n_active=n_next
+*enddo
+!
+!
+! Query for master node (or use average location of slave nodes)
+!
+	multipro,'start',1
+	*cset,1,3,m_node,'Master node ',0.0 
+	*cset,61,62,'Master of 0 will create a node',' at the ave slave node location.' 
+!	*cset,63,64,'the average slave node location.’
+	multipro,'end' 
+!
+	*if,m_node,eq,0,then
+	cmsel,s,s_node
+	nwpave,all
+	csys,4
+	*get,dx,cdsy,4,loc,x
+	*get,dy,cdsy,4,loc,y
+	*get,dz,cdsy,4,loc,z
+	nsel,all
+	*get,n_max,node,,num,max
+	m_node=n_max+1
+	csys
+	n,m_node,dx,dy,dz
+	*else
+	*endif
+!	
+! Define the type of connection required
+!
+multipro,'start',1
+	*cset,1,3,con_type,'Specify connection (1,2 or 3)',1 
+	*cset,61,62,'Type 1=rigid/small deflection.',' Type 2=rigid/large deflection.'
+	*cset,63,64,'Type 3=flexible/small deflection','.'
+multipro,'end'
+!
+! Define the connections
+!
+!
+! Type 1 - rigid/small deflection
+*if,con_type,eq,1,then
+! get the mass at the extra node
+	m_mass=1e-6
+	multipro,'start',1
+		*cset,1,3,m_mass,'Mass of the master node',0.0 
+		*cset,61,62,'Please enter the mass of the ',' master node.' 
+		*cset,63,64,'The default value is 1e-6 units.'
+	multipro,'end'
+!	
+! set up the node, real table and element type for mass element. 
+!	
+	*get,max_et,etyp,,num,max
+	m_et=max_et+1
+	et,m_et,21,
+	*get,max_rl,rcon,,num,max 
+	m_rl=max_rl+1
+	r,m_rl,m_mass
+!
+!
+! define the mass element
+	mat
+	type,m_et
+	real,m_rl
+	e,m_node
+!
+	cmsel,s,s_node
+	nsel,a,node,,m_node
+	cerig,m_node,all,all
+	*msg,ui
+	A rigid connection using constraint equations has been defined. 
+!
+! Type 2 - rigid/large deflection
+*elseif,con_type,eq,2,then
+	*get,max_et,etyp,,num,max
+	et,max_et+1,mpc184,1
+	type,max_et+1
+	max_mat=mpinqr(0,0,14)
+	mp,dens,max_mat+1,0
+	mp,alpx,max_mat+1,0
+	mat,max_mat+1
+	real
+	cmsel,s,s_node
+	nsel,a,node,,m_node
+	*do,i,1,slv_num
+		e,m_node,slv_node(i)
+	*enddo
+	/pbc,ce,1
+	/replo
+	*msg,ui
+	A rigid connection has been generated using MPC184 beam elements. 
+!
+! Type 3 - flexible/small deflection
+*elseif,con_type,eq,3,then
+	cmsel,s,s_node
+	nsel,a,node,,m_node
+	! get the mass at the extra node
+		m_mass=1e-6
+		multipro,'start',1
+			*cset,1,3,m_mass,'Mass of the master node',0.0 
+			*cset,61,62,'Please enter the mass of the ',' master node.' 
+			*cset,63,64,'The default value is 1e-6 units.'
+		multipro,'end'
+	!	
+	! set up the node, real table and element type for mass element. 
+	!	
+		*get,max_et,etyp,,num,max
+		m_et=max_et+1
+		et,m_et,21,
+		*get,max_rl,rcon,,num,max 
+		m_rl=max_rl+1
+	r,m_rl,m_mass
+!
+!
+! define the mass element
+	mat
+	type,m_et
+	real,m_rl
+	e,m_node
+!
+!
+! set up the rbe3 weighting factor array
+	*dim,wf_def,array,slv_num
+! 
+	*ask,ans(1),Do you have a weighting factor array defined?,'y'
+	*if,ans(1),eq,ans(3),then
+		*ask,wt_name(1),Enter the weighting factor array name,'wt_name'
+		rbe3,m_node,all,s_node,wt_name(1)
+!
+		*msg,ui
+		Check the ANSYS output window to confirm weighting factors 
+!		
+	*else
+		rbe3,m_node,all,s_node,
+!
+		*msg,ui
+		Default weighting factor of 1.0 used for all connections.
+	*endif
+!
+*else
+	*msg,ui
+	Connection choice not valid. Rerun and choose from types 1-3. 
+*endif	
+!
+! reset all parameters used in this macro
+*set,wt_name(1)
+*set,m_node
+*set,con_type
+*set,max_et
+*set,max_rl
+*set,max_nd
+*set,max_mat
+*set,dx
+*set,dy
+*set,dz
+*set,i
+*set,m_et
+*set,m_mass
+*set,m_rl
+*set,n_active
+*set,n_max
+*set,n_next
+*set,slv_num
+*set,slv_node
+*set,wt_fact
+!
+

@@ -1,0 +1,418 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Simple problem for prestressed bolt
+/com,  179 element
+/com,
+
+*get,STATGUI,active,,int
+*if,STATGUI,eq,0,then
+  /show,file
+*endif
+/pnum,type,1
+/num,1
+/auto
+/triad,lbot
+/gtype,1,keyp,0
+/gtype,1,line,0
+/gtype,1,area,0
+
+NUM_BOLT = 1
+NUM_PLTP = 2
+NUM_PLBT = 3
+
+G = 386.4
+
+D_PLTPH = 1/8
+D_PLTPR = 1
+D_PLBTH = 1/8
+D_PLBTR = D_PLTPR
+D_PLHFR = 3/16
+D_BOLTR = 1/16
+D_BOLTH = D_PLTPH + D_PLBTH
+D_WASHR = 1/8
+D_WASHH = 1/32
+D_TOL   = 0.001
+
+PTSNODE = 99999
+PRELOAD = 500
+
+M_MU    = .6
+M_FKN   = 10
+M_ICONT = 1e-6
+
+ELEMSIZE= 1/64
+
+/prep7
+et,NUM_BOLT,182
+et,NUM_PLTP,182
+et,NUM_PLBT,182
+
+keyopt,NUM_BOLT,1,0
+keyopt,NUM_BOLT,3,1
+keyopt,NUM_PLTP,1,0
+keyopt,NUM_PLTP,3,1
+keyopt,NUM_PLBT,1,0
+keyopt,NUM_PLBT,3,1
+
+r,NUM_BOLT,
+r,NUM_PLTP,
+r,NUM_PLBT,
+
+mp,ex  ,NUM_BOLT,30e6
+mp,nuxy,NUM_BOLT,.36
+mp,dens,NUM_BOLT,.3/G
+mp,ex  ,NUM_PLTP,10e6
+mp,nuxy,NUM_PLTP,.30
+mp,dens,NUM_PLTP,.1/G
+mp,ex  ,NUM_PLBT,10e6
+mp,nuxy,NUM_PLBT,.30
+mp,dens,NUM_PLBT,.1/G
+
+tb,bkin,NUM_BOLT,1,,1
+tbtemp,0
+tbdata,1,55000,6e6
+tb,bkin,NUM_PLTP,1,,1
+tbtemp,0
+tbdata,1,36000,0
+tb,bkin,NUM_PLBT,1,,1
+tbtemp,0
+tbdata,1,38000,0
+
+rectng,0,D_PLTPR,0,D_PLTPH
+rectng,0,D_PLHFR,0,D_PLTPH
+rectng,0,D_BOLTR+D_TOL,0,D_BOLTH
+aovlap,all
+cm,A_PLBT,area
+aatt,NUM_PLBT,NUM_PLBT,NUM_PLBT
+asel,r,loc,x,0,D_BOLTR+D_TOL
+adele,all,,,1
+rectng,0,D_BOLTR+D_TOL,0,D_BOLTH
+rectng,0,D_PLBTR,D_PLTPH,D_PLTPH+D_PLBTH
+rectng,0,D_PLHFR,D_PLTPH,D_PLTPH+D_PLBTH
+aovlap,all
+cm,A_PLTP,area
+aatt,NUM_PLTP,NUM_PLTP,NUM_PLTP
+asel,r,loc,x,0,D_BOLTR+D_TOL
+adele,all,,,1
+rectng,0,D_BOLTR,-D_WASHH,D_BOLTH+D_WASHH
+rectng,0,D_WASHR,D_BOLTH,D_BOLTH+D_WASHH
+rectng,0,D_WASHR,0,-D_WASHH
+aovlap,all
+cm,A_BOLT,area
+aatt,NUM_BOLT,NUM_BOLT,NUM_BOLT
+allsel,all
+
+mshape,0
+mshkey,1
+esize,ELEMSIZE
+amesh,all
+
+cmsel,s,A_BOLT
+asel,r,loc,y,0,D_BOLTH
+BASEAREA = arnext(0)
+allsel,below
+nsel,r,loc,y,D_PLBTH
+nsel,r,loc,x,0
+BASENODE = ndnext(0)
+allsel,all
+n,PTSNODE,D_PLTPR+0.1,D_PLBTH
+ptsmesh,PTSNODE,area,BASEAREA,0,Y,,BASENODE,,5,5,E_PTSM,N_PTSM
+
+et,10,169
+et,11,171
+keyopt,11,6,1
+r ,10
+rmodif,10,3,M_FKN
+rmodif,10,5,M_ICONT
+mp,mu,10,M_MU
+type,10
+real,10
+mat ,10
+cmsel,s,A_PLTP
+allsel,below,area
+lsel,r,loc,y,D_PLTPH
+nsll,s,1
+cm,N_PLTP1,node
+esurf
+type,11
+cmsel,s,A_PLBT
+allsel,below,area
+lsel,r,loc,y,D_PLBTH
+nsll,s,1
+cm,N_PLBT1,node
+esurf
+
+et,12,169
+et,13,171
+keyopt,13,6,1
+r ,12
+rmodif,12,3,M_FKN
+rmodif,12,5,M_ICONT
+mp,mu,12,M_MU
+type,12
+real,12
+mat ,12
+cmsel,s,A_BOLT
+allsel,below,area
+lsel,r,loc,x,D_BOLTR
+lsel,r,loc,y,0,D_BOLTH
+nsll,s,1
+cm,N_BOLT1,node
+allsel,below,area
+lsel,r,loc,y,D_BOLTH
+lsel,r,loc,x,D_BOLTR,D_WASHR
+nsll,s,1
+cmsel,a,N_BOLT1
+cm,N_BOLT1,node
+allsel,below,area
+lsel,r,loc,y,0
+lsel,r,loc,x,D_BOLTR,D_WASHR
+nsll,s,1
+cmsel,a,N_BOLT1
+cm,N_BOLT1,node
+esurf
+type,13
+cmsel,s,A_PLTP
+allsel,below,area
+lsel,r,loc,x,D_BOLTR+D_TOL
+nsll,s,1
+cm,N_PLTP2,node
+allsel,below,area
+lsel,r,loc,y,D_PLTPH+D_PLBTH
+nsll,s,1
+cmsel,a,N_PLTP2
+cm,N_PLTP2,node
+esurf
+
+et,14,169
+et,15,171
+keyopt,15,6,1
+r ,14
+rmodif,14,3,M_FKN
+rmodif,14,5,M_ICONT
+mp,mu,14,M_MU
+type,14
+real,14
+mat ,14
+allsel,all
+cmsel,s,N_BOLT1
+esurf
+type,15
+cmsel,s,A_PLBT
+allsel,below,area
+lsel,r,loc,x,D_BOLTR+D_TOL
+nsll,s,1
+cm,N_PLBT2,node
+allsel,below,area
+lsel,r,loc,y,0
+nsll,s,1
+cmsel,a,N_PLBT2
+cm,N_PLBT2,node
+esurf
+
+et,20,153
+keyopt,20,3,1
+keyopt,20,4,0
+keyopt,20,11,2
+keyopt,20,12,0
+r ,20
+mp,dens,20,1e-32
+type,20
+real,20
+mat ,20
+cmsel,s,A_PLTP
+allsel,below,area
+lsel,r,loc,x,D_PLTPR
+nsll,s,1
+esurf
+
+et,21,153
+keyopt,21,3,1
+keyopt,21,4,0
+keyopt,21,11,2
+keyopt,21,12,0
+r ,21
+mp,dens,21,1e-32
+type,21
+real,21
+mat ,21
+cmsel,s,A_PLBT
+allsel,below,area
+lsel,r,loc,x,D_PLBTR
+nsll,s,1
+esurf
+
+et,22,153
+keyopt,22,3,1
+keyopt,22,4,0
+keyopt,22,11,2
+keyopt,22,12,0
+r ,22
+mp,dens,22,1e-32
+type,22
+real,22
+mat ,22
+cmsel,s,A_PLTP
+allsel,below,area
+lsel,r,loc,y,D_PLBTH+D_PLTPH
+lsel,r,loc,x,D_PLHFR,D_PLTPR
+nsll,s,1
+esurf
+
+et,23,153
+keyopt,23,3,1
+keyopt,23,4,0
+keyopt,23,11,2
+keyopt,23,12,0
+r ,23
+mp,dens,23,1e-32
+type,23
+real,23
+mat ,23
+cmsel,s,A_PLBT
+allsel,below,area
+lsel,r,loc,y,0
+lsel,r,loc,x,D_PLHFR,D_PLBTR
+nsll,s,1
+esurf
+
+allsel,all
+finish
+
+/solu
+antype,static
+nlgeom,on
+eqslv,sparse
+nsub,5
+outres,all,last
+rescon,all,last
+monitor,3,PTSNODE,ux
+
+f,PTSNODE,fx,PRELOAD
+lsel,r,loc,x,D_PLTPR
+!lsel,r,loc,y,0,D_PLBTH
+nsll,s,1
+d,all,uy
+!nsel,s,loc,y,-D_WASHH
+!nsel,r,loc,x,0,
+!d,all,uy
+
+allsel,all
+/title,Bolt Preload of %PRELOAD% lbs
+sbctran
+eplot
+
+solve
+finish
+
+/post1
+set,last
+/dscale,1,off
+plnsol,s,x
+/contour,1,9,-40e3,,60e3
+plnsol,s,y
+/contour,1,9
+plnsol,s,z
+plnsol,s,eqv
+plnsol,cont,pres
+/dscale,1,auto
+plnsol,u,sum
+finish
+
+/solu
+antype,static,rest
+nsub,1
+monitor,3,PTSNODE,fx
+fdele,PTSNODE,fx
+d,PTSNODE,ux,%_FIX%
+/title,Preload Verification
+solve
+finish
+
+/post1
+set,last
+/dscale,1,off
+plnsol,s,x
+/contour,1,9,-40e3,,60e3
+plnsol,s,y
+/contour,1,9
+plnsol,s,z
+plnsol,s,eqv
+plnsol,cont,pres
+/dscale,1,auto
+plnsol,u,sum
+finish
+
+/solu
+antype,static,rest
+nsub,5
+esel,s,type,,20
+sfe,all,4,pres,,500*16,1,0,0
+esel,s,type,,21
+sfe,all,4,pres,,500*16,-1,0,0
+esel,s,type,,22
+sfe,all,4,pres,,10,0,-1,0
+esel,s,type,,23
+sfe,all,4,pres,,10,0,1,0
+allsel,all
+/title,Shear Load Applied Between Plates
+solve
+finish
+
+/post1
+set,last
+/dscale,1,off
+plnsol,s,x
+/contour,1,9,-40e3,,60e3
+plnsol,s,y
+/contour,1,9
+plnsol,s,z
+plnsol,s,eqv
+plnsol,cont,pres
+/dscale,1,auto
+plnsol,u,sum
+finish
+
+/solu
+antype,static,rest,2,,continuous
+nsub,10
+lsel,r,loc,x,D_PLTPR
+lsel,r,loc,y,D_PLBTH,D_PLBTH+D_PLTPH
+nsll,s,1
+ddele,all,uy
+nsel,all
+esel,s,type,,20
+sfe,all,4,pres,,500,,1,0
+allsel,all
+/title,Load Applied on Top Plate
+solve
+finish
+
+/post1
+set,last
+/dscale,1,off
+plnsol,s,x
+/contour,1,9,-40e3,,60e3
+plnsol,s,y
+/contour,1,9
+plnsol,s,z
+plnsol,s,eqv
+plnsol,cont,pres
+/dscale,1,auto
+plnsol,u,sum
+finish
+
+*if,STATGUI,eq,0,then
+  /exit
+*endif

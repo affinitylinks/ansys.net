@@ -1,0 +1,101 @@
+!
+! a2comet.mac
+! by Fern Thomassy 14 Sep 1999
+!
+! This macro reads uses the current jobname and writes model
+! data for elements attached to the currently selected nodes
+! and writes out a file suitable for COMET
+!
+! The output to comet is assumed to be ONLY 4 node tet elements.
+! 10 node tet elements are treated a 4 node elements.
+
+! This macro was tested for ANSYS 5.5.3 and COMET 4.0
+
+! Appendix B "COMET Native File Formats", section B.2 
+! was reference for the output format.
+
+! No modifications are made to the ANSYS database and the resulting
+! output is the file
+!    jobname.model.cnf
+! where jobname is the the current ANSYS jobname setting
+
+FINISH
+/NOPR
+/PREP7
+
+*GET,jname,ACTIVE,,JOBNAM
+*CFOPEN,jname,m.cnf
+
+CM,nstart,NODE
+CM,estart,ELEM
+
+ESLN
+NSLE,S,CORNER
+
+! Frist write comments and headers
+*VWRITE
+('$ COMET NATIVE FILE FORMAT MODEL DATA	') 
+! Frist write comments and headers 
+*VWRITE,jname
+('$ TRANSLATED FROM ANSYS ',A10,'.db')
+*VWRITE
+('VERSION : 4.0')
+*VWRITE
+('$')
+*VWRITE
+('BEGIN_SET : MODEL_DESCRIPTION')
+
+*GET,nnode,NODE,,COUNT
+*GET,nelem,NODE,,COUNT
+  
+*VWRITE
+('BEGIN_NODE')
+
+  nnum = 0                      !write node data
+  *DO,i2,1,nnode,1
+    nnum = NDNEXT(nnum)
+    *VWRITE,CHRVAL(nnum),NX(nnum),NY(NNUM),NZ(nnum)
+(A8,3('  ',E16.9),'   0')
+  *ENDDO
+
+*VWRITE
+('END_NODE')
+
+
+*VWRITE
+('BEGIN_ELEM')
+
+  nnum = 0                      !write element data
+                                !note TET4 is assumed
+  *DO,i2,1,nnode,1
+    nnum = ELNEXT(nnum)
+    *VWRITE,CHRVAL(nnum),CHRVAL(NELEM(nnum,1)),CHRVAL(NELEM(nnum,2)),CHRVAL(NELEM(nnum,3)),CHRVAL(NELEM(nnum,4))
+('TET4   ',A8,'  1  ',4A8)
+  *ENDDO
+
+  *VWRITE
+('END_ELEM')
+
+*VWRITE
+('END_SET')
+*VWRITE
+('$')
+
+*CFCLOS,jname,m.cnf
+
+FINISH
+
+CMSEL,S,nstart
+CMSEL,S,estart
+CMDEL,nstart
+CMDEL,estart
+
+nnum =            !current working entity number
+jname =           !current job name used to define filenames
+nnode =           !total number of nodes
+
+i1 =         !iterator
+i2 =         !iterator
+
+/GOPR
+

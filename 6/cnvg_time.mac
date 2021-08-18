@@ -1,0 +1,82 @@
+
+
+! Attempt to return time of last converged solution from results in memory (/SOLUTION)
+! or from results file (/POST1).
+
+! Written by Mitch Voehl, CEC Corporation.
+! THIS MACRO HAS NOT BEEN QA'D.  USE AT YOUR OWN RISK.
+
+! Revision history:
+! 09-09-2000 MRV Macro created.
+
+
+
+! Initialize parameters to be returned.
+
+t_    = -1					! Time of last converged solution.
+ls_   = -1					! Load step of last converged solution.
+ss_   = -1					! Substep of last converged solution.
+nset_ = -1					! Result set number of last converged solution.
+c_    = -1					! Convergence status of last set of results.
+
+*get,tmp_,active, ,rout  
+*if,tmp_,eq,0,then				! For some mysterious reason, ANSYS sets the
+	tmp_ = 21				! routine code to '0' for a /SOLUTIN RESTART.
+*endif						! So, just map '0' to '21'.
+
+*if,tmp_,eq,21,then				! /SOLUTION
+
+	! Attempt to return time of last converged solution from results in memory
+	! (without reading time and convergence status from the *.rst file.)
+
+	*get,t_,active, ,set,time		! Time associated with current results in the database.
+	*get,c_,active, ,solu,cnvg		! Convergence indicator: 0=not converged, 1=converged.
+	*get,d_,active, ,solu,dtime		! Time step size.
+
+
+	! The following 3 *GET commands yield unreliable results prior to FINISHing out of /SOLUTION.
+	! *get,nset_,active, ,set,nset		! Number of result sets.
+	! *get,ls_,active, ,set,lstp		! Load step number.
+	! *get,ss_,active, ,set,sbst		! Substep number.
+
+	*if,c_,ne,1,then			! If solution in database is not converged
+		t_ = t_ - d_			! then subtract one time increment from current time.
+	*endif
+
+	*set,d_
+
+*elseif,tmp_,eq,31,then				! /POST1
+
+	set,last
+	*get,c_,active, ,solu,cnvg		! Convergence indicator: 0=not converged, 1=converged.
+	*get,nset_,active, ,set,nset		! Number of result sets.
+
+	*do,i_,nset_,1,-1
+		*get,c_tmp_,active, ,solu,cnvg	! Convergence indicator: 0=not converged, 1=converged.
+		*if,c_tmp_,eq,1,exit		! If converged, jump out of loop.
+
+		*if,i_,ne,1,then		! If not converged, back up one set and try again.
+			set,prev
+		*endif
+	*enddo
+
+	*if,c_tmp_,eq,1,then
+		*get,t_,active, ,set,time	! Time associated with current results in the database
+						! is time of last converged solution.
+		nset_ = i_			! Set number of converged results.
+		*get,ls_,active, ,set,lstp	! Load step number.
+		*get,ss_,active, ,set,sbst	! Substep number.
+	*endif
+
+	*set,i_
+	*set,c_tmp_
+
+*endif
+
+*set,tmp_
+
+*stat,nset_					! Result set number of converged solution.
+*stat,ls_					! Load step number of converged solution.
+*stat,ss_					! Substep number of converged solution.
+*stat,c_					! Convergence status of last result set.
+*stat,t_					! Time of last converged solution.

@@ -1,0 +1,127 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/1999/REC-html401-19991224/loose.dtd">
+<html><head>
+
+
+      <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"><title>CONTAC26</title>
+   <link rel="stylesheet" href="Hlp_E_CONTAC26_files/navheader.css" type="text/css"><link rel="stylesheet" href="Hlp_E_CONTAC26_files/basic.css" type="text/css"><link rel="stylesheet" href="Hlp_E_CONTAC26_files/ansys.css" type="text/css"><meta name="generator" content="DocBook XSL Stylesheets V1.48"><script type="text/javascript"><!--
+function toggleElementDisplay (id) {
+  var elem = document.getElementById(id);
+  if (elem.style.display != "block") {
+    elem.style.display = "block";
+  } else {
+    elem.style.display = "none";
+  }
+}
+//--></script><link rel="home" href="file:///W:/work/helpfiles/V80/ansyshelp/index.html" title="ANSYS Release 8.0 Documentation"><link rel="up" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_ElemLib.html" title="Part I. Element Library"><link rel="previous" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_PLANE25.html" title="PLANE25 "><link rel="next" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_MATRIX27.html" title="MATRIX27  "></head><body class="elements"><div class="navheader"><div class="toplinks"><a href="file:///W:/work/helpfiles/V80/ansyshelp/index.html">Main TOC</a>&#8226;<a href="file:///W:/work/helpfiles/V80/ansyshelp/toc.html">Using Help</a>&#8226;<a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_UI_ANSYS_Rev.html">Copyright</a></div><h1 class="title"><img alt="Product Logo" src="Hlp_E_CONTAC26_files/ansys_logo_black.gif" id="logo">CONTAC26 </h1><div class="navbar"><span class="locator"><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_ElemTOC.html">Element Reference</a>&gt; <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_ElemLib.html">Part I. Element Library</a>&gt; </span><span class="prevnext"><a accesskey="p" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_PLANE25.html" title="PLANE25 "><img src="Hlp_E_CONTAC26_files/previous.gif" alt="Prev"></a>&nbsp;<a accesskey="n" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_MATRIX27.html" title="MATRIX27  "><img src="Hlp_E_CONTAC26_files/next.gif" alt="Next"></a></span></div></div><div class="elements"><div class="refentry"><a name="CONTAC26"></a><div class="titlepage"></div><div class="refnamediv"><p class="refname">CONTAC26</p><p class="refpurpose">2-D Point-to-Ground Contact</p><div class="refclass"><p class="application">MP ME ST &lt;&gt; &lt;&gt; &lt;&gt; &lt;&gt; &lt;&gt; &lt;&gt; PP ED</p></div></div><div class="refsect1"><a name="elemdesc26tlm61499"></a><h2>CONTAC26 Element Description</h2><p>CONTAC26 is a gap element representing a surface
+which will resist penetration by a node.  The element is capable of supporting
+compression in the direction normal to the surface and shear (Coulomb friction)
+in the tangential direction.  The element has two degrees of freedom at each
+node: translations in the nodal x and y directions.  The surface may be straight
+or a circular arc.  The surface may also be defined to move.  Multiple elements
+may be defined to form a complex surface.  The element may only be used to
+represent model-to-ground behavior; model-to-model behavior cannot be represented.
+ Other contact elements, such as <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC12.html" title="CONTAC12 ">CONTAC12</a>, <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_COMBIN40.html" title="COMBIN40 ">COMBIN40</a>, <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC48.html" title="CONTAC48 ">CONTAC48</a>, <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC49.html" title="CONTAC49 ">CONTAC49</a>, <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC52.html" title="CONTAC52 ">CONTAC52</a>,
+etc. are also available.</p><p>The element may be initially preloaded in the normal direction or it
+may be given a gap specification.  A specified stiffness acts in the normal
+direction when a node penetrates the surface.  See <a href="file:///W:/work/helpfiles/V80/ansyshelp/thy_el26.html" title="14.26. CONTAC26 - 2-D Point-to-Ground Contact">CONTAC26</a>
+in the <a href="file:///W:/work/helpfiles/V80/ansyshelp/theory_toc.html" title="ANSYS, Inc. Theory Reference"><i>ANSYS, Inc. Theory Reference</i></a> for more details about this element.</p><div class="figure"><p class="title"><a name="ajSSf3d0lmm"></a><b>Figure&nbsp;26.1&nbsp;&nbsp;CONTAC26 Geometry</b></p><p><img src="Hlp_E_CONTAC26_files/gELEM26-1.gif"></p></div></div><div class="refsect1"><a name="aVV6vq2a2mcm"></a><h2>CONTAC26 Input Data</h2><p>The geometry, node locations, and the coordinate system for this element
+are shown in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#ajSSf3d0lmm" title="Figure&nbsp;26.1&nbsp;&nbsp;CONTAC26 Geometry">Figure 26.1: "CONTAC26 Geometry"</a>.  The element is defined by three
+nodes, surface constants, a normal stiffness (STIFN), and a stiffness for
+elastic Coulomb sliding (STIFS).  Node I is the active node associated with
+the flexible model.  Nodes J and K are used to define the ends of the contact
+surface, which may be defined as moving by imposed displacements.  A straight
+surface (R = 0) is assumed to be a rectangle having its width between nodes
+J and K in the x-y plane and a semi-infinite length to the right of the surface
+line (when viewed from node J to node K).</p><p>A curved surface is assumed to be an arc defined by nodes J and K and
+a radius |R|.  The arc is formed counterclockwise from J to K such that the
+angle swept by R is 180° or less.  If KARC = 0, the surface extends over
+the counterclockwise arc from J to K.  For KARC = 1, it extends over the counterclockwise
+arc from K to J.  If R is positive, the region greater than R is assumed to
+be semi-infinite and to resist penetration.  If R is negative, the pie-shaped
+region toward the center is assumed to resist penetration.</p><p>The stiffnesses should be based upon the stiffness of the surfaces in
+contact.  See <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_G_STR9.html" title="Chapter 11. Contact">Contact</a> of the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_G_StrTOC.html" title="Structural Analysis Guide"><i>ANSYS Structural Analysis Guide</i></a>
+for guidelines on choosing a value for STIFN.  In some cases (such as initial
+interference analyses, nonconvergence, or over penetration), it may be useful
+to change the STIFN value between load steps or in a restart in order to obtain
+an accurate, converged solution.  The stiffness should be on a full 360°
+basis for an axisymmetric analysis.  A default value of 1.0E9 is used for
+the STIFN, and the default for STIFS is STIFN/100.</p><p>The coefficient of friction&nbsp;µ is input as material property
+MU and is evaluated at the average of the two node temperatures.</p><p>A summary of the element input is given in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#ajSSf3d0lmm" title="Figure&nbsp;26.1&nbsp;&nbsp;CONTAC26 Geometry">Figure 26.1: "CONTAC26 Geometry"</a>.
+ A general description of element input is given in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CH2.html#ae68sq42ldm" title="2.1. Element Input">Element Input</a>.</p><div class="refsect2"><a name="aVV6vq310mcm"></a><h3>CONTAC26 Input Summary</h3><div class="variablelist"><dl><dt><span class="term">Nodes</span></dt><dd><p>I, J, K</p></dd><dt><span class="term">Degrees of Freedom</span></dt><dd><p>UX, UY</p></dd><dt><span class="term">Real Constants</span></dt><dd><table class="simplelist" summary="Simple list" border="0"><tbody><tr><td>STIFN - Normal stiffness</td></tr><tr><td>R - Curved surface radius (used only with circular arc surface); negative
+R means contact surface is inside the arc, otherwise the contact surface is
+assumed to be outside the arc</td></tr><tr><td>KARC - Arc between J and K (used only with circular arc surface);
+KARC = 0 means contact surface is along arc, KARC = 1 means contact surface
+excludes arc</td></tr><tr><td>STIFS - Coulomb sliding stiffness</td></tr></tbody></table></dd><dt><span class="term">Material Properties</span></dt><dd><p>DAMP, MU if KEYOPT(1) = 1</p></dd><dt><span class="term">Surface Loads</span></dt><dd><p>None</p></dd><dt><span class="term">Body Loads</span></dt><dd><div class="variablelist"><dl><dt><span class="term">Temperatures&nbsp;--&nbsp;</span></dt><dd><p>T(I)  if KEYOPT(1)
+= 1</p></dd></dl></div></dd><dt><span class="term">Special Features</span></dt><dd><table class="simplelist" summary="Simple list" border="0"><tbody><tr><td>Nonlinear</td></tr><tr><td>Large deflection</td></tr><tr><td>Adaptive descent</td></tr></tbody></table></dd><dt><span class="term">KEYOPT(1)</span></dt><dd><p>Friction during contact:</p><div class="variablelist"><dl><dt><span class="term">0&nbsp;--&nbsp;</span></dt><dd><p>No friction</p></dd><dt><span class="term">1&nbsp;--&nbsp;</span></dt><dd><p>Use Coulomb friction (MU) during
+contact</p></dd></dl></div></dd><dt><span class="term">KEYOPT(7)</span></dt><dd><p>Contact time predictions. Element level time incrementation
+control.  Note that this option should be activated first at the procedure
+level if <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_SOLCONTROL.html" title="SOLCONTROL"><b>SOLCONTROL</b></a> is
+ON.<a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_SOLCONTROL.html" title="SOLCONTROL"><b>SOLCONTROL</b></a>,ON,ON is
+the most frequent usage with this element.  If <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_SOLCONTROL.html" title="SOLCONTROL"><b>SOLCONTROL</b></a>,ON,OFF,
+this keyoption is not activated.</p><div class="variablelist"><dl><dt><span class="term">0&nbsp;--&nbsp;</span></dt><dd><p>Predictions are made to achieve
+the minimum time (or load) increment whenever a change in contact status occurs</p></dd><dt><span class="term">1&nbsp;--&nbsp;</span></dt><dd><p>Predictions are made to maintain
+a reasonable time (or load) increment (recommended)</p></dd></dl></div></dd></dl></div></div></div><div class="refsect1"><a name="aVV6vq381mcm"></a><h2>CONTAC26 Output Data</h2><p>The solution output associated with the element is in two forms: </p><div class="itemizedlist"><ul type="disc"><li><p>nodal displacements included in the overall nodal solution</p></li><li><p>additional element output (for closed or changed status) as
+shown in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#aEUSflmm" title="Table&nbsp;26.1&nbsp;&nbsp;CONTAC26 Element Output Definitions">Table 26.1: "CONTAC26 Element Output Definitions"</a>.</p></li></ul></div><p>Several items are illustrated in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#aZTSffdlmm" title="Figure&nbsp;26.2&nbsp;&nbsp;CONTAC26 Stress Output">Figure 26.2: "CONTAC26 Stress Output"</a>.  For
+an axisymmetric analysis, the element forces are expressed on a full 360°
+basis.  <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CH2_2.html" title="2.2. Solution Output">Solution Output</a> gives a general description of solution
+output.  See the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_G_BasTOC.html" title="Basic Analysis Procedures Guide"><i>ANSYS Basic Analysis Guide</i></a> for ways to view results.</p><div class="figure"><p class="title"><a name="aZTSffdlmm"></a><b>Figure&nbsp;26.2&nbsp;&nbsp;CONTAC26 Stress Output</b></p><p><img src="Hlp_E_CONTAC26_files/gELEM26-2.gif"></p></div><p>The Element Output Definitions table uses the following notation:</p><p>A colon (:) in the Name column indicates the item can be accessed by
+the Component Name method [<a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ETABLE.html" title="ETABLE"><b>ETABLE</b></a>, <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ESOL.html" title="ESOL"><b>ESOL</b></a>].  The O column indicates
+the availability of the items in the file <tt>Jobname.OUT</tt>.
+The R column indicates the availability of the items in the results file.</p><p>In either the O or R columns, Y indicates that the item is <span class="italic"><i>always</i></span> available, a number refers to a table footnote
+that describes when the item is <span class="italic"><i>conditionally</i></span>
+available, and a - indicates that the item is <span class="italic"><i>not</i></span>
+available.</p><div class="table"><p class="title"><a name="aEUSflmm"></a><b>Table&nbsp;26.1&nbsp;&nbsp;CONTAC26 Element Output Definitions</b></p><table summary="CONTAC26 Element Output Definitions" border="1" width="95%"><colgroup><col width="120"><col width="312"><col align="center" width="48"><col align="center" width="48"></colgroup><thead><tr valign="top"><th align="center">Name</th><th align="center">Definition</th><th align="center">O</th><th align="center">R</th></tr></thead><tbody><tr valign="top"><td>EL</td><td>Element Number</td><td align="center">Y</td><td align="center">Y</td></tr><tr valign="top"><td>NODES</td><td>Nodes
+- I, J, K</td><td align="center">Y</td><td align="center">Y</td></tr><tr valign="top"><td>IG</td><td>Initial gap (or interference)</td><td align="center">Y</td><td align="center">- </td></tr><tr valign="top"><td>USEP</td><td>Current gap (or interference)</td><td>Y</td><td align="center">Y</td></tr><tr valign="top"><td>FN</td><td>Normal force on node I</td><td align="center">Y</td><td align="center">Y</td></tr><tr valign="top"><td>STAT</td><td>Element
+status at end of time step</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.1" title="">1</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.1" title="">1</a></td></tr><tr valign="top"><td>OLDST</td><td>Value of STAT in the previous time step</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.1" title="">1</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.1" title="">1</a></td></tr><tr valign="top"><td>TEMP</td><td>Temperature at node I</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td></tr><tr valign="top"><td>MU</td><td>Friction coefficient evaluated at TEMP</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td></tr><tr valign="top"><td>IT</td><td>Initial sliding location on contact surface</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td align="center">- </td></tr><tr valign="top"><td>UTAN</td><td>Total
+displacement along the contact surface</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td></tr><tr valign="top"><td>FS</td><td>Sliding/sticking force</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td></tr><tr valign="top"><td>SLIDE</td><td>Amount of sliding</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.2" title="">2</a></td></tr><tr valign="top"><td>XC</td><td>Global X coordinate of the center of the arc</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.3" title="">3</a></td><td align="center">- </td></tr><tr valign="top"><td>YC</td><td>Global
+Y coordinate of the center of the arc</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.3" title="">3</a></td><td align="center">- </td></tr><tr valign="top"><td>TJ</td><td>Angular
+location (degrees) of arc node J</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.3" title="">3</a></td><td align="center">- </td></tr><tr valign="top"><td>TK</td><td>Angular
+location (degrees) of arc node K</td><td><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#contac26.tab.2.ft.3" title="">3</a></td><td align="center">- </td></tr></tbody></table></div><div class="orderedlist"><ol type="1"><li><p><a name="contac26.tab.2.ft.1"></a>Element status value
+descriptions:</p><p>1 - Contact</p><p>2 - Sliding right (+) or left (-) relative to the contact surface</p><p>3 - Gap open</p></li><li><p><a name="contac26.tab.2.ft.2"></a>Friction solution if
+KEYOPT(1) = 1</p></li><li><p><a name="contac26.tab.2.ft.3"></a>Circular arc geometry
+at end of time step if R&nbsp;&#8800; 0</p></li></ol></div><div class="note" style="margin-left: 0.5in; margin-right: 0.5in;"><h3 class="title"><a name="contac26.note.1"></a>Note</h3><p>Displacements and nodal forces are printed
+before the status correction</p></div><p><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#aY418g2a3lmm" title="Table&nbsp;26.2&nbsp;&nbsp;CONTAC26 Item and Sequence Numbers">Table 26.2: "CONTAC26 Item and Sequence Numbers"</a> lists output available through the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ETABLE.html" title="ETABLE"><b>ETABLE</b></a> command using the Sequence
+Number method.  See <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_G_BAS5.html" title="Chapter 5. The General Postprocessor (POST1)">The General Postprocessor (POST1)</a>
+of the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_G_BasTOC.html" title="Basic Analysis Procedures Guide"><i>ANSYS Basic Analysis Guide</i></a> and <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CH2_2.html#agi8sq365ldm" title="2.2.2.2. The Item and Sequence Number Table">The Item and Sequence Number Table</a> of this manual for more
+information.  The following notation is used in <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#aY418g2a3lmm" title="Table&nbsp;26.2&nbsp;&nbsp;CONTAC26 Item and Sequence Numbers">Table 26.2: "CONTAC26 Item and Sequence Numbers"</a>: </p><div class="variablelist"><dl><dt><span class="term">Name</span></dt><dd><p>output quantity as defined in the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#aEUSflmm" title="Table&nbsp;26.1&nbsp;&nbsp;CONTAC26 Element Output Definitions">Table 26.1: "CONTAC26 Element Output Definitions"</a></p></dd><dt><span class="term">Item</span></dt><dd><p>predetermined Item  label for <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ETABLE.html" title="ETABLE"><b>ETABLE</b></a>
+command</p></dd><dt><span class="term">E</span></dt><dd><p>sequence number for single-valued or constant element data</p></dd></dl></div><div class="table"><p class="title"><a name="aY418g2a3lmm"></a><b>Table&nbsp;26.2&nbsp;&nbsp;CONTAC26 Item and Sequence Numbers</b></p><table summary="CONTAC26 Item and Sequence Numbers" border="1" width="95%"><colgroup><col align="center" width="72"><col align="center" width="72"><col align="center" width="48"></colgroup><thead><tr valign="top"><th rowspan="2" valign="middle">Output Quantity Name</th><th colspan="2"><a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ETABLE.html" title="ETABLE"><b>ETABLE</b></a>
+and <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_ESOL.html" title="ESOL"><b>ESOL</b></a> Command Input</th></tr><tr valign="top"><th>Item</th><th align="center">E</th></tr></thead><tbody><tr valign="top"><td>FN</td><td>SMISC</td><td>1</td></tr><tr valign="top"><td>FS</td><td>SMISC</td><td>2</td></tr><tr valign="top"><td>STAT</td><td>NMISC</td><td>1</td></tr><tr valign="top"><td>OLDST</td><td>NMISC</td><td>2</td></tr><tr valign="top"><td>USEP</td><td>NMISC</td><td>3</td></tr><tr valign="top"><td>UTAN</td><td>NMISC</td><td>4</td></tr><tr valign="top"><td>MU</td><td>NMISC</td><td>5</td></tr><tr valign="top"><td>TEMP</td><td>NMISC</td><td>6</td></tr><tr valign="top"><td>SLIDE</td><td>NMISC</td><td>7</td></tr></tbody></table></div></div><div class="refsect1"><a name="aWV6vq73mcm"></a><h2>CONTAC26 Assumptions and Restrictions</h2><p></p><div class="itemizedlist"><ul type="disc"><li><p>The element is grounded so that only node I has any stiffness
+associated with it.  Therefore, nodes J and K do not contribute to any reaction
+forces.</p></li><li><p>The 2-D contact surface element must be defined in an X-Y
+plane and the Y-axis must be the axis of symmetry for axisymmetric analyses.
+ An axisymmetric structure should be modeled in the +X quadrants.</p></li><li><p>Nodes J and K should not be attached to other element types,
+otherwise, equilibrium will not be satisfied.  The element operates bilinearly
+only in the static and the nonlinear transient dynamic analyses and is intended
+for use in a large-deflection analysis.  If used in other analysis types,
+the element maintains its initial status throughout the analysis.</p></li><li><p>The element is nonlinear and requires an iterative solution.
+ Nonconverged substeps are not in equilibrium.</p></li><li><p>A gap condition capability is also included in the reduced
+linear transient dynamic analysis (see GAP module in PREP7).  Note that, although
+it is permissible to change STIFN, it is not permissible to change any other
+real constants between load steps.  Therefore, if you plan to change STIFN,
+you cannot allow the value of STIFS to be defined by default, because the
+program would then attempt to redefine STIFS as STIFN changed.  You must explicitly
+define STIFS whenever STIFN changes, to maintain a consistent value throughout
+all load steps.</p></li><li><p>The element may not be deactivated with the <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_C_EKILL.html" title="EKILL"><b>EKILL</b></a>
+command.</p></li><li><p>The amount of the initial interference (or gap) is specified
+by the node and surface locations.  The orientation of the gap changes for
+a curved surface option or if the contact surface rotates.</p></li><li><p>Unreasonably high stiffness values should be avoided.  The
+rate of convergence decreases as the stiffness increases.  When operating
+near the "corner" of a region, the loading should be small enough such that
+the node does not pass through the region (in the surface and out the side)
+in one substep.</p></li><li><p>Node I may be initially oriented anywhere inside or outside
+of the contact region (see <a href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_CONTAC26.html#ajSSf3d0lmm" title="Figure&nbsp;26.1&nbsp;&nbsp;CONTAC26 Geometry">Figure 26.1: "CONTAC26 Geometry"</a>).  Node I may enter
+or leave the contact region at any angle.  The resisting forces are normal
+to the surface and, if friction is present, parallel to it.  For a curved
+surface, the normal is along the line through the node and the center point.
+ The initial gap (or interference) at the beginning of the first substep is
+determined from the node location normal to the surface.  If the gap is open,
+no stiffness is associated with this element for this substep.  If the gap
+is closed with either no friction (µ = 0.0 or KEYOPT(1) = 0) or sliding,
+the normal stiffness STIFN is used for gap resistance.  If the gap is closed
+and stuck, the stiffness STIFS is also used for gap sticking resistance parallel
+to the surface.</p></li><li><p>In the normal direction, when the normal force FN is negative,
+the gap remains in contact and responds as a linear spring.  As the normal
+force becomes positive, contact is broken and no force is transmitted.  Elastic
+Coulomb friction is used if friction is defined, such that: |FS| &lt; -&nbsp;µ*FN
+(if stuck, STAT = 1) or |FS| = -&nbsp;µ*FN (if sliding, STAT = +2).
+ Frictionless contact is identified by STAT = +2.</p></li></ul></div></div><div class="refsect1"><a name="aWV6vqe0mcm"></a><h2>CONTAC26 Product Restrictions</h2><p>There are no product-specific restrictions for this element.</p></div></div></div><div class="navfooter"><hr><table summary="Navigation footer" width="100%"><tbody><tr><td align="left" width="40%"><a accesskey="p" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_PLANE25.html">Prev</a>&nbsp;</td><td align="center" width="20%"><a accesskey="u" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_ElemLib.html">Up</a></td><td align="right" width="40%">&nbsp;<a accesskey="n" href="file:///W:/work/helpfiles/V80/ansyshelp/Hlp_E_MATRIX27.html">Next</a></td></tr><tr><td align="left" valign="top" width="40%">PLANE25 &nbsp;</td><td align="center" width="20%"><a accesskey="h" href="file:///W:/work/helpfiles/V80/ansyshelp/index.html">Home</a></td><td align="right" valign="top" width="40%">&nbsp;MATRIX27  </td></tr></tbody></table></div><p xmlns:edate="http://exslt.org/dates-and-times" xmlns:jdate="java:java.util.Date" class="timestamp">Document built on: Wednesday, September 24 2003 at 18:20:04-04:00</p></body></html>

@@ -1,0 +1,92 @@
+/nopr
+!----------------------------------------
+! Write to file 'stilisting.txt'
+!----------------------------------------
+*cfopen,stilisting,txt
+!----------------------------------------
+! Write header
+!----------------------------------------
+*vwrite
+()
+*vwrite
+ LIST ALL COMPONENTS IN THE MODEL
+*vwrite
+()
+*vwrite
+    NAME                            TYPE      SUBCOMPONENTS
+*vwrite
+()
+
+!----------------------------------------
+! Write all components
+!----------------------------------------
+*get,STI_CCOUNT,comp,,ncomp
+*do,STI_ICOUNT,1,STI_CCOUNT
+  !----------------------------------------
+  ! Name and type of component or assembly
+  !----------------------------------------
+  *get,STI_NAME,comp,STI_ICOUNT,name
+  *get,STI_ITYPE,comp,STI_NAME,type
+  !----------------------------------------
+  ! Subcomponent parameters
+  !----------------------------------------
+  *get,STI_SCOUNT,comp,STI_NAME,nscomp
+  *del,STI_SNAME,nopr
+  *dim,STI_SNAME,string,32,STI_SCOUNT
+
+  !----------------------------------------
+  ! Get type of component or assembly
+  !----------------------------------------
+  *if,STI_ITYPE,eq,1,then
+    STI_TYPE='NODE'
+  *elseif,STI_ITYPE,eq,2
+    STI_TYPE='ELEM'
+  *elseif,STI_ITYPE,eq,6
+    STI_TYPE='KP'
+  *elseif,STI_ITYPE,eq,7
+    STI_TYPE='LINE'
+  *elseif,STI_ITYPE,eq,8
+    STI_TYPE='AREA'
+  *elseif,STI_ITYPE,eq,9
+    STI_TYPE='VOLU'
+  *elseif,STI_ITYPE,eq,9
+    STI_TYPE='VOLU'
+  *elseif,STI_ITYPE,eq,11
+    STI_TYPE='LVL1'
+  *elseif,STI_ITYPE,eq,12
+    STI_TYPE='LVL2'
+  *elseif,STI_ITYPE,eq,13
+    STI_TYPE='LVL3'
+  *elseif,STI_ITYPE,eq,14
+    STI_TYPE='LVL4'
+  *elseif,STI_ITYPE,eq,15
+    STI_TYPE='LVL5'
+  *endif
+
+  *if,STI_SCOUNT,eq,0,then
+    !----------------------------------------
+    ! Write name of component
+    !----------------------------------------
+    *vwrite,STI_NAME,STI_TYPE
+%2x%-32s%2x%-4s
+  *else
+    !----------------------------------------
+    ! Write name of assembly and its subcomponents
+    !----------------------------------------
+    *do,STI_JCOUNT,1,STI_SCOUNT
+      *get,STI_SNAME(1,STI_JCOUNT),comp,STI_NAME,sname,STI_JCOUNT
+    *enddo
+    *vlen,,9999
+    *vwrite,STI_NAME,STI_TYPE,STI_SNAME(1,1)
+%2x%-32s%2x%-4s%2x%-32s
+    *vwrite,STI_SNAME(1,2)
+%42x%-32s
+  *endif
+*enddo
+!----------------------------------------
+! Close file 'stilisting.txt' and list it
+!----------------------------------------
+*cfclos
+*uilist,stilisting,txt
+/delete,stilisting,txt
+/gopr

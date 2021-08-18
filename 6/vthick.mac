@@ -1,0 +1,55 @@
+! vthick.mac
+! This macro sets variable shell thickness based
+! on thicknesses at corners of a surface.
+! To use this macro, the following must be present:
+!
+! 1. A Prep7 session.
+! 2. The meshed target area is selected (only)
+! 3. Each keypoint on the surface boundary has a REAL attribute,
+! with the thickness at the kepoint in R1.
+
+! This macro uses *moper,,map to map the thicknesses and rthick
+! to load the mapped thicknesses into the elemental R cards.
+
+lsla,s
+ksll,s,
+
+! get kp thicknesses
+
+*get,kcount,kp,0,count
+*dim,kpxyz,,kcount,3
+*dim,kpt,,kcount,1
+
+*do,i,1,kcount
+*get,kpnum,kp,0,num,min
+
+kpxyz(i,1)=kx(kpnum)
+kpxyz(i,2)=ky(kpnum)
+kpxyz(i,3)=kz(kpnum)
+
+*get,realn,kp,i,attr,real
+*get,rv,rcon,realn,1
+kpt(i)=rv
+
+ksel,u,kp,,kpnum
+
+*enddo
+
+! load nodal coordinates into nodez
+
+esla,s
+nsla,s,1
+
+*get,ncount,node,0,num,max
+*dim,nodexyz,,ncount,3
+*dim,nodet,,ncount,1
+
+*vget,nodexyz(1,1),node,1,loc,x
+*vget,nodexyz(1,2),node,1,loc,y
+*vget,nodexyz(1,3),node,1,loc,z
+
+! map work node thicknesses
+
+*moper,nodet(1),nodexyz(1,1),map,kpt(1),kpxyz(1,1),2
+
+rthick,nodet(1)

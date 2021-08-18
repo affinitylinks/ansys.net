@@ -1,0 +1,36 @@
+
+*GET, nVOLUS, VOLU, , COUNT
+
+*IF, nVOLUS, EQ, 0, THEN
+   *MSG, ERROR
+   No volumes selected.
+   /EOF
+*ENDIF
+
+nVOLU = 0
+CM, vCOMP, VOLU
+VSEL, NONE
+CM, vMSHD, VOLU
+*DO, i, 1, nVOLUS
+	CMSE, S, vCOMP
+   nVOLU = VLNEXT(nVOLU)
+	VSEL, S, VOLU, , nVOLU, , , 1
+	*GET, nELEMS, ELEM, , COUNT
+   *IF, nELEMS, GT, 0, THEN
+		CMSE, A, vMSHD
+		CM, vMSHD, VOLU
+   *ENDIF
+*ENDDO
+
+CMSE, S, vMSHD
+ASLV
+LSLA
+KSLL
+
+i        =
+nELEMS   =
+nVOLU    =
+nVOLUS   =
+
+CMDE, vCOMP
+CMDE, vMSHD

@@ -1,0 +1,197 @@
+!    plvln.mac
+! 
+/COM,   MACRO FOR DISPLAYING Vector plots WITH 
+/COM,   ELEMENT OUTLINE OVERLAY
+!       MCY 6/94
+/COM, 
+/COM,
+/COM, 
+/COM,   *** PARAMETERS FOR MACRO
+/COM, 
+! arg1 = 0,1 (B vector)
+!      = 2   (H vector)
+!      = 3   (user supplied abbreviation "PLVVAL", e.g.,
+!            *abbr,plvval,plve,xcomp,ycomp,zcomp
+!
+!            where xcomp,ycomp,zcomp = names of the x,y,z
+!            components for the vector components to be plotted.
+!
+!            This abbreviation definition MUST be specified before
+!            calling this macro).  This option is usefull if you have 
+!            constructed your components from the element data base.
+! 
+!
+! arg2 = 1 (outline on elments with different materials  (MAT) 
+!          (DEFAULT)
+!        2 (outline on elments with different real sets  (REAL)
+!        3 (outline on elments with different elements types 
+!          (TYPE)
+!        4 (outline on elments with different element coordinate 
+!           sys. (ESYS)
+!
+! ARG3 = NUMBER OF COLORS (MULTIPLES OF 9)
+!        (System dependent)
+!
+!
+!
+*get,_dist,graph,1,dist
+*get,_vx,graph,1,view,x 
+*get,_vy,graph,1,view,y 
+*get,_vz,graph,1,view,z 
+
+!/reset
+/dist,1,_dist
+/view,1,_vx,_vy,_vz
+
+/COM
+!   /NOPR
+!  /auto
+/num,1
+!/GSAVE
+/nerr,0,1e4
+!/device,vector,1
+rsys
+*if,arg3,eq,0,then
+  arg3 = 9 
+*endif
+*if,arg2,eq,0,then
+ arg2=1
+*endif
+!/CONT,,arg3  !  9/17
+!/EDGE,,1
+!/NUM,-1
+!/plopt,defa,on   !  9/17
+/era
+!_vscal=.5 
+*if,_vscal,eq,0,then
+  _vscal=.4    !    scaling factor for the vector plot
+*endif
+!/vscal,,_vscal
+/user
+nsle
+*if,arg1,le,1,then
+   PLVECT,B, , , ,VECT,ELEM,ON,0    !plve,b
+*elseif,arg1,eq,2,then
+  PLVECT,H, , , ,VECT,ELEM,ON,0   !plve,h
+*else
+ plvval
+*endif
+/noera
+/edge,,1
+/device,vector,on
+!*go,:end
+
+!   determine the number of different sets for the
+!   active element set
+!/plopt,leg2,off  !   #9/17
+!/plopt,leg3,off  !   #9/17
+cm,pltmat,elem
+*set,zdifmat
+*dim,zdifmat,,1000
+ndifmat=0
+*if,arg2,eq,1,then
+  *do,idifmat,1,1000
+    *get,elcnt,elem,,count
+    *if,elcnt,eq,0,exit
+    ndifmat=ndifmat+1
+    *get,elmxz,elem,,num,max
+    *get,edifmat,elem,elmxz,attr,mat
+    zdifmat(ndifmat)=edifmat
+    esel,u,mat,,edifmat
+  *enddo
+*endif
+
+*if,arg2,eq,2,then
+  *do,idifmat,1,1000
+    *get,elcnt,elem,,count
+    *if,elcnt,eq,0,exit
+    ndifmat=ndifmat+1
+    *get,elmxz,elem,,num,max
+    *get,edifmat,elem,elmxz,attr,real
+    zdifmat(ndifmat)=edifmat
+    esel,u,real,,edifmat
+  *enddo
+*endif
+
+*if,arg2,eq,3,then
+  *do,idifmat,1,1000
+    *get,elcnt,elem,,count
+    *if,elcnt,eq,0,exit
+    ndifmat=ndifmat+1
+    *get,elmxz,elem,,num,max
+    *get,edifmat,elem,elmxz,attr,type
+    zdifmat(ndifmat)=edifmat
+    esel,u,type,,edifmat
+  *enddo
+*endif
+
+*if,arg2,eq,4,then
+  *do,idifmat,1,1000
+    *get,elcnt,elem,,count
+    *if,elcnt,eq,0,exit
+    ndifmat=ndifmat+1
+    *get,elmxz,elem,,num,max
+    *get,edifmat,elem,elmxz,attr,esys
+    zdifmat(ndifmat)=edifmat
+    esel,u,esys,,edifmat
+  *enddo
+*endif
+
+
+
+!  plot the elements
+
+*if,arg2,eq,1,then
+  esel,,mat,,zdifmat(1)
+  eplo
+  /noera
+  *do,ipltmat,2,ndifmat
+    esel,,mat,,zdifmat(ipltmat)
+    eplo
+  *enddo
+*endif
+
+
+*if,arg2,eq,2,then
+  esel,,real,,zdifmat(1)
+  eplo
+  /noera
+  *do,ipltmat,2,ndifmat
+    esel,,real,,zdifmat(ipltmat)
+    eplo
+  *enddo
+*endif
+
+*if,arg2,eq,3,then
+  esel,,type,,zdifmat(1)
+  eplo
+  /noera
+  *do,ipltmat,2,ndifmat
+    esel,,type,,zdifmat(ipltmat)
+    eplo
+  *enddo
+*endif
+
+*if,arg2,eq,4,then
+  esel,,esys,,zdifmat(1)
+  eplo
+  /noera
+  *do,ipltmat,2,ndifmat
+    esel,,esys,,zdifmat(ipltmat)
+    eplo
+  *enddo
+*endif
+/plopt
+:end
+
+cmsel,,pltmat
+!   /GRESUME
+/NUM
+/CONT,
+/plopt,defa
+/erase
+/nerr,1,1e4
+/dev,vector,off
+/edge
+/mrep,plvln,arg1,arg2,arg3
+/GOPR

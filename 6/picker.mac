@@ -1,0 +1,61 @@
+!==========================================================================================
+!Purpose:     Ansys APDL macro written in support of a thesis submitted in partial
+!             fulfillment of the requirements of the degree of Bachelor of Applied Science
+!             in the Department of Mechanical and Industrial Engineering
+!             University of Toronto
+!
+!Description: This macro will select all lines, from a volume component, that are oriented
+!             parallel with a single cartesian coordinate axis.  It requires two command 
+!             line arguments: 
+!             arg1 = name of the volume component
+!             arg2 = desired cartesian coordinate axis.
+!                   
+!Macro File:  picker.mac
+!Ansys Mode:  Interactive or Batch 
+!
+!Written by:  Chris Masterson
+!Supervisor:  Professor A.N. Sinclair
+!
+!Revision:     1.0
+!Last Revised: 29 November 2000
+!
+!All ANSYS standard commands and parameters are in upper case.
+!All user defined commands and parameters are in lower case.
+!For electromagnetic analyses in Ansys all units must be in MKS
+!(i.e. metres not millimetres).
+!==========================================================================================
+
+!Initialize arguments to parameters.
+comp_ = arg1
+axis_ = arg2
+
+!Select the volumes in the specified component
+CMSEL,S,comp_		
+
+!Select all lower entities associated with the component
+ALLSEL,BELOW,VOLU	
+
+!Select all lines in positive orientation of desired axis
+LSEL,R,TAN1,axis_,1,,,0	
+
+!Create temporary line component
+CM,ltemp1_,LINE		
+
+!Reselect all lines in component volumes
+LSLA,S			 
+
+!Select all lines in negative orientation of desired axis
+LSEL,R,TAN1,axis_,-1,,,0	
+
+!Create temporary line component
+CM,ltemp2_,LINE		
+
+!Select oriented lines.
+CMSEL,S,ltemp1_		
+CMSEL,A,ltemp2_		
+
+!Delete temporary components and parameters.
+CMDELE,ltemp1_		
+CMDELE,ltemp2_		
+comp_=
+axis_=

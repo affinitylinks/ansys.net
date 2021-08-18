@@ -1,0 +1,59 @@
+/NOPR
+/prep7
+
+sh_tp_=ARG1 ! Shell name
+! Beam name
+*get,bm_tp_,ETYP,ARG2,ATTR,ENAM
+! ARG2= Beam type
+! ARG3= Beam mat
+! ARG4= Beam real
+! ARG5= Beam section number
+
+esel,r,ename,,sh_tp_
+cm,sh_el_,ELEM
+*get,E_Max_,ELEM,,COUNT 
+*dim,n_,array,4
+el_=0
+
+*if,ARG2,ge,1,then
+ type,ARG2
+*endif
+
+*if,ARG3,ge,1,then
+ mat,ARG3
+*endif
+
+*if,ARG4,ge,1,then
+ real,ARG4
+*endif
+
+*if,ARG5,ge,1,then
+ secnum,ARG5
+*endif
+
+*do,i_,1,E_Max_
+
+ cmsel,s,sh_el_,ELEM
+ el_=elnext(el_)
+ 
+  *do,j_,1,4 
+   n_(j_)=nelem(el_,j_)
+  *enddo
+
+  *do,j_,1,4
+   n1_=n_(j_)
+   n2_=n_(MOD(j_,4)+1)
+   nsel,s,,,n1_,n2_,(n2_-n1_)
+   esln,,1
+    *if,elnext(0),eq,0,then
+     *if,n1_,ne,n2_,then
+      e,n1_,n2_
+     *endif
+    *endif
+  *enddo
+*enddo
+*del,,PRM_
+cmdele,sh_el_
+nsel,all
+esel,all
+/GOPR

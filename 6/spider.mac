@@ -1,0 +1,43 @@
+!-----------------------------------------------------
+! This macro creates a spider-web that connects a center node
+! with a group of surrounding nodes (e. G. to make a transition
+! between beam and shell elements).
+!
+! 1 Center node must be selected in component N_CENTER
+! The surrounding nodes must be selected in component N_CIRCLE
+!
+! Command: 'Macroname',ARG1,ARG2,ARG3
+!
+! ARG1: Material number
+! ARG2: Real constant number
+! ARG3: Element type number
+!-------------------------------------------------------
+
+/prep7
+
+cmsel,s,N_CENTER
+*get,N_TOT_,node,0,count
+*if,N_TOT_,ne,1,then
+*msg,error
+  ABORT - There must exactly 1 center node
+*endif
+
+*get,NN_CENT_,node,0,num,min
+
+cmsel,s,N_CIRCLE
+*get,N_TOT_,node,0,count
+*if,N_TOT_,LE,0,then
+*msg,error
+  ABORT - There must at least 1 circle node
+*endif
+
+*do,i_,1,N_TOT_,1
+  *get,NN_CIRC_,node,0,num,min
+  mat,arg1
+  real,arg2
+  type,arg3
+  e,NN_CENT_,NN_CIRC_
+  nsel,u,,,NN_CIRC_
+*enddo
+
+*del,,prm_

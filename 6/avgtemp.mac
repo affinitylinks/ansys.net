@@ -1,0 +1,33 @@
+!
+! Get an average element temperature for each element
+! (from nodal body loads)
+!
+allsel
+*get,n_elem,elem,,count ! number of elements
+*get,n_node,node,,num,max ! don't count - gaps
+in numbers
+*dim,e_avtemp,array,n_elem
+*dim,nodal_temps,array,n_node
+*dim,selected,array,n_node
+
+! Store all nodal temps
+! Use *VMASK to filter nodes for each element average
+n_low=0
+n_low=ndnext(n_low)
+*vget,nodal_temps(1),node,n_low,bfe,temp
+
+
+temp_elem=0
+*do,i,1,n_elem ! repeat for every element
+ temp_elem=elnext(temp_elem)
+ esel,s,,,temp_elem
+ nsle,s,corner
+ *get,n_nodes,node,,count
+ *vget,selected,node,n_low,nsel
+ *vmask,selected
+ *vscfun,nodal_temp_sum,sum,nodal_temps(1)
+ e_avtemp(i)=nodal_temp_sum/n_nodes
+ nodal_temp_sum=
+ nall
+ eall
+*enddo

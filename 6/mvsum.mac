@@ -1,0 +1,23 @@
+!macro mvsum - calculate the total mass of the elements associated with the selected vols
+!vols should be selected before issuing this macro
+
+tmass=0
+eslv,s                       !select the elements associated with the vols
+*get,tenum,elem,,count       !get the total no. of elements
+*get,enmin,elem,,num,min     !get the min element no.
+*do,k,1,tenum
+  *if,k,eq,1,then
+    *get,evol,elem,enmin,volu
+    *get,ematno,elem,enmin,attr,mat
+    *get,edens,dens,ematno
+    tmass=tmass+evol*edens
+    enum=enmin
+  *else
+    *get,temp,elem,enum,nxth
+    *get,evol,elem,temp,volu
+    *get,ematno,elem,temp,attr,mat
+    *get,edens,dens,ematno
+    tmass=tmass+evol*edens
+    enum=temp
+  *endif
+*enddo

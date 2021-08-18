@@ -1,0 +1,122 @@
+!*******************************************************************************
+!****************          ANSYS Macro "RCS2ICS.MAC"           *****************
+!****************  FLOTRAN RCS-to-ICS Velocity Transformation  *****************
+!****************                  07/22/96                    *****************
+!*******************************************************************************
+!
+!*******************************************************************************
+!***  Macro RCS2ICS transforms FLOTRAN velocities, computed in a rotating
+!***  coordinate system (or frame of reference), into an inertial coordinate
+!***  system, for post-processing purposes.
+!***
+!***  For the active set of nodes, the current values of velocity in the
+!***  ANSYS database are retrieved, operated upon, and replaced with the
+!***  transformed values for subsequent post-processing.
+!***
+!***  Macro RCS2ICS has no effect on nodal values of velocity contained
+!***  within the FLOTRAN results file (jobname.rfl).
+!***
+!***  This version of Macro RCS2ICS does not work for cases where the axis
+!***  of rotation has been offset from the global coordinate system.
+!*******************************************************************************
+
+*get,_nn,node,,count                       ! Get number of active nodes
+*get,_csnum,active,,csys                   ! Active coordinate system
+*get,_rsnum,active,,rsys                   ! Active results coordinate system
+*get,_cstyp,etype,1,attr,kop3              ! Check KEYOPT-3 setting
+_n = 0                                     ! Initialize operating node
+
+!*******************************************************************************
+
+*if,_cstyp,eq,1,then                       ! Axisymmetric about Y-axis
+  *get,_OMEGAZ,common,,acelcm,,real,45)    ! Get OMEGAZ
+  csys,0
+  rsys,0
+  *do,_i,1,_nn
+    *get,_n,node,_n,nxth
+    dnsol,_n,VZ,,(VZ(_n) + NX(_n)*_OMEGAZ) ! Convert VZ from RCS to ICS
+  *enddo
+  csys,_csnum
+  rsys,_rsnum
+*endif
+
+!*******************************************************************************
+
+*if,_cstyp,eq,2,then                       ! Axisymmetric about X-axis
+  *get,_OMEGAZ,common,,acelcm,,real,45)    ! Get OMEGAZ
+  csys,0
+  rsys,0
+  *do,_i,1,_nn
+    *get,_n,node,_n,nxth
+    dnsol,_n,VZ,,(VZ(_n) + NY(_n)*_OMEGAZ) ! Convert VZ from RCS to ICS
+  *enddo
+  csys,_csnum
+  rsys,_rsnum
+*endif
+
+!*******************************************************************************
+
+*if,_cstyp,eq,3,then                       ! Cylindrical coordinates
+  *get,_OMEGAZ,common,,acelcm,,real,45)    ! Get OMEGAZ
+  csys,0
+  rsys,0
+  *do,_i,1,_nn
+    *get,_n,node,_n,nxth
+    dnsol,_n,VX,,(VX(_n) - NY(_n)*_OMEGAZ) ! Convert VX from RCS to ICS
+    dnsol,_n,VY,,(VY(_n) + NX(_n)*_OMEGAZ) ! Convert VY from RCS to ICS
+  *enddo
+  csys,_csnum
+  rsys,_rsnum
+*endif
+
+!*******************************************************************************
+
+*if,_cstyp,eq,0,then                       ! Cartesian coordinates
+
+  *get,_OMEGAX,common,,acelcm,,real,43)    ! Get OMEGAX
+  *get,_OMEGAY,common,,acelcm,,real,44)    ! Get OMEGAY
+  *get,_OMEGAZ,common,,acelcm,,real,45)    ! Get OMEGAZ
+  csys,0
+  rsys,0
+
+  *if,_OMEGAZ,ne,0,then
+    *do,_i,1,_nn
+      *get,_n,node,_n,nxth
+      dnsol,_n,VX,,(VX(_n) - NY(_n)*_OMEGAZ)
+      dnsol,_n,VY,,(VY(_n) + NX(_n)*_OMEGAZ)
+    *enddo
+  *endif
+
+  *if,_OMEGAX,ne,0,then
+    *do,_i,1,_nn
+      *get,_n,node,_n,nxth
+      dnsol,_n,VY,,(VY(_n) - NZ(_n)*_OMEGAX)
+      dnsol,_n,VZ,,(VZ(_n) + NY(_n)*_OMEGAX)
+    *enddo
+  *endif
+
+  *if,_OMEGAY,ne,0,then
+    *do,_i,1,_nn
+      *get,_n,node,_n,nxth
+      dnsol,_n,VX,,(VX(_n) + NZ(_n)*_OMEGAY)
+      dnsol,_n,VZ,,(VZ(_n) - NX(_n)*_OMEGAY)
+    *enddo
+  *endif
+
+  csys,_csnum
+  rsys,_rsnum
+
+*endif
+
+!*******************************************************************************
+
+_i      =                                  ! Delete local variable
+_n      =                                  !           "
+_nn     =                                  !           "
+_csnum  =                                  !           "
+_rsnum  =                                  !           "
+_cstyp  =                                  !           "
+_OMEGAX =                                  !           "
+_OMEGAY =                                  !           "
+_OMEGAZ =                                  !           "
+

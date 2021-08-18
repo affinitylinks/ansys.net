@@ -1,0 +1,116 @@
+/BATCH !Batch input
+/CONFIG,NRES,10000 !Maximum number of results sets
+/FILE,control !Define jobname
+/NOPR !Suppress prinout
+/COM, ==========================================================
+/COM,
+/COM, EXAMPLE OF A PID CONTROL SYSTEM IMPLEMENTED USING UITFIN
+/COM,
+/COM, October 2001
+/COM, ANSYS 5.7
+/COM,
+/COM, ==========================================================
+/COM,
+/COM, Dave Lindeman ddlindeman@mmm.com
+/COM, 3M SEMS Technology Center Tel: 651-733-6383
+/COM, 3M Center 235-1F-36 FAX: 651-736-7615
+/COM, St. Paul, MN 55144
+/COM,
+/COM, ==========================================================
+/COM, ==========================================================
+/COM, Define constants
+/COM, ==========================================================
+PI = ACOS(-1) !Pi
+TRUE = 1 !Logical true
+FALS = 0 !Logical false
+/COM, ==========================================================
+/COM, Define independent parameters
+/COM, Optimal values are KPRP = 72.0, KDIF = 8.0, KINT = 60.0
+/COM, ==========================================================
+DISP = 4.0000 !Displacement (m)
+MASS = 900.0000 !Mass (kg)
+KSPR = 1.0000 !Spring stiffness (N/m)
+KPRP = 100.0000 !Proportional gain
+KDIF = 1.0000 !Differential gain
+KINT = 1.0000E+06 !Integral gain
+TSTP = 0.2000 !Time step size (seconds)
+TTOT = 180.0000 !Total solution time (seconds)
+/COM, ==========================================================
+/COM, Define graphics settings
+/COM, ==========================================================
+/TITLE,EXAMPLE OF A PID CONTROL SYSTEM IMPLEMENTED USING UITFIN
+/WIND,1,-1.00, 1.00,-0.88, 1.00
+/PNUM,MAT,1
+/NUM,1
+/COM, ==========================================================
+/COM, Define element types
+/COM, ==========================================================
+/PREP7 !Enter preprocessor
+ET,1,COMBIN14 !2D longitudinal spring
+KEYOPT,1,3,2
+ET,2,MASS21 !2D mass without rotary inertia
+KEYOPT,2,3,4
+/COM, ==========================================================
+/COM, Define real constant sets
+/COM, ==========================================================
+R,1,KSPR !Spring stiffness
+R,2,MASS !Mass of point element
+/COM, ==========================================================
+/COM, Define finite element model
+/COM, ==========================================================
+N,1, 0, 0 !Define nodes
+N,2, 0,10
+TYPE,1 !Define spring
+REAL,1
+E,1,2
+TYPE,2 !Define point mass
+REAL,2
+E,2
+/COM, ==========================================================
+/COM, Define boundary conditions
+/COM, ==========================================================
+D,1,UX,0 !Constrain base of spring
+D,1,UY,0
+D,2,UX,0 !Constrain lateral motion of mass
+NPID = 2
+FINI !Exit preprocessor
+/COM, ==========================================================
+/COM, Define and execute analysis
+/COM, ==========================================================
+/SOLU !Enter solution routine
+ANTYPE,TRANS !Transient analysis
+TINTP,0 !Define time integration parameters
+TIME,TTOT !Define time
+DELTIM,TSTP !Define time step size
+KBC,1 !Step-change boundary conditions
+USRCAL,UITFIN !Activate user subroutine
+OUTRES,ALL,NONE !Define output frequencies
+OUTRES,NSOL,ALL
+SOLVE !Perform solution
+FINI !Exit solution routine
+/COM, ==========================================================
+/COM, Perform postprocessing
+/COM, ==========================================================
+/POST26 !Enter time history postprocessor
+NSOL,2,2,U,Y !Store nodal displacement
+/SHOW,control,grph !Open neutral graphics file
+/AXLAB,X,TIME !Define plot options
+/AXLAB,Y,DISPLACEMENT
+/GRID,1
+PLVAR,2 !Plot time history
+/PAGE,9999,,9999
+/OUTPUT,control,hist !Output time history
+PRVAR,2
+/OUTPUT
+FINI !Exit time history postprocessor
+/COM, ==========================================================
+/COM, Exit ANSYS
+/COM, ==========================================================
+/DELE,control,emat !Delete scratch files
+/DELE,control,esav
+/DELE,control,full
+/DELE,control,ldhi
+/DELE,control,r001
+/DELE,control,rdb
+PARSAV,ALL !Save parameters
+/EXIT !Save database

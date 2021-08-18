@@ -1,0 +1,46 @@
+/nopr 
+!------------------ E.MILLER 10/4/2006  PADT
+!
+!   CMNDIF
+! 
+!  Find what parameters in a common block changed
+!    Set baseline value then run with IPASS = 0
+!    Change value you want to find common for then run with IPASS = 1
+!
+!  cmndif,IPASS, ABLK, IRTYP
+!        IPASS: Pass number, use 0 or blank for first pass
+!                1 for sedond pass
+!        ABLK: Name of common block, in ''s
+!        IRTYP:   1 = REAL
+!                 0 or Blank = INT
+!-----------------------------
+imax = 5000
+ipass = arg1
+ablk = arg2
+*if,arg3,eq,1,then
+   irtyp = 'REAL'
+*else
+   irtyp = 'INT'
+*endif
+*if,ipass,eq,0,then
+  v1=
+  v2=
+  *dim,v1,,imax
+  *dim,v2,,imax
+  *do,i,1,imax
+    *GET,v1(i),COMMON,,%ablk%,,%irtyp%,i
+  *enddo
+*else
+  *do,i,1,imax
+    *GET,v2(i),COMMON,,%ablk%,,%irtyp%,i
+  *enddo
+  *msg
+  +++++++ Looking for Changes:
+  *do,i,1,imax
+    *if,v1(i),ne,v2(i),then
+       *msg,,i,v1(i),v2(i)
+  Found: %g %g %g
+  *endif
+  *enddo
+  /gopr
+*endif

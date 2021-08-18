@@ -1,0 +1,212 @@
+C*** MACRO FILE cbc_rmp5.mac CREATES ARRAYS
+C*** FOR SPECIFYING LOADS IN LS DYNA WHICH
+C*** "RAMP" IN A CUBIC MANNER (ZERO SLOPES
+C*** AT BEGINNING AND END OF RAMP). USE WHEN
+C*** STEADY STATE LOADING IS DESIRED.
+C*** BILL BULAT CSI 07/18/2000
+C*** (760) 431-4815 x108
+C*** bill.bulat@csi-ansys.com
+
+!          tstrt_ = start time
+!          tmaxval_ = duration (time @ max amplitude - start time)
+!          ampltd_ = amplitude
+!          npts_ = # of data pts until max val is reached
+!          krud_ = key for ramp-up plus ramp down (1=yes,0=no)
+!          tm_ = name of time array (use single quotes in batch mode only)
+!          ordnt_ = name of value array (use single quotes in batch mode only)
+!          tfinal_ = time @ end of transient solution
+!          ampfnl_ = value @ end of transient solution
+
+!*get,intrctv_,active,,int   ! CHECK FOR INTERACTIVE RUN. IF YES, PROMPT USER.
+*if,intrctv_,eq,1,then
+ *get,dfnd,parm,tstrt_,type
+ *if,dfnd,gt,-1,then
+  *ask,tstrt_,the cubic ramp start time,%tstrt_%
+ *else
+  *ask,tstrt_,the cubic ramp start time,0
+ *endif
+
+ *get,dfnd,parm,tmaxval_,type
+ *if,dfnd,gt,-1,then
+  *ask,tmaxval_,the duration until max amplitude is reached,%tmaxval_%
+ *else
+  *ask,tmaxval_,the duration until max amplitude is reached,0.001
+ *endif
+
+ *get,dfnd,parm,ampltd_,type
+ *if,dfnd,gt,-1,then
+  *ask,ampltd_,the amplitude,%ampltd_%
+ *else
+  *ask,ampltd_,the amplitude,1
+ *endif
+
+ *get,dfnd,parm,npts_,type
+ *if,dfnd,gt,-1,then
+  *ask,npts_,the # of pts until max amplitude is reached,%npts_%
+ *else
+  *ask,npts_,the # of pts until max amplitude is reached,25
+ *endif
+
+ *get,dfnd,parm,krud_,type
+ *if,dfnd,gt,-1,then
+  *ask,krud_,the key for ramp-up plus ramp down (1=yes,0=no),%krud_%
+ *else
+  *ask,krud_,the key for ramp-up plus ramp down (1=yes,0=no),0
+ *endif
+
+ *get,dfnd,parm,tm_,type
+ *if,dfnd,eq,3,then
+  *ask,tm_,the name of the time array (do not embed in quotes),'%tm_%'
+ *else
+  *ask,tm_,the name of the time array (do not embed in quotes),'tm'
+ *endif
+
+ *get,dfnd,parm,ordnt_,type
+ *if,dfnd,eq,3,then
+  *ask,ordnt_,the name of the time array (do not embed in quotes),'%ordnt_%'
+ *else
+  *ask,ordnt_,the name of the time array (do not embed in quotes),'ordnt'
+ *endif
+
+ *get,dfnd,parm,tfinal_,type
+ *if,dfnd,gt,-1,then
+  *ask,tfinal_,the time @ end of transient solution,%tfinal_%
+ *else
+  *ask,tfinal_,the time @ end of transient solution,0
+ *endif
+
+ *get,dfnd,parm,ampfnl_,type
+ *if,dfnd,gt,-1,then
+  *ask,ampfnl_,the value @ end of transient solution,%ampfnl_%
+ *else
+  *ask,ampfnl_,the value @ end of transient solution,0
+ *endif
+
+ *get,dfnd,parm,%tm_%,type
+ *if,dfnd,gt,-1,then
+  %tm_%(1)=
+ *endif
+
+ *get,dfnd,parm,%ordnt_%,type
+ *if,dfnd,gt,-1,then
+  %ordnt_%(1)=
+ *endif
+
+*else   ! IF NOT INTERACTIVE, ASSIGN VALUES OF ARGS TO VARIABLES
+
+ tstrt_=arg1     ! start time
+ tmaxval_=arg2   ! duration (time @ max amplitude - start time)
+ ampltd_=arg3    ! amplitude
+ npts_=arg4      ! # of data pts until max val is reached
+ krud_=arg5      ! key for ramp-up plus ramp down (1=yes,0=no)
+ tm_=arg6        ! name of time array (enclosed in single quotes)
+ ordnt_=arg7     ! name of value array (enclosed in single quotes)
+ tfinal_=arg8    ! time @ end of transient solution
+ ampfnl_=arg9    ! value @ end of transient solution
+
+*endif
+
+
+*if,%krud_%,eq,0,then
+ *if,%tstrt_%,eq,0,then
+  *dim,%tm_%,,npts_+1
+  *dim,%ordnt_%,,npts_+1
+ *else
+  *dim,%tm_%,,npts_+2
+  *dim,%ordnt_%,,npts_+2
+ *endif
+*else
+ *if,tstrt_,eq,0,then
+  *dim,%tm_%,,2*npts_
+  *dim,%ordnt_%,,2*npts_
+ *else
+  *dim,%tm_%,,2*npts_+1
+  *dim,%ordnt_%,,2*npts_+1
+ *endif
+*endif
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! END OF USER INPUT (EITHER INTERACTIVE OR BATCH MODE)
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+b=((3*ampltd_)/(tmaxval_**2))
+a=-((2*b)/(3*tmaxval_))
+
+*if,tstrt_,eq,0,then
+ *if,krud_,eq,0,then
+  *do,i,0,npts_-1,1
+   /gopr
+   %tm_%(i+1)=(i*(tmaxval_/(npts_-1)))+tstrt_
+   %ordnt_%(i+1)=(a*((%tm_%(i+1)-tstrt_)**3))+(b*((%tm_%(i+1)-tstrt_)**2))
+  *enddo
+ *else
+  *do,i,0,2*npts_-1,1
+   /gopr
+   %tm_%(i+1)=(i*(tmaxval_/(npts_-1)))+tstrt_
+   *if,i,le,npts_-1,then
+    %ordnt_%(i+1)=(a*((%tm_%(i+1)-tstrt_)**3))+(b*((%tm_%(i+1)-tstrt_)**2))
+   *else
+    scrap=(a*((%tm_%(2*npts_-i)-tstrt_)**3))
+    %ordnt_%(i+1)=scrap+(b*((%tm_%(2*npts_-i)-tstrt_)**2))
+    scrap=
+   *endif
+  *enddo
+ *endif
+*else
+ %tm_%(1)=0
+ %ordnt_%(1)=0
+ *if,krud_,eq,0,then
+  *do,i,1,npts_,1
+   /gopr
+   %tm_%(i+1)=((i-1)*(tmaxval_/(npts_-1)))+tstrt_
+   %ordnt_%(i+1)=(a*((%tm_%(i+1)-tstrt_)**3))+(b*((%tm_%(i+1)-tstrt_)**2))
+  *enddo
+ *else
+  *do,i,1,2*npts_-1,1
+   /gopr
+   %tm_%(i+1)=((i-1)*(tmaxval_/(npts_-1)))+tstrt_
+   *if,i,le,npts_-1,then
+    %ordnt_%(i+1)=(a*((%tm_%(i+1)-tstrt_)**3))+(b*((%tm_%(i+1)-tstrt_)**2))
+   *else
+    scrap=(a*((%tm_%(2*npts_-i+1)-tstrt_)**3))
+    %ordnt_%(i+1)=scrap+(b*((%tm_%(2*npts_-i+1)-tstrt_)**2))
+    scrap=
+   *endif
+  *enddo
+ *endif
+*endif
+
+*if,tstrt_,eq,0,then
+ *if,krud_,eq,0,then
+  %tm_%(npts_+1)=tfinal_
+  %ordnt_%(npts_+1)=ampfnl_
+ *else
+  %tm_%(2*npts_)=tfinal_
+  %ordnt_%(2*npts_)=ampfnl_
+ *endif
+*else
+ *if,krud_,eq,0,then
+  %tm_%(npts_+2)=tfinal_
+  %ordnt_%(npts_+2)=ampfnl_
+ *else
+  %tm_%(2*npts_+1)=tfinal_
+  %ordnt_%(2*npts_+1)=ampfnl_
+ *endif
+*endif
+
+!*vplo,tm_(1),ordnt_(1)
+
+
+
+
+
+
+
+
+
+
+
+

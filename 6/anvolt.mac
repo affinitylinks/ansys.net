@@ -1,0 +1,71 @@
+c*** MACRO anvolt_h.mac ANIMATES RESULTS OF HARMONIC ANALYSIS IN POST1 BY
+c*** CONTOURING THE REAL PART OF THE SOLUTION WHILE VARYING THE PHASE ANGLE.
+
+*ask,n,THE NUMBER OF FRAMES PER CYCLE,30
+*ask,delay,DELAY BETWEEN SUCCESSIVE FRAMES,0.25
+
+cm,temp_e,elem
+cm,temp_n,node
+
+/edg
+/gli
+/pbc,all
+/psf,impd,,0
+
+*afun,deg
+
+*get,ssnum,active,,set,sbst
+lcde,1,1,ssnum,0
+lcde,2,1,ssnum,1
+lcas,1
+
+*get,frqncy,active,,set,freq
+/tsp,,0.75
+/ann,dele
+/tla,-.95,.95,ANIMATION OF HARMONIC VARIATION IN VOLTAGE @%frqncy% Hz
+
+lcop,srss,2
+/sho,scrap,grph
+plns,volt
+*get,vmax,plnsol,,max
+*get,vmin,plnsol,,min
+*if,abs(vmin),gt,vmax,then
+ vmax=abs(vmin)
+*endif
+/con,1,,-vmax,vmax/5,vmax
+/sho,term
+
+/seg,dele
+/seg,multi,,delay
+
+*do,theta,0,360-360/n,360/n
+ rl = cos(theta)
+ img = -sin(theta)
+ lcfa,1,rl
+ lcfa,2,img
+
+ *if,rl,eq,0,then
+  lcfa,1,1e-10
+ *endif
+
+ *if,img,eq,0,then
+  lcfa,2,1e-10
+ *endif
+
+ lcas,1
+ lcop,add,2
+ plns,volt
+*enddo
+
+lcfa,1,1
+lcas,1
+
+/seg,off
+anim
+/ann,dele
+
+cmse,s,temp_e
+cmse,s,temp_n
+cmde,temp_e
+cmde,temp_n
+

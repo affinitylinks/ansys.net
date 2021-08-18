@@ -1,0 +1,246 @@
+!########################################################################################
+!Name       : intersect_line.mac
+!Author     : Navaneeth Bashyam (navaneeth.bashyam@tcs.com) Date: Oct-Nov,2004
+!Purpose    : Entry for APDL GURU contest!
+!Function   : 1.) Allows the user to select two lines, and intersects them
+!creating appropriate number (3-4) of lines with a common keypoint.
+!2) If the selected lines are parallel, it prompts back a message.
+!3) If the lines are short, lines will get extended and intersected.
+!
+!Scope of improvement : 
+!             1)Need the provision to select max of two lines only,
+!             2) if the user selects 1 line, program should prompt to pick one more line.
+!########################################################################################
+/out,xxx
+/pmacro
+/prep7
+/nerr,1e09,1e09
+ksel,all
+*get,kmax,KP,,num,max
+*msg,UI,
+('Pick ONLY two lines')
+lsel,s,p
+!cm,jnk,line
+alls,belo,line
+!csys,0
+!*get,active_csys,ACTIVE,,CSYS
+MAXCSYS = csyiqr(0,14)
+MAXCSYS=MAXCSYS+11
+
+!Align workplane with KP11-center KP12 and KP21
+
+
+
+
+*get,lmin,LINE,,num,min
+*get,lmax,LINE,,num,max
+
+*get,kp11,LINE,lmin,KP,1
+*get,kp12,LINE,lmin,KP,2
+*get,kp21,LINE,lmax,KP,1
+*get,kp22,LINE,lmax,KP,2
+
+csys,0
+!WPCSYS,-1,0
+KWPLAN,-1,       Kp11,      kp12,       kp22
+CSWPLA,MAXCSYS,0,1,1,
+!csys,MAXCSYS+1
+
+*if,kz(kp21),ne,kz(kp11),then  ! if lines do not fall on a plane - they will never intersect
+*msg,UI
+('Selected Lines cannot intersect')
+*endif
+
+deltax1=(kx(kp11)-kx(kp12))
+deltay1=(ky(kp11)-ky(kp12))
+deltax2=(kx(kp21)-kx(kp22))
+deltay2=(ky(kp21)-ky(kp22))
+
+!######################################
+*if,ABS(deltax1),lt,1e-08,then
+deltax1=0
+*endif
+*if,ABS(deltax2),lt,1e-08,then
+deltax2=0
+*endif
+*if,ABS(deltay1),lt,1e-08,then
+deltay1=0
+*endif
+*if,ABS(deltay2),lt,1e-08,then
+deltay2=0
+*endif
+!######################################
+
+
+
+
+*if,deltax1,ne,0,then
+
+M1=deltay1/deltax1
+
+*endif
+
+*if,deltax2,ne,0,then
+
+M2=deltay2/deltax2
+
+*endif
+
+
+C1=ky(kp11)-M1*kx(kp11)
+
+C2=ky(kp21)-M2*kx(kp21)
+
+kpstar=0
+
+!########################################################################
+!Create the intersected/touching lines
+*create,cut-lines,mac
+kpstar=kmax+1
+k,kpstar,xstar,ystar,kz(kp11)
+
+dist1star=distkp(kp11,kpstar)+distkp(kp12,kpstar)
+dist1=distkp(kp11,kp12)
+
+*if,dist1star,gt,dist1,then
+	*if,distkp(kp11,kpstar),gt,distkp(kp12,kpstar),then
+	l,kp11,kpstar
+	ldel,lmin
+        *elseif,distkp(kp11,kpstar),lt,distkp(kp12,kpstar),then
+	l,kp12,kpstar
+	ldel,lmin
+	*elseif,distkp(kp11,kpstar),eq,distkp(kp12,kpstar),then
+	*msg,UI
+('lines are touching')
+        *endif
+*elseif,dist1star,eq,dist1,then
+!divide the line
+l,kp11,kpstar
+l,kpstar,kp12
+ldel,lmin
+*endif
+
+dist2star=distkp(kp21,kpstar)+distkp(kp22,kpstar)
+dist2=distkp(kp21,kp22)
+
+*if,dist2star,gt,dist2,then
+	*if,distkp(kp21,kpstar),gt,distkp(kp22,kpstar),then
+	l,kp21,kpstar
+	ldel,lmax
+        *elseif,distkp(kp21,kpstar),lt,distkp(kp22,kpstar),then
+	l,kp22,kpstar
+	ldel,lmax
+	*elseif,distkp(kp21,kpstar),eq,distkp(kp22,kpstar),then
+	*msg,UI
+('lines are touching')
+        *endif
+*elseif,dist2star,eq,dist2,then
+!divide the line
+l,kp21,kpstar
+l,kpstar,kp22
+ldel,lmax
+*endif
+*end
+!########################################################################
+
+
+
+!########################################################################
+!determine the intersecting point [xstar,ystar]
+*if,deltay1,eq,0,AND,deltax1,ne,0,then
+ 
+   *if,deltay2,ne,0,AND,deltax2,eq,0,then
+    ystar=0.5*(ky(kp11)+ky(kp12))
+    xstar=0.5*(kx(kp21)+kx(kp22))
+    /input,cut-lines,mac !#########################################1
+    *elseif,deltay2,ne,0,AND,deltax2,ne,0,then
+    ystar=0.5*(ky(kp11)+ky(kp12))
+    xstar=(1/M2)*(ystar-c2)
+    /input,cut-lines,mac !#########################################2
+    *elseif,deltay2,eq,0,AND,deltax2,ne,0,then
+*msg,UI
+"Lines are Parallel"
+    *endif
+
+*elseif,deltay1,ne,0,AND,deltax1,eq,0,then
+
+    *if,deltay2,ne,0,AND,deltax2,ne,0,then
+    xstar=0.5*(kx(kp11)+kx(kp12))
+    ystar=m2*xstar+c2
+    /input,cut-lines,mac   !#########################################3
+    *elseif,deltay2,eq,0,AND,deltax2,ne,0,then
+    ystar=0.5*(ky(kp21)+ky(kp22))
+    xstar=0.5*(kx(kp11)+kx(kp12))
+    /input,cut-lines,mac   !#########################################4
+    *elseif,deltay2,ne,0,AND,deltax2,eq,0,then
+*msg,UI
+"Lines are Parallel"
+    *endif
+
+*elseif,deltay1,ne,0,AND,deltax1,ne,0,then
+
+    *if,deltay2,ne,0,AND,deltax2,eq,0,then
+    xstar=0.5*(kx(kp21)+kx(kp22))
+    ystar=m1*xstar+c1
+    /input,cut-lines,mac   !#########################################5
+    *elseif,deltay2,eq,0,AND,deltax2,ne,0,then
+    ystar=0.5*(ky(kp21)+ky(kp22))
+    xstar=(1/M1)*(ystar-c1)
+    /input,cut-lines,mac   !#########################################6
+    *elseif,deltay2,ne,0,AND,deltax2,ne,0,then
+    xstar=(c2-c1)/(m2-m1)
+    ystar=m1*xstar+c1
+    /input,cut-lines,mac   !#########################################7
+    *endif
+
+*endif
+
+
+ksel,s,KP,,kp11
+ksel,a,KP,,kp12
+*if,kpstar,ne,0,then
+ksel,a,KP,,kpstar
+*endif
+ksel,a,KP,,kp21
+ksel,a,KP,,kp22
+
+lslk
+gplo
+alls
+!csys,MAXCSYS+1
+/nerr,defa
+
+csys,0
+WPCSYS,-1,0
+csdele,MAXCSYS
+/out,TERM
+!########################################################################
+/out,del_par
+!delete all local variables
+dist2star=
+dist2=
+dist1star=
+dist1=
+kpstar=
+xstar=
+ystar=
+kp21=
+kp11=
+kp12=
+kp22=
+kmax=
+c1=
+c2=
+m1=
+m2=
+maxcsys=
+deltax1=
+deltay1=
+deltax2=
+deltay2=
+lmax=
+lmin=
+!ppp=
+/out,TERM
+!########################################################################
+

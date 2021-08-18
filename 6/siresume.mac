@@ -1,0 +1,32 @@
+/nopr
+
+*set,FLAG_RES,'yes'
+
+*get,NCOUNT_,node,,count
+*get,KCOUNT_,kp  ,,count
+
+*if,NCOUNT_,ne,0,then
+  *set,FLAG_RES,'no'
+*elseif,KCOUNT_,ne,0
+  *set,FLAG_RES,'no'
+*endif
+
+*if,FLAG_RES,eq,'no',then
+
+multipro,'start',0
+*cset,61,62,'Really Resume?'
+multipro,'end'
+
+*if,_button,eq,0,then
+  resume
+*endif
+
+*else
+  resume
+*endif
+
+/gopr
+
+! To use, add
+! *abbr,RESUM_DB,SIRESUME
+! to your start56.ans file

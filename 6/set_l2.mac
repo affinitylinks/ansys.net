@@ -1,0 +1,13 @@
+/nopr
+/output,set,list
+set,list,2
+/output
+*get,_menu,active,,menu
+*if,_menu,eq,0,then
+  *list,set,list
+*else
+  *uilist,set,list
+*endif
+_menu=
+/gopr
+

@@ -1,0 +1,68 @@
+finish
+/clear
+
+DIM_LENGTH = 100
+DIM_ODIAM  = 10
+DIM_WTHICK = 0.5
+DIM_ESIZE  = 2
+
+NUM_CIRCUM = 18
+NUM_THICK  = 3
+NUM_FOURIER= 4
+
+/eshape,1
+/view,1,1,2,3
+/pnum,mat,1
+/number,1
+
+/prep7
+et,1,elbow290
+keyopt,1,2,NUM_FOURIER
+keyopt,1,8,1
+sectype,1,pipe
+secdata,DIM_ODIAM,DIM_WTHICK,NUM_CIRCUM,2
+sectype,2,shell
+secdata,DIM_WTHICK/8,1,,NUM_THICK
+secdata,DIM_WTHICK*3/4,2,,NUM_THICK+2
+secdata,DIM_WTHICK/8,1,,NUM_THICK
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+tb,biso,1,1
+tbdata,1,30e3,1e4
+tb,hyper,2,1,,neo
+tbdata,,1e4,2/5e6
+
+k
+k,,DIM_LENGTH
+l,1,2
+esize,DIM_ESIZE
+lmesh,all
+
+N_SYM=node(DIM_LENGTH,0,0)
+N_LBC=node(0,0,0)
+
+finish
+
+/solu
+antype,static
+nlgeom,on
+outres,all,-100
+nsubst,1e3,1e6,1
+cnvtol,f,10,0.1,2
+cnvtol,m,,0.005,2,-1
+
+d,N_SYM,ux
+d,N_SYM,roty
+d,N_SYM,rotz
+d,N_SYM,sw
+d,N_SYM,srt
+d,N_LBC,rotz,acos(-1)/2
+d,N_LBC,sect
+d,N_LBC,uy
+d,N_LBC,uz
+solve
+finish
+
+/post1
+set,last
+plesol,eppl,eqv

@@ -1,0 +1,91 @@
+!
+! MACRO:         rparea.mac
+!
+! Created By:    Computer Aided Engineering Associates Inc.
+!                60 Middle Quarter Mall
+!                Woodbury, CT 06798
+!                (203) 263-4606
+!                http://www.caeai.com/
+!  
+! Date:          July 14, 2003
+! 
+! Disclaimer:    This macro is provided without guarantee, written or implied,
+!                as to the validity of the information that it generates.
+!                It is the responsibility of the user to independently verify
+!                all results.  This macro may be freely distributed as long 
+!                this header remains unchanged.
+!
+! ANSYS Version: 7.0
+!
+! Description:   This macro uses the ASUB command to replace/repair old areas
+!			with new areas to repair them in preparation for 
+!			meshing.
+!
+! Dependencies:  None
+!
+! Usage:         plcycstr
+!
+!------------------------------------------
+/pmacro
+!
+! create components of currently selected areas, lines and keypoints
+!
+cm,_atemp,area
+cm,_ltemp,line
+cm,_ktemp,kp
+!
+! user reselects areas to repair using the asel picking menu
+!
+asel,r,p
+!
+! set amax = no. of selected areas
+!
+amax=arinqr(0,13)
+a1=0
+!
+! loop through all selected areas, obtain kps, and create new
+!   areas using shape of old areas (ASUB command)
+!
+*do,ai,1,amax
+  a1=arnext(a1)
+  asel,s,area,,a1
+  lsla
+  ksll
+  cm,_ll,line
+  lmax=lsinqr(0,13)
+  FLST,3,lmax,3
+  k0=0
+  *do,li,1,lmax
+    l1=lsnext(0)
+    *get,k1,line,l1,kp,1
+    *if,k1,eq,k0,then
+      *get,k1,line,l1,kp,2
+    *endif
+    k0=k1
+    FITEM,3,k0
+    ksel,s,kp,,k0
+    cmsel,s,_ll
+    lslk,r
+    lsel,u,line,,l1
+  *enddo
+  ASUB,a1,P51X
+  cmsel,s,_atemp
+*enddo
+!
+! delete old areas, leaving newly created areas in their place
+!
+cmsel,a,_atemp
+cmsel,a,_ltemp
+cmsel,a,_ktemp
+cmdele,_atemp
+cmdele,_ltemp
+cmdele,_ktemp
+k1=
+l1=
+a1=
+ai=
+li=
+lmax=
+amax=
+/eof
+!

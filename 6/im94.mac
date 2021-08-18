@@ -1,0 +1,136 @@
+! ------------------------------------------------------------------------------------------
+! free_rot.mac
+! ------------------------------------------------------------------------------------------
+
+! Creates a non-rigid moment on a face using rbe3
+! Only requires user to enter area number (or component name in quotes) and moment magnitude
+! Use negative magnitude to reverse moment direction
+! Designed for planar input areas
+!
+! ------------------------------------------------------------------------------------------
+! Use: free_rot,arg1,arg2,arg3
+! arg1 = area number (leave arg2 blank)
+! arg2 = 'nodal component name' (leave arg1 blank)
+! arg3 = moment magnitude
+!
+! ------------------------------------------------------------------------------------------
+! TA 16/5/02
+! ------------------------------------------------------------------------------------------
+
+
+! prepare model
+fini
+/prep7
+cm,nn,node
+cm,ee,elem
+cm,kk,kp
+cm,ll,line
+cm,aa,area
+cm,vv,volu
+cmgrp,model,aa,ee,kk,ll,nn,vv 
+
+! get current number limits
+esel,all
+nsel,all
+*get,et_max,etyp,1,num,max	! get highest et 
+*get,r_max,rcon,1,num,max 	! get highest real 	
+*get,n_max,node,,num,max,,,,	! get model high node number
+
+! select nodes on face
+*if,arg1,ne,0,then		! if using area input
+  asel,none			! redundant step in case area arg1 isn't created
+  asel,s,,,arg1
+
+  ! error trap for incorrect area number
+  *get,a_num,area,,count, , , ,
+  *if,a_num,eq,0,then
+    *msg,ui,arg1
+    area number %i isn't defined
+    a_num=
+    et_max=
+    r_max=
+    n_max=
+    cmsel,s,model
+    cmdele,model
+    cmdele,nn
+    cmdele,ee
+    cmdele,kk
+    cmdele,ll
+    cmdele,aa
+    cmdele,vv
+    /eof
+  *endif
+  
+  ! select nodes on moment face
+  nsla,s,1
+*else				! if using component input
+  cmsel,s,%arg2%
+*endif
+
+cm,nface,node
+*get,n_num,node,,count, , , ,
+
+! orient cs planar to nodes
+n1=ndnext(0)
+nsel,u,,,n1
+n2=ndnext(0)
+nsel,u,,,n2
+n3=ndnext(0)
+*afun,deg
+int_ang=anglen(n1,n2,n3)
+
+! if n1,n2,n3 are colinear, keep getting another
+! n3 until you have 3 points for a plane
+*do,i,1,n_num,1
+  *if,int_ang,eq,0,or,int_ang,eq,180,then
+    nsel,u,,,n3
+    n3=ndnext(0)
+    int_ang=anglen(n1,n2,n3)
+  *else
+    *exit
+  *endif
+*enddo
+
+cmsel,s,nface
+nwplan,-1,n1,n2,n3
+csys,4
+
+! create node at that face centroid x,y,z
+! rotate to that cs
+nwpave,all
+n,n_max+1,0,0,0
+nrotat,all
+
+! define mass element to apply moment to
+et,et_max+1,21
+type,et_max+1
+r,r_max+1,1,1,1,1,1,1
+real,r_max+1
+e,n_max+1
+
+! apply moment then couple to face nodes
+f,n_max+1,mz,arg3   
+rbe3,n_max+1,rotz,nface, 
+
+! reselect model and clean up
+cmsel,s,model
+nsel,a,,,n_max+1
+
+cmdele,nface
+cmdele,nn
+cmdele,ee
+cmdele,kk
+cmdele,ll
+cmdele,aa
+cmdele,vv
+cmdele,model
+n1=
+n2=
+n3=
+n_max=
+et_max=
+r_max=
+n_num=
+a_num=
+i=
+int_ang=

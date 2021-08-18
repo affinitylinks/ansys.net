@@ -1,0 +1,259 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Natural convection problem (3D hex)
+/com,  simple "chip on board"
+/com,
+
+finish
+/clear,nostart
+
+A_WIDTH  = 0.1
+A_HEIGHT = 0.2
+
+B_WIDTH  = A_WIDTH
+B_HEIGHT = 0.010
+
+C_WIDTH  = 0.010
+C_HEIGHT = 0.002
+
+TOL=1e-6
+
+/view,1,1,1,1
+/auto
+/triad,lbot
+/pnum,mat,1
+/num,1
+/title,Simple Nat Conv problem
+
+/prep7
+et,1,142
+et,2,200
+keyopt,2,1,6
+
+mp,kxx ,2,0.73
+mp,kxx ,3,167
+
+rectng,0,B_WIDTH,0,B_HEIGHT
+rectng,0,A_WIDTH,0,A_HEIGHT
+rectng,0,B_WIDTH,0,B_HEIGHT+C_HEIGHT
+rectng,0,C_WIDTH,0,A_HEIGHT
+
+aovlap,all
+
+ksel,s,loc,x,0
+ksel,r,loc,y,0
+KP_ROT1=kpnext(0)
+ksel,s,loc,x,0
+ksel,r,loc,y,A_HEIGHT
+KP_ROT2=kpnext(0)
+allsel,all
+vrotat,all,,,,,,KP_ROT1,KP_ROT2,90,1
+
+!----------------------------------------
+! Center of board
+!----------------------------------------
+wpcsys,-1,0
+wprota,,-90
+cswpla,11,1
+csys,11
+asel,s,loc,z,0
+asel,r,loc,x,0,C_WIDTH
+esize,0.002
+type,2
+mshape,0
+mshkey,1
+amesh,all
+!*
+vsla
+lsel,s,loc,z,0+TOL,B_HEIGHT-TOL
+lesize,all,,,10,1/5,1
+lsel,s,loc,x,0
+lsel,r,loc,z,0,B_HEIGHT
+lesize,all,,,10,5,1
+!*
+type,1
+mat,2
+vsweep,all
+aclear,all
+
+!----------------------------------------
+! Rest of board
+!----------------------------------------
+asel,s,loc,y,0
+asel,r,loc,z,0,B_HEIGHT
+asel,r,loc,x,C_WIDTH,B_WIDTH
+!*
+lsel,s,loc,x,C_WIDTH+TOL,B_WIDTH-TOL
+lesize,all,,,30,1/5,1
+!*
+type,2
+amesh,all
+!*
+type,1
+mat,2
+vsla
+vsweep,all
+aclear,all
+
+!----------------------------------------
+! Component
+!----------------------------------------
+lsel,s,loc,z,B_HEIGHT+TOL,B_HEIGHT+C_HEIGHT-TOL
+lesize,all,,,4,1,1
+vsel,s,loc,z,B_HEIGHT,B_HEIGHT+C_HEIGHT
+vsel,r,loc,x,0,C_WIDTH
+type,1
+mat,3
+vsweep,all
+
+!----------------------------------------
+! Air near component
+!----------------------------------------
+vsel,s,loc,z,B_HEIGHT,B_HEIGHT+C_HEIGHT
+vsel,r,loc,x,C_WIDTH,B_WIDTH
+type,1
+mat,1
+vsweep,all
+
+!----------------------------------------
+! Air
+!----------------------------------------
+lsel,s,loc,z,B_HEIGHT+C_HEIGHT+TOL,A_HEIGHT-TOL
+lesize,all,,,70,1/10,1
+vsel,s,loc,z,B_HEIGHT+C_HEIGHT,A_HEIGHT
+type,1
+mat,1
+vsweep,all
+
+etdele,2
+finish
+
+/solu
+
+asel,s,loc,y,0
+asel,r,loc,z,B_HEIGHT,A_HEIGHT
+da,all,vz,0.0,1
+asel,s,loc,y,90
+asel,r,loc,z,B_HEIGHT,A_HEIGHT
+da,all,vx,0.0,1
+asel,s,loc,x,A_WIDTH
+asel,r,loc,z,B_HEIGHT,A_HEIGHT
+asel,a,loc,z,A_HEIGHT
+da,all,vx,0.0,1
+da,all,vy,0.0,1
+da,all,vz,0.0,1
+
+N_ANCHOR=node(A_WIDTH-TOL,45,A_HEIGHT-TOL)
+d,N_ANCHOR,pres,0.0
+
+vsel,s,loc,z,B_HEIGHT,B_HEIGHT+C_HEIGHT
+vsel,r,loc,x,0,C_WIDTH
+bfv,all,hgen,1e6
+
+asel,s,loc,z,0
+da,all,temp,20,1
+
+nsel,all
+ic,all,temp,20
+
+flda,solu,flow,1
+flda,solu,temp,1
+flda,solu,turb,1
+
+flda,iter,exec,20
+flda,iter,appe,10
+flda,outp,sumf,10
+
+FLDATA12,PROP,DENS,9
+FLDATA13,VARY,DENS,1
+FLDATA12,PROP,VISC,9
+FLDATA13,VARY,VISC,0
+FLDATA12,PROP,COND,9
+FLDATA13,VARY,COND,0
+FLDATA12,PROP,SPHT,9
+FLDATA13,VARY,SPHT,0
+
+FLDATA7,PROT,DENS,AIR-SI_B  
+FLDATA8,NOMI,DENS,-1
+FLDATA9,COF1,DENS,0 
+FLDATA10,COF2,DENS,0
+FLDATA11,COF3,DENS,0
+FLDATA7,PROT,VISC,AIR-SI_B  
+FLDATA8,NOMI,VISC,-1
+FLDATA9,COF1,VISC,0 
+FLDATA10,COF2,VISC,0
+FLDATA11,COF3,VISC,0
+FLDATA12,PROP,IVIS  
+FLDATA7,PROT,COND,AIR-SI_B  
+FLDATA8,NOMI,COND,-1
+FLDATA9,COF1,COND,0 
+FLDATA10,COF2,COND,0
+FLDATA11,COF3,COND,0
+FLDATA7,PROT,SPHT,AIR-SI_B  
+FLDATA8,NOMI,SPHT,-1
+FLDATA9,COF1,SPHT,0 
+FLDATA10,COF2,SPHT,0
+FLDATA11,COF3,SPHT,0
+
+FLDATA15,PRES,REFE,101350,  
+FLDATA16,BULK,BETA,1e+015,  
+FLDATA17,GAMM,COMP,1.4, 
+FLDATA14,TEMP,NOMI,20,  
+FLDATA14,TEMP,TTOT,20,  
+FLDATA14,TEMP,BULK,20,  
+toff,273
+
+acel,,9.81
+
+flda,advm,mome,msu
+flda,advm,turb,msu
+
+allsel,all
+csys,0
+dsys,0
+
+solve
+
+! ---- change this as needed ----
+flda,iter,exec,100
+
+! ---- use sparse instead? ----
+flda,meth,pres,3
+flda,maxi,pres,500
+flda,srch,pres,2
+flda,conv,pres,1e-10
+flda,delt,pres,1e-12
+
+flda,meth,temp,4
+flda,maxi,temp,500
+flda,srch,temp,12
+flda,conv,temp,1e-12
+flda,delt,temp,1e-14
+flda,pgmr,fill,6
+flda,pgmr,modp,0
+
+flda,advm,mome,supg
+flda,advm,turb,supg
+
+!flocheck,1
+solve
+
+
+
+
+
+
+
+
+

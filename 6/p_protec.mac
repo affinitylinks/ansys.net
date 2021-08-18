@@ -1,0 +1,53 @@
+! Think Peak, Inc. Copyright 1999
+! Chris Kennedy - Author
+!/com $Id: P_PROTEC.MAC $
+!
+/nopr
+!!
+! P_PROTEC - wrapper for SAVE and RESUME.
+!
+!   - could be used with other commands where you want to Verify the Choice
+!     before executing.
+!
+!   - the other fix would be to remove the SAVE_DB and RESUM_DB from
+!     the toolbar
+!
+!
+! arg1 - command to run, in single quotes
+!
+!/COM,A return value, held in _BUTTON, indicates if the OK (_BUTTON=0) or
+!/COM,Cancel(_BUTTON=1) button was chosen in the multi-prompt dialog.
+!
+multipro,'start',3
+*cset,61,62,'Please confirm your request to  ',' %ARG1%'
+*cset,63,64,'P_PROTEC by Think Peak, Inc.','        http://www.thinkpeak.com'
+*cset,1,3,PEAK_,'for your solutions',919
+*cset,4,6,PEAK_,'      think',387
+*cset,7,9,PEAK_,'      PEAK',8822
+multipro,'end'
+!
+*IF,_BUTTON,eq,0,then
+    *MSG,info,arg1
+    P_PROTEC: User OK'd request to %C
+    /go
+    %ARG1%
+    /nopr
+*ELSE
+    *MSG,INFO,arg1
+    P_PROTEC: User Canceled request to %C
+*ENDIF
+!
+PEAK_=
+/GO
+!
+/eof
+!
+!
+! Add this to your start55.ans file as:
+!
+!
+*ABBR,SAVE_DB
+*ABBR,RESUM_DB
+*ABBR,SAVE_DB,P_PROTEC,'SAVE'
+*ABBR,RESUM_DB,P_PROTEC,'RESUME'
+!
