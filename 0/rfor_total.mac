@@ -1,0 +1,32 @@
+! For a selected nodal set, macro creates vector r_f of dimension arg1 x 1 and fills it 
+! with successive values of reaction forces in y for successive time steps, the 
+! total number of which is specified by arg1
+!
+! macro assumes ultimate time step is number 1; this is easily changed, however
+!
+*del,all,
+/post1			
+inc=1/arg1
+nnum=0			!
+*dim,r_f,table,arg1	! create nx1 array for results
+*get,nmax,node,,num,max	! get highest node number in selected set
+*DO,n_set,inc,1,inc	! outer DO loop; collects data at time intervals of 1/arg1 to 1 by 1/arg1 increments
+!
+set,,,,,n_set		! select result set by time n_set
+rf_sum=0		!
+!
+	*DO,nnum,1,nmax,1			! for each node in selected set...
+		rf_temp=0
+		*get,rf_temp,node,nnum,rf,fy	! get nodal reaction force in y and store it in rf_temp
+		rf_sum=rf_temp+rf_sum		! sum nodal reaction forces in rf_sum
+!	
+	*enddo					! stop doing this when we get to nmax
+!
+*vfill,r_f(n_set*arg1),data,rf_sum,		! for time n_set store sum of nodal reactions
+! 
+*enddo			! if all goes well, array r_f should contain sum of reaction forces (reaction
+			! forces on an area, for instance, at time increments from inc to 1 by inc. 
+*cfopen,reactions,txt	! Reactions.txt will contain results
+*vwrite,r_f(1)
+(4F8.2)			! Fortran formatting for text file required by ANSYS
+*cfclos

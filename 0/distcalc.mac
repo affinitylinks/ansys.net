@@ -1,0 +1,34 @@
+! This macro calculates the distance between two nodes, selected by picking 
+! Written by Carl Ostervig on 2000.02.27 
+
+/pmacro
+/uis,msgpop
+nsele,s,p, !select two nodes by picking
+n1=ndnext(0) !n1 is lowest number of the two nodes
+n2=ndnext(n1) !n2 is highest number of the two nodes
+ 
+*dim,n1loc,array,3,1
+*dim,n2loc,array,3,1
+*dim,dist,array,1,1
+*dim,distx,array,1,1
+*dim,disty,array,1,1
+*dim,distz,array,1,1
+*dim,distsqr1,array,1,1
+*dim,distsqr2,array,1,1
+*dim,distsqr3,array,1,1
+*dim,distsqr,array,1,1
+ 
+*vget,n1loc(1),node,n1,loc,x,,,4 !get node coordinates for first node
+*vget,n2loc(1),node,n2,loc,x,,,4 !get node coordinates for second node
+ 
+ 
+distsqr1(1)=(n1loc(1)-n2loc(1))*(n1loc(1)-n2loc(1))
+distsqr2(1)=(n1loc(2)-n2loc(2))*(n1loc(2)-n2loc(2))
+distsqr3(1)=(n1loc(3)-n2loc(3))*(n1loc(3)-n2loc(3))
+distsqr(1)=distsqr1(1) + distsqr2(1) + distsqr3(1)
+distx(1)=n1loc(1)-n2loc(1) !x-distance 
+disty(1)=n1loc(2)-n2loc(2) !y-distance
+distz(1)=n1loc(3)-n2loc(3) !z-distance
+*vfun,dist(1),sqrt,distsqr(1) !total distance
+*msg,note,distx(1),disty(1),distz(1),dist(1)
+The distance between the nodes is %/ in x-dir %G %/ in y-dir %G %/ in z-dir %G %/ total %G

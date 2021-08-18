@@ -1,0 +1,15 @@
+! This macro calculates the sum of areas for all selected elements
+! and stores the result as parameter el_area
+
+/uis,msgpop
+*msg,note
+This macro calculates the area of all selected elements
+*get,max_num,elem,0,num,max ! Get max number of element
+*dim,elm_area,array,max_num,1 ! Dimension array for element areas
+*dim,elm_mask,array,max_num,1 ! Dimension mask for elements
+*vget,elm_mask(1),elem,1,esel ! Set mask if element selected
+*vmask,elm_mask(1)       ! Apply
+*vget,elm_area(1),elem,1,geom ! Get element areas for selected
+*vscfun,el_area,sum,elm_area(1) ! Calculate sum of areas and store result in parmeter el_area 
+*msg,note,el_area
+The area of all selected elements is %G

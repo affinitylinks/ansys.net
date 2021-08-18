@@ -1,0 +1,41 @@
+/nopr
+!
+!  getva.mac  a macro which loops through a series of vsla and aslv
+!             commands
+!
+!  usage:  getva,num  
+!    where:  num=number of loops you want to make
+!                  
+!  written by: John Crawford  date: 10-1-00
+! 
+ar23=0
+*if,arg1,eq,0,then
+ar24=1
+*endif
+ar21=arinqr(0,13)
+ar22=vlinqr(0,13)
+!
+*do,ar24,1,arg1
+vsla
+aslv
+*msg,info,ar24,vlinqr(0,13),arinqr(0,13)
+Doing Loop %i Volume(s) selected = %i Area(s) selected = %i
+*if,ar21,eq,arinqr(0,13),then
+*if,ar22,eq,vlinqr(0,13),then
+ar23=1
+*endif
+*endif
+*if,ar23,eq,1,then
+*msg,info,vlinqr(0,13) ,arinqr(0,13)
+%/ *** Selecting was automatically stopped because all *** &
+%/*** connected volumes and areas have been selected. *** &
+%/*** A total of %i volumes(s) and %i areas(s) have been selected. *** 
+*endif
+*if,ar23,eq,1,exit
+ar21=arinqr(0,13)
+ar22=vlinqr(0,13)
+*enddo   
+*msg,info,vlinqr(0,12),arinqr(0,12)
+%/ *** There are %i volume(s) and %i area(s) in the model ***%/ 
+! 
+/nopr                                                                           

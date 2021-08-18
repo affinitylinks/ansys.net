@@ -1,0 +1,105 @@
+/gst,on
+
+Rin    =  1.0
+Rout   = 25.0
+Ma3    = 1029432
+
+/prep7
+/title,Bowshock Benchmark    MAT  
+et,1,141
+k, 1
+k, 2, Rin, 0.0, 0.0
+k, 3, Rout, 0.0, 0.0
+k, 4, 0.0, Rin, 0.0
+k, 5, 0.0, Rout, 0.0
+k, 6, -Rin, 0.0, 0.0
+k, 7, -Rout, 0.0, 0.0
+l,2,3
+l,4,5
+l,6,7
+csys,1
+l,2,4
+l,4,6
+l,3,5
+l,5,7
+csys
+a,2,3,5,4
+a,4,5,7,6
+nummrg,all
+numcmp,all
+
+mshape,0,2D
+mshkey,1
+lsel,s,,,4
+lsel,a,,,5
+lesi,all,,,40,,4,-3,-1.5
+lsel,s,,,6
+lesi,all,,,40,5.0
+lsel,s,,,7
+lesi,all,,,40,0.2
+lsel,s,,,1
+lsel,a,,,2
+lsel,a,,,3
+lesi,all,,,60,100
+amesh,all
+eplo
+
+lsel,s,,,7
+nsll,s,1
+d,all,VX,Ma3
+d,all,VY
+d,all,PRES
+
+lsel,s,,,1
+lsel,a,,,3
+nsll,s,1
+d,all,VY
+
+lsel,s,,,4
+lsel,a,,,5
+nsll,s,1
+d,all,VX
+d,all,VY
+alls
+
+csys,1
+nsel,s,loc,x,3.0*Rin,Rout
+ic,all,VX,Ma3
+nsel,inve
+ic,all,VX,1000
+csys
+alls
+
+fini
+
+/solu
+FLDA,SOLU,TRAN,T
+FLDA,SOLU,TURB,T
+FLDA,SOLU,COMP,T
+FLDA,TIME,STEP,1.0E-06
+FLDA,TIME,NUMB,100
+FLDA,TIME,GLOB,6
+FLDA,STEP,OVER,1
+FLDA,STEP,SUMF,1
+FLDA,OUTP,DENS,T
+FLDA,OUTP,YPLU,T
+FLDA,OUTP,TAUW,T
+FLDA,PROT,DENS,AIR-MM
+FLDA,VARY,DENS,T
+FLDA,PROT,VISC,AIR-MM
+FLDA,PRES,REFE,101350
+FLDA,GAMM,COMP,1.4
+FLDA,TEMP,NOMI,293.0
+FLDA,TEMP,TTOT,820.4
+FLDA,CONV,PRES,1.0E-24
+FLDA,RELX,TEMP,1.0
+FLDA,RELX,DENS,1.0
+FLDA,ADVM,MOME,SUPG
+FLDA,ADVM,TURB,SUPG
+FLDA,MIR,MOME,1.0
+FLDA,MIR,TURB,1.0
+save
+solve
+fini
+/exit,nosa
+

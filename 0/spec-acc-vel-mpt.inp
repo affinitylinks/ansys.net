@@ -1,0 +1,77 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-ansys.com
+/com,
+/com,DESCRIPTION 
+/com,Example of running a sprectrum analysis in ANSYS
+/com,Multipoint input sprectrum (acceleration and velocities)
+/com,
+
+!
+finish
+/clear
+!
+/prep7
+et,1,63
+r,1,.25
+ex,1,10e6                  ! aluminum
+nuxy,1,0.3
+dens,1,0.00073
+
+rect,,10,,10            ! mesh a 10x10 plate with 100 elements
+esize,1
+amesh,all
+
+nsll,s,1                ! simply support the 4 edges of the plate
+d,all,ux
+d,all,uy
+d,all,uz
+allsel
+
+finish
+
+/solution
+antype,modal
+modopt,lanb,10              ! block lanczos
+mxpand,10,,,on
+solve
+finish
+
+/solution
+antype,spectrum
+spopt,mprs,10
+mcomb,srss             ! specify srss combination
+
+psdunit,1,acel
+psdfrq,1,,300,2000
+psdval,1,3860,3860              ! 1st spectrum is acceleration spectrum
+
+psdunit,2,velo
+psdfrq,2,,400,1000
+psdval,2,10,20              ! 2nd spectrum is velocity spectrum
+
+nsel,s,loc,x
+d,all,uz,1
+nsel,all
+pfact,1,base           ! compute participation factors for 1st spectrum
+
+nsel,s,loc,x,
+d,all,uz,0
+nsel,s,loc,y,10
+d,all,uz,1
+nsel,all
+pfact,2,base       ! compute participation factors for second spectrum
+
+outpr,nsol,all
+solve                              !  output is FILE.MCOM
+finish

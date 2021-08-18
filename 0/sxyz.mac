@@ -1,0 +1,247 @@
+/nopr
+!
+!  sxyz.mac  a macro which calculates stresses at a
+!              given point in space
+!
+!  usage:  sxyz,X,Y,Z,avg
+!  
+!    where:  X= x coordinate
+!            Y= y coordinate
+!            Z= z coordinate
+!            avg=0 for averaged result, 1 for unaveraged result
+!
+!  written by: John Crawford  date: 3-5-98
+!
+!  make sure we are in /post1
+*get,ar20,active,,rout
+*if,ar20,eq,31,then
+!
+!  turn off annoying warning messages
+/uis,msgpop,3
+/nerr,0
+!
+!  set up the vector _str to hold the data after the
+!  macro is done running
+_str=
+*dim,_str,array,11
+!
+!  delete any existing path with the same name
+padele,path1
+!  set up the path
+path,path1,2,,
+!
+!  define two path points
+ppath,1,,arg1-.00001,arg2-.00001,arg3
+ppath,2,,arg1,arg2,arg3
+!
+!  get sx
+!
+!  define the result on the path for sx
+*if,arg4,eq,0,then
+pdef,sx,s,x,avg
+ar32=_status
+*else
+pdef,sx,s,x,noav
+ar32=_status
+*endif
+!  check to see if the coordinate is in the model space
+!  ar32 will be zero if it is, and 2 if it isn't
+*if,ar32,eq,0,then
+!  get the result from the last point on the path
+*get,ar21,path,,max,sx
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(1)=ar21
+!
+!  get sy
+!
+!  define the result on the path for sy
+*if,arg4,eq,0,then
+pdef,sy,s,y,avg
+*else
+pdef,sy,s,y,noav
+*endif
+!  get the result from the last point on the path
+*get,ar22,path,,max,sy
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(2)=ar22
+!
+!  get sz
+!
+!  define the result on the path for sz
+*if,arg4,eq,0,then
+pdef,sz,s,z,avg
+*else
+pdef,sz,s,z,noav
+*endif
+!  get the result from the last point on the path
+*get,ar23,path,,max,sz
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(3)=ar23
+!
+!  get sxy
+!
+!  define the result on the path for sxy
+*if,arg4,eq,0,then
+pdef,sxy,s,xy,avg
+*else
+pdef,sxy,s,xy,noav
+*endif
+!  get the result from the last point on the path
+*get,ar24,path,,max,sxy
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(4)=ar24
+!
+!  get syz
+!
+!  define the result on the path for syz
+*if,arg4,eq,0,then
+pdef,syz,s,yz,avg
+*else
+pdef,syz,s,yz,noav
+*endif
+!  get the result from the last point on the path
+*get,ar25,path,,max,syz
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(5)=ar25
+!
+!  get sxz
+!
+!  define the result on the path for sz
+*if,arg4,eq,0,then
+pdef,sxz,s,xz,avg
+*else
+pdef,sxz,s,xz,noav
+*endif
+!  get the result from the last point on the path
+*get,ar26,path,,max,sxz
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(6)=ar26
+!
+!  get s1
+!
+!  define the result on the path for s1
+*if,arg4,eq,0,then
+pdef,s1,s,1,avg
+*else
+pdef,s1,s,1,noav
+*endif
+!  get the result from the last point on the path
+*get,ar27,path,,max,s1
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(7)=ar27
+!
+!  get s2
+!
+!  define the result on the path for s2
+*if,arg4,eq,0,then
+pdef,s2,s,2,avg
+*else
+pdef,s2,s,2,noav
+*endif
+!  get the result from the last point on the path
+*get,ar28,path,,max,s2
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(8)=ar28
+!
+!  get s3
+!
+!  define the result on the path for s3
+*if,arg4,eq,0,then
+pdef,s3,s,3,avg
+*else
+pdef,s3,s,3,noav
+*endif
+!  get the result from the last point on the path
+*get,ar29,path,,max,s3
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(9)=ar29
+!
+!  get sint
+!
+!  define the result on the path for sint
+*if,arg4,eq,0,then
+pdef,sint,s,int,avg
+*else
+pdef,sint,s,int,noav
+*endif
+!  get the result from the last point on the path
+*get,ar30,path,,max,sint
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(10)=ar30
+!
+!  get seqv
+!
+!  define the result on the path for seqv
+*if,arg4,eq,0,then
+pdef,seqv,s,eqv,avg
+*else
+pdef,seqv,s,eqv,noav
+*endif
+!  get the result from the last point on the path
+*get,ar31,path,,max,seqv
+!  multiply by the scale factor and then put the 
+!  value into the result vector _str
+_str(11)=ar31
+!
+!  print the result
+*if,arg4,eq,0,then
+*msg,info,arg1,arg2,arg3
+%/ Averaged Stress Results at X= %g, Y= %g, Z= %g 
+*else
+*msg,info,arg1,arg2,arg3
+%/ Unaveraged Stress Results at X= %g, Y= %g, Z= %g 
+*endif
+!
+*msg,info,ar21
+SX = %g
+*msg,info,ar22
+SY = %g
+*msg,info,ar23
+SZ = %g
+*msg,info,ar24
+SXY = %g
+*msg,info,ar25
+SYZ = %g
+*msg,info,ar26
+SXZ = %g
+*msg,info,ar27
+S1 = %g
+*msg,info,ar28
+S2 = %g
+*msg,info,ar29
+S3 = %g
+*msg,info,ar30
+SINT = %g
+*msg,info,ar31
+SEQV = %g
+!
+!  if the coordinate isn't in the model space then print a message
+!  and quit
+*else
+*msg,ui,arg1,arg2,arg3
+Coordinate x= %g y= %g z= %g is not within the model. %/ &
+Check your coordinates and try again.
+*endif
+!
+!  turn warning messages back on
+/uis,msgpop,2
+/nerr,defa
+!
+*else
+!
+!  print warning message if user is not in /post1
+*msg,ui
+*** You need to be in /POST1 to run SXYZ ***
+*endif
+/gopr
+

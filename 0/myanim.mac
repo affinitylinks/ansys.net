@@ -1,0 +1,32 @@
+! Simple animation with Windows NT
+! Substeps needed must exist in the RST file.
+! The macro does not update element tables.
+! Animation file (Windows NT) has jobname.avi
+! User should set the size of the graphics window
+! Image based on /REPLO of the last user plot
+! Customize as you wish.
+!
+! Calling:
+!
+!    my_anim, time_delay, number_of_frames_including_first
+!
+ar11=arg1
+*if,arg1,eq,0,then
+  ar11=0.1                   ! a default time delay
+*endif
+*if,arg2,ne,0, then          ! number of frames given
+  /NOPR
+  /gsav,xxx,gsav,,temp
+  /seg,delete
+  /seg,multi,,ar11
+  set,first                  ! start with first substep
+  /replot
+  *do,_iii,1,arg2-1,1
+     set,next                ! progress with set,next
+     /replot
+  *enddo
+  /seg,off
+  anim,1,1,ar11
+  /gres,xxx,gsav
+  /gopr
+*endif

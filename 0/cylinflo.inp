@@ -1,0 +1,113 @@
+! simple cylinder in open air
+! --sheldon, csi
+!
+! hand calc -- h=7.95, heat loss is 432
+! ansys -- heat loss around 223*2 = 446
+finish
+/clear
+
+RADIUS   = 0.054
+X_BOTTOM = 3*RADIUS
+Y_BOTTOM = 3*RADIUS
+Y_TOP    = 5*RADIUS
+T_AMBIEN = 20
+T_CYLIND = 180
+
+/triad,off
+/auto
+
+/prep7
+et,1,141
+
+rect,,X_BOTTOM,-Y_BOTTOM,Y_TOP
+pcir,,RADIUS
+asba,1,2
+wprot,,90
+asbw,all
+
+esize,RADIUS/10
+amesh,all
+
+csys,1
+lsel,r,loc,x,RADIUS
+cm,TEMPLINE,line
+csys,0
+lsel,s,loc,x,0
+lsel,r,loc,y,0,Y_TOP
+cmsel,a,TEMPLINE
+lrefine,all,,,1,4
+
+allsel,all
+finish
+
+/solu
+lsel,s,loc,x,0
+nsll,s,1
+d,all,vx,0
+cm,LINE1,line
+
+lsel,s,loc,y,-Y_BOTTOM
+nsll,s,1
+!d,all,pres,0
+d,all,vx,0
+d,all,vy,0
+d,all,temp,T_AMBIEN
+cm,LINE2,line
+
+lsel,s,loc,x,X_BOTTOM
+nsll,s,1
+d,all,pres,0
+d,all,temp,T_AMBIEN
+cm,LINE3,line
+
+lsel,s,loc,y,Y_TOP
+nsll,s,1
+!d,all,pres,0
+cm,LINE4,line
+
+lsel,all
+lsel,s,ext
+cmsel,u,LINE1
+cmsel,u,LINE2
+cmsel,u,LINE3
+cmsel,u,LINE4
+nsll,s,1
+d,all,vx,0
+d,all,vy,0
+d,all,temp,T_CYLIND
+
+allsel,all
+flda,solu,flow,1
+flda,solu,temp,1
+flda,solu,turb,1
+flda,iter,exec,100
+flda,iter,appe,25
+flda,outp,sumf,25
+
+flda,prot,dens,AIR-SI_B
+flda,prot,visc,AIR-SI_B
+flda,prot,cond,AIR-SI_B
+flda,prot,spht,AIR-SI_B
+flda,vary,dens,1
+flda,vary,visc,1
+flda,vary,cond,1
+flda,vary,spht,1
+
+flda,temp,nomi,20
+flda,temp,bulk,20
+acel,,9.81
+toff,273.15
+
+flda,meth,pres,1
+flda,meth,temp,1
+
+flda,relx,dens,1.0
+flda,relx,temp,1.0
+
+flocheck,1
+solve
+
+flda,iter,exec,75
+flda,advm,temp,supg
+solve
+finish

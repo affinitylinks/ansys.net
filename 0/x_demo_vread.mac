@@ -1,0 +1,85 @@
+! =========================================
+! Shen-Yeh Chen
+! 05/01/1998
+! ==============================================================================
+! This macro will demonstrate how to read in a matrix ZREAD(ZNNODE,3) in one
+! *VREAD command
+! 
+! The macro will get coordiante from the currnet model first, write them into
+! the file x_demo_vread.tmp, and read the data from the file
+!
+! Note that all temporary variables are kept for debugging reason.
+!
+!
+! ------------------------------------------------------------------------------
+! GET NBUMBER OF NODES
+*GET,ZNNODE,NODE,,NUM,MAX 
+!
+*DIM,ZX,,ZNNODE,
+*DIM,ZY,,ZNNODE,
+*DIM,ZZ,,ZNNODE,
+*DIM,ZREAD,,ZNNODE,3
+*DIM,ZSEL,,ZNNODE
+!
+! ===============================
+! GET NSEL MASK
+*VGET,ZSEL(1),NODE,1,NSEL
+!
+! =====================================================
+! GET COORDINATES
+*vmask,zsel(1)
+*vget,zx(1),node,1,loc,x 
+*vmask,zsel(1)           
+*vget,zy(1),node,1,loc,y
+*vmask,zsel(1)           
+*vget,zz(1),node,1,loc,z
+!
+! =====================================================
+! WRITE COORDINATES
+*CFOPEN,x_demo_vread,tmp
+*VMASK,ZSEL(1)
+*VWRITE,ZX(1),ZY(1),ZZ(1)
+(3E15.6)
+*CFCLOSE
+!
+!
+! =====================================================
+! READ COORDINATES
+*VMASK,ZSEL(1)
+*VREAD,ZREAD(1,1),x_demo_vread,tmp,,JIK,3,ZNNODE,1
+(3E15.6)
+!
+
+
+
+/eof
+===================================
+ANSYS Macro Convention
+===================================
+In order to avoid conflicting betweens the macro, the following convention
+has been adapted for the ANSYS macros here.
+
+1. All macro will have name begin with string "x_". This is to avoid name collision
+   with the existing ANSYS commands.
+2. There is no naming convention for global variables. All variables are
+   considered local
+3. The names of the internal variables will be one of the following
+   (1) Begin with the name of the macro itself first. That is, for the 
+       macro x_noffst.mac, the internal variables are X_NOFFST_X, 
+       X_NOFFST_Y, X_NOFFST_Z etc.
+   (2) Begin with "Z"
+   (3) ARG1 to AR99
+   Note that, ARG1 to AR99 can be heavily used according to the
+   programming convenience (for example, as a loop counter). They are not
+   tracked. There is no rule for using them either.
+4. All local variables, unless necessary for further processing, WILL be
+   deleted in the end of the macro. However, when such variables may
+   be necessary for later process, they will be kept. These variables
+   are listed in the header of the macro.
+5. When there is output file from the macro, their names will begin with 
+   the name of the macro itself first.
+6. The macro will not call each other. That is, each macro will be self-contained.
+
+
+Shen-Yeh Chen
+www.FEA-Optimization.com

@@ -1,0 +1,64 @@
+finish
+/clear
+
+DIM_THICK = 5
+MAT_E     = 10e6
+MAT_Nu    = 0.3
+MAT_G     = MAT_E/2/(1+MAT_Nu)
+MAT_A_E   = DIM_THICK*MAT_E/(1-MAT_Nu**2)
+MAT_D_E   = (DIM_THICK**3)*MAT_E/(1-MAT_Nu**2)/12
+
+/pnum,type,1
+/num,1
+/vup,1,z
+/view,1,1,1,1
+
+/prep7
+et,1,181,,,2
+sectype,1,shell
+secdata,DIM_THICK,1
+mp,ex  ,1,MAT_E
+mp,nuxy,1,MAT_Nu
+et,3,181,,,2
+sectype,3,gens
+sspa,MAT_A_E,MAT_A_E*MAT_Nu,,MAT_A_E,,MAT_A_E*(1-MAT_Nu)/2
+sspd,MAT_D_E,MAT_D_E*MAT_Nu,,MAT_D_E,,MAT_D_E*(1-MAT_Nu)/2
+sspe,MAT_G*DIM_THICK*5/6,,MAT_G*DIM_THICK*5/6
+
+rectng,,10,,10
+esize,,20
+amesh,all
+asel,none
+wpoffs,,,5
+rectng,,10,,10
+type,3
+real,3
+secn,3
+mat, 3
+amesh,all
+asel,all
+
+lsel,s,loc,x,0
+nsll,s,1
+d,all,all
+
+ksel,s,loc,x,10
+ksel,r,loc,y,0
+nslk
+f,all,fz,1000
+
+ksel,s,loc,x,10
+ksel,r,loc,y,10
+nslk
+f,all,fz,-1000
+
+allsel,all
+finish
+
+/solu
+solve
+finish
+
+/post1
+set,last
+plnsol,u,z

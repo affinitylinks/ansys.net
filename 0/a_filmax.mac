@@ -1,0 +1,185 @@
+! Macro to calculate the MAXIMUM FILLET RADIUS at two lines L1 and L2
+! ===================================================================
+!
+!  Usage:  A_FILMAX,line1,line2,[nomes],[doit]
+!
+!  Action: Calculate maximum possible fillet radius for lines 1 and 2
+!          and store in variable FILMAX
+!
+!          In case of an error FILMAX = -1 is set.
+!        
+!  Options: NOMES.NE.0 => skip interactive messages
+!           DOIT.GT.0  => execute LFILLT command with R = FILMAX x DOIT
+!                         e.g. DOIT=0.8 will use
+!
+!  Note: Using the calculated FILMAX in the LFILLT command can cause
+!        lines to be deleted or problems during MERGE which can be fixed
+!        by changing the tolerances.
+!
+! *******************************************************************
+!  Version: July 1996 (ANSYS 5.2)
+! 
+!  Ernst Hustedt,    A.M.E.S, Christchurch, NZ, Ph.: +64+3 358-0125
+! *******************************************************************
+! /nopr
+
+ierr_=0
+iw_=0
+
+L1_=arg1
+L2_=arg2
+
+nomes_=0                     ! Check/set NOMES flag
+*if,arg3,ne,0,then
+nomes_=1
+*endif
+
+doit_=0                      ! Check/set DOIT flag
+*if,arg4,gt,0,then
+doit_=arg4
+*endif
+
+*get,arout_,active,,rout                 ! Basic error checks 
+! -----------------------------------------------------------
+*if,arout_,ne,17,then        
+ ierr_=1
+ *MSG,ERROR
+  Enter PREP7 before using this macro !!
+
+*elseif,L1_*L2_,le,0,then
+ ierr_=1
+ *MSG,ERROR,
+  <A_MAXFIL> usage:   A_MAXFIL,Line1,Line2,[ NOMES ],[ DOIT ]
+*endif
+
+*if,LSEL(L1_),lt,0,then
+ iw_=1
+*endif
+
+*if,LSEL(L2_),lt,0,then
+ iw_=1
+*endif
+
+*if,iw_,ne,0,then
+ *MSG,warn,
+  <A_MAXFIL>:  Fillet Radius at unselected line(s) !?!?
+
+ *if,nomes_,eq,0,then
+ *ask,IERR_,' 1 to exit or <CR> to continue',0
+ *endif
+
+*endif
+! ------------------------------------------------------------
+
+*if,ierr_,eq,0,then
+
+cm,L_L_,LINES     ! Store current set of LINES
+cm,K_K_,KP        ! Store current set of KPOINS
+
+LSEL,S,,,L1_        ! Select Specified lines
+LSEL,A,,,L2_        ! and their keypoints
+KSLL
+*get,nkp_,KP,0,COUNT  ! Count keypoints
+
+cmsel,a,L_L_      ! re-set active sets and delete temp. components
+cmsel,a,K_K_
+cmdel,L_L_
+cmdel,K_K_
+
+*if,nkp_,ne,3,then           
+ *MSG,ERROR,L1_,L2_
+  <A_MAXFIL>:   Lines %I and %I discontinuous, or non-existing line(s) !
+ ierr_=1
+*else
+
+! -------------------------- Determine KEYPOINTS for ANGLEK - Function
+*get,kp11_,LINE,L1_,KP,1
+*get,kp12_,LINE,L1_,KP,2
+*get,kp21_,LINE,L2_,KP,1
+*get,kp22_,LINE,L2_,KP,2
+
+! --- KP11 is Vertex:
+*if,kp11_,eq,kp21_,then
+ kp1_=kp11_
+ kp2_=kp12_
+ kp3_=kp22_ 
+*elseif,kp11_,eq,kp22_,then
+ kp1_=kp11_
+ kp2_=kp12_
+ kp3_=kp21_
+*endif
+
+! --- KP12 is Vertex:
+*if,kp12_,eq,kp21_,then
+ kp1_=kp12_
+ kp2_=kp11_
+ kp3_=kp22_
+*elseif,kp12_,eq,kp22_,then
+ kp1_=kp12_
+ kp2_=kp11_
+ kp3_=kp21_
+*endif
+
+! ------------------------------ Determine angle between lines
+phi_=ANGLEK(kp1_,kp2_,kp3_)
+
+*if,abs(phi_-4*atan(1)),lt,.001,then 
+
+*MSG,ERROR
+<A_MAXFIL>: Radius near infinite because lines near flat (angle=180 deg.)
+ierr_=1
+*else
+
+! -------------------------------- Find length of shortest line
+Len1_=abs(DISTKP(kp1_,kp2_))
+Len2_=abs(DISTKP(kp1_,kp3_))
+
+    Lmin_=Len1_
+   *if,Len2_,lt,Len1_,then
+    Lmin_=Len2_
+   *endif
+! -------------------------------- Calculate maximum fillet radius
+FILMAX=Lmin_*tan(phi_/2)
+
+! -------------------------------- Promt and allow interactive change of value
+*if,nomes_,eq,0,then
+*ask,FILMAX,'new value or <CR> to continue',%FILMAX%
+*endif
+
+*endif
+*endif
+*endif
+
+! -------------------------------- If fillet radius is not possible set flag
+!                                                                FILMAX = -1
+*if,ierr_,ne,0,then
+filmax=-1
+doit_=0
+*endif
+
+! -------------------------------- If DOIT-flag is set, issue LFILLT command
+*if,doit_,gt,0,then
+LFILLT,L1_,L2_,filmax*doit_
+*endif
+
+ierr_=
+iw_=
+L1_=
+L2_=
+nomes_=
+doit_=
+arout_=
+nkp_=
+kp11_=
+kp12_=
+kp21_=
+kp22_=
+kp1_=
+kp2_=
+kp3_=
+phi_=
+len1_=
+len2_=
+lmin_=
+
+/go

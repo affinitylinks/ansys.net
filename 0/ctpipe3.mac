@@ -1,0 +1,33 @@
+!written by mark kessler 28-june-01
+!a macro to create a series of elements
+!from one picked node to all other selected nodes
+!usage:prior to running program save your work and this macro is unforgiving.
+!      Select the real, type, and material 
+!      for elements to be created. run program select the nodes that
+!      you want to join with elements pick enter in the select box
+!      then pick the 
+!      node node from which all the elements will begin from and
+!      pick enter on the pick box. 
+!****strongly recommend saving prior to running this macro******
+!****it is very unforgiving if you screw up****
+/pmacro
+cm,onode_,nodes
+:return_
+nd_=0
+nsel,r,p
+cm,pipes_,nodes
+nsel,r,p
+*get,bcn_,node,0,num,max
+cmse,s,pipes_
+nsel,u,node,,bcn_
+cm,bga_,nodes
+*do,i,1,ndinqr(0,13)
+cmse,s,bga_
+nd_=ndnext(nd_)
+nsel,a,node,,bcn_
+e,nd_,bcn_
+*enddo
+cmsel,s,onode_
+*ask,conti_,"0" continue "1" exit,0
+*if,conti_,eq,0,:return_
+!*del,,prm_

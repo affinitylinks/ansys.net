@@ -1,0 +1,235 @@
+!FEA model of a weld
+!Ansys 5.5.3
+!February 2000
+!The model consists of two parts that are welded together through 2 welds.
+!This is a phase change analysis (transient). 
+!The first part consists of simulating the phase change and solidification of one weld.
+!Consequently, the 2nd weld is activated and the temp distribution is calculated.
+!
+FINISH
+/CLEAR
+/TITLE,Solidification of 2 welds
+!
+!*********************
+/PREP7  
+!*********************
+ET,1,SOLID70   !thermal solid
+ 
+MP,KXX,1,.5e-3   !weld on right
+MP,C,1,.2
+MP,DENS,1,.2833
+MPTEMP,1,0,2643,2750,2875,3000 !enthalpy as function of time
+MPDATA,ENTH,1,1,0,128.1,163.8,174.2,184.6
+ 
+MP,KXX,2,.5e-3   !solid material
+MP,C,2,.2
+MP,DENS,2,.2833
+ 
+MP,KXX,3,0.5e-3        !weld on left 
+MP,C,3,.2             !for t=[0,1000]: only right weld, left weld has no therm conduct
+MP,DENS,3,.2833  !for t>1000: left weld is activated 
+ 
+ W=1.20
+ TL=.34
+ TWELD=.2      ! weld thickness
+ TPIVOT=TL            ! thickness of support bar
+ TPHALF=TPIVOT/2
+ WIDTH=W              ! width of support bar
+ WHALF=WIDTH/2
+ LCYL=2.5             ! length of cylinder
+ LHALF=LCYL/2
+ RID=.50              ! inside radius of cylinder
+ ROD=.75              ! outside radius of cylinder
+ *AFUN,DEG
+ ANG1=50-ASIN(TPHALF/ROD)-2*ASIN(TWELD/(2*ROD))
+ ANG2=50-ASIN(TPHALF/ROD)
+ ANG3=50+ASIN(TPHALF/ROD)
+ ANG4=50+ASIN(TPHALF/ROD)+2*ASIN(TWELD/(2*ROD))
+ WPST,-1          ,1           ,-10         ,10          ,.003        ,3 
+ 
+ /PNUM,VOLU,1
+ /VIEW,1,-.2,.2,1
+ CYLIND,RID,ROD,-LHALF,-WHALF,-90,ANG1     
+ CYLIND,RID,ROD,-WHALF,+WHALF,-90,ANG1     
+ CYLIND,RID,ROD,+WHALF,+LHALF,-90,ANG1     
+ CYLIND,RID,ROD,-LHALF,-WHALF,ANG1,ANG2   
+ CYLIND,RID,ROD,-WHALF,+WHALF,ANG1,ANG2
+ CYLIND,RID,ROD,+WHALF,+LHALF,ANG1,ANG2
+ CYLIND,RID,ROD,-LHALF,-WHALF,ANG2,ANG3   
+ CYLIND,RID,ROD,-WHALF,+WHALF,ANG2,ANG3
+ CYLIND,RID,ROD,+WHALF,+LHALF,ANG2,ANG3 
+ CYLIND,RID,ROD,-LHALF,-WHALF,ANG3,ANG4  
+ CYLIND,RID,ROD,-WHALF,+WHALF,ANG3,ANG4
+ CYLIND,RID,ROD,+WHALF,+LHALF,ANG3,ANG4
+ CYLIND,RID,ROD,-LHALF,-WHALF,ANG4,90   
+ CYLIND,RID,ROD,-WHALF,+WHALF,ANG4,90 
+ CYLIND,RID,ROD,+WHALF,+LHALF,ANG4,90  
+ 
+ /TYPE,1,4
+ WPROT,50                       ! vol 16 (used to trim welds)
+ BLOCK,.6,rod*cos(asin(tphalf/rod))+tweld,-tphalf,tphalf,-whalf,whalf
+ CSWPLA,11,0
+ KSEL,S,LOC,X,.75*COS(ASIN(TPHALF/ROD))
+ KSEL,R,LOC,Y,-TPHALF
+ KSEL,R,LOC,Z,LHALF
+ *GET,KNUM1,KP,,NUM,MAX
+ KSEL,S,LOC,X,.75*COS(ASIN(TPHALF/ROD))
+ KSEL,R,LOC,Y,TPHALF
+ KSEL,R,LOC,Z,LHALF
+ *GET,KNUM2,KP,,NUM,MAX
+ KSEL,ALL
+ WPRO,-50 
+ CSYS,0
+ LOCAL,12,0,KX(KNUM1),KY(KNUM1)
+ CSYS,0
+ LOCAL,13,0,KX(KNUM2),KY(KNUM2)
+ WPCSYS,-1,12
+ VSEL,U,,,1,16
+ CYLIND,,TWELD,-WHALF,WHALF,(ANG1+ANG2)/2-90,70
+ /DIST,1,.6
+ /FOCUS,1,.47,.59
+ WPCSYS,-1,13
+ CYLIND,,TWELD,-WHALF,WHALF,35,90+(ANG3+ANG4)/2
+ VSEL,ALL
+ BOPT,keep,yes, 
+ bopt,version,rv52
+ VSEL,S,,,5,17,12
+ VSBV,17,5  
+ VSEL,A,,,16,19,3
+ VSBV,19,16
+ VSEL,A,,,11,18,7
+ VSBV,18,11 
+ VSEL,A,,,16,21,5
+ VSBV,21,16   
+ VSEL,ALL     
+ WPSTYLE,default 
+ /FOCUS,,.5,.5
+ /DIST,1,.6
+ CYLIN,.6,SQRT((ROD+.01)**2+TPHALF**2),-2,+2,10,90
+ BOPT,keep,no
+ VSEL,S,,,20,22,2
+ VSEL,A,,,23
+ VSEL,ALL
+ VOVLAP,20,22,23
+ VDELE,16,21,1,1
+ VDELE,28,,,1
+ /TYPE,1,4
+ 
+CSYS,0
+WPCSYS,-1
+WPROT,50
+ 
+NUMSTR,VOLU,29
+block,ROD+.01,ROD*COS(ASIN(TPHALF/ROD))+TWELD,-TPHALF,TPHALF,-WHALF,WHALF
+NUMSTR,VOLU,30
+BLOCK,ROD*COS(ASIN(TPHALF/ROD))+TWELD,3,-TPHALF,TPHALF,-WHALF,WHALF
+NUMMRG,KP
+VSEL,S,,,24,26,2      ! right hand weld (make mat 1)
+ESIZE,.1
+VMESH,ALL
+MAT,3
+vsel,s,,,25,27,2      ! left hand weld (make mat 3 - dead)
+vmesh,all         
+ALLSEL,ALL   
+VSEL,S,,,24,27,1  
+VSEL,A,,,30       
+VSEL,INVE
+ESIZE,.1
+MAT,2  
+VMESH,ALL
+ESIZE,.2
+LSEL,S,,,198,199
+LESIZE,ALL,,,8,5,1
+LSEL,S,,,196,201,5
+LESIZE,ALL,,,8,.2,1
+ALLSEL,ALL
+VMESH,30
+NUMCMP,all
+WPSTYLE,,,,,,,,0
+esel,s,mat,,3
+ekill,all
+allsel,all
+SAVE,mesh,DB
+FINI
+!
+!
+!********************* 
+ /SOLU
+!*********************
+ANTYPE,TRANS
+ 
+!Initialization of temperatures
+!----------------------------
+TIMINT,OFF
+ESEL,S,MAT,,1  !weld on right
+NSLE
+D,ALL,TEMP,3000  !To(weld)=3000
+NSEL,INVE
+D,ALL,TEMP,70  !To(steel)=70
+TIME,1
+KBC,0  
+NSUBST,2,2,2
+OUTRES,BASIC,2
+ALLSEL,all
+SOLVE
+SAVE,therm,db
+ 
+!Phase change for weld on right (time varies from 1 to 100 and from 100 to 1000) 
+!----------------------------------------------------------------------------------
+OUTRES,NSOL,1        
+DDELE,ALL,TEMP       
+TIMINT,ON             
+TINTP,,,,1            
+TIME,100              !phase change
+DELTIME,1,.5,10       
+AUTOTS,ON             
+ASEL,S,EXT  
+ASEL,U,LOC,X,0   
+SFA,ALL,,CONV,5E-5,70
+ALLSEL,ALL            
+SOLVE
+ 
+TIME,1000  !solidification
+DELTIME,50,10,500
+AUTOTS,ON
+SOLVE
+FINI
+ 
+!Phase change for weld on right (time varies from 1e3 to 1100 and from 1100 to 2000) 
+!---------------------------------------------------------------------------------------
+/PREP7
+EALIVE,ALL
+ALLSEL,all
+FINI
+ 
+/SOLU
+ANTYPE,TRANS,REST
+vsel,s,,,17
+vsel,a,,,19
+nslv,,1
+d,all,temp,3000
+time,1001
+nsubst,2,2,2
+allsel,all
+solve
+ 
+ANTYPE,TRANS,REST
+DDELE,ALL,TEMP 
+TIME,1100 
+DELTIME,1,.5,10
+SOLVE
+TIME,2000
+DELTIME,100,10,200
+SOLVE
+/COPY,test,rth,,temp,rth
+FINI
+ 
+!********************* 
+ /POST1   
+!********************* 
+FILE,temp,rth
+SET,,,1,,1,,
+PLNS,TEMP,  
+!ANTIME,20,0.5, ,1,2,1001,1005   
+!
+!

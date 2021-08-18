@@ -1,0 +1,442 @@
+/BATCH,LIST
+*ABBR,er,/erase
+*ABBR,noer,/noerase
+*ABBR,User,/User
+*ABBR,auto,/auto
+/com ---------------------------------------------------------------------------
+/tit,ALE, Torsional Mirror Oscillation - Full 3D Model
+/com ---------------------------------------------------------------------------
+/com The planes are in the XZ planes, centered at y=+/- .1
+/com Minimum plate spacing is .095
+/com Each plate is H2 thick
+/com Plate is (L2) wide
+/com Plate goes from x= -(L2)/2.0 to +(L2)/2.0
+/com one end of mirror z=0, the other z=mlen
+/com
+SX = 1.8
+SY = 0.5
+S2X = 2.0
+S2Y = 0.7
+S2Z = 0.4
+H = .015
+H2 = .005
+L = 1.415
+L2 = 1.40
+thknp = (L - L2)/2.
+D = .021
+ampfact = 0.2
+mlen = 1.5
+POUT  = 0.0                          ! Outlet relative pressure
+RHO   = 1.0000                       ! Fluid density
+MU    = 1.00                         ! Fluid viscosity
+!xtra
+nts = 60                             ! time steps in one cycle
+*AFUN,RAD
+AMAX = 1.745E-2
+OMEGACPS = 1440.
+OMEGA = OMEGACPS*2*3.14159
+
+! Time for one cycle based on =2*Pi/omega
+time = 2*3.14159/OMEGA
+delta = time/nts
+tend = 3.*time
+appf = 3*delta
+X0 = 0.0
+Y0 = D
+
+/PREP7 $smrt,off 
+et,1,142                              ! 2D XY system
+et,2,141
+keyopt,1,4,1
+keyopt,2,4,1
+
+!keypts
+k, 1,-sx/2,-sy/2
+k, 2, sx/2,-sy/2
+k, 3, sx/2,-(d-h/2)
+k, 4, sx/2, d-h/2
+k, 5, sx/2, sy/2
+k, 6,-sx/2, sy/2
+k, 7,-sx/2, d-h/2
+k, 8,-sx/2,-(d-h/2)
+k, 9,-l/2,-(d+h/2)  !boxes
+k,10, l/2,-(d+h/2)
+k,11, l/2,-(d-h/2)
+k,12,-l/2,-(d-h/2)
+k,13,-l/2, d-h/2
+k,14, l/2, d-h/2
+k,15, l/2, d+h/2
+k,16,-l/2, d+h/2
+
+k,17,-s2x/2,-s2y/2   !external cover
+k,18, s2x/2,-s2y/2
+k,19, s2x/2, s2y/2
+k,20,-s2x/2, s2y/2
+
+k,21,-l2/2,-(d+h2/2)  !plates
+k,22, l2/2,-(d+h2/2)
+k,23, l2/2,-(d-h2/2)
+k,24,-l2/2,-(d-h2/2)
+k,25,-l2/2, d-h2/2
+k,26, l2/2, d-h2/2
+k,27, l2/2, d+h2/2
+k,28,-l2/2, d+h2/2
+
+!lines
+l,1,2 !extern
+l,2,3
+l,3,4
+l,4,5
+l,5,6
+l,6,7
+l,7,8
+l,8,1
+l,9,10  !bot box
+l,10,11
+l,11,12
+l,12,9
+l,13,14 !top box  
+l,14,15
+l,15,16
+l,16,13
+l,1,9   !internal bound
+l,2,10
+l,3,11
+l,4,14
+l,5,15
+l,6,16
+l,7,13
+l,8,12
+l,11,14
+l,13,12
+
+l,17,18 !enclosure
+l,18,19
+l,19,20
+l,20,17
+l,1,17
+l,18,2
+l,19,5
+l,20,6
+
+l,21,22 !plates
+l,22,23
+l,23,24
+l,24,21
+l,25,26
+l,26,27
+l,27,28
+l,28,25
+
+
+!areas
+al,1,18,9,17
+al,18,2,19,10
+al,19,3,20,25
+al,20,4,21,14
+al,15,21,5,22
+al,23,16,22,6
+al,24,26,23,7
+al,17,12,24,8
+al,11,25,13,26
+al,27,32,1,31
+al,32,28,33,4,3,2
+al,33,29,34,5
+al,31,8,7,6,34,30                              
+al,35,36,37,38
+al,39,40,41,42
+!!!!  Now construct the near plate areas
+!!!!  Structured quad mesh will be used
+a,28,27,15,16
+a,27,26,14,15
+a,26,25,13,14
+a,25,28,16,13
+a,24,23,11,12
+a,23,22,10,11
+a,22,21,9,10
+a,21,24,12,9
+!!!! Near plate mesh spacing
+nlayp = 4
+lsel,s,,,43,50
+lesize,all,,,nlayp
+!!! Longitudinal lines along plate and nearby (x)
+nlongo = 45
+nlongi = 45
+rlong = -3
+lsel,s,,,11,13,2
+lsel,a,,,37,39,2
+lesize,all,,,nlongi,rlong
+lsel,s,,,9,15,6
+lsel,a,,,35,41,6
+lesize,all,,,nlongo,rlong
+lesize,5,,,nlongo
+lesize,1,,,nlongo
+!!! Between plates
+nbet = 13
+rbet = 1
+lsel,s,,,25,26
+lesize,all,,,nbet,rbet
+!!! Plate thickness
+nplt = 5
+lsel,s,,,36,42
+lesize,all,,,nplt
+alls
+cm,basea,area
+!!! Mapped mesh these areas
+asel,s,,,9
+asel,a,,,16,23
+!!! Set some lesize for the surrouding region
+ndia = 20
+rat = 4
+nlat = 18
+lesize,20,,,nlat,1./rat
+lesize,19,,,nlat,1./rat
+lesize,23,,,nlat,1./rat
+lesize,24,,,nlat,1./rat
+lesize,21,,,ndia,1./rat
+lesize,22,,,ndia,1./rat
+mshkey,1                ! Key to force mapped meshing (0=free)
+asel,a,,,1,5,4
+amesh,all
+mshkey,0
+mshape,1         ! allows quads
+asel,s,,,1,8
+asel,u,,,1,5,4
+esize,.05
+amesh,all
+asel,s,,,10,13
+esize,.1
+alls
+asel,u,,,14,15
+mshape,1                ! Forces triangles
+amesh,all
+!!!!!!!!!!!!!!!!!!!!!!! - Extrusion into 3D
+!! create component of all the areas
+cmsel,s,basea
+!!! - Volumes a-b (plate)
+vext,all,,,0,0,mlen
+lsel,s,,,96,97
+lsel,a,,,100,103,3
+ndep = 20
+rdep = -4
+lesize,all,,,ndep,rdep
+extopt,on
+extopt,aclear,1
+extopt,vswe,auto
+vsel,s,,,10,13
+vsweep,all
+alls
+vsel,s,,,1,9
+vsweep,all
+vsel,s,,,16,23
+vsweep,all
+alls
+numcmp,elem
+asel,s,,,14,15
+asel,a,,,71,76,5
+mshape,0
+amesh,all
+!!!
+fz = 40
+bak = fz*thknp
+nz1= 8
+rz1= 3
+!!! - Volumes a-e (just behind the plate) (24-46)
+cmsel,s,basea
+vext,all,,,0,0,-fz*thknp
+asel,s,loc,z,-fz*thknp
+cm,basee,area
+asel,s,loc,z,mlen
+cm,baseb,area
+!!! - Volumes b-c (just in front of plate) (47-69)
+vext,all,,,0,0,fz*thknp
+asel,s,loc,z,mlen+fz*thknp
+cm,basec,area 
+!!! - Mesh (a-e) 24-46
+lsel,s,,,174,175
+lsel,a,,,178,181,3
+lesize,all,,,nz1,rz1
+vsel,s,,,33,36
+vsweep,all
+vsel,s,,,24,31
+vsweep,all
+vsel,s,,,39,46
+vsweep,all
+vsel,s,,,32
+vsel,a,,,37,38
+vsweep,all
+!!! - Mesh (b-c) 47-69
+lsel,s,,,211,214
+lsel,a,,,218,219
+lsel,a,,,223,224
+lsel,a,,,228,229
+lsel,a,,,233,234
+lsel,a,,,238,239
+lsel,a,,,243,244
+lsel,a,,,252,253
+lsel,a,,,256,259,3
+lsel,a,,,265,268
+lsel,a,,,273,276
+lesize,all,,,nz1,rz1
+vsel,s,,,47,69
+vsweep,all
+alls
+!!! - Moving Plate
+!! Create the tables for the movement of the plate
+!! Apply velocities to the plate area
+!! Apply displacment tabel to the plate region
+!
+boxmove,X0,Y0,amax,omega,'uxtab','uytab','vxtab','vytab'
+!
+! Moving plates
+asel,s,,,15
+asel,a,,,76,80
+nsla,,1
+d,all,vx,%vxtab%
+d,all,vy,%vytab%
+d,all,vz,0.,
+d,all,enke,-1
+!
+! Plate region (plate plus surrounding nodes)
+vsel,s,,,15,19
+vsel,a,,,38,42
+vsel,a,,,61,65
+nslv,,1
+d,all,ux,%uxtab%
+d,all,uy,%uytab%
+d,all,uz,0
+!
+!!! Create the tables for the motion of areas in the morphing volumes
+!!! and apply the tabular boundary condition
+
+! Moving Areas - left diagonal
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab1','tab2',kx(6),ky(6),kx(16),ky(16)
+asel,s,,,43
+asel,a,,,116
+asel,a,,,189
+nsla,,1
+d,all,ux,%tab1%
+d,all,uy,%tab2%
+d,all,uz,0.
+!
+!! - left horizontal
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab3','tab4',kx(7),ky(7),kx(13),ky(13)
+asel,s,,,46
+asel,a,,,119
+asel,a,,,192
+nsla,,1
+d,all,ux,%tab3%
+d,all,uy,%tab4%
+d,all,uz,0.
+!
+!! - left vertical
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab5','tab6',kx(12),ky(12),kx(13),ky(13)
+asel,s,,,51
+asel,a,,,124
+asel,a,,,197
+nsla,,1
+d,all,ux,%tab5%
+d,all,uy,%tab6%
+d,all,uz,0.
+!
+!! - right vertical
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab7','tab8',kx(11),ky(11),kx(14),ky(14)
+asel,s,,,34
+asel,a,,,107
+asel,a,,,180
+nsla,,1
+d,all,ux,%tab7%
+d,all,uy,%tab8%
+d,all,uz,0.
+!
+!! - right diagonal
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab11','tab12',kx(5),ky(5),kx(15),ky(15)
+asel,s,,,112
+asel,a,,,39
+asel,a,,,185
+nsla,,1
+d,all,ux,%tab11%
+d,all,uy,%tab12%
+d,all,uz,0.
+!
+!! - right horizontal
+!
+mvconn,X0,Y0,AMAX,OMEGA,'tab9','tab10',kx(4),ky(4),kx(14),ky(14)
+asel,s,,,35
+asel,a,,,108
+asel,a,,,181
+nsla,,1
+d,all,ux,%tab9%
+d,all,uy,%tab10%
+d,all,uz,0.
+!
+!!! - Volumes with zero fixed displacements
+vsel,s,,,10,14
+vsel,a,,,20,23
+vsel,a,,,33,37
+vsel,a,,,43,46
+vsel,a,,,60
+vsel,a,,,66,69
+vsel,a,,,56,59
+vsel,a,,,1,47,23
+vsel,a,,,2,48,23
+vsel,a,,,8,54,23
+nslv,,1
+d,all,ux,0
+d,all,uy,0
+d,all,uz,0
+!
+! Velocity Boundary Conditions
+!
+! Lower Plate boundary conditions
+asel,s,,,14
+asel,a,,,71,75
+nsla,,1
+d,all,vx,0
+d,all,vy,0
+d,all,vz,0
+!
+! External boundary conditions
+asel,s,loc,x,-s2/2
+asel,a,loc,x,s2/2
+asel,a,loc,y,-s2/2
+asel,a,loc,y,s2/2
+asel,a,loc,z,-bak
+asel,a,loc,z,mlen+bak
+da,all,pres,0.,1
+alls
+!!!!!!!!!!!!!!!!!!!! FLOTRAN setup
+!!!!!!!!!! Solution Options
+flda,solu,flow,t
+flda,solu,tran,t
+flda,solu,ale,t
+!!!!!!!!!! Property
+flda,prot,dens,air-mm
+flda,prot,visc,air-mm
+!!!!!!!!!! Accuracy and stability control
+flda,quad,momd,2
+flda,quad,moma,2
+flda,quad,moms,2
+flda,quad,prsd,2
+flda,quad,prss,2
+flda,advm,mome,supg
+flda,mir,mome,0.1
+!!!!!!!!!! Time step and storage
+flda,time,step,delta
+flda,time,numb,1.E+6
+flda,time,tend,time
+flda,time,glob,8
+flda,time,appe,0
+flda,conv,pres,1.E-15
+fini
+/solu
+save
+solve
+flda,time,tend,tend
+flda,time,appe,appf
+solve

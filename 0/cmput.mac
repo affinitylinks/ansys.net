@@ -1,0 +1,15 @@
+/nopr
+!
+! cmput.mac a macro that saves all the currently selected 
+! entities in components
+!
+! written by: John Crawford 11-23-99
+!
+cm,kp__,kp
+cm,line__,line
+cm,area__,area
+cm,volu__,volu
+cm,node__,node
+cm,elem__,elem
+!
+/gopr

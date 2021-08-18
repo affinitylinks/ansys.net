@@ -1,0 +1,188 @@
+!==============================================================================
+! Quality Engineers and Software Technologies Pvt. Ltd.
+!==============================================================================
+!
+! Name       : Justmeshit.mac
+! Description: The macro meshes all the areas after getting the specifications from the user.
+!
+! Type: ANSYS APDL macro
+!
+! Input Files: none
+!
+! Author: Prasad.S   QuEST Pvt. Ltd.
+! Revised on : 24/07/2003
+!
+! You can change the element type in the macro as per your requirement. At present shell63 is being used 
+! for the area mesh.
+!
+! In this macro a muliplication factor has been considered for the bent curves, so that when compared to
+! the straight curves, bent curves will have element edge length smaller based on the input factor.
+! If the factor is >1, the bent curves contain finer divisions,
+! If the factor is <1, the bent curves contain coarser divisions.
+!
+!============================================================================== !
+
+/prep7
+!*ask,ets,Enter the number of element types to be defined,50
+*ask,size,Enter the element edge lenght to be used,150
+*ask,mult,Enter multiplication factor for the bent curves,2
+*ask,msh,Do you need a mesh ? (0 -> No and 1 -> Yes),1
+*ask,cle,Clear existing mesh ? (0 -> No and 1 -> Yes),1
+
+/nerr,0,100000,-2
+allsel,all
+
+! Specify Material Properties
+!*do,i,1,ets,1,
+!et,i,63
+!ex,i,207000
+!dens,i,1
+!nuxy,i,0.3
+!*enddo
+
+aesize,all,size/mult
+
+! Assiging Line Divisions
+
+*get,totlin,line,0,count,
+*get,minlin,line,0,num,min,
+
+*do,i,1,totlin,1,
+
+lsel,s,,,minlin,
+lsum,
+*get,linlen,line,minlin,leng
+ksll,,
+
+*get,maxkp,kp,0,num,max
+*get,minkp,kp,0,num,min
+
+kx1=kx(maxkp)
+ky1=ky(maxkp)
+kz1=kz(maxkp)
+
+kx2=kx(minkp)
+ky2=ky(minkp)
+kz2=kz(minkp)
+
+length1 = sqrt( (kx1-kx2)**2 + (ky1-ky2)**2 +(kz1-kz2)**2 ) 
+
+ratio = linlen / length1
+
+*if,ratio,gt,1,then
+ratio = mult*ratio
+*endif
+
+div = size / ratio
+
+*abset,'ASSIGNING LINE DIVISIONS',bar
+p_=nint(100*i/totlin)
+*abcheck,p_,'ASSIGNING DIVISIONS TO LINE %minlin%'
+
+LESIZE,minlin,div, , , , , , ,0
+
+allsel,all
+minlin=lsnext(minlin)
+
+*enddo
+*abfini
+
+allsel,all
+
+! Clearing the area mesh.
+
+*if,cle,eq,1,then,
+aclear,all
+*endif
+
+! Mesh all the areas.
+
+*if,msh,eq,1,then,
+*get,totar,area,0,count,
+*get,minar,area,0,num,min,
+
+*do,i,1,totar,1
+
+! Define element type
+etype=arinqr(minar,-2)
+et,etype,63
+
+mshkey,2
+
+*abset,'MESHING AREAS',bar
+p_=nint(100*i/totar)
+*abcheck,p_,'MESHING AREA %minar%'
+
+amesh,minar,
+*get,minar,area,minar,nxth
+*enddo
+*abfini
+*endif
+
+allsel,all
+! Checking All the areas for mesh and select unmeshed areas.
+! This is the replicate of the macro by John Crawford, Ansys.net
+
+!  set area id parameter to zero
+anum_=0
+!
+!  set the beginning number of selected areas
+astart_=arinqr(0,13)
+!
+!  begin looping
+*do,i_,1,astart_
+!
+!  get next area ID number
+anum_=arnext(anum_)
+!
+!  set up and display progress bar
+*abset,'CHECKING MESHED AREAS',bar
+p_=nint(100*i_/astart_)
+*abcheck,p_,'CHECKING MESHED AREAS %p_%%'
+!
+*if,arinqr(anum_,-6),le,0,then
+asel,u,area,,anum_,
+*endif
+!
+*enddo
+! finish the progress counter
+*abfini
+
+asel,inve
+alls,belo,area
+
+/nerr,,
+
+*if,arinqr(0,13),le,0,then
+*msg,UI
+All Areas are Meshed
+asel,inve
+alls,belo,area
+eplot
+*else
+*msg,UI
+These are the Areas that are not Meshed
+aplot
+*endif
+
+/nerr,,
+!end of program
+
+! You can use the aslm.mac, in ANSYS.NET by John Crawford to get the unmeshed areas.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,84 @@
+! *****************************************************************************
+! IM1.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM1.MAC is used in POST1 of ANSYS 5.3 to read in as element table (ETABLE)
+! items the post data required for element PIPE20.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 5/2/97   SMV  Initial release
+! 28/4/97  SMV  Documentation added
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+ETABLE,	FXI	,SMISC,	1  ! Line element Axial force, node I
+ETABLE,	FYI	,SMISC,	2  ! Line element Y force, node I
+ETABLE,	FZI	,SMISC,3   ! Line element Z force, node I
+ETABLE,	MXI	,SMISC,4   ! Line element torsional moment, node I
+ETABLE,	MYI	,SMISC,5   ! Line element Y moment, node I
+ETABLE,	MZI	,SMISC,6   ! Line element Z moment, node I
+
+ETABLE,	FXJ	,SMISC,7   ! Line element Axial force, node J
+ETABLE,	FYJ	,SMISC,8   ! Line element Y force, node J
+ETABLE,	FZJ	,SMISC,9   ! Line element Z force, node J
+ETABLE,	MXJ	,SMISC,10  ! Line element torsional moment, node J
+ETABLE,	MYJ	,SMISC,11  ! Line element Y moment, node J
+ETABLE,	MZJ	,SMISC,12  ! Line element Z moment, node J
+
+ETABLE,	SBI	,NMISC,81  ! Line element bending stress, node J
+ETABLE,	SBJ	,NMISC,83  ! Line element bending stress, node I
+ETABLE,	SDI	,SMISC,13  ! Line element direct stress, node I
+ETABLE,	SDJ	,SMISC,15  ! Line element direct stress, node J
+
+ETABLE,	SA0I	,LS  ,	1  ! Pipe Element axial stress (0 degrees), node I
+ETABLE,	SA45I	,LS  ,	5  ! Pipe Element axial stress (45 degrees), node I
+ETABLE,	SA90I	,LS  ,	9  ! Pipe Element axial stress (90 degrees), node I
+ETABLE,	SA135I	,LS  ,	13 ! Pipe Element axial stress (135 degrees), node I
+ETABLE,	SA180I	,LS  ,	17 ! Pipe Element axial stress (180 degrees), node I
+ETABLE,	SA225I	,LS  ,	21 ! Pipe Element axial stress (225 degrees), node I
+ETABLE,	SA270I	,LS  ,	25 ! Pipe Element axial stress (270 degrees), node I
+ETABLE,	SA315I	,LS  ,	29 ! Pipe Element axial stress (315 degrees), node I
+
+ETABLE,	SR0I	,LS  ,	2  ! Pipe Element radial stress (0 degrees), node I
+ETABLE,	SH0I	,LS  ,	3  ! Pipe Element hoop stress (0 degrees), node I
+
+ETABLE,	SA0J	,LS  ,	33 ! Pipe Element axial stress (0 degrees), node J
+ETABLE,	SA45J	,LS  ,	37 ! Pipe Element axial stress (45 degrees), node J
+ETABLE,	SA90J	,LS  ,	41 ! Pipe Element axial stress (90 degrees), node J
+ETABLE,	SA135J	,LS  ,	45 ! Pipe Element axial stress (135 degrees), node J
+ETABLE,	SA180J	,LS  ,	49 ! Pipe Element axial stress (180 degrees), node J
+ETABLE,	SA225J	,LS  ,	53 ! Pipe Element axial stress (225 degrees), node J
+ETABLE,	SA270J	,LS  ,	57 ! Pipe Element axial stress (270 degrees), node J
+ETABLE,	SA315J	,LS  ,	61 ! Pipe Element axial stress (315 degrees), node J
+
+ETABLE,	SR0J	,LS  ,	34 ! Pipe Element radial stress (0 degrees), node J
+ETABLE,	SH0J	,LS  ,	35 ! Pipe Element hoop stress (0 degrees), node J
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************

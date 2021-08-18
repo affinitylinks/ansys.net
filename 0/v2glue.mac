@@ -1,0 +1,211 @@
+!==============================================================================
+!
+!                                                     Phoenix Analysis & Design 
+! PADT-------------------------------------------------------------------------
+!                                                                  Technologies
+!
+!==============================================================================
+!     1-800-293-PADT * 480-813-4884 P * 480-813-4807 F * www.padtinc.com
+!==============================================================================
+!
+!        Name: V2GLUE.MAC
+! Description: Provides workarounds for "un-glueing" of volumes caused by
+!		repeated VGLUE commands
+!
+!        Type: ANSYS APDL macro
+!
+! Input Files: none
+!
+!      Author: Eric Miller	PADT
+!
+!   Arguments:
+!    		ARG1-ARG8: Volume Numbers
+!			ALL = Do a glue on all selected volumes
+!	          	  P = User picks volumes
+!
+!============================================================================== !
+ finish
+ /clear,start
+ *if,ARG1,eq,0,then
+    arg1 = 1
+ *endif
+ resume,test%ARG1%-0,db
+ /filenam,test%ARG1%-1
+ !
+ !/PMACRO
+/nopr
+_inum = 0
+_ptmp = arg1
+*get,_ptyp,parm,_ptmp,type
+*if,_ptyp,eq,3,then
+   *get,_tmp,comp,_ptmp,type
+   *if,_ptmp,eq,'ALL',then
+	cm,_v2gl,volume
+	*get,_inum,volume,,count
+   *elseif,_ptmp,eq,'all',then
+	cm,_v2gl,volume
+	*get,_inum,volume,,count
+   *elseif,_ptmp,eq,'P',then
+        cm,_vbfr,volume
+	vsel,r,p
+	*if,_BUTTON,eq,0,then
+	  cm,_v2gl,volume
+	  *get,_inum,volume,,count
+	  cmsel,s,_vbfr
+	*endif
+   *elseif,_ptmp,eq,'p',then
+        cm,_vbfr,volume
+	vsel,r,p
+	*if,_BUTTON,eq,0,then
+	  cm,_v2gl,volume
+	  *get,_inum,volume,,count
+	  cmsel,s,_vbfr
+	*endif
+   *elseif,_tmp,ne,0,then
+        cm,_vbfr,volume
+	cmsel,s,_ptmp
+	cm,_v2gl,volume
+	*get,_inum,volume,,count
+	cmsel,s,_vbfr
+   *endif
+*else
+   cm,_vbfr,volume
+   vsel,u,,,all
+   *do,_i,1,9
+	*if,arg%_i%,ne,0,then
+		vsel,a,,,arg%_i%
+		_inum = _inum + 1
+	*endif
+   *enddo
+   cm,_v2gl,volume
+   *get,_inum,volume,,count
+   cmsel,s,_vbfr
+*endif
+
+*if,_inum,lt,2,then
+	*msg,error,
+Need at least 2 volumes for V2GLUE command.  Please Input Volumes
+*else
+	cm,_vbfr,volume
+	cm,_abfr,area
+	cm,_lbfr,line
+	cm,_kbfr,kp
+
+	cmsel,s,_v2gl
+	*dim,_v,,_inum
+	_ii = -1
+	*do,_i,1,_inum
+          _ii = vlnext(_ii) 
+	  _v(_i) = _ii
+        *enddo
+
+	asel,u,,,all
+ 	vsel,u,,,all
+	cm,_acm,area
+	cm,_vcm,area
+	*do,_i,1,_inum   ! put all shared areas in _acm
+		vsel,s,,,_v(_i),,,1
+		cmsel,a,_vcm
+		cm,_vcm,volu
+		cm,_a1,area
+		vsel,s,,,_v(_i)
+		vsel,invert
+		aslv,s,1              
+		cmsel,r,_a1
+		cm,_a2,area
+		cmsel,a,_acm
+		cm,_acm,area
+	*enddo
+	*get,_jnum,area,,count
+	*if,_jnum,gt,0,then
+	  *dim,_ashr,,_jnum,3
+	  *dim,_loc,,3
+	  _aa = -1
+  	  *do,_i,1,_jnum
+ 	    _aa = arnext(_aa)
+	    *vget,_loc(1),60,_aa,6,2,,,4
+	    _ashr(_i,1) = _loc(1)
+	    _ashr(_i,2) = _loc(2)
+	    _ashr(_i,3) = _loc(3)
+	  *enddo
+	*endif
+!---
+	cmsel,s,_vcm
+	allse,below,volume
+
+	cm,_ln1,line
+	lslk,s,1
+	cmsel,u,_ln1
+	*get,_nmln,line,,count
+
+	*if,_nmln,gt,0,then
+		*msg,,_nmln
+Splitting lines to maintain seperate topology on unrelated parts.
+		_ln = -1
+		*do,_i,1,_nmln
+			_ln = lsnext(_ln)
+			*msg,,_ln
+     Line: %g
+			ldiv,_ln,.5
+		*enddo
+	*endif
+	allsel,below,volume
+	nummerge,kp
+/go
+	vglue,all
+/nopr
+	*if,_jnum,gt,0,then
+	  *do,_i,1,_jnum
+             asel,s,loc,x,_ashr(_i,1)-.001,_ashr(_i,1)+.001
+             asel,r,loc,y,_ashr(_i,2)-.001,_ashr(_i,2)+.001
+             asel,r,loc,z,_ashr(_i,3)-.001,_ashr(_i,3)+.001
+	     *get,_cnt,area,,count
+	     *if,_cnt,gt,1,then
+*msg,,
+Re-Connecting Volume that was Detached 
+*msg,,_cnt
+Number of Areas Before Re-Connect: %g
+                allsel,below,area
+                asbl,all,all,,keep,keep
+	        nummerge,kp		
+	     *endif
+	  *enddo
+	*endif
+	
+	*get,_tmp,comp,_vbfr,type
+	*if,_tmp,ne,0,then
+		cmsel,a,_vbfr
+		cmsel,a,_abfr
+		cmsel,a,_lbfr
+		cmsel,a,_kbfr
+	*endif
+*endif
+*if,_inum,ne,0,then
+  *do,_i,1,_inum
+	_vpr%_i%=
+  *enddo
+*endif
+_v=
+_i=
+_ii=
+_ptmp=
+_ptyp=
+_tmp=
+_inum=
+_ln=
+_ashr=
+_cnt=
+_loc=
+_jnum=
+_aa=
+_nmln=
+cmdel,_a1
+cmdel,_acm
+cmdel,_vbfr
+cmdel,_abfr
+cmdel,_lbfr
+cmdel,_kbfr
+cmdel,_ln1
+cmdel,_atmp
+cmdel,_v2gl
+/go

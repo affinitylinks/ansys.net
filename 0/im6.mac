@@ -1,0 +1,52 @@
+! *****************************************************************************
+! IM6.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM6.MAC is used in POST1 of ANSYS 5.3 to read in as element table (ETABLE)
+! items the post data required for element CONTAC12.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 5/2/97   SMV  Initial release
+! 27/6/97  SMV  Documentation added
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+ETABLE, FN,       SMISC,1
+ETABLE, FS,       SMISC,2
+ETABLE, S,        NMISC,1
+ETABLE, OLDST,    NMISC,2
+ETABLE, USEP,     NMISC,3
+ETABLE, UT,       NMISC,4
+ETABLE, MU,       NMISC,5
+ETABLE, THETA,    NMISC,6
+
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************
+

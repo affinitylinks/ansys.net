@@ -1,0 +1,41 @@
+/nopr
+!  geten.mac    A macro to loop through the esln and nsle
+!               commands to select related nodes/elements
+!
+!  Usage:  geten,n  
+!    where n=the number of loops
+!                  
+!  written by: John Crawford  date: 10-7-00
+!
+ar23=0
+*if,arg1,eq,0,then
+ar24=1
+*endif
+ar21=ndinqr(0,13)
+ar22=elmiqr(0,13)
+nsle
+*do,ar24,1,arg1
+esln
+nsle
+*msg,info,ar24,elmiqr(0,13),ndinqr(0,13)
+Doing Loop %i Selected elements = %i Selected nodes = %i
+*if,ar21,eq,ndinqr(0,13),then
+*if,ar22,eq,elmiqr(0,13),then
+ar23=1
+*endif
+*endif
+*if,ar23,eq,1,then
+*msg,info,elmiqr(0,13),ndinqr(0,13) 
+%/ *** Selecting has been automatically stopped because all *** &
+%/*** connected elements and nodes have been selected. *** &
+%/*** A total of %i element(s) and %i node(s) have been selected. *** 
+*endif
+*if,ar23,eq,1,exit
+ar21=ndinqr(0,13)
+ar22=elmiqr(0,13)
+*enddo
+*msg,info,elmiqr(0,12),ndinqr(0,12)
+%/ *** There are %i element(s) and %i node(s) in the model ***%/
+
+!
+/gopr

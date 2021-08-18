@@ -1,0 +1,115 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Arch buckling problem
+/com,    illustrates importance of press. load stiff. matrix
+/com,  theoretical: 771.12
+/com,  93 for SHELL93 only (1st eig 840.73)
+/com,  181 for SHELL181 only (1st eig 771.72)
+/com,  154 for SHELL93 & SURF154 (1st eig 771.07)
+/com,  254 for SHELL93 & SURF154, face 4 (1st eig 840.78)
+/com,
+
+finish
+/clear
+
+COMPTYPE = 181
+
+MAT_EX   = 2.1e11
+VAL_RAD  = 5
+VAL_WID  = 1
+VAL_MOE  = 1.53e-7
+VAL_THK  = (VAL_MOE*12)**(1/3)
+
+*if,COMPTYPE,eq,181,then
+  ELEMDIV  = 100
+*else
+  ELEMDIV  = 50
+*endif
+
+/prep7
+*if,COMPTYPE,eq,181,then
+  et,1,181
+*elseif,COMPTYPE,eq,154
+  et,1,93
+  et,2,154
+  keyopt,2,4,0
+  keyopt,2,6,0
+*elseif,COMPTYPE,eq,254
+  et,1,93
+  et,2,154
+  keyopt,2,4,0
+  keyopt,2,6,0
+*else
+  et,1,93
+*endif
+r,1,VAL_THK
+mp,ex,1,MAT_EX
+mp,nuxy,1,0.0
+
+cylind,VAL_RAD,,0,VAL_WID,0,180
+csys,1
+asel,u,loc,x,VAL_RAD
+csys,0
+
+vdele,all
+adele,all,,,1
+allsel,all
+
+mshape,0
+mshkey,1
+
+lsel,s,loc,y,0
+lesize,all,,,1
+dl,all,,ux
+dl,all,,uy
+dl,all,,uz
+lsel,inve
+lesize,all,,,ELEMDIV
+
+allsel,all
+amesh,all
+*if,COMPTYPE,eq,154,then
+  type,2
+  real,2
+  esurf
+  esel,s,ename,,154
+  sfe,all,1,pres,,1
+  esel,all
+*elseif,COMPTYPE,eq,254
+  type,2
+  real,2
+  esurf
+  esel,s,ename,,154
+  sfe,all,4,pres,,1,0,0,0
+  esel,all
+*else
+  sfa,all,1,pres,-1
+*endif
+finish
+
+/solu
+antype,static
+eqslv,sparse
+pstres,on
+solve
+finish
+
+/solu
+antype,buckle
+bucopt,lanb,10
+solve
+finish
+
+/post1
+set,list

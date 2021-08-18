@@ -1,0 +1,74 @@
+/out,g_mur,out
+!  loads the murx from the results for the active elements
+!  into material sets matching the element number +100
+!  generates the macro chg_mat.mac
+!
+c_matoff=100  !  off set the material number from the element number
+cm,ce,elem
+esel,all
+*get,elmx,elem,,num,max
+
+cmsel,,ce
+
+/com, mask vector
+*set,mskv
+*dim,mskv,,elmx
+*vget,mskv(1),elem,1,esel
+*voper,mskv(1),mskv(1),gt,0
+
+/com, load the mur into an element etable
+*afun,rad
+muz0=4*acos(-1)*1e-7
+etab,murx,nmisc,1
+sadd,mur,murx,,1/muz0
+
+/com, load the mur into an array
+*set,mura
+*dim,mura,,elmx
+*vmask,mskv(1)
+*vget,mura(1),elem,1,etab,mur
+
+
+/com, generate the new material numbers
+*set,n_matn
+*dim,n_matn,,elmx
+*vfill,n_matn(1),ramp,c_matoff+1,1
+
+
+/com, write the new material properties and emod commands out
+/nopr
+/out,chg_mat,mac
+*msg,info
+/nopr  ! 
+*msg,info
+esel,all  ! 
+*vmask,mskv(1)
+*vwrite,n_matn(1),mura(1)
+('mp,murx,',f10.0,',',f15.3)
+*vmask,mskv(1)
+*vwrite,sequ,n_matn(1)
+('emod,'f10.0,',mat,',f10.0)
+*msg,info
+/gopr  !
+/out,g_mur,out,,append
+/gopr
+
+*get,ecnt,elem,,count
+
+/out,g_mur,sum
+*msg,info,ecnt
+Number of elements changed:  %i
+*msg,info
+ Macro chg_mat.mac  has the new materials and the&
+ element modification commands.
+/out
+
+*set,mskv
+*set,mura
+*set,n_matn
+
+parsav,all,g_mur,par
+
+/out
+*uili,g_mur,sum
+

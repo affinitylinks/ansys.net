@@ -1,0 +1,72 @@
+! If you want to use this macro to create areas on the outside skin of tet
+! elements, use the ESURF command to create shell elements on the outside
+! faces of the tets, then select these shell elements and run AFACE.MAC.
+/nopr
+!
+!  aface.mac  a macro which constructs areas from the faces of 
+!             currently selected shell elements using only the
+!             corner nodes.
+!
+!  usage: aface (no arguments)
+!
+!  written by: John Crawford  date: 5-19-97
+!
+!
+!  create a temporary component of the currently selected nodes
+*if,ndinqr(0,13),gt,0,then
+cm,_Y1,node
+ar10=1
+*endif
+!  create a temporary component of the currently selected areas
+*if,arinqr(0,13),gt,0,then
+cm,_Y2,area
+asel,none
+ar11=1
+*endif
+!
+!  select the nodes on the currently selected elements
+nsle
+!
+!  get the highest keypoint id in the model
+_koff=kpinqr(0,14)
+!  create keypoints at every node location
+_nd=0
+*do,i,1,ndinqr(0,13)
+_nd=ndnext(_nd)
+k,_nd+_koff,nx(_nd),ny(_nd),nz(_nd)
+*enddo
+!
+!  create areas on the face of each element
+_elem=0
+*do,i,1,elmiqr(0,13)
+_elem=elnext(_elem)
+*if,nelem(_elem,3),eq,nelem(_elem,4),then
+a,nelem(_elem,1)+_koff,nelem(_elem,2)+_koff,nelem(_elem,3)+_koff
+*else
+a,nelem(_elem,1)+_koff,nelem(_elem,2)+_koff,nelem(_elem,3)+_koff,nelem(_elem,4)+_koff
+*endif
+*enddo
+!
+!  plot the areas
+aplo
+!
+!
+!  restore the originally selected nodes
+cmse,s,_Y1
+!
+!  additionally select the originally selected areas
+cmse,a,_Y2
+!
+!  remove the temporary components
+*if,ar10,eq,1,then
+cmde,_Y1
+*endif
+*if,ar11,eq,1,then
+cmde,_Y2
+*endif
+!
+!  remove the counter
+i=
+!
+!  all done
+/gopr

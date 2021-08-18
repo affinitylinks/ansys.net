@@ -1,0 +1,34 @@
+!I think I've had the same problem that you do. My workaround was to dump
+!the results of a PRSECT command to a dummy text file, and then read the
+!desired value(s) into an array with the *VREAD command. The tricky part is
+!counting down to the right part of the output with the format statements.
+!Here's my code fragment -- it should help you get the idea:
+
+! Arguments as follows:
+! ARG1 = NODE1
+! ARG2 = NODE2
+! ARG3 = Coordinate System
+! ARG4 = Starting RLIST storage location
+! ARG5 = Current "J" loop value
+RSYS,ARG3
+LPATH,(ARG5-1)*1000+ARG1,(ARG5-1)*1000+ARG2
+/OUTPUT,linrept
+/NOPR
+PRSECT
+/OUTPUT
+/GOPR
+*VREAD,MPBTMPI(1),linrept
+(39(/),3X,5(F12.0))
+*VREAD,MPBTMPC(1),linrept
+(40(/),3X,5(F12.0))
+*VREAD,MPBTMPO(1),linrept
+(41(/),3X,5(F12.0))
+*VREAD,TOTTMPI(1),linrept
+(59(/),3X,5(F12.0))
+*VREAD,TOTTMPO(1),linrept
+(61(/),3X,5(F12.0))
+RLIST(ARG5,ARG4) = MPBTMPI(4)
+RLIST(ARG5,ARG4+1) = MPBTMPC(4)
+RLIST(ARG5,ARG4+2) = MPBTMPO(4)
+RLIST(ARG5,ARG4+3) = TOTTMPI(4)
+RLIST(ARG5,ARG4+4) = TOTTMPO(4)

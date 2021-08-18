@@ -1,0 +1,88 @@
+/nopr
+!----------------------------------------
+/com,
+/com, Macro to map values from one 'mesh' to another
+/com,   arg1 = name, in quotes, of dimx3 array of (x,y,z)
+/com,   arg2 = name, in quotes, of dimx1 array of values
+!/com,   arg3 = "2" or "3" for 2D/3D
+!/com,   arg4 = "0" or "1" for keep/delete if outside region
+/com, Ensure that arrays for arg1 & arg2 are compressed
+/com, Select only nodes to map to before running macro
+/com,
+! by sheldon
+!----------------------------------------
+
+!----------------------------------------
+! Put everything in a *DO loop, so I can
+! exit if conditions aren't met.
+!----------------------------------------
+*do,ICOUNT,1,1
+
+!----------------------------------------
+! Check input arrays for arg1 and arg2
+!----------------------------------------
+*set,STI_ARRAY_XYZ_,arg1
+*set,STI_ARRAY_VAL_,arg2
+!
+*vscfun,STI_PARM_XYZ_,num,%STI_ARRAY_XYZ_%(1,1)
+*vscfun,STI_PARM_VAL_,num,%STI_ARRAY_VAL_%(1)
+!
+*if,STI_PARM_XYZ_,ne,STI_PARM_VAL_,exit
+*if,STI_PARM_XYZ_,eq,0,exit
+
+!****************************************
+! Check arg3, arg4 input
+!****************************************
+
+!----------------------------------------
+! Create arrays for current selected nodes
+! STIOUT is output array
+! STIMASK is masking vector
+!----------------------------------------
+*get,STI_NODE_MAX_,node,,num,max
+!
+*dim,STI_MESH_XYZ_,array,STI_NODE_MAX_,3
+!
+*del,STIMASK,,nopr
+*dim,STIMASK,array,STI_NODE_MAX_
+*vget,STIMASK(1),node,,nsel
+*del,STIOUT,,nopr
+*dim,STIOUT,array,STI_NODE_MAX_
+
+!----------------------------------------
+! STI_MESH_XYZ_ = (x,y,z) positions
+!----------------------------------------
+*vmas,STIMASK(1)
+*vget,STI_MESH_XYZ_(1,1),node,,loc,x
+*vmas,STIMASK(1)
+*vget,STI_MESH_XYZ_(1,2),node,,loc,y
+*vmas,STIMASK(1)
+*vget,STI_MESH_XYZ_(1,3),node,,loc,z
+
+!----------------------------------------
+! Perform mapping
+!----------------------------------------
+*vmas,STIMASK(1)
+!*moper,STI_MESH_VAL_(1),STI_MESH_XYZ_(1,1),MAP,STI_ARRAY_VAL_(1),STI_ARRAY_XYZ_(1,1),arg3,,arg4
+*moper,STIOUT(1),STI_MESH_XYZ_(1,1),MAP,STI_ARRAY_VAL_(1),STI_ARRAY_XYZ_(1,1),3,1/(STI_PARM_VAL_**(1/3)),0
+
+*enddo
+!----------------------------------------
+! Cleanup
+!----------------------------------------
+ICOUNT=
+STI_ARRAY_XYZ_=
+STI_ARRAY_VAL_=
+STI_PARM_XYZ_=
+STI_PARM_VAL_=
+STI_NODE_MAX_=
+STI_MESH_XYZ_=
+
+/com,
+/com, *** Mapping completed ***
+/com,
+/com, Output arrays are interpolated values is STIOUT(1)
+/com, and masking vector STIMASK(1)
+/com,   index corresponds to node number
+/com,
+/gopr

@@ -1,0 +1,74 @@
+! MACRO FILE trq_MSP.mac CALCULATES TORQUES ON
+! OBJECTS IN 3D MAGNETIC SCALAR POTENTIAL (MSP)
+! ANALYSES. THE VALUES ABOUT THE GLOBAL Z AXIS 
+! ARE REPORTED IN A GUI MESSAGE BOX AND A PLOT
+! OF EITHER MXWF OR MVDI FORCES (EDIT TO SUIT)
+! IS PRODUCED. TORQUES DUE TO BOTH MXWF AND
+! MVDI FORCES ARE REPORTED.
+
+! BILL BULAT 12/14/99
+! CSI
+! 5962 LAPLACE COURT SUITE 100
+! CARLSBAD CA 92008
+! (760)431-4815 X108
+! (760)431-4824 (FAX)
+! bill.bulat@csi-ansys.com
+
+/gopr
+cm,temp_e,elem
+cm,temp_n,node
+
+rsys
+csys
+
+! SELECT ENTITIES FOR TORQUE CALCULATION (EDIT TO SUIT)
+esel,s,mat,,2 
+nsel,s,ext
+esln
+esel,r,mat,,1
+nsle
+
+! READ MAXWELL STRESS TENSOR FORCES
+etab,fmgx1,fmag,x
+etab,fmgy1,fmag,y
+etab,fmgz1,fmag,z
+
+! READ VIRTUAL DIOSPLACEMENT FORCES
+etab,fmgx2,nmisc,4
+etab,fmgy2,nmisc,5
+etab,fmgz2,nmisc,6
+
+! READ CENTROID COORDINATES
+etab,cntrdx,cent,x
+etab,cntrdy,cent,y
+etab,cntrdz,cent,z
+
+! CALCULATE TORQUES (CROSS PRODUCTS)
+vcross,trqx1,trqy1,trqz1,cntrdx,cntrdy,cntrdz,fmgx1,fmgy1,fmgz1
+vcross,trqx2,trqy2,trqz2,cntrdx,cntrdy,cntrdz,fmgx2,fmgy2,fmgz2
+
+! OBTAIN TOTAL TORQUES ABOUT GLOBAL Z AXIS
+ssum
+*get,trqtot1,ssum,,item,trqz1
+*get,trqtot2,ssum,,item,trqz2
+
+! REPORT TORQUE CALCULATION SUMMARY
+*msg,ui,trqtot1,trqtot2
+TOTAL TORQUES ABOUT GLOBAL Z AXIS: %/& 
+BASED ON MXWF FORCES: %G N-m %/&
+BASED ON MVDI FORCES: %G N-m
+
+! RESORE INITIAL SELECTED SET PRIOR TO MACRO INVOCATION
+cmse,s,temp_e
+cmse,s,temp_n
+
+! PREODUCE MAGNETIC FORCE VECTOR PLOT (CHOOSE)
+plve,fmgx1,fmgy1,fmgz1,Fmxwf,vect,,on
+!plve,fmgx2,fmgy2,fmgz2,Fmvdi,vect,,on
+
+! CLEAN UP - DELETE TEMPORARY COMPONENTS
+cmde,s,temp_e
+cmde,temp_n
+
+
+

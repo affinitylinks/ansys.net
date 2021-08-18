@@ -1,0 +1,71 @@
+/nopr
+!
+! elgroup.mac a macro which creates a file of esel commands for the
+! currently selected elements.
+!
+! The macro will prompt the user for the name of
+! the file which will be created. The default name is
+! 'elgroup'.
+!
+! usage: elgroup
+!
+! written by John Crawford 4-22-96
+!
+! check to see if any elements are selected. If so, run the
+! macro. If not, print a message and quit
+*if,elmiqr(0,13),gt,0,then
+!
+fname=
+*ask,fname,Enter File Name,'elgroup'
+!
+*cfopen,fname,mac
+!
+!
+! set initial value for ar20
+ar20=0
+!
+*msg,info,elmiqr(0,13)
+Writing esel commands for %i elements
+!
+! enter the loop which creates the element list
+*do,i,1,elmiqr(0,13)
+!
+ar20=elnext(ar20)
+!
+*if,i,eq,1,then
+*vwrite
+('/nopr')
+*vwrite,ar20
+('esel,s,elem,,',f7.0)
+*else
+*vwrite,ar20
+('esel,a,elem,,',f7.0)
+*if,i,eq,elmiqr(0,13),then
+*vwrite
+('/gopr')
+*endif
+*endif
+!
+*enddo
+!
+! finished element file
+!
+! close the file
+*cfclose
+!
+! display a message telling the user that the macro is finished
+*msg,info,fname
+Finished writing esel commands to file %c.mac
+!
+! clean up the parameters
+fname=
+i=
+j=
+!
+!
+*else
+*msg,info
+**** ELGROUP Will Not Run Because No Elements Are Selected ****
+*endif
+! 
+/gopr

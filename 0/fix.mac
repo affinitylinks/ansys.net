@@ -1,0 +1,74 @@
+!***********This macro is to fix the nodes in space in apporpriate directions **********!
+!USAGE: fix,'cname',1,1,1,1,1,1  (for example)
+!fix - is the name of the macro 'fix.mac'
+!'cname' - is the nodal component name (less than 8 characters)
+!1,1,1,1,1,1 - 6 different values for 6 dof  (ux,uy,uz,rotx,roty,rotz) in a structural analysis
+!If the first parameter is 2 (for ux) then all other parameters are ignored and all dof's are fixed
+!in space.
+!If the parameters are other than 1 then those corresponding dof's are not fixed in space
+!NOTE:  
+!Fixing is not same as applying zero displacement value
+!Fixing here means Fixing the node in space at the current corresponding displacement 
+!You need to have a nodal component to use this macro
+!
+!Suppose if you give 2 for (ux) and the nodes are defined using Solid45 elements
+!then, since Solid45 does not have Rotx,Roty and Rotz Dof, warning messages will 
+!be produced which can be ignored
+
+
+!Created by: Kannan Sundararajan on 18th July 2001
+!*****************************************************************************************!
+cmsel,s,arg1
+*get,ncount_,node,,count
+*get,nnn_,node,,num,min
+
+*do,i_,1,ncount_
+
+*if,arg2,eq,2,then
+
+    d,nnn_,ux,%_FIX%
+    d,nnn_,uy,%_FIX%
+    d,nnn_,uz,%_FIX%
+    d,nnn_,rotx,%_FIX%
+    d,nnn_,roty,%_FIX%
+    d,nnn_,rotz,%_FIX%
+
+*else
+
+  *if,arg2,eq,1,then
+    d,nnn_,ux,%_FIX%
+  *endif
+
+  *if,arg3,eq,1,then
+   d,nnn_,uy,%_FIX%
+  *endif
+
+  *if,arg4,eq,1,then
+   d,nnn_,uz,%_FIX%
+  *endif
+
+  *if,arg5,eq,1,then
+   d,nnn_,rotx,%_FIX%
+  *endif
+
+  *if,arg6,eq,1,then
+   d,nnn_,roty,%_FIX%
+  *endif
+
+  *if,arg7,eq,1,then
+   d,nnn_,rotz,%_FIX%
+  *endif
+
+*endif
+
+nnn_=ndnext(nnn_)
+
+*enddo
+
+ncount_=
+nnn_=
+i_=
+
+allsel,all
+
+!*******************************End of Macro************************************************!
