@@ -1,0 +1,81 @@
+!   DYDXI, x, y, i, dydxi
+!
+!      Calculates first derivative at the ith entry in a table.
+!
+!      USAGE:
+!
+!         DYDXI, 'x', 'y', i, 'dydxi'
+!
+!      INPUT:
+!
+!         'x'  = name of an nx1 array of x-values [x(1), x(2), . . ., x(n)]
+!
+!         'y'  = name of an nx1 array of y-values [y(1)=f(x(1)), y(2)=f(x(2)), . . ., y(n)=f(x(n))]
+!
+!         i    = the table entry at which the first derivative is to be evaluated
+!
+!      OUTPUT:
+!
+!         dydxi = the calculated first derivative
+!
+!      LOCAL VARIABLES USED AND RELEASED BY THIS MACRO:
+!         slopem_
+!         slopep_
+!         x2_
+!
+!      OTHER MACROS NEEDED:
+!         none
+!
+!      LOCAL VARIABLES USED AND RELEASED BY OTHER NEEDED MACROS:
+!         not applicable
+!
+!      COMMENTS:
+!
+!         See macro CUBIC.mac.
+!
+%ARG4% = 0.0D+00
+*IF, ARG3, LT, nx_,THEN
+   *IF, ARG3, GT, 1,THEN
+      x2_ = %ARG2%(ARG3)-%ARG2%(ARG3+1)
+      slopep_ = x2_/(%ARG1%(ARG3)-%ARG1%(ARG3+1))
+      *IF, slopep_, NE, 0.0D+00,THEN
+         slopem_ = %ARG2%(ARG3)-%ARG2%(ARG3-1)
+         slopem_ = slopem_/(%ARG1%(ARG3)-%ARG1%(ARG3-1))
+         x2_ = slopem_/slopep_
+         *IF, x2_, GT, 0.0D+00,THEN
+            *IF, x2_, GT, 1.0D+00,THEN
+               %ARG4% = 3.0D+00*slopem_/(2.0D+00+x2_)
+            *ELSE
+               %ARG4% = 3.0D+00*slopem_/(1.0D+00+2*x2_)
+            *ENDIF
+         *ENDIF
+      *ENDIF
+   *ELSE
+      slopem_ = %ARG2%(2)-%ARG2%(1)
+      *IF, slopem_, NE, 0.0D+00,THEN
+         slopem_ = slopem_/(%ARG1%(2)-%ARG1%(1))
+         slopep_ = %ARG2%(3)-%ARG2%(2)
+         slopep_ = slopep_/(%ARG1%(3)-%ARG1%(2))
+         x2_     = (%ARG1%(1)-%ARG1%(2))/(%ARG1%(3)-%ARG1%(1))
+         *IF, SIGN(%ARG4%,slopem_), EQ, %ARG4%,THEN
+            %ARG4%  = (slopep_-slopem_)*x2_+slopem_
+         *ENDIF
+      *ENDIF
+   *ENDIF
+*ELSE
+   slopep_ = %ARG2%(ARG3)-%ARG2%(ARG3-1)
+   *IF, slopep_, NE, 0.0D+00,THEN
+      slopep_ = slopep_/(%ARG1%(ARG3)-%ARG1%(ARG3-1))
+      slopem_ = %ARG2%(ARG3-1)-%ARG2%(ARG3-2)
+      slopem_ = slopem_/(%ARG1%(ARG3-1)-%ARG1%(ARG3-2))
+      x2_     = (%ARG1%(ARG3)-%ARG1%(ARG3-1))
+      x2_     = x2_/(%ARG1%(ARG3)-%ARG1%(ARG3-2))
+      *IF, SIGN(%ARG4%,slopep_), EQ, %ARG4%,THEN
+         %ARG4%  = (slopep_-slopem_)*x2_+slopep_
+      *ENDIF
+   *ENDIF
+*ENDIF
+slopem_ =
+slopep_ =
+x2_     =
+/EOF

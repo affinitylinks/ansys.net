@@ -1,0 +1,56 @@
+!*** Rene Fiege *** 06.12.1999 ***
+/com,   ******************************************
+/com,   *** MACRO alters beam188 auf beam 189 ***
+/com,   ******************************************
+/prep7
+immed,0
+allsel
+numcmp,node
+numcmp,elem
+
+*get,mxtyp,etyp,,num,max   !create element type 
+et,mxtyp+1,beam189
+type,mxtyp+1
+
+nsel,all                 !number of nodes
+*get,n_mx,node,,count
+
+esel,s,ename,,188        !Anzahl der Beam 188 Elemente
+*get,e_num,elem,,count
+*get,e_no,elem,,num,min
+
+!**** STATUSBAR *****************************************
+kill=0     ! error check
+*abset,'Change beam188 auf beam189',both      !Statusbar
+!********************************************************
+
+*if,e_num,gt,0,then
+
+  *do,i,1,e_num,1            !loop elements
+
+    mat   ,elmiqr(e_no,-1)   !rename material number 
+    secnum,elmiqr(e_no,-4)   !rename section  number 
+    real  ,elmiqr(e_no,-3)   !rename real     number 
+    type,mxtyp+1
+ 
+    fill,nelem(e_no,1),nelem(e_no,2),1,n_mx+i,1          !create node between node 1 und 2
+    e,nelem(e_no,1),nelem(e_no,2),n_mx+i,nelem(e_no,3)   !create new elem 189 
+
+    edel,e_no
+
+    e_no=elnext(e_no)
+
+    !**** STATUSBAR *****************************************
+    *abcheck,i/e_num*100     !check status
+    *if,_return,gt,0,then    !check error
+      kill=1
+    *endif
+    *if,kill,gt,0,exit    !stop, if error occured
+    !********************************************************
+
+  *enddo                          !Ende der Schleife ueber die Elemente
+
+*endif  
+
+*abfinish
+immed,1

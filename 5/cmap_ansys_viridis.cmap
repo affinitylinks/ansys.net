@@ -1,0 +1,17 @@
+  *** VIRIDIS COLORMAP FOR ANSYS ***
+      0     0     0     0    *** Background                          
+      1   100     0    50                                            
+      2   100     0   100                                            
+      3    50     0   100                                            
+      4    26     0    32    *** Contour 1                           
+      5    27    15    46    *** Contour 2                           
+      6    24    28    53    *** Contour 3                           
+      7    19    39    55    *** Contour 4                           
+      8    14    50    55    *** Contour 5                           
+      9    11    60    53    *** Contour 6                           
+     10    19    70    47    *** Contour 7                           
+     11    40    79    36    *** Contour 8                           
+     12    67    86    18    *** Contour 9                           
+     13   100   100   100    *** Overflow values                     
+     14    33    33    33                                            
+     15   100   100   100    *** Frame & element borders             

@@ -1,0 +1,39 @@
+!-----------------------------------------------------------------------------
+!
+! PADT --------------------------------------------------- Phoenix Analysis &
+! Design Technologies
+!
+!-----------------------------------------------------------------------------
+!
+! dgnr8.mac: Finds degenerate elements (nodes 3 and 4 are identical),
+! Selects them and then plots them
+!
+! E. Miller 6/26/02
+!
+!-----------------------------------------------------------------------------
+*get,_mxel,elem,,num,max ! get max element number
+*dim,_ecn0,,_mxel ! Create arrays
+*dim,_ecn1,,_mxel
+*dim,_edgn,,_mxel
+*dim,_emsk,,_mxel
+
+*vget,_emsk(1),elem,1,esel !Get Selection Status
+
+*vmask,_emsk(1) ! use selection as a mask
+*vget,_ecn0(1),elem,1,node,3 ! Get third node number in element
+*vmask,_emsk(1) 
+*vget,_ecn1(1),elem,1,node,4 ! Get forth node number in element
+
+*vmask,_emsk(1) 
+*voper,_edgn(1),_ecn0(1),eq,_ecn1(1) ! if 3 & 4 agree, place a 1 in _edgn
+
+*vput,_edgn(1),elem,1,esel ! Any elements with 1's get selected 
+! (Undocumented *vput command)
+
+eplot ! Plot
+
+_ecn0= ! Clean
+_ecn1=
+_edgn=
+_emsk=
+_mxel=

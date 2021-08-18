@@ -1,0 +1,45 @@
+! *****************************************************************************
+! IM27.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM27.MAC is used in POST1 of ANSYS 5.4 to read in as element table (ETABLE)
+! items the post data required for element COMBIN40.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 8/6/98   SMV  Initial release
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+ETABLE, F1,       SMISC,1
+ETABLE, STAT,     NMISC,1
+ETABLE, STR1,     NMISC,3
+
+! *****************************************************************************
+! End of Input
+! *****************************************************************************
+

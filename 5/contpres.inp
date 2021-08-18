@@ -1,0 +1,115 @@
+finish
+/clear
+
+! ----- Number of elements along contacting region
+NUM_POINTS=24
+*dim,A_SY,table,NUM_POINTS+1,2
+
+/title,Axisymmetric model, comparison of SY vs. CONTPRES
+
+! ----- Define element attributes
+/prep7
+et,1,182,3,,1
+et,2,169
+! ----- Surface-projection-based contact (ANSYS 14.0 and above)
+!       Remove KEYOPT(4)=3 to run in versions 13.0 and prior
+et,3,171,,,,3
+r,1
+r,2
+mp,ex  ,1,2e4
+mp,nuxy,1,0.28
+mp,ex  ,2,3e4
+mp,nuxy,2,0.33
+mp,mu  ,3,0.1
+
+! ----- Create geometry
+rectng,2,10,,2
+asel,none
+rectng,0,12,,-2
+aatt,2,1,1
+
+! ----- mesh geometry
+lsel,u,loc,y,0
+lsel,u,loc,y,2
+lsel,u,loc,y,-2
+lreverse,2
+lreverse,8
+lesize,all,,,5,1/10
+allsel,all
+esize,8/NUM_POINTS
+mshape,0
+mshkey,1
+amesh,all
+
+! ----- Generate contact elements
+asel,s,area,,1
+lsla
+lsel,r,loc,y,0
+nsll,s,1
+type,3
+real,2
+mat, 3
+esurf
+asel,s,area,,2
+lsla
+lsel,r,loc,y,0
+nsll,s,1
+type,2
+esurf
+allsel,all
+
+! ----- Define boundary conditions
+lsel,s,loc,x,0
+nsll,s,1
+d,all,ux
+lsel,s,loc,x,12
+nsll,s,1
+d,all,all
+lsel,s,loc,y,2
+nsll,s,1
+sf,all,pres,3
+allsel,all
+finish
+
+/solu
+nlgeom,on
+solve
+finish
+
+! ----- Get SY along contact side
+/post1
+rsys,solu
+set,last
+asel,s,area,,1
+allsel,below,area
+path,P_PATH,2,,NUM_POINTS
+ppath,1,,2,0,0
+ppath,2,,10,0,0
+pdef,SY,s,y,avg
+paget,A_PATH,table
+! ----- Position
+*vfun,A_SY(1,0),copy,A_PATH(1,1)
+! ----- -SY
+*vfact,-1
+*vfun,A_SY(1,1),copy,A_PATH(1,5)
+
+! ----- Get contact pressure
+esel,s,ename,,171
+nsle
+*get,NUM_COUNT,node,,count
+NUM_NEXT=0
+*do,AR99,1,NUM_COUNT
+  NUM_NEXT=ndnext(NUM_NEXT)
+  *get,NUM_LOCX,node,NUM_NEXT,loc,x
+  NUM_INCR = 8/NUM_POINTS
+  NUM_POS=(NUM_LOCX-2)/NUM_INCR
+  *get,CONTPRES,node,NUM_NEXT,cont,pres
+  A_SY(NUM_POS+1,2)=CONTPRES
+*enddo
+
+! ----- Plot both as comparison
+/gcolumn,1,SY
+/gcolumn,2,CONTPRES
+*vplot,A_SY(1,0),A_SY(1,1),2
+
+allsel,all

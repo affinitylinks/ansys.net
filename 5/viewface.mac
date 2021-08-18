@@ -1,0 +1,79 @@
+! Macro to orient view parallel to a selected area
+! TA
+! 17/05/2001
+
+/PMACRO
+/PREP7
+
+! Get max KP number for 2 KP case 
+
+CM,TEMP_KP,KP
+KSEL,ALL
+*GET,HI_KP,KP,,NUM,MAX,,,,
+CMSEL,S,TEMP_KP
+CMDELE,TEMP_KP
+
+! Select area of interest
+
+*MSG, UI 
+Pick area to orient view towards
+
+ASEL,S,P			
+ALLSEL,BELOW,AREA 
+
+! Get the three lowest KP's associated with area
+
+*GET,KP_1,KP,,NUM,MIN,,,,  
+KP_2 = KPNEXT(KP_1) 
+KP_3 = KPNEXT(KP_2)
+
+! If area only has 2 KP's (eg CAD circle), create temporary KP_3
+
+*GET,NUM_KP,KP,,COUNT,,,
+
+*IF,NUM_KP,LE,2,THEN
+  KP2_FLAG = 1
+  *GET,HI_L,LINE,,NUM,MAX,,,,
+  KL,HI_L,0.5,HI_KP+1,
+*ENDIF
+
+! Extract normals of plane through 3 KP's
+
+*IF,KP2_FLAG,EQ,1,THEN
+  X_NORM = NORMKX(KP_1,KP_2,HI_KP+1)
+  Y_NORM = NORMKY(KP_1,KP_2,HI_KP+1)
+  Z_NORM = NORMKZ(KP_1,KP_2,HI_KP+1)
+  
+  ! Clean up
+  
+  KDELE, HI_KP+1
+  KP2_FLAG=
+  HI_KP=
+  HI_L=
+*ELSE
+  X_NORM = NORMKX(KP_1,KP_2,KP_3)
+  Y_NORM = NORMKY(KP_1,KP_2,KP_3)
+  Z_NORM = NORMKZ(KP_1,KP_2,KP_3)
+*ENDIF
+
+! Re-orient view and rotate screen
+
+/VIEW,1,X_NORM,Y_NORM,Z_NORM
+/ANGLE,1,0,ZS,0
+
+! Clean up
+
+KP_1=
+KP_2=
+KP_3=
+X_NORM=
+Y_NORM=
+Z_NORM=
+NUM_KP=
+
+! Select everything, fit and area plot 
+
+ALLSEL
+/AUTO, 1
+/REPO
+

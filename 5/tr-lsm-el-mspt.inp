@@ -1,0 +1,144 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-cae.com
+/com,
+/com,DESCRIPTION 
+/com,Structural Transient
+/com,Modal Superposition
+/com,Element pressure vs. Time
+/com,
+
+
+finish
+/clear
+!!!!Example of transient modal superposition element pressures!!!!
+
+!!!!Build Model!!!!
+/PREP7  
+RECTNG,10,,1,,  
+ET,1,SHELL181   
+KEYOPT,1,3,2  ! full intergration
+R,1,.1, , , , , ,  
+RMORE, , , , , , ,  
+/MPLIB,READ,d:\apps\ansys56\matlib  
+/MPLIB,WRITE,    
+MAT,1,  
+! /INPUT,d:\apps\ansys56\matlib\Stl_AISI-304.BIN_MPL
+! /COM,Typical material properties for DEMO purposes only 
+! /COM,ANSYS REVISION  5.3    UP042296 TEST    16:35:50    04/23/1996 
+/NOP
+! /COM,Internal UNITS set at file creation time = BIN 
+TBDEL,ALL,_MATL 
+MPDEL,ALL,_MATL 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,EX  ,_MATL , 1,  27992720.0    , 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,NUXY,_MATL , 1, 0.290000000    , 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,ALPX,_MATL , 1, 9.888888889E-06, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,DENS,_MATL , 1, 7.514795200E-04, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,KXX ,_MATL , 1, 2.182244000E-04, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,C   ,_MATL , 1,  46.2864080    , 
+!
+esize,.5   
+amesh,all   
+FINISH  
+
+!!!!Modal Analysis!!!!
+/SOLU   
+ANTYPE,2
+DL,4, ,ALL,  
+MXPAND,20, , ,1 
+MODOPT,lanb,20,0,0, ,OFF, ,0
+!!!!Element loading!!!!
+nsel,s,loc,x,8,10
+sf,all,press,5
+allsel,all
+SOLVE   
+
+/eof
+
+!
+FINISH  
+/POST1  
+set,1,1
+plns,u,sum
+! PLNSOL,U,SUM,0,1
+FINISH  
+
+!!!!Transient Analysis!!!!
+/SOLU   
+!*  
+!!!!1st load step at time 0.0 sec!!!!
+ANTYPE,4
+TRNOPT,MSUP,20
+DMPRAT,.03, 
+deltim,.01/4    ! ITS
+allsel,all
+solve
+!!!!2nd load step time=.1 sec at the end of LS!!!!
+TIME,.01  
+KBC,0   
+outres,all,all
+lvscale,1       ! applying the element loads
+allsel,all
+solve
+!!!!3rd load step time=.2 sec at the end of LS!!!!
+time,.02
+lvscale,0       ! removing the element loads
+allsel,all
+solve
+!!!!4th load step time=3.1 sec at the end of LS!!!!
+time,.25
+allsel,all
+solve
+!
+
+!!!!Postprocess RDSP File!!!!
+/POST26 
+NUMVAR,10,  
+FILE,,rdsp,
+NSOL,2,57,U,z,  
+!*  
+PRVAR,2, , , , , ,  
+!
+FINISH  
+
+!!!!Expand results (RDSP file) Note this will overwrite
+!!!!the mode shapes on the RST file!!!!
+/SOLU   
+EXPASS,1
+NUMEXP,25*4,0,.25
+!
+
+!!!!Postprocess expanded results one time point!!!!
+SOLVE   
+FINISH  
+/POST1  
+SET,FIRST   
+PLNSOL,U,Z,0,1  
+
+
+!!!!Postprocess expanded results x-y plots of response vs. time!!!!
+FINISH  
+/POST26 
+NSOL,2,23,U,Z,  
+!*  
+PLVAR,2, , , , , , , , , ,  
+!
+!
+
+

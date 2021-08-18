@@ -1,0 +1,21 @@
+! kpmv macro for keypoint move command
+!
+! macro moves keypoint arg1 to the location of
+! keypoint arg2 and if arg3 equals 1 merges them
+!
+! Don Shaffer
+! 
+!
+/prep7
+KNN1=ARG1
+KNN2=ARG2
+KNSW=ARG3
+KMODIF,KNN1,KX(KNN2),KY(KNN2),KZ(KNN2)
+*IF,KNSW,EQ,1,THEN
+NUMMRG,KP
+*ENDIF
+/NOPR
+KNN1=
+KNN2=
+KNSW=
+/GOPR

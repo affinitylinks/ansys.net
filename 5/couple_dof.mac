@@ -1,0 +1,70 @@
+!****************************************! !**************************!
+!     PROGRAM TO CREATE COUPLES          ! ! Author: Jyotis K. Sardar !
+!      (SUBMITTED TO ANSYS.NET)          ! ! Version 1.0    13 Feb 02 !
+!****************************************! !**************************! 
+/pmacro
+/prep7
+allsel
+
+*msg,UI,,
+PICK THE TARGET LINES:
+lsel,s,p
+nsll,r,1
+nplo
+cm,ln,node
+allsel
+/auto
+eplo
+
+*msg,UI,,
+PICK THE SOURCE LINES:
+lsel,s,p
+nsll,r,1
+nplo
+cm,rn,node
+allsel
+/auto
+eplo
+
+*ASK,df,ENTER DOF TO BE COUPLED IN SINGLE QUOTS (eg: 'ALL' or 'UX'): 
+
+cmsel,s,ln
+/out,l,_dat,./
+nlist,all,,,coord,y,z,x
+/out 
+*get,nmin,node,,num,min
+*get,nmax,node,,num,max
+*get,nlcount,node,,count 
+*dim,nl,,nlcount
+/sys,awk ' BEGIN {i=1} (int($1)) {nl[i]=$1; print nl[i]; i++}' l._dat > l._out
+
+
+allsel
+cmsel,s,rn
+/out,r,_dat,./
+nlist,all,,,coord,y,z,x
+/out 
+*get,nmin,node,,num,min
+*get,nmax,node,,num,max
+*get,nrcount,node,,count 
+*dim,nr,,nrcount
+/sys,awk ' BEGIN {i=1} (int($1)) {nr[i]=$1; print nr[i]; i++}' r._dat > r._out
+
+
+allsel
+*vread,nl(1),l,_out,./
+(I25)
+*vread,nr(1),r,_out,./
+(I25)
+
+*do,i,1,nlcount
+cp,next,df,nr(i),nl(i)
+*enddo
+
+/sys,rm *._dat
+/sys,rm *._out
+
+*msg,UI,,
+COUPLES GENERATED! CHECK OUTPUT WINDOW FOR DETAILS.............Jyotis
+/EOF
+

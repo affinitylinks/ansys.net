@@ -1,0 +1,128 @@
+! ANSYS REVISION 5.5, $RCSfile: HRCPLX.MAC $
+! Modified on $Date: 1999/01/28 19:00:46 $ 
+! Source ID = $Revision: 5.3.1.1 $
+!  -------------------------------------------------------------------------
+!       This macro is designed to simplify the processing of full harmonic
+!       results at various phase angles
+!
+!       **** This macro runs within POST1 **** 
+!
+!       Proper execution of this macro requires the following: 
+!
+!           The .rst file must be available from a full harmonic analysis
+!
+!       Use this macro as follows:
+!
+!            HRCPLX, Lstep, SubStep, Angle, [_ | Lcase1], [_ | Lcase2]
+!
+!                 where: Lstep   - The load step to evaluate 
+!                        SubStep - The SubStep to evaluate
+!                        Angle   - Phase Angle
+!                                    0.0, real part of solution
+!                                   90.0, imaginary part of solution
+!                                   other, solution at this phase angle
+!                                 >360.0, apliitude
+!                        Lcase1,Lcase2 - working load case numbers (default
+!                                        to 1 and 2
+!  -------------------------------------------------------------------------
+/nopr
+*if,arg4,le,0,then
+   arg4 = 1
+*endif
+*if,arg5,le,0,then
+   arg5 = 2
+*endif
+*if,arg1,le,0,then
+   arg1 = 1
+*endif
+
+_lstep   = arg1
+_substep = arg2
+_angle   = arg3
+arg9 = 3.14159265359/180.0
+_sin     = sin(_angle*arg9)
+_cos     = cos(_angle*arg9)
+_lc1     = arg4
+_lc2     = arg5
+
+*if,_angle,eq,0.0,then
+   SET,_lstep,_substep
+*elseif,_angle,gt,89.9999,then
+   *if,_angle,lt,90.0001,then
+      SET,_lstep,_substep,-1.0d0,1
+   *else
+      LCDEF,_lc1,_lstep,_substep,0
+      LCDEF,_lc2,_lstep,_substep,1
+      *if,_angle,ge,360.0,then
+         LCFACT,_lc1,1.0d0
+         LCFACT,_lc2,1.0d0
+         LCASE,_lc1
+         LCOPER,SRSS,2
+         _t(8) = '  AMPLIT'
+         _t(9) = 'UDE     '
+      *else
+         LCFACT,_lc1,_cos
+         LCFACT,_lc2,_sin
+         LCASE,_lc1
+         LCOPER,ADD,2
+      *endif
+      LCDEF,_lc1,ERASE
+      LCDEF,_lc2,ERASE
+   *endif
+*elseif,_angle,lt,-89.9999,then
+   *if,_angle,gt,-90.0001,then
+      SET,_lstep,_substep,,1
+   *else
+      LCDEF,_lc1,_lstep,_substep,0
+      LCDEF,_lc2,_lstep,_substep,1
+      LCFACT,_lc1,_cos
+      LCFACT,_lc2,_sin
+      LCASE,_lc1
+      LCOPER,ADD,2
+      LCDEF,_lc1,ERASE
+      LCDEF,_lc2,ERASE
+   *endif
+*else
+   LCDEF,_lc1,_lstep,_substep,0
+   LCDEF,_lc2,_lstep,_substep,1
+   LCFACT,_lc1,_cos
+   LCFACT,_lc2,_sin
+   LCASE,_lc1
+   LCOPER,ADD,2
+   LCDEF,_lc1,ERASE
+   LCDEF,_lc2,ERASE
+*endif
+!  
+!      Put information into the title string 
+*GET,_i,PARM,_t,DIM,X
+*if,_i,gt,0,then
+   _t(1)=
+*endif
+*dim,_t(1),char,9
+_k=1
+*do,_i,1,9
+   *GET,_t(_i),ACTIVE,,TITLE,,START,_k
+   _k = _k + 8
+*enddo
+
+*if,_angle,ge,360.0,then
+   _t(8) = '  AMPLIT'
+   _t(9) = 'UDE     '
+*else
+   _t(8) = ' ANGLE='
+   _t(9) = '%_angle%'
+*endif
+/title,%_t(1)%%_t(2)%%_t(3)%%_t(4)%%_t(5)%%_t(6)%%_t(7)%%_t(8)%%_t(9)%
+
+!  -------------------------------------------------------------------------
+_angle=
+_sin=
+_cos=
+_lstep=
+_substep=
+_lc1=
+_lc2=
+_k=
+_i=
+/gopr
+!  -------------------------------------------------------------------------

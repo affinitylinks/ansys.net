@@ -1,0 +1,403 @@
+================================
+The Unofficial History of ANSYS
+first edited on June 18, 2002
+updated Nov  3, 2004
+updated Nov 11, 2004
+updated Dec 12, 2005
+updated Jan 11, 2006
+  This is a very important update, so I will have to mention a
+  little about the source and history here. 
+
+  Dr. Peter Kohnke contacted me in the middle of 2005, telling
+  me some of the information in this article may not be so accurate.
+  Dr. Kohnke has worked with Dr. Swanson since 1/1/1973, and is still
+  working for ANSYS as of December of 2005. So it's more than 32 
+  years now.
+
+  He specially pointed out the "sandwiches" story. He doubt that might
+  be wrong. This is what he said 
+  "........I very much doubt that story about the sandwich.  I never
+   heard of anyone who was hired to answer the phone.  What would they say?
+   That John was busy?  Rather, his first wife Marcy helped out a lot in
+   many ways.  Also, I never knew John to pass up a chance to go to a
+   restaurant.............Indeed, for many years, John invited the entire
+   staff to a restaurant 
+   regularly for our staff meetings."
+
+  And, one thing even more important
+  "There was no garage. The offices were part of his home."
+
+  So I am going to delete this paragraph. 
+
+  I want to thank Dr. Kohnke again for kindly providing these information.
+================================
+
+In 1963, Dr. John Swanson worked at Westinghouse Astronuclear 
+Labs in Pittsburgh, responsible for stress analysis of the 
+components in NERVA nuclear reactor rockets. He used computer 
+codes to model and predict transient stresses and displacements 
+of the reactor system due to thermal and pressure loads. 
+Swanson continued to develop 3-D analysis, plate bending, 
+nonlinear analysis for plasticity and creep, and transient 
+dynamic analysis, in the next several years, using a finite 
+element heat conduction program that was developed by Wilson 
+at Aerojet. The old Westinghouse codes included a 2d/axisymmetric 
+one also, possibly called FEATS (according to Kohnke).  
+John wanted to combine these codes to remove the duplication, 
+like equation solvers and some postprocessing
+
+Swanson believed an integrated, general-purpose FEA code could
+be used to do complex calculations that engineers typically 
+did manually, such as heat transfer analysis. It would save 
+money and time for Westinghouse and other companies.
+
+Westinghouse didn't support the idea, and Swanson left the 
+company in 1969. Before he left, he made sure that all code 
+work had been sent to COSMIC, so that he could pick it up 
+again from the outside.
+
+Swanson Analysis Systems, Inc was incorporated in the middle of 
+1970 at Swanson's home. The offices were part of Swanson's
+home (There was no garage) in Pittsburgh. at the same time, 
+Westinghouse realized that they needed John, so they hired him 
+as a consultant.  John said sure, but with the proviso
+that whatever he put into STASYS, the Westinghouse code, he could also
+put into ANSYS.  Westinghouse had no trouble with this, as they just
+wanted to solve their problems.  So this consulting kept bread on the
+table for the Swansons, and at the same time brought forth further
+improvements to ANSYS. 
+
+He developed his program using a keypunch and a time-shared 
+mainframe at U.S. Steel. The first version of ANSYS was coded 
+by the end of 1970, and the ANSYS program was first leased soon 
+after that. Westinghouse was the first customer, running as a 
+data center. The data center was at the Telecommunications Center on 
+the Parkway East, on the east side of Pittsburgh.
+According to Dr. Swanson, the name ANSYS was because
+the copyright lawyers assured Swanson that ANSYS was just a name, and did not stand
+for anything. Understandable, during that period all programs 
+were "written" on punch card. When installing the program on 
+the customer's computer, it meant carried a relatively big 
+case of punch cards to the customer's place, and fed them into 
+the machine.
+
+Dr. Peter Kohnke met John Swanson first about early 1971. Swanson 
+offered Peter a job in the fall of 71, but Peter did not accept.
+As that time Peter was a brand new father at the time, and Westinghouse 
+looked a lot more secure than SAS. Peter told John he was interested 
+and would accept in the spring of 72, but then he had hired Gabe 
+DeSalvo, and did not have the resources to hire Peter also.  
+But that fall John did, and then hired Peter.  Dr. Peter Kohnke's 
+start date was 1/1/73. (Dr. Kohnke still worked at ANSYS as of December
+of 2005).
+
+When Peter started work, he asked what John wanted him to do.  John told 
+Peter that he developed code, did technical support, wrote manuals, gave
+seminars and did systems work so that the program would run on a variety
+of systems.  John said he needed relief, so Peter should pick one or two of
+them.  Ultimately, Peter did all of them, except systems work.  
+
+In around 1970, users can ran ANSYS 2.x on a CDC 6600 machine over 
+the Cybernet timesharing network. That time only fixed format input 
+was available. The users would work up the input listing off-line, 
+key it onto a tape cassette, log on, submit the run about quitting 
+time for the best computer rates and stop by the CDC data center 
+next morning to find out what went wrong. In 1973, ANSYS ran on 
+three kinds of hardware:  CDC, Univac, and IBM. And around 1973 the USS 
+mainframe that they used to develop code was the US Steel CDC 6500.
+
+The first minicomputer that ANSYS ran on was a MODCOMP 4  (or IV?)  VAX
+came later.  Being a small company, everyone did everything.  When a
+'mini' computer was delivered, everyone helped wrestle it off of the
+truck.  When printout paper was delivered, everyone helped unload the
+boxes.
+
+In 1975, MITS began to build and sell the first PC ever in human 
+history, the Altair. That, of course, did not have anything to do 
+with ANSYS yet. The so-called PC was just a few switches and lights 
+on the front board, and input had to be done in a binary fashion 
+(no keyboard and monitor, of course). What was worse, was that you 
+have to assemble it by yourself. And, it usually didn't work. 
+Although Altair was rather popular, nobody really knew what to do 
+with this machine. One former customer said that, the most popular 
+activity on Altair, was to figure out what to do with this machine. 
+At the At the same time, Microsoft built the BASIC language for Altair. 
+
+1977, Apple I was born.
+
+In around 1979, Revision 3.0, ANSYS run on a VAX 11-780 minicomputer. 
+ANSYS evolved from fixed format input to purely command line driven 
+and monocolor (green) on a Tektronix 4010 or 4014 vector graphics 
+monitor. For a descent size model, the hidden lines plots could take 
+20-30 minutes. All of the nodes and elements were created separately 
+without the benefit of importing CAD geometry. NGEN, EGEN, RPnnn, 
+were used extensively. There was a geometry prepcessor, PREP7.
+
+1980, we had Apple II.
+
+In around 1980, John Swanson bought a Radio Shack TRS-80 machine, and 
+planned to build a commercial version on it. However, later John 
+returned the machine because Radio Shack left out (a socket for) a 
+floating point processor. John decided that Finite Element Analysis 
+probably should utilize a floating point processor, so he got his 
+money back for that one.
+
+Also around 1980,Rev 4 on an VAX 11-780 system was great, according 
+to some old users. The chasm between batch and interactive running 
+pretty much disappeared and file management was a very easy thing. 
+No more element hard coding, the post processing got hugely better 
+and you could mix batch and interactive running as you saw fit. Big 
+dynamic transient runs or substructuring over night, post-processing 
+and plotting next morning. Emag capabilities were first introduced at 
+Rev 4.1.
+
+Also in 1980, Microsoft signed contract with IBM to provide the OS, 
+PC DOS, for its up coming PC. This OS, however, was not created by 
+Microsoft. Microsoft bought it rom an engineer for 50K USD, which was 
+named the QDOS - the Quick and Dirty Operation System.
+
+1981, IBM PC was born. This computer was created using the off the 
+shelf technology, and an open architecture. The original reasons were 
+to push the product to the market ASAP, so that IBM could catch up 
+with the PC market. However, the BIOS was proprietary. Later Compaq 
+reverse-engineer the BIOS and created a fully IBM PC compatible BOIS. 
+This ignited the PC cloning market and war. The booming of PC market 
+directly changed the meaning of computing. PC price dropped 30% at 
+one month. And, it was the booming of cloned IBM PC that really brought 
+money into Microsoft.
+
+1984, the revolutionary Macintonsh was born. Macintosh was far advanced
+then the IBM PC family at that time. The concept of GUI in the OS level 
+and WYSIWYG was not possible on IBM PC until almost one decade later. 
+However, the market of Macintosh did not pick up very soon, which 
+caused the Steve Job's leave from Apple computer.
+
+However, later the sales of Macintonsh began to take off, which proved 
+that Steve Job's vision had all been right. Macintosh saved Apple, and 
+was directly responsible for the phenomena of Apple craze and fans. 
+
+A PC version of ANSYS was also available at around version 4.0 too in 
+about 1984. It was running on a Intel 286, with interactive command 
+line input and limited graphics on the screens, like elements and 
+nodes. No Motif GUI yet. In the first release on ANSYS on PC's, 
+preprocessing, solution and post processing were performed in separate 
+programs.
+
+"Design Optimization" was introduced at Rev 4.2 (1985). This is also 
+the release at which "Macro length is no longer limited to 400 characters."
+
+FLOTRAN started as a graduate (PhD) project by Rita J. Schnipke in 
+the University of Virginia circa 1986. After grad school Rita started 
+(or helped start) Compuflo which was later sold to ANSYS in 1992. Rita 
+later started her own shop which is in Charlottesville VA called Blue 
+Ridge Numerics. They make CFDesign, a finite element based CFD code 
+(www.cfdesign.com).
+
+1988 at an ANSYS conference in California, IBM was there pushing 
+their first unix machine, the "RT". It was slow. They asked Dr. Swanson 
+if he would make a comment on it. He said "RT must stand for Real Turkey.
+
+SASI first started working with Compuflo (FLOTRAN) in 1989. At ANSYS 
+Rev 5.0 and FLOTRAN V2.1A, SASI had what they called a "seamless interface" 
+between the two programs (1993). FLOTRAN was "fully integrated" into 
+ANSYS at Rev 5.1 (1994).
+
+In 1993, Version 5.0 was released. And the version 5.1 later has a 
+Motif GUI, which would remained the similar layout up to 6.0. 
+
+Swanson Analysis Systems, Inc., was sold to TA Associates in 1994. 
+The new company name, ANSYS, Inc., was announced at AUTOFACT '94 in Detroit.
+
+According to many different people in the old SAS, Inc, John Swanson
+treated the people there pretty well. In contrast to the old "sandwitch"
+jokes, John never passed up a chance to go to a restaurant. Indeed, 
+for many years, John invited the entire staff to a restaurant regularly 
+for the staff meetings.
+
+At one time, Kohnke told Swanson that he ran the company like a benevolent
+dictatorship, and later Swanson told Kohnke that he liked that 
+characterization.
+
+Many people had said that John Swanson had an amazing overall
+understanding As well as detailed knowledge of the ANSYS code. 
+Kohnke told a small story in an email to the author : 
+" Sometime in the late 70's, a bug came my way.  I wrestled with it for
+maybe half a day without making real progress.  Then I went to John's
+office to ask him if he had any ideas.  After I explained the bug, John
+thought about it for about 3 seconds (literally!) and said:  'Didn't you
+make a change in XXX about 6 months ago that would have a bearing on
+this?'  In a nutshell, he was correct and I was then able to resolve the
+bug!  John's knowledge and understanding of the code was always amazing
+to me."
+
+1995, Windows 95 was published. Windows 95 was an important milestone 
+for Microsoft. It bridged between the old DOS OS into the new NT 
+technology. The birth of Windows 95 finally made it more and more 
+acceptable for engineering community to use PC as a heavy duty 
+calculation machine like workstations.
+
+In 1996, ANSYS 5.3 was published, with support for LS-DYNA. The 
+feature of ANSYS/LS-DYNA in ANSYS 5.3 was still in the beginning 
+stage.
+
+On June 20, 1996, ANSYS Inc. common stock began trading on Nasdaq 
+under ANSS after being 26 years a privately held company. The IPO 
+generated more than $41 million.
+
+1998, ANSYS began to ship ANSYS/ed to university labs and paper 
+reviewers. One of the copy arrived at the Structures Lab of Civil
+Engineering Department in Arizona State University, and that was the 
+first time the author knew about ANSYS. 
+
+In the same year, on ANSYS's Annual report, it said "John is retiring
+from his direct role at ANSYS Inc., but will continue his association
+as a key consultant, mentoring all of us for many years to come.."
+
+On August 31, 2000, ANSYS acquired ICEM CFD.
+
+January 2001, ANSYS announced the release of CADfix (International 
+TechneGroup Incorporated) for ANSYS version 5.6.2 and 5.7. CADfix 
+was to address the issue of importing CAD model into ANSYS with 
+automatic geometric data repair.
+
+November 2001, ANSYS acquired CADOE S.A, an independent software 
+vendor that specializes in the CAD/CAE market. In the same month, 
+ANSYS announced a strategic OEM partnership with SAS LLC, a provider 
+of NASTRAN simulation software and services. The alliance was focused 
+on the joint development of a new NASTRAN computer-aided engineering 
+solution that will be distributed exclusively by ANSYS Inc. 
+
+November 2001, ANSYS announced AI*Environment. AI*Environment 
+combines ICEM CFD Engineering's pre- and post-processor technologies. 
+
+December 2001, ANSYS 6.0 was released. In this version, the Sparse 
+solver was greatly improved. Efficient and reliable large scale model 
+analysis (say, 1M DOF) finally became practical. The graphics screen 
+of ANSYS was also painted blue in 6.0, which came out to be a great 
+disappointment to a lot of users.
+
+In April of 2002, ANSYS 6.1 was released. The familiar Motif GUI was 
+replaced by a Tcl/tk developed interface. It runs on 64-bit Intel 
+Itanium architecture with Windows XP.
+
+In February 26, 2003, ANSYS acquired CFX. ANSYS also announce that the functionality
+of Flotran will be "capped" at 8.1. That is, there will be more more
+development of Flotran after 8.1. Expect for the Multiphysic platform, Flotran 
+will be replaced by CFX.
+
+March 2004, ANSYS Announces ParaMesh 2.3
+
+May 2004, ANSYS 8.1 and CFX 5.7 was released. According to the statement from ANSYS, 
+the functionality of Flotran is "capped" since this verision. That is, there will
+be no more revision of Flotran after 8.1.
+
+June 2004, ICEM CFD 5.0 was released.
+
+Jan 5, 2005, ANSYS announced that it has acquired Century Dynamics. Century Dynamics.
+Century Dynamics' main product, AUTODYN, includes computational structural dynamics
+finite element solvers (FE), finite volume solvers for fluid dynamics (CFD), 
+mesh-free particle solvers for high velocity, large deformation and fragmentation 
+problems (SPH), and multi-solver coupling for multi-physics solutions including 
+coupling between FE, CFD and SPH methods.
+
+===================
+What is a data center ?
+===================
+I actually hear nouns "data center" frist time from Dr. Kohnke. For my age, 
+I am more familar with workstation and PC and  xbox and psp and so on...........
+I used VMS when I was in college. And I remember later soon the whole room was occupied
+by PC and Macs. So I asked Dr. Kohnke what is a data center anyway ? And this is
+what he told me : 
+
+.... long ago (in the computer age), computers were relatively rare
+(and expensive).  So, if you invested in one, you wanted to get the
+maximum use of it.  You would run it day and nite.  This is unlike our
+pc's now (like our cars), which frankly just sit there most of the time,
+waiting for our command.  Before it was very much a shared and
+continually used resource.
+
+So, ANSYS got its start in that environment.  Users at Westinghouse
+wanted to run ANSYS, so Westinghouse made a contract with SASI, where
+SASI would supply the code and support, and Westinghouse would pay to
+SASI so much per unit of time royalty for the time that the computer was
+actually being used to run ANSYS.  As a result, many users were using
+the same machine (one after the other - parallel did not exist then).
+This was called a 'data center'.  
+
+The next step was external users.  Knowing that even as a large company,
+you might not need your computer full time, so you would have your sales
+people out there selling time on it, often only at nite, to external
+users.  
+
+Other companies sprang up that had no user base of their own, but only a
+computer(s), sales people, and external customers.  The better ones also
+offered their own very good technical support.  These were also called
+data centers. 
+
+And of course the whole concept of a data center disappeared as
+computers got cheaper and faster.
+
+The 'lease' jumped to the concept that the clock was not important; this
+'new' contract had SASI being paid so much per month, regardless of
+actual usage.  This is closer to how things are now.
+
+
+
+
+
+===================
+From The Author
+===================
+I began to collected and wrote this article in the early 2002. One of 
+the reasons was that I signed a contract with a publisher in Taiwan, 
+to write a book about using ANSYS for industrial product reliability 
+analysis. I felt that it was necessary to have a chapter totally 
+contribute to the history of ANSYS. And, the most important, it will 
+be very interesting.
+
+The author wants to thank the help from many engineers and scientists
+in the xansys internet group. Some of the former employees of ANSYS 
+also contribute greatly to this article, and many of them prefer not 
+to be named. I also received emails from differetn people, and I 
+usually tried to verify before I used them. Although I am trying to 
+keep all the statement as accurate as possible, I really can not 
+guarantee the correctness of any information in this article. 
+
+Many of us, including the author in the xansys group especially want 
+to thank Dr. John Swanson, who invented ANSYS, and changes the life 
+of many engineers forever in certain ways.
+
+I have lived in the States for totoally 10 years. I lived there, 
+educated there, married there, had my son there, bought my first 
+new car there, and had my first house there. It totally changes my 
+life, my thinking (and my head) and everything. And I have to say 
+most of my finacial basis was built on the existense of ANSYS and
+another program LS-DYNA. 
+
+Anyone is welcome to distribute this article anyway he or she wants, 
+as long as the original article remains unchanged (including "From
+The Author"). Comments and suggestion should be forwarded to the 
+authors directly. I will be glad to update this file continuously.
+
+This article will be always on the web site www.FEA-Optimization.com, 
+util I finally can not afford to pay the registration fee. To avoid 
+spam, I am not going to put my email address here. You should be able 
+to contact me, or find the way to contact me through the web site.
+
+PS. I worked as the VP of Engineering Consulting Division of CADMEN since
+September of 2002 (CADMEN, TADC is an ASD in Taiwan). However I have left CADMEN
+in August of 2004. If anyone wants to contact me, please do not write to
+my former email at CADMEN anymore.
+
+As of 2005, I am having my own software company, FEA-Opt Technology,
+which devoted in consulting services and design optimization software. 
+Please give our web site a visit when you have time.
+
+Shen-Yeh Chen, Ph.D.
+www.FEA-Optimization.com
+
+
+
+
+
+

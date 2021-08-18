@@ -1,0 +1,17 @@
+  *** COLOR MAP CREATED FOR THE PSCR DRIVER ***
+      0     0     0     0    *** Background (screen - white for PS) Text (PS)
+      1   100     0    50
+      2   100     0   100
+      3    50     0   100
+      4   100   100   100    *** Contour 1
+      5    95    95    95    *** Contour 2
+      6    89    89    89    *** Contour 3
+      7    78    78    78    *** Contour 4
+      8    62    62    62    *** Contour 5
+      9    47    47    47    *** Contour 6
+     10    28    28    28    *** Contour 7
+     11    13    13    13    *** Contour 8
+     12     0     0     0    *** Contour 9
+     13   100   100   100    *** Overflow values
+     14    33    33    33
+     15   100   100   100    *** Frame & element borders (screen - black for PS) text & annotation for both

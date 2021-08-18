@@ -1,0 +1,21 @@
+!
+! P_NLIST.MAC - special version of NLIST to list nodes in the
+!   active coordinate system.
+!
+! Also, post node picker for node selection.
+!
+!
+*GET,ar10,active,,dsys
+*GET,ar11,active,,csys
+DSYS,ar11
+cm,p_tmp,node
+NSEL,R,P
+/output,p_nlist,txt
+NLIST,ALL
+/output
+*UILIST,p_nlist,txt
+DSYS,ar10
+cmsel,s,p_tmp
+cmdel,p_tmp
+!
+!

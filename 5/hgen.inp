@@ -1,0 +1,27 @@
+finish
+/clear
+
+*dim,HGEN_XYZ,table,3,,,x
+HGEN_XYZ(1,0)=0,0.8,1
+HGEN_XYZ(1,1)=100,100,200
+
+/prep7
+et,1,70
+r,1
+mp,kxx ,1,100
+
+block,,1,,1,,1
+esize,,5
+vmesh,all
+
+bfe,all,hgen,1,%HGEN_XYZ%,%HGEN_XYZ%,%HGEN_XYZ%,%HGEN_XYZ%
+bfe,all,hgen,5,%HGEN_XYZ%,%HGEN_XYZ%,%HGEN_XYZ%,%HGEN_XYZ%
+
+nsel,s,loc,x,0
+d,all,temp,20
+allsel,all
+
+/pbf,hgen,,1
+eplot
+
+finish

@@ -1,0 +1,30 @@
+/NOPR ! switch output OFF
+! arg1 = value to be rounded
+! arg2 = number of decimal places/significant digits for rounding
+/com,
+arg2 = NINT(arg2)
+*if,arg2,LT,0,THEN
+*if,arg2,LT,-8,THEN
+*msg,INFO
+Cannot round to more than 8 significant digits, sorry...
+arg2 = -8
+*else
+*msg,INFO,-arg2
+Rounding to %I significant digits...
+*endif
+ar22 = -(NINT(LOG10(arg1)+0.5)+arg2)
+*else
+*if,arg2,GT,7,THEN
+*msg,INFO
+Cannot round to more than 7 decimal places, sorry...
+arg2 = 7
+*else
+*msg,INFO,arg2
+Rounding to %I decimal places...
+*endif
+ar22 = arg2
+*endif
+rounded = NINT(arg1*1E%ar22%)/1E%ar22%
+*msg,INFO,rounded
+(Rounded value = %G)
+/GO ! switch output ON

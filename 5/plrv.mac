@@ -1,0 +1,163 @@
+!!	PLRV.mac
+
+!!	PL-ot R-educed V-ectors
+
+
+!!	This macro reduces the number of vectors plotted so that
+!!	a velocity vector plot on a model with a fine mesh will
+!!	be more ledgible.  It works great for plotting velocity
+!!	in the middle of a flat rectangular duct on a plane of
+!!	symmetry.  It creates a grid of points in the active coordinate
+!!	system, finds an element that contains that point, and plots
+!!	a velocity vector from that element's centroid.
+
+!!	The following is assumed:
+!!		POST1.
+!!		A 3-d Flotran model.
+!!		A solution set has been read.
+
+!!	To use it, create a local cartesian coordinate system
+!!	with the xy plane lying along a flat surface of interest, and
+!!	select a layer of elements (nsel, esel, etc.) on that plane.
+
+!!	When executed, the user is prompted for "percent of vectors".
+!!	This is the percentage of vectors that would be plotted for
+!!	a rectangular model that fits the grid perfectly.  If the model
+!!	is oddly shaped and does not cover the entire grid, fewer vectors
+!!	will be plotted.  In that case, vary the percent of vectors
+!!	accordingly.  This value should be between 0 and 1.
+!!	The default is .1
+
+!!	The user is also prompted for a "vector scale factor multiplier"
+!!	(vratio) for the /vscale card.  This should be a value greater
+!!	than zero, and the default is .25. 
+
+!!	This macro was developed on Ansys 6.1 running on an NT4 box.
+!!	Thanks to John Swanson and Mike Yaksh for help and guidance.
+
+!!	Rick Fischer
+!!	Marconi Communications
+!!	Warrenville, IL
+!!	5/9/2003
+
+
+
+*ask,vectpct,Percent of vectors,.1
+
+*ask,vratio,Vector scale factor multiplier,.25
+
+
+!!	We need to play some graphics games so we can imitate the style
+!!	of a vector plot generated with the gui.  First, we will create
+!!	a clear silhouette of the selected elements, then do a /noerase
+!!	so we can plot over it
+
+
+/device,vector,on	! clear element plot (no shading)
+/edge,1,1		! free edges only
+eplo
+/noerase		! dont erase when we plot the vectors
+/gline,1,-1		! no element edges when we plot the vectors
+/vscale,1,vratio,1
+
+
+
+!!	create a rectangular grid of points in the active xy coordinate plane
+!!	big enough to contain the model, and make 2d array, with one row for
+!!      each grid point
+
+
+!	find min and max x and y to determine the size of the grid
+
+*get,xmin,node,0,mnloc,x
+*get,xmax,node,0,mxloc,x
+*get,ymin,node,0,mnloc,y
+*get,ymax,node,0,mxloc,y
+
+
+!!	crunch some numbers 
+
+
+vcount=vectpct*ndinqr(0,13)	! approximate number of vectors to be plotted
+
+xrange=xmax-xmin
+yrange=ymax-ymin
+
+ar=xrange/yrange		! ar=aspect ratio
+
+xcount=nint(sqrt(vcount*ar))	! number of columns of grid points
+ycount=nint(sqrt(vcount/ar))	! number of rows of grid points
+
+deltax=xrange/(xcount-1)	! distance between columes of grid points
+deltay=yrange/(ycount-1)	! distance between rows
+
+size=xcount*ycount		! size matters!
+
+
+*dim,xyz,,size,3
+
+!!	create the grid
+
+*do,j,1,ycount
+*vlen,xcount
+*vfill,xyz(((j-1)*xcount+1),1),ramp,xmin,deltax
+*vlen,(xcount+1)
+*vfill,xyz(((j-1)*xcount+1),2),ramp,deltay*(j-1)+ymin,0
+*enddo
+
+
+!!	find elements that contain the grid point,
+!!	place them into elem array, use them to make
+!!	a selection mask (elemz), and select those elements.
+
+
+*dim,elem,,size				! elements that contain a grid point
+*dim,eloc,,size,3			! needed for *moper,,,intp, but otherwise
+					!	 not used
+
+*dim,elemz,,elmiqr(0,14)		! selection mask
+*dim,bonzo,,elmiqr(0,14)		! a dummy array used to fill the mask
+
+*moper,eloc(1,1),xyz(1,1),intp,elem(1)	! find the elements that contain a 
+					! 	grid point
+
+*voper,bonzo(1),bonzo(1),add,1		! create a vector with all 1's
+*voper,elemz(1),bonzo(1),scater,elem(1)	! create the selection mask
+*vput,elemz(1),elem,1,esel		! select the elements
+
+
+!!	plot the vectors
+
+etable,vxx,v,x
+etable,vyy,v,y
+etable,vzz
+plvect,vxx,vyy,vzz,velocity,vect
+
+
+!!	housekeeping
+
+!!	reset graphics
+
+/device,vector,off
+/edge,1,0
+/erase
+/gline,1,0
+/vscale,1,1,0
+
+!!	restore element selection
+
+esln,s,0
+
+!	clean up arrays
+
+elemz(1)=
+bonzo(1)=
+elem(1)=
+eloc(1,1)=
+xyz(1,1)=
+ndata(1,1)=
+
+!	this allows zooming, etc on the plot
+
+/mrep,plrv
+

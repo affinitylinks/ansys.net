@@ -1,0 +1,239 @@
+! =========================================
+! Shen-Yeh Chen
+! 05/01/1998
+! =========================================
+!
+! This macro will sweep the currently selected or assigedn SHELL elements into 
+! SOLID elements
+! ------------------------------------------
+! Syntax :
+!
+!  x_shl2sld,_ShellET#,_SolidET#,_NodeOffset#,_ElemOffset#,_NElem,_DX,_DY,_DZ
+!                   1         2            3            4       5   6   7   8
+! Argument
+!  (1) _ShellET# : The ET# for base shell elements. The macro will perform
+!                  ESEL,,TYPE,,_ShellET# to pick the base shell elements.
+!                  If omitted, the currently selected elements will be used. 
+!                  The macro will take the first 4 nodes in the currently 
+!                  selected elements as bottom face of the final SOLID, 
+!                  no matter it is SHELL or not.
+!  (2) _SolidET# : ET# of the created SOLID45 elements. The macro use this number
+!                  and issue a ET,_SolidET#,45 command for the created elements.
+!                  If omitted, the maximum ET# plus will be used.
+!  (3) _NodeOffset# : ID Offset for the created nodes. If omitted, the maximum defined
+!                     ID number will be used.
+!  (4) _ElemOffset# : ID Offset for the created elements. If omitted, the maximum defined
+!                     ID number will be used.
+!  (5) _NElem       : Layer of SOLID element to be created (repeated).
+!  (6) _DX,_DY,_DZ  : Offset of the coordinates for ONE layer of solid elemnt
+!                     in the active coordinate systems
+!
+!
+! Notes
+!  (1) Note that when the elements are swept 360 degree, the nodes on the coinsident 
+!      SOLID faces (the final 360 degree) are not merged. The user can
+!      use the NUMMRG,NODE command to merge these nodes
+!  (2) The orientation of the final SOLID IS checked. The macro first create one
+!      layer of SOLID elements, and make sure the orientation of all elements in this layer
+!      are correct, then NGEN and EGEN are used to gerenate the rest of the elements
+!
+!
+! External programs called :
+!  None
+! =========================================
+/PREP7
+*IF,ARG1,NE,0,THEN
+ esel,,type,,ARG1
+*ENDIF
+nsle
+cm,ztmp0000,node
+*GET,ZE,ELEM,,NUM,MAX
+!
+ZTYPE=ARG2
+ZNOFF=ARG3
+ZEOFF=ARG4
+*IF,ARG2,EQ,0,THEN
+ *GET,ZTYPE,ETYP,,NUM,MAX
+ ZTYPE=ZTYPE+1
+*ENDIF
+*IF,ARG3,EQ,0,THEN
+ CM,ZTMP0001,NODE
+ NALL
+ *GET,ZNOFF,NODE,,NUM,MAX
+ CMSEL,,ZTMP0001
+*ENDIF
+*IF,ARG4,EQ,0,THEN
+ CM,ZTMP0001,ELEM
+ EALL
+ *GET,ZEOFF,ELEM,,NUM,MAX
+ CMSEL,,ZTMP0001
+*ENDIF
+et,ZTYPE,45
+!
+!*DIM,ZEL,,ZE
+*DIM,Z1,,ZE
+*DIM,Z2,,ZE
+*DIM,Z3,,ZE
+*DIM,Z4,,ZE
+*DIM,Z5,,ZE
+*DIM,Z6,,ZE
+*DIM,Z7,,ZE
+*DIM,Z8,,ZE
+*DIM,ZES,,ZE
+*DIM,ZV1,,3
+*DIM,ZV2,,3
+*DIM,ZV3,,3
+*DIM,ZV4,,3
+
+!
+!
+! GET SELECTED ELEMENTS AND FILL IN ELEMENT NUMBER 
+*VGET,ZES(1),ELEM,1,ESEL
+!*VFILL,ZEL(1),RAMP,1,1
+!
+! GET ALL ELEMENTS NODES
+*VMASK,ZES(1)
+*VGET,Z1(1),ELEM,1,NODE,1
+*VMASK,ZES(1)
+*VGET,Z2(1),ELEM,1,NODE,2
+*VMASK,ZES(1)
+*VGET,Z3(1),ELEM,1,NODE,3
+*VMASK,ZES(1)
+*VGET,Z4(1),ELEM,1,NODE,4
+*VMASK,ZES(1)
+*VOPER,Z5(1),Z1(1),ADD,ZNOFF,
+*VMASK,ZES(1)
+*VOPER,Z6(1),Z2(1),ADD,ZNOFF,
+*VMASK,ZES(1)
+*VOPER,Z7(1),Z3(1),ADD,ZNOFF,
+*VMASK,ZES(1)
+*VOPER,Z8(1),Z4(1),ADD,ZNOFF,
+!
+!
+!
+NGEN,2,ZNOFF,ALL,,,ARG6,ARG7,ARG8
+!
+!
+CM,ZTMP0001,NODE
+CM,ZTMP0002,ELEM
+type,ZTYPE
+*VMASK,ZES(1)
+e,z1(1:ZE),z2(1:ZE),z3(1:ZE),z4(1:ZE),z5(1:ZE),z6(1:ZE),z7(1:ZE),z8(1:ZE)
+!
+!
+
+!
+! pick the newly created elements only
+CMSEL,U,ZTMP0002
+CM,ZTMP0003,ELEM
+!
+!
+! check and re-number the first layer of SOLID element
+*GET,AR21,ELEM,,NUM,MIN
+*GET,AR22,ELEM,,NUM,MAX
+*DO,ZI,AR21,AR22
+   *GET,AR23,ELEM,ZI,ESEL
+   *IF,AR23,NE,0,THEN
+      *GET,ZN1,ELEM,ZI,NODE,1
+      *GET,ZN2,ELEM,ZI,NODE,2
+      *GET,ZN4,ELEM,ZI,NODE,4
+      *GET,ZN5,ELEM,ZI,NODE,5
+!
+!     form the vector
+      ZV1(1)=NX(ZN2)-NX(ZN1)      
+      ZV1(2)=NY(ZN2)-NY(ZN1)      
+      ZV1(3)=NZ(ZN2)-NZ(ZN1)      
+      ZV2(1)=NX(ZN4)-NX(ZN1)      
+      ZV2(2)=NY(ZN4)-NY(ZN1)      
+      ZV2(3)=NZ(ZN4)-NZ(ZN1)      
+      ZV3(1)=NX(ZN5)-NX(ZN1)      
+      ZV3(2)=NY(ZN5)-NY(ZN1)      
+      ZV3(3)=NZ(ZN5)-NZ(ZN1)      
+      ZV4(1)= ZV1(2)*ZV2(3)-ZV1(3)*ZV2(2)
+      ZV4(2)= ZV1(3)*ZV2(1)-ZV1(1)*ZV2(3)
+      ZV4(3)= ZV1(1)*ZV2(2)-ZV1(2)*ZV2(1)
+!
+!     check the dot product
+      AR24=ZV3(1)*ZV4(1)+ZV3(2)*ZV4(2)+ZV3(3)*ZV4(3)
+!
+!     re-order the elemental nodes if needed
+      *IF,AR24,LT,0.0,THEN
+         *GET,ZN3,ELEM,ZI,NODE,3
+         *GET,ZN6,ELEM,ZI,NODE,6
+         *GET,ZN7,ELEM,ZI,NODE,7
+         *GET,ZN8,ELEM,ZI,NODE,8
+         EMOD,ZI,1,ZN5,ZN6,ZN7,ZN8,ZN1,ZN2,ZN3,ZN4
+      *ENDIF 
+   *ENDIF
+*ENDDO
+!
+!
+! pick the new nodes only
+CMSEL,U,ZTMP0000
+!
+! duplicate the node
+NGEN,ARG5,ZNOFF,ALL,,,ARG6,ARG7,ARG8
+!
+! pick the solid only and its node
+CMSEL,A,ZTMP0000
+CMSEL,,ZTMP0003
+!
+!
+!now generate the elements
+EGEN,ARG5,ZNOFF,ALL,,,0,0,0,0,0
+!
+ZE=
+Z1(1)=
+Z2(1)=
+Z3(1)=
+Z4(1)=
+Z5(1)=
+Z6(1)=
+Z7(1)=
+Z8(1)=
+ZV1(1)=
+ZV2(1)=
+ZV3(1)=
+ZV4(1)=
+!ZEL(1)=
+ZES(1)=
+ZTYPE=
+ZNOFF=
+ZEOFF=
+ZI=
+
+
+
+
+
+/eof
+===================================
+ANSYS Macro Convention
+===================================
+In order to avoid conflicting betweens the macro, the following convention
+has been adapted for the ANSYS macros here.
+
+1. All macro will have name begin with string "x_". This is to avoid name collision
+   with the existing ANSYS commands.
+2. There is no naming convention for global variables. All variables are
+   considered local
+3. The names of the internal variables will be one of the following
+   (1) Begin with the name of the macro itself first. That is, for the 
+       macro x_noffst.mac, the internal variables are X_NOFFST_X, 
+       X_NOFFST_Y, X_NOFFST_Z etc.
+   (2) Begin with "Z"
+   (3) ARG1 to AR99
+   Note that, ARG1 to AR99 can be heavily used according to the
+   programming convenience (for example, as a loop counter). They are not
+   tracked. There is no rule for using them either.
+4. All local variables, unless necessary for further processing, WILL be
+   deleted in the end of the macro. However, when such variables may
+   be necessary for later process, they will be kept. These variables
+   are listed in the header of the macro.
+5. When there is output file from the macro, their names will begin with 
+   the name of the macro itself first.
+6. The macro will not call each other. That is, each macro will be self-contained.
+
+
+Shen-Yeh Chen
+www.FEA-Optimization.com

@@ -1,0 +1,86 @@
+!steady state conjugate heat transfer in a pipe
+fini
+/cle
+
+KEYW,PR_CFD,1   
+/PREP7  
+ET,1,FLUID141   
+BLC4,0,0,0.06,0.04  
+FLST,2,1,8  
+FITEM,2,0,0.2E-01,0 
+WPAVE,P51X  
+wpro,,90.000000,
+ASBW,       1   
+WPCSYS,-1,0 
+/pbc,all,on
+/auto,1
+
+LESIZE,7, , ,25,1,
+
+lsel,,,,5,9,4
+LESIZE,all, , ,15,1,
+alls,all
+
+DL,9,,VX,20,1 
+DL,9,,VY,0,1  
+
+LSEL,,,,3 
+lsel,a,,,7
+DL,all,,VX,0,1  
+DL,all,,VY,0,1  
+alls,all
+DL,8, ,PRES,0,1  
+DL,3, ,TEMP,150,0
+DL,1, ,TEMP,100,0
+
+UIMP,2,DENS, , ,8933,   
+UIMP,2,KXX, , ,410, 
+UIMP,2,C, , ,383,   
+UIMP,2,EMIS, , , ,  
+asel,,,,2
+AATT,       2, ,   1,       0   
+alls,all
+mshk,1
+ames,all  
+
+FLDATA12,PROP,DENS,4
+FLDATA13,VARY,DENS,0
+FLDATA12,PROP,VISC,4
+FLDATA13,VARY,VISC,0
+FLDATA12,PROP,COND,4
+FLDATA13,VARY,COND,0
+FLDATA12,PROP,SPHT,4
+FLDATA13,VARY,SPHT,0
+!*  
+flda,prot,dens,air-si
+flda,prot,visc,air-si
+flda,prot,cond,air-si
+flda,prot,spht,air-si
+!*  
+/COM,,Steady State Analysis,0   
+FLDATA2,ITER,EXEC,50,  
+!flda,solu,tran,1
+flda,solu,flow,1
+flda,solu,temp,1
+flda,solu,turb,1
+
+FLDATA15,PRES,REFE,101350,  
+FLDATA16,BULK,BETA,1e+015,  
+FLDATA17,GAMM,COMP,1.4, 
+FLDATA14,TEMP,NOMI,20,  
+FLDATA14,TEMP,TTOT,20,  
+FLDATA14,TEMP,BULK,20,  
+TOFFSET,273,
+ 
+SAVE
+fini
+/sys,del *.rfl
+/solu
+solv
+/post1
+/pbc,all,on
+set,last
+plns,temp
+
+
+

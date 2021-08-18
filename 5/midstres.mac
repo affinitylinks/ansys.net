@@ -1,0 +1,260 @@
+! midstres.mac      Shell Mid-Plane Stress, or, "Load per Unit Length"
+!                   (Select which with argument 0 or 1)
+!                   Peter C. Budgell, October, 1998       10:07 PM 05/10/98
+!
+! Disclaimer: For education purposes. No independent quality control check
+!             has been done on this macro. Study and test it carefully.
+!             Use at your own risk.
+!
+! Usage:      Call the macro in /POST1.
+!             - Enter "MIDSTRES,0" (default) for a plot of mid-plane stress.
+!             - Enter "MIDSTRES,1" for a plot of mid-plane load/unit length.
+!             Before calling, select the shell elements of interest. Only
+!             those shell elements will be processed.
+! Function:   Called with argument 0 for STRESS:
+!                Transfers mid-plane stress components to top and bottom
+!                face stresses. For each element, selected one at a time,
+!                do each node.
+!                *VGET reads the mid-plane stress; DESOL writes it.
+!             Called with argument 1 for LOADFLOW:
+!                Transfers mid-plane "force per unit length" components to
+!                top and bottom face "stresses" so that plots of "mid-plane
+!                force per unit length" can be done from "stress" plots. For
+!                each element, selected on at a time, do each node.
+!                *VGET reads the mid-plane stress; DESOL writes it to the top
+!                and bottom faces as multiplied by the local shell thickness.
+!             Works on 4-node elements Shell 63, 43, 143, 181, and their
+!             3 node versions.
+! Goal:       Called with argument 0 for stress:
+!                Use PowerGraphics to show nodal averaged mid-plane shell stress
+!                contours with discontinuity at shell intersections and at
+!                changes of MAT (material type) and REAL (shell thickness).
+!             Called with argument 1 for loadflow:
+!                Use PowerGraphics to show nodal averaged mid-plane shell "force
+!                per unit length" contours with discontinuity at shell
+!                intersections and at changes of MAT (material type) and REAL
+!                (shell thickness).
+!                This is an non-rigorous aid to visualizing load flow in shell
+!                structures. At the same stress level, a thicker shell carries
+!                more load per unit length along the shell mid-plane; this macro
+!                helps visualize the effect. It may help assess loads on welds.
+! WARNINGS: - SLOW execution, about 6 elements/sec on a Pentium 200.
+!             Large models may take hours to process.
+!           - This version written for 4-node Shell 63, 43, 143, & 181 elements.
+!           - Change is made only to shell elements from the set of
+!             elements that are selected when this macro is called.
+!           - Titles and Annotations are needed to explain the plots.
+!           - Existing annotations deleted, title changed.
+!           - Component and array variables are NOT local to this routine.
+!             The macro employs array and component names preceded with two
+!             underscores. Deleted when done. Do not use them in the FEA model.
+!           - "MIDSTRES,0" can be recalled repeatedly for a given element.
+!             "MIDSTRES,1" must only be called once for a given element.
+! EFFECTS:  - Surface stresses in the in-memory database are overwritten.
+!             To enable recovery, save database BEFORE running this macro, OR,
+!             use SET to reload the step & substep from the results *.RST file.
+!           - /TITLE is set by this macro and a warning ANNOTATION is added.
+!           - SHELL,MID is set at the end of this macro.
+!           - PowerGraphics is set ON, plus AVRES,4 and /EFACET,1 are set.
+!             /EFACET,2 may be preferred for Shell 63, but makes PowerGraphics
+!             plots with Shell 43, 143 and Shell 181 look messy.
+!           - PLNSOL,S,EQV command is executed for the selected shell elements.
+!           - Existing annotations deleted, so the warning annotation is noticeable.
+
+/NOPR                      ! No output -- important for speed
+
+*get,ar27,active,,rout     ! Are we in /POST1 ?
+*if,ar27,eq,31,then        ! If so, proceed:
+*get,ar18,active,,set,time ! "Time" for load step currently in database
+*if,ar18,ne,0,then         ! If nonzero, results should be loaded
+
+ar10=0                     ! Check on ARG1 as used when calling macro
+*if,arg1,eq,0,then    
+   ar10=1
+*elseif,arg1,eq,1,then
+   ar10=1
+*endif
+*if,ar10,eq,1,then         ! If ARG1 is 0 or 1 then proceed, else quit
+
+cm,__eset,elem             ! Save set of selected elements for later restore
+cm,__nset,node             ! Save set of selected nodes for later restore
+esel,r,ename,,63           ! Re-select Shell 63 from selection when macro called
+cm,__esetxx,elem           ! Put in component
+cmsel,s,__eset             ! Select original set of elements 
+esel,r,ename,,43           ! Re-select Shell 43
+cmsel,a,__esetxx           ! Add to Shell 63 elements
+cm,__esetxx,elem           ! Put both in component
+cmsel,s,__eset             ! Select original set of elements
+esel,r,ename,,143          ! Re-select Shell 143
+cmsel,a,__esetxx           ! Add to Shell 63 and 43
+cm,__esetxx,elem           ! Put all 3 in component
+cmsel,s,__eset             ! Select original set of elements
+esel,r,ename,,181          ! Re-select Shell 181
+cmsel,a,__esetxx           ! Add to Shell 63, 43, 143
+cm,__esetxx,elem           ! Put all 4 in component
+*get,ar29,elem,0,count     ! How many shell elements selected ?
+*if,ar29,gt,0,then         ! If any shell elements, then proceed:
+
+  *if,arg1,eq,0,then
+  *msg,UI
+Executing MIDSTRES for Mid-Plane Stress Visualization. %/&
+This is a "Non-Standard" use of ANSYS. %/&
+Mid-plane stresses for shell elements are transferred to the&
+TOP and BOT surfaces, modifying the in-memory database. &
+Restore with SET. %/&
+A PowerGraphics Mid-Plane EQV Stress plot follows. %/&
+Existing annotations are deleted. ** Note: SLOW execution. **
+
+  *else
+  *MSG,UI
+Executing MIDSTRES for Load Flow Visualization. This is a &
+"Non-Standard" use of ANSYS. Mid-plane stresses for shell &
+elements are multiplied by local shell thickness and &
+transferred to TOP and BOT surfaces, modifying the in-memory &
+database. Restore with SET. %/&
+A PowerGraphics "stress" plot follows, showing Mid-Plane EQV &
+"Load per Unit Length". %/&
+Existing annotations are deleted. ** Note: SLOW execution. **
+  *endif
+
+  nsle                     ! Get associated nodes
+  *DIM,__s1,array,6        ! Arrays for stresses at nodes
+  *DIM,__s2,array,6
+  *DIM,__s3,array,6
+  *DIM,__s4,array,6
+  *get,ar26,active,,rsys       ! Save current RSYS setting; restore later
+  rsys,solu                    ! Helps *VGET transfer stress properly
+  *get,ar28,elem,0,num,min     ! Get starting element in the selected set
+  *get,ar18,active,,time,cpu   ! Store present CPU time
+  ar11=1                       ! Multipliers for stress at mid-plane
+  ar12=1                       !   =1.0 if mid-plane stress is to be plotted
+  ar13=1
+  ar14=1
+  *do,ar25,1,ar29              ! Do for each shell element from the selected set
+    esel,s,elem,,ar28          ! Select element to process
+    ar21=nelem(ar28,1)         ! Nodes of the one element
+    ar22=nelem(ar28,2)
+    ar23=nelem(ar28,3)
+    ar24=nelem(ar28,4)
+    *if,arg1,eq,1,then                 ! if a load flow plot, get shell thickness
+      *get,ar17,elem,ar28,attr,real    ! what REAL for this element
+      *get,ar12,rcon,ar17,const,2      ! what thickness was set at node 2
+      *if,ar12,eq,0,then               ! if node 2 thick=0 have constant thickness:
+        *get,ar11,rcon,ar17,const,1    ! get thickness in entry 1
+        ar12=ar11                      ! set all to the same thickness
+        ar13=ar11
+        ar14=ar11
+      *else                            ! if have element of variable thickness:
+        *get,ar11,rcon,ar17,const,1    ! get all the other thicknesses
+        *get,ar13,rcon,ar17,const,3    ! node 3 is nonzero if node 2 is nonzero
+        *get,ar14,rcon,ar17,const,4    ! node 4 is nonzero if node 2 is nonzero
+      *endif
+    *endif
+    shell,mid                          ! Mid-plane stress
+    *vget,__s1(1),node,ar21,s,x,,,4    ! Get the stress components at node 1
+    *vget,__s2(1),node,ar22,s,x,,,4    ! node 2
+    *vget,__s3(1),node,ar23,s,x,,,4    ! node 3
+    shell,bot                          ! Write to bottom face
+desol,ar28,ar21,s,x,__s1(1)*ar11,__s1(2)*ar11,__s1(3)*ar11,__s1(4)*ar11,__s1(5)*ar11,__s1(6)*ar11
+desol,ar28,ar22,s,x,__s2(1)*ar12,__s2(2)*ar12,__s2(3)*ar12,__s2(4)*ar12,__s2(5)*ar12,__s2(6)*ar12
+desol,ar28,ar23,s,x,__s3(1)*ar13,__s3(2)*ar13,__s3(3)*ar13,__s3(4)*ar13,__s3(5)*ar13,__s3(6)*ar13
+    shell,top                          ! Write to top face
+desol,ar28,ar21,s,x,__s1(1)*ar11,__s1(2)*ar11,__s1(3)*ar11,__s1(4)*ar11,__s1(5)*ar11,__s1(6)*ar11
+desol,ar28,ar22,s,x,__s2(1)*ar12,__s2(2)*ar12,__s2(3)*ar12,__s2(4)*ar12,__s2(5)*ar12,__s2(6)*ar12
+desol,ar28,ar23,s,x,__s3(1)*ar13,__s3(2)*ar13,__s3(3)*ar13,__s3(4)*ar13,__s3(5)*ar13,__s3(6)*ar13
+    *if,ar23,ne,ar24,then              ! if 4-node element
+      shell,mid
+      *vget,__s4(1),node,ar24,s,x,,,4  ! node 4
+      shell,bot                        ! Write to bottom face
+desol,ar28,ar24,s,x,__s4(1)*ar14,__s4(2)*ar14,__s4(3)*ar14,__s4(4)*ar14,__s4(5)*ar14,__s4(6)*ar14
+      shell,top                        ! Write to top face
+desol,ar28,ar24,s,x,__s4(1)*ar14,__s4(2)*ar14,__s4(3)*ar14,__s4(4)*ar14,__s4(5)*ar14,__s4(6)*ar14
+    *endif
+    cmsel,s,__esetxx             ! Restore shell set
+    ar28=elnext(ar28)            ! Get next element in this set
+  *enddo
+  *get,ar19,active,,time,cpu     ! Finish time
+  ar19=ar19-ar18                 ! CPU time used processing elements
+  rsys,ar26                      ! Restore RSYS setting
+  shell,mid                      ! No *GET command records SHELL setting
+  __s1=                          ! Eliminate array variable
+  __s2=                          ! Eliminate array variable
+  __s3=                          ! Eliminate array variable
+  __s4=                          ! Eliminate array variable
+  /graphics,power                ! Activate PowerGraphics
+  avres,4                        ! Discontinuities at MAT and REAL change
+  /efacet,1                      ! Not detailed contours (the other option is 2)
+! Change title and annotate to prevent confusion.
+  *if,arg1,eq,0,then
+    /title,Mid-Plane Stress Components Moved to Surfaces; PowerGraphics EQV Plot
+    /annot,dele
+    /ANUM ,0,     1, -.53900    , -.92000   
+    /TSPEC, 15,  .850,   1,   0,   0
+    /TLAB, -.980, -.920,WARNING: Database modified. Mid-Plane Stress plotted.
+  *else
+    /title,Mid-Plane Load/Unit Length Components Moved to Surfaces; PG. EQV Plot
+    /annot,dele
+    /ANUM ,0,     1, -.53900    , -.92000   
+    /TSPEC, 15,  .850,   1,   0,   0
+    /TLAB, -.980, -.920,WARNING: Database modified. Mid-plane "Load per Unit Length"
+  *endif
+  plnsol,s,eqv                   ! Plot nodal averaged EQV stress
+
+  *if,arg1,eq,0,then
+    *msg,UI,ar29,ar19
+DONE %/&
+Mid-plane nodal averaged EQV Stress for the shell elements&
+in the selected set has been plotted with PowerGraphics. %/&
+Element and node selections have been restored. %/&
+The in-memory database is modified. To restore, use the SET&
+command to reload the in-memory database, then remove the&
+warning annotation. %/&
+CPU Time Processing %I Elements = %I sec.
+
+  *else
+    *msg,UI,ar29,ar19
+DONE. %/&
+Mid-plane nodal averaged "Load per Unit Length" for the shell&
+elements in the selected set has been plotted with PowerGraphics. %/&
+Element and node selections have been restored. %/&
+The in-memory database is modified. To restore, use the SET command to &
+reload the in-memory database, then remove the warning annotation. %/&
+CPU Time Processing %I Elements = %I sec.
+  *endif
+
+*else
+  *msg,UI
+No Shell Elements 63, 43, 143, 181 in the Selection Set. %/&
+** Nothing has been done. **
+
+*endif
+
+cmdel,__esetxx                   ! Delete component definition 
+cmsel,s,__eset                   ! Restore original element selection
+cmsel,s,__nset                   ! Restore original node selection
+cmdel,__eset                     ! Delete component definition
+cmdel,__nset                     ! Delete component definition
+
+*else                            ! If macro not called with ARG1=0 or 1
+  *msg,UI
+MIDSTRES macro called with argument other than 0 or 1 %/&
+ ARG1=0 (default) means mid-plane stress plot %/&
+ ARG1=1 means mid-plane "load/unit length" plot %/&
+** Nothing has been done. **
+*endif
+
+*else                            ! If time in the results database is zero
+  *msg,UI
+Time for the results loaded in the database is zero. %/&
+This implies that no results are loaded in the database. %/&
+** Nothing has been done. **
+*endif
+
+*else                            ! if not in /POST1
+  *msg,UI
+The MIDSTRES macro must be executed from /POST1 %/&
+** Nothing has been done. **
+*endif
+
+/GOPR                            ! Restore output printing
+

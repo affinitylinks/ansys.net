@@ -1,0 +1,215 @@
+!*******************************************************************************
+!*******************       ANSYS 5.4 Macro "PERI3d.MAC"       ******************
+!************************  Periodic Boundary Conditions  ***********************
+!*******************               03/18/98                 ********************
+!*******************************************************************************
+!
+!*******************************************************************************
+!***  ANSYS Macro to specify periodic boundary conditions by defining
+!***  periodic node pairs as individual coupled sets.  When a periodic pair
+!***  is defined, all active degrees of freedom are coupled for the two nodes,
+!***  i.e., held to be identical.
+!***
+!***     *  User selects subset of nodes along one periodic boundary.
+!***
+!***     *  Input:  PERI,DX,DY,DZ          where DX, DY, and DZ are the
+!***                                       directional offsets between the
+!***                                       periodic boundaries
+!***
+!***     *  Specified offsets should be consistent with the 
+!***        geometric system
+!*** 
+!***        
+!*******************************************************************************
+/nopr
+_DX = arg1                              ! X-direction offset
+_DY = arg2                              ! Y-direction offset
+_DZ = arg3                              ! Z-direction offset
+
+*get,_rout,active,,rout                 ! Check current routine
+*if,_rout,eq,17,then                    ! Check if in PREP7
+
+_errinp = 0                             ! Initialize input error flag
+*if,_DX,eq,0,then                       ! Check if DX = 0
+  *if,_DY,eq,0,then                     ! Check if DY = 0
+    *if,_DZ,eq,0,then                   ! Check if DZ = 0
+      _errinp = 1                       ! If DX=DY=DZ = 0, set error flag
+    *endif
+  *endif
+*endif
+*if,_errinp,eq,0,then
+
+*get,_cstyp,ACTIVE,0,CSYS               ! Check active coord system
+*get,_ndof,ACTIVE,0,dof			! Check active dof
+
+*if,_cstyp,eq,0,then                    ! X-Y, X-R, R-Y, or X-Y-Z
+  csys,0                                ! Global Cartesian
+  /gopr
+  *msg,note
+  %/  Interpreting Offsets DX, DY, and DZ in Cartesian Coordinates. %/
+  /nopr
+*endif
+
+*if,_cstyp,eq,1,then                    ! R-T or R-T-Z
+  csys,1                                ! Global Cylindrical
+  /gopr
+  *msg,note
+  %/  Interpreting Offsets DX, DY, and DZ in Cylindrical Coordinates. %/
+  /nopr
+*endif
+
+*if,_cstyp,eq,2,then                    ! R-T or R-T-P
+  csys,2                                ! Global spherical
+  /gopr
+  *msg,note
+  %/  Interpreting Offsets DX, DY, and DZ in Cartesian Coordinates. %/
+  /nopr
+*endif
+
+
+cm,_bound1,node                         ! Boundary 1 node group
+*get,_nn,node,,count                    ! Get number of nodes on boundary 1
+nsel,none                               ! Unselect all nodes
+cm,_bound2,node                         ! Initialize boundary 2 node group
+nsel,s,ext                              ! Select external nodes
+cmse,u,_bound1                          ! Unselect boundary 1 nodes
+cm,_exter,node                          ! Form external node group
+
+nsel,all                                ! Activate all nodes
+numcmp,cp                               ! Compress coupled set numbers
+*get,_oldcp,active,,cp                  ! Get number of existing coupled sets
+_nset = _oldcp                          ! Initialize coupled set counter
+*get,_nspec,flda,spec,numb              ! Get number of active species DOF's
+
+cmse,s,_bound1                          ! Activate boundary 1 node group
+_n1 = 0                                 ! Initialize boundary 1 node, n1
+
+*do,_i,1,_nn                            ! Loop through all boundary 1 nodes
+
+  *get,_n1,node,_n1,nxth                ! Get next higher node above n1 and
+                                        !   reset n1 to this value
+
+  _cx1 = nx(_n1)                        ! Get X-coordinate of n1
+  _cy1 = ny(_n1)                        ! Get Y-coordinate of n1
+  _cz1 = nz(_n1)                        ! Get Z-coordinate of n1
+  _cx2 = _cx1 + _DX                     ! Add X-offset for X-coordinate of n2
+  _cy2 = _cy1 + _DY                     ! Add Y-offset for Y-coordinate of n2
+  _cz2 = _cz1 + _DZ                     ! Add Z-offset for Z-coordinate of n2
+
+  *if,_cx2,eq,0,then                    ! Set tolerance on X-coordinate of n2
+    _cx2tol = 1.0E-6
+  *else
+    _cx2tol = abs(.005*_cx2)
+  *endif
+  *if,_cy2,eq,0,then                    ! Set tolerance on Y-coordinate of n2
+    _cy2tol = 1.0E-6
+  *else
+    _cy2tol = abs(.005*_cy2)
+  *endif
+  *if,_cz2,eq,0,then                    ! Set tolerance on Z-coordinate of n2
+    _cz2tol = 1.0E-6
+  *else
+    _cz2tol = abs(.005*_cz2)
+  *endif
+
+  cmse,s,_exter                         ! Activate external nodes
+  _n2 = node(_cx2,_cy2,_cz2)            ! Identify n2 of coupled pair
+  nsel,a,,,_n1                          ! Also activate n1
+
+  _ax2 = nx(_n2)                        ! Actual X-coordinate of n2
+  _ay2 = ny(_n2)                        ! Actual Y-coordinate of n2
+  _az2 = nz(_n2)                        ! Actual Z-coordinate of n2
+
+  _errtol = 0                           ! Initialize tolerance error flag
+  *if,abs(_cx2 - _ax2),gt,_cx2tol,then  ! Check X-coordinate error
+    _errtol = 1
+  *endif
+  *if,abs(_cy2 - _ay2),gt,_cy2tol,then  ! Check Y-coordinate error
+    _errtol = 1
+  *endif
+  *if,abs(_cz2 - _az2),gt,_cz2tol,then  ! Check Z-coordinate error
+    _errtol = 1
+  *endif
+
+  *if,_errtol,eq,1,then
+    /gopr
+    *msg,error,_n1
+    %/  Recommended geometric tolerance exceeded. %/ &
+          Periodic neighbor not found for node %I. %/
+    /nopr
+  *endif
+
+  *if,_errtol,eq,0,then
+    cp,_nset+1,all,_n1,_n2              ! Couple nodes n1 and n2
+    cmse,s,_bound2                      ! Activate boundary 2 nodes
+    nsel,a,,,_n2                        ! Add n2 to boundary 2 node set
+    cm,_bound2,node                     ! Update boundary 2 node set
+    _nset = _nset + _ndof + _nspec      ! Increment coupled set number
+  *endif
+
+  cmse,s,_bound1                        ! Re-activate boundary 1 nodes
+
+*enddo
+
+numcmp,cp                               ! Compress coupled set numbers
+*get,_totcp,active,,cp                  ! Get total number of coupled sets
+_newcp = _totcp - _oldcp                ! Determine number of new coupled sets
+/gopr
+*msg,note,_newcp,_totcp
+%/  New Periodic Node Pairs    = %I %/ &
+            Total Periodic Node Pairs = %I %/
+/nopr
+
+/pbc,cp,1                               ! Turn on graphical CP symbols
+cmse,s,_bound1                          ! Activate boundary 1 nodes
+cmse,a,_bound2                          ! Also activate boundary 2 nodes
+nplo                                    ! Plot nodes
+/pbc,cp                                 ! Reset CP symbols to off
+_cstyp =                                ! Delete local variable
+_oldcp =                                !            "
+_totcp =                                !            "
+_newcp =                                !            "
+_nset =                                 !            "
+_nspec =                                !            "
+_i =                                    !            "
+_nn =                                   !            "
+_n1 =                                   !            "
+_n2 =                                   !            "
+_cx1 =                                  !            "
+_cy1 =                                  !            "
+_cz1 =                                  !            "
+_cx2 =                                  !            "
+_cy2 =                                  !            "
+_cz2 =                                  !            "
+_ax2 =                                  !            "
+_ay2 =                                  !            "
+_az2 =                                  !            "
+_cx2tol =                               !            "
+_cy2tol =                               !            "
+_cz2tol =                               !            "
+_errtol =                               !            "
+cmdel,_bound1                           ! Delete local component
+cmdel,_bound2                           !            "
+cmdel,_exter                            !            "
+
+*endif
+*if,_errinp,eq,1,then
+  /gopr
+  *msg,error
+  %/  All offsets have been left unspecified. %/
+  /nopr
+*endif
+
+*endif
+*if,_rout,ne,17,then
+  /gopr
+  *msg,warn
+  %/  This Macro can only be executed while in PREP7. %/
+  /nopr
+*endif
+
+_errinp =                               ! Delete local variable
+_rout =                                 !            "
+_DX =                                   !            "
+_DY =                                   !            "
+_DZ =                                   !            "

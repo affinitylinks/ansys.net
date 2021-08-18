@@ -1,0 +1,725 @@
+/PREP7				! Enter pre-processor
+
+*dim,fn1,string,128
+*dim,fn2,string,128
+
+fn1(1) = 'package'
+fn2(1) = 'bdf'
+
+*cfopen,fn1(1),fn2(1)		! Open export file
+
+!********************************************************************************
+! Unselect non-section element types first
+!********************************************************************************
+cm,STI_TEMPELEM,elem
+esel,u,ename,,188,189
+esel,u,ename,,179
+esel,u,ename,,184
+esel,u,ename,,181
+esel,u,ename,,131,132
+
+!----------------------------------------
+! define arrays used
+!----------------------------------------
+*get,STI_ECNT,elem,,count
+*set,STI_UNIQ_GEN,0
+*if,STI_ECNT,ne,0,then
+  *get,STI_EMAX,elem,,num,max
+  *dim,STI_MASK,array,STI_EMAX
+  *dim,STI_TEMP,array,STI_EMAX
+  *dim,STI_ELEM,array,STI_ECNT
+  *vget,STI_MASK(1),elem,,esel
+
+!----------------------------------------
+! get material IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,mat
+!
+! get max material
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_MMAX,max,STI_TEMP(1)
+  *if,log10(STI_MMAX)-nint(log10(STI_MMAX)),eq,0,then
+    STI_MMAX=nint(log10(STI_MMAX))+1
+  *elseif,log10(STI_MMAX)-nint(log10(STI_MMAX)),gt,0
+    STI_MMAX=nint(log10(STI_MMAX))+1
+  *else
+    STI_MMAX=nint(log10(STI_MMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_ELEM(1),comp,STI_TEMP(1)
+
+!----------------------------------------
+! get real constant IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,real
+!
+! get max real constant
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_RMAX,max,STI_TEMP(1)
+  *if,log10(STI_RMAX)-nint(log10(STI_RMAX)),eq,0,then
+    STI_RMAX=nint(log10(STI_RMAX))+1
+  *elseif,log10(STI_RMAX)-nint(log10(STI_RMAX)),gt,0
+    STI_RMAX=nint(log10(STI_RMAX))+1
+  *else
+    STI_RMAX=nint(log10(STI_RMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_TEMP(1)
+  *vope,STI_TEMP(1),STI_TEMP(1),mult,10**STI_MMAX
+  *vope,STI_ELEM(1),STI_ELEM(1),add,STI_TEMP(1)
+
+!----------------------------------------
+! get element type IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,type
+!
+! get max element type
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_TMAX,max,STI_TEMP(1)
+  *if,log10(STI_TMAX)-nint(log10(STI_TMAX)),eq,0,then
+    STI_TMAX=nint(log10(STI_TMAX))+1
+  *elseif,log10(STI_TMAX)-nint(log10(STI_TMAX)),gt,0
+    STI_TMAX=nint(log10(STI_TMAX))+1
+  *else
+    STI_TMAX=nint(log10(STI_TMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_TEMP(1)
+  *vope,STI_TEMP(1),STI_TEMP(1),mult,10**(STI_MMAX+STI_RMAX)
+  *vope,STI_ELEM(1),STI_ELEM(1),add,STI_TEMP(1)
+
+!----------------------------------------
+! compare unique values
+!----------------------------------------
+  *vfun,STI_ELEM(1),asort,STI_ELEM(1)
+  *del,STI_MASK,nopr
+  *dim,STI_MASK,array,STI_ECNT
+  *vope,STI_MASK(1),STI_ELEM(1),ne,STI_ELEM(2)
+!
+! get smaller array of unique values
+!
+  *vscf,STI_ECNT,sum,STI_MASK(1)
+  *del,STI_TEMP,nopr
+  *dim,STI_TEMP,array,STI_ECNT
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_ELEM(1)
+  *vscf,STI_UNIQ_GEN,num,STI_TEMP(1)
+*endif
+
+*dim,STI_GEN,array,STI_UNIQ_GEN,4
+*do,ICOUNT,1,STI_UNIQ_GEN
+  STI_MATR = mod(STI_TEMP(ICOUNT),10**STI_MMAX)
+  STI_REAL = (mod(STI_TEMP(ICOUNT),10**(STI_RMAX+STI_MMAX))-STI_MATR)/10**(STI_MMAX)
+  STI_TYPE = (mod(STI_TEMP(ICOUNT),10**(STI_RMAX+STI_MMAX+STI_TMAX))-STI_REAL*10**STI_MMAX-STI_MATR)/10**(STI_MMAX+STI_RMAX)
+  *get,STI_ENAM,etyp,STI_TYPE,attr,enam
+  STI_GEN(ICOUNT,1) = STI_MATR
+  STI_GEN(ICOUNT,2) = STI_REAL
+  STI_GEN(ICOUNT,3) = STI_TYPE
+  STI_GEN(ICOUNT,4) = STI_ENAM  
+*enddo  
+
+!********************************************************************************
+! Look up section elements now
+!********************************************************************************
+cmsel,s,STI_TEMPELEM
+esel,r,ename,,188,189
+esel,a,ename,,179
+esel,a,ename,,184
+esel,a,ename,,181
+esel,a,ename,,131,132
+
+!----------------------------------------
+! define arrays used
+!----------------------------------------
+*get,STI_ECNT,elem,,count
+*set,STI_UNIQ_SEC,0
+*if,STI_ECNT,ne,0,then
+  *get,STI_EMAX,elem,,num,max
+  *del,STI_MASK,nopr
+  *del,STI_ELEM,nopr
+  *del,STI_TEMP,nopr
+  *dim,STI_MASK,array,STI_EMAX
+  *dim,STI_TEMP,array,STI_EMAX
+  *dim,STI_ELEM,array,STI_ECNT
+  *vget,STI_MASK(1),elem,,esel
+
+!----------------------------------------
+! get material IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,mat
+!
+! get max material
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_MMAX,max,STI_TEMP(1)
+  *if,log10(STI_MMAX)-nint(log10(STI_MMAX)),eq,0,then
+    STI_MMAX=nint(log10(STI_MMAX))+1
+  *elseif,log10(STI_MMAX)-nint(log10(STI_MMAX)),gt,0
+    STI_MMAX=nint(log10(STI_MMAX))+1
+  *else
+    STI_MMAX=nint(log10(STI_MMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_ELEM(1),comp,STI_TEMP(1)
+
+!----------------------------------------
+! get section IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,secn
+!
+! get max section
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_SMAX,max,STI_TEMP(1)
+  *if,log10(STI_SMAX)-nint(log10(STI_SMAX)),eq,0,then
+    STI_SMAX=nint(log10(STI_SMAX))+1
+  *elseif,log10(STI_SMAX)-nint(log10(STI_SMAX)),gt,0
+    STI_SMAX=nint(log10(STI_SMAX))+1
+  *else
+    STI_SMAX=nint(log10(STI_SMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_TEMP(1)
+  *vope,STI_TEMP(1),STI_TEMP(1),mult,10**STI_MMAX
+  *vope,STI_ELEM(1),STI_ELEM(1),add,STI_TEMP(1)
+
+!----------------------------------------
+! get element type IDs
+!----------------------------------------
+  *vmas,STI_MASK(1)
+  *vget,STI_TEMP(1),elem,,attr,type
+!
+! get max element type
+!
+  *vmas,STI_MASK(1)
+  *vscf,STI_TMAX,max,STI_TEMP(1)
+  *if,log10(STI_TMAX)-nint(log10(STI_TMAX)),eq,0,then
+    STI_TMAX=nint(log10(STI_TMAX))+1
+  *elseif,log10(STI_TMAX)-nint(log10(STI_TMAX)),gt,0
+    STI_TMAX=nint(log10(STI_TMAX))+1
+  *else
+    STI_TMAX=nint(log10(STI_TMAX))
+  *endif
+!
+! compress to smaller array
+!
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_TEMP(1)
+  *vope,STI_TEMP(1),STI_TEMP(1),mult,10**(STI_MMAX+STI_SMAX)
+  *vope,STI_ELEM(1),STI_ELEM(1),add,STI_TEMP(1)
+
+!----------------------------------------
+! compare unique values
+!----------------------------------------
+  *vfun,STI_ELEM(1),asort,STI_ELEM(1)
+  *del,STI_MASK,nopr
+  *dim,STI_MASK,array,STI_ECNT
+  *vope,STI_MASK(1),STI_ELEM(1),ne,STI_ELEM(2)
+!
+! get smaller array of unique values
+!
+  *vscf,STI_ECNT,sum,STI_MASK(1)
+  *del,STI_TEMP,nopr
+  *dim,STI_TEMP,array,STI_ECNT
+  *vmas,STI_MASK(1)
+  *vfun,STI_TEMP(1),comp,STI_ELEM(1)
+  *vscf,STI_UNIQ_SEC,num,STI_TEMP(1)
+*endif
+
+*dim,STI_SEC,array,STI_UNIQ_SEC,4
+*do,ICOUNT,1,STI_UNIQ_SEC
+  STI_MATR = mod(STI_TEMP(ICOUNT),10**STI_MMAX)
+  STI_SECN = (mod(STI_TEMP(ICOUNT),10**(STI_RMAX+STI_MMAX))-STI_MATR)/10**(STI_MMAX)
+  STI_TYPE = (mod(STI_TEMP(ICOUNT),10**(STI_SMAX+STI_MMAX+STI_TMAX))-STI_SECN*10**STI_MMAX-STI_MATR)/10**(STI_MMAX+STI_SMAX)
+  *get,STI_ENAM,etyp,STI_TYPE,attr,enam
+  STI_SEC(ICOUNT,1) = STI_MATR
+  STI_SEC(ICOUNT,2) = STI_SECN
+  STI_SEC(ICOUNT,3) = STI_TYPE
+  STI_SEC(ICOUNT,4) = STI_ENAM  
+*enddo  
+
+!----------------------------------------
+! retrieve real constant data
+!----------------------------------------
+*dim,RCON_DATA,array,STI_UNIQ_GEN,8
+*do,AR21,1,STI_UNIQ_GEN
+  *do,AR22,1,8
+    *get,RCON_DATA(AR21,AR22),rcon,STI_GEN(AR21,2),const,AR22
+  *enddo
+*enddo
+    
+!----------------------------------------
+! retrieve keyopt data
+!----------------------------------------
+*dim,KOPT_DATA_GEN,array,STI_UNIQ_GEN,10
+*dim,KOPT_DATA_SEC,array,STI_UNIQ_SEC,10
+*do,AR23,1,STI_UNIQ_GEN
+  *get,KOPT_DATA_GEN(AR23,1),etyp,STI_GEN(AR23,3),attr,kop1
+  *get,KOPT_DATA_GEN(AR23,2),etyp,STI_GEN(AR23,3),attr,kop2
+  *get,KOPT_DATA_GEN(AR23,3),etyp,STI_GEN(AR23,3),attr,kop3
+  *get,KOPT_DATA_GEN(AR23,4),etyp,STI_GEN(AR23,3),attr,kop4
+  *get,KOPT_DATA_GEN(AR23,5),etyp,STI_GEN(AR23,3),attr,kop5
+  *get,KOPT_DATA_GEN(AR23,6),etyp,STI_GEN(AR23,3),attr,kop6
+  *get,KOPT_DATA_GEN(AR23,7),etyp,STI_GEN(AR23,3),attr,kop7
+  *get,KOPT_DATA_GEN(AR23,8),etyp,STI_GEN(AR23,3),attr,kop8
+  *get,KOPT_DATA_GEN(AR23,9),etyp,STI_GEN(AR23,3),attr,kop9
+  *get,KOPT_DATA_GEN(AR23,10),etyp,STI_GEN(AR23,3),attr,ko10
+*enddo
+*do,AR23,1,STI_UNIQ_SEC
+  *get,KOPT_DATA_SEC(AR23,1),etyp,STI_SEC(AR23,3),attr,kop1
+  *get,KOPT_DATA_SEC(AR23,2),etyp,STI_SEC(AR23,3),attr,kop2
+  *get,KOPT_DATA_SEC(AR23,3),etyp,STI_SEC(AR23,3),attr,kop3
+  *get,KOPT_DATA_SEC(AR23,4),etyp,STI_SEC(AR23,3),attr,kop4
+  *get,KOPT_DATA_SEC(AR23,5),etyp,STI_SEC(AR23,3),attr,kop5
+  *get,KOPT_DATA_SEC(AR23,6),etyp,STI_SEC(AR23,3),attr,kop6
+  *get,KOPT_DATA_SEC(AR23,7),etyp,STI_SEC(AR23,3),attr,kop7
+  *get,KOPT_DATA_SEC(AR23,8),etyp,STI_SEC(AR23,3),attr,kop8
+  *get,KOPT_DATA_SEC(AR23,9),etyp,STI_SEC(AR23,3),attr,kop9
+  *get,KOPT_DATA_SEC(AR23,10),etyp,STI_SEC(AR23,3),attr,ko10
+*enddo
+
+!----------------------------------------
+! retrieve section data
+!----------------------------------------
+*dim,SECN_DATA,array,STI_UNIQ_SEC,6
+*do,AR21,1,STI_UNIQ_SEC
+  *get,sectype,secp,STI_SEC(AR21,2),type
+  *if,sectype,eq,'BEAM',then
+! beam section data
+    *get,SECN_DATA(AR21,1),secp,STI_SEC(AR21,2),prop,area
+    *get,SECN_DATA(AR21,2),secp,STI_SEC(AR21,2),prop,iyy
+    *get,SECN_DATA(AR21,3),secp,STI_SEC(AR21,2),prop,iyz
+    *get,SECN_DATA(AR21,4),secp,STI_SEC(AR21,2),prop,izz
+    *get,SECN_DATA(AR21,5),secp,STI_SEC(AR21,2),prop,warp
+    *get,SECN_DATA(AR21,6),secp,STI_SEC(AR21,2),prop,tors
+  *else
+! shell section data
+    *get,SECN_DATA(AR21,1),shel,STI_SEC(AR21,2),prop,tthk
+  *endif    
+*enddo
+
+!----------------------------------------
+! retrieve element topology data
+!----------------------------------------
+cmsel,s,STI_TEMPELEM
+*del,STI_MASK,nopr
+*get,STI_EMAX,elem,,num,max
+*dim,STI_MASK,array,STI_EMAX
+*vget,STI_MASK(1),elem,,esel
+*dim,ELM_ID,array,STI_EMAX
+*vfil,ELM_ID(1),ramp,1,1
+*dim,ELM_NOD,array,STI_EMAX,20
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,1),elem,ELM_ID(1),node,1
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,2),elem,ELM_ID(1),node,2
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,3),elem,ELM_ID(1),node,3
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,4),elem,ELM_ID(1),node,4
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,5),elem,ELM_ID(1),node,5
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,6),elem,ELM_ID(1),node,6
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,7),elem,ELM_ID(1),node,7
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,8),elem,ELM_ID(1),node,8
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,9),elem,ELM_ID(1),node,9
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,10),elem,ELM_ID(1),node,10
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,11),elem,ELM_ID(1),node,11
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,12),elem,ELM_ID(1),node,12
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,13),elem,ELM_ID(1),node,13
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,14),elem,ELM_ID(1),node,14
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,15),elem,ELM_ID(1),node,15
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,16),elem,ELM_ID(1),node,16
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,17),elem,ELM_ID(1),node,17
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,18),elem,ELM_ID(1),node,18
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,19),elem,ELM_ID(1),node,19
+*vmas,STI_MASK(1)
+*vget,ELM_NOD(1,20),elem,ELM_ID(1),node,20
+
+!----------------------------------------
+! ELEMENT DATA (INC PROPERTY DATA)
+!----------------------------------------
+! general data first
+!----------------------------------------
+*do,AR24,1,STI_UNIQ_GEN
+  *vlen,1
+  *vwrite,STI_GEN(AR24,3),STI_GEN(AR24,4),STI_GEN(AR24,2),STI_GEN(AR24,1)
+$ ELEMENT OUTPUT FOR ETYPE %I (ENAM %I), REAL CNST SET %I, MAT ID %I
+!----------------------------------------
+! select appropiate element set
+!----------------------------------------
+  cmsel,s,STI_TEMPELEM
+  esel,s,type,,STI_GEN(AR24,3) $ esel,r,real,,STI_GEN(AR24,2) $ esel,r,mat,,STI_GEN(AR24,1)
+!----------------------------------------
+! create masking array based on selection
+!----------------------------------------
+  *del,STI_MASK,nopr
+  *dim,STI_MASK,array,STI_EMAX
+  *vget,STI_MASK(1),elem,,esel
+!----------------------------------------
+! perform action based on ename
+!----------------------------------------
+! MASS21 ELEMENT
+!----------------------------------------
+  *if,STI_GEN(AR24,4),eq,21,then
+! check keyopt options
+    *if,KOPT_DATA_GEN(AR24,1),eq,1,then
+      *vmas,STI_MASK(1)
+      *vwrite,ELM_ID(1)
+$ WARNING - ELEM %I HAS KEYOPT(1)=1, UNSUPPORTED NASTRAN OPTION
+      *cycle
+    *endif
+    *if,KOPT_DATA_GEN(AR24,1),eq,0,then
+      *if,KOPT_DATA_GEN(AR24,2),eq,1,then
+	*vwrite
+$ WARNING - MASS ELEMENT DEFINED IN NODAL CSYS, CHECK TRANSLATION
+      *endif
+      *if,KOPT_DATA_GEN(AR24,3),eq,0,then
+  ! 3D mass c/w rotary inertia - NASTRAN CONM2 element
+        *if,RCON_DATA(AR24,2),ne,RCON_DATA(AR24,1),or,RCON_DATA(AR24,3),ne,RCON_DATA(AR24,1),then
+	  *vwrite
+$ WARNING - DIRECTIONAL DEPENDENT MASSES (Mxx TRANSLATED)
+	*endif
+	mass = RCON_DATA(AR24,1)
+	ixx = RCON_DATA(AR24,4)
+	iyy = RCON_DATA(AR24,5)
+	izz = RCON_DATA(AR24,6)
+        *vmas,STI_MASK(1)
+	*vwrite,ELM_ID(1),ELM_NOD(1,1),1,mass,ixx,iyy,izz
+CONM2*  %16I%16I%16I%16.5G%/*%/*       %16.5G%32X%16.5G%/*       %16X%16.5G
+      *endif   
+    *endif
+!----------------------------------------
+! SHELL63 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,63,then  
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1),RCON_DATA(AR24,1),STI_GEN(AR24,1),STI_GEN(AR24,1)
+PSHELL* %16I%16I%16.5G%16I%/*                       %16I
+! check for degenerate elements
+    *del,DEGEN_MASK,nopr
+    *dim,DEGEN_MASK,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK(1),ELM_NOD(1,3),eq,ELM_NOD(1,4)
+    *vmas,DEGEN_MASK(1)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3)
+CTRIA3  %8I%8I%8I%8I%8I
+    *del,DEGEN_MASK,nopr
+    *dim,DEGEN_MASK,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK(1),ELM_NOD(1,3),ne,ELM_NOD(1,4)
+    *vmas,DEGEN_MASK(1)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,4)
+CQUAD4  %8I%8I%8I%8I%8I%8I
+!----------------------------------------
+! BEAM4 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,4,then  
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1),RCON_DATA(AR24,1),RCON_DATA(AR24,2),RCON_DATA(AR24,3),RCON_DATA(AR24,8)
+PBAR*   %16I%16I%16.5G%16.5G%/*       %16.5G%16.5G
+! check if orientation node is defined
+    *del,ORI_NODE,nopr
+    *dim,ORI_NODE,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,ORI_NODE(1),ELM_NOD(1,3),le,0
+    *vmas,ORI_NODE(1)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),0.,1.,0.
+CBAR*   %16I%16I%16I%16I%/*       %16.5G%16.5G%16.5G    
+    *del,ORI_NODE,nopr
+    *dim,ORI_NODE,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,ORI_NODE(1),ELM_NOD(1,3),ge,1
+    *vmas,ORI_NODE(1)    
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3)
+CBAR    %8I%8I%8I%8I%8I
+!----------------------------------------
+! COMBIN14 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,14,then  
+! check data
+    *if,KOPT_DATA_GEN(AR24,1),eq,1,then
+      *vmas,STI_MASK(1)
+      *vwrite,ELM_ID(1)     
+$ WARNING - ELEM %I HAS KEYOPT(1)=1, NONLINEAR, UNSUPPORTED TRANSLATION      
+      *cycle
+    *endif
+    *if,KOPT_DATA_GEN(AR24,2),eq,0,then
+      *vmas,STI_MASK(1)
+      *vwrite,ELM_ID(1)     
+$ WARNING - ELEM %I HAS KEYOPT(2)=0, UNSUPPORTED TRANSLATION	  
+      *cycle
+    *endif    
+    *if,KOPT_DATA_GEN(AR24,2),ne,0,then
+      comp = KOPT_DATA_GEN(AR24,2)
+    *endif  
+    stiff = RCON_DATA(AR24,1)
+    *vmas,STI_MASK(1)
+    *vwrite,ELM_ID(1),stiff,ELM_NOD(1,1),comp,ELM_NOD(1,2),comp
+CELAS2* %16I%16.4G%16I%16I%/*       %16I%16I
+!----------------------------------------
+! LINK180 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,180,then
+    *vlen,1  
+    *vwrite
+$ WARNING - TORSIONAL CONSTANT MAY NEED TO BE DEFINED MANUALLY
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1),RCON_DATA(AR24,1),RCON_DATA(AR24,2)
+PROD*   %16I%16I%16.4G%/*       %32X%16.4G
+    *vmas,STI_MASK(1)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2)
+CROD    %16I%16I%16I%16I
+!----------------------------------------
+! SOLID185/45 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,185,or,STI_GEN(AR24,4),eq,45,then
+! check for degenerate elements
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1)
+PSOLID  %16I%16I
+    *del,DEGEN_MASK,nopr
+    *dim,DEGEN_MASK,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK(1),ELM_NOD(1,3),ne,ELM_NOD(1,4)
+    *vmas,DEGEN_MASK(1)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,4),ELM_NOD(1,5),ELM_NOD(1,6),ELM_NOD(1,7),ELM_NOD(1,8)
+CHEXA   %8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I    
+    *del,DEGEN_MASK1,nopr
+    *del,DEGEN_MASK2,nopr
+    *dim,DEGEN_MASK1,array,STI_EMAX
+    *dim,DEGEN_MASK2,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK1(1),ELM_NOD(1,3),eq,ELM_NOD(1,4)
+    *vmas,DEGEN_MASK1(1)
+    *voper,DEGEN_MASK2(1),ELM_NOD(1,5),ne,ELM_NOD(1,6)
+    *vmas,DEGEN_MASK2(2)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,5),ELM_NOD(1,6),ELM_NOD(1,7)
+CPENTA  %8I%8I%8I%8I%8I%8I%8I%8I
+    *del,DEGEN_MASK2,nopr
+    *dim,DEGEN_MASK2,array,STI_EMAX 
+    *vmas,DEGEN_MASK1(1)
+    *voper,DEGEN_MASK2(1),ELM_NOD(1,5),eq,ELM_NOD(1,6) 
+    *vmas,DEGEN_MASK2(2)
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,5)
+CTETRA  %8I%8I%8I%8I%8I%8I      
+!----------------------------------------
+! SOLID186/95 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,186,or,STI_GEN(AR24,4),eq,95,then
+! check for degenerate elements
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1)
+PSOLID  %16I%16I
+    *del,DEGEN_MASK,nopr
+    *dim,DEGEN_MASK,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK(1),ELM_NOD(1,7),ne,ELM_NOD(1,8)
+    *vmas,DEGEN_MASK(1)   
+*vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,4),ELM_NOD(1,5),ELM_NOD(1,6),ELM_NOD(1,7),ELM_NOD(1,8),ELM_NOD(1,9),ELM_NOD(1,10),ELM_NOD(1,11),ELM_NOD(1,12),ELM_NOD(1,13),ELM_NOD(1,14),ELM_NOD(1,15),ELM_NOD(1,16),ELM_NOD(1,17),ELM_NOD(1,18),ELM_NOD(1,19),ELM_NOD(1,20)
+CHEXA   %8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I%8I%8I%8I%8I   
+    *del,DEGEN_MASK1,nopr
+    *del,DEGEN_MASK2,nopr
+    *dim,DEGEN_MASK1,array,STI_EMAX
+    *dim,DEGEN_MASK2,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,DEGEN_MASK1(1),ELM_NOD(1,7),eq,ELM_NOD(1,8)
+    *vmas,DEGEN_MASK1(1)
+    *voper,DEGEN_MASK2(1),ELM_NOD(1,3),ne,ELM_NOD(1,4)
+    *vmas,DEGEN_MASK2(2)
+    *vwrite,ELM_ID(1)
+$ WARNING - ELEMENT %I NOT TRANSLATED (PYRAMID ELEMENTS UNSUPPORTED)
+    *del,DEGEN_MASK2,nopr
+    *dim,DEGEN_MASK2,array,STI_EMAX 
+    *vmas,DEGEN_MASK1(1)
+    *voper,DEGEN_MASK2(1),ELM_NOD(1,4),ne,ELM_NOD(1,5) 
+    *vmas,DEGEN_MASK2(2)  
+*vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,5),ELM_NOD(1,6),ELM_NOD(1,7),ELM_NOD(1,8),ELM_NOD(1,9),ELM_NOD(1,10),ELM_NOD(1,11),ELM_NOD(1,12),ELM_NOD(1,13),ELM_NOD(1,14),ELM_NOD(1,15),ELM_NOD(1,16)
+CPENTA  %8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I
+!----------------------------------------
+! SOLID187/92 ELEMENT
+!----------------------------------------
+  *elseif,STI_GEN(AR24,4),eq,187,or,STI_GEN(AR24,4),eq,92,then
+    *vlen,1
+    *vwrite,AR24,STI_GEN(AR24,1)
+PSOLID  %16I%16I 
+    *vwrite,ELM_ID(1),AR24,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3),ELM_NOD(1,4),ELM_NOD(1,5),ELM_NOD(1,6),ELM_NOD(1,7),ELM_NOD(1,8),ELM_NOD(1,9),ELM_NOD(1,10)
+CTETRA  %8I%8I%8I%8I%8I%8I%8I%8I%8I%8I%/+       %8I%8I
+!----------------------------------------
+  *endif
+!----------------------------------------
+*enddo
+!----------------------------------------
+! reselect original elements
+!----------------------------------------
+cmsel,s,STI_TEMPELEM
+*get,STI_EMAX,elem,,num,max
+
+!----------------------------------------
+! now section data
+!----------------------------------------
+*do,AR24,1,STI_UNIQ_SEC
+  *vlen,1
+  *vwrite,STI_SEC(AR24,3),STI_SEC(AR24,4),STI_SEC(AR24,2),STI_SEC(AR24,1)
+$ ELEMENT OUTPUT FOR ETYPE %I (ENAM %I), SECTION %I, MAT ID %I
+!----------------------------------------
+! select appropiate element set
+!----------------------------------------
+  cmsel,s,STI_TEMPELEM
+  esel,s,type,,STI_SEC(AR24,3) $ esel,r,sec,,STI_SEC(AR24,2) $ esel,r,mat,,STI_SEC(AR24,1)
+!----------------------------------------
+! create masking array based on selection
+!----------------------------------------
+  *del,STI_MASK,nopr
+  *dim,STI_MASK,array,STI_EMAX
+  *vget,STI_MASK(1),elem,,esel
+!----------------------------------------
+! perform action based on ename
+!----------------------------------------
+! BEAM188 ELEMENT
+!----------------------------------------
+  *if,STI_SEC(AR24,4),eq,188,then
+    *vlen,1
+    *vwrite,AR24+STI_UNIQ_GEN,STI_SEC(AR24,1),SECN_DATA(AR24,1),SECN_DATA(AR24,2),SECN_DATA(AR24,6)
+PBAR*   %16I%16I%16.5G%16.5G%/*       %16.5G%16.5G
+! check if orientation node is defined
+    *del,ORI_NODE,nopr
+    *dim,ORI_NODE,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,ORI_NODE(1),ELM_NOD(1,3),le,0
+    *vmas,ORI_NODE(1)
+    *vwrite,ELM_ID(1),AR24+STI_UNIQ_GEN,ELM_NOD(1,1),ELM_NOD(1,2),0.,1.,0.
+CBAR*   %16I%16I%16I%16I%/*       %16.5G%16.5G%16.5G    
+    *del,ORI_NODE,nopr
+    *dim,ORI_NODE,array,STI_EMAX
+    *vmas,STI_MASK(1)
+    *voper,ORI_NODE(1),ELM_NOD(1,3),ge,1
+    *vmas,ORI_NODE(1)    
+    *vwrite,ELM_ID(1),AR24+STI_UNIQ_GEN,ELM_NOD(1,1),ELM_NOD(1,2),ELM_NOD(1,3)
+CBAR    %8I%8I%8I%8I%8I
+!----------------------------------------
+  *endif
+!----------------------------------------
+*enddo
+
+!----------------------------------------
+! NODAL COORDINATES
+!----------------------------------------
+cmsel,s,STI_TEMPELEM
+*get,NNUMMAX,node,,num,max
+*del,NMASK,nopr
+*dim,NMASK,array,NNUMMAX
+*del,NARRAY,nopr
+*dim,NARRAY,array,NNUMMAX,4
+! get status of selected nodes (note: only selected nodes outputted)
+nsle,s			! select nodes attached to selected elements
+*vget,NMASK(1),node,1,nsel
+*vmask,NMASK(1)
+*vget,NARRAY(1,1),node,1,loc,x
+*vmask,NMASK(1)
+*vget,NARRAY(1,2),node,1,loc,y
+*vmask,NMASK(1)
+*vget,NARRAY(1,3),node,1,loc,z
+*vfil,NARRAY(1,4),ramp,1,1
+*vwrite
+$ NODAL CARDS
+*vmask,NMASK(1)
+*vwrite,NARRAY(1,4),0,NARRAY(1,1),NARRAY(1,2),NARRAY(1,3),0
+GRID*   %16I%16I%16.9G%16.9G%/*       %16.9G%16I
+!----------------------------------------
+
+!----------------------------------------
+! MATERIAL DATA
+!----------------------------------------
+*vwrite
+$ MATERIAL DATA
+*vwrite
+$ EXX,PRXY,DENS supported, isotropic data only
+*dim,MAT_ID,array,STI_UNIQ_GEN+STI_UNIQ_SEC
+*do,AR26,1,STI_UNIQ_GEN+STI_UNIQ_SEC
+  *if,AR26,le,STI_UNIQ_GEN,then $ MAT_ID(AR26) = STI_GEN(AR26)
+  *else $ MAT_ID(AR26) = STI_SEC(AR26-STI_UNIQ_GEN) $ *endif
+*enddo
+*vfun,MAT_ID(1),asort,MAT_ID(1)
+*dim,MAT_MASK,array,STI_UNIQ_GEN+STI_UNIQ_SEC
+*vope,MAT_MASK(1),MAT_ID(1),ne,MAT_ID(2)
+!----------------------------------------
+! get smaller array of unique values
+!----------------------------------------
+*vscf,MAT_CNT,sum,MAT_MASK(1)
+*del,MAT_COMP,nopr
+*dim,MAT_COMP,array,MAT_CNT
+*vmas,MAT_MASK(1)
+*vfun,MAT_COMP(1),comp,MAT_ID(1)
+*del,MAT_MASK,nopr
+*del,MAT_ID,nopr
+!----------------------------------------
+! retrieve material data
+!----------------------------------------
+*dim,MAT_PROP,array,MAT_CNT,3
+*do,AR27,1,MAT_CNT
+  *get,MAT_PROP(AR27,1),ex,MAT_COMP(AR27)
+  *get,MAT_PROP(AR27,2),prxy,MAT_COMP(AR27)  
+  *get,MAT_PROP(AR27,3),dens,MAT_COMP(AR27) 
+  *vlen,1 
+  *vwrite,MAT_COMP(AR27),MAT_PROP(AR27,1),MAT_PROP(AR27,2),MAT_PROP(AR27,3)
+MAT1*   %16I%16.5G                %16.5G%/*       %16.5G
+*enddo
+!----------------------------------------
+
+*cfclos
+
+cmdele,STI_TEMPELEM
+*del,DEGEN_MASK,nopr
+*del,DEGEN_MASK1,nopr
+*del,DEGEN_MASK2,nopr
+*del,ELM_ID,nopr
+*del,ELM_NOD,nopr
+*del,fn1,nopr
+*del,fn2,nopr
+*del,KOPT_DATA_GEN,nopr
+*del,KOPT_DATA_SEC,nopr
+*del,MAT_COMP,nopr
+*del,MAT_PROP,nopr
+*del,NARRAY,nopr
+*del,NMASK,nopr
+*del,RCON_DATA,nopr
+*del,SECN_DATA,nopr
+*del,STI_DATA,nopr

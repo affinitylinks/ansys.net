@@ -1,0 +1,337 @@
+!*********************************************************************************
+!*********************************************************************************
+!
+! a simple example demonstrating the practicality of using contact with shells
+!
+!*********************************************************************************
+!*********************************************************************************
+
+! finish anything and start anew
+FINI
+/CLE
+
+! assign a file name
+/FIL, SimpleShellContactExample
+
+! enter /PREP7
+/PREP7
+
+! assign thicknesses according to the following geometry
+!
+!         +-----+---------+
+!         |     |         |
+!         |     |         |
+!         |     |         |
+!     +---+  B  |    S    +-|
+!     | B |  L  |    P    |H|
+!     | T +--A--+----I----+E|
+!     | N +--D--+----D----+A|
+!     |   |  E  |    E    |D|
+!     +---+     |    R    +-+
+!         |     |         |
+!         |     |         |
+!         |     |         |
+!         |     |         |
+!         |     |         |
+!         +-----+---------+
+!               ^
+!               |
+!               |
+!              z=0
+
+   thkSPIDR = 0.1196
+   thkBLADE = 0.0600
+
+   thkHEAD  = 0.0100
+   thkBTN   = 0.0250
+
+! give dimensions to a 'square' rivet
+   odRIVET  = 0.1900
+
+! give dimension to a 'square' BLADE and SPIDER
+   l1 = 0.5
+   l2 = 0.1
+
+! create geometry at BTN midsurface          !        KPTS 1:17 at BTN midsurface
+   CSYS                                      !    4                                3
+   K,  1, -l1  , -l1  , +thkBLADE+thkBTN/2   !
+   K,  2, +l1  , -l1  , +thkBLADE+thkBTN/2   !
+   K,  3, +l1  , +l1  , +thkBLADE+thkBTN/2   !            8                7
+   K,  4, -l1  , +l1  , +thkBLADE+thkBTN/2   !
+   K,  5, -l2  , -l2  , +thkBLADE+thkBTN/2   !
+   K,  6, +l2  , -l2  , +thkBLADE+thkBTN/2   !
+   K,  7, +l2  , +l2  , +thkBLADE+thkBTN/2   !               15   16   17
+   K,  8, -l2  , +l2  , +thkBLADE+thkBTN/2   !
+   K,  9, -l2/2, -l2/2, +thkBLADE+thkBTN/2   !               12   13   14
+   K, 10,      , -l2/2, +thkBLADE+thkBTN/2   !
+   K, 11, +l2/2, -l2/2, +thkBLADE+thkBTN/2   !                9   10   11
+   K, 12, -l2/2,      , +thkBLADE+thkBTN/2   !               <- odRIVET->
+   K, 13,      ,      , +thkBLADE+thkBTN/2   !
+   K, 14, +l2/2,      , +thkBLADE+thkBTN/2   !            5                6
+   K, 15, -l2/2, +l2/2, +thkBLADE+thkBTN/2   !            <-------l2------->
+   K, 16,      , +l2/2, +thkBLADE+thkBTN/2   !
+   K, 17, +l2/2, +l2/2, +thkBLADE+thkBTN/2   !    1                                2
+                                             !    <---------------l1--------------->
+
+! create the areas (all follow the right hand rule so normals are consistent - very important)
+   A,  1,  2,  3,  4      ! projection of BLADE profile
+   A,  5,  6,  7,  8      ! projection of rivet BTN profile
+   A,  9, 10, 13, 12      ! next 4 areas project the 'square' rivet
+   A, 10, 11, 14, 13
+   A, 12, 13, 16, 15
+   A, 13, 14, 17, 16
+
+! cut out the areas
+   ASBA, 1, 2, , DELE, KEEP
+   AGEN, 2, 7
+   NUMM, KP
+   NUMC, ALL
+   ASEL, U, AREA, , 1
+   ASBA, 2, ALL, , DELE, KEEP
+   AGEN, 2, 7
+   NUMM, KP
+   NUMC, ALL
+
+! project the areas onto the BLADE, SPIDER, and HEAD midsurfaces
+   ALLS
+   *DO, z, 1, 3!{
+      *IF, z, EQ, 1, THEN!{
+         dz = thkBTN/2+thkBLADE/2                     ! distance to BLADE midsurface
+      *ELSEIF, z, EQ, 2
+         dz = thkBTN/2+thkBLADE+thkSPIDR/2            ! distance to SPIDER midsurface
+      *ELSEIF, z, EQ, 3
+         dz = thkBTN/2+thkBLADE+thkSPIDR+thkHEAD/2    ! distance to rivet HEAD midsurface
+      *ENDIF!}
+      KGEN, 2, 1, 17, 1, , , -dz
+      LGEN, 2, 1, 20, 1, , , -dz
+      AGEN, 2, 1,  6, 1, , , -dz
+   *ENDDO
+   NUMM, KP
+   NUMC, ALL
+
+! set up pointers for element types, real constants, and material properties
+   etCONTAC =  1
+   etPRETEN =  2
+   etRIVET  =  3
+   etSHELL  =  4
+   etTARGET =  5
+
+   mpAL     =  1
+   mpSTEEL  =  2
+
+   rBLADE   =  1
+   rBTN     =  2
+   rHEAD    =  3
+   rRIVET   =  4
+   rSPIDR   =  5
+   rPR1     =  6
+   rPR2     =  7
+   rPR3     =  8
+   rPR4     =  9
+   rPR5     = 10
+   rPR6     = 11
+
+! assign element types
+   ET, etCONTAC, CONTA174
+   ET, etPRETEN, PRETS179
+   ET, etRIVET , PIPE16
+   ET, etSHELL , SHELL93
+   ET, etTARGET, TARGE170, 1
+
+! include shell thickness effects for contact elements
+   KEYO, etCONTAC, 11, 1
+
+! set up real constants for all thicknesses and rivet diameter
+   R, rBLADE, thkBLADE
+   R, rBTN  , thkBTN
+   R, rHEAD , thkHEAD
+   R, rRIVET, odRIVET, odRIVET/2
+   R, rSPIDR, thkSPIDR
+
+! setup real constants for contact and target elements
+!      for * values -
+!         input positive values for absolute
+!         input negative values for scaling
+   R1     =  0.0         !   target sphere/cylinder/cone radius
+   R2     =  0.0         !   target cone 2nd radius
+   FKN    =  0.1         ! * normal penalty stiffness
+   FTOLN  =  0.1         ! * penetration tolerance
+   ICONT  =  0.0         ! * initial contact closure
+   PINB   =  0.0         ! * pinball region
+   PMAX   =  0.0         ! * initial allowable penetration < PMAX
+   PMIN   =  0.0         ! * initial allowable penetration > PMIN
+   TAUMAX =  1.0E+20      !   maximum friction stress
+   CNOF   =  0.0         !   contact surface offset (+ closes, - opens)
+   FKOP   =  1.0         ! * contact opening stiffness
+   FKT    =  0.0         ! * tangent penalty stiffness
+   COHE   =  0.0         !   contact cohesion
+   *DO, n, 1, 6
+      R, rPR%n%, R1, R2, FKN, FTOLN, ICONT, PINB
+      RMOR, PMAX, PMIN, TAUMAX, CNOF, FKOP, FKT
+      RMOR, COHE
+   *ENDDO
+
+! specify linear material properties of 5086-H32 aluminum
+   exAL     = 10.3E+06   ! modulus of elasticity
+   nuAL     = 0.33      ! Poisson's Ratio
+   rhoAL    = 0.096      ! density in lbm/in3
+
+! specify nonlinear material properties of 5086-H32
+   utsAL    = 42061      ! ultimate tensile strength
+   ysAL     = 29733      ! yield strength
+   epsutsAL = 0.12      ! elongation at break
+
+! specify linear material properties of STEEL
+   exSTEEL  = 30.0E+06   ! modulus of elasticity
+   rhoSTEEL = 0.284      ! density in lb,/in3
+   nuSTEEL  = 0.300      ! Poisson's Ratio
+
+! set up linear and nonlinear materials (nonlinearities turned off for this simple example)
+   MPDE, ALL, ALL
+
+   MP  , DENS, mpAL   , rhoAL/386.4
+   MP  , EX  , mpAL   , exAL
+   MP  , NUXY, mpAL   , nuAL
+!   TB  , BISO, mpAL   , 1, 2
+!   TBDA, , ysAL, (utsAL-ysAL)/(epsutsAL-ysAL/exAL)
+
+   MP  , DENS, mpSTEEL, rhoSTEEL/386.4
+   MP  , EX  , mpSTEEL, exSTEEL
+   MP  , NUXY, mpSTEEL, nuSTEEL
+
+! assign attributes to all areas
+   ASEL, S, AREA, ,  1,  6
+   AATT, mpSTEEL, rBTN  , etSHELL
+   ASEL, S, AREA, ,  7, 12
+   AATT, mpAL   , rBLADE, etSHELL
+   ASEL, S, AREA, , 13, 18
+   AATT, mpSTEEL, rSPIDR, etSHELL
+   ASEL, S, AREA, , 19, 24
+   AATT, mpSTEEL, rHEAD , etSHELL
+
+! set up meshing preferences
+   DESI, DEFA
+   MOPT, DEFA
+   SMRT, 6
+   ESIZ, 0.05
+
+! mesh all areas
+   ALLS
+   AMES, 3, 6         ! this and the next command meshes the 'square' rivet shank
+   *REP, 4, 6, 6
+   AMES, 2, 24, 6     ! this meshes the area under the rivet BTN and HEAD
+   AMES, 7, 13, 6     ! this meshes the BLADE and SPIDER
+   ACLE,  9, 12       ! unmesh the rivet through-hole on the BLADE
+   ACLE, 15, 18       ! unmesh the rivet through-hole on the SPIDER
+   NUMC, ALL
+
+! model the 'square' rivet shank
+   ESEL, NONE
+   LSEL, NONE
+   NSEL, NONE
+   L, 13, 64
+   LDIV, ALL
+   LATT, mpSTEEL, rRIVET, etRIVET
+   LMES, ALL
+
+! create a pretension element at the middle of the shank to prestress the rivet
+   KSEL, U, KP, , 13, 64, 51
+   *GET, node, NODE, , NUM, MAX
+   N, node+1, 0, 0, KZ(69)
+   PSME, , , node+1, ALL, , 0, Z, , , , etPRETEN
+
+! couple rotations across the pretension element
+   ESEL, S, TYPE, , etPRETEN
+   NSLE
+   NSEL, U, NODE, , node+1
+   CP, NEXT, ROTX, ALL
+   CP, NEXT, ROTY, ALL
+   CP, NEXT, ROTZ, ALL
+
+! assign a coefficient of friction to all contact pair
+   MP, MU, mpAL   , 0.15
+   MAT, mpAL
+
+! place symmetric contact pairs on the BLADE-SPIDER interface
+   ASEL, S, AREA, , 13, , , 1
+   REAL, rPR1
+   TYPE, etCONTAC
+   ESUR, ALL, TOP
+   REAL, rPR2
+   TYPE, etTARGET
+   ESUR, ALL, TOP
+
+   ASEL, S, AREA, ,  7, , , 1
+   REAL, rPR2
+   TYPE, etCONTAC
+   ESUR, ALL, BOTTOM
+   REAL, rPR1
+   TYPE, etTARGET
+   ESUR, ALL, BOTTOM
+
+! place symmetric contact pairs on the BLADE-BTN interface
+   ASEL, S, AREA, ,  8, , , 1
+   REAL, rPR3
+   TYPE, etCONTAC
+   ESUR, ALL, TOP
+   REAL, rPR4
+   TYPE, etTARGET
+   ESUR, ALL, TOP
+
+   ASEL, S, AREA, ,  2, , , 1
+   REAL, rPR4
+   TYPE, etCONTAC
+   ESUR, ALL, BOTTOM
+   REAL, rPR3
+   TYPE, etTARGET
+   ESUR, ALL, BOTTOM
+
+! place symmetric contact pairs on the SPIDER-HEAD interface
+   ASEL, S, AREA, , 20, , , 1
+   REAL, rPR5
+   TYPE, etCONTAC
+   ESUR, ALL, TOP
+   REAL, rPR6
+   TYPE, etTARGET
+   ESUR, ALL, TOP
+
+   ASEL, S, AREA, , 14, , , 1
+   REAL, rPR6
+   TYPE, etCONTAC
+   ESUR, ALL, BOTTOM
+   REAL, rPR5
+   TYPE, etTARGET
+   ESUR, ALL, BOTTOM
+
+FINI
+
+/SOL
+
+! clear all loads - secondary entry point
+   ALLS
+   CPDE, ALL
+   CEDE, ALL
+   LSCL, ALL
+
+! fix one point on the spider to prevent rigid body motion
+   ALLS
+   DK, 13, ALL
+
+! apply 12000 psi pretension on rivet
+   ALLS
+   SOLC, ON
+   PreLoad = 12000*PI*odRIVET*odRIVET/4
+   SLOA, ALL, 9, TINY, FORC, PreLoad, 1, 2
+   OUTR, ALL, ALL
+   NSUB, 12, 12, 12
+   SOLV
+
+! exit /SOL
+FINI
+
+! draw a picture of the contact between SHELL1 and SHELL2
+/POST1
+   SET, LAST
+   ESEL, S, REAL, , rPR1
+   ESEL, R, TYPE, , etCONTAC
+   PLNS, CONT, GAP

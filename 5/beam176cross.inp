@@ -1,0 +1,171 @@
+!----------------------------------------
+! 3D beam contact example
+!   "Net"
+!   written by sheldon
+!----------------------------------------
+finish
+/clear
+
+DIM_BEAM_RADIUS   = 2
+DIM_BEAM_RINNER   = 1.5
+DIM_BEAM_LENGTH   = 120
+DIM_BEAM_SPACING  = 20
+DIM_SPHERE_RADIUS = 30
+
+NUM_BEAM_LINES  = DIM_BEAM_LENGTH/DIM_BEAM_SPACING
+
+FRC_BEAM_OFFSET = 1e5
+
+/view,1,1,2,3
+/auto
+/pnum,type,1
+/num,1
+/eshape,1
+
+/prep7
+et,1,188
+et,2,188
+et,3,170
+et,4,176
+keyopt,4,3,1
+et,5,170
+et,6,176
+keyopt,6,3,1
+r,1
+r,2
+r,3,DIM_BEAM_RADIUS,DIM_BEAM_RADIUS
+r,5,DIM_SPHERE_RADIUS,DIM_BEAM_RADIUS
+
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+tb,biso,1,1
+tbdata,1,50e3,10e4
+mp,ex  ,2,10e6
+mp,nuxy,2,0.3
+tb,biso,2,1
+tbdata,1,50e3,10e4
+tb,fric,3,1,,iso
+tbdata,1,0.1
+tb,fric,5,1,,iso
+tbdata,1,0.4
+sectype,1,beam,ctube
+secdata,DIM_BEAM_RINNER,DIM_BEAM_RADIUS
+sectype,2,beam,ctube
+secdata,DIM_BEAM_RINNER,DIM_BEAM_RADIUS
+
+k,1,0,,DIM_BEAM_SPACING/2
+k,2,DIM_BEAM_LENGTH,,DIM_BEAM_SPACING/2
+l,1,2
+latt,1,1,1,,,,1
+esize,5
+lmesh,all
+*get,NUM_NODE_MAX,node,,num,maxd
+egen,NUM_BEAM_LINES,NUM_NODE_MAX,all,,,0,0,0,0,0,0,0,DIM_BEAM_SPACING
+numcmp,node
+lsel,none
+allsel,below,line
+k,3,DIM_BEAM_SPACING/2,,0
+k,4,DIM_BEAM_SPACING/2,,DIM_BEAM_LENGTH
+l,3,4
+latt,2,2,2,,,,2
+lmesh,all
+*get,NUM_NODE_MAX,node,,num,maxd
+egen,NUM_BEAM_LINES,NUM_NODE_MAX,all,,,0,0,0,0,0,DIM_BEAM_SPACING,0,0
+numcmp,node
+
+esel,s,type,,1
+nsle
+type,3$real,3$mat,3$tsha,line
+esurf
+esel,s,type,,2
+nsle
+type,4$real,3$mat,3
+esurf
+
+esel,s,type,,1,2
+nsle
+type,6$real,5$mat,5
+esurf
+esel,s,type,,1
+nsle
+esln
+esel,r,type,,6
+ensym,0,,0,all
+
+nsel,none
+n,,DIM_BEAM_LENGTH/2,DIM_SPHERE_RADIUS+2*DIM_BEAM_RADIUS,DIM_BEAM_LENGTH/2
+type,5$real,5$mat,5$tsha,sphe
+NUM_NODE_PILOT=ndnext(0)
+e,NUM_NODE_PILOT
+tsha,pilo
+e,NUM_NODE_PILOT
+
+d,NUM_NODE_PILOT,all
+
+nsel,s,loc,x,0
+nsel,a,loc,x,DIM_BEAM_LENGTH
+nsel,a,loc,z,0
+nsel,a,loc,z,DIM_BEAM_LENGTH
+d,all,ux
+d,all,uy
+d,all,uz
+
+*do,ICOUNT,1,NUM_BEAM_LINES
+  *do,JCOUNT,1,NUM_BEAM_LINES
+    *if,mod(ICOUNT+JCOUNT,2),eq,0,then
+      FRC_BEAM_TEMP=FRC_BEAM_OFFSET
+    *else
+      FRC_BEAM_TEMP=-FRC_BEAM_OFFSET
+    *endif
+    esel,s,type,,1
+    nsle
+    f,node(DIM_BEAM_SPACING/2+(ICOUNT-1)*DIM_BEAM_SPACING,0,DIM_BEAM_SPACING/2+(JCOUNT-1)*DIM_BEAM_SPACING),fy,FRC_BEAM_TEMP
+    esel,s,type,,2
+    nsle
+    f,node(DIM_BEAM_SPACING/2+(ICOUNT-1)*DIM_BEAM_SPACING,0,DIM_BEAM_SPACING/2+(JCOUNT-1)*DIM_BEAM_SPACING),fy,-FRC_BEAM_TEMP
+  *enddo
+*enddo
+
+allsel,all
+finish
+
+/solu
+nlgeom,on
+rescon,define,none
+outres,all,all
+nsubst,5,100,1
+
+esel,s,type,,3,6
+ekill,all
+
+allsel,all
+/title,Apply forces to form net pattern (no contact active)
+solve
+
+esel,s,type,,3,4
+ealive,all
+
+allsel,all
+/title,Finish net pattern by activating contact (resolve interference)
+solve
+
+esel,s,type,,5,6
+ealive,all
+d,NUM_NODE_PILOT,uy,-5*DIM_BEAM_RADIUS
+
+allsel,all
+/title,Push down with rigid sphere on net
+solve
+
+finish
+
+/post1
+set,last
+plnsol,u,sum
+
+esel,s,ename,,176
+etab,CSTATI,nmisc,1
+etab,CSTATJ,nmisc,2
+plls,CSTATI,CSTATJ
+
+

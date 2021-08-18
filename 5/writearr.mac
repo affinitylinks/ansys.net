@@ -1,0 +1,32 @@
+! This macro will export an array to a file.
+! The usage is: writearr,'arrayname','filename','ext'
+! where:
+! ARG1	arrayname 	is the name of the array to be exported
+! ARG2	filename	is the prefix of the filename to which 
+!			the data will be written
+! ARG3	ext		is the extension of the filename to which 
+!			the data will be written
+! For example:
+!	writearr,'press','press','txt'
+! will write the array press to the file press.txt
+!
+! Carl Howard -  noiseboard.com
+! 10 April 2003
+!
+
+! Get the dimensions of the matrix
+
+*GET,rows,'PARM','ARG1',DIM,X   
+*GET,cols,'PARM','ARG1',DIM,Y   
+
+*CFOPEN,ARG2,ARG3
+*DO,II,1,rows
+*DO,JJ,1,cols
+data=ARG1(II,JJ)
+*VWRITE,II,JJ,data
+(F10.1, F10.1, E20.10)
+*ENDDO
+*ENDDO
+
+*CFCLOSE,ARG2,ARG3
+

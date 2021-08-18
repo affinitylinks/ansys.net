@@ -1,0 +1,53 @@
+! ANSYS REVISION 5.5.3, SP with fix to ddts#15063 (internal CEQNs)
+!  -------------------------------------------------------------------------
+!       This macro generates the doubled geometry for the solution of 
+!       a cyclic symmetry modal analysis. (See also CYCSOL).
+!       This macro is designed to solve an eigenvalue problem
+!       for a sector of a model that is cyclic symmetric.
+!
+!       **** This macro runs within PREP7 ****
+!
+!       Proper execution of this macro requires the following:
+!
+!           1. The geometry is defined in the global cylindrical system
+!           2. the basic sector database is active
+!               nodes, elements, coupling, and internal CE are defined
+!
+!       Use this macro as follows:
+!
+!            CYCGEN
+!  -------------------------------------------------------------------------
+_kpr = wrinqr(1)
+/NOPR                     ! Supress printout
+*get,_ntot,NODE,,NUM,MAX  ! max node number
+*if,_ntot,le,0,then
+   *msg,error
+        ABORT  - no nodes in basic sector
+*endif
+
+*get,_etot,ELEM,,NUM,MAX  ! max element number
+*if,_etot,le,0,then
+   *msg,error
+        ABORT  - no elements in basic sector
+*endif
+
+*dim,_sel,,2*_etot                 ! Array for selected elements
+*vget,_sel(1),ELEM,1,ESEL          ! Get element selected set
+*vfun,_sel(_etot+1),COPY,_sel(1)   ! Duplicate selected set
+eall                               ! Activate all elements for generation 
+
+!         generate the second sector needed for modal analysis
+ngen,2,_ntot,1,_ntot,1
+egen,2,_ntot,1,_etot,1
+*vput,_sel(1),ELEM,1,ESEL           ! Define selected element 
+
+_ntot=
+_etot=
+_sel(1)=
+*if,_kpr,eq,0,then
+   _kpr=
+*else
+   _kpr=
+   /GO
+*endif
+!  -------------------------------------------------------------------------

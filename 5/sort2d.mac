@@ -1,0 +1,143 @@
+! Ansys macro to sort a given numeric array (2d)
+!
+! arg1 - Char - Name of the array to sort.
+! If not given or if not a numeric array, the macro does nothing.
+! arg2 - Int - First column number by which to sort.
+! Defaults to 1 if not given.
+! arg3 - Int - Second column number by which to sort.
+! Defaults to arg2. Is used if first column has equal cells.
+! arg4 - Int - Third column number by which to sort.
+! Defaults to arg3. Is used if first & second column has equal cells.
+!
+! arg5 - Double - Tolerance. Defaults to ZERO.
+!
+*do,arg6,1,2 ! dummy do loop. exec only once. used for easy exit from macro.
+!
+! Check for arg1
+*get,ar22,parm,'%arg1%',type
+*if,ar22,ne,1,exit
+!
+! get the num rows of the array
+*get,ar31,parm,'%arg1%',dim,x
+!
+! Create a temporary results array for the *moper commands
+*del,_zc,,nopr
+*dim,_zc,,ar31
+!
+! check if arg2 is given. if not given assume it is 1.
+*if,arg2,le,0,then
+arg2=1
+*endif
+!
+! sort by the first specified column
+!
+*moper,_zc(1),arg1(1,1),sort,arg1(1,arg2)
+!
+!
+*if,arg3,le,0,exit ! if second column was not specified get out.
+!
+! re-sort by second specified column IF there are equal cells
+! in the first specified column
+!
+*set,ar28,0 ! temp counter - num rows skipped
+!
+*do,ar24,1,(ar31-1)
+!
+*if,ar28,gt,0,then
+ar28=ar28-1
+*cycle
+*endif
+!
+*if,abs(arg1(ar24,arg2)-arg1(ar24+1,arg2)),gt,arg5,cycle
+!
+*set,ar29,0 ! temp counter - used for last consec set,last elem addition
+*do,ar25,ar24,(ar31-1)
+!
+! If consecutive cells are the same AND the loop is NOT at the
+! last cell, then cycle
+ar26=abs(arg1(ar25,arg2)-arg1(ar25+1,arg2)) ! consec cell check
+ar27=(ar25-(ar31-1)) ! last cell check
+!
+*if,ar26,le,arg5,then
+*if,ar27,ne,0,cycle
+*set,ar29,1
+*endif
+!
+ar28=ar29+(ar25-ar24+1) ! num rows to be sorted
+*vlen,ar28
+*moper,_zc(1),arg1(ar24,1),sort,arg1(ar24,arg3)
+ar28=ar28-1-ar29
+*exit
+!
+*enddo
+*enddo
+!
+!
+*if,arg4,le,0,exit ! if third column was not specified get out.
+!
+! re-sort by third specified column IF there are equal cells
+! in the first AND second specified column
+!
+*set,ar28,0 ! temp counter - num rows skipped
+!
+*do,ar24,1,(ar31-1)
+!
+*if,ar28,gt,0,then
+ar28=ar28-1
+*cycle
+*endif
+!
+*if,abs(arg1(ar24,arg2)-arg1(ar24+1,arg2)),gt,arg5,cycle
+!
+*if,abs(arg1(ar24,arg3)-arg1(ar24+1,arg3)),gt,arg5,cycle
+!
+*set,ar29,0 ! temp counter - used for last consec set,last elem addition
+*do,ar25,ar24,(ar31-1)
+!
+! If consecutive cells are the same AND the loop is NOT at the
+! last cell, then cycle
+ar26=abs(arg1(ar25,arg2)-arg1(ar25+1,arg2)) ! consec cell (col 1)check
+*if,ar26,le,arg5,then
+ar26=abs(arg1(ar25,arg3)-arg1(ar25+1,arg3)) ! consec cell (col 2) check
+*if,ar26,le,arg5,then
+ar27=(ar25-(ar31-1)) ! last cell check
+*if,ar27,ne,0,cycle
+*set,ar29,1
+*endif
+*endif
+!
+ar28=ar29+(ar25-ar24+1) ! num rows to be sorted
+*vlen,ar28
+*moper,_zc(1),arg1(ar24,1),sort,arg1(ar24,arg3)
+ar28=ar28-1-ar29
+*exit
+!
+*enddo
+*enddo
+!
+!
+*exit
+*enddo
+*del,_zc,,nopr
+
+/eof
+ok. Here it is pasted below. Probably a bit long.
+
+I usually get all the nodal coordinates into an array (call it NodeInfo) with
+node numbers in col 1;
+X,Y and Z coords in columns 2, 3 and 4 respectively.
+
+Then lets say I want to sort by the Z- coord followed by the X-coord and then
+the Y-coord I call the macro
+
+sort_by_cols, 'NodeInfo', 4,2,3
+
+The tolerance is something which you may or may not need. Depends on your
+application.
+If you just want to compare upto full decimal accuracy leave the tolerance
+value at zero.
+
+Hope it's useful.
+
+Ashok
+EACoE, Bangalore

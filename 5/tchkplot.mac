@@ -1,0 +1,107 @@
+fini
+/clear
+
+/prep7
+et,1,63
+*do,i,1,9
+r,i,i*0.2
+*enddo
+*do,i,10,50,10
+rect,i-10,i,,10
+*enddo
+*do,i,10,40,10
+rect,i-10,i,10,20
+*enddo
+esize,10
+*do,i,1,9
+real,i
+amesh,i
+*enddo
+
+! creat thickness table 
+
+*get,ecount,elem,,count
+*dim,ethick,array,ecount,3
+
+ethick(1,1)=elnext(0)
+*do,i,2,ecount
+ethick(i,1)=elnext(ethick(i-1,1))
+*enddo
+
+*do,i,1,ecount
+*get,ethick(i,3),elem,ethick(i,1),attr,real
+*get,ethick(i,2),RCON,ethick(i,3),const,1
+*enddo
+
+*vscfun,maxthick,max,ethick(1,2)
+*vscfun,minthick,min,ethick(1,2)
+
+tci=(maxthick-minthick)/8 !thickness contour intervals
+
+level1=minthick
+level2=minthick+tci*1
+level3=minthick+tci*2
+level4=minthick+tci*3
+level5=minthick+tci*4
+level6=minthick+tci*5
+level7=minthick+tci*6
+level8=minthick+tci*7
+level9=minthick+tci*8
+
+!apply color to element according to element thickness 
+
+*do,i,1,ecount
+
+*if,ethick(i,2),le,level1,then
+/COLOR,elem,blue,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level2
+/COLOR,elem,cblu,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level3
+/COLOR,elem,cyan,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level4
+/COLOR,elem,gcya,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level5
+/COLOR,elem,gree,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level6
+/COLOR,elem,ygre,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level7
+/COLOR,elem,yell,ethick(i,1) 
+
+*elseif,ethick(i,2),le,level8
+/COLOR,elem,oran,ethick(i,1) 
+
+*ELSE 
+/COLOR,elem,red,ethick(i,1) 
+
+*ENDIF 
+*enddo
+
+!make contour legend 
+
+/anno,dele
+*do,i,,8
+/PSPEC,12-i,1,0 
+/POLY,4,1.25,-0.95+(i*0.06),1.45,-0.95+(i*0.06),1.45,-0.9+(i*0.06),1.25,-0.9+(i*0.06)
+*enddo
+
+/TLAB, 1.5,-0.97,%level9% 
+/TLAB, 1.5,-0.97+0.06,%level8% 
+/TLAB, 1.5,-0.97+0.06*2,%level7% 
+/TLAB, 1.5,-0.97+0.06*3,%level6% 
+/TLAB, 1.5,-0.97+0.06*4,%level5% 
+/TLAB, 1.5,-0.97+0.06*5,%level4% 
+/TLAB, 1.5,-0.97+0.06*6,%level3% 
+/TLAB, 1.5,-0.97+0.06*7,%level2% 
+/TLAB, 1.5,-0.97+0.06*8,%level1% 
+/TLAB, 1.25,-0.97+0.06*9.5,maxthick:%maxthick% 
+/TLAB, 1.25,-0.97+0.06*10.5,minthick:%minthick% 
+
+/eshape,1
+/view,1,1,1,1,
+eplot

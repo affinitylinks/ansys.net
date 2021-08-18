@@ -1,0 +1,95 @@
+finish
+/clear
+
+MY_FREQUENCY = 0
+MY_RESVECTOR = 1
+
+MY_FREQBEG = 0
+MY_FREQEND = 1e3
+MY_FREQNUM = 50
+
+/prep7
+et,1,181
+keyopt,1,3,2
+r,1,.1
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,dens,1,0.1/386.1
+
+rectng,,1,,10
+rectng,6,7,,10
+rectng,9,10,,10
+rectng,,10,1,2
+rectng,,10,5,6
+rectng,,10,7,8
+aovlap,all
+
+esize,1
+mshkey,1
+amesh,all
+
+lsel,s,loc,y,0
+lsel,a,loc,y,10
+nsll,s,1
+d,all,all
+
+allsel,all
+finish
+
+/solu
+antype,modal
+*if,MY_FREQUENCY,eq,1,then
+  modopt,lanb,MY_FREQNUM
+*else
+  modopt,lanb,MY_FREQNUM,0,MY_FREQEND
+*endif
+mxpand,MY_FREQNUM
+
+*if,MY_RESVECTOR,eq,1,then
+  resvec,on
+*endif
+sfe,all,1,pres,,100
+solve
+finish
+
+/solu
+antype,harmic
+hropt,msup
+hrout,,on
+harfrq,MY_FREQBEG,MY_FREQEND
+nsubst,10
+kbc,1
+dmprat,0.05
+
+*if,MY_RESVECTOR,eq,1,then
+  resvec,on
+*endif
+
+lvscale,1
+solve
+finish
+
+/post26
+numvar,200
+file,,rfrq
+nsol, 2,node(6,5,0),u,z
+nsol, 3,node(7,2,0),u,z
+nsol, 4,node(7,7,0),u,z
+nsol, 5,node(9,2,0),u,z
+nsol, 6,node(9,5,0),u,z
+nsol, 7,node(9,7,0),u,z
+cfac,
+prod,12, 1, 1, 2,,,,-2*acos(-1),2*acos(-1),1
+prod,13, 1, 1, 3,,,,-2*acos(-1),2*acos(-1),1
+prod,14, 1, 1, 4,,,,-2*acos(-1),2*acos(-1),1
+prod,15, 1, 1, 5,,,,-2*acos(-1),2*acos(-1),1
+prod,16, 1, 1, 6,,,,-2*acos(-1),2*acos(-1),1
+prod,17, 1, 1, 7,,,,-2*acos(-1),2*acos(-1),1
+
+/gropt,logx,on
+/gropt,logy,on
+/axlab,y,Acceleration (in/s^2)
+/axlab,x,Frequency (Hz)
+pltime,100,1e3
+plvar,12,13,17
+

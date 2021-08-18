@@ -1,0 +1,89 @@
+/pmacro
+/nopr
+!  this macro trims two lines at any angle and leaves coincident point
+!
+/prep7
+! rtrim.mac   by charles k. wong, 2002
+cm,xxxl,line
+allsel,below,line
+cm,xxxk,kp
+
+*msg,ui,'pick'
+  %c first trim line
+lsel,r,p
+allsel,below,line
+  ln_1=lsnext(0)
+*msg,ui,'pick'
+  %c end point to trim
+ksel,r,p
+  kp_1=kpnext(0)
+  allsel,below,line
+  ksel,u,,,kp_1
+  kp_2=kpnext(0)
+
+cmsel,s,xxxl
+cmsel,s,xxxk
+
+*msg,ui,'pick'
+  %c second trim line
+lsel,r,p
+allsel,below,line
+  ln_2=lsnext(0)
+*msg,ui,'pick'
+  %c end point to trim
+ksel,r,p
+  kp_3=kpnext(0)
+  allsel,below,line
+  ksel,u,,,kp_3
+  kp_4=kpnext(0)
+
+lsel,a,,,ln_1
+allsel,below,line
+
+kdist,kp_1,kp_2
+_len=_RETURN
+
+
+kwplan,-1,kp_1,kp_2,kp_3  !KWPLAN, WN, KORIG, KXAX, KPLAN 
+csys,4
+k,,,_len*10
+n_kp=_RETURN
+lstr,n_kp,kp_1
+n_rad=_RETURN
+kwplan,-1,kp_3,kp_4,kp_1  !KWPLAN, WN, KORIG, KXAX, KPLAN
+wpro,,,90
+lsbw,n_rad
+ksel,r,,,n_kp
+lslk,r
+ldele,all,,,1
+
+
+lsel,s,,,ln_1
+allsel,below,line
+
+lextnd,ln_1,kp_1,_len*10,1
+lsel,u,,,ln_1
+allsel,below,line
+n_line=lsnext(0)
+ksel,u,,,kp_2
+n_kp=kpnext(0)
+wpro,,90
+lsbw,n_line
+cm,nc_line,line
+ksel,r,,,n_kp
+lslk,r
+ldele,all
+cmsel,s,nc_line
+allsel,below,line
+ksel,u,,,kp_2
+n_kp=kpnext(0)
+cmsel,s,xxxl
+cmsel,a,nc_line
+allsel,below,line
+lstr,n_kp,kp_4
+cm,xxxl,line
+allsel,below,line
+
+ldele,ln_2,,,1  !clean up
+ldele,ln_1,,,1
+lplot

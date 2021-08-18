@@ -1,0 +1,93 @@
+!*******************************
+!Time Varying Flow in Angle Conduit
+!Brad Lamirand   
+!*******************************
+
+fini
+/cle
+/sys,del *.rfl
+
+/prep7
+et,1,141
+
+rect,,5,,1
+rect,4,5,1,5
+
+aadd,all
+lsel,,loc,x,5
+lcom,all
+lsel,all
+
+wpof,5
+wpro,,,90
+wpro,,-45
+asbw,all
+
+lsel,,loc,x,5/2
+lsel,a,loc,y,5/2
+lesi,all,,,20,-4
+
+lsel,,loc,y,1/2
+lsel,a,loc,y,5
+lesi,all,,,10,-3
+
+lsel,all
+
+mshk,1
+ames,all
+
+lsel,,loc,y,1
+lsel,a,loc,y,0
+lsel,a,loc,x,4
+lsel,a,loc,x,5
+nsll,,1
+d,all,vx,0
+d,all,vy,0
+nall
+
+nsel,,loc,y,5
+d,all,pres,0
+nall
+nsel,,loc,x,0
+nsel,u,loc,y,0
+nsel,u,loc,y,1
+cm,inlet,node
+nall
+
+flda,solu,tran,1
+flda,solu,flow,1
+flda,solu,turb,1
+
+flda,time,step,1
+flda,time,numb,5
+flda,time,glob,10
+
+flda,prot,dens,air-si
+flda,prot,visc,air-si
+flda,prot,cond,air-si
+flda,prot,spht,air-si
+
+flda,meth,pres,1
+flda,tdma,pres,100
+
+
+/solu
+
+tmend=7
+*do,i,1,tmend
+  sinvel=sin(acos(-1)*i/4)
+  d,inlet,vx,sinvel
+  solv
+*enddo
+
+/post1
+*do,i,1,tmend
+  *if,tmend,eq,1,then
+    set,first
+  *else
+    set,next
+  *endif  
+  /VSCALE,1,1,0   
+  PLVECT,V,,,,VECT,ELEM,ON,0   
+  /wait,4
+*enddo

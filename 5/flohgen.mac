@@ -1,0 +1,91 @@
+! ANSYS REVISION 5.2, FLOHGEN.MAC, Created on 96/02/13
+/nopr 
+*get,_nops,active,,prkey
+*get,_mnu,active,,menu
+*get,_arout,active,,rout
+*if,_arout,ne,31,then
+ *msg,warn
+ Enter Post1 before issuing this command macro
+ _ok=1
+ *else
+_ok=0
+ _dummy=1
+ pavg=
+/out,scratch
+/COM,   MACRO FOR TRANSFERRING JOULE HEATING LOADS FROM A HARMONC ANALYSIS
+/COM,   TO A FLOTRAN ANALYSIS
+/COM,
+/COM,   *** ASSUMPTIONS
+/COM,       HARMONIC ANALYSIS
+/COM,
+/COM,   *** ANSYS REVISION 5.2
+/COM,
+/COM,
+/COM,   *** CALCULATED PARAMETERS
+/COM,
+/COM,       HG = Sum of real and imaginary joule heat generation terms
+/COM,
+/COM,
+/out
+ *get,_unit,active,,solu,emunit ! 1=mks, 2=cgs, 3=user
+ *get,_dimn,active,,solu,dimn   ! 1=axisym, 2=planar, 3=3d
+ *if,_unit,gt,2,then
+  *msg,error
+  Invalid units option specified, please reissue command macro
+  _ok=1
+ *endif
+ *if,_unit,le,2,then
+/NOPR
+SET,1,1                         ! store real data
+ETABLE,_HGR,JHEAT               ! store heat generation rate per unit volume
+SET,1,1,,1                      ! repeat for imaginary data
+ETABLE,_HGI,JHEAT
+SADD,_HG,_HGR,_HGI              ! add real and imaginary terms
+*msg,info
+%/__________________________________________________________
+*msg,info
+%/The element joule heat generation terms are written out to the%/
+*msg,info
+file: "jheat.mac".  They can be used in solution by entering "jheat".
+*msg,info
+%/__________________________________________________________
+/COM,
+/COM,   Write out the BFE commands for FLOTRAN input
+/COM,   to the file jheat.mac
+/COM,
+*get,elmx,elem,,num,max
+*dim,myvect,table,elmx,2
+*vget,myvect(1,1),elem,1,esel,
+*vget,myvect(1,2),elem,1,etab,_HG
+*vmask,myvect(1,1)
+/out,jheat,mac
+*vwrite,sequ,myvect(1,2)
+('bfe,'f8.0,',hgen,1,',e15.8)
+/COM,
+/COM,_________________________________________________________
+/COM,
+/out
+*endif
+_dummy=
+*endif
+*if,_mg1,ne,1,then
+ _mg1=0
+*endif
+*if,_arout*(1+_ok),eq,31,then
+ *list,flohgen,out          ! batch listing
+ *if,_mnu*(1-_mg1),ne,0,then
+  *uilist,flohgen,out       ! ui listing
+ *endif
+*endif
+_arout=
+_mnu=
+_ok=
+_unit=
+_dimn=
+*if,_nops,eq,0,then
+ /nopr
+ _nops=
+ *else
+ _nops=
+ /go
+*endif

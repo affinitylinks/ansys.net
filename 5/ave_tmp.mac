@@ -1,0 +1,33 @@
+!ave_tmp.mac
+!
+!macro to calculate average temperature
+!(in a thermal analysis) of a set of nodes.
+!
+!Usage:  Select the desired nodes, then
+!run the macro.
+!
+!Ted Harris, PADT, revised 6/10/03
+!
+*get,num_,node,,count
+cm,n_tmp,node
+nsel,a,,,all
+*get,nmax_,node,,num,max
+*get,nmin_,node,,num,min
+cmsel,s,n_tmp
+*del,nstat_
+*dim,nstat_,array,nmax_-nmin_
+*vget,nstat_(1),node,nmin_,nsel
+*vmask,nstat_(1)
+*del,n_temps_
+*dim,n_temps_,array,nmax_-nmin_
+*vget,n_temps_(1),node,nmin_,temp
+*vscfun,tsum_,sum,n_temps_(1)
+
+
+
+Tavg=tsum_/num_
+*msg,ui,Tavg
+Average Temperature of Selected Nodes is %G
+
+num_= $nmax_= $nmin_= $nstat_= $n_temps_= $tsum_=
+cmdel,n_tmp

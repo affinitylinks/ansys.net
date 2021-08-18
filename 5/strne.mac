@@ -1,0 +1,75 @@
+! This macro sums the strain energy at every substep for a transient
+! analysis and then plots the values versus time.
+!
+C*** COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+C*** OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+C*** LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+C*** IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+C*** USEFULNESS OF THE RESULTS.
+C***
+!
+! written by:	Mike Rife
+!		Collaborative Solutions Inc.
+!		5 April 2000
+!
+! *****WARNING*****
+! Use this macro at your own risk!! Check your results!!!
+!
+! *** Usage ***
+! argument #1 used to tell ansys how many load steps
+
+/nopr	! Turn off output window printing
+/post1	! go to the results post processor
+
+! check that the user inputed number of load steps in macro command
+*if,arg1,eq,0,then
+*ask,nls_,How many load steps?,1
+*else
+nls_=arg1
+*endif
+
+! dimension sn array to store the strain energy terms
+! first colum=time, second = total strain energy, third = load step number
+*dim,strne_,table,nls_,3
+sesum_=0	! sesum_ is sum of element strain energy
+
+
+! Set tables to give a ramped plot instead of the default bar graph
+*vfill,strne_(0,0),RAMP,0,1,
+*do,i_,1,3,1
+*vfill,strne_(0,i_),RAMP,i_,1,
+*enddo
+i_=
+
+! loop through all load steps
+*do,i_,1,nls_,1
+set,i_
+*get,curtim_,active,0,set,time
+etable,se_,sene
+ssum
+*get,sesum_,ssum,0,item,se_
+strne_(i_,3)=i_
+strne_(i_,1)=curtim_
+strne_(i_,2)=sesum_
+etable,eras
+sesum_=0
+*enddo
+
+! plot strne_ array
+
+/axlab,x,time		! label x axis as time
+/axlab,y,strain|energy	! label y axis as strain-energy
+/grid,1			! turn on the grid
+/gropt,fill,on		! fill the area under the curve 
+*vplot,strne_(1,1),strne_(1,2)
+
+! zero out all variables except the strain energey array
+curtim_=
+sesum_=
+i_=
+se_=
+nls_=
+/gopr
+
+
+

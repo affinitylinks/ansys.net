@@ -1,0 +1,62 @@
+! *****************************************************************************
+! IM9.MAC
+! *****************************************************************************
+!
+! Purpose :
+!
+! IM9.MAC is used in POST1 of ANSYS 5.3 to read in as element table (ETABLE)
+! items the post data required for element BEAM3.
+!
+! *****************************************************************************
+!
+! Revision history
+!
+! Date     By   Description
+!
+! 5/2/97   SMV  Initial release
+! 27/6/97  SMV  Documentation added
+!
+! *****************************************************************************
+!
+! Overview :
+!
+! Standard POST1 element table definition. See the input section for a full
+! description of all data read in. Note that the ETABLE names can be shared
+! between different element types.
+!
+! Required input is :
+!
+! None              
+!
+! Output is :
+!
+! None
+!
+! *****************************************************************************
+! Start of input
+! *****************************************************************************
+
+! Etable read in - BEAM3
+
+ETABLE,FXI,SMISC,1
+ETABLE,FYI,SMISC,2
+ETABLE,MZI,SMISC,6
+
+ETABLE,FXJ,SMISC,7
+ETABLE,FYJ,SMISC,8
+ETABLE,MZJ,SMISC,12
+
+ETABLE,SDI,LS,1
+ETABLE,SDJ,LS,4
+
+ETABLE,SBYTI,LS,2
+ETABLE,SBYTJ,LS,5
+ETABLE,SBYBI,LS,3
+ETABLE,SBYBJ,LS,6
+
+ETABLE,SMAXI,NMISC,1
+ETABLE,SMAXJ,NMISC,3
+ETABLE,SMINI,NMISC,2
+ETABLE,SMINJ,NMISC,4
+
+

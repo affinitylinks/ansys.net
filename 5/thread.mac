@@ -1,0 +1,172 @@
+!For what it's worth, here is a macro I made some years ago ('94) for doing
+!thread profiles for axisym analysis.
+!Looking at it now, I am not sure if the UN thread option works correctly, I
+!can't remember that I actually used it, but the ISO should be O.K.
+!You can spin the profile along Don's helix.
+!
+!Ernst H
+!AIRNZ, Chch
+!
+!====================================
+*get,ic_,ACTIVE,,ROUT
+*if,ic_,ne,17,then
+*msg,error,
+You are not in /PREP7
+*go,:QUIT_
+*endif
+
+*get,ic_,ACTIVE,,CSYS
+*if,ic_,gt,1,then
+  *msg,info,ic_
+   The active coordinate system must be rectangular ! %/ %/ Current CSYS =%I
+  *ask,ic_,'<CR> to continue',0
+  *if,ic_,ne,0,:QUIT_
+*endif
+
+*msg,info,
+THREAD TYPE %/ <0> ... ISO Thread (metric) %/ <1> ... UN Thread (inch) &
+%/ <2> ... UNR Thread (inch) %/ Note: Generation is in [m] or ["] repectively !
+*ask,it_,'Thread Type',0
+
+*ask,dd_,'Thread Size [mm] or [in]',0
+*if,dd_,le,0,:QUIT_
+
+*ask,pp_,'Pitch [mm] or TPI',0
+*if,pp_,le,0,:QUIT_
+
+fac_=0.001                                    ! Convert [MM] to [M]
+d_=dd_*fac_
+p_=pp_*fac_
+
+*if,it_,ne,0,then                             ! Convert ["] to [M]
+*ask,fac_,factor to convert Coords [m],0.0254
+p_=1/pp_*fac_                                
+d_=dd_*fac_
+*endif
+
+agle_=60
+agle_=agle_*atan(1)/45
+h_=p_*sin(agle_)
+
+h1_=0.54127*p_
+h3_=0.61343*p_
+r_=h_/6.0
+d3_=d_-1.22687*p_
+
+d_=d_/2
+d3_=d3_/2
+
+cm,kill1_,kp                        ! store current set of KPOINTS
+ksel,all
+*get,kpmax_,KP,,num,max
+
+ksel,inve                           ! to unselect all kp
+
+*ask,ic_,'Bolt Thread ? (1 for yes)',1
+*if,ic_,eq,1,then
+
+*if,it_,ne,1,then          ! ------------------- ISO and UNR BOLT
+
+k,1+kpmax_, d3_      ,  0.0
+k,2+kpmax_, d_ - h1_ ,h_/4*tan(agle_/2)
+k,3+kpmax_, d_ - h1_ , 0.0
+
+larc,1+kpmax_,2+kpmax_,3+kpmax_,r_
+
+k,3+kpmax_, d_       ,(h3_+h_/6)*tan(agle_/2)
+dy_=2*h_/8*tan(agle_/2)
+kgen,2,3+kpmax_, , , 0.0 , dy_ , 0.0 , 1
+k,5+kpmax_, d_ - h1_ , p_ - h_/4*tan(agle_/2)
+k,6+kpmax_, d3_ , p_
+k,7+kpmax_, d_ , p_
+
+l,2+kpmax_,3+kpmax_
+l,3+kpmax_,4+kpmax_
+l,4+kpmax_,5+kpmax_
+larc,5+kpmax_,6+kpmax_,7+kpmax_,r_
+
+*else                      ! -------------------- UN BOLT
+
+k,1+kpmax_, d3_      ,  0.0
+k,2+kpmax_, d3_      ,h_/6*tan(agle_/2)
+k,3+kpmax_, d_ - h1_ ,h_/4*tan(agle_/2)
+k,4+kpmax_, d_       ,(h3_+h_/6)*tan(agle_/2)
+dy_=2*h_/8*tan(agle_/2)
+kgen,2,4+kpmax_, , , 0.0 , dy_ , 0.0 , 1
+k,6+kpmax_, d_ - h1_ , p_ - h_/4*tan(agle_/2)
+k,7+kpmax_, d3_      , p_ - h_/6*tan(agle_/2)
+k,8+kpmax_, d3_      , p_
+
+l,1+kpmax_,2+kpmax_
+l,2+kpmax_,3+kpmax_
+l,3+kpmax_,4+kpmax_
+l,4+kpmax_,5+kpmax_
+l,5+kpmax_,6+kpmax_
+l,6+kpmax_,7+kpmax_
+l,7+kpmax_,8+kpmax_
+
+*endif
+
+
+*endif
+
+*ask,ic_,'Nut Thread ? (1 for yes)',1
+*if,ic_,eq,1,then
+
+*if,it_,ne,1,then   ! ---------------- ISO and UNR Nut
+
+k,7+kpmax_, d_+h_/8 , p_+ p_/2
+kgen,2,4+kpmax_, , , 0.0 , p_    , 0.0 , 4
+kgen,2,5+kpmax_, , , 0.0 , p_    , 0.0 , 4
+kgen,2,2+kpmax_, , , 0.0 , 2*p_  , 0.0 , 8
+kgen,2,3+kpmax_, , , 0.0 , 2*p_  , 0.0 , 8
+k,12+kpmax_, d_+h_/8 , p_ + 3/2*p_
+
+l,7+kpmax_,8+kpmax_
+l,8+kpmax_,9+kpmax_
+l,9+kpmax_,10+kpmax_
+l,10+kpmax_,11+kpmax_
+l,11+kpmax_,12+kpmax_
+
+*else               ! ---------------- UN Nut
+
+k,9+kpmax_, d_+h_/8 , p_ + p_/2
+kgen,2,5+kpmax_, , , 0.0 , p_    , 0.0 , 5
+kgen,2,6+kpmax_, , , 0.0 , p_    , 0.0 , 5
+kgen,2,3+kpmax_, , , 0.0 , 2*p_  , 0.0 , 9
+kgen,2,4+kpmax_, , , 0.0 , 2*p_  , 0.0 , 9
+k,14+kpmax_, d_+h_/8 , p_ + 3/2*p_
+
+l,9+kpmax_ ,10+kpmax_
+l,10+kpmax_,11+kpmax_
+l,11+kpmax_,12+kpmax_
+l,12+kpmax_,13+kpmax_
+l,13+kpmax_,14+kpmax_
+*endif
+
+*else
+kdel,7+kpmax_
+
+*endif
+
+cmsel,a,kill1_                   ! add to current set
+cmdel,kill1_
+*go,:quit_
+
+:QUIT1_
+cmsel,s,kill1_
+cmdel,kill1_
+
+:QUIT_
+it_=
+ic_=
+d_=
+d3_=
+p_=
+r_=
+h_=
+h1_=
+h3_=
+agle_=
+kpmax_=
+dy_=

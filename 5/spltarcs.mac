@@ -1,0 +1,59 @@
+/nopr
+!
+!  spltarcs.mac  a macro that splits the selected arcs into two
+!                pieces.  this is done to avoid problems when 
+!                using NUMM,KP with circles made from two 180
+!                degree arcs.
+!
+!  usage:  spltarcs
+!
+!  assumptions:  current csys is cartesian
+!
+!  written by: John Crawford  date: 3-21-00
+!
+!  
+!  make sure there are lines selected
+*if,lsinqr(0,13),gt,0,then
+!  make sure we're in /prep7
+*get,rout_,active,,rout
+*if,rout_,eq,17,then
+*del,,prm_
+l_=0
+lsel_=lsinqr(0,13)
+!  store the originally selected lines in a component
+cm,line_,line
+cm,lfinish_,line
+*do,i_,1,lsel_
+cmse,s,line_
+l_=lsnext(l_)
+*msg,info,l_,i_,lsel_
+Checking line %i, line %i of %i originally selected lines
+!  get the keypoints on the lines
+*get,kp1_,line,l_,kp,1
+*get,kp2_,line,l_,kp,2
+!  get the line length
+*get,ll_,line,l_,leng
+!  if the line is longer than the distance between it's endpoints
+!  we want to split it into two lines.
+*if,ll_,gt,abs(distkp(kp1_,kp2_)),then
+ldiv,l_,.5
+*msg,info,l_
+Splitting line %i
+cmse,a,lfinish_
+cm,lfinish_,line
+*endif
+*enddo
+cmse,a,lfinish_
+*del,,prm_
+cmde,lfinish_
+cmde,line_
+*else
+*msg,ui
+You need to be in /PREP7 to use SPLTARC.MAC
+*del,,prm_
+*endif
+*else
+*msg,ui
+No lines are selected.  Select lines and try again.
+*endif
+/gopr

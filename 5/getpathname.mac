@@ -1,0 +1,9 @@
+/output,tempfile.ans
+pdef,stat
+/output,term
+*dim,pname,char,1
+*vread,pname(1),tempfile,ans,,,,,,3
+(40x,a8)
+/dele,tempfile,ans
+*stat,pname
+/title,The current path is %pname(1)%

@@ -1,0 +1,64 @@
+! This macro analysis structures with different material properties (Youngs modulus)
+! in tension and compression. The macro iteratively sorts elements according to
+! tensile and compressive stresses in two directions and changes material properties
+! according to the stress field from the preceeding calculation. 
+! Written by Carl Ostervig on 2000.02.22 
+ 
+/uis,msgpop
+*do,i,1,5,1 ! 5 iterations
+allsel
+! compression in x and y direction
+/post1
+allsel
+nsele,s,s,x,-1e9,0
+nsele,r,s,y,-1e9,0
+esln
+!eplo
+!/wait,1
+cm,mat1,elem
+/prep7
+emodif,all,mat,1
+! compression in x tension in y direction
+/post1
+allsel
+nsele,s,s,x,-1e9,0
+nsele,r,s,y,0,1e9
+esln
+!eplo
+!/wait,1
+cm,mat2,elem
+/prep7
+emodif,all,mat,2
+! tension in x tension compression in y direction
+/post1
+allsel
+nsele,s,s,x,0,1e9
+nsele,r,s,y,-1e9,0
+esln
+!eplo
+!/wait,1
+cm,mat3,elem
+/prep7
+emodif,all,mat,3
+! tension in x and in y direction
+/post1
+allsel
+nsele,s,s,x,0,1e9
+nsele,r,s,y,0,1e9
+esln
+!eplo
+!/wait,1
+cm,mat4,elem
+/prep7
+emodif,all,mat,4
+
+allsel 
+time,i
+/solu
+solv
+/post1
+/title, iteration %i% of 5
+plnsol,u,sum
+/wait,2
+plnsol,s,eqv
+*enddo 

@@ -1,0 +1,87 @@
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+! MACRO FILE anvectXX.mac ANIMATES VELOCITY VECTORS
+! FROM FLOTRAN TRANSIENT RESULTS
+! BILL BULAT/CSI
+! 5962 LAPLACE COURT SUITE 100
+! CARLSBAD CA 92008
+! (760)431-4815 ext 108
+! (760)431-4824 (FAX)
+! bill.bulat@csi-ansys.com
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+! USER INPUT TO MODIFY ANIMATION ATTRIBUTES
+stnm1=5      ! BEGINNING RESULTS SET #
+stnm2=37     ! ENDING RESULTS SET #
+stnminc=1    ! RESULTS SET NUMBER INCREMENT
+vsclmult=1.0 ! VECTOR LENGTH SCALE FACTOR
+flw_vscl=1   ! 1: VECTOR LENGTH "FOLLOWS" QUANTITIES, 0: FIXED
+fix_lgnd=1   ! 1: FIX SCALE CNTR LEGEND, 0: AUTO, 2: USER
+
+! VARIABLE INITIALIZATION
+qryvals=0
+maxval0=0
+
+! DEFINE ARRAY vmaxlist: MAX RESULTS QUANTITY CORRESPONDING TO
+! EACH RESULTS SET
+*get,dfnd,parm,vmaxlist,type
+*if,dfnd,gt,-1,then
+ vmaxlist(1)=
+*endif
+*dim,vmaxlist,array,stnm2
+!*get,jbnm,active,,jobnam
+
+! DETERMINE RANGE IN VALUES IF USER REQUESTS "VECTOR LENGTH FOLLOW"
+! OR "FIXED LEGEND" OPTIONS
+*if,flw_vscl,eq,1,then
+ qryvals=1
+*endif
+*if,fix_lgnd,eq,1,then
+ qryvals=1
+*endif
+
+*if,qryvals,eq,1,then
+ *do,i,stnm1,stnm2,stnminc
+  /gop
+  set,,,,,,,i
+  /sho,term
+  plns,v,sum
+  *get,maxval,plnsol,,max
+  *if,maxval,gt,maxval0,then
+   maxval0=maxval
+  *endif
+  vmaxlist(i)=maxval
+ *enddo
+*endif
+
+! CONTOUR LEGEND DEFINITION (FIXED, AUTO, USER)
+*if,fix_lgnd,eq,1,then      ! 
+ /con,1,9,0,,maxval0
+*elseif,fix_lgnd,eq,0,then
+ /con,1
+*else
+ /con,1,,user
+*endif
+
+! WRITE PLOTS TO TERMINAL SEGMENTS FOR ANIMATION
+/seg,off
+/seg,dele
+/seg,multi,,0.15
+
+! CREATE ANIMATION FRAMES
+*do,i,stnm1,stnm2,stnminc
+ /gop
+ set,,,,,,,i
+!/sho,term
+ *if,flw_vscl,eq,1,then
+  /vsc,1,vsclmult*(vmaxlist(i)/maxval0)
+ *else
+  /vsc,1,vsclmult
+ *endif
+ plve,v,,,,vect,elem,on
+*enddo
+
+!/vsc
+!/con
+/seg,off
+anim,,1

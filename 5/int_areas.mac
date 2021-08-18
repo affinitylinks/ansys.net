@@ -1,0 +1,42 @@
+
+
+! Macro to find "interior" areas.
+! Note, this method fails if multiple interior areas share a common edge
+! or if the interior area has an interior area of its own.
+
+! Written by Mitch Voehl, CEC Corporation.
+! THIS MACRO HAS NOT BEEN QA'D.  USE AT YOUR OWN RISK.
+
+! Revision history:
+! 09-15-2000 MRV Macro created.
+
+
+
+*get,ar10,area,,count
+cm,tmp_a,area			! Save currently selected areas as a component
+
+asel,none
+cm,int_a,area			! Component of interior areas.
+cmsel,s,tmp_a
+
+ar11=0				! Area to be processed
+*do,ar12,1,ar10			! Loop through all selected areas
+
+	ar11=arnext(ar11)	! Get next area number to process
+	*if,ar11,le,0,exit
+
+	asel,s,area,,ar11	! Select a single area
+	lsla			! Select all lines bounding area
+	asll,s,1		! Select all areas bounded by these lines
+	*get,ar13,area,,count
+	*if,ar13,gt,1,then
+		asel,u,area,,ar11 ! Any area other than ar11 is an interior area
+		cmsel,a,int_a
+		cm,int_a,area	! Add these areas to component int_a
+	*endif
+	cmsel,s,tmp_a
+
+*enddo
+
+cmsel,s,tmp_a
+cmdel,tmp_a
