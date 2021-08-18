@@ -1,0 +1,71 @@
+finish
+/clear
+
+MAT_SONC = 343
+MAT_DENS = 1.2
+
+VAL_FREQ = 10000
+VAL_WAVE = MAT_SONC/VAL_FREQ
+
+DIM_RADIUS = 0.01
+DIM_LENGTH = 0.05
+DIM_MESH = VAL_WAVE/20
+
+VAL_KR   = 2*acos(-1)*DIM_RADIUS/VAL_WAVE
+VAL_IMP  = MAT_DENS*MAT_SONC
+
+/view,1,1,1,1
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,30,,1
+! *** PML
+et,2,30,,1,,1
+r,1
+r,2
+mp,sonc,1,MAT_SONC
+mp,dens,1,MAT_DENS
+mpcopy,,1,2
+
+cylind,,DIM_RADIUS,,DIM_LENGTH,,90
+cylind,,DIM_RADIUS,DIM_LENGTH,DIM_LENGTH+VAL_WAVE,,90
+cylind,,DIM_RADIUS,,-VAL_WAVE,,90
+nummrg,kp
+
+vsel,u,loc,z,0,DIM_LENGTH
+vatt,2,2,2
+vsel,all
+esize,DIM_MESH
+vmesh,all
+
+! *** PML
+asel,s,loc,z,-VAL_WAVE
+asel,a,loc,z,DIM_LENGTH+VAL_WAVE
+nsla,s,1
+d,all,pres,0
+
+asel,s,loc,z,0
+nsla,s,1
+cp,next,pres,all
+f,ndnext(0),flow,1
+finish
+
+/solu
+antype,harmic
+harfrq,0,VAL_FREQ
+nsubst,1
+kbc,1
+allsel,all
+solve
+finish
+
+/post1
+set,last,,,ampl
+path,AXIAL,2,,100
+ppath,1,,0,0,0
+ppath,2,,0,0,DIM_LENGTH
+pdef,PRES,pres
+/yrange,0,40
+/title,Should be constant value
+plpath,PRES

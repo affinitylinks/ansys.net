@@ -1,0 +1,97 @@
+!-------------------------
+! Example of FLUID116 + SURF152
+! written by sheldon, 06/26/2008
+!-------------------------
+finish
+/clear
+
+DIM_RADIUS = 0.03
+
+/view,1,1,1,1
+/pnum,type,1
+/num,1
+!/eshape,1
+
+/prep7
+et,1,70
+!-------------------------
+! SURF152 attributes (simple case)
+!-------------------------
+et,2,152
+keyopt,2,1,0
+keyopt,2,2,0
+keyopt,2,4,1
+keyopt,2,5,1
+keyopt,2,6,0
+keyopt,2,8,2
+!-------------------------
+! FLUID116 attributes
+! could just solve TEMP DOF
+! if include PRES, unsym matrices
+!-------------------------
+et,3,116
+keyopt,3,2,0
+
+r,1
+r,2
+r,3,2*DIM_RADIUS,acos(-1)*DIM_RADIUS**2
+
+mp,kxx ,1,250
+mp,dens,3,1.2
+mp,c   ,3,1
+mp,kxx ,3,0.025
+mp,visc,3,15e-6
+
+k
+k,,0,0,1
+l,1,2
+latt,3,3,3
+esize,DIM_RADIUS/3
+lmesh,all
+cm,FLUID,line
+
+cylind,DIM_RADIUS,DIM_RADIUS*2,0,1
+vsweep,all
+csys,1
+asel,s,loc,x,DIM_RADIUS
+cm,SOLID,area
+asel,s,loc,x,DIM_RADIUS*2
+nsla,s,1
+cm,N_OUTER,node
+csys,0
+allsel,all
+
+!-------------------------
+! Connect FLUID116 with SOLID70 using SURF152
+!-------------------------
+type,2
+real,2
+mat, 2
+afsurf,'SOLID','FLUID'
+
+!-------------------------
+! boundary conditions
+!-------------------------
+d,node(0,0,0),temp,20
+d,node(0,0,0),pres,10
+d,node(0,0,1),pres,0
+
+esel,s,type,,2
+sfe,all,,conv,,1,5
+
+esel,all
+sf,N_OUTER,hflux,1
+
+tunif,30
+
+allsel,all
+finish
+
+/solu
+solve
+finish
+
+/post1
+set,last
+esel,s,type,,1
+plnsol,temp

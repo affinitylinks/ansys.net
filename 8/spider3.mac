@@ -1,0 +1,68 @@
+/prep7
+! select nodes attached to selected areas
+nsla,s,1
+! get max selected node no.
+*get,nmax,node,,num,max
+! create mask for selected nodes
+*dim,nmask,array,nmax
+! get status of selected nodes
+*vget,nmask(1),node,1,nsel
+! get y and z coordinate for selected nodes
+! dimension coordinate array
+*dim,ncoord,array,nmax,4
+! use masking array
+*vmask,nmask(1)
+*vget,ncoord(1,1),node,1,loc,y
+*vmask,nmask(1)
+*vget,ncoord(1,2),node,1,loc,z
+! fill vector from 1 to nmax
+*vfill,ncoord(1,4),ramp,1,1
+! entre node no.
+ncentre = arg1
+! washer diameter
+dia = arg2
+! get coordinates of center node
+*get,ycoord,node,ncentre,loc,y
+*get,zcoord,node,ncentre,loc,z
+! update coordinate array relative to center node coordinates
+*vmask,nmask(1)
+*voper,ncoord(1,1),ncoord(1,1),sub,ycoord
+*vmask,nmask(1)
+*voper,ncoord(1,2),ncoord(1,2),sub,zcoord
+! square coordinates
+*vmask,nmask(1)
+*vfun,ncoord(1,1),pwr,ncoord(1,1),2
+*vmask,nmask(1)
+*vfun,ncoord(1,2),pwr,ncoord(1,2),2
+! add arrays
+*vmask,nmask(1)
+*voper,ncoord(1,3),ncoord(1,1),add,ncoord(1,2)
+! find root of result, i.e. radius
+*vmask,nmask(1)
+*vfun,ncoord(1,3),sqrt,ncoord(1,3)
+! create additional masking vector based on radius comparison
+*dim,rmask,array,nmax
+*vmask,nmask(1)
+*voper,rmask(1),ncoord(1,3),le,dia/2
+*vmask,rmask(1)
+*vscfun,naccept,num,rmask(1)
+*dim,spider,array,naccept
+*vmask,rmask(1)
+*vfun,ncoord(1,4),comp,ncoord(1,4)
+*vlen,naccept
+*vfun,spider(1),copy,ncoord(1,4)
+!*cfopen,'test','txt'
+!*vwrite,spider(1)
+!%I
+!*cfclos
+! create constraints
+rbe3,ncentre,all,spider
+rmask =
+nmask =
+ncoord =
+nmax =
+ycoord =
+zcoord =
+dia =
+spider =
+

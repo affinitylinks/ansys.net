@@ -1,0 +1,536 @@
+/BATCH                     !Batch input
+/FILE,spring               !Define jobname
+/NOPR                      !Suppress printout
+
+/COM, ==========================================================
+/COM,
+/COM,   STRUCTURAL ANALYSIS OF COMPRESSION SPRING
+/COM,
+/COM,   October 2000
+/COM,   ANSYS 5.6
+/COM,
+/COM, ==========================================================
+/COM,
+/COM,   Dave Lindeman                       ddlindeman@mmm.com
+/COM,   3M SEMS Tech Center                 Tel:  651-733-6383
+/COM,   3M Center 235-1F-36                 FAX:  651-736-7615
+/COM,   St. Paul, MN 55144
+/COM,
+/COM, ==========================================================
+
+/COM, ==========================================================
+/COM,   Define constants
+/COM, ==========================================================
+
+PI    = ACOS(-1)           !Pi
+
+TRUE  =   1                !Logical true
+FALS  =   0                !Logical false
+
+ALUM  =   1                !Aluminum
+BECU  =   2                !Beryllium-Copper
+COPP  =   3                !Copper
+MOLY  =   4                !Molybdenum
+STEE  =   5                !Steel
+TTNM  =   6                !Titanium
+
+PPRG  =   2.2050E-03       !Pounds-per-gram
+CPRI  =   2.5400           !Centimeters-per-inch
+
+/COM, ==========================================================
+/COM,   Define independent parameters
+/COM, ==========================================================
+
+KMAT = STEE                !Spring material
+
+RMIN =  0.2500             !Minimum radius (in)
+RMAX =  0.4700             !Maximum radius (in)
+HGHT =  1.9500             !Height (in)
+DIAM =  0.0400             !Wire diameter (in)
+
+NACT =  2.8900             !Number of active turns
+
+COMP = 50.0000             !Percent compression
+
+*IF,RMAX,LT,RMIN,THEN      !Ensure that RMIN < RMAX
+RTMP = RMIN
+RMIN = RMAX
+RMAX = RTMP
+*ENDIF
+
+*IF    ,KMAT,EQ,ALUM,THEN  !Properties of aluminum
+EMOD  =  10.0000E+06
+PRAT  =   0.3300
+DENS  =   0.0980
+*ELSEIF,KMAT,EQ,BECU,THEN  !Properties of beryllium-copper
+EMOD  =  19.3750E+06
+PRAT  =   0.2700
+DENS  =   0.3080
+*ELSEIF,KMAT,EQ,COPP,THEN  !Properties of copper
+EMOD  =  15.9430E+06
+PRAT  =   0.3700
+DENS  =   0.3160
+*ELSEIF,KMAT,EQ,MOLY,THEN  !Properties of molybdenum
+EMOD  =  47.0000E+06
+PRAT  =   0.3750
+DENS  =   0.2700
+*ELSEIF,KMAT,EQ,STEE,THEN  !Properties of steel
+EMOD  =  30.0000E+06
+PRAT  =   0.3000
+DENS  =   0.2850
+*ELSEIF,KMAT,EQ,TTNM,THEN  !Properties of titanium
+EMOD  =  15.6110E+06
+PRAT  =   0.3000
+DENS  =   0.1650
+*ENDIF
+
+/COM, ==========================================================
+/COM,   Define dependent parameters
+/COM, ==========================================================
+
+HACT  = (HGHT-(3*DIAM))    !Height of active coils (in)
+PTCH  = HACT/NACT          !Pitch (in)
+SHGT  = (NACT+3)*DIAM      !Solid height (in)
+
+DISP  = (COMP/100)*HGHT    !Compression (in)
+
+AREA  = (PI/4)*(DIAM**2)   !Area of wire (in^2)
+
+GMOD  = EMOD/(2*(1+PRAT))  !Shear modulus (psi)
+
+KNUM  = GMOD*(DIAM**4)     !Analytical stiffness
+KDEN  = 64*NACT*(RMAX**3)  !for a cylindrical spring (lbs/in)
+KCYL  = KNUM/KDEN
+
+/COM, ==========================================================
+/COM,   Define graphics settings
+/COM, ==========================================================
+
+/TITLE,STRUCTURAL ANALYSIS OF COMPRESSION SPRING
+
+/WIND,1,-1.00, 1.00,-0.88, 1.00
+/VIEW,1, 1.00, 0.80, 0.70
+/COLOR,NUM  ,RED ,1
+/COLOR,CURVE,RED ,1
+/COLOR,CURVE,BLUE,2
+/GRAPHICS,POWER
+/DSCALE,1,1.0
+/PNUM,TYPE,1
+/GLINE,1,-1
+/ESHAPE,1.0
+/TYPE,1,4
+/VUP,1,Z
+/NUM,1
+
+/COM, ==========================================================
+/COM,   Define element types
+/COM, ==========================================================
+
+/PREP7                     !Enter preprocessor
+
+IMMED,OFF                  !Deactivate immediate mode graphics
+
+ET,1,BEAM189               !3D quadratic finite strain beam
+KEYOPT,1,8,2
+KEYOPT,1,9,2
+
+ET,2,SHELL63               !3D elastic shell
+ET,3,SHELL63
+
+ET,4,CONTAC49              !3D point-to-surface contact elements
+ET,5,CONTAC49
+
+/COM, ==========================================================
+/COM,   Define real constants
+/COM, ==========================================================
+
+R,1, 1.0
+R,2,DIAM
+R,3,DIAM
+R,4, 5.0*KCYL
+R,5, 5.0*KCYL
+
+/COM, ==========================================================
+/COM,   Define section properties
+/COM, ==========================================================
+
+SECTYPE,1,BEAM,CSOLID
+SECDATA,(DIAM/2),8
+SECNUM,1
+
+/COM, ==========================================================
+/COM,   Define material properties
+/COM, ==========================================================
+
+MP,EX  ,1,EMOD             !Properties of spring
+MP,NUXY,1,PRAT
+
+/COM, ==========================================================
+/COM,   Define solid model
+/COM, ==========================================================
+
+*AFUN,RAD
+PI = ACOS(-1)
+CSYS,1
+K,1,RMAX, 90,-(HACT/2)-DIAM
+K,2,RMAX,180,-(HACT/2)-DIAM
+K,3,RMAX,270,-(HACT/2)-DIAM
+K,4,RMAX,360,-(HACT/2)-DIAM+(DIAM/2)
+WRAP = NACT*(2*PI)
+NSEG = 0
+J = WRAP
+*DO,I,1,999,1
+J = J-(PI/2)
+NSEG = NSEG+1
+*IF,J,LT,0,EXIT
+*ENDDO
+NSEG = NSEG-1
+KNUM = 4
+DWRP = WRAP/NSEG
+BETA = 0
+CSYS,0
+*DO,I,1,(NSEG+1),1
+Z = ((BETA/WRAP)*HACT)-(HACT/2)
+R = RMIN+(RMAX-RMIN)*((Z**2)/((HACT/2)**2))
+X = R*COS(BETA+(PI/2))
+Y = R*SIN(BETA+(PI/2))
+KNUM = KNUM+1
+K,KNUM,X,Y,Z
+BETA = BETA+DWRP
+*ENDDO
+BETA = BETA-DWRP+(PI/2)
+*DO,I,1,4,1
+Z = (HACT/2)+(((I/2)*DIAM)<DIAM)
+R = RMAX
+X = R*COS(BETA+(PI/2))
+Y = R*SIN(BETA+(PI/2))
+KNUM = KNUM+1
+K,KNUM,X,Y,Z
+BETA = BETA+(PI/2)
+*ENDDO
+CSYS,1
+L,1,2
+*REPEAT,(KNUM-1),1,1
+LDELE,5
+L2TAN,4,6
+*GET,LMAX,LINE,,NUM,MAX
+LDELE,LMAX-3
+L2TAN,LMAX-4,LMAX-2
+CSYS,0
+*GET,NLIN,LINE,,COUNT
+*GET,KMAX,KP  ,,NUM,MAX
+LNUM = 0
+*DO,I,1,NLIN,1
+LNUM = LSNEXT(LNUM)
+*GET,K1,LINE,LNUM,KP,1
+*GET,K2,LINE,LNUM,KP,2
+K,KMAX+1,0,0,KZ(K1)
+K,KMAX+2,0,0,KZ(K2)
+LSEL,S,,,LNUM
+LATT,1,1,1,0,KMAX+1,KMAX+2,1
+LSEL,ALL
+KMAX = KMAX+2
+*ENDDO
+CSYS,0
+LESIZE,ALL,,,10
+
+W = 1.25*RMAX
+*GET,ZMIN,KP,,MNLOC,Z
+*GET,ZMAX,KP,,MXLOC,Z
+WPOFF,,,ZMIN
+ASEL,NONE
+RECT,-W, W,-W, W
+AATT,1,2,2
+WPCSYS,1,0
+WPOFF,,,ZMAX
+ASEL,NONE
+RECT,-W, W,-W, W
+AATT,1,3,3
+LESIZE,ALL,,, 1
+WPCSYS,1,0
+WPSTYL
+/VIEW,1, 1.00, 0.80, 0.70
+/AUTO
+ALLSEL
+
+/COM, ==========================================================
+/COM,   Define finite element model
+/COM, ==========================================================
+
+LSLA,U                     !Mesh lines
+LMESH,ALL
+
+LSUM                       !Calculate spring volume and mass
+*GET,LENG,LINE,,LENG
+VOLU = AREA*LENG
+WGHT = DENS*VOLU
+
+CSYS,1                     !Rotate nodal coordinate systems
+NROTAT,ALL
+CSYS,0
+
+ALLSEL                     !Mesh areas
+AMESH,ALL
+
+LSEL,S,,,1,4               !Define contact elements
+NSLL,S,1
+CM,SMIN,NODE
+LSEL,S,,,LMAX-3,LMAX
+NSLL,S,1
+CM,SMAX,NODE
+CMSEL,A,SMIN
+NSEL,INVE
+ESEL,S,TYPE,,1
+NSLE,R
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+NSEL,U,,,NELEM(ENUM,4)
+*ENDDO
+CM,CONT,NODE
+ESEL,S,TYPE,,2
+NSLE
+CM,TARG,NODE
+ALLSEL
+TYPE,4
+REAL,4
+GCGEN,CONT,TARG,,,TOP
+ESEL,S,TYPE,,3
+NSLE
+CM,TARG,NODE
+ALLSEL
+TYPE,5
+REAL,5
+GCGEN,CONT,TARG,,,BOT
+ALLSEL
+
+*IF,RMIN,NE,RMAX,THEN      !Test for coil interference
+LSEL,S,,,5,LMAX-4
+ESLN
+NSLL,S,1
+*GET,NELE,ELEM,,COUNT
+ENUM = 0
+*DO,I,1,NELE,1
+ENUM = ELNEXT(ENUM)
+NSEL,U,,,NELEM(ENUM,4)
+*ENDDO
+NSEL,R,LOC,Z,0,(HGHT/2)
+CM,CMPN,NODE
+LSEL,S,,,5,LMAX-8
+NSLL,S,1
+NSEL,R,LOC,Z,0,(HGHT/2)
+CMSEL,R,CMPN
+CM,TSTN,NODE
+*GET,NNOD,NODE,,COUNT
+NTST = 0
+CNTC = FALS
+CSYS,1
+*DO,I,1,NNOD,1
+CMSEL,S,TSTN
+NTST = NDNEXT(NTST)
+CMSEL,S,CMPN
+NCMP = NODE(NX(NTST),NY(NTST),NZ(NTST)+PTCH)
+DRAD = ABS(NX(NTST)-NX(NCMP))
+*IF,DRAD,LE,DIAM,THEN
+CNTC = TRUE
+*EXIT
+*ENDIF
+*ENDDO
+*ENDIF
+ALLSEL
+CSYS,0
+
+/COM, ==========================================================
+/COM,   Define coupled node sets
+/COM, ==========================================================
+
+CMSEL,S,SMIN
+CP, 1,UX,ALL
+CPLGEN, 1,UY,UZ,ROTX,ROTY,ROTZ
+*GET,NMIN,NODE,,NUM,MIN
+ALLSEL
+
+CMSEL,S,SMAX
+CP, 7,UX,ALL
+CPLGEN, 7,UY,UZ,ROTX,ROTY,ROTZ
+*GET,NMAX,NODE,,NUM,MIN
+ALLSEL
+
+ESEL,S,TYPE,,2
+NSLE
+CP,13,UX,ALL
+CPLGEN,13,UY,UZ,ROTX,ROTY,ROTZ
+*GET,NBOT,NODE,,NUM,MIN
+ALLSEL
+
+ESEL,S,TYPE,,3
+NSLE
+CP,19,UX,ALL
+CPLGEN,19,UY,UZ,ROTX,ROTY,ROTZ
+*GET,NTOP,NODE,,NUM,MIN
+ALLSEL
+
+/COM, ==========================================================
+/COM,   Define boundary conditions
+/COM, ==========================================================
+
+D,NMIN,ALL,0.0             !Constrain ends of spring
+D,NMAX,ALL,0.0
+
+D,NBOT,ALL,0.0             !Constrain rigid surfaces
+D,NTOP,ALL,0.0
+
+FINI                       !Exit preprocessor
+
+/COM, ==========================================================
+/COM,   Execute static analysis
+/COM, ==========================================================
+
+/SOLU                      !Enter solution routine
+
+ANTYPE,STATIC              !Static analysis
+
+SOLCONTROL,ON              !Activate solution controls
+
+NLGEOM,ON                  !Large deflection
+
+NSUBST,10,,10              !Define substep controls
+
+D,NMAX,UZ  ,-DISP          !Displace rigid surface
+D,NTOP,UZ  ,-DISP
+
+TIME,DISP                  !Define pseudo-time
+
+OUTRES,ALL,ALL             !Define output frequency
+
+SAVE                       !Save database
+
+SOLVE                      !Execute analysis
+
+FINI                       !Exit solution routine
+
+/COM, ==========================================================
+/COM,   Perform postprocessing
+/COM, ==========================================================
+
+/POST1                     !Enter postprocessor
+
+SET,LAST                   !Store results
+
+*GET,NSBS,ACTIVE,,SOLU,NCMS
+
+ESEL,S,TYPE,,1             !Select spring
+NSLE
+
+/SHOW,stress,grph          !Open neutral graphics file
+
+PLNSOL,S,EQV               !Determine maximum stress and strain
+*GET,SMAX,PLNSOL,,MAX
+PLNSOL,EPTO,1
+*GET,E1,PLNSOL,,MAX
+PLNSOL,EPTO,3
+*GET,E3,PLNSOL,,MAX
+EMAX = E1>E3
+
+/SHOW,spring,grph          !Open neutral graphics file
+
+/PLOPTS,INFO,ON            !Plot elements
+/PLOPTS,WINS,OFF
+EPLOT
+
+/VIEW,1,1                  !Plot displaced shape
+EPLOT
+/USER
+PLDISP,2
+/AUTO
+
+ALLSEL                     !Select all entities
+
+FINI                       !Exit postprocessor
+
+/POST26                    !Enter time history postprocessor
+
+NUMVAR,20                  !Increase storage space
+
+NSOL  ,2,NMAX,U,Z          !Store displacement
+
+RFORCE,3,NMAX,F,Z          !Store reaction forces
+RFORCE,4,NTOP,F,Z
+STORE
+ABS,5,2
+ABS,6,3
+ABS,7,4
+ADD,8,6,7,,FORCE
+
+QUOT,9,8,5,  ,ARCTAN       !Calculate spring stiffness
+DERIV,10,8,5,,TANGENT
+
+/AXLAB,X,DEFLECTION (in)
+/AXLAB,Y,FORCE (lbs)
+/GTHK,CURVE,3
+/GRID,1
+
+PLVAR,8                    !Plot force vs. deflection curve
+
+/AXLAB,X,DEFLECTION (in)
+/AXLAB,Y,STIFFNESS (lbs/in)
+/GTHK,CURVE,3
+/GRID,1
+
+PLVAR,9,10                 !Plot stifness vs. deflection curve
+
+*SET,D                     !Dimension arrays
+*SET,F
+*SET,A
+*SET,T
+*DIM,D,ARRAY,NSBS
+*DIM,F,ARRAY,NSBS
+*DIM,A,ARRAY,NSBS
+*DIM,T,ARRAY,NSBS
+VGET,D(1), 5
+VGET,F(1), 8
+VGET,A(1), 9
+VGET,T(1),10
+
+FINI                       !Exit time history postprocessor
+
+/SHOW,spring,anim          !Open neutral graphics file
+
+/POST1                     !Enter postprocessor
+
+ESEL,S,TYPE,,1             !Select spring
+NSLE
+
+*DO,I,1,NSBS,1             !Substep loop
+
+SET,1,I                    !Store results
+
+*IF,I,EQ,1,THEN            !Plot elements
+/PLOPTS,INFO,ON
+/PLOPTS,WINS,OFF
+/VIEW,1,1
+EPLOT
+/USER
+*ENDIF
+
+PLDISP                     !Plot displaced shape
+
+*ENDDO                     !End of substep loop
+
+ALLSEL                     !Select all entities
+/AUTO
+
+FINI                       !Exit postprocessor
+
+/COM, ==========================================================
+/COM,   Exit ANSYS
+/COM, ==========================================================
+
+/DELE,spring,emat          !Delete scratch files
+/DELE,spring,esav
+/DELE,spring,full
+/DELE,spring,osav
+
+ALLSEL                     !Select all entities
+/EXIT                      !Save database

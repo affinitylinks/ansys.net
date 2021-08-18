@@ -1,0 +1,13 @@
+C***   unix.mac
+*dim,name,string,128
+/inquire,job_dir,directory
+/inquire,job_name,jobname
+name(1)='vi '
+name(1)=strfill(name(1),job_dir(1),4)   ! include blank space
+name(1)=strcat(name(1),'/')
+name(1)=strcat(name(1),job_name(1))
+name(1)=strcat(name(1),'.inp')
+*stat,name
+*abbr,Edit,/sys,%name(1)%
+*stat,abbr
+edit

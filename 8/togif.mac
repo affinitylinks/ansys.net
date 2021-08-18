@@ -1,0 +1,31 @@
+! togif.mac written by charles wong, October 8th, 2004
+!
+!	this macro uses the program pvw32con.exe to convert
+!	tiffs to gifs
+!
+!	usage: togif,arg1, arg2 where
+!
+!		arg1 = 'filename'
+!		arg2 = integer of vertical resolution
+!
+!	! pvw32con.exe path must be edited within the macro
+!	! before running
+!
+!-----------------------------------------------------------
+*get,j_name,active,,jobname
+
+*if,arg2,eq,0,then
+/gfile,1200
+*else
+/gfile,arg2
+*endif
+
+/show,tiff
+/rep
+/rep
+/show,close
+
+/syp,c:\2gif\pvw32con ,'%j_name%000.tif -g'
+/wait,5
+/rename,'%j_name%000',gif,,%arg1%,gif
+/syp,del ,'%j_name%*.tif'

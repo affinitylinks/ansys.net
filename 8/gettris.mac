@@ -1,0 +1,16 @@
+!----------------------------------------
+! This macro will then select tris
+! --sheldon
+! TRICOUNT = number of triangular elements
+!----------------------------------------
+*get,ELEM_MAX,elem,,num,max
+*dim,QUADNODE,array,ELEM_MAX,2
+*dim,TRI_MASK,array,ELEM_MAX
+
+*vget,QUADNODE(1,1),elem,1,node,3
+*vget,QUADNODE(1,2),elem,1,node,4
+*vope,TRI_MASK(1),QUADNODE(1,1),eq,QUADNODE(1,2)
+*vscf,TRICOUNT,sum,TRI_MASK(1)
+*vput,TRI_MASK(1),elem,1,esel
+
+eplot

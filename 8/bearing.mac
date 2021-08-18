@@ -1,0 +1,125 @@
+!written by mark kessler feb-8-02
+!applies a bearing load using discreet forces. 
+
+!prompts user for vector load value and angle
+!prompts user to select 3 kp's in order to establish a
+!working plane for evaluation of loads.
+!macro creates work plane at center of first two nodes picked
+!the second pick defines x direction and third pick defines y direction
+
+!prompts user to input an angle increment. defaults to 5 degrees
+!if prompt returns then there is a segment which contains no 
+!nodes for the application of a force. try 10 if prompt returns enter
+!15 then 20 then 30 until macro completes. 
+
+!written primarily to apply a bearing load to a model that
+!has been tet meshed where using a pressure gradient would
+!require rebuilding the model
+
+
+/prep7
+!
+*get,oldsys_,active,,csys ! read original csys and keypoint selected 
+!                           in the database
+!
+cswpla,99,0               !define a coordinate system at the workplane
+csys,0                    !so workplane can be returned to original loc
+wpcsys,-1,0
+!
+cm,kporig_,kp             !makes components of current node and kp's
+cm,norig_,nodes
+!
+ksel,all,kp               !get max keypoint number in db  
+*get,maxkp_,kp,,num,max
+cmsel,s,kporig_
+!
+*ask,force_,enter force vector,100 !prompt user for vector force and angle
+*ask,angle_,enter angle vector,0
+!
+! read keypoints 1-3
+!
+*do,i,1,3,1                    !read in keypoints 1-3 for defining workplane
+ksel,r,p
+*get,kp%i%_,kp,,num,max
+cmsel,s,kporig_
+*enddo
+!
+kbet,kp1_,kp2_,maxkp_+1        !defines the workplane
+kwplan,-1,maxkp_+1,kp2_,kp3_
+!
+csys,4                         !select workplane as current csys and rotate so          
+wprot,0,-90,0                  !z axis is down bore centerline 
+!
+rad_=(kx(kp1_)-kx(kp2_))*(-1)/2  !determine radius and depth of bore
+depth_=kz(kp3_)-kz(kp2_)
+!
+wprot,angle_,0,0                !rotate workplane reference from keypoints to specified angle
+!
+pi_=3.141592654
+!
+wpstyle,-1,,,,,1                !change workplane from cartesion to polar coordinates
+!
+:return_                       !set up components for testing whether or not
+nsel,none                      !node has been previously used and whether or
+cm,tunodes_,nodes              !a given segment contains nodes
+cmsel,s,norig_,nodes
+last_=0
+i=0
+*ask,incr_,enter 5 10 15 or 30 default is 5,5  !increase number to choose nodes over a larger area
+!
+*do,i,incr_,90,incr_
+nsel,s,loc,x,rad_               !select radial node patterns for application of force
+nsel,r,loc,y,last_,i                !select the "a"  and "b" side
+nsel,r,loc,z,0,depth_
+cmsel,u,tunodes_                !unselect nodes with previously assigned force
+cm,aloads_,node
+*get,anodes_,node,0,count
+*if,anodes_,eq,0,*exit       !test to make sure there are nodes to have force assigned to
+nsel,s,loc,x,rad_               !if not incease the selection area "inc_"
+nsel,r,loc,y,(-1)*last_,(-1)*i
+nsel,r,loc,z,0,depth_
+cmsel,u,tunodes_
+cm,bloads_,nodes
+*get,bnodes_,node,0,count
+*if,bnodes_,eq,0,*exit
+cmsel,a,aloads_
+nrotate,all
+
+cm,unodes_,node                !variable for nodes assigned a force this iteration
+
+
+
+
+!
+angle1_=i*2*pi_/360            !does the math see excel spreadsheet and mathcad documents
+angle2_=last_*2*pi_/360        !for details  c:\ansys\HDSP\TRANSMISSION\ANSYS\loads.xls
+!                               and c:\ansys\HDSP\TRANSMISSION\ANSYS\load_bearing.mcd 
+wpstyle,-1                     !turn off workplan snap
+!
+fapp_=2/pi_*force_*(.5*angle1_+.25*sin(2*angle1_)-(.5*angle2_+.25*sin(2*angle2_)))
+faload_=fapp_/anodes_
+fbload_=fapp_/bnodes_
+!
+cmsel,s,aloads_                !assign forces to "a" and "b" nodes
+f,all,fx,faload_
+!
+cmsel,s,bloads_
+f,all,fx,fbload_
+
+fck%i%=fapp_
+!
+cmsel,s,tunodes_              !variable for all nodes with assigned forces
+cmsel,a,unodes_
+cm,tunodes_,nodes 
+last_=i
+*enddo
+*if,anodes_,eq,0,:return_
+*if,bnodes_,eq,0,:return_
+!
+cmsel,s,norig_                !clear up the mess and reset to original csys etc
+cmsel,s,kporig_
+csys,oldsys_
+wpcsys,-1,99
+csdelete,99
+*del,,prm_
+i=

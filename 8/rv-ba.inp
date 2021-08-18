@@ -1,0 +1,192 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THE EXAMPLE. CSI IS NOT
+/com,LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,David Haberman
+!com,Collaborative Solutions, Inc.
+!com,5962 La Place Court Suite 100
+!com,Carlsbad CA 92009
+!com,760-431-4815
+!com,david.haberman@csi-ansys.com
+/com,
+/com,DESCRIPTION 
+/com,Example of a running a random vibration analysis in
+/com,ANSYS.  Input is base motion (acceleration).
+/com,
+
+finish
+/clear
+!!!!Example of random vibrations base motion
+!!!!mass method        
+!!!!Build Model!!!!
+/PREP7  
+RECTNG,10,,1,,  
+ET,1,SHELL181   
+KEYOPT,1,3,2  ! full intergration
+R,1,.1, , , , , ,  
+RMORE, , , , , , ,  
+/MPLIB,READ,d:\apps\ansys56\matlib  
+/MPLIB,WRITE,    
+MAT,1,  
+! /INPUT,d:\apps\ansys56\matlib\Stl_AISI-304.BIN_MPL
+! /COM,Typical material properties for DEMO purposes only 
+! /COM,ANSYS REVISION  5.3    UP042296 TEST    16:35:50    04/23/1996 
+/NOP
+! /COM,Internal UNITS set at file creation time = BIN 
+TBDEL,ALL,_MATL 
+MPDEL,ALL,_MATL 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,EX  ,_MATL , 1,  27992720.0    , 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,NUXY,_MATL , 1, 0.290000000    , 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,ALPX,_MATL , 1, 9.888888889E-06, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,DENS,_MATL , 1, 7.514795200E-04, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,KXX ,_MATL , 1, 2.182244000E-04, 
+MPTEMP,R5.0, 1, 1, 0.000000000E+00, 
+MPDATA,R5.0, 1,C   ,_MATL , 1,  46.2864080    , 
+!
+esize,.5   
+amesh,all   
+numoff,node,100
+
+FINISH  
+
+!!!!Modal Analysis!!!!
+/SOLU   
+ANTYPE,2
+MXPAND,10, , ,1 
+MODOPT,lanb,10,1,0, ,OFF, ,0
+allsel,all
+d,101,all,
+d,144,all,
+d,124,all,
+SOLVE  
+finish 
+!!!!!!!PSD Analysis!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/sol
+anty,spec
+spopt,psd,,on
+psdu,1,acel
+psdf,1,,2,10,50,200,400
+! Units (in/sec^2)^2/Hz
+psdv,1,20,80,80,50,20
+dmpr,.03
+d,101,uz,1
+d,144,uz,1
+d,124,uz,1
+pfac,1,base
+psdcom,.001,5
+
+psdr,disp,rel ! calculate disp results
+psdr,velo,rel ! calculate velocity results
+psdr,acel,rel ! calculate acceleration results
+
+save
+solv
+
+fini
+!!!!!!!!Post Process Post26 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+/POST26 
+numvar,50
+STORE,PSD,10,  
+!*  
+NSOL,2,123,U,Z, ! pt on structure
+!*  
+RPSD,3,2,,1,2,  ! displacement relative to base
+RPSD,4,2,,2,2,  ! velocity relative to base
+RPSD,5,2,,3,2,  ! acceleration relative to base (pt on structure)
+!
+! Intergrate rspd over freq.
+INT1,6,3,1, , , , ,1,1, ,   
+INT1,7,4,1, , , , ,1,1, ,   
+INT1,8,5,1, , , , ,1,1, ,   
+!
+! Get the area under the rpsd curve (intergration)
+!
+*get,uz6a,vari,6,extrem,vlast
+*get,vz6a,vari,7,extrem,vlast
+*get,az6a,vari,8,extrem,vlast
+!
+! Calculate the 1 sigma results by taking the 
+! square root of the area under the rpsd curve
+!
+uz6b=sqrt(uz6a)  ! 1 sigma displacements
+vz6b=sqrt(vz6a)  ! 1 sigma velocities
+az6b=sqrt(az6a)  ! 1 sigma accelerations
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+NSOL,9,101,U,Z,   ! pt on base
+
+ADD,21,2,9, , , , ,1,-1,1,  ! 2-9 pt on structure minus base
+
+RPSD,23,21,,3,1,    ! should be the same as 5
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+
+/eof
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!!!!!Post Process Post1 !!!!!!!!!!!!!!!!!!!
+finish
+/post1
+set,3,1,
+*get,uz6,node,123,u,z ! 1 sigma displacement
+set,4,1
+*get,vz6,node,123,u,z ! 1 sigma velocities
+set,5,1
+*get,az6,node,123,u,z ! 1 sigma accelerations
+finish
+!
+! compare the following 1 sigma results
+!
+! post1     post26
+! uz6   =   uz6b
+! vz6   =   vz6b
+! az6   =   az6b
+!
+! 
+
+
+
+!
+
+/eof
+
+
+  MODE    FREQUENCY (HERTZ)
+
+
+   FREQUENCY RANGE REQUESTED=   10 MODES ABOVE   1.00000     HERTZ
+
+    1     31.39597765453
+    2     197.7769261804
+    3     310.3047954715
+    4     560.2065008854
+    5     609.3867968072
+    6     1118.292750872
+    7     1842.107031029
+    8     1880.162355068
+    9     1895.676378805
+   10     2923.145449564
+   
+   NAME         VALUE         TYPE     DIMENSIONS
+     AZ6       617.123580      SCALAR
+     AZ6A      381172.736      SCALAR
+     AZ6B      617.391882      SCALAR
+     UZ6      1.029165510E-02  SCALAR
+     UZ6A     1.060781103E-04  SCALAR
+     UZ6B     1.029942282E-02  SCALAR
+     VZ6       2.06301454      SCALAR
+     VZ6A      4.25731207      SCALAR
+     VZ6B      2.06332549      SCALAR
+
+
+

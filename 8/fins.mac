@@ -1,0 +1,109 @@
+! This macro is used to create a long cylindar with a 
+! radial, helical fin
+!
+C*** COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+C*** OR USEFULNESS OF THE RESULTS OBTAINED USING THE MACRO. CSI IS NOT
+C*** LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+C*** IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+C*** USEFULNESS OF THE RESULTS.
+C***
+!
+! Mike Rife
+! Collaborative Solutions Inc.
+! 5 April 2000
+
+! USAGE:
+! fins, length, cylinder radius, fin radius, fin pitch
+
+/nopr
+
+! Check to see if users needs to enter data
+*if,arg1,eq,0,then
+*ask,length_,What is the cylinders length?,1
+*else
+length_=arg1
+*endif
+
+*if,arg2,eq,0,then
+*ask,crad_,What is the cylinders radius?,1
+*else
+crad_=arg2
+*endif
+
+*if,arg3,eq,0,then
+*ask,frad_,What is the fin radius?,2
+*else
+frad_=arg3
+*endif
+
+*if,arg4,eq,0,then
+*ask,pitch_,What is the fin pitch?,.2
+*else
+pitch_=arg4
+*endif
+
+! Group current entities and unselect them.
+! This will clear the screen for easier viewing.
+cm,k_,kp
+cm,l_,line
+cm,a_,area
+cm,v_,volu
+cm,n_,node
+cm,e_,elem
+cmgrp,all_,k_,l_,a_,v_,e_,n_
+cmsel,u,all_
+
+/prep7
+/view,1,1,1,1	! change to an iso view
+numcmp,all	! compress numbers of all entities
+wpcsys,-1,0	! changes the WP to global CS but keeps iso view
+
+! create cylinder
+k,,0,0,0
+kpnc_=_return
+kplo
+circle,kpnc_,crad_,
+*get,l4_,line,0,num,max
+l3_=l4_-1
+l2_=l4_-2
+l1_=l4_-3
+k,,0,0,length_
+kpnl_=_return
+l,kpnc_,kpnl_
+lextr_=_return
+adrag,l1_,l2_,l3_,l4_,,,lextr_
+
+! create helixes using polar coordinates
+wpstyl,,,,,,1
+csys,4
+k,,crad_,0,0
+k1_=_return
+k,,frad_,0,0
+k2_=_return
+l,k1_,k2_
+l1_=_return
+
+ii_=length_/pitch_
+
+*do,i_,1,ii_,1
+k,,frad_,90*i_,pitch_*i_
+k3_=_return
+l,k2_,k3_
+l2_=_return
+adrag,l1_,,,,,,l2_
+k2_=k3_
+l1_=l2_+1
+*enddo
+
+aglue,all
+csys
+
+! Clean up all variables
+! $ allows multiple commands on one line
+length_= $ crad_= $ frad_= $ pitch_=
+l1_= $ l2_= $ l3_= $ l4_=
+kpnc_= $ kpnl_= $ lextr_=
+k1_= $ k2_= $ k3_=
+i_= $ ii_=
+
+/gopr

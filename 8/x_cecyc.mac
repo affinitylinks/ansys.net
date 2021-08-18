@@ -1,0 +1,130 @@
+! =========================================
+! Shen-Yeh Chen
+! 12/21/2001
+! =========================================
+!
+! This macro will create CE for cyclic sysmtric sector, even
+! if the mesh on the two sectors interfaces are dissimillar
+! ---------------------------------------------------------
+! Syntax :
+!   x_cecyc,_SegSpan,_ElemType
+!
+! Input (arguments) :
+!   _SegSpan  : span of the segment, in degree
+!   _ElemType = 1 : use CONTA173 (no middle nodes)
+!               2 : use CONTA174 (with middle nodes)
+!
+!
+! Input (nodal components)
+!   X_CECYC_N2 :  components of the nodes in higher sector (in working plane coor sys)
+!                 Y-coor_of_higer_sector = Y-coor_of_lower_sector + _SegSpan
+!   X_CECYC_N1 :  components of the master nodes (denser nodes) of CE
+!
+! Input (others)
+!   WP         : Working plan must be on the cylindrical system. See note.
+!
+! Output : 
+!   file : x_cecyc.ce
+!
+! Temporary components
+!   X_CECYC_N5
+!
+! Temporary file
+!   x_cecyc.db
+!
+! Temporary arguments
+!   AR31
+!   AR32
+!
+!
+! Note :
+!   (1) The procedure for this macro
+!       a. make sure the XY plane of the working plane is the rotational
+!          plan, with X the radial axis, and Y the tangential axis
+!       b. The nodes in the higher sector has to be defined in the nodal
+!          components X_CECYC_N2
+!       c. The nodes in the master nodes (denser mesh) will have to be defined
+!          in the nodal components X_CECYC_N1
+!       d. The user has to select the nodes for the two sector interfaces, and
+!          the elements that can be used to create the surface element
+!       e. Issue the command in proper syntax. The CE will be written in the
+!          file x_cecyc.ce
+!   (2) This macro will use an external macro x_noffst.mac. Make sure ANSYS is
+!       able to call it from you environemnt settings.
+! 
+! External Programs called
+!   x_noffst.mac
+!
+!
+! ========================================
+! SAVE THE ORIGINAL DATABASE
+SAVE,x_cecyc,db
+!
+! Get the ET# to use
+ *GET,AR31,ETYP,,NUM,MAX
+ AR31=AR31+1
+ AR32=AR31+1
+!
+!
+/PREP7
+*IF,ARG2,EQ,1,THEN
+ ET,AR31,173
+ ET,AR32,173
+*ELSEIF,ARG2,EQ,2,THEN
+ ET,AR31,174
+ ET,AR32,174
+*ENDIF
+MODMSH,DETACH
+!
+! SAVE THE ORIGINAL NODES/ELEMENTS
+CM,X_CECYC_N5,NODE
+!
+! PICK THE HIGHER NODES
+CMSEL,,X_CECYC_N2
+TYPE,AR32
+ESURF
+!
+! PICK THE LOWER NODES
+CMSEL,,X_CECYC_N5
+CMSEL,U,X_CECYC_N2
+TYPE,AR31
+ESURF
+!
+! DELETE ALL OTHER NODES AND ELEMENTS
+ESEL,,TYPE,,AR31,AR32
+ESEL,INVE
+EDEL,ALL
+!
+EALL
+NSLE
+NSEL,INVE
+NDEL,ALL
+NALL
+EALL
+!
+! MOVE THE HIGHER SECTOR CLOSE INTO THE LOWER SECTOR
+CSYS,WP
+CMSEL,,X_CECYC_N2
+ESEL,,TYPE,,AR32
+x_noffst,0,-ARG1,0
+!
+! PICK MASTER NODES AND SLAVE ELEMENTS, CREATE CE
+CMSEL,,X_CECYC_N5
+CSYS,0
+NROTAT,ALL
+!
+CMSEL,,X_CECYC_N1
+ESLN,,1
+ESEL,INVE
+CEINTF
+EALL
+NALL
+!
+! WRITE THE CE FILE
+CEWRITE,x_cecyc,ce
+CMDEL,X_CECYC_N5
+!
+! RESUME THE ORIGINAL DATABASE
+FINI
+RESU,x_cecyc,db
+/DELETE,x_cecyc,db

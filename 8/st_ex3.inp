@@ -1,0 +1,103 @@
+/com,COLLABORATIVE SOLUTIONS, INC. (CSI) DOES NOT GUARANTEE THE CORRECTNESS
+/com,OR USEFULNESS OF THE RESULTS OBTAINED USING THIS INPUT FILE. CSI IS
+/com,NOT LIABLE FOR ANY CONCLUSIONS OR ACTIONS BASED ON THE RESULTS.
+/com,IT IS THE RESPONSIBILITY OF THE USER TO CONFIRM THE ACCURACY AND
+/com,USEFULNESS OF THE RESULTS.
+/com,
+!com,AUTHOR:
+!com,Sheldon Imaoka
+!com,Collaborative Solutions, Inc.
+!com,2303 W. 190th St.
+!com,Redondo Beach, CA 90278
+/com,
+/com,DESCRIPTION OF INPUT FILE:
+/com,  Example of surf eff elements (thermal)
+/com,  Convection and/or radiation
+/com,  10/20/99
+/com,
+/com,MACROS REQUIRED:
+/com,  None
+/com,
+/com,COMMENTS, ASSUMPTIONS:
+/com,  Comment out KEYOPT(8) and KEYOPT(9) to play with effect of
+/com,  convection only, radiation only, or both convection and radiation
+/com,  Reaction heat load should balance w/ heat through conv. and radiation
+/com,  in steady-state analysis.
+/com,
+
+WIDTH    = 0.01
+
+/graph,power
+/triad,lbot
+/view,1,1,2,3
+/auto
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,87
+et,2,152
+keyopt,2,4,0
+keyopt,2,5,1
+keyopt,2,6,0 ! extra node for convection
+keyopt,2,8,2 ! convection. hf at avg(T)
+keyopt,2,9,3 ! radiation, cosine eff
+
+mp,kxx ,1,156
+mp,emis,2,0.8
+
+r,2,
+rmodif,2,2,5.67e-8
+toffst,273.15
+
+block,,WIDTH,,WIDTH,,WIDTH
+
+esize,WIDTH/7
+vmesh,all
+
+asel,s,ext
+nsla,s,1
+n,1e6,2*WIDTH,2*WIDTH,WIDTH/2
+type,2
+real,2
+mat,2
+esurf,1e6
+finish
+
+/solu
+eqslv,jcg
+nsubst,2,10,2
+
+asel,s,loc,x,0
+!asel,a,loc,y,0
+!asel,a,loc,z,0
+nsla,s,1
+d,all,temp,20
+
+nsel,s,node,,1e6
+d,all,temp,1000
+
+esel,s,ename,,152
+sfe,all,,conv,0,5
+
+allsel,all
+solve
+finish
+
+/post1
+set,last
+esel,s,type,,1
+nsle
+plnsol,temp
+
+esel,s,type,,2
+nsle
+etable,HGTOT ,smisc,1
+etable,HFCTOT,smisc,2
+etable,HRTOT ,smisc,3
+!pretab
+etable,FORMF ,nmisc,16
+pletab,FORMF
+ssum
+nsel,s,node,,1e6
+prrsol

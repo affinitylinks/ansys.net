@@ -1,0 +1,20 @@
+! GetDir.mac
+! bob weathers, trane
+!
+! RETURNS:
+! sDIR - a string parameter containing up to 256 characters of
+the current path
+!
+! NOTES:
+! sDIR will be deleted and recreated if it exists when GetDir
+is invoked.
+!
+*GET, AR20, 'PARM', 'SDIR', 'TYPE'
+*IF, AR20, NE, -1, THEN!{
+   *DEL, sDIR
+*ENDIF!}
+*DIM, sDIR, STRI, 32*8, 1
+/SYS,cd > ansys.txt
+*VRE, sDIR(1,1), ansys, txt
+(32A8)
+/DEL, ansys, txt

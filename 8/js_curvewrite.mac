@@ -1,0 +1,71 @@
+!Create string arrays for *vwrite commands in curvewrite.mac
+!Initialize string arrays
+
+!Create character array of numbers since numerical values and character strings don't mix
+*dim,pidx,char,19,3
+pidx(1,1)='02','03','04','05','06','07','08','09','10','11'
+pidx(11,1)='12','13','14','15','16','17','18','19','20'
+
+!Define string arrays, the values of which will be written to the macro that gets created
+*dim,ndstring,string,128 !This string will be used with *VWRITE to write node numbers from array p
+*dim,grstring,string,128 !This string will be used with *VWRITE to write GRMS values from array p
+*dim,psdstring,string,128 !Used with *VWRITE to write frequencies and PSD values from array p
+*dim,ndesc,string,80 !String will contain format descriptor for node numbers
+*dim,gdesc,string,80 !Will contain format descriptors for GRMS values
+*dim,fdesc,string,80 !Will contain format descriptors for frequencies and PSDs
+psdstring(1)=',p(3,1)' !Need to include the column of frequencies since pidx starts at '02'
+ndesc(1)='%8X' !Need some blank spaces to line up node numbers in output
+gdesc(1)='%12X' !Need some blank spaces to line up GRMS values in output
+fdesc(1)='%13.4G' !Formatting for frequency values, which is different than PSD
+
+!Fill string arrays
+*do,n,1,ndinqr(0,13) !Loop through string array from 1 to selected # of nodes
+
+!Build strings for *vwrite for node numbers, GRMS values, and frequency vs. PSD
+ndstring(8*(n-1)+1)=',p(1,' !First part of nth *VWRITE argument to write node numbers from array
+ndstring(8*(n-1)+6)=pidx(n) !Second part of nth *VWRITE argument to write node numbers from array
+ndstring(8*(n-1)+8)=')' !Third part of nth *VWRITE argument to write node numbers from array
+grstring(8*(n-1)+1)=',p(2,' !Same as above except for GRMS values
+grstring(8*(n-1)+6)=pidx(n)
+grstring(8*(n-1)+8)=')'
+psdstring(8*(n-1)+8)=',p(3,' !Same as before except for PSD values
+psdstring(8*(n-1)+13)=pidx(n)
+psdstring(8*(n-1)+15)=')'
+
+ndesc(4*(n-1)+4)='%12I' !Build string for node number format descriptors
+gdesc(6*(n-1)+5)='%12.4G' !Build string for GRMS format descriptors
+fdesc(6*(n-1)+7)='%12.4E' !Build string for PSD format descriptors
+*enddo
+
+!Write *vwrite commands to curvewrite.mac
+*cfopen,curvewrite,mac !Open curvewrite.mac
+*vwrite !Write to curvewrite.mac
+*cfopen,psddata,txt !This command gets written in curvewrite.mac (as well as this comment)
+*vwrite !Write next line to curvewrite.mac 
+*vlen,1 !Written in curvewrite.mac; limits next *VWRITE to one row of array
+*vwrite,ndstring(1) !Value of ndstring will be written to curvewrite.mac
+*vwrite%C !*vwrite,p(1,02),p(1,03),p(1,04),...  written in curvewrite.mac
+*vwrite,ndesc(1) !Node number data descriptors to be written to curvewrite.mac
+Node %C !"Node" plus node number data descriptors written to curvewrite.mac
+*vwrite !Write next line to curvewrite.mac
+*vlen,1 !Written in curvewrite.mac; limits next *VWRITE to one row of array
+*vwrite,grstring(1) 
+*vwrite%C !*vwrite,p(2,02),p(2,03),p(2,04),...  written in curvewrite.mac
+*vwrite,gdesc(1)
+GRMS %C !"GRMS" followed by GRMS data descriptors written to curvewrite.mac
+*vwrite !Executed here
+*vwrite !Written to curvewrite.mac
+*vwrite !Executed here
+Freq (Hz)    PSD (G^2/Hz) !Written to curvewrite.mac
+*vwrite !Executed here
+*vlen !Written to curvewrite.mac, set default on *VLEN
+*vwrite,psdstring(1) 
+*vwrite%C !*vwrite,p(3,01),p(3,02),p(3,03),... written in curvewrite.mac 
+*vwrite,fdesc(1)
+%C !Frequency and PSD data descriptors written in curvewrite.mac
+*vwrite !Executed here
+*cfclose !Written there
+*cfclose !Executed here
+
+!Execute curvewrite.mac
+curvewrite

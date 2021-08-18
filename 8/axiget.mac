@@ -1,0 +1,31 @@
+!Macro to select all axisymmetric element types in model 
+!Supports only element types PLANE42 and PLANE82
+!Rod Scholl
+!PADT
+
+CM,estart,elem						!defines a component of the selected elem set
+CMDELE,axihold						!deletes axihold if created from previous run	
+anycheck=0						!zeros out anycheck if non-zero from previous run
+
+ETHIGH=etyiqr(0,14)					!gets the highest defined element type -- undocumented command
+
+*DO,icount,1,ETHIGH					!loops from 1 to highest defined element type number
+	*IF,etyiqr(icount,1),eq,1,then			!verifies that thre are elements selected of the type icount
+		*GET,axicheck,etyp,icount,attr,kop3	!checks if key option 3 is set to 1
+		*IF,axicheck,eq,1,then
+			esel,none
+			*IF,anycheck,eq,1,then
+				cmsel,a,axihold		!selects previously defined axi elements (if any) from earlier loops
+			*ENDIF
+			esel,a,type,,icount		!adds new axi-symmetric elements of type icount
+			*IF,ELNEXT(0),gt,0,then		!sets flag that some elements were selected
+				anycheck=1
+			*ENDIF			
+			cm,axihold,elem			!updates component axihold
+			cmsel,s,estart			!reselects orignial set of elements
+		*ENDIF
+	*ENDIF
+*ENDDO
+
+CMSEL,S,axihold
+

@@ -1,0 +1,38 @@
+*CREATE,resetgui.tcl
+bind all <Control-Shift-Delete> [namespace code resetGUI]
+bind all <Control-Shift-BackSpace> [namespace code resetGUI]
+proc resetGUI { } {
+    # 
+    puts "\n #### PLEASE REPORT THIS INFORMATION ####"
+    #
+    puts "     trace(s) for EventType?"
+    foreach cb [trace vinfo ::euidl::graphicPicking::pickArray(EventType)] {
+      puts "         $cb"
+      trace vdelete ::euidl::graphicPicking::pickArray(EventType) [lindex $cb 0] [lindex $cb 1]
+    }
+    #
+    puts "     IgnoreCancel value is \
+         $::euidl::graphicPicking::pickArray(IgnoreCancel)"
+    #
+    catch {AnsysGUI::AnsysPicking off}
+    # 
+    while {![::euidl::stack::isEmpty ::AnsysGUI::greyStatus(0)]} {
+      catch {ans_greygui all 1}
+    }
+    # check for a callFnc problem
+    if {[ans_evalexpr _BUTTON] == -999} {
+      puts "  A loop was occurring in callFnc\n"
+    }
+    catch {ans_sendcommand )_BUTTON=0}
+    #
+    foreach w [grab current] {
+      puts "  A grab existed on window $w\n"
+      catch {grab release $w}
+    }
+    catch {AnsysGUI::AnsysPicking on}
+
+    puts "\n #### THANK YOU, AND SORRY FOR THE INCONVENIENCE ####"
+}
+*END
+~eui,'source resetgui.tcl'
+~eui,'file delete resetgui.tcl'

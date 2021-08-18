@@ -1,0 +1,23 @@
+! MACRO 
+*if,ndinqr(0,13),gt,0,then
+fname=
+*ask,fname,Enter File Name,'ndgrp1'
+nnb= 
+*dim,nnb,array,ndinqr(0,14),2 
+*vfil,nnb(1,1),ramp,1,1 
+*vget,nnb(1,2),node,1,nsel 
+*cfopen,fname,mac
+*vwrite
+('/nopr')
+*vwrite
+('nsel,none')
+*vmask,nnb(1,2)
+*vwrite,nnb(1,1)
+('nsel,a,,,',F12.0)
+*vwrite
+('/gopr')
+*cfclose
+*endif
+
+! END MACRO
+

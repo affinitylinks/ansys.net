@@ -1,0 +1,87 @@
+finish
+/clear
+
+RADIUS_INNER = 10
+RADIUS_OUTER = 30
+LOAD_OMEGA   = 100
+
+/auto
+/triad,lbot
+/pnum,type,1
+/num,1
+
+/prep7
+et,1,63
+r,1,0.1
+mp,ex  ,1,10e6
+mp,nuxy,1,0.3
+mp,dens,1,0.1/386.1
+
+et,2,184
+keyopt,2,1,1
+
+pcirc,RADIUS_OUTER,RADIUS_INNER,0,90
+pcirc,RADIUS_OUTER,RADIUS_INNER,90,180
+pcirc,RADIUS_OUTER,RADIUS_INNER,180,270
+pcirc,RADIUS_OUTER,RADIUS_INNER,270,360
+nummrg,kp
+
+aatt,1,1,1
+mshape,0
+mshkey,1
+esize,5
+amesh,all
+
+! create rigid beams inside
+csys,1
+nrota,all
+lsel,s,loc,x,RADIUS_INNER
+nsll,s,1
+n,,0,0,0
+type,2$real,2$mat,2
+*get,NCOUNT,node,,count
+NEXTNODE=0
+*do,ICOUNT,1,NCOUNT-1
+  NEXTNODE=ndnext(NEXTNODE)
+  e,node(0,0,0),NEXTNODE
+*enddo
+csys,0
+
+! create dummy element
+nsel,all
+n,,RADIUS_OUTER+5,0,0
+e,node(RADIUS_OUTER,0,0),node(RADIUS_OUTER+5,0,0)
+
+d,node(0,0,0),all
+ddele,node(0,0,0),rotz
+
+allsel,all
+finish
+
+/solu
+antype,trans
+nlgeom,on
+rescon,define,none
+outres,all,all
+time,0.04
+deltim,6e-4,1e-5,0.1
+
+nsel,u,node,,node(0,0,0)
+csys,1
+*get,NCOUNT,node,,count
+NEXTNODE=0
+*do,ICOUNT,1,NCOUNT
+  NEXTNODE=ndnext(NEXTNODE)
+  ic,NEXTNODE,uy,,LOAD_OMEGA*nx(NEXTNODE)
+*enddo
+csys,0
+
+allsel,all
+solve
+finish
+
+/post1
+set,last
+rsys,1
+plns,u,sum
+ANDATA,0.1,,2,0,0,1,0,1

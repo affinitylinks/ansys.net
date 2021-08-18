@@ -1,0 +1,30 @@
+!ASWP.MAC
+!Divide picked area(s) with WP and re-assign the attributes to the
+!newly formed areas    - by Bram D. Weisman
+!Syntax - ASWP
+/pmacro
+/nopr
+lsla
+asel,r,p
+cm,tempa,area
+an = 0
+!
+*do,ia,1,arinqr(,13)
+!  
+  cmsel,,tempa
+  an = arnext(an)
+  asel,r,,,an
+!  
+  *get,Ra,area,an,attr,real
+  *get,Ma,area,an,attr,mat
+  *get,Ta,area,an,attr,type
+! 
+  asbw,an
+  aatt,Ma,Ra,Ta
+!  
+*enddo
+!
+asll,,1
+!
+/go
+/eof

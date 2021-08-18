@@ -1,0 +1,84 @@
+:! the following function is the same as Fnc_CIRCLE, except 
+:! the menu title has been changed from Full Circle to 
+:! Circle on WP
+:N Fnc_CIRCLEWP
+:S 0, 0, 0
+:T Cmd_P
+:C )! Fnc_CIRCLE
+:A Circle on WP
+:D Circle on WP
+:K #(PREP7)
+:H Hlp_C_CIRCLE
+Inp_P
+Cmd_CIRCLE
+Fld_2
+Prm_[CIRCLE] Pick or enter 2 WP locations -- center and radius
+Typ_XYZ
+Min_2
+Max_2
+Rub_3
+:E END
+:! 
+:N Fnc_CIRCLEKP
+:S 0, 0, 0
+:T Cmd_P
+:C )! Fnc_CIRCLE
+:C )/NOPR
+:C )*DEL,_z1
+:C )*DIM,_z1,,5
+:C )/GO
+:A Circle From 3 KP
+:D Circle From 3 KP
+:K #(PREP7)
+:H Hlp_C_CIRCLE
+Inp_P
+Cmd_*set,_z1(1)
+Fld_2
+Prm_[CIRCLE] Select KPs at center, along axis, and along radius 
+Typ_KPOI
+Min_3
+Cnt_3
+PFM_2
+Sel_R
+Cal_Fnc_CIRCLEKP2
+:E END
+:! 
+:! 
+:N Fnc_CIRCLEKP2
+:S 0, 0, 0
+:T Command
+:K #(PREP7)
+Cmd_*set,_z2
+Fld_2
+Typ_Real
+Prm_Radius of circle (optional)
+Def_0
+Cmd_*set,_z3
+Fld_2
+Typ_INT
+Prm_Number of segments (optional)
+Def_0
+Cal_Fnc_CIRCLEKP3
+Cmd_/go
+:E END
+:! 
+:! 
+:N Fnc_CIRCLEKP3
+:S 0, 0, 0
+:T Cmd_P
+:K #(PREP7)
+Inp_P
+Cmd_circle
+Fld_2
+Typ_Def_*par(_z1(1))
+Fld_3
+Typ_Def_*par(_z2)
+Fld_4
+Typ_Def_*par(_z1(2))
+Fld_5
+Typ_Def_*par(_z1(3))
+Fld_6
+Typ_Def_*par(_z3)
+Cmd_/go
+:E END
+:! 

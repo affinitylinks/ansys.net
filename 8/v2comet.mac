@@ -1,0 +1,153 @@
+!
+! v2comet.mac
+! by Fern Thomassy 10 Sep 1999
+! modified by Fern Thomassy 20 Nov 1999
+!    expecting parameter for nsteps and extracting
+!    results for multiple steps with single substep
+!
+! This macro reads uses the current jobnane and results file
+! name settings to read velocity results for currently selected nodes
+! and writes out a file suitable for COMET
+
+! This macro was tested for ANSYS 5.5.3 and COMET 4.0
+
+! Appendix B "COMET Native File Formats", section B.3 
+! was reference for the output format.
+
+! This macro assumes that results files are available.  No 
+! modifications are made to the ANSYS database and the resulting
+! output is the file
+!    jobname.cnf
+! where jobname is the the current ANSYS jobname setting
+
+FINISH
+/NOPR
+/POST1
+SET,1
+
+CM,nstart,node
+CM,estart,elem
+NSLE,S,CORNER
+
+*GET,jname,ACTIVE,,JOBNAM
+*CFOPEN,jname,r.cnf
+
+!------------------------------------------------------------------------
+nsteps = arg1-1
+! assumes each step has a frequency with one substep that contains
+! real and imaginary parts
+! expansion will not include the first frequency since it is zero
+!------------------------------------------------------------------------
+
+! Frist write comments and headers
+*VWRITE
+('$ COMET NATIVE FILE FORMAT FREQUENCY RESPONSE')
+! Frist write comments and headers
+*VWRITE,jname
+('$ TRANSLATED FROM ANSYS ',A10,'.rst')
+*VWRITE
+('VERSION : 4.0')
+*VWRITE
+('$')
+*VWRITE,CHRVAL(nsteps)
+('$ THERE ARE ',A4,' STEPS (CASES) TO BE WRITTEN')
+*VWRITE
+('$')
+*VWRITE
+('BEGIN_SET : FREQ_RESP')
+
+*GET,nnode,NODE,,COUNT
+*DIM,velo,ARRAY,nnode,6
+
+*DO,i1,1,nsteps,1     !write cases for every step
+
+  SET,i1,1,velo,0                 ! set real data
+  *VWRITE,CHRVAL(i1)              !write the case header info
+('BEGIN_CASE : ',A5)
+  *GET,freq,ACTIVE,,SET,FREQ      !get frequency of current step
+  *VWRITE,freq
+('FREQUENCY : ',E13.5,' HZ')
+  *VWRITE
+('DATA_TYPE : VELOCITY')
+  *VWRITE
+('DATA_FORMAT : REAL-IMAG')
+
+  ! load arrays with results
+  nnum = 0
+  *DO,i2,1,nnode,1
+    nnum = NDNEXT(nnum)
+    velo(i2,1) = UX(nnum)
+    velo(i2,2) = UY(nnum)
+    velo(i2,3) = UZ(nnum)
+    !  velo(i2,1) = 123.456
+    !  velo(i2,2) = 234.567
+    !  velo(i2,3) = 345.678
+  *ENDDO
+
+  SET,i1,1,velo,1                 ! set imaginary data
+  nnum = 0
+  *DO,i2,1,nnode,1
+    nnum = NDNEXT(nnum)
+    velo(i2,4) = UX(nnum)
+    velo(i2,5) = UY(nnum)
+    velo(i2,6) = UZ(nnum)
+    !  velo(i2,4) = 789.012345
+    !  velo(i2,5) = 890.123
+    !  velo(i2,6) = 901.234
+  *ENDDO
+
+
+  ! write the results to file
+  nnum = 0
+  *DO,i2,1,nnode,1
+    nnum = NDNEXT(nnum)
+    vxr = velo(i2,1)
+    vyr = velo(i2,2)
+    vzr = velo(i2,3)
+    *VWRITE,CHRVAL(nnum),vxr,vyr,vzr
+(A8,3('  ',E16.9))
+    vxi = velo(i2,4)
+    vyi = velo(i2,5)
+    vzi = velo(i2,6)
+    *VWRITE,vxi,vyi,vzi
+(E16.9,2('  ',E16.9))
+  *ENDDO
+
+  *VWRITE
+('END_CASE')
+
+*ENDDO
+
+*VWRITE
+('END_SET')
+*VWRITE
+('$')
+
+
+*CFCLOSE,jname,r.cnf
+
+FINISH
+
+CMSEL,S,nstart
+CMSEL,S,estart
+CMDEL,nstart
+CMDEL,estart
+
+
+nsteps =          !number of steps (frequency sets) to write
+velo(nnode,6) =   !array of complet velocity vecotrs for result nodes
+jname =           !current job name used to define filenames
+nnode =           !total number of nodes
+freq =            !frequency of the current load step
+vxr =             !velocity component variables
+vyr =             !   "        "         "
+vzr =             !   "        "         "
+vxi =             !   "        "         "
+vyi =             !   "        "         "
+vzi =             !   "        "         "
+
+i1 =         !iterator
+i2 =         !iterator
+
+/GOPR
+

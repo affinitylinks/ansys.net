@@ -1,0 +1,24 @@
+! For information only -- use at your risk.
+! PLNSOL stress at slice superimposed on capped
+! EPLO view of elements behind the slice.
+! Working Plane defines slice.
+! User must define Working Plane position before
+! calling this macro. No arguments used.
+! Call from /POST1
+!
+! For development -- Z-buffer option
+!                 -- PLNSOL alternatives
+/erase                    ! Erase previous plot
+/PLOPTS,INFO,ON           ! Turn on legend
+/PLOPTS,LEG2,0            ! Turn off view info
+/dev,font,1,Courier*New,400,0,-12,0,0,,,
+/TYPE,1,5                 ! Capped Hidden Display
+/CPLANE,1                 ! Working Plane as cut plane
+/SHADE,1,1                ! Gouraud
+EPLO                      ! Show Elements
+/noerase                  ! Do not erase above EPLO
+/TYPE,1,1                 ! Section Display
+/dscale,1,.00000001       ! (virtually no displacement)
+PLNSOL,S,EQV              ! Stress Plot on Slice
+/dscale,1,1               ! 1:1 displacement plotting
+/erase  

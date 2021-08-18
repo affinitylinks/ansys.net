@@ -1,0 +1,35 @@
+!*********************************************************************!
+! MACRO E92TO142 ----  Tim Lansberry  07/01/98  ----
+!  Converts all SOLID92 elements in a model (detached from geometry)
+!  into FLUID142's using the nodes from the SOLID92's. The mesh will 
+!  be identical, and a new FLUID142 element type defined in the model.
+!  The solid92's are deleted from the database.
+!
+!    Usage:  E92TO142                                 		      
+!                                                                     
+! ******************************************************************* !
+!                                                              
+/nopr                              ! Suppress command echo 
+! ---------------------------------------------------------------------
+/prep7
+ESEL,ALL
+NUMCMP,elem
+*get,maxel,elem,0,count
+*get,maxeltyp,etyp,0,num,max
+ET,maxeltyp+1,142, 
+type,maxeltyp+1  
+ESEL,S,ENAME,,92			
+   *do,_n,1,maxel,1 			! Begin do-loop 
+     *if,esel(_n),eq,1,then 		
+       	*get,node1,elem,_n,node,1	! create fluid142's over all solid72's
+	*get,node2,elem,_n,node,2
+	*get,node3,elem,_n,node,3
+	*get,node4,elem,_n,node,4
+        EN,_n,node1,node2,node3,node3,node4,node4,node4,node4
+    *endif
+   *enddo
+ESEL,ALL
+ndele,all				! delete the extra (midside) nodes
+numcmp,nod
+eplot
+

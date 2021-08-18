@@ -1,0 +1,95 @@
+/COM,====================================================================
+/COM,                         SWP
+/COM,====================================================================
+/COM, NOTES:
+/COM, (1) Evaluates peak Worst Principal Stress, SWP=MAX(ABS(S1),ABS(S2))
+/COM, (2) Uses final substep/loadcase only
+/COM, (3) Operates on all results sets
+/COM,
+/NOPR
+/POST1 ! post-processor level
+! clean-up
+swp_peak
+time_peak
+node_peak
+! =======================================================================
+set,last
+*get,ncase,active,0,solu,ncmls ! get cumulative no. of loadsteps
+*msg,info,ncase
+%I loadcases selected
+/uis,msgpop,3                           ! suppress warning message pop-up boxes during macro execution
+nsle ! select nodes attached to selected elements
+*get,nnode,node,,num,max ! retrieve highest selected node number
+*dim,s1,array,nnode,1 ! dimension stress arrays
+*dim,s3,array,nnode,1
+*dim,swp,array,nnode,2 ! dimension worst principal stress array
+*dim,mask1,array,nnode,2 ! dimension masking array
+*vget,mask1(1,1),node,1,nsel
+*dim,mask2,array,nnode ! dimension masking array
+*vget,mask2(1),node,1,nsel
+swp_peak_old = 0
+*abset,'Looping Over Selected Loadcases',bar
+! loop over loadcases in model
+*do,ar21,1,ncase
+  *abcheck,(ar21/ncase)*100
+  *msg,info,ar21
+  >>> PROCESSING LOADSTEP %I
+  set,,,1,,,,ar21,
+  *vmask,mask1(1,1)
+  *vget,s1(1),node,1,S,1 ! get 1st principal stress
+  *vmask,mask1(1,1)
+  *vget,s3(1),node,1,S,3 ! get 3rd principal stress
+  *vabs,0,1,1 ! operate 1st and 2nd parameters as absolute
+  *voper,mask1(1,2),s3(1),sub,s1(1) ! mask for when abs(s3)>abs(s1)
+  *vmask,mask1(1,1)
+  *vfun,swp(1,2),copy,s1(1) ! load all elements with s1
+  *vmask,mask1(1,2)
+  *vfun,swp(1,2),copy,s3(1) ! subsitute s3 were abs(s3)>abs(s1) - swp @ current loadstep
+  *vabs,0,1,1 ! operate 1st and 2nd parameters as absolute
+  *voper,mask2(1),swp(1,2),sub,swp(1,1) ! mask for when abs(swp @ current step)>abs(swp @ previous step)
+  *vmask,mask2(1)
+  *vfun,swp(1,1),copy,swp(1,2) ! subsitute swp were abs(swp @ current step)>abs(swp @ previous step) - swp peak
+  *vscfun,swp_peak,max,swp(1,1) ! peak swp
+  *if,swp_peak,gt,swp_peak_old,then
+    swp_peak_old = swp_peak
+    *get,time_peak,active,,set,time
+  *endif
+  *vscfun,node_peak,lmax,swp(1,1) ! locn. of peak swp
+*enddo
+*msg,ui,swp_peak,time_peak,node_peak
+Peak SWP = %7.2FMPa @ time = %Gsecs (node %I)
+*abfinish
+*vmask,mask1(1,1)
+*vput,swp(1,1),node,1,s,1
+/graphics,full
+/dscale,1,off
+/plopts,minm,off
+/annot,dele
+/udoc,1,type,left
+/udoc,1,date,right
+/udoc,1,typ2,off
+/udoc,1,inum,left
+/udoc,1,bcdc,left
+/udoc,1,surf,left
+/udoc,1,body,left
+/udoc,1,vect,left
+/udoc,1,gwin,left
+/udoc,1,view,off
+/udoc,1,psta,off
+/udoc,1,misc,off
+/tlabel,-0.93,0.80,'PEAK WORST PRINCIPAL STRESS'
+/tlabel,-0.93,0.70,'maximum = %swp_peak%MPa (node %node_peak%)'
+/tlabel,-0.93,0.65,'time = %time_peak%secs'
+plnsol,s,1
+/COM,====================================================================
+/COM,Display Setting Altered, Adjust Accordingly !!!!!!!!!
+/COM,====================================================================
+! clean-up
+s1 =
+s3 =
+mask1 =
+mask2 =
+swp =
+ncase =
+nnode =
+swp_peak_old =

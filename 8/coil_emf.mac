@@ -1,0 +1,55 @@
+C*** MACRO FILE coil_emf REPORTS PER-TURN EMF
+C*** INDUCED IN PREDEFINED CLOSED LOOP PATHS
+
+C*** ASSUMPTIONS:
+C***    1) HARMONIC RESPONSE RESULTS
+C***    2) A RESULTS SET HAS ALREADY BEEN READ [SET]
+C***    3) MODEL COMPRISED OF SOLID117 (EDGE-BASED) ELEMENTS
+C***    4) A PREDEFINED CLOSED LOOP PATH IS ACTIVE
+C***    5) ISSUE WITHIN GENERAL (POST1) POSTPROCESSOR
+C***    6) POSTPROCESSING INTERACTIVELY
+
+C*** BILL BULAT 12/01/98
+C*** CSI
+C*** 5962 Laplace Ct
+C*** CARLSBAD, CA 92008
+C*** (760)431-4815 x108
+C*** (760)431-4824 (FAX)
+C*** bill.bulat@csi-ansys.com
+
+C*** IDENTIFY OPERATING FREQ CORRESPONDING TO RESULTS
+*get,frqncy,active,,set,freq ! IDENTIFY CURRENT OPERATING FREQUENCY
+
+C*** CALCULATE PATH LENGTH
+pdef,az,a,z                  ! INTERPOLATE ANYTHING TO PATH TO INITIALIZE
+/nerr,0                      ! SILENCE WARNING ABOUT ZERO INITIAL s VALUE
+pcalc,intg,area,s,s          ! INTEGRATE s w.r.t. ITSELF
+*get,areatot,path,,last,area ! TOTAL AREA UNDER STRAIGHT LINE: A = s^2/2
+lpath=sqrt(2*areatot)        ! TOTAL PATH LENGTH: s = sqrt(2a)
+/nerr                        ! RESTORE ERROR REPORTING
+
+C*** READ IN REAL COMPONENT OF FLUX
+set,,,,0,frqncy
+pdef,azr,a,z
+pcalc,intg,fluxr,azr,s,1/lpath ! FLUX = INTEGRAL OF EDGE POTENTIAL AROUND
+*get,fluxtotr,path,,last,fluxr ! CLOSED LOOP DIVIDED BY TOTAL PATH LENGTH
+
+C*** READ IN IMAGINARY COMPONENT OF FLUX
+set,,,,1,frqncy
+pdef,azi,a,z
+pcalc,intg,fluxi,azi,s,1/lpath ! FLUX = INTEGRAL OF EDGE POTENTIAL AROUND
+*get,fluxtoti,path,,last,fluxi ! CLOSED LOOP DIVIDED BY TOTAL PATH LENGTH
+
+C*** SRSS REAL AND IMAGINARY PARTS
+fluxtot=sqrt(fluxtotr**2+fluxtoti**2)
+*afun,rad
+pi=acos(-1)
+emf=2*pi*frqncy*fluxtot      ! emf=ingrl{E*dl}=ingrl{(dB/dt)*ds}
+*afun,deg
+phase=atan(fluxtoti/fluxtotr)
+
+C*** REPORT RESULTS (INTERACTIVE SESSION ASSUMED)
+!*msg,ui,fluxtotr
+!REAL COMPONENT OF FLUX =  %G
+*msg,ui,emf,phase
+Coil EMF = %G V/turn, %G degrees

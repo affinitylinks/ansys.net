@@ -1,0 +1,86 @@
+/com, computes the principle stresses and SI for the maximum
+!     node number or for the stress input by the input arguements
+!   reference:
+!            Marks, page 2-4 9th Edition
+!
+! sx=arg1
+! sy=arg2
+! sz=arg3
+! sxy=arg4
+! syz=arg5
+! sxz=arg6
+!
+! If arg1,,,arg6, are zero the maximum node is used to get the 
+! stresses for this calculation.
+!
+!
+!
+!
+/nerr,0,1e5
+ndmx=0
+_chk=arg1+arg2+arg3+arg4+arg5+arg6
+*if,_chk,eq,0,then
+ *get,ndmx,node,,num,max
+ *get,sx,node,ndmx,s,x
+ *get,sy,node,ndmx,s,y
+ *get,sz,node,ndmx,s,z
+ *get,sxy,node,ndmx,s,xy
+ *get,sxz,node,ndmx,s,xz
+ *get,syz,node,ndmx,s,yz
+*else
+ sx=arg1
+ sy=arg2
+ sz=arg3
+ sxy=arg4
+ syz=arg5
+ sxz=arg6
+*endif
+_a=sx+sy+sz
+_a=-_a
+_b1=sy*sz+sx*sz+sx*sy
+_b2=syz*syz+sxz*sxz+sxy*sxy
+_b=_b1-_b2
+_c1=sx*(sy*sz)+(2*(sxy*(syz*sxz)))
+_c2=sy*(sxz*sxz)
+_c3=sx*(syz*syz)
+_c4=sz*(sxy*sxy)
+_c=_c2+_c3+_c4-_c1
+! _c=-_c
+a=_a
+b=_b
+c=_c
+
+_aa=3*(a/3)*(a/3)-b
+_bb=(-1)*c+a*b/3-2*(a/3)*(a/3)*(a/3)
+
+_p=_aa/3
+_q=_bb/2
+
+_chk1=_q*_q-_p*_p*_p
+
+*afun,deg
+_ang=acos(_q/(_p*sqrt(_p)))
+_x1=2*sqrt(_p)*cos(_ang/3)
+_x2=2*sqrt(_p)*cos(_ang/3+120)
+_x3=2*sqrt(_p)*cos(_ang/3+240)
+
+
+sig1=_x1-a/3
+sig2=_x2-a/3
+sig3=_x3-a/3
+
+
+*if,sig3,gt,sig2,then
+   _temp=sig2
+   sig2=sig3
+   sig3=_temp
+*endif
+s_int=sig1-sig3
+*msg,info
+___PRINCIPLE STRESSES AND STRESS INTENSITY______
+*msg,info,sig1,sig2,sig3
+ sig1: %g sig2: %g sig3: %g
+*msg,info,s_int
+ Stress intensity:  %g
+*msg,info
+________________________________________________

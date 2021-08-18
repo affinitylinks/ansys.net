@@ -1,0 +1,52 @@
+C****************************************************************
+C*** MACRO TO OBTAIN RADIUS OF CURVATURE PARALLEL TO YZ PLANE
+C*** (ON A PREDEFINED PATH ON A X=0 SYMMETRY PLANE)
+C****************************************************************
+C***
+C*** REQUIREMENTS/USAGE:
+C*** 1) CREATE A PATH UPON WHICH RESULTING CURVATURE DUE TO
+C***    DISPLACEMENT IS DESIRED
+C*** 2) EXECUTE THE MACRO
+C***   
+C****************************************************************
+
+
+
+PDEF,,u,y,avg ! VERTICAL (Y) DISPLACEMENT
+PDEF,,u,z,avg ! LONGITUDINAL (Z) DISPLACEMENT
+pcal,add,zloc,s,uz ! Z LOCATION (DISPLACED COORDINATE)
+
+PCALC,DERI,dydz,uy,zloc,1,   ! FIRST DERIV
+PCALC,DERI,d2ydz2,dydz,zloc,1, ! SECOND DERIV
+
+PCALC,EXP,dydz_2,dydz,,2 ! FIRST DERIV SQUARED
+pcal,add,denom1,dydz_2,,1,,1 ! 1 + FIRST DERIV SQUARED
+pcalc,exp,denom2,denom1,,3/2 ! (1 + FIRST DERIV SQUARED)^1.5
+
+pcal,div,crvtr,d2ydz2,denom2 ! CURVATURE  = d2ydz2/[(1+dydz)^2]^1.5
+
+pcal,exp,radius,crvtr,,-1 ! RADIUS OF CRVTR = 1/CRVTR
+  
+PCALC,INTG,int_rds,RADIUS,zloc,1,  ! INTEGRAL OF RADIUS OF CURVATURE
+
+*get,zlocmax,path,,last,zloc ! LAST (GREATEST) DISPLACED Z COORD
+*get,rdssum,path,,last,int_rds ! TOTAL VALUE OF INTEGRAL OF RADIUS OF CURVATURE
+rds_avg=rdssum/zlocmax ! AVERAGE RADIUS OF CURVATURE
+
+pran,,,,zloc ! PLOT ITEMS vs Z COORD OF DEFORMED GEOM
+
+/gro,ltyp,1 ! AESTHETICALLY DESIREABLE PLOT SETTINGS
+/grid,on
+/col,grid,whit
+/gthk,curve,2
+/gthk,axis,2
+/ann,dele
+/tla,-.25,.90,AVERAGE RADIUS OF CURVATURE = %rds_avg%
+
+/axl,x,Z Coord of Deformed Geom (mm)
+/axl,y,Radius of Curvature (mm)
+plpa,radius
+
+/eof
+C****************************************************************
+

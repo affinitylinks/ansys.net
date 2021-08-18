@@ -1,0 +1,97 @@
+!==========================================================================================
+!Purpose:     Ansys APDL macro written in support of a thesis submitted in partial
+!             fulfillment of the requirements of the degree of Bachelor of Applied Science
+!             in the Department of Mechanical and Industrial Engineering
+!             University of Toronto
+!
+!Description: This macro is used to sort parallel lines in a line component into planes.
+!             The macro will only work if the original volumes are hexahedrals oriented
+!             with the cartesian coordinate axes.  The planes are determined using relative
+!             line centroid locations in a specified axis direction.
+!
+!             It requires the following arguments:
+!             arg1 = name of a line component on which to operate
+!             arg2 = axis to use for sort
+!
+!             The macro creates components lpl#, where # is an index.   
+!                   
+!Macro File:  sorter.mac
+!Ansys Mode:  Interactive or Batch 
+!
+!Written by:  Chris Masterson
+!Supervisor:  Professor A.N. Sinclair
+!
+!Revision:     1.0
+!Last Revised: 29 November 2000
+!
+!All ANSYS standard commands and parameters are in upper case.
+!All user defined commands and parameters are in lower case.
+!For electromagnetic analyses in Ansys all units must be in MKS
+!(i.e. metres not millimetres).
+!==========================================================================================
+
+!Initialize parameters :- determine how many lines are in the component, and the lowest 
+!line number.
+!Assign the lowest numbered line to the first plane and get its centroid location.
+
+comp_ = arg1
+axis_ = arg2
+flag=1
+tol = 0.000005
+npl = 1
+CMSEL,S,comp_
+*GET,howmany_,LINE,0,COUNT
+*GET,lastlin_,LINE,0,NUM,MIN
+LSEL,S,LINE,,lastlin_
+CM,lpl1,LINE
+LSUM
+*GET,loc1,LINE,0,CENT,axis_
+
+!Loop through all the lines, comparing the centroid of each line to the location of each
+!existing plane of lines.  Assign each line to the plane component with a matching
+!centroid location.  If there is no matching plane of lines, create a new one.
+
+*DO,I_,2,howmany_,1
+	CMSEL,S,comp_
+	*GET,nextlin_,LINE,lastlin_,NXTH
+	LSEL,S,LINE,,nextlin_
+	LSUM
+	*GET,nextloc_,LINE,0,CENT,axis_
+	*DO,J_,1,npl,1
+		*IF,nextloc_,LE,(loc%J_%+tol),THEN
+			*IF,nextloc_,GE,(loc%J_%-tol),THEN
+				CMSEL,A,lpl%J_%
+				CM,lpl%J_%,LINE
+				flag=-1
+				*EXIT
+			*ENDIF
+		*ENDIF
+	*ENDDO
+	*IF,flag,EQ,1,THEN
+		npl=npl+1
+		CM,lpl%npl%,LINE
+		loc%npl%=nextloc_
+	*ELSE
+		flag=1
+	*ENDIF	
+	lastlin_ = nextlin_
+*ENDDO
+
+
+!Clean up temporary parameters and components.
+
+comp_=
+axis_=
+tol=
+flag=
+howmany_=
+lastlin_=
+nextlin_=
+nextloc_=
+*DO,I_,1,npl,1
+	loc%I_%=
+*ENDDO
+I_=
+J_=
+K_=
+

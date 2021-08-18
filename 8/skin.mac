@@ -1,0 +1,270 @@
+!==========================================================================================
+!Purpose:     Ansys APDL macro written in support of a thesis submitted in partial
+!             fulfillment of the requirements of the degree of Bachelor of Applied Science
+!             in the Department of Mechanical and Industrial Engineering
+!             University of Toronto
+!
+!Description: This macro is used to create a 3d, hexahedral mapped volume mesh that focuses
+!             on the skin depth of a volume component.  The user provides the thickness of 
+!             the skin depth and determines how many layers of mesh to include in the skin 
+!             depth.  An expansion factor is used to gradually reduce mesh density away 
+!             from the skin depth.  The global element size must be set before this macro 
+!             is run because, once the global element size is reached during expansion, 
+!             this size is used to mesh the remaining volume.  This macro assumes that the 
+!             surface normal of the area that defines the top of the skin depth points in 
+!             the positive y direction.  All volumes should have uniform thickness.  
+!             This macro requires that a dummy 3D surface element be defined.
+!
+!             The required arguments are:
+!             arg1 = name of volume component to be meshed
+!             arg2 = thickness of volumes to be meshed
+!             arg3 = desired skin depth thickness
+!             arg4 = number of layers of mesh in the skin depth (minimum of 1)
+!             arg5 = Expansion factor (1 < arg4 <= 5)
+!             arg6 = a global element size (can be different than actual element size)
+!
+!             This macro calls the following sub-macros: picker.mac, sorter.mac.
+!                   
+!Macro File:  skin.mac
+!Ansys Mode:  Interactive or Batch 
+!
+!Written by:  Chris Masterson
+!Supervisor:  Professor A.N. Sinclair
+!
+!Revision:     1.1
+!Last Revised: 24 January 2001
+!
+!All ANSYS standard commands and parameters are in upper case.
+!All user defined commands and parameters are in lower case.
+!For electromagnetic analyses in Ansys all units must be in MKS
+!(i.e. metres not millimetres).
+!==========================================================================================
+
+!The skin depth meshing algorithm currently requires that the line numbers be compressed 
+!before running.  
+NUMCMP,ALL
+
+!Initialize arguments to parameters
+volcomp_ = arg1
+totthk_ = arg2
+skindep_ = arg3
+laynum_ = arg4
+expfac_ = arg5
+globsiz_ = arg6
+
+!Initialize a mesh layer maximum flag, to prevent lock-up in the case of incorrect 
+!parameter values.
+cntflag_ = 1000
+
+!Dimension an array to the same number of elements as cntflag_ for storing expansion 
+!layer sizes.
+*DIM,off_,ARRAY,cntflag_
+
+!Adjust Boolean tolerance to allow smaller skin depth layers.
+BTOL,1e-6
+
+!Create a component of all original keypoints which define the corners of the 
+!volumes/areas.
+CMSEL,S,volcomp_
+ALLSEL,BELOW,VOLU
+CM,corners_,KP
+
+!Create a component of all lines aligned with Y axis.
+picker,volcomp_,'Y'
+CM,vertlin_,LINE
+
+!Create a component of all lines that must be offset to create mesh divisions.
+picker,volcomp_,'Z'
+CM,zallin_,LINE
+sorter,'zallin_','Y'
+CMSEL,S,lpl1
+LSUM
+*GET,loca_,LINE,0,CENT,Y
+CMSEL,S,lpl2
+LSUM
+*GET,locb_,LINE,0,CENT,Y
+*IF,loca_,EQ,0,THEN
+	CMSEL,S,lpl1
+	CM,ltoffst_,LINE
+*ELSE
+	CMSEL,S,lpl2
+	CM,ltoffst_,LINE
+*ENDIF	
+*DO,i_,1,npl,1
+	CMDELE,lpl%i_%
+*ENDDO
+
+!Create a component of side areas to be meshed before the VSWEEP command.
+CMSEL,S,vertlin_
+CMSEL,A,zallin_
+ASLL,S,1
+CM,sidarea_,AREA
+
+!Create components of source and target areas for the VSWEEP command.
+picker,volcomp_,'X'
+CM,xallin_,LINE
+sorter,'xallin_','Z'
+*DO,i_,1,npl,1
+	CMSEL,S,vertlin_
+	CMSEL,A,lpl%i_%
+	ASLL,S,1
+	CM,apl%i_%,AREA
+*ENDDO
+*DO,i_,1,npl,1
+	CMDELE,lpl%i_%
+*ENDDO
+
+!Initialize parameters for use in calculating element sizes.
+startel_ = skindep_/laynum_
+remain_ = totthk_-skindep_
+prev_ = startel_
+
+!Initialize offset parameters for the skin layers.
+*DO,i_,1,laynum_,1
+	off_(i_) = startel_
+*ENDDO 
+
+!Calculate offset parameters for the expansion layers.
+*DO,i_,(laynum_+1),cntflag_,1
+	next_ = prev_*expfac_
+	*IF,next_,GE,globsiz_,THEN
+		*EXIT
+	*ELSEIF,next_,GE,remain_,THEN
+		*EXIT
+	*ELSEIF,globsiz_,GE,remain_,THEN
+		*EXIT
+	*ELSE
+		off_(i_) = next_
+		remain_ = remain_-next_
+		prev_ = next_
+	*ENDIF
+*ENDDO
+
+!Determine what portion of the remaining thickness is not an even multiple of the global 
+!element size.  Set this portion as extra to be smoothed into the expansion layers.
+divs_ = remain_/globsiz_
+*IF,divs_,LT,1,THEN
+	extra_ = remain_
+*ELSE
+	extra_ = mod(divs_,1)*globsiz_
+*ENDIF
+
+
+!The smoothing algorithm finds the fraction each layer is of the total thickness
+!of the expansion and then applies that fraction of the extra remaining thickness 
+!the expansion layer.
+*IF,extra_,NE,0,THEN
+	*DO,k_,(laynum_+1),(i_-1),1
+		frac_ = off_(k_)/(totthk_-(skindep_+remain_))
+		off_(k_) = off_(k_)+frac_*extra_
+	*ENDDO
+*ENDIF
+
+!Continue the meshing operation.
+!Use the array of offset distances to create lines that define the mesh layers.
+!Store the new lines in a component.
+LSEL,ALL
+*GET,prev_,LINE,0,NUM,MAX
+prev_ = prev_+1
+LSEL,NONE
+CM,lbreak_,LINE
+totoff_ = -off_(1)
+*DO,m_,1,(i_-1),1
+	CMSEL,S,ltoffst_
+	LGEN,2,ltoffst_,,,,totoff_,,,1,0
+	*GET,next_,LINE,0,NUM,MAX
+	LSEL,S,LINE,,(prev_),next_,1
+	CMSEL,A,lbreak_
+	CM,lbreak_,LINE
+	prev_ = next_
+	totoff_ = totoff_-off_(m_+1)
+*ENDDO
+
+!Use the lines that define the mesh layers to perform the divide operations on
+!the edges of the source and side areas that define the volumes to be meshed.
+LSEL,ALL
+LSBL,vertlin_,lbreak_,,DELETE,DELETE
+
+!Mesh target and side areas by cycling through their components.  The current area is 
+!selected with its keypoints.  The corners_ component is used to reselect only the corner 
+!keypoints.  These keypoints are mapped to variables that are used in the map mesh the 
+!area by corners.
+*DO,i_,0,npl,1
+	*IF,i_,EQ,0,THEN
+		CMSEL,S,sidarea_
+	*ELSE
+		CMSEL,S,apl%i_%
+	*ENDIF
+	CM,temp_,AREA
+	*GET,howmany_,AREA,0,COUNT
+	*GET,prev_,AREA,0,NUM,MIN
+	*DO,j_,1,howmany_,1
+		ASEL,S,AREA,,prev_,,,1
+		CMSEL,R,corners_
+		*GET,kcur_,KP,0,NUM,MIN
+		*DO,m_,1,4,1
+			k%m_%_ = kcur_
+			klast_ = kcur_
+			*GET,kcur_,KP,klast_,NXTH
+		*ENDDO
+		AMAP,prev_,k1_,k2_,k3_,k4_
+		CMSEL,S,temp_
+		*GET,next_,AREA,prev_,NXTH
+		prev_ = next_
+	*ENDDO
+*ENDDO
+	 
+!Sweep mesh all of the volumes.
+EXTOPT,ACLEAR,1
+CMSEL,S,volcomp_
+VSWEEP,volcomp_,,,0
+
+!Reset Boolean tolerance to the default 1e-4.
+BTOL,DEFA
+
+!Clean up all temporary variables and components.
+
+CMDELE,corners_
+CMDELE,vertlin_
+CMDELE,zallin_
+CMDELE,ltoffst_
+CMDELE,sidarea_
+CMDELE,xallin_
+CMDELE,lbreak_
+CMDELE,temp_
+*DO,i_,1,npl,1
+	CMDELE,apl%i_%
+*ENDDO
+
+volcomp_ = 
+totthk_ = 
+skindep_ = 
+laynum_ = 
+expfac_ = 
+globsiz_ = 
+cntflag_ = 
+off_(1) = 
+loca_=
+locb_=
+startel_ = 
+remain_ = 
+prev_ = 
+next_ =
+divs_ =
+extra_ =
+frac_ =
+totoff_ =
+howmany_ =
+kcur_ =
+k1_ =
+k2_ =
+k3_ =
+k4_ =
+klast_ =
+s_ =
+t_ =
+i_ =
+j_ =
+k_ =
+m_ =
+npl=

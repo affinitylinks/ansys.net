@@ -1,0 +1,86 @@
+!*********************************************************************************************************************************
+!AExt.mac - Macro for ANSYS 5.3 by JKT
+!*********************************************************************************************************************************
+! This macro creates an area by 'extruding' line - Similar to ANSYS command VEXT
+! Arg1 = First line to be extruded
+! Arg2 = Last line to be extruded
+! Arg3 = Increment between lines
+
+! Arg4 = X-translation
+! Arg5 = Y-translation
+! Arg6 = Z-translation
+
+! Arg7 = 0 - counterclockwise
+!        1 - clockwise
+
+*GET,_PrOut,active,,prkey
+/NOP
+!*********************************************************************************************************************************
+*IF,kpinqr(0,13),ge,1,then  $CM,Key_,kp    $*ENDIF  $KSEL,all  $*GET,K0_,kp,,num,max $KS_=kpinqr(0,25) $NUMS,kp  ,K0_ $KSEL,none
+*IF,lsinqr(0,13),ge,1,then  $CM,Lin_,line  $*ENDIF  $LSEL,all$*GET,L0_,line,,num,max $LS_=lsinqr(0,25) $NUMS,line,L0_ $LSEL,none
+*IF,arinqr(0,13),ge,1,then  $CM,Are_,area  $*ENDIF  $ASEL,all$*GET,A0_,area,,num,max $AS_=arinqr(0,25) $NUMS,area,A0_ $ASEL,none
+!*********************************************************************************************************************************
+*IF,KS_,gt,K0_,then       $NUMS,kp  ,KS_   $*ENDIF
+*IF,LS_,gt,L0_,then       $NUMS,line,LS_   $*ENDIF
+*IF,AS_,gt,A0_,then       $NUMS,area,AS_   $*ENDIF
+!*************************************************
+*GET,CSNu_,active,     ,csys
+*GET,CSTy_,cdsy  ,CSNu_,attr,kcs
+
+*IF,CSTy_,eq,0,then
+   CLOC,99,0,Arg4,Arg5,Arg6,0,0,0
+   CSYS,CSNu_
+*ELSEIF,CSTy_,eq,1,then
+   *IF,Arg4,ablt,1e-6,then
+      CLOC,99,1,0,0,Arg6,Arg5,0,0
+      CSYS,CSNu_
+   *ELSE
+      *MSG,error
+Radial generation is impossible in macro 'AExt.MAC'!!!!
+   *ENDIF
+*ELSE
+   *MSG,error
+Macro 'AExt.MAC' does not work in spherical or toroidal coordinate system!!!!
+*ENDIF
+
+LSEL,s,,,Arg1,Arg2,Arg3        $KSLL,,1
+!Enlist,'line','Lns_','NLn_'
+Ar10=lsinqr(0,14)
+NLn_=lsinqr(0,13)
+*DIM,apu_,array,Ar10       $*DIM,Lns_,array,Ar10
+*VGE,apu_(1),line,1,lsel   $*VFI,Lns_(1),ramp,1,1
+*VMA,apu_(1)               $*VFU,Lns_(1),comp,Lns_(1)    $Apu_=
+
+LTRA,99,Arg1,Arg2,Arg3,
+
+*DIM,LD_,,4,NLn_
+
+*DO,xx_,1,NLn_
+   *GET,K1_,line,Lns_(xx_),kp,1
+   *GET,K2_,line,L0_+xx_  ,kp,1
+   *GET,K3_,line,L0_+xx_  ,kp,2
+   *GET,K4_,line,Lns_(xx_),kp,2
+   *IF,Arg7,eq,1,then
+      A,K1_,K4_,K3_,K2_
+   *ELSE
+      A,K1_,K2_,K3_,K4_
+   *ENDIF
+*ENDDO
+!*********************************************************************************************************************************
+*GET,apu_,comp,Key_,type  $*IF,apu_,eq,6,then   $CMSE,a,Key_  $CMDE,Key_$*ENDIF       $NUMS,kp  ,KS_    $K0_=      $KS_=
+*GET,apu_,comp,Lin_,type  $*IF,apu_,eq,7,then   $CMSE,a,Lin_  $CMDE,Lin_$*ENDIF       $NUMS,line,LS_    $L0_=      $LS_=
+*GET,apu_,comp,Are_,type  $*IF,apu_,eq,8,then   $CMSE,a,Are_  $CMDE,Are_$*ENDIF       $NUMS,area,AS_    $A0_=      $AS_=
+!*********************************************************************************************************************************
+K1_=                   $K2_=              $K3_=            $K4_=
+CSNu_=                 $CSTy_=            $CSDE,99
+Kps_=                  $NKp_=
+Lns_=                  $NLn_=
+LD_=
+Apu_=
+
+*IF,_PrOut,eq,1,then
+   /GO
+*ENDIF
+
+/eof
+!*********************************************************************************************************************************

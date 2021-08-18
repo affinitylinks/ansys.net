@@ -1,0 +1,154 @@
+!
+/prep7				! re-enter preprocessor
+allsel				! select everything
+lsclear,all			! delete all loads and constraints
+!
+mptemp				! delete temp tables
+mpdele,all,20			! delete conv+rad h vs. temp tables for pkg and pcb surfaces
+mpdele,all,21
+mpdele,all,22
+!
+esel,s,mat,,sili		! apply heat flux to chip
+nsle
+nsel,r,loc,z,hdie+zdie
+sf,all,hflux,pwr/(xdie1*ydie1)
+!
+! free = 0, free convection
+!      = 1, forced convection (need velocity predefined)
+!
+*if,free,eq,0,then		! check for free convection run
+!
+!  FREE CONVECTION DEFINITION (UPPER PKG SURFACE)
+!
+! jedec = 2, 2-layer (2S0P) JEDEC PWB
+!       = 4, 4-layer (2S2P) JEDEC PWB
+!
+*if,jedec,eq,2,then		! create isothermal conv+rad h table for upper pkg surface
+mptemp
+p=(xbody*ybody/(2*(xbody+ybody)))*1e-03
+*do,i,tamb,tamb+200,5
+  hcon=1.336*((i-tamb)/p)**0.25
+  hrad=epkg*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,20,,htot
+*enddo
+*endif
+!
+*if,jedec,eq,4,then		! create dual isoflux conv+rad h table for upper pkg surface
+mptemp
+p=(xbody*ybody/(2*(xbody+ybody)))*1e-03
+q=pwr/((2*xpkg*ypkg)*1e-06)
+*do,i,tamb,tamb+200,5
+  hcon=0.551*(q**0.185)/(p**0.260)
+  hrad=epkg*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,20,,htot
+*enddo
+*endif
+!
+!  FREE CONVECTION DEFINITION (UPPER PCB SURFACE)
+!
+*if,jedec,eq,2,then			! create isothermal conv+rad h table for upper pwb surface
+mptemp
+p=(xpwb1*ypwb1/(2*(xpwb1+ypwb1)))*1e-03
+*do,i,tamb,tamb+200,5
+  hcon=1.336*((i-tamb)/p)**0.25
+  hrad=epwb*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,21,,htot
+*enddo
+*endif
+!
+*if,jedec,eq,4,then			! create dual isoflux conv+rad h table for upper pwb surface
+mptemp
+p=(xpwb1*ypwb1/(2*(xpwb1+ypwb1)))*1e-03
+q=pwr/((2*xpwb1*ypwb1)*1e-06)
+*do,i,tamb,tamb+200,5
+  hcon=0.551*(q**0.185)/(p**0.260)
+  hrad=epwb*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,21,,htot
+*enddo
+*endif
+!
+!  FREE CONVECTION DEFINITION (LOWER PWB SURFACE)
+!
+*if,jedec,eq,2,then	! create isothermal conv+rad h table for lower pwb surface
+mptemp
+p=(xpwb1*ypwb1/(2*(xpwb1+ypwb1)))*1e-03
+*do,i,tamb,tamb+200,5
+  hcon=0.668*((i-tamb)/p)**0.25
+  hrad=epwb*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,22,,htot
+*enddo
+*endif
+!
+*if,jedec,eq,4,then	! create dual isoflux conv+rad h table for lower pwb surface
+mptemp
+p=(xpwb1*ypwb1/(2*(xpwb1+ypwb1)))*1e-03
+q=pwr/((2*xpwb1*ypwb1)*1e-06)
+*do,i,tamb,tamb+200,5
+  hcon=0.520*(q**0.166)/(p**0.336)
+  hrad=epwb*5.67e-08*((i+273)+(tamb+273))*((i+273)**2+(tamb+273)**2)
+  htot=(hcon+hrad)*1e-06
+  mptemp,,i
+  mpdata,hf,22,,htot
+*enddo
+*endif
+!
+*elseif,free,eq,1,then			! check for forced convection run
+!
+!  FORCED CONVECTION DEFINITION
+!
+! Characteristic Length of PKG & PCB
+!
+!cpkg=((xbody**2+ybody**2)**0.5)*1e-3
+!cpwb=((xpwb1**2+ypwb1**2)**0.5)*1e-3
+cpkg=ybody*1e-3
+cpwb=ypwb1*1e-3
+!
+mptemp
+htot=(5.289*(velocity/cpkg)**0.5)*1e-6
+mptemp,,tamb
+mpdata,hf,20,,htot	! h for upper pkg surface
+!
+mptemp
+htot=(5.289*(velocity/cpwb)**0.5)*1e-6
+mptemp,,tamb
+mpdata,hf,21,,htot	! h for upper pwb surface
+!
+mptemp
+htot=(5.289*(velocity/cpwb)**0.5)*1e-6
+mptemp,,tamb
+mpdata,hf,22,,htot	! h for lower pwb surface
+!
+*endif
+*if,free,le,1,then
+!
+!  FREE & FORCED CONVECTION APPLICATION
+!
+nsel,s,loc,z,hpkg	! apply h to upper pkg surface
+esln,s,0
+nsle
+nsel,r,loc,z,hpkg
+sf,all,conv,-20,tamb
+nsel,s,loc,z,hcop+zcop
+sf,all,conv,-20,tamb
+nsel,s,loc,z,zpwb 	! apply h to upper pwb surface
+esln,s,0
+nsle
+nsel,r,loc,z,zpwb
+sf,all,conv,-21,tamb
+nsel,s,loc,z,0		! apply h to lower pwb surface
+esln,s,0
+nsle
+nsel,r,loc,z,0
+sf,all,conv,-22,tamb
+fini
+*endif

@@ -1,0 +1,274 @@
+!  
+!  makemesh.mac  A macro that demonstrates the generation
+!                and meshing of a solid intended for modal 
+!                cyclic symmetry analysis.
+!
+!  The model that is generated is a section of a housing
+!  that is made of a cylinder with a flat disc on top of it.
+!  The disk and cylinder are connected by 8 posts that have holes
+!  in them.  This model will be a one-eigth sector of the actual
+!  part.  This will be sufficient to allow us to get good results
+!  using modal cyclic symmetry.
+!
+!  We will begin by generating the geometry, and then mesh it with
+!  brick and tetrahedral elements.
+!
+!  To use this macro, start ANSYS and enter the name of the macro,
+!  "makemesh" at the command line.  The macro must be in the working
+!  directory for ANSYS to find it.  
+!    
+!  we'll begin by clearing any existing model data
+fini
+/clear
+!
+!  enter the preprocessor
+!
+/prep7
+!
+!  generate some keypoints
+k,1,10,25   
+k,2,11,25
+k,3,13.45,27.45
+k,4,13.45,28.45
+k,5,13.45,36.45
+k,6,18.45,28.45
+k,7,18.45,27.45
+k,8,13.45,35.45
+k,9,18.45,36.45
+k,10,20.45,35.45
+k,11,20.45,38.45
+k,12,19.95,38.45
+k,13,18.95,36.45
+k,14,19.95,37.45
+k,15,10,12.5    
+k,16,11,12.5    
+k,17,0,35.45
+k,18,0,36.45
+k,19,18.45,35.45
+k,20,12.8,28.45,-9.3    
+k,21,14.0,28.45,-8.9    
+k,22,15.3,28.45,-6.5    
+k,23,16.0,28.45,-3.8    
+k,24,15.2,28.45,-2.8   
+k,25,14.2,28.45,-3.7    
+k,26,13.5,28.45,-5.9    
+k,27,12.5,28.45,-7.85
+! 
+!  make some straight lines
+l,19,10
+l,10,11
+l,11,12
+l,12,14
+l,13,9
+!
+!  make a few arcs
+larc,2,3,7,2.45
+larc,1,4,6,3.45
+larc,13,14,12,1
+!
+!  generate some areas
+a,15,16,2,1
+a,2,3,4,1
+a,7,6,4,3
+a,17,8,5,18
+a,5,8,19,9
+a,19,10,11,12,14,13,9
+!
+!  make a segmented spline through some keypoints 
+flst,2,9,3  
+fitem,2,20  
+fitem,2,27  
+fitem,2,26  
+fitem,2,25  
+fitem,2,24  
+fitem,2,23  
+fitem,2,22  
+fitem,2,21  
+fitem,2,20  
+spline,p51x
+!
+!  make an area from the segmented spline
+flst,2,8,4    
+fitem,2,24  
+fitem,2,25  
+fitem,2,26  
+fitem,2,27  
+fitem,2,28  
+fitem,2,29  
+fitem,2,30   
+fitem,2,31 
+al,p51x
+!
+!  extrude this area vertically
+vext,7,,,,7
+!
+!  make a local cylindrical coordinate system
+local,11,1,0,0,0,0,-90
+!
+!  copy a keypoint 45 degrees from keypoint 10
+kgen,2,10,,,,45
+!
+!  generate an arc
+l,10,36
+!
+!  drag some areas to generate some volumes
+vdrag,1,2,3,5,6,,48
+!
+!  generate a volume from keypoints
+v,17,8,46,18,5,45
+!
+!  glue all of the volumes together
+vglue,all
+!
+!  move the working plane to be aligned with 3 keypoints
+kwplan,-1,27,25,29
+kwpave,27,31
+!
+!  offset the working plane a bit in the Z direction
+wpof,,,1
+!
+!  generate a cylinder
+cyl4,,,1.3,,,,-4
+!
+!  subtract the cylinder from volume 4 to make a hole through it
+vsbv,1,4
+!
+!  set up the meshing controls on some of the lines
+lesize,3,,,3
+lesize,6,,,6
+lesize,7,,,6
+lesize,8,,,6
+lesize,11,,,3
+lesize,13,,,3
+lesize,14,,,3
+lesize,15,,,8
+lesize,16,,,8
+lesize,18,,,2
+lesize,21,,,10
+lesize,23,,,10
+lesize,22,,,3
+lesize,25,,,4
+lesize,26,,,4
+lesize,53,,,7
+lesize,54,,,3
+lesize,55,,,7
+lesize,57,,,6
+lesize,58,,,13
+lesize,59,,,3
+lesize,60,,,13
+lesize,61,,,6
+lesize,68,,,15
+lesize,69,,,15
+lesize,71,,,15
+!  
+!  set up some element types
+!
+!  first, the linear bricks
+et,1,45
+!  then the quadratic bricks
+et,2,95
+!  followed by quadratic tets
+et,3,92
+!
+!  and now the dummy mesh elements
+!  the first one will be 6 node triangles
+et,4,200,5
+!  followed by 4 node quad
+et,5,200,6
+!  followed by 8 node quad
+et,6,200,7
+!
+!  start by meshing some of the areas
+!
+!  change to element type 4, 6 node triangle MESH200
+type,4
+!  set mesh key to map mesh
+mshkey,1
+!  mesh area 3
+amesh,3
+!  change to element type 5, 4 node quad MESH200
+type,5
+!  set mesh key to free mesh
+mshkey,0
+!  change the transitioning characteristics of the free
+!  mesh to be more gradual
+mopt,trans,1.5
+!  mesh area 6
+amesh,6
+!  change to element type 6, 8 node quad MESH200
+type,6
+!  mesh area 5
+amesh,5
+!  select the areas along the cut boundary that are meshed
+asel,s,area,,3
+asel,a,area,,5,6
+!  change to cylindrical coordinate system
+csys,11
+!  copy these areas about Z axis 45 degrees
+agen,2,all,,,,45
+!  switch back to global cartesian coordinate system
+csys
+!  select everything
+allse
+!  merge coincident keypoints
+numm,kpoi,.001,.001
+!  change to element type 5, 4 node quad MESH200
+type,5
+!  mesh area 44
+amesh,44
+!
+!  mesh all of the volumes
+!
+!  change to element type 1, SOLID45
+type,1
+!  sweep mesh volume 6
+vsweep,6
+!  sweep mesh volume 7
+vsweep,7
+!  change to mapped meshing
+mshkey,1
+!  map mesh volume 2
+vmesh,2
+!
+!  change to element type 2, SOLID95
+type,2
+!  map mesh volume 3
+vmesh,3
+!
+!  change to element type 3, SOLID92
+type,3
+!  change to free meshing
+mshkey,0
+!  free mesh volume 5
+vmesh,5
+!
+!  now map the transition elements between the solid
+!  bricks and the solid tetrahedral elements
+!  
+!  change to element type 2, SOLID95
+type,2
+!  change to free meshing
+mshkey,0
+!  tell ANSYS to mesh SOLID95 in tetrahedral form
+mshape,1,3d
+!  mesh volumes 8 and 9
+vmesh,8,9
+!
+!  change the SOLID95 tetrahedral elements to SOLID92
+tchg,95,92,3
+!  
+!  all done generating and meshing the volume
+!
+!  turn type numbers on
+/pnum,type,1
+!  turn numbering off so that only colors are shown
+/num,1
+!  turn working plane symbol off
+wpstyle,,,,,,,,0
+!  set up the view so we can see what we have made
+/view,1,-.226,.36,.9
+!  plot the elements
+eplo
+!
+
+

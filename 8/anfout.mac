@@ -1,0 +1,708 @@
+!-----------------------------------------------------!
+!                                                     !
+!  Macro that traverses the solid model and writes an !
+!  anf file                                           !
+!                                                     !
+! Provided by John Swanson
+! USE AT YOUR OWN RISK
+! NO SUPPORT IS AVAILABLE FOR THIS MACRO
+!
+! Posted by Eric Miller, PADT
+!-----------------------------------------------------!
+!
+/nopr
+! 1st define components of the present selected entities
+cm,vol,volu
+cm,ar,area
+cm,ls,line
+cm,kpt,kp
+! 2nd see what entities are selected/defined
+*get,vtot,volu,,count
+*get,atot,area,,count
+*get,ltot,line,,count
+*get,ktot,kp,,count
+! 3rd decide what entities need to be processed
+proc=0
+*if,vtot,gt,0,then
+ proc=4
+ lab='volu'
+*elseif,atot,gt,0,then
+ proc=3
+ lab='area'
+*elseif,ltot,gt,0,then
+ proc=2
+ lab='line'
+*elseif,ktot,gt,0,then
+ proc=1
+ lab = 'kp'
+*endif
+vtot=
+atot=
+ltot=
+ktot=
+! 4th temparily select all entities below the highest selected entity
+allsel,below,lab
+lab=
+! 5th define global arrays used in all entities
+*dim,val,array,1
+*dim,coord,array,3
+!
+! 6th get the current jobname
+*get,jobn1,active,,jobnam,,start,1
+*get,jobn2,active,,jobnam,,start,9
+*get,jobn3,active,,jobnam,,start,17
+*get,jobn4,active,,jobnam,,start,25
+!
+! 7th Delete old anf file
+/delete,%jobn1%%jobn2%%jobn3%%jobn4%,anf
+!
+! 8th open anf file
+*cfopen,%jobn1%%jobn2%%jobn3%%jobn4%,anf
+!
+!
+! 9th Check to see if lines are concatenated
+*dim,valu,array,1000
+*if,proc,ge,3,then
+ conc=0
+ *get,tot,line,,count  ! get the number of lines
+ num=0
+ *DO,i,1,tot        ! loop thru lines
+  num=lsnext(num) ! get next line number
+  *vget,valu(1),40,num,15,1,,,4      ! get the list of sublines
+  *vscfun,nsub,last,valu(1)          ! how many sublines are there
+  *if,nsub,gt,1,then ! concatenation detected
+   conc=1
+   *msg,warn
+   Concatenation Encountered in a line - anf file not written
+   *exit
+  *endif
+ *ENDDO                 ! end of *do,i (lines) loop
+*endif  ! end of if processing areas and/or volumes
+! 
+! Check to see if areas are concatenated - if lines are not concatenated
+*if,conc,eq,0,then    ! no concatenation found - continue
+ *if,proc,eq,4,then
+  *get,tot,area,,count  ! get the number of areas
+  num=0
+  *DO,i,1,tot        ! loop thru area
+   num=arnext(num) ! get next area number
+   *vget,valu(1),60,num,14,1,,,4  ! get the list of subareas
+   *vscfun,nsub,last,valu(1)      ! how many subareas are there
+   *if,nsub,gt,1,then ! concatenation detected
+    conc=1
+    *msg,warn
+    Concatenation Encountered in an area - anf file not written
+    *exit
+   *endif
+  *ENDDO                 ! end of *do,i (areas) loop
+ *endif                  ! end of if processing volumes
+*endif                   ! end of if no concatenation
+nsub=
+!
+!
+*if,conc,eq,0,then    ! no concatenation found - continue
+ *cfwrit, /out,anf,lst
+ *cfwrit,/AUX15
+!
+!
+! Process the keypoints
+ *if,proc,ge,1,then
+  *get,tot,kp,,count  ! get the number of keypoints
+  num=0
+  *DO,i,1,tot        ! loop thru keypoints
+   num=kpnext(num) ! get next keypoint number
+   *vget,val(1),20,num,1,5    ! get point associated w/ kp
+   *vlen,3
+   *vget,coord(1),22,val(1),2,1,,,4  ! get the coord's
+   *cfwrit,kpt,num,coord(1),coord(2),coord(3)
+   chr=chrval(num)
+   *vwrit,chr
+   (a8)
+  *ENDDO                 ! end of *do,i (keypoints) loop
+ *endif                  ! end of if processing keypoints
+!
+!
+! Process the lines
+ *if,proc,ge,2,then
+  *get,tot,line,,num,max  ! get the max line id number
+  *dim,ldir_,array,tot
+  *get,tot,line,,count    ! get the number of lines
+  num=0
+  *DO,i,1,tot        ! loop thru lines
+   num=lsnext(num) ! get next line number
+   *vget,val(1),40,num,15,1  ! get line's subline number
+   *if,val(1),lt,0,then
+    ldir_(num)=1
+   *endif
+   snum=abs(val(1))
+   *vget,val(1),40,num,1,9   ! get 1st keypt
+   kp1=val(1)
+   *vget,val(1),40,num,1,10   ! get 2nd keypt
+   kp2=val(1)
+   *vlen,2
+   *vget,coord(1),42,snum,6,1,,,4   ! get the min/max parm values
+   *if,ldir_(num),eq,1,then
+    *cfwrit,lcurv,num,1,kp2,kp1,coord(1),coord(2)
+   *else
+    *cfwrit,lcurv,num,1,kp1,kp2,coord(1),coord(2)
+   *endif
+   chr=chrval(num)
+   *vwrit,chr
+   (a8)
+   *vget,val(1),42,snum,3,2   ! get subline's curve number
+   cnum=abs(val(1))
+   *vget,val(1),44,cnum,1,5
+   form=chrval(val(1))        ! form number
+   *vget,val(1),44,cnum,1,2
+   ordrx=chrval(val(1))       ! nurb order
+   *vget,val(1),44,cnum,1,9
+   ndim=val(1)                ! dimensionality
+   *if,ndim,eq,3,then         ! rational?
+    irat = 0
+    rat=chrval(0)
+   *else
+    irat=1
+    rat=chrval(1)
+   *endif
+   *vget,val(1),44,cnum,1,3
+   nkntx = val(1)
+   kntx=chrval(val(1))       ! numb of knots
+   *vget,val(1),44,cnum,1,8
+   ncntl=val(1)
+   cntlx=chrval(val(1))       ! numb of control pts
+   *vwrite,form,ordrx,rat,kntx,cntlx   ! write the nurb int data
+   (5a8)
+   *dim,arr,array,nkntx
+   *vlen,nkntx
+   *vget,arr(1),44,cnum,6,1,,,4  ! get the knots
+   itime=nint(nkntx/4)+1       ! print the knots
+   n2=0
+   *do,j,1,itime
+    n1=n2+1
+    n2=n1+3
+    *if,n1,le,nkntx,then
+    a1=arr(n1)
+    *endif
+    *if,n1+1,le,nkntx,then
+     a2=arr(n1+1)
+    *endif
+    *if,n1+2,le,nkntx,then
+     a3=arr(n1+2)
+    *endif
+    *if,n1+3,le,nkntx,then
+     a4=arr(n1+3)
+    *endif
+    *if,n1+3,le,nkntx,then
+     *vwrite,a1,a2,a3,a4
+     (4g20.12)
+    *elseif,n1+2,le,nkntx,then
+     *vwrite,a1,a2,a3,
+     (3g20.12)
+    *elseif,n1+1,le,nkntx,then
+     *vwrite,a1,a2,
+     (2g20.12)
+    *elseif,n1,le,nkntx,then
+     *vwrite,a1
+     (g20.12)
+    *endif
+   *enddo                 ! end of *do,j (knots) loop
+   *del,arr
+   nmbr=ncntl*ndim
+   *dim,arr,array,nmbr
+   *vlen,nmbr
+   *vget,arr(1),44,cnum,6,nkntx+1,,,4  ! get the control pts/weights
+   n2=0
+   *do,j,1,ncntl
+    n1=n2+1
+    n2=n1+ndim-1
+    a1=arr(n1)
+    a2=arr(n1+1)
+    a3=arr(n1+2)
+    *if,irat,eq,1,then     ! if rational, divide cntl pts by weight
+     a4=arr(n1+3)
+     *vwrite,a1/a4,a2/a4,a3/a4
+     (3g20.12)
+    *else                   ! not rational, write out cntl pts
+     *vwrite,a1,a2,a3
+     (3g20.12)
+    *endif
+   *enddo                 ! end of *do,j (cntl pts) loop
+   *if,irat,eq,1,then
+    itime=nint(ncntl/4)+1       ! print the weights (if applicable)
+    n2=3
+    *do,j,1,itime
+     n1=n2+1
+     n2=n1+15
+     *if,n1,le,nmbr,then
+      a1=arr(n1)
+     *endif
+     *if,n1+4,le,nmbr,then
+      a2=arr(n1+4)
+     *endif
+     *if,n1+8,le,nmbr,then
+      a3=arr(n1+8)
+     *endif
+     *if,n1+12,le,nmbr,then
+      a4=arr(n1+12)
+     *endif
+     *if,n1+12,le,nmbr,then
+      *vwrite,a1,a2,a3,a4
+      (4g20.12)
+     *elseif,n1+8,le,nmbr,then
+      *vwrite,a1,a2,a3,
+      (3g20.12)
+     *elseif,n1+4,le,nmbr,then
+      *vwrite,a1,a2,
+      (2g20.12)
+     *elseif,n1,le,nmbr,then
+      *vwrite,a1
+      (g20.12)
+     *endif
+    *enddo                 ! end of *do,j (weights) loop
+   *endif                  ! end of if rational
+   *del,arr
+  *ENDDO                 ! end of *do,i (lines) loop
+ *endif                  ! end of if processing lines
+!
+!
+! Process the area
+ *if,proc,ge,3,then
+  *get,tot,area,,count  ! get the number of areas
+  num=0
+  *DO,i,1,tot        ! loop thru area
+   num=arnext(num) ! get next area number
+   *vget,valu(1),60,num,12,1,,,4    ! get list of loops
+   *vscfun,nloop,last,valu(1)       ! get the number of loops
+   maxnum = 0                       ! max nmbr of lines in a loop
+   *do,j,1,nloop                   ! loop thru loops and get max nmbr of lines
+    *vget,valu(1),60,num,12,j,1,,5  ! get the list of lines for this loop
+    *vscfun,nlin,last,valu(1)       ! get the number of lines for this loop
+    *if,nlin,gt,maxnum,then
+     maxnum=nlin
+    *endif
+   *enddo                            ! end of *do,j (loops) loop
+   *vget,val(1),60,num,14,1         ! get area's subarea number
+   snum=abs(val(1))
+   *vget,val(1),62,snum,1,1         ! get the subarea's surface number
+   cnum=abs(val(1))
+   *vget,val(1),64,cnum,1,11        ! get number of knots in x direction
+   nkntx=val(1)
+   kntx=chrval(nkntx)
+   *vget,val(1),64,cnum,1,12        ! get number of knots in y direction
+   nknty=val(1)
+   knty=chrval(nknty)
+   nmbr=nkntx+nknty
+   *dim,arr,array,nmbr
+   *vlen,nmbr
+   *vget,arr(1),64,cnum,6,1,,,4     ! get the knots
+   *cfwrit,asurf,num,1,nloop,maxnum,arr(1),arr(nkntx),arr(nkntx+1),arr(nmbr)
+   chr=chrval(num)
+   *vwrit,chr
+   (a8)
+   *do,j,1,nloop                   ! loop thru loops and get list of lines
+    *vger,valu(1),60,num,12,j,1,,5  ! get the list of lines for this loop
+    *vscfun,nlin,last,valu(1)       ! get the number of lines for this loop
+    *if,j,eq,1,then
+     chr=chrval(0)
+    *else
+     chr=chrval(1)
+    *endif
+    cntlx=chrval(nlin)
+    *vwrite,chr,cntlx               ! write the nmbr of lines for this loop
+    (2a8)
+    *do,k,1,nlin                    ! loop thru lines and check direction
+     n1 = abs(valu(k))
+     *if,ldir_(n1),eq,1,then
+      valu(k)=-1*valu(k)            ! line direction was switched
+     *endif
+    *enddo                          ! end of do,k  line loop
+    itime=nint(nlin/10)+1      
+    n2=0
+    *do,k,1,itime
+     n1=n2+1
+     n2=n1+9
+     *if,n1,le,nlin,then
+      i1=chrval(valu(n1))
+     *endif
+     *if,n1+1,le,nlin,then
+      i2=chrval(valu(n1+1))
+     *endif
+     *if,n1+2,le,nlin,then
+      i3=chrval(valu(n1+2))
+     *endif
+     *if,n1+3,le,nlin,then
+      i4=chrval(valu(n1+3))
+     *endif
+     *if,n1+4,le,nlin,then
+      i5=chrval(valu(n1+4))
+     *endif
+     *if,n1+5,le,nlin,then
+      i6=chrval(valu(n1+5))
+     *endif
+     *if,n1+6,le,nlin,then
+      i7=chrval(valu(n1+6))
+     *endif
+     *if,n1+7,le,nlin,then
+      i8=chrval(valu(n1+7))
+     *endif
+     *if,n1+8,le,nlin,then
+      i9=chrval(valu(n1+8))
+     *endif
+     *if,n1+9,le,nlin,then
+      i10=chrval(valu(n1+9))
+     *endif
+     *if,n1+9,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8,i9,i10
+      (10a8)
+     *elseif,n1+8,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8,i9
+      (9a8)
+     *elseif,n1+7,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8
+      (8a8)
+     *elseif,n1+6,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7
+      (7a8)
+     *elseif,n1+5,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6
+      (6a8)
+     *elseif,n1+4,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5
+      (5a8)
+     *elseif,n1+3,le,nlin,then
+      *vwrite,i1,i2,i3,i4
+      (4a8)
+     *elseif,n1+2,le,nlin,then
+      *vwrite,i1,i2,i3
+      (3a8)
+     *elseif,n1+1,le,nlin,then
+      *vwrite,i1,i2
+      (2a8)
+     *elseif,n1,le,nlin,then
+      *vwrite,i1
+      (a8)
+     *endif
+    *enddo                           ! end of *do,k loop
+   *enddo                            ! end of *do,j (loops) loop
+   *vget,val(1),64,cnum,1,4         ! form number
+   form=chrval(val(1))
+   *vget,val(1),64,cnum,1,13        ! nurb order in x direction
+   ordrx=chrval(val(1))
+   *vget,val(1),64,cnum,1,14        ! nurb order in y direction
+   ordry=chrval(val(1))
+   *vget,val(1),64,cnum,1,9
+   ndim=val(1)                      ! dimensionality
+   *if,ndim,eq,3,then              ! rational?
+    irat = 0
+    rat=chrval(0)
+   *else
+    irat=1
+    rat=chrval(1)
+   *endif
+   *vget,val(1),64,cnum,1,2         ! get number of cntl pts in x direction
+   cntlx=chrval(val(1))
+   ncntl=val(1)
+   *vget,val(1),64,cnum,1,3         ! get number of cntl pts in y direction
+   ncntl=ncntl*val(1)              ! get the total nmbr of cntl pts
+   cntly=chrval(val(1))
+   *vwrite,form,ordrx,ordry,rat,kntx,knty,cntlx,cntly  ! print the nurb int data
+   (8a8)
+   *vlen,nkntx
+   itime=nint(nkntx/4)+1       ! print the x-knots
+   n2=0
+   *do,j,1,itime
+    n1=n2+1
+    n2=n1+3
+    *if,n1,le,nkntx,then
+     a1=arr(n1)
+    *endif
+    *if,n1+1,le,nkntx,then
+     a2=arr(n1+1)
+    *endif
+    *if,n1+2,le,nkntx,then
+     a3=arr(n1+2)
+    *endif
+    *if,n1+3,le,nkntx,then
+     a4=arr(n1+3)
+    *endif
+    *if,n1+3,le,nkntx,then
+     *vwrite,a1,a2,a3,a4
+     (4g20.12)
+    *elseif,n1+2,le,nkntx,then
+     *vwrite,a1,a2,a3,
+     (3g20.12)
+    *elseif,n1+1,le,nkntx,then
+     *vwrite,a1,a2,
+     (2g20.12)
+    *elseif,n1,le,nkntx,then
+     *vwrite,a1
+     (g20.12)
+    *endif
+   *enddo                 ! end of *do,j (x-knots) loop
+   *vlen,nkntx
+   itime=nint(nknty/4)+1       ! print the y-knots
+   n2=nkntx
+   *do,j,1,itime
+    n1=n2+1
+    n2=n1+3
+    *if,n1,le,nkntx+nknty,then
+     a1=arr(n1)
+    *endif
+    *if,n1+1,le,nkntx+nknty,then
+     a2=arr(n1+1)
+    *endif
+    *if,n1+2,le,nkntx+nknty,then
+     a3=arr(n1+2)
+    *endif
+    *if,n1+3,le,nkntx+nknty,then
+     a4=arr(n1+3)
+    *endif
+    *if,n1+3,le,nkntx+nknty,then
+     *vwrite,a1,a2,a3,a4
+     (4g20.12)
+    *elseif,n1+2,le,nkntx+nknty,then
+     *vwrite,a1,a2,a3,
+     (3g20.12)
+    *elseif,n1+1,le,nkntx+nknty,then
+     *vwrite,a1,a2,
+     (2g20.12)
+    *elseif,n1,le,nkntx+nknty,then
+     *vwrite,a1
+     (g20.12)
+    *endif
+   *enddo                 ! end of *do,j (y-knots) loop
+   *del,arr
+   nmbr=ncntl*ndim
+   *dim,arr,array,nmbr
+   *vlen,nmbr
+   *vget,arr(1),64,cnum,6,nkntx+nknty+1,,,4  ! get the control pts/weights
+   n2=0
+   *do,j,1,ncntl
+    n1=n2+1
+    n2=n1+ndim-1
+    a1=arr(n1)
+    a2=arr(n1+1)
+    a3=arr(n1+2)
+    *if,irat,eq,1,then     ! if rational, divide cntl pts by weight
+     a4=arr(n1+3)
+     *vwrite,a1/a4,a2/a4,a3/a4
+     (3g20.12)
+    *else                   ! not rational, write out cntl pts
+     *vwrite,a1,a2,a3
+     (3g20.12)
+    *endif
+   *enddo                 ! end of *do,j (cntl pts) loop
+   *if,irat,eq,1,then
+    itime=nint(ncntl/4)+1       ! print the weights (if applicable)
+    n2=3
+    *do,j,1,itime
+     n1=n2+1
+     n2=n1+15
+     *if,n1,le,nmbr,then
+      a1=arr(n1)
+     *endif
+     *if,n1+4,le,nmbr,then
+      a2=arr(n1+4)
+     *endif
+     *if,n1+8,le,nmbr,then
+      a3=arr(n1+8)
+     *endif
+     *if,n1+12,le,nmbr,then
+      a4=arr(n1+12)
+     *endif
+     *if,n1+12,le,nmbr,then
+      *vwrite,a1,a2,a3,a4
+      (4g20.12)
+     *elseif,n1+8,le,nmbr,then
+      *vwrite,a1,a2,a3,
+      (3g20.12)
+     *elseif,n1+4,le,nmbr,then
+      *vwrite,a1,a2,
+      (2g20.12)
+     *elseif,n1,le,nmbr,then
+      *vwrite,a1
+      (g20.12)
+     *endif
+    *enddo                 ! end of *do,j (weights) loop
+   *endif                  ! end of if rational
+   *del,arr
+  *ENDDO                 ! end of *do,i (areas) loop
+  *del,ldir_
+ *endif                  ! end of if processing areas
+!
+!
+! Process the volumes
+ *if,proc,eq,4,then
+  *get,tot,volu,,count  ! get the number of volumes
+  num=0
+  *DO,i,1,tot        ! loop thru volumes
+   num=vlnext(num) ! get next volume number
+   *vget,valu(1),80,num,12,1,,,4    ! get list of shells
+   *vscfun,nloop,last,valu(1)       ! get the number of shells
+   maxnum = 0                       ! max nmbr of areas in an volume
+   *do,j,1,nloop                    ! loop thru shells and get max nmbr of areas
+    *vget,valu(1),80,num,12,j,1,,5  ! get the list of area for this shell
+    *vscfun,nlin,last,valu(1)       ! get the number of areas for this shell
+    *if,nlin,gt,maxnum,then
+     maxnum=nlin
+    *endif
+   *enddo
+   *cfwrit,vbody,num,nloop,maxnum
+   chr=chrval(num)
+   *vwrit,chr
+   (a8)
+   *do,j,1,nloop                    ! loop thru shells and get list of areas
+    *vget,valu(1),80,num,12,j,1,,5  ! get the list of areas for this loop
+    *vscfun,nlin,last,valu(1)       ! get the number of areas for this loop
+    *if,j,eq,1,then
+     chr=chrval(0)
+    *else
+     chr=chrval(1)
+    *endif
+    cntlx=chrval(nlin)
+    *vwrite,chr,cntlx               ! write the nmbr of areas for this shell
+    (2a8)
+    itime=nint(nlin/10)+1      
+    n2=0
+    *do,k,1,itime
+     n1=n2+1
+     n2=n1+9
+     *if,n1,le,nlin,then
+      i1=chrval(valu(n1))
+     *endif
+     *if,n1+1,le,nlin,then
+      i2=chrval(valu(n1+1))
+     *endif
+     *if,n1+2,le,nlin,then
+      i3=chrval(valu(n1+2))
+     *endif
+     *if,n1+3,le,nlin,then
+      i4=chrval(valu(n1+3))
+     *endif
+     *if,n1+4,le,nlin,then
+      i5=chrval(valu(n1+4))
+     *endif
+     *if,n1+5,le,nlin,then
+      i6=chrval(valu(n1+5))
+     *endif
+     *if,n1+6,le,nlin,then
+      i7=chrval(valu(n1+6))
+     *endif
+     *if,n1+7,le,nlin,then
+      i8=chrval(valu(n1+7))
+     *endif
+     *if,n1+8,le,nlin,then
+      i9=chrval(valu(n1+8))
+     *endif
+     *if,n1+9,le,nlin,then
+      i10=chrval(valu(n1+9))
+     *endif
+     *if,n1+9,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8,i9,i10
+      (10a8)
+     *elseif,n1+8,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8,i9
+      (9a8)
+     *elseif,n1+7,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7,i8
+      (8a8)
+     *elseif,n1+6,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6,i7
+      (7a8)
+     *elseif,n1+5,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5,i6
+      (6a8)
+     *elseif,n1+4,le,nlin,then
+      *vwrite,i1,i2,i3,i4,i5
+      (5a8)
+     *elseif,n1+3,le,nlin,then
+      *vwrite,i1,i2,i3,i4
+      (4a8)
+     *elseif,n1+2,le,nlin,then
+      *vwrite,i1,i2,i3
+      (3a8)
+     *elseif,n1+1,le,nlin,then
+      *vwrite,i1,i2
+      (2a8)
+     *elseif,n1,le,nlin,then
+      *vwrite,i1
+      (a8)
+     *endif
+    *enddo               ! end of *do,k loop
+   *enddo                ! end of *do,j (shells) loop
+  *ENDDO                 ! end of *do,i (volumes) loop
+ *endif                  ! end of if processing vl
+!
+*endif                   ! end of if no concatenation
+ *cfwrit, /out
+!
+! restore original selected sets of entities
+cmsel,,vol
+cmsel,,ar
+cmsel,,ls
+cmsel,,kpt
+!
+! close anf file
+*cfclose
+!
+! clean up
+!
+i=
+j=
+k=
+conc=
+jobn1=
+jobn2=
+jobn3=
+jobn4=
+tot=
+num=
+nmbr=
+kp1=
+kp2=
+snum=
+cnum=
+nkntx=
+nknty=
+kntx=
+knty=
+ncntl=
+cntlx=
+cntly=
+ndim=
+form=
+ordrx=
+ordry=
+irat=
+rat=
+itime=
+a1=
+a2=
+a3=
+a4=
+n1=
+n2=
+i1=
+i2=
+i3=
+i4=
+i5=
+i6=
+i7=
+i8=
+i9=
+i10=
+hr=
+nloop=
+nlin=
+maxnum=
+chr=
+proc=
+cmdel,vol
+cmdel,ar
+cmdel,ls
+cmdel,kpt
+*del,val
+*del,coord
+*del,valu
+/gopr

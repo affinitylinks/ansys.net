@@ -1,0 +1,28 @@
+TOTAL_CP=0
+
+*do,ICOUNT,1,cpinqr(0,14)
+  *if,cpinqr(ICOUNT,1),eq,1,then
+    *get,TEMPCPNO,cp,ICOUNT,nterm
+    TEMPCOUN=0
+    *do,JCOUNT,1,TEMPCPNO
+      *get,TEMPNODE,cp,ICOUNT,term,JCOUNT,node
+      *if,nsel(TEMPNODE),eq,1,then
+        TEMPCOUN=TEMPCOUN+1
+      *endif
+    *enddo
+    *if,ARG1,eq,1,then
+      *if,TEMPCOUN,gt,0,then
+        TOTAL_CP=TOTAL_CP+1
+      *endif
+    *else
+      *if,TEMPCOUN,eq,TEMPCPNO,then
+        TOTAL_CP=TOTAL_CP+1
+      *endif
+    *endif
+  *endif
+*enddo
+
+TEMPNODE=
+TEMPCPNO=
+TEMPCOUN=
+*stat,TOTAL_CP
