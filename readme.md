@@ -13,4 +13,4 @@ The repository contains 9 folders with roughly 90 files each. The files are roug
 
 The list of contents can be added to simple html. Work in Progress.
 
-[Static App on Netlify](ansys.netlify.app)
+[Static App on Netlify](https://ansys.netlify.app)
