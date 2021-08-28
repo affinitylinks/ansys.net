@@ -1,54 +1,11 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html><head>
-<link rel="stylesheet" type="text/css" href="banner-styles.css">
-<link rel="stylesheet" type="text/css" href="iconochive.css">
-<!-- End Wayback Rewrite JS Include -->
-
-
-  <title>ansys.net: uf_inquiry</title>
-
-  <meta http-equiv="Content-Type" content="text/html; charset=windows-1252">
-  <meta http-equiv="content-language" content="EN">
-  <meta name="author" content="sheldon imaoka">
-  <meta name="description" content="ANSYS User Resource Page">
-  <meta name="keywords" content="ANSYS, APDL commands, FEA, macros, input files, tips and tricks, technical papers, undocumented features, animation gallery, xansys archives">
-  <meta name="copyright" content="� 2000-09 sheldon imaoka">
-  <meta name="generator" content="by hand">
-  <meta name="verify-v1" content="MEE1SMiyHzS6C5/QZHGdxXdA3yiNN4WiEgR/wU3tYYY=">
-  <meta name="google-site-verification" content="J8ugJzfOXfmDR8RTPoRbGvQWobWbqkrpE2DYsvT2ohw">
-
-  <!-- base href="https://web.archive.org/web/20170212231734/http://ansys.net/" -->
-
-  <link rel="stylesheet" type="text/css" href="ansys.net%20uf_inquiry_files/a.css">
-
-  <link rel="icon" href="https://web.archive.org/web/20170212231734im_/http://ansys.net/images/icon.png" type="image/png">
-  <link rel="shortcut icon" href="https://web.archive.org/web/20170212231734im_/http://ansys.net/images/favicon.ico">
-
-  <link rel="search" type="application/opensearchdescription+xml" title="ansys.net" href="https://web.archive.org/web/20170212231734/http://ansys.net/searchengine/">
-  <link rel="search" type="application/opensearchdescription+xml" title="ansys.net (old)" href="https://web.archive.org/web/20170212231734/http://ansys.net/searchengine2/">
-
-  <link rel="alternate" type="application/rss+xml" title="RSS Feed" href="https://web.archive.org/web/20170212231734/http://ansys.net/feed/">
-
-</head>
-
-<body><!-- BEGIN WAYBACK TOOLBAR INSERT -->
-<style type="text/css">
-body {
-  margin-top:0 !important;
-  padding-top:0 !important;
-  /*min-width:800px !important;*/
-}
-</style>
-<script>__wm.rw(0);</script>
-<div id="wm-ipp-base" style="display: block; direction: ltr;" lang="en">
-</div><div id="wm-ipp-print">The Wayback Machine - https://web.archive.org/web/20170212231734/http://ansys.net/?mycat=uf_inquiry</div>
-<div id="donato" style="position:relative;width:100%;">
-  <div id="donato-base">
-    <iframe id="donato-if" src="ansys.net%20uf_inquiry_files/donate.htm" scrolling="no" style="width:100%; height:100%" frameborder="0">
-    </iframe>
-  </div>
-</div>
-<!-- END WAYBACK TOOLBAR INSERT -->
+---
+title: Inquiry Functions
+url: "/html/inquiry"
+tags:
+  - html
+  - undocumented
+  - inquiry
+---
 <center>
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#DAE0F8"><tbody><tr><td>
 <table width="100%" cellspacing="2" cellpadding="8" border="0" bgcolor="#303030"><tbody><tr><td>
@@ -1593,39 +1550,3 @@ the property of their respective owners.
 </td></tr></tbody></table>
 </td></tr></tbody></table>
 </center>
-
-<script type="text/javascript">
-var gaJsHost = (("https:" == document.location.protocol) ? "https://web.archive.org/web/20170212231734/https://ssl." : "https://web.archive.org/web/20170212231734/http://www.");
-document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
-</script><script src="ansys.net%20uf_inquiry_files/ga.js" type="text/javascript"></script>
-<script type="text/javascript">
-var pageTracker = _gat._getTracker("UA-3388078-1");
-pageTracker._initData();
-pageTracker._trackPageview();
-</script>
-
-
-
-
-<script src="ansys.net%20uf_inquiry_files/inject.js"></script></body></html>
-<!--
-     FILE ARCHIVED ON 23:17:34 Feb 12, 2017 AND RETRIEVED FROM THE
-     INTERNET ARCHIVE ON 07:34:12 Aug 26, 2021.
-     JAVASCRIPT APPENDED BY WAYBACK MACHINE, COPYRIGHT INTERNET ARCHIVE.
-
-     ALL OTHER CONTENT MAY ALSO BE PROTECTED BY COPYRIGHT (17 U.S.C.
-     SECTION 108(a)(3)).
--->
-<!--
-playback timings (ms):
-  captures_list: 124.068
-  exclusion.robots: 0.216
-  exclusion.robots.policy: 0.207
-  RedisCDXSource: 4.859
-  esindex: 0.008
-  LoadShardBlock: 98.71 (3)
-  PetaboxLoader3.datanode: 150.719 (4)
-  CDXLines.iter: 17.854 (3)
-  load_resource: 196.824
-  PetaboxLoader3.resolve: 108.408
--->
