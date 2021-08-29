@@ -2,7 +2,7 @@
 layout: example
 pagination:
   data: examples
-  size: 10
+  size: 30
   alias: example
 tags:
   - example
