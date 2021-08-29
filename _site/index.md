@@ -8,24 +8,38 @@ tags:
 ---
 
 <div class="row">
-  <h1> {{ siteTitle }}</h1>
-
-  <h2> Examples </h2>
-  {%- for item in collections.example -%}
-    <li><a href="{{item.data.url}}" target="_blank">{{ item.data.title }}</a> </li>
-
-{%- endfor -%}
-
-  <h2> Html Links </h2>
-  {%- for item in collections.html -%}
-    <li><a href="{{item.data.url}}">{{ item.data.title }}</a> </li>
-
-{%- endfor -%}
-
-  <h2> Macros </h2>
-  {%- for item in collections.macro -%}
-    <li><a href="{{item.data.url}}" target="_blank">{{ item.data.title }} </a> : {{item.data.description}}</li>
-
-{%- endfor -%}
-
+  <div class="col">
+    <div>
+      <h2> Examples </h2>
+      <ul class="list-group">
+      {%- for item in examples -%}
+        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }}</a> {{item.description}}</li>
+      {%- endfor -%}
+      </ul>
+    </div>
+    <div>
+      <h2> Macros </h2>
+      <ul  class="list-group">
+      {%- for item in macros -%}
+        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }} </a> : {{item.description}}</li>
+      {%- endfor -%}
+      </ul>
+    </div>
+    <div>
+      <h2> Resources </h2>
+      <ul  class="list-group">
+      {%- for item in resources -%}
+        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }}</a> {{item.description}} </li>
+      {%- endfor -%}
+      </ul>
+    </div>
+    <div>
+      <h2> Html Links </h2>
+      <ul  class="list-group">
+      {%- for item in collections.html -%}
+        <li class="list-group-item"><a href="{{item.data.url | url }}">{{ item.data.title }}</a> {{item.data.description}} </li>
+      {%- endfor -%}
+      </ul>
+    </div>
+  </div>
 </div>

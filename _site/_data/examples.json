@@ -1,0 +1,62 @@
+[
+  {
+    "title": "arch buckling",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/arch_buck.inp",
+    "description": "arch buckling"
+  },
+  {
+    "title": "bow",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/bow",
+    "description": "bow"
+  },
+  {
+    "title": "conv_fins",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins",
+    "description": "conv_fins"
+  },
+  {
+    "title": "cylinflo",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo",
+    "description": "cylinflo"
+  },
+  {
+    "title": "large_rotat",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat",
+    "description": "large_rotat"
+  },
+  {
+    "title": "plate_cms",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms",
+    "description": "plate_cms"
+  },
+  {
+    "title": "radairgap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap",
+    "description": "radairgap"
+  },
+  {
+    "title": "rv-lmm",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm",
+    "description": "rv-lmm"
+  },
+  {
+    "title": "shell-abd",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd",
+    "description": "shell-abd"
+  },
+  {
+    "title": "spec-acc-vel-mpt",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt",
+    "description": "spec-acc-vel-mpt"
+  },
+  {
+    "title": "torsion3",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3",
+    "description": "torsion3"
+  },
+  {
+    "title": "weld",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld",
+    "description": "weld"
+  }
+]

@@ -9,6 +9,10 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addLayoutAlias('base', 'pageTemplates/base.njk');
   eleventyConfig.addLayoutAlias('page', 'pageTemplates/page.njk');
+  eleventyConfig.addLayoutAlias('macro', 'pageTemplates/macro.njk');
+  eleventyConfig.addLayoutAlias('example', 'pageTemplates/example.njk');
+  eleventyConfig.addLayoutAlias('trick', 'pageTemplates/trick.njk');
+  eleventyConfig.addLayoutAlias('resource', 'pageTemplates/resource.njk');
   // eleventyConfig.addLayoutAlias('page-hero', 'pageTemplates/page-hero.njk');
   // eleventyConfig.addLayoutAlias('page-post', 'pageTemplates/page-post.njk');
 

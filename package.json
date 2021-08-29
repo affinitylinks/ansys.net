@@ -11,7 +11,8 @@
     "serve": "eleventy --serve -- quiet",
     "sass": "node-sass _site/scss -o _site/css",
     "sass:watch": "npm run sass && npm run sass -- --watch --recursive",
-    "dev": "rerun-script"
+    "dev": "rerun-script",
+    "surge": "surge --domain=ansys.surge.sh --project=dist"
   },
   "repository": {
     "type": "git",
