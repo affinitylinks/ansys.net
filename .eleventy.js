@@ -13,20 +13,10 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('example', 'pageTemplates/example.njk');
   eleventyConfig.addLayoutAlias('trick', 'pageTemplates/trick.njk');
   eleventyConfig.addLayoutAlias('resource', 'pageTemplates/resource.njk');
-  // eleventyConfig.addLayoutAlias('page-hero', 'pageTemplates/page-hero.njk');
-  // eleventyConfig.addLayoutAlias('page-post', 'pageTemplates/page-post.njk');
 
   eleventyConfig.addDataExtension('yaml', contents => yaml.safeLoad(contents))
 
-  eleventyConfig.addShortcode('clientTag', function(name) {
-    return `<a class="badge badge-secondary mr-2" href="/clients/${name}">${name}</a>`
-  })
-
-  eleventyConfig.addPairedShortcode('pairedClient', function(data, name) {
-    return `${data} <a class="badge badge-secondary" href="/clients/${name}">${name}</a>`
-  })
-
-  eleventyConfig.addFilter('courseDate', dateObj => {
+  eleventyConfig.addFilter('conDate', dateObj => {
     return DateTime.fromFormat(dateObj, 'LLL d, yyyy').toFormat('yyyy-LL-dd')
   })
 
@@ -34,8 +24,8 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, { zone: 'utc'}).toFormat('LLL dd, yyyy')
   })
 
-  eleventyConfig.addCollection('articles', function(collection){
-    return collection.getFilteredByGlob('_site/posts/*.md').reverse();
+  eleventyConfig.addCollection('webpage', function(collection){
+    return collection.getFilteredByGlob('_site/html/*.md').reverse();
   })
 
   eleventyConfig.addFilter('limit', (array, qty) => (qty < 0 ? array.slice(qty): array.slice(0, qty)))

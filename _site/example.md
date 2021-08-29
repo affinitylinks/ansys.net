@@ -10,8 +10,10 @@ tags:
 eleventyNavigation:
   key: examples
   parent: main
-permalink: '/examples/{{pagination.pageNumber}}}/'
+permalink: '/examples/{{pagination.pageNumber}}/'
 ---
+
+<h1 class="mb-3 text-center">Examples</h1>
 
 {% include "pagination.njk" %}
 
@@ -20,9 +22,10 @@ permalink: '/examples/{{pagination.pageNumber}}}/'
 {%- for item in pagination.items -%}
 
 <li class="list-group-item">
-{{ item.title }}
 
-[{{ item.description }}]({{ item.url | url }})
+<a href="{{ item.url | url }}" target="_blank"> {{item.title}}</a>
+
+{{ item.description }}
 
 </li>
 {%- endfor -%}

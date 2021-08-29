@@ -28,7 +28,7 @@
       <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
         <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
 
-        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0}/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/html/0">HTML</a>
+        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/html/0">HTML</a>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
@@ -240,18 +240,18 @@ similar to *GET functions in usage, and have two input arguments.
 Here's an example.<p></p>
 <p>a=ndinqr(33,1) <p></p></p>
 <p>In this case, &quot;a&quot; will be assigned a value of -1 if node 33 is unselected,
-0 if it is undefined, and 1 if it is selected.  This is an example of
+0 if it is undefined, and 1 if it is selected. This is an example of
 using an inquiry function to obtain information about a specific entity,
 in this case node 33. <p></p></p>
 <p>An alternative use of an inquiry function is to find more generic data
-about a certain kind of entities.  The following example illustrates
+about a certain kind of entities. The following example illustrates
 this. <p></p></p>
 <p>a=ndinqr(0,14) <p></p></p>
 <p>This will assign to parameter &quot;a&quot; the highest node number defined in the
-model.  Notice that the first argument is zero, and the second argument
+model. Notice that the first argument is zero, and the second argument
 is 14. <p></p></p>
 <p>Here are the inquiry functions I am aware of. <p></p></p>
-<p>ndinqr(node,key)        node number or zero, and key number <br>
+<p>ndinqr(node,key) node number or zero, and key number <br>
 elmiqr(elem,key) <br>
 kpinqr(keypoint,key) <br>
 lsinqr(line,key) <br>
@@ -270,20 +270,20 @@ either an entity ID number (for data about a specific node, element,
 etc.) or a zero if the information is about a class of element (number
 of selected nodes, etc.) <p></p></p>
 <p>The key numbers are defined as follows. <p></p></p>
-<p>key=1   return select status (for a specific entity) <br>
-key=12  return number of defined entities (KP's, nodes, etc.) <br>
-key=13  return number of selected entities <br>
-key=14  return the highest ID number in use <p></p></p>
+<p>key=1 return select status (for a specific entity) <br>
+key=12 return number of defined entities (KP's, nodes, etc.) <br>
+key=13 return number of selected entities <br>
+key=14 return the highest ID number in use <p></p></p>
 <p>There a few other inquiry functions which have a slightly different format. <p></p></p>
-<p>mpinqr(mat,prop,key)  material property table number, property number, key
+<p>mpinqr(mat,prop,key) material property table number, property number, key
 additional key=3 for number of temps used in a specific property <p></p></p>
-<p>dget(node,idof,kcmplx)  node number, displacement pointer, complex key
-displacement pointers are...  <br>
+<p>dget(node,idof,kcmplx) node number, displacement pointer, complex key
+displacement pointers are... <br>
 1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay
 9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt,
 22=mag, 23=enke, 24=ends, 25=emf, 26=curr <br>
 complex key=0 for real, 1 for imaginary <p></p></p>
-<p>fget(node,idof,kcomplx)  same definition as dget, but for forces this time.</p>
+<p>fget(node,idof,kcomplx) same definition as dget, but for forces this time.</p>
 <pre><code>  &lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
@@ -1408,144 +1408,139 @@ EVIS = 72, USER = 73, NL = 74, HYPE = 75, NNEW = 76, MOON = 77, OGDE =
 <td align="left">= 6, total number of fatals displayed</td>
 </tr>
 </tbody></table>
-<pre><code>  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by John Crawford on 10.10.2000
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;554&quot;&gt;Inquiry Function for Next Available Number&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    I've discovered that **inqr(0,16) or ***iqr(0,16) returns the
-</code></pre>
-<p>next available number.  For example, if areas 1, 2, and 3 exist in the
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by John Crawford on 10.10.2000
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="554">Inquiry Function for Next Available Number</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        I've discovered that **inqr(0,16) or ***iqr(0,16) returns the
+next available number.  For example, if areas 1, 2, and 3 exist in the
 model, then arinqr(0,16) returns a value of 4.  However, if only areas 2
-and 3 exist in the model, then arinqr(0,16) returns a value of 1.</p>
-<pre><code>  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Jeff Strain on 11.23.2004
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;555&quot;&gt;Scratch Memory Inquiry&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    meminqr(-3007) gets scratch memory in use (in bytes).
-
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Sheldon Imaoka on 12.06.2004
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;649&quot;&gt;Inquiry Function Matrix&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    See also handy, printable &lt;a href=&quot;https://web.archive.org/web/20170212231734/http://ansys.net/?mycat=search&amp;amp;mytopicid=959&quot;&gt;Inquiry Function Matrix&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Sheldon Imaoka on 02.03.2005
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;767&quot;&gt;Additional Line Inquiry Functions&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    Lines:&lt;p&gt;&lt;/p&gt;
-</code></pre>
-<p><i>lsinqr(lsid,key)</i><br>
+ and 3 exist in the model, then arinqr(0,16) returns a value of 1.
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Jeff Strain on 11.23.2004
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="555">Scratch Memory Inquiry</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        meminqr(-3007) gets scratch memory in use (in bytes).
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Sheldon Imaoka on 12.06.2004
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="649">Inquiry Function Matrix</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        See also handy, printable <a href="https://web.archive.org/web/20170212231734/http://ansys.net/?mycat=search&amp;mytopicid=959">Inquiry Function Matrix</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Sheldon Imaoka on 02.03.2005
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="767">Additional Line Inquiry Functions</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        Lines:<p></p>
+<i>lsinqr(lsid,key)</i><br>
 <i>lsid</i> - line segment for inquire may be 0 for key = 12, 13, 14<br>
 <i>key</i> - item to be returned<br>
-= -13, orientation keypoint KPB<br>
-= -14, orientation keypoint KPE</p>
-<pre><code>  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Bram Weisman on 08.30.2008
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;772&quot;&gt;Real constant inquiry function&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    RLINQR(NREAL,5) would return the REAL set width (number of fields).
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Bram Weisman on 09.10.2008
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td class=&quot;maintitle&quot; colspan=&quot;2&quot;&gt;
-    &lt;a name=&quot;941&quot;&gt;Number of line loops in area&lt;/a&gt;
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;mainbody&quot;&gt;
-    &lt;b&gt;Area Line Loops&lt;/b&gt;&lt;br&gt;
-</code></pre>
-<p>    <i>arliqr(areaid,loopid,key)</i><br>
-    areaid - area for inquiry<br>
-    loopid � loop number<br>
-    key � 1 for number of loops when loopid is zero, or 2 for number of lines in loopid<br>
-    e.g.:    arliqr(53,0,1) = number of loops in area 53<br>
-      arliqr(53,1,2) = number of lines in loop 1 of area 53<br>
-      arliqr(53,2,2) = number of lines in loop 2 of area 53<br>
-      arliqr(53,3,2) = number of lines in loop 3 of area 53<br></p>
-<pre><code>  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;
-  &lt;td width=&quot;5%&quot;&gt;&amp;nbsp;&lt;/td&gt;
-  &lt;td class=&quot;commentfooter&quot; align=&quot;right&quot;&gt;
-    Posted by Bram Weisman on 04.13.2015
-  &lt;/td&gt;
-&lt;/tr&gt;
-&lt;tr&gt;&lt;td colspan=&quot;2&quot;&gt;&amp;nbsp;&lt;/td&gt;&lt;/tr&gt;
-</code></pre>
+ 	= -13, orientation keypoint KPB<br>
+ 	= -14, orientation keypoint KPE
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Bram Weisman on 08.30.2008
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="772">Real constant inquiry function</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        RLINQR(NREAL,5) would return the REAL set width (number of fields).
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Bram Weisman on 09.10.2008
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
+    <tr>
+      <td class="maintitle" colspan="2">
+        <a name="941">Number of line loops in area</a>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="mainbody">
+        <b>Area Line Loops</b><br>
+&nbsp; &nbsp; <i>arliqr(areaid,loopid,key)</i><br>
+&nbsp; &nbsp; areaid - area for inquiry<br>
+&nbsp; &nbsp; loopid � loop number<br>
+&nbsp; &nbsp; key � 1 for number of loops when loopid is zero, or 2 for number of lines in loopid<br>
+&nbsp; &nbsp; e.g.:    arliqr(53,0,1) = number of loops in area 53<br>
+&nbsp; &nbsp; &nbsp; arliqr(53,1,2) = number of lines in loop 1 of area 53<br>
+&nbsp; &nbsp; &nbsp; arliqr(53,2,2) = number of lines in loop 2 of area 53<br>
+&nbsp; &nbsp; &nbsp; arliqr(53,3,2) = number of lines in loop 3 of area 53<br>
+      </td>
+    </tr>
+    <tr>
+      <td width="5%">&nbsp;</td>
+      <td class="commentfooter" align="right">
+        Posted by Bram Weisman on 04.13.2015
+      </td>
+    </tr>
+    <tr><td colspan="2">&nbsp;</td></tr>
   </tbody></table>
 </td>
 <td width="12px">&nbsp;</td>

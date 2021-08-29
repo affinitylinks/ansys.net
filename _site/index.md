@@ -10,34 +10,54 @@ tags:
 <div class="row">
   <div class="col">
     <div>
-      <h2> Examples </h2>
+      <h2 class="text-center"> Examples
+      <a href="/examples/0" class="btn btn-sm btn-outline-primary">see all</a>
+       </h2>
       <ul class="list-group">
-      {%- for item in examples -%}
-        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }}</a> {{item.description}}</li>
+      {%- for item in examples | limit(5) -%}
+        <li class="list-group-item">
+          <a href="{{item.url | url }}" target="_blank">{{ item.title }}</a>
+          <div>{{item.description}}</div>
+        </li>
       {%- endfor -%}
       </ul>
     </div>
     <div>
-      <h2> Macros </h2>
+      <h2 class="text-center"> Macros
+    <a href="/macros/0" class="btn btn-sm btn-outline-primary">see all</a>
+      </h2>
       <ul  class="list-group">
-      {%- for item in macros -%}
-        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }} </a> : {{item.description}}</li>
+      {%- for item in macros | limit(5) -%}
+        <li class="list-group-item">
+          <a href="{{item.url | url }}" target="_blank">{{ item.title }}</a>
+          <div>{{item.description}}</div>
+        </li>
       {%- endfor -%}
       </ul>
     </div>
     <div>
-      <h2> Resources </h2>
+      <h2 class="text-center"> Resources
+      <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a>
+      </h2>
       <ul  class="list-group">
-      {%- for item in resources -%}
-        <li class="list-group-item"><a href="{{item.url | url }}" target="_blank">{{ item.title }}</a> {{item.description}} </li>
+      {%- for item in resources | limit(5) -%}
+        <li class="list-group-item">
+          <a href="{{item.url | url }}" target="_blank">{{ item.title }}</a>
+          <div>{{item.description}}</div>
+        </li>
       {%- endfor -%}
       </ul>
     </div>
     <div>
-      <h2> Html Links </h2>
+      <h2 class="text-center"> Html Links
+      <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a>
+      </h2>
       <ul  class="list-group">
-      {%- for item in collections.html -%}
-        <li class="list-group-item"><a href="{{item.data.url | url }}">{{ item.data.title }}</a> {{item.data.description}} </li>
+      {%- for item in collections.html | limit(5) -%}
+        <li class="list-group-item">
+          <a href="{{item.data.url | url }}" target="_blank">{{ item.data.title }}</a>
+          <div>{{item.data.description}}</div>
+        </li>
       {%- endfor -%}
       </ul>
     </div>

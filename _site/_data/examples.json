@@ -6,57 +6,57 @@
   },
   {
     "title": "bow",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/bow",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp",
     "description": "bow"
   },
   {
     "title": "conv_fins",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp",
     "description": "conv_fins"
   },
   {
     "title": "cylinflo",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp",
     "description": "cylinflo"
   },
   {
     "title": "large_rotat",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp",
     "description": "large_rotat"
   },
   {
     "title": "plate_cms",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp",
     "description": "plate_cms"
   },
   {
     "title": "radairgap",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp",
     "description": "radairgap"
   },
   {
     "title": "rv-lmm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp",
     "description": "rv-lmm"
   },
   {
     "title": "shell-abd",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp",
     "description": "shell-abd"
   },
   {
     "title": "spec-acc-vel-mpt",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp",
     "description": "spec-acc-vel-mpt"
   },
   {
     "title": "torsion3",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp",
     "description": "torsion3"
   },
   {
     "title": "weld",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp",
     "description": "weld"
   }
 ]

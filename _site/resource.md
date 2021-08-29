@@ -13,15 +13,19 @@ eleventyNavigation:
 permalink: '/resources/{{pagination.pageNumber}}/'
 ---
 
+<h1 class="mb-3 text-center">Resources</h1>
+
 {% include "pagination.njk" %}
+
 <ul class="list-group">
 
 {%- for item in pagination.items -%}
 
 <li class="list-group-item">
-{{ item.title }}
 
-[{{ item.description }}]({{ item.url | url }})
+<a href="{{ item.url | url }}" target="_blank"> {{item.title}}</a>
+
+{{ item.description }}
 
 </li>
 {%- endfor -%}

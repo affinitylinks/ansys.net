@@ -1,42 +1,42 @@
 [
   {
     "title": "DS_JPDL___User_Fatigue_PNEN13445-3",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js",
     "description": "DS_JPDL___User_Fatigue_PNEN13445-3.js"
   },
   {
     "title": "ExportBranchAsShortcut",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/ExportBranchAsShortcut.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ExportBranchAsShortcut.js",
     "description": "ExportBranchAsShortcut"
   },
   {
     "title": "a_filmax",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/a_filmax.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
     "description": "Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX"
   },
   {
     "title": "acal",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/acal.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
     "description": "acal"
   },
   {
     "title": "aface",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/aface.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac",
     "description": "aface"
   },
   {
     "title": "anfout2",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/anfout2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac",
     "description": "anfout2"
   },
   {
     "title": "ans2unv",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/ans2unv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac",
     "description": "ans2unv"
   },
   {
     "title": "cmput",
-    "url": "https://github.com/smhrjn/ansys.net/blob/main/0/cmput.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac",
     "description": "cmput"
   }
 ]

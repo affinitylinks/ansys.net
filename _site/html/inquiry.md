@@ -1,11 +1,12 @@
 ---
 title: Inquiry Functions
-url: "/html/inquiry"
+url: '/html/inquiry'
 tags:
   - html
   - undocumented
   - inquiry
 ---
+
 <center>
 <table width="100%" cellspacing="0" cellpadding="0" border="0" bgcolor="#DAE0F8"><tbody><tr><td>
 <table width="100%" cellspacing="2" cellpadding="8" border="0" bgcolor="#303030"><tbody><tr><td>
@@ -32,6 +33,7 @@ tags:
       <!-- Get subtitle based on $mycat -->
       <td class="titlesub" colspan="2">&nbsp; &nbsp; <a href="https://web.archive.org/web/20170212231734/http://ansys.net/?mycat=home">home</a> � <a href="https://web.archive.org/web/20170212231734/http://ansys.net/?mycat=undocu">undocumented features</a> � inquiry functions</td>
     </tr>
+
   </tbody></table>
 </td>
 <td width="12px">&nbsp;</td>
@@ -201,23 +203,23 @@ Here's an example.<p></p>
 a=ndinqr(33,1) <p></p>
 
 In this case, "a" will be assigned a value of -1 if node 33 is unselected,
-0 if it is undefined, and 1 if it is selected.  This is an example of
+0 if it is undefined, and 1 if it is selected. This is an example of
 using an inquiry function to obtain information about a specific entity,
 in this case node 33. <p></p>
 
 An alternative use of an inquiry function is to find more generic data
-about a certain kind of entities.  The following example illustrates
+about a certain kind of entities. The following example illustrates
 this. <p></p>
 
 a=ndinqr(0,14) <p></p>
 
 This will assign to parameter "a" the highest node number defined in the
-model.  Notice that the first argument is zero, and the second argument
+model. Notice that the first argument is zero, and the second argument
 is 14. <p></p>
 
 Here are the inquiry functions I am aware of. <p></p>
 
-ndinqr(node,key)        node number or zero, and key number <br>
+ndinqr(node,key) node number or zero, and key number <br>
 elmiqr(elem,key) <br>
 kpinqr(keypoint,key) <br>
 lsinqr(line,key) <br>
@@ -239,24 +241,24 @@ of selected nodes, etc.) <p></p>
 
 The key numbers are defined as follows. <p></p>
 
-key=1   return select status (for a specific entity) <br>
-key=12  return number of defined entities (KP's, nodes, etc.) <br>
-key=13  return number of selected entities <br>
-key=14  return the highest ID number in use <p></p>
+key=1 return select status (for a specific entity) <br>
+key=12 return number of defined entities (KP's, nodes, etc.) <br>
+key=13 return number of selected entities <br>
+key=14 return the highest ID number in use <p></p>
 
 There a few other inquiry functions which have a slightly different format. <p></p>
 
-mpinqr(mat,prop,key)  material property table number, property number, key
-      additional key=3 for number of temps used in a specific property <p></p>
+mpinqr(mat,prop,key) material property table number, property number, key
+additional key=3 for number of temps used in a specific property <p></p>
 
-dget(node,idof,kcmplx)  node number, displacement pointer, complex key
-     displacement pointers are...  <br>
+dget(node,idof,kcmplx) node number, displacement pointer, complex key
+displacement pointers are... <br>
 1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay
 9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt,
 22=mag, 23=enke, 24=ends, 25=emf, 26=curr <br>
-    complex key=0 for real, 1 for imaginary <p></p>
+complex key=0 for real, 1 for imaginary <p></p>
 
-fget(node,idof,kcomplx)  same definition as dget, but for forces this time.
+fget(node,idof,kcomplx) same definition as dget, but for forces this time.
 
       </td>
     </tr>
@@ -276,6 +278,7 @@ fget(node,idof,kcomplx)  same definition as dget, but for forces this time.
       <td width="5%">&nbsp;</td>
       <td class="mainbody">
         I have looked at the code and can confirm Tyllinen Juha's
+
 observation. It will work in 5.5, 5.6, and not likely to change.<p></p>
 
 "Quick testing seems to indicate that Section number would be available
@@ -308,6 +311,7 @@ Other possibilites for element characteristics<br>
       <td width="5%">&nbsp;</td>
       <td class="mainbody">
         <table cellspacing="0" cellpadding="3" border="0">
+
 <tbody><tr valign="top">
 <td align="left"><b>Nodes</b></td>
 <td colspan="2" align="left"><i>ndinqr(node,key) </i></td>
@@ -1384,7 +1388,6 @@ EVIS = 72, USER = 73, NL = 74, HYPE = 75, NNEW = 76, MOON = 77, OGDE =
 <td align="left">= 6, total number of fatals displayed</td>
 </tr>
 </tbody></table>
-
       </td>
     </tr>
     <tr>
@@ -1406,7 +1409,6 @@ EVIS = 72, USER = 73, NL = 74, HYPE = 75, NNEW = 76, MOON = 77, OGDE =
 next available number.  For example, if areas 1, 2, and 3 exist in the
 model, then arinqr(0,16) returns a value of 4.  However, if only areas 2
  and 3 exist in the model, then arinqr(0,16) returns a value of 1.
-
       </td>
     </tr>
     <tr>
@@ -1425,7 +1427,6 @@ model, then arinqr(0,16) returns a value of 4.  However, if only areas 2
       <td width="5%">&nbsp;</td>
       <td class="mainbody">
         meminqr(-3007) gets scratch memory in use (in bytes).
-
       </td>
     </tr>
     <tr>
@@ -1467,7 +1468,6 @@ model, then arinqr(0,16) returns a value of 4.  However, if only areas 2
 <i>key</i> - item to be returned<br>
  	= -13, orientation keypoint KPB<br>
  	= -14, orientation keypoint KPE
-
       </td>
     </tr>
     <tr>
@@ -1512,7 +1512,6 @@ model, then arinqr(0,16) returns a value of 4.  However, if only areas 2
 &nbsp; &nbsp; &nbsp; arliqr(53,1,2) = number of lines in loop 1 of area 53<br>
 &nbsp; &nbsp; &nbsp; arliqr(53,2,2) = number of lines in loop 2 of area 53<br>
 &nbsp; &nbsp; &nbsp; arliqr(53,3,2) = number of lines in loop 3 of area 53<br>
-
       </td>
     </tr>
     <tr>

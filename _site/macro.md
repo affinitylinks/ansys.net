@@ -13,6 +13,8 @@ eleventyNavigation:
 permalink: '/macros/{{pagination.pageNumber}}/'
 ---
 
+<h1 class="mb-3 text-center">Macros</h1>
+
 {% include "pagination.njk" %}
 
 <ul class="list-group">
@@ -20,9 +22,10 @@ permalink: '/macros/{{pagination.pageNumber}}/'
 {%- for item in pagination.items -%}
 
 <li class="list-group-item">
-{{ item.title }}
 
-[{{ item.description }}]({{ item.url | url }})
+<a href="{{ item.url | url }}" target="_blank"> {{item.title}}</a>
+
+{{ item.description }}
 
 </li>
 {%- endfor -%}
