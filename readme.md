@@ -21,4 +21,5 @@ If you want to test the website locally, node must be installed. Run "npm instal
 The list of contents can be found on following website (work in progress).
 
 [Static App on Netlify](https://ansys.netlify.app)
+
 [Static App on Surge](https://ansys.surge.sh)

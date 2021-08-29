@@ -6,6 +6,7 @@ module.exports = function(eleventyConfig) {
 
   eleventyConfig.addPassthroughCopy('./_site/images');
   eleventyConfig.addPassthroughCopy('./_site/css');
+  eleventyConfig.addPassthroughCopy('./_site/googlee40f07b67084146c.html');
 
   eleventyConfig.addLayoutAlias('base', 'pageTemplates/base.njk');
   eleventyConfig.addLayoutAlias('page', 'pageTemplates/page.njk');
