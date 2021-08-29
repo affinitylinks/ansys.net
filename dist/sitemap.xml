@@ -1,60 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-    
-       
-        <url>
-            <loc>/</loc>
-            <lastmod>2021-08-26T06:31:26.291Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/html/inquiry/</loc>
-            <lastmod>2021-08-27T05:47:01.497Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/html/Hlp_E_HYPER158/</loc>
-            <lastmod>2021-08-28T14:42:43.064Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/macros/0/</loc>
-            <lastmod>2021-08-28T17:14:09.728Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/examples/0/</loc>
-            <lastmod>2021-08-28T17:23:48.472Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/about/</loc>
-            <lastmod>2021-08-29T01:24:05.975Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
-       
-        <url>
-            <loc>/resources/0/</loc>
-            <lastmod>2021-08-29T02:52:07.081Z</lastmod>
-            <changefreq>monthly</changefreq>
-        </url>
-        
-    
+  
+  <url>
+    <loc>https://ansys.netlify.app/</loc>
+    <lastmod>2021-08-26</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/html/inquiry/</loc>
+    <lastmod>2021-08-27</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/html/Hlp_E_HYPER158/</loc>
+    <lastmod>2021-08-28</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/macros/0/</loc>
+    <lastmod>2021-08-28</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/examples/0/</loc>
+    <lastmod>2021-08-28</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/about/</loc>
+    <lastmod>2021-08-29</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/resources/0/</loc>
+    <lastmod>2021-08-29</lastmod>
+  </url>
 </urlset>

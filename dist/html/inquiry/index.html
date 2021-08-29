@@ -240,49 +240,49 @@
 similar to *GET functions in usage, and have two input arguments.
 Here's an example.<p></p>
 <p>a=ndinqr(33,1) <p></p></p>
-<p>In this case, &quot;a&quot; will be assigned a value of -1 if node 33 is unselected,
-0 if it is undefined, and 1 if it is selected. This is an example of
-using an inquiry function to obtain information about a specific entity,
+<p>In this case, &quot;a&quot; will be assigned a value of -1 if node 33 is unselected,<br>
+0 if it is undefined, and 1 if it is selected. This is an example of<br>
+using an inquiry function to obtain information about a specific entity,<br>
 in this case node 33. <p></p></p>
-<p>An alternative use of an inquiry function is to find more generic data
-about a certain kind of entities. The following example illustrates
+<p>An alternative use of an inquiry function is to find more generic data<br>
+about a certain kind of entities. The following example illustrates<br>
 this. <p></p></p>
 <p>a=ndinqr(0,14) <p></p></p>
-<p>This will assign to parameter &quot;a&quot; the highest node number defined in the
-model. Notice that the first argument is zero, and the second argument
+<p>This will assign to parameter &quot;a&quot; the highest node number defined in the<br>
+model. Notice that the first argument is zero, and the second argument<br>
 is 14. <p></p></p>
 <p>Here are the inquiry functions I am aware of. <p></p></p>
-<p>ndinqr(node,key) node number or zero, and key number <br>
-elmiqr(elem,key) <br>
-kpinqr(keypoint,key) <br>
-lsinqr(line,key) <br>
-arinqr(area,key) <br>
-vlinqr(volume,key) <br>
-rlinqr(real,key) <br>
-gapiqr(gap element,key) <br>
-masiqr(master DOF,key) <br>
-ceinqr(constraint equation,key) <br>
-cpinqr(coupled set,key) <br>
-csyiqr(coord system,key) <br>
-etyiqr(element type,key) <br>
+<p>ndinqr(node,key) node number or zero, and key number <br><br>
+elmiqr(elem,key) <br><br>
+kpinqr(keypoint,key) <br><br>
+lsinqr(line,key) <br><br>
+arinqr(area,key) <br><br>
+vlinqr(volume,key) <br><br>
+rlinqr(real,key) <br><br>
+gapiqr(gap element,key) <br><br>
+masiqr(master DOF,key) <br><br>
+ceinqr(constraint equation,key) <br><br>
+cpinqr(coupled set,key) <br><br>
+csyiqr(coord system,key) <br><br>
+etyiqr(element type,key) <br><br>
 foriqr(nodal force,key) <p></p></p>
-<p>All of these work pretty much the same, with the first argument used as
-either an entity ID number (for data about a specific node, element,
-etc.) or a zero if the information is about a class of element (number
+<p>All of these work pretty much the same, with the first argument used as<br>
+either an entity ID number (for data about a specific node, element,<br>
+etc.) or a zero if the information is about a class of element (number<br>
 of selected nodes, etc.) <p></p></p>
 <p>The key numbers are defined as follows. <p></p></p>
-<p>key=1 return select status (for a specific entity) <br>
-key=12 return number of defined entities (KP's, nodes, etc.) <br>
-key=13 return number of selected entities <br>
+<p>key=1 return select status (for a specific entity) <br><br>
+key=12 return number of defined entities (KP's, nodes, etc.) <br><br>
+key=13 return number of selected entities <br><br>
 key=14 return the highest ID number in use <p></p></p>
 <p>There a few other inquiry functions which have a slightly different format. <p></p></p>
-<p>mpinqr(mat,prop,key) material property table number, property number, key
+<p>mpinqr(mat,prop,key) material property table number, property number, key<br>
 additional key=3 for number of temps used in a specific property <p></p></p>
-<p>dget(node,idof,kcmplx) node number, displacement pointer, complex key
-displacement pointers are... <br>
-1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay
-9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt,
-22=mag, 23=enke, 24=ends, 25=emf, 26=curr <br>
+<p>dget(node,idof,kcmplx) node number, displacement pointer, complex key<br>
+displacement pointers are... <br><br>
+1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay<br>
+9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt,<br>
+22=mag, 23=enke, 24=ends, 25=emf, 26=curr <br><br>
 complex key=0 for real, 1 for imaginary <p></p></p>
 <p>fget(node,idof,kcomplx) same definition as dget, but for forces this time.</p>
 <pre><code>  &lt;/td&gt;
@@ -305,14 +305,14 @@ complex key=0 for real, 1 for imaginary <p></p></p>
     I have looked at the code and can confirm Tyllinen Juha's
 </code></pre>
 <p>observation. It will work in 5.5, 5.6, and not likely to change.<p></p></p>
-<p>&quot;Quick testing seems to indicate that Section number would be available
-with sn = elmiqr(n,-4), where n is the element number. At least that is the
+<p>&quot;Quick testing seems to indicate that Section number would be available<br>
+with sn = elmiqr(n,-4), where n is the element number. At least that is the<br>
 way it worked in 5.5.1 with Beam188 and Beam189.&quot;<p></p></p>
 <p>Other possibilites for element characteristics<br></p>
-<p>-1, material number<br>
--2, element type<br>
--3, real constant number<br>
--4, Element Section ID number<br>
+<p>-1, material number<br><br>
+-2, element type<br><br>
+-3, real constant number<br><br>
+-4, Element Section ID number<br><br>
 -5, coordinate system number</p>
 <pre><code>  &lt;/td&gt;
 &lt;/tr&gt;
