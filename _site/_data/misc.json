@@ -1,28 +1,28 @@
 [
   {
-    "title": "files.txt",
+    "title": "List of Files",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
-    "description": "files.txt"
+    "description": "List of Files from ansys.net"
   },
   {
-    "title": "Hlp_E_HYPER158.html",
+    "title": "HYPER158",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html",
-    "description": "Hlp_E_HYPER158.html"
+    "description": "Element Documentation for HYPER158"
   },
   {
-    "title": "Hlp_E_SHELL51.html",
+    "title": "SHELL51",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_SHELL51.html",
-    "description": "Hlp_E_SHELL51.html"
+    "description": "Element Documentation for SHELL51"
   },
   {
-    "title": "Hlp_E_VISCO88.html",
+    "title": "VISCO88",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_VISCO88.html",
-    "description": "Hlp_E_VISCO88.html"
+    "description": "Element Documentation for VISCO88"
   },
   {
-    "title": "Hlp_E_HYPER56.html",
+    "title": "HYPER56",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_HYPER56.html",
-    "description": "Hlp_E_HYPER56.html"
+    "description": "Element Documentation for HYPER56"
   },
   {
     "title": "Hlp_E_SHELL91.html",

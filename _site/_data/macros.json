@@ -2,27 +2,27 @@
   {
     "title": "a_filmax.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
-    "description": "a_filmax.mac"
+    "description": "Macro to calculate the MAXIMUM FILLET RADIUS at two lines L1 and L2."
   },
   {
     "title": "acal.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
-    "description": "acal.mac"
+    "description": "This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area."
   },
   {
     "title": "aface.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac",
-    "description": "aface.mac"
+    "description": "If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC."
   },
   {
     "title": "anfout2.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac",
-    "description": "anfout2.mac"
+    "description": "Macro that traverses the solid model and writes an anf file."
   },
   {
     "title": "ans2unv.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac",
-    "description": "ans2unv.mac"
+    "description": "This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in ansys.net "
   },
   {
     "title": "cmput.mac",

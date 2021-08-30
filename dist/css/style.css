@@ -5,3 +5,6 @@ h1 {
 h2 {
   font-family: Arial;
   color: salmon; }
+
+.list-group-item {
+  background: #cef7bb; }

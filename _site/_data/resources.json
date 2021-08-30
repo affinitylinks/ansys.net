@@ -1,32 +1,28 @@
 [
   {
-    "title": "021501Syed.pdf",
+    "title": "Reliability Needs",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf",
-    "description": "021501Syed.pdf"
+    "description": "Overview of Reliability Models and Data Needs"
   },
-
   {
-    "title": "1_1_4.pdf",
+    "title": "Save Working Loads",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf",
-    "description": "1_1_4.pdf"
+    "description": "Iterative Determination of Save Working Loads (SWL) for Crawler Cranes"
   },
-
   {
-    "title": "306.pdf",
+    "title": "FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf",
-    "description": "306.pdf"
+    "description": "A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation."
   },
-
   {
-    "title": "89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf",
+    "title": "3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf",
-    "description": "89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf"
+    "description": "A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated >11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs."
   },
-
   {
-    "title": "ansys_news_1996_1.pdf",
+    "title": "ANSYS news",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf",
-    "description": "ansys_news_1996_1.pdf"
+    "description": "First Issue of ANSYS News"
   },
 
   {

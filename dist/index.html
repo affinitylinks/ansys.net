@@ -8,11 +8,11 @@
     <title>sheldon&#39;s ansys.net-home</title>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="style.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
     <title>sheldon&#39;s ansys.net</title>
   </head>
-  <body class="bg-dark">
-    <nav class="site-nav family-sans navbar navbar-expand-md bg-dark navbar-dark sticky-top py-0">
+  <body class="bg-success">
+    <nav class="site-nav family-sans navbar navbar-expand-md bg-success navbar-dark sticky-top py-0">
   <div class="container-fluid">
 
     <button type="button" class="navbar-toggler my-2 my-md-0"
@@ -27,9 +27,9 @@
 
     <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
       <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
-        <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
+        <a class="nav-item nav-link text-warning" href="/"><i class="fas fa-home"></i></a>
 
-        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link" href="/html/0">HTML</a>
+        <a class="nav-item nav-link text-warning" href="/macros/0/">macros</a><a class="nav-item nav-link text-warning" href="/examples/0/">examples</a><a class="nav-item nav-link text-warning" href="/resources/0/">resources</a><a class="nav-item nav-link text-warning" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link text-warning" href="/html/0">HTML</a>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
@@ -46,7 +46,7 @@
   </div>
 </nav>
 
-    <div class="bg-white">
+    <div class="bg-light">
 <main class="container py-4">
   <div class="row">
   <div class="col">
@@ -56,19 +56,19 @@
        </h2>
       <ul class="list-group"><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/arch_buck.inp" target="_blank">arch_buck.inp</a>
-          <div>arch_buck.inp</div>
+          <div>Arch buckling problem, illustrates importance of press. load stiff. matrix</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp" target="_blank">bow.inp</a>
-          <div>bow.inp</div>
+          <div>Bowshock Benchmark</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp" target="_blank">conv_fins.inp</a>
-          <div>conv_fins.inp</div>
+          <div>Natural convection problem (2D tri) three &quot;fins&quot; heated</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp" target="_blank">cylinflo.inp</a>
-          <div>cylinflo.inp</div>
+          <div>simple cylinder in open air</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp" target="_blank">large_rotat.inp</a>
-          <div>large_rotat.inp</div>
+          <div>Shows line search on/off/auto</div>
         </li></ul>
     </div>
     <div>
@@ -77,19 +77,19 @@
       </h2>
       <ul  class="list-group"><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac" target="_blank">a_filmax.mac</a>
-          <div>a_filmax.mac</div>
+          <div>Macro to calculate the MAXIMUM FILLET RADIUS at two lines L1 and L2.</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac" target="_blank">acal.mac</a>
-          <div>acal.mac</div>
+          <div>This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area.</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac" target="_blank">aface.mac</a>
-          <div>aface.mac</div>
+          <div>If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC.</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac" target="_blank">anfout2.mac</a>
-          <div>anfout2.mac</div>
+          <div>Macro that traverses the solid model and writes an anf file.</div>
         </li><li class="list-group-item">
           <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac" target="_blank">ans2unv.mac</a>
-          <div>ans2unv.mac</div>
+          <div>This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in ansys.net </div>
         </li></ul>
     </div>
     <div>
@@ -97,20 +97,20 @@
       <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a>
       </h2>
       <ul  class="list-group"><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf" target="_blank">021501Syed.pdf</a>
-          <div>021501Syed.pdf</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf" target="_blank">Reliability Needs</a>
+          <div>Overview of Reliability Models and Data Needs</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf" target="_blank">1_1_4.pdf</a>
-          <div>1_1_4.pdf</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf" target="_blank">Save Working Loads</a>
+          <div>Iterative Determination of Save Working Loads (SWL) for Crawler Cranes</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf" target="_blank">306.pdf</a>
-          <div>306.pdf</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf" target="_blank">FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING</a>
+          <div>A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation.</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf" target="_blank">89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf</a>
-          <div>89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf" target="_blank">3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers</a>
+          <div>A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated &gt;11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs.</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf" target="_blank">ansys_news_1996_1.pdf</a>
-          <div>ansys_news_1996_1.pdf</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf" target="_blank">ANSYS news</a>
+          <div>First Issue of ANSYS News</div>
         </li></ul>
     </div>
     <div>
@@ -118,20 +118,20 @@
       <a href="/miscellaneous/0" class="btn btn-sm btn-outline-primary">see all</a>
       </h2>
       <ul  class="list-group"><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt" target="_blank">files.txt</a>
-          <div>files.txt</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt" target="_blank">List of Files</a>
+          <div>List of Files from ansys.net</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html" target="_blank">Hlp_E_HYPER158.html</a>
-          <div>Hlp_E_HYPER158.html</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html" target="_blank">HYPER158</a>
+          <div>Element Documentation for HYPER158</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_SHELL51.html" target="_blank">Hlp_E_SHELL51.html</a>
-          <div>Hlp_E_SHELL51.html</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_SHELL51.html" target="_blank">SHELL51</a>
+          <div>Element Documentation for SHELL51</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_VISCO88.html" target="_blank">Hlp_E_VISCO88.html</a>
-          <div>Hlp_E_VISCO88.html</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_VISCO88.html" target="_blank">VISCO88</a>
+          <div>Element Documentation for VISCO88</div>
         </li><li class="list-group-item">
-          <a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_HYPER56.html" target="_blank">Hlp_E_HYPER56.html</a>
-          <div>Hlp_E_HYPER56.html</div>
+          <a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_HYPER56.html" target="_blank">HYPER56</a>
+          <div>Element Documentation for HYPER56</div>
         </li></ul>
     </div>
     <div>
@@ -139,11 +139,8 @@
       <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a>
       </h2>
       <ul  class="list-group"><li class="list-group-item">
-          <a href="/html/inquiry" target="_blank">Inquiry Functions</a>
-          <div></div>
-        </li><li class="list-group-item">
-          <a href="/html/hlp_e_hyper158" target="_blank">hyper158</a>
-          <div></div>
+          <a href="/html/inquiry">Inquiry Functions</a>
+          <div>list of some undocumented inquiry functions</div>
         </li></ul>
     </div>
   </div>

@@ -68,7 +68,7 @@ tags:
       <ul  class="list-group">
       {%- for item in collections.html | limit(5) -%}
         <li class="list-group-item">
-          <a href="{{item.data.url | url }}" target="_blank">{{ item.data.title }}</a>
+          <a href="{{item.data.url | url }}">{{ item.data.title }}</a>
           <div>{{item.data.description}}</div>
         </li>
       {%- endfor -%}
