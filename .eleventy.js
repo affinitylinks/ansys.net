@@ -25,6 +25,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addLayoutAlias('example', 'pageTemplates/example.njk');
   eleventyConfig.addLayoutAlias('trick', 'pageTemplates/trick.njk');
   eleventyConfig.addLayoutAlias('resource', 'pageTemplates/resource.njk');
+  eleventyConfig.addLayoutAlias('misc', 'pageTemplates/misc.njk');
 
   eleventyConfig.addDataExtension('yaml', contents => yaml.safeLoad(contents));
 

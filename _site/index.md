@@ -49,6 +49,19 @@ tags:
       </ul>
     </div>
     <div>
+      <h2 class="text-center"> Miscellaneous
+      <a href="/misc/0" class="btn btn-sm btn-outline-primary">see all</a>
+      </h2>
+      <ul  class="list-group">
+      {%- for item in misc | limit(5) -%}
+        <li class="list-group-item">
+          <a href="{{item.url | url }}" target="_blank">{{ item.title }}</a>
+          <div>{{item.description}}</div>
+        </li>
+      {%- endfor -%}
+      </ul>
+    </div>
+    <div>
       <h2 class="text-center"> Html Links
       <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a>
       </h2>
