@@ -7,6 +7,7 @@ pagination:
 tags:
   - example
   - apdl
+title: example
 eleventyNavigation:
   key: examples
   parent: main

@@ -1791,5 +1791,400 @@
     "title": "week26-parametric_studies.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/week26-parametric_studies.pdf",
     "description": "week26-parametric_studies.pdf"
+  },
+  {
+    "title": "benchmark_1.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/benchmark_1.zip",
+    "description": "benchmark_1.zip"
+  },
+  {
+    "title": "sprs_mprs.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/sprs_mprs.zip",
+    "description": "sprs_mprs.zip"
+  },
+  {
+    "title": "STI02_QR_Damped_Unsymmetric.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI02_QR_Damped_Unsymmetric.zip",
+    "description": "STI02_QR_Damped_Unsymmetric.zip"
+  },
+  {
+    "title": "STI06_Undocumented_Hyperelastic_Models.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI06_Undocumented_Hyperelastic_Models.zip",
+    "description": "STI06_Undocumented_Hyperelastic_Models.zip"
+  },
+  {
+    "title": "STI08_PSOLVE.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI08_PSOLVE.zip",
+    "description": "STI08_PSOLVE.zip"
+  },
+  {
+    "title": "STI11_Plasticity_Hardening_Rules.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI11_Plasticity_Hardening_Rules.zip",
+    "description": "STI11_Plasticity_Hardening_Rules.zip"
+  },
+  {
+    "title": "vm267.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/vm267.zip",
+    "description": "vm267.zip"
+  },
+  {
+    "title": "ACCURATE.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip",
+    "description": "ACCURATE.zip"
+  },
+  {
+    "title": "batch.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip",
+    "description": "batch.zip"
+  },
+  {
+    "title": "muffler.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip",
+    "description": "muffler.zip"
+  },
+  {
+    "title": "Nested_macros-all-files.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Nested_macros-all-files.zip",
+    "description": "Nested_macros-all-files.zip"
+  },
+  {
+    "title": "POW2MAT.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/POW2MAT.zip",
+    "description": "POW2MAT.zip"
+  },
+  {
+    "title": "prony.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip",
+    "description": "prony.zip"
+  },
+  {
+    "title": "STI02_Rigid_Body_Contact.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI02_Rigid_Body_Contact.zip",
+    "description": "STI02_Rigid_Body_Contact.zip"
+  },
+  {
+    "title": "STI0701_CMS_in_Simulation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip",
+    "description": "STI0701_CMS_in_Simulation.zip"
+  },
+  {
+    "title": "dakota.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/dakota.zip",
+    "description": "dakota.zip"
+  },
+  {
+    "title": "instantaneous_secant_TCE.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip",
+    "description": "instantaneous_secant_TCE.zip"
+  },
+  {
+    "title": "roller.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip",
+    "description": "roller.zip"
+  },
+  {
+    "title": "STI01_Acoustic_Elements.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI01_Acoustic_Elements.zip",
+    "description": "STI01_Acoustic_Elements.zip"
+  },
+  {
+    "title": "STI0702_External_Pressure_Loading_WB_Simulation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0702_External_Pressure_Loading_WB_Simulation.zip",
+    "description": "STI0702_External_Pressure_Loading_WB_Simulation.zip"
+  },
+  {
+    "title": "STI0803_Residual_Vectors.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0803_Residual_Vectors.zip",
+    "description": "STI0803_Residual_Vectors.zip"
+  },
+  {
+    "title": "substr-fullpost.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/substr-fullpost.zip",
+    "description": "substr-fullpost.zip"
+  },
+  {
+    "title": "VectorRotation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/VectorRotation.zip",
+    "description": "VectorRotation.zip"
+  },
+  {
+    "title": "closed_tank.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/closed_tank.zip",
+    "description": "closed_tank.zip"
+  },
+  {
+    "title": "COMPMENU.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip",
+    "description": "COMPMENU.zip"
+  },
+  {
+    "title": "DistributedLoad.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DistributedLoad.zip",
+    "description": "DistributedLoad.zip"
+  },
+  {
+    "title": "HE_WB.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/HE_WB.zip",
+    "description": "HE_WB.zip"
+  },
+  {
+    "title": "INTERP.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/INTERP.zip",
+    "description": "INTERP.zip"
+  },
+  {
+    "title": "Legend_Example.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Legend_Example.zip",
+    "description": "Legend_Example.zip"
+  },
+  {
+    "title": "STI01_Creating_Custom_Animations.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI01_Creating_Custom_Animations.zip",
+    "description": "STI01_Creating_Custom_Animations.zip"
+  },
+  {
+    "title": "STI03_Harmonic_Postprocessing.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI03_Harmonic_Postprocessing.zip",
+    "description": "STI03_Harmonic_Postprocessing.zip"
+  },
+  {
+    "title": "STI0703_USERHYPER.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0703_USERHYPER.zip",
+    "description": "STI0703_USERHYPER.zip"
+  },
+  {
+    "title": "STI0804_Damping.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip",
+    "description": "STI0804_Damping.zip"
+  },
+  {
+    "title": "STI0903_PSD_Postprocessing_2.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0903_PSD_Postprocessing_2.zip",
+    "description": "STI0903_PSD_Postprocessing_2.zip"
+  },
+  {
+    "title": "STI69_TNT_Beam_Elements.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI69_TNT_Beam_Elements.zip",
+    "description": "STI69_TNT_Beam_Elements.zip"
+  },
+  {
+    "title": "surfeff_final1.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/surfeff_final1.zip",
+    "description": "surfeff_final1.zip"
+  },
+  {
+    "title": "ANSYS_distributed_tutorial_8.1.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ANSYS_distributed_tutorial_8.1.zip",
+    "description": "ANSYS_distributed_tutorial_8.1.zip"
+  },
+  {
+    "title": "demotlbr.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/demotlbr.zip",
+    "description": "demotlbr.zip"
+  },
+  {
+    "title": "penny3d.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip",
+    "description": "penny3d.zip"
+  },
+  {
+    "title": "PressureMappingExample.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/PressureMappingExample.zip",
+    "description": "PressureMappingExample.zip"
+  },
+  {
+    "title": "STI01_Electrical_Contact_Beta_6.0.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI01_Electrical_Contact_Beta_6.0.zip",
+    "description": "STI01_Electrical_Contact_Beta_6.0.zip"
+  },
+  {
+    "title": "STI05_Pressure_Loading.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI05_Pressure_Loading.zip",
+    "description": "STI05_Pressure_Loading.zip"
+  },
+  {
+    "title": "STI0704_USERCREEP.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0704_USERCREEP.zip",
+    "description": "STI0704_USERCREEP.zip"
+  },
+  {
+    "title": "STI0904_USERFC.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0904_USERFC.zip",
+    "description": "STI0904_USERFC.zip"
+  },
+  {
+    "title": "surfeff_final2.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/surfeff_final2.zip",
+    "description": "surfeff_final2.zip"
+  },
+  {
+    "title": "user01.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip",
+    "description": "user01.zip"
+  },
+  {
+    "title": "elastdata_Unix.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/elastdata_Unix.zip",
+    "description": "elastdata_Unix.zip"
+  },
+  {
+    "title": "FFTDFT.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FFTDFT.zip",
+    "description": "FFTDFT.zip"
+  },
+  {
+    "title": "grph2svg.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/grph2svg.zip",
+    "description": "grph2svg.zip"
+  },
+  {
+    "title": "Material_XML.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Material_XML.zip",
+    "description": "Material_XML.zip"
+  },
+  {
+    "title": "PRESSURE_MAC.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/PRESSURE_MAC.zip",
+    "description": "PRESSURE_MAC.zip"
+  },
+  {
+    "title": "STI01_PDS_and_Nonlinear_Runs.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI01_PDS_and_Nonlinear_Runs.zip",
+    "description": "STI01_PDS_and_Nonlinear_Runs.zip"
+  },
+  {
+    "title": "STI0806_USEROUT.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0806_USEROUT.zip",
+    "description": "STI0806_USEROUT.zip"
+  },
+  {
+    "title": "surfeff_final3.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/surfeff_final3.zip",
+    "description": "surfeff_final3.zip"
+  },
+  {
+    "title": "icpkg.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/icpkg.zip",
+    "description": "icpkg.zip"
+  },
+  {
+    "title": "matlab.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip",
+    "description": "matlab.zip"
+  },
+  {
+    "title": "STI04_Long_Names_and_Strings.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI04_Long_Names_and_Strings.zip",
+    "description": "STI04_Long_Names_and_Strings.zip"
+  },
+  {
+    "title": "STI0706_Acoustic_Postprocessing.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0706_Acoustic_Postprocessing.zip",
+    "description": "STI0706_Acoustic_Postprocessing.zip"
+  },
+  {
+    "title": "STI0807_Viscoelasticity.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0807_Viscoelasticity.zip",
+    "description": "STI0807_Viscoelasticity.zip"
+  },
+  {
+    "title": "STI09_Damping.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI09_Damping.zip",
+    "description": "STI09_Damping.zip"
+  },
+  {
+    "title": "visco_harmonic.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/visco_harmonic.zip",
+    "description": "visco_harmonic.zip"
+  },
+  {
+    "title": "dspace_assembly.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/dspace_assembly.zip",
+    "description": "dspace_assembly.zip"
+  },
+  {
+    "title": "harmonic_and_random.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip",
+    "description": "harmonic_and_random.zip"
+  },
+  {
+    "title": "siysdcap.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip",
+    "description": "siysdcap.zip"
+  },
+  {
+    "title": "STI02_APDL_and_Vector_Operations.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip",
+    "description": "STI02_APDL_and_Vector_Operations.zip"
+  },
+  {
+    "title": "STI04_Manipulating_FE_Mesh.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI04_Manipulating_FE_Mesh.zip",
+    "description": "STI04_Manipulating_FE_Mesh.zip"
+  },
+  {
+    "title": "STI0604_Viscous_Behavior.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0604_Viscous_Behavior.zip",
+    "description": "STI0604_Viscous_Behavior.zip"
+  },
+  {
+    "title": "STI07_CERIG_RBE3_RIGID184.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip",
+    "description": "STI07_CERIG_RBE3_RIGID184.zip"
+  },
+  {
+    "title": "STI0808_Hill.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0808_Hill.zip",
+    "description": "STI0808_Hill.zip"
+  },
+  {
+    "title": "boot.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip",
+    "description": "boot.zip"
+  },
+  {
+    "title": "dspace_part.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/dspace_part.zip",
+    "description": "dspace_part.zip"
+  },
+  {
+    "title": "EPFL_Tutorial.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip",
+    "description": "EPFL_Tutorial.zip"
+  },
+  {
+    "title": "harmonic_cms.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip",
+    "description": "harmonic_cms.zip"
+  },
+  {
+    "title": "impedance.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip",
+    "description": "impedance.zip"
+  },
+  {
+    "title": "inistate.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip",
+    "description": "inistate.zip"
+  },
+  {
+    "title": "STI02_Nonlinear_Submodeling.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI02_Nonlinear_Submodeling.zip",
+    "description": "STI02_Nonlinear_Submodeling.zip"
+  },
+  {
+    "title": "STI04_PSD_Postprocessing.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI04_PSD_Postprocessing.zip",
+    "description": "STI04_PSD_Postprocessing.zip"
+  },
+  {
+    "title": "STI10_Manual_Calculation_of_SEND.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI10_Manual_Calculation_of_SEND.zip",
+    "description": "STI10_Manual_Calculation_of_SEND.zip"
+  },
+  {
+    "title": "vm256.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip",
+    "description": "vm256.zip"
   }
 ]

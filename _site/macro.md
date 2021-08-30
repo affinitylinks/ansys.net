@@ -7,6 +7,7 @@ pagination:
 tags:
   - macro
   - apdl
+title: macro
 eleventyNavigation:
   key: macros
   parent: main

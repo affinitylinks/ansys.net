@@ -7,6 +7,7 @@ pagination:
 tags:
   - resource
   - apdl
+title: resource
 eleventyNavigation:
   key: resources
   parent: main

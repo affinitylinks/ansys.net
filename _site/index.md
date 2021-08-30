@@ -1,5 +1,5 @@
 ---
-title: home page
+title: home
 date: Created
 layout: page
 tags:
