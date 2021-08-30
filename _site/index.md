@@ -50,7 +50,7 @@ tags:
     </div>
     <div>
       <h2 class="text-center"> Miscellaneous
-      <a href="/misc/0" class="btn btn-sm btn-outline-primary">see all</a>
+      <a href="/miscellaneous/0" class="btn btn-sm btn-outline-primary">see all</a>
       </h2>
       <ul  class="list-group">
       {%- for item in misc | limit(5) -%}
