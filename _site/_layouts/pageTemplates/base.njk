@@ -24,6 +24,8 @@ siteTitle: "sheldon's ansys.net"
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
+    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+
     <link rel="alternate" href="{{ metadata.feed.path | url }}" type="application/atom+xml" title="{{ metadata.title }}">
     <link rel="alternate" href="{{ metadata.jsonfeed.path | url }}" type="application/json" title="{{ metadata.title }}">
 
@@ -33,7 +35,12 @@ siteTitle: "sheldon's ansys.net"
     {% include "navigation.njk" %}
     <div class="row">
       <div class="col">
-        <div class="bg-light">{{ content | safe }}</div>
+        <div class="bg-light">
+          <div class="conatainer">
+            <div class="gcse-search">...</div>
+          </div>
+          {{ content | safe }}
+        </div>
       </div>
     </div>
     {% include "social.njk" %}
