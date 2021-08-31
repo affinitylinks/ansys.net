@@ -2,7 +2,7 @@
 layout: macro
 pagination:
   data: macros
-  size: 30
+  size: 40
   alias: macro
 tags:
   - macro

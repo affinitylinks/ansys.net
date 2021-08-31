@@ -67,8 +67,9 @@
   },
   {
     "title": "fluid_pres.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp",
-    "description": "fluid_pres.inp"
+    "description": "Example showing 'fluid pressure' contact, beta at 5.6."
   },
   {
     "title": "harm-full-ex.inp",
@@ -127,8 +128,9 @@
   },
   {
     "title": "ibeam_181.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp",
-    "description": "ibeam_181.inp"
+    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \r\n * BEAM188 (Unrestrained warping) -- 387.3 \r\n * BEAM188 (Restrained warping) -- 569.6 \r\n * SHELL181 (concentrated load) -- 560.8 \r\n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \r\n \r\n This input file uses SHELL181."
   },
   {
     "title": "rv-press-fm.inp",
@@ -157,13 +159,15 @@
   },
   {
     "title": "contact_shell.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp",
-    "description": "contact_shell.inp"
+    "description": "Shows rigid-flexible contact w/ shell offset."
   },
   {
     "title": "curing.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp",
-    "description": "curing.inp"
+    "description": "\"Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (\"Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.\", PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).\""
   },
   {
     "title": "fanbox2.inp",
@@ -183,7 +187,7 @@
   {
     "title": "ibeam_188.inp",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp",
-    "description": "ibeam_188.inp"
+    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \r\n * BEAM188 (Unrestrained warping) -- 387.3 \r\n * BEAM188 (Restrained warping) -- 569.6 \r\n * SHELL181 (concentrated load) -- 560.8 \r\n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \r\n \r\n This input file uses BEAM188."
   },
   {
     "title": "microoven.inp",
@@ -242,8 +246,9 @@
   },
   {
     "title": "beam176cross.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/beam176cross.inp",
-    "description": "beam176cross.inp"
+    "description": "Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)"
   },
   {
     "title": "block_rad.inp",
@@ -257,8 +262,9 @@
   },
   {
     "title": "contpres.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp",
-    "description": "contpres.inp"
+    "description": "Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements)."
   },
   {
     "title": "HARMC_EMM.inp",
@@ -297,8 +303,9 @@
   },
   {
     "title": "elbow290.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp",
-    "description": "elbow290.inp"
+    "description": "Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs."
   },
   {
     "title": "in-3d.inp",
@@ -332,8 +339,9 @@
   },
   {
     "title": "ballshear.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp",
-    "description": "ballshear.inp"
+    "description": "\"I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper's Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).\""
   },
   {
     "title": "coax.inp",
@@ -352,8 +360,9 @@
   },
   {
     "title": "friction_test2.inp",
+    "author": "Brent Bristol (SpeedFam-IPEC)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/friction_test2.inp",
-    "description": "friction_test2.inp"
+    "description": "From the author: \"The following macro demonstrates a method for obtaining friction forces directly from a contact interface [and restart capability].\""
   },
   {
     "title": "rv-ba-mp.inp",

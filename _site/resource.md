@@ -2,7 +2,7 @@
 layout: resource
 pagination:
   data: resources
-  size: 30
+  size: 40
   alias: resource
 tags:
   - resource

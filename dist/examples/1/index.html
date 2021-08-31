@@ -84,12 +84,12 @@
 <p>tr-lmm-acc-mspt-2.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp" target="_blank"> contact_shell.inp</a></p>
-<p class="font-italic"></p>
-<p>contact_shell.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Shows rigid-flexible contact w/ shell offset.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp" target="_blank"> curing.inp</a></p>
-<p class="font-italic"></p>
-<p>curing.inp</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (&quot;Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.&quot;, PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/fanbox2.inp" target="_blank"> fanbox2.inp</a></p>
 <p class="font-italic"></p>
@@ -105,7 +105,14 @@
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp" target="_blank"> ibeam_188.inp</a></p>
 <p class="font-italic"></p>
-<p>ibeam_188.inp</p>
+<p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
+<ul>
+<li>BEAM188 (Unrestrained warping) -- 387.3</li>
+<li>BEAM188 (Restrained warping) -- 569.6</li>
+<li>SHELL181 (concentrated load) -- 560.8</li>
+<li>SHELL181 (distributed load) -- 564.1 (similar to beam case)</li>
+</ul>
+<p>This input file uses BEAM188.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp" target="_blank"> microoven.inp</a></p>
 <p class="font-italic"></p>
@@ -152,8 +159,8 @@
 <p>tr-lmm-acc-mspt.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/beam176cross.inp" target="_blank"> beam176cross.inp</a></p>
-<p class="font-italic"></p>
-<p>beam176cross.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp" target="_blank"> block_rad.inp</a></p>
 <p class="font-italic"></p>
@@ -164,8 +171,8 @@
 <p>cnhtxfr2.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp" target="_blank"> contpres.inp</a></p>
-<p class="font-italic"></p>
-<p>contpres.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/HARMC_EMM.inp" target="_blank"> HARMC_EMM.inp</a></p>
 <p class="font-italic"></p>
@@ -196,8 +203,8 @@
 <p>control.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp" target="_blank"> elbow290.inp</a></p>
-<p class="font-italic"></p>
-<p>elbow290.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

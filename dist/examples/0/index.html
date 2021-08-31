@@ -138,8 +138,8 @@
 <p>dadd.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp" target="_blank"> fluid_pres.inp</a></p>
-<p class="font-italic"></p>
-<p>fluid_pres.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example showing 'fluid pressure' contact, beta at 5.6.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp" target="_blank"> harm-full-ex.inp</a></p>
 <p class="font-italic"></p>
@@ -186,8 +186,15 @@
 <p>harm-lmm-clust.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp" target="_blank"> ibeam_181.inp</a></p>
-<p class="font-italic"></p>
-<p>ibeam_181.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
+<ul>
+<li>BEAM188 (Unrestrained warping) -- 387.3</li>
+<li>BEAM188 (Restrained warping) -- 569.6</li>
+<li>SHELL181 (concentrated load) -- 560.8</li>
+<li>SHELL181 (distributed load) -- 564.1 (similar to beam case)</li>
+</ul>
+<p>This input file uses SHELL181.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp" target="_blank"> rv-press-fm.inp</a></p>
 <p class="font-italic"></p>
