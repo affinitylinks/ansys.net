@@ -5,10 +5,24 @@
     <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <meta name="google-site-verification" content="LDFbsFtoiZlBNqruvC2wK8sObZtsKGqwvzvcPB0y1mE" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJH9XZY2MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WJH9XZY2MY');
+    </script>
+
     <title>sheldon&#39;s ansys.net-resource</title>
     <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
+
     <title>sheldon&#39;s ansys.net</title>
   </head>
   <body class="bg-success">
@@ -151,8 +165,8 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/wam95_ufluidics.pdf" target="_blank"> wam95_ufluidics.pdf</a></p>
 <p>wam95_ufluidics.pdf</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/week_15_STI50_TNT_Vector_operations.pdf" target="_blank"> week_15_STI50_TNT_Vector_operations.pdf</a></p>
-<p>week_15_STI50_TNT_Vector_operations.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/week_15_STI50_TNT_Vector_operations.pdf" target="_blank"> Vector Operations and Commands</a></p>
+<p>Vector notation/functions in ANSYS allow the user to execute some of these *DO loops in a much more efficient manner. Instead of looping through individual functions, vector functions act upon arrays, resulting in faster execution times.  This memo will provide some basic/introductory examples on the use of *VGET as well as the undocumented vector notation.&lt;br&gt;&lt;a href=&quot;?mycat=uf_vector&quot;&gt;HTML Version here&lt;/a&gt;.&lt;br&gt;&lt;a href=&quot;tips/buildn.inp&quot;&gt;Accompanying input file&lt;/a&gt;, &lt;a href=&quot;tips/buildn1.mac&quot;&gt;BUILDN1 macro&lt;/a&gt;, and &lt;a href=&quot;tips/buildn2.mac&quot;&gt;BUILDN2 macro&lt;/a&gt;.&lt;p&gt;&lt;/p&gt;    In the memo, in Section 2, please note that there is a typo.  The section with the following lines:&lt;br&gt;   &lt;tt&gt;*vget,NARRAY(1,1),node,1,u,x&lt;br&gt;    *vmask,NMASK(1)&lt;br&gt;  *vget,NARRAY(1,2),node,2,u,y&lt;br&gt;    *vmask,NMASK(1)&lt;br&gt;   *vget,NARRAY(1,3),node,3,u,z&lt;br&gt;  &lt;/tt&gt;  should be replaced as follows:&lt;br&gt;    &lt;tt&gt;  *vget,NARRAY(1,1),node,1,u,x&lt;br&gt; *vmask,NMASK(1)&lt;br&gt;   *vget,NARRAY(1,2),node,1,u,y&lt;br&gt;    *vmask,NMASK(1)&lt;br&gt;    *vget,NARRAY(1,3),node,1,u,z&lt;br&gt; &lt;/tt&gt;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/Week_8_Structural_Shell_Elements.pdf" target="_blank"> Week_8_Structural_Shell_Elements.pdf</a></p>
 <p>Week_8_Structural_Shell_Elements.pdf</p>
