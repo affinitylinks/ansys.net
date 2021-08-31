@@ -26,6 +26,8 @@ permalink: '/resources/{{pagination.pageNumber}}/'
 
 <a href="{{ item.url | url }}" target="_blank"> {{item.title}}</a>
 
+<p class="font-italic">{{ item.author }}</p>
+
 {{ item.description }}
 
 </li>

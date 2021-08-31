@@ -22,6 +22,7 @@ permalink: /html/{{pagination.pageNumber}}/
       <h4>
       <a href="{{item.url | url }}">{{ item.data.title }}</a>
       </h4>
+      <p class="font-italic">{{ item.data.author }}</p>
       <p class="mb-0">{{item.data.description}}</p>
     </div>
   </div>

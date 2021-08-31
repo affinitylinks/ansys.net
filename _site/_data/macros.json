@@ -2,7 +2,8 @@
   {
     "title": "a_filmax.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
-    "description": "Macro to calculate the MAXIMUM FILLET RADIUS at two lines L1 and L2."
+    "author": "Ernst Hustedt (Air New Zealand Engineering)",
+    "description": "Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX."
   },
   {
     "title": "acal.mac",
@@ -141,8 +142,9 @@
   },
   {
     "title": "a_hydro1.mac",
+    "author": "Ernst Hustedt (AMES Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac",
-    "description": "a_hydro1.mac"
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \r\n \r\n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
   },
   {
     "title": "anglemod.mac",

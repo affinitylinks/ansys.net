@@ -60,7 +60,9 @@
   </div>
 </nav>
 
-    <div class="bg-light">
+    <div class="row">
+      <div class="col">
+        <div class="bg-light">
 <main class="container py-4">
   <h1 class="mb-3 text-center">Examples</h1>
 <nav class="my-3" aria-label="Page navigation">
@@ -78,93 +80,129 @@
 </nav>
 <ul class="list-group"><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/arch_buck.inp" target="_blank"> arch_buck.inp</a></p>
-<p>Arch buckling problem, illustrates importance of press. load stiff. matrix</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Buckling of arch (example of use of pressure load stiffness matrix). For many eigenvalue (and nonlinear) buckling problems, inclusion of the pressure load stiffness matrix (BEAM188/189, SHELL181, SURF154) significantly affects results. For nonlinear buckling problems, this may also affect convergence rate.<br>
+-Theoretical: 771.12<br>
+-SHELL93 only (1st eig 840.73)<br>
+-SHELL181 only (1st eig 771.72)<br>
+-SHELL93 &amp; SURF154 (1st eig 771.07)<br>
+-SHELL93 &amp; SURF154, face 4 (1st eig 840.78)</p>
+<p>Change &quot;COMPTYPE&quot; parameter to run above 4 cases.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp" target="_blank"> bow.inp</a></p>
+<p class="font-italic"></p>
 <p>Bowshock Benchmark</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp" target="_blank"> conv_fins.inp</a></p>
+<p class="font-italic"></p>
 <p>Natural convection problem (2D tri) three &quot;fins&quot; heated</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp" target="_blank"> cylinflo.inp</a></p>
+<p class="font-italic"></p>
 <p>simple cylinder in open air</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp" target="_blank"> large_rotat.inp</a></p>
+<p class="font-italic"></p>
 <p>Shows line search on/off/auto</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp" target="_blank"> plate_cms.inp</a></p>
+<p class="font-italic"></p>
 <p>plate_cms.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp" target="_blank"> radairgap.inp</a></p>
+<p class="font-italic"></p>
 <p>radairgap.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp" target="_blank"> rv-lmm.inp</a></p>
+<p class="font-italic"></p>
 <p>rv-lmm.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp" target="_blank"> shell-abd.inp</a></p>
+<p class="font-italic"></p>
 <p>shell-abd.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp" target="_blank"> spec-acc-vel-mpt.inp</a></p>
+<p class="font-italic"></p>
 <p>spec-acc-vel-mpt.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp" target="_blank"> torsion3.inp</a></p>
+<p class="font-italic"></p>
 <p>torsion3.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp" target="_blank"> weld.inp</a></p>
+<p class="font-italic"></p>
 <p>weld.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp" target="_blank"> dadd.inp</a></p>
+<p class="font-italic"></p>
 <p>dadd.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp" target="_blank"> fluid_pres.inp</a></p>
+<p class="font-italic"></p>
 <p>fluid_pres.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp" target="_blank"> harm-full-ex.inp</a></p>
+<p class="font-italic"></p>
 <p>harm-full-ex.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp" target="_blank"> rigidbody_rotation.inp</a></p>
+<p class="font-italic"></p>
 <p>rigidbody_rotation.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rv-nf.inp" target="_blank"> rv-nf.inp</a></p>
+<p class="font-italic"></p>
 <p>rv-nf.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp" target="_blank"> shell131rdsf.inp</a></p>
+<p class="font-italic"></p>
 <p>shell131rdsf.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp" target="_blank"> spec-acc.inp</a></p>
+<p class="font-italic"></p>
 <p>spec-acc.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp" target="_blank"> therm_cont.inp</a></p>
+<p class="font-italic"></p>
 <p>therm_cont.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp" target="_blank"> compfillet.inp</a></p>
+<p class="font-italic"></p>
 <p>compfillet.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp" target="_blank"> couette.inp</a></p>
+<p class="font-italic"></p>
 <p>couette.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/forced_conv.inp" target="_blank"> forced_conv.inp</a></p>
+<p class="font-italic"></p>
 <p>forced_conv.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/gasket.inp" target="_blank"> gasket.inp</a></p>
+<p class="font-italic"></p>
 <p>gasket.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/harm-lmm-clust.inp" target="_blank"> harm-lmm-clust.inp</a></p>
+<p class="font-italic"></p>
 <p>harm-lmm-clust.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp" target="_blank"> ibeam_181.inp</a></p>
+<p class="font-italic"></p>
 <p>ibeam_181.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp" target="_blank"> rv-press-fm.inp</a></p>
+<p class="font-italic"></p>
 <p>rv-press-fm.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp" target="_blank"> shell_cont.inp</a></p>
+<p class="font-italic"></p>
 <p>shell_cont.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/spec-pulse2.inp" target="_blank"> spec-pulse2.inp</a></p>
+<p class="font-italic"></p>
 <p>spec-pulse2.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp" target="_blank"> transient2.inp</a></p>
+<p class="font-italic"></p>
 <p>transient2.inp</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
@@ -184,6 +222,8 @@
 
 </main>
 </div>
+      </div>
+    </div>
     <nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
   <div class="navbar-nav"><a class="nav-item nav-link" target="_blank" href="https://github.com/affinitylinks/ansys.net">
       <i class="nav-social-icon fab fa-github mr-2"></i>

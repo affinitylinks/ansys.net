@@ -1,8 +1,9 @@
 [
   {
     "title": "arch_buck.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/arch_buck.inp",
-    "description": "Arch buckling problem, illustrates importance of press. load stiff. matrix"
+    "description": "Buckling of arch (example of use of pressure load stiffness matrix). For many eigenvalue (and nonlinear) buckling problems, inclusion of the pressure load stiffness matrix (BEAM188/189, SHELL181, SURF154) significantly affects results. For nonlinear buckling problems, this may also affect convergence rate. \r\n -Theoretical: 771.12 \r\n -SHELL93 only (1st eig 840.73) \r\n -SHELL181 only (1st eig 771.72) \r\n -SHELL93 & SURF154 (1st eig 771.07) \r\n -SHELL93 & SURF154, face 4 (1st eig 840.78) \r\n \r\n Change \"COMPTYPE\" parameter to run above 4 cases."
   },
   {
     "title": "bow.inp",
