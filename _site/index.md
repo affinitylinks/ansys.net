@@ -8,11 +8,11 @@ tags:
 ---
 
 <div>
-<h2 class="text-center"> Examples <a href="/examples/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
+<h2 class="text-center"> Resources <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 
 <ul class="list-group">
 
-{%- for item in examples | limit(5) -%}
+{%- for item in resources | limit(5) -%}
 
 <li class="list-group-item">
 
@@ -52,11 +52,11 @@ tags:
 </div>
 
 <div>
-<h2 class="text-center"> Resources <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
+<h2 class="text-center"> Examples <a href="/examples/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 
 <ul class="list-group">
 
-{%- for item in resources | limit(5) -%}
+{%- for item in examples | limit(5) -%}
 
 <li class="list-group-item">
 
