@@ -1,10 +1,5 @@
 [
   {
-    "title": "List of Files",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
-    "description": "List of Files from ansys.net"
-  },
-  {
     "title": "HYPER158",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html",
     "description": "Element Documentation for HYPER158"
@@ -284,5 +279,10 @@
     "title": "script.ps1",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1",
     "description": "script.ps1"
+  },
+  {
+    "title": "List of Files",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
+    "description": "List of Files from ansys.net"
   }
 ]

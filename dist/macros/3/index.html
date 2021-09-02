@@ -91,9 +91,27 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac" target="_blank"> anol.mac</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/vert.mac" target="_blank"> vert.mac</a></p>
 <p class="font-italic"></p>
-<p>anol.mac</p>
+<p>vert.mac</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/alsm.mac" target="_blank"> alsm.mac</a></p>
+<p class="font-italic"></p>
+<p>alsm.mac</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac" target="_blank"> anol.mac</a></p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>&quot;I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4).<br>
+&quot;Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings.<br>
+&quot;To get a feel for this, try issuing the following:<br>
+ANOL,4,,'This is four lines above title',''<br>
+ANOL,3,,'This is three lines above title',''<br>
+ANOL,2,,'This is two lines above title',''<br>
+ANOL,1,,'This is one lines above title',''</p>
+<p>&quot;Also try the following:<br>
+/title,This is the title<br>
+ANOL,0,,'This is the title',''</p>
+<p>The two are perfectly overlaid on my system.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac" target="_blank"> beaforce.mac</a></p>
 <p class="font-italic"></p>
@@ -242,14 +260,6 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/getpathname.mac" target="_blank"> getpathname.mac</a></p>
 <p class="font-italic"></p>
 <p>getpathname.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/hrcplx.mac" target="_blank"> hrcplx.mac</a></p>
-<p class="font-italic"></p>
-<p>hrcplx.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/im27.mac" target="_blank"> im27.mac</a></p>
-<p class="font-italic"></p>
-<p>im27.mac</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -12,6 +12,60 @@
     "description": "\"The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.\""
   },
   {
+    "title": "Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites",
+    "author": "J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf",
+    "description": "\"Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing \"of the shelf\" technology of achieving the same goals. Thus, the \"Z-mat\" and \"Z-Optim\" packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a \"USERMAT\" subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.\""
+  },
+  {
+    "title": "The Building Blocks of Simulation: A New Family of Elements for Stress Analysis",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf",
+    "description": "Presentation on 18x family of elements (part of the \"Advanced Analysis with ANSYS\" seminar during the 2002 User's Conference)."
+  },
+  {
+    "title": "Principles of Simulating Contact Between Parts using ANSYS",
+    "author": "David H. Johnson",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf",
+    "description": "\"The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.\""
+  },
+  {
+    "title": "180 Series Elements: Why Should One Use Them in Linear Analysis",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/180xAdvantages.pdf",
+    "description": "Presentation on 18x elements (continuum, beam, shell) and its features related to both linear and nonlinear analyses."
+  },
+  {
+    "title": "Anisotropic Plasticity and Failure Prediction in Wood Composites",
+    "author": "David M. Moses, Helmut G.L. Prion",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/anisotropic_plasticity_failure_prediction_wood.pdf",
+    "description": "\"Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.\" \r\n \r\n \"The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.\""
+  },
+  {
+    "title": "conflong_viscoel.pdf",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf",
+    "description": "Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the \"Advanced Analysis with ANSYS\" seminar during the 2002 User's Conference)."
+  },
+  {
+    "title": "Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package",
+    "author": "Biju Chandran, Deepak Goyal, and Jeffrey Thomas",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/s30p5a.pdf",
+    "description": "\"Ball Grid Array (BGA) is currently the interconnect of choice for attaching microprocessors on a printed circuit board (PCB). The reliability of solder joints is one of the critical issues in BGA surface mount technology (SMT). During reliability testing, BGA fatigue failures were observed on test vehicles (TV). Finite element analysis and physical failure analysis were used to determine the risk to the product in the field. As part of this effort, parametric finite element analysis was carried out to determine the effect of design features like the package size, and BGA pattern on the propensity of fatigue failure. The results of the finite element analysis and physical failure analysis showed that the risk to fatigue failure was much greater on a peripheral / partial grid array package than in a full grid array package.\""
+  },
+  {
+    "title": "expansion.pdf",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf",
+    "description": "This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground)."
+  },
+  {
+    "title": "roller.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip",
+    "description": "Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model."
+  },
+  {
     "title": "Reliability Needs",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf",
     "description": "Overview of Reliability Models and Data Needs"
@@ -257,11 +311,6 @@
     "description": "comparison_of_biomechanical_breast_models.pdf"
   },
   {
-    "title": "conflong_viscoel.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf",
-    "description": "conflong_viscoel.pdf"
-  },
-  {
     "title": "coolingreview.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/coolingreview.pdf",
     "description": "coolingreview.pdf"
@@ -360,11 +409,6 @@
     "title": "t2107.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/t2107.pdf",
     "description": "t2107.pdf"
-  },
-  {
-    "title": "towards_automated_determination.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf",
-    "description": "towards_automated_determination.pdf"
   },
   {
     "title": "transducers-paper_3.pdf",
@@ -550,11 +594,6 @@
     "title": "98-102.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/98-102.pdf",
     "description": "98-102.pdf"
-  },
-  {
-    "title": "anisotropic_plasticity_failure_prediction_wood.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/anisotropic_plasticity_failure_prediction_wood.pdf",
-    "description": "anisotropic_plasticity_failure_prediction_wood.pdf"
   },
   {
     "title": "ansys_nitinol_paper.pdf",
@@ -800,12 +839,6 @@
     "title": "report35.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/report35.pdf",
     "description": "report35.pdf"
-  },
-  {
-    "title": "Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package",
-    "author": "Biju Chandran, Deepak Goyal, and Jeffrey Thomas",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/s30p5a.pdf",
-    "description": "\"Ball Grid Array (BGA) is currently the interconnect of choice for attaching microprocessors on a printed circuit board (PCB). The reliability of solder joints is one of the critical issues in BGA surface mount technology (SMT). During reliability testing, BGA fatigue failures were observed on test vehicles (TV). Finite element analysis and physical failure analysis were used to determine the risk to the product in the field. As part of this effort, parametric finite element analysis was carried out to determine the effect of design features like the package size, and BGA pattern on the propensity of fatigue failure. The results of the finite element analysis and physical failure analysis showed that the risk to fatigue failure was much greater on a peripheral / partial grid array package than in a full grid array package.\""
   },
   {
     "title": "solver_2002.pdf",
@@ -1193,12 +1226,6 @@
     "description": "ws_jss2002.pdf"
   },
   {
-    "title": "180 Series Elements: Why Should One Use Them in Linear Analysis",
-    "author": "(ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/180xAdvantages.pdf",
-    "description": "Presentation on 18x elements (continuum, beam, shell) and its features related to both linear and nonlinear analyses."
-  },
-  {
     "title": "2522-3EN.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/2522-3EN.pdf",
     "description": "2522-3EN.pdf"
@@ -1299,11 +1326,6 @@
     "description": "popelar1.pdf"
   },
   {
-    "title": "principles_of_simulating_contact_between.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf",
-    "description": "principles_of_simulating_contact_between.pdf"
-  },
-  {
     "title": "STI10_Flotran_Enhancements_at_6.0.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI10_Flotran_Enhancements_at_6.0.pdf",
     "description": "STI10_Flotran_Enhancements_at_6.0.pdf"
@@ -1382,17 +1404,6 @@
     "title": "disrpap.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/disrpap.pdf",
     "description": "disrpap.pdf"
-  },
-  {
-    "title": "elements-18x.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf",
-    "description": "elements-18x.pdf"
-  },
-  {
-    "title": "expansion.pdf",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf",
-    "description": "This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground)."
   },
   {
     "title": "fsi-ansys.pdf",
@@ -1535,11 +1546,6 @@
     "description": "vm267.zip"
   },
   {
-    "title": "ACCURATE.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip",
-    "description": "ACCURATE.zip"
-  },
-  {
     "title": "batch.zip",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip",
     "description": "batch.zip"
@@ -1583,12 +1589,6 @@
     "title": "instantaneous_secant_TCE.zip",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip",
     "description": "instantaneous_secant_TCE.zip"
-  },
-  {
-    "title": "roller.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip",
-    "description": "Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model."
   },
   {
     "title": "STI01_Acoustic_Elements.zip",

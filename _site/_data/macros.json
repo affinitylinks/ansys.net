@@ -6,6 +6,24 @@
     "description": "Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX."
   },
   {
+    "title": "a_hydro1.mac",
+    "author": "Ernst Hustedt (AMES Ltd.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac",
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \r\n \r\n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
+  },
+  {
+    "title": "ans2aba.mac",
+    "author": "Dave Lindeman (3M)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac",
+    "description": "This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: \"Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).\""
+  },
+  {
+    "title": "ACCURATE.zip",
+    "author": "Vladimir Tkach (NPO Energomash)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip",
+    "description": "\"This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).\""
+  },
+  {
     "title": "acal.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
     "description": "This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area."
@@ -139,12 +157,6 @@
     "title": "x_demo_vread.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/x_demo_vread.mac",
     "description": "x_demo_vread.mac"
-  },
-  {
-    "title": "a_hydro1.mac",
-    "author": "Ernst Hustedt (AMES Ltd.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac",
-    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \r\n \r\n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
   },
   {
     "title": "anglemod.mac",
@@ -603,8 +615,9 @@
   },
   {
     "title": "anol.mac",
+    "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac",
-    "description": "anol.mac"
+    "description": "\"I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4). \r\n \"Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings. \r\n \"To get a feel for this, try issuing the following: \r\n ANOL,4,,'This is four lines above title','' \r\n ANOL,3,,'This is three lines above title','' \r\n ANOL,2,,'This is two lines above title','' \r\n ANOL,1,,'This is one lines above title',''\r\n \r\n \"Also try the following: \r\n /title,This is the title \r\n ANOL,0,,'This is the title','' \r\n \r\n The two are perfectly overlaid on my system.\""
   },
   {
     "title": "beaforce.mac",
@@ -1080,12 +1093,6 @@
     "title": "ac_angle.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ac_angle.mac",
     "description": "ac_angle.mac"
-  },
-  {
-    "title": "ans2aba.mac",
-    "author": "Dave Lindeman (3M)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac",
-    "description": "This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: \"Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).\""
   },
   {
     "title": "aslm_bw.mac",

@@ -108,21 +108,22 @@
 <p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
 <p>Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac" target="_blank">a_hydro1.mac</a></p>
+<p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
+<p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot;</p>
+<p>For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac" target="_blank">ans2aba.mac</a></p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: &quot;Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip" target="_blank">ACCURATE.zip</a></p>
+<p class="font-italic">Vladimir Tkach (NPO Energomash)</p>
+<p>&quot;This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).&quot;</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac" target="_blank">acal.mac</a></p>
 <p class="font-italic"></p>
 <p>This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac" target="_blank">aface.mac</a></p>
-<p class="font-italic"></p>
-<p>If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac" target="_blank">anfout2.mac</a></p>
-<p class="font-italic"></p>
-<p>Macro that traverses the solid model and writes an anf file.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac" target="_blank">ans2unv.mac</a></p>
-<p class="font-italic"></p>
-<p>This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in <a href="http://ansys.net">ansys.net</a></p>
 </li></ul>
 </div>
 <div>
@@ -136,26 +137,22 @@
 <p class="font-italic">Milan Vasek</p>
 <p>&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf" target="_blank">Reliability Needs</a></p>
-<p class="font-italic"></p>
-<p>Overview of Reliability Models and Data Needs</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf" target="_blank">Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites</a></p>
+<p class="font-italic">J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch</p>
+<p>&quot;Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing &quot;of the shelf&quot; technology of achieving the same goals. Thus, the &quot;Z-mat&quot; and &quot;Z-Optim&quot; packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a &quot;USERMAT&quot; subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf" target="_blank">Save Working Loads</a></p>
-<p class="font-italic"></p>
-<p>Iterative Determination of Save Working Loads (SWL) for Crawler Cranes</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf" target="_blank">The Building Blocks of Simulation: A New Family of Elements for Stress Analysis</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Presentation on 18x family of elements (part of the &quot;Advanced Analysis with ANSYS&quot; seminar during the 2002 User's Conference).</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf" target="_blank">FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING</a></p>
-<p class="font-italic"></p>
-<p>A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf" target="_blank">Principles of Simulating Contact Between Parts using ANSYS</a></p>
+<p class="font-italic">David H. Johnson</p>
+<p>&quot;The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.&quot;</p>
 </li></ul>
 </div>
 <div>
 <h2 class="text-center"> Miscellaneous <a href="/miscellaneous/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt" target="_blank">List of Files</a></p>
-<p class="font-italic"></p>
-<p>List of Files from <a href="http://ansys.net">ansys.net</a></p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html" target="_blank">HYPER158</a></p>
 <p class="font-italic"></p>
 <p>Element Documentation for HYPER158</p>
@@ -171,6 +168,10 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_HYPER56.html" target="_blank">HYPER56</a></p>
 <p class="font-italic"></p>
 <p>Element Documentation for HYPER56</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_SHELL91.html" target="_blank">Hlp_E_SHELL91.html</a></p>
+<p class="font-italic"></p>
+<p>Hlp_E_SHELL91.html</p>
 </li></ul>
 </div>
 <div>
