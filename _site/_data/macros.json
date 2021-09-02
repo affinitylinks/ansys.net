@@ -1083,8 +1083,9 @@
   },
   {
     "title": "ans2aba.mac",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac",
-    "description": "ans2aba.mac"
+    "description": "This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: \"Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).\""
   },
   {
     "title": "aslm_bw.mac",

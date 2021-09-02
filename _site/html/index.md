@@ -3,6 +3,7 @@ layout: page
 pagination:
   data: collections.html
   size: 30
+title: html
 eleventyExcludeFromCollections: true
 eleventyNavigation:
   key: html

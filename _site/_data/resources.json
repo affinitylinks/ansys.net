@@ -1,5 +1,17 @@
 [
   {
+    "title": "methods_for_modeling_bolts.pdf",
+    "author": "Jerome Montgomery",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf",
+    "description": "\"Modeling bolts for three-dimensional finite element applications have, and still continue to raise questions. The limitations on model size sometimes make modeling of solid bolts impractical. Therefore, many analysts choose other methods to model bolts. Line elements with coupled nodes and line elements with spider beams are a couple of alternative approaches. This paper looks at a few methods for modeling pretension bolted joints using the finite element method (ANSYS 5.7). Pretension is modeled using ANSYS pretension elements (PRETS179) which can be used on solid or line element types. Surface-to-surface contact elements are used to account for varying contact distribution along flanges. Bolt head and nut behavior is modeled by, coupled nodes, beam elements, rigid body elements (RBE3), or solids. Bolt stud is modeled by solid elements, beam elements, pipe elements, or link elements. The choice of line elements versus solid elements is determined by the degree of complexity sought. The pros and cons of different simulations are also discussed.\""
+  },
+  {
+    "title": "nonlinear_problems_of_steel_civil_structures.pdf",
+    "author": "Milan Vasek",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf",
+    "description": "\"The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.\""
+  },
+  {
     "title": "Reliability Needs",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf",
     "description": "Overview of Reliability Models and Data Needs"
@@ -98,11 +110,6 @@
     "title": "mems-thermal-analogy-fsi-damping.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf",
     "description": "mems-thermal-analogy-fsi-damping.pdf"
-  },
-  {
-    "title": "methods_for_modeling_bolts.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf",
-    "description": "methods_for_modeling_bolts.pdf"
   },
   {
     "title": "modeling_disel_engine_cylinder_gaskets.pdf",
@@ -1163,7 +1170,7 @@
   {
     "title": "usermat.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/usermat.pdf",
-    "description": "usermat.pdf"
+    "description": "Document describing the USERMAT user material subroutine."
   },
   {
     "title": "Week_11_Surface_Effect_Elements_Thermal.pdf",
@@ -1275,11 +1282,6 @@
     "title": "mw2000_1031.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mw2000_1031.pdf",
     "description": "mw2000_1031.pdf"
-  },
-  {
-    "title": "nonlinear_problems_of_steel_civil_structures.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf",
-    "description": "nonlinear_problems_of_steel_civil_structures.pdf"
   },
   {
     "title": "p499-cristello.pdf",

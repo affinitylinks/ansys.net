@@ -42,8 +42,9 @@
   },
   {
     "title": "shell-abd.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp",
-    "description": "shell-abd.inp"
+    "description": "Simple example showing how to calculate the A, B, D, and E matrices for general shell input for a single layer (homogenous) shell. The A, B, D, and E matrices are the shell membrane, coupling, bending, and transverse shear stiffness relationships."
   },
   {
     "title": "spec-acc-vel-mpt.inp",
@@ -139,8 +140,9 @@
   },
   {
     "title": "shell_cont.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp",
-    "description": "shell_cont.inp"
+    "description": "Input file demonstrating plasticity, contact, finite strain. Also shows benefit of line search activated."
   },
   {
     "title": "spec-pulse2.inp",
@@ -236,8 +238,9 @@
   },
   {
     "title": "offset.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/offset.inp",
-    "description": "offset.inp"
+    "description": "Shows difference between geometric offset and contact offset (CNOF real constant), useful in interference fit problems (so you don't have to modify geometry iteratively)."
   },
   {
     "title": "tr-lmm-acc-mspt.inp",
@@ -288,8 +291,9 @@
   },
   {
     "title": "simpleshellcontactexample.inp",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp",
-    "description": "simpleshellcontactexample.inp"
+    "description": "Shows a simple example of contact with shells, shell offset key, and pretension elements."
   },
   {
     "title": "tr-lsm-el-mspt.inp",
@@ -324,8 +328,9 @@
   },
   {
     "title": "preten_bolt.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/preten_bolt.inp",
-    "description": "preten_bolt.inp"
+    "description": "Example demonstrating pretension (bolt) element PRETS179."
   },
   {
     "title": "surf_traction.inp",
@@ -345,8 +350,9 @@
   },
   {
     "title": "coax.inp",
+    "author": "Johann Riedler (EPCOS)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/coax.inp",
-    "description": "coax.inp"
+    "description": "\"I created an input-file that simulates the skin-effect of a two-dimensional sector of a coax. During postprocessing you can clearly see the effect of the penetrating magnetic field into the metal. One may extend this model to 3D (perhaps coarser).\""
   },
   {
     "title": "diffusion.inp",
