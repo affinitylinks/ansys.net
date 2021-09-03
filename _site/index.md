@@ -7,6 +7,14 @@ tags:
   - info
 ---
 
+## Sheldon's ansys.net site contents
+
+This repository contains the pdf and ansys files from "ansys.net" website.
+
+## Organization
+
+The [repository](https://github.com/affinitylinks/ansys.net) contains 9 folders with roughly 90 files each. The files are roughly in order as you move through the folders, corresponding to the order in the CSV pulled from his site as the guide.
+
 <div>
 <h2 class="text-center"> Resources <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 

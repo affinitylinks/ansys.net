@@ -24,6 +24,18 @@
     "description": "\"This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).\""
   },
   {
+    "title": "anvect.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac",
+    "description": "Animates velocity vectors from Flotran transient results"
+  },
+  {
+    "title": "anvolt.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/anvolt.mac",
+    "description": "Animates voltage results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle."
+  },
+  {
     "title": "acal.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
     "description": "This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area."
@@ -300,8 +312,9 @@
   },
   {
     "title": "anharm.mac",
+    "author": "Bill Bulat (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/anharm.mac",
-    "description": "anharm.mac"
+    "description": "Animates pressure results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle. (While 5.6 has the feature, I like the way Bill has implemented this -- take a look: it's a bit more efficient than the 5.6 macro - STI)"
   },
   {
     "title": "ansys2stl.mac",
@@ -510,8 +523,9 @@
   },
   {
     "title": "dcontour.mac",
+    "author": "Doug Woolridge (Mercury Marine)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/dcontour.mac",
-    "description": "dcontour.mac"
+    "description": "Creates a second contour using 2D annotation under the original color contour. The values on the new contour are scaled by 'scale_factor'. \r\n \r\n A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours."
   },
   {
     "title": "emf2.mac",
@@ -636,8 +650,9 @@
   },
   {
     "title": "cvctrl.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/cvctrl.mac",
-    "description": "cvctrl.mac"
+    "description": "Prompts for yield stress of material and uses it to set up /CVAL command so that post-processing plots will show elements that exceed the YIELD stress value as red, and elements which have a compressive stress lower than -YIELD as blue. If the minimum stress is not less than -YIELD than the actual minimum is used instead of -YIELD."
   },
   {
     "title": "dnsol_view.mac",
@@ -755,14 +770,10 @@
     "description": "x_plldst.mac"
   },
   {
-    "title": "anvect.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac",
-    "description": "anvect.mac"
-  },
-  {
     "title": "ave_tmp.mac",
+    "author": "Ted Harris (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ave_tmp.mac",
-    "description": "ave_tmp.mac"
+    "description": "Computes the average temperature (from a thermal analysis) of the selected set of nodes. Example of the use of *VMASK."
   },
   {
     "title": "b188to89.mac",
@@ -918,11 +929,6 @@
     "title": "a2comet.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac",
     "description": "a2comet.mac"
-  },
-  {
-    "title": "anvolt.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/anvolt.mac",
-    "description": "anvolt.mac"
   },
   {
     "title": "avgtemp.mac",
@@ -1101,8 +1107,9 @@
   },
   {
     "title": "avsucd.mac",
+    "author": "Ian Sigal (University of Toronto)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/avsucd.mac",
-    "description": "avsucd.mac"
+    "description": "\"The macro writes an AVS UCD file that can be read by Amira. This allows quick display and post-processing. I use the macro to export a model formed of Solid92 tetrahedrals, but only the results in the four corners are written to the file. The macro also writes the element solutions, although these are not read by Amira, but are accepted in the AVS UCD standard.\""
   },
   {
     "title": "beampres.mac",
@@ -1111,8 +1118,9 @@
   },
   {
     "title": "bode01.mac",
+    "author": "Bill Bulat (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/bode01.mac",
-    "description": "bode01.mac"
+    "description": "Macro produces a bode plot using 2 predefined variables in /post26."
   },
   {
     "title": "checkiges.mac",
@@ -1435,83 +1443,83 @@
     "description": "yzcurv.mac"
   },
   {
-    "title": "title",
+    "title": "DS_JPDL___User_Fatigue_PNEN13445-3.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js",
-    "description": "description"
+    "description": "DS_JPDL___User_Fatigue_PNEN13445-3.js"
   },
   {
-    "title": "title",
+    "title": "ExportBranchAsShortcut.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ExportBranchAsShortcut.js",
-    "description": "description"
+    "description": "ExportBranchAsShortcut.js"
   },
   {
-    "title": "title",
+    "title": "attrib_2_Load.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/attrib_2_Load.js",
-    "description": "description"
+    "description": "attrib_2_Load.js"
   },
   {
-    "title": "title",
+    "title": "DS_MESCO_ContactName_NrTypeAdd.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/DS_MESCO_ContactName_NrTypeAdd.js",
-    "description": "description"
+    "description": "DS_MESCO_ContactName_NrTypeAdd.js"
   },
   {
-    "title": "title",
+    "title": "FindContactsAttachedToParts.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/FindContactsAttachedToParts.js",
-    "description": "description"
+    "description": "FindContactsAttachedToParts.js"
   },
   {
-    "title": "title",
+    "title": "attrib_2_Load_FEA.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/attrib_2_Load_FEA.js",
-    "description": "description"
+    "description": "attrib_2_Load_FEA.js"
   },
   {
-    "title": "title",
+    "title": "DS_MESCO_ContFrictVsTemp_APLD.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/DS_MESCO_ContFrictVsTemp_APLD.js",
-    "description": "description"
+    "description": "DS_MESCO_ContFrictVsTemp_APLD.js"
   },
   {
-    "title": "title",
+    "title": "FindFreeStandingPartsInTree.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/FindFreeStandingPartsInTree.js",
-    "description": "description"
+    "description": "FindFreeStandingPartsInTree.js"
   },
   {
-    "title": "title",
+    "title": "attrib_2_MeshSizing.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/attrib_2_MeshSizing.js",
-    "description": "description"
+    "description": "attrib_2_MeshSizing.js"
   },
   {
-    "title": "title",
+    "title": "DS_MESCO_SelectBodysByMaterial_EN.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DS_MESCO_SelectBodysByMaterial_EN.js",
-    "description": "description"
+    "description": "DS_MESCO_SelectBodysByMaterial_EN.js"
   },
   {
-    "title": "title",
+    "title": "FindPartsWithNoContacts.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/FindPartsWithNoContacts.js",
-    "description": "description"
+    "description": "FindPartsWithNoContacts.js"
   },
   {
-    "title": "title",
+    "title": "NameContactsByParts.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/NameContactsByParts.js",
-    "description": "description"
+    "description": "NameContactsByParts.js"
   },
   {
-    "title": "title",
+    "title": "setLegend.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/setLegend.js",
-    "description": "description"
+    "description": "setLegend.js"
   },
   {
-    "title": "title",
+    "title": "setScale.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/setScale.js",
-    "description": "description"
+    "description": "setScale.js"
   },
   {
-    "title": "title",
+    "title": "EngineeringChecker.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/EngineeringChecker.js",
-    "description": "description"
+    "description": "EngineeringChecker.js"
   },
   {
-    "title": "title",
+    "title": "NS_From_Unique_Names.j",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/NS_From_Unique_Names.js",
-    "description": "description"
+    "description": "NS_From_Unique_Names.j"
   }
 ]
