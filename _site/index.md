@@ -15,6 +15,8 @@ This repository contains the pdf and ansys files from "ansys.net" website.
 
 The [repository](https://github.com/affinitylinks/ansys.net) contains 9 folders with roughly 90 files each. The files are roughly in order as you move through the folders, corresponding to the order in the CSV pulled from his site as the guide.
 
+The following pages contain the links to the respective files in the repository. (Descriptions for the resources are replicated whenever possible.)
+
 <div>
 <h2 class="text-center"> Resources <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 
@@ -104,7 +106,7 @@ The [repository](https://github.com/affinitylinks/ansys.net) contains 9 folders 
 </div>
 
 <div>
-<h2 class="text-center"> Html Links <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
+<h2 class="text-center"> Html (in-site) <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 
 <!-- <ul class="list-group">
 

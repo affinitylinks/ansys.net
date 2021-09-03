@@ -3,16 +3,27 @@ title: Useful Commands
 description: List of less known useful commands.
 ---
 
-# {{ title }}
+## {{ title }}
+
+<hr>
 
 ## eresx
 
 specifies extrapolation of the results from the integration points to the nodes.
 
+## tbplot
+
+displays the material data table.
+
 ## transfer
 
 transfers nodes to another coordinate system.
 
+## /tee
+
+Writes a list of commands to a specified file at the same time that the commands are being executed. Useful to store GUI operations in macro for repeatitive tasks.
+
+<hr>
 <div id="disqus_thread"></div>
 <script>
     /**

@@ -16,3 +16,6 @@ pre {
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
   word-wrap: break-word; }
+
+hr {
+  border-top: 1px dotted #021d0a; }
