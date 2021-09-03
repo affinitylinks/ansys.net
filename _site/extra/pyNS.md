@@ -1,6 +1,10 @@
 ---
-title: Python Named Selection Macro
-description: 'Creates named selection of the bodies containing the string in an array. The name of the named selection is the string in an array.'
+title: Python Named Selection Macro - Mechanical Workbench
+description: 'In mechanical workbench, creates named selection of the bodies containing the string in an array. The name of the named selection is the string in an array.'
+tags:
+  - workbench
+  - mechanical
+  - namedSelection
 ---
 
 # {{ title }}

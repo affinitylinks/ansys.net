@@ -1,5 +1,6 @@
 ---
-title: Useful Commands (not often used)
+title: Useful Commands
+description: List of less known useful commands.
 ---
 
 # {{ title }}
