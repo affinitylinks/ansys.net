@@ -74,6 +74,25 @@
   <h1 id="python-named-selection-macro---mechanical-workbench" tabindex="-1">Python Named Selection Macro - Mechanical Workbench <a class="direct-link" href="#python-named-selection-macro---mechanical-workbench">#</a></h1>
 <p>In mechanical workbench, creates named selection of the bodies containing the string in an array. The name of the named selection is the string in an array.</p>
 <pre class="language-python"><code class="language-python">items <span class="token operator">=</span> <span class="token punctuation">[</span><br>  <span class="token string">'ns1'</span><span class="token punctuation">,</span><br>  <span class="token string">'ns2'</span><span class="token punctuation">,</span><br>  <span class="token string">'ns3'</span><br><span class="token punctuation">]</span><br><br><span class="token keyword">for</span> item <span class="token keyword">in</span> items<span class="token punctuation">:</span><br>  sel <span class="token operator">=</span> Model<span class="token punctuation">.</span>AddNamedSelection<span class="token punctuation">(</span><span class="token punctuation">)</span><br>  sel<span class="token punctuation">.</span>ScopingMethod <span class="token operator">=</span> GeometryDefineByType<span class="token punctuation">.</span>Worksheet<br>  sel<span class="token punctuation">.</span>Name <span class="token operator">=</span> item<br>  pipews <span class="token operator">=</span> sel<span class="token punctuation">.</span>GenerationCriteria<br>  pipews<span class="token punctuation">.</span>Add<span class="token punctuation">(</span><span class="token boolean">None</span><span class="token punctuation">)</span><br>  pipews<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>EntityType <span class="token operator">=</span> SelectionType<span class="token punctuation">.</span>GeoBody<br>  pipews<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Criterion <span class="token operator">=</span> SelectionCriterionType<span class="token punctuation">.</span>Name<br>  pipews<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Operator <span class="token operator">=</span> SelectionOperatorType<span class="token punctuation">.</span>Contains<br>  pipews<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>Value <span class="token operator">=</span> item<br>  sel<span class="token punctuation">.</span>Generate<span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre>
+<div id="disqus_thread"></div>
+<script>
+    /**
+    *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+    *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+    /*
+    var disqus_config = function () {
+    this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+    this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+    };
+    */
+    (function() { // DON'T EDIT BELOW THIS LINE
+    var d = document, s = d.createElement('script');
+    s.src = 'https://ansysx.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', +new Date());
+    (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
 
 </main>
 
