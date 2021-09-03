@@ -6,6 +6,7 @@ const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight");
 const markdownIt = require("markdown-it");
 const markdownItAnchor = require("markdown-it-anchor");
 const fs = require("fs");
+const mdIterator = require('markdown-it-for-inline')
 
 module.exports = function(eleventyConfig) {
 
@@ -94,6 +95,13 @@ module.exports = function(eleventyConfig) {
     permalink: true,
     permalinkClass: "direct-link",
     permalinkSymbol: "#"
+  }).use(mdIterator, 'url_new_win', 'link_open', function (tokens, idx) {
+    const [attrName, href] = tokens[idx].attrs.find(attr => attr[0] === 'href')
+
+    if (href && (!href.includes('ansys.netlify.app') && !href.startsWith('/') && !href.startsWith('#'))) {
+      tokens[idx].attrPush([ 'target', '_blank' ])
+      tokens[idx].attrPush([ 'rel', 'noopener noreferrer' ])
+    }
   });
   eleventyConfig.setLibrary("md", markdownLibrary);
 

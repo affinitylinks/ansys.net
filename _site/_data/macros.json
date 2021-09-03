@@ -422,11 +422,6 @@
     "description": "mpc_gen.mac"
   },
   {
-    "title": "multipro.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/multipro.mac",
-    "description": "multipro.mac"
-  },
-  {
     "title": "nfixdel.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/nfixdel.mac",
     "description": "nfixdel.mac"
@@ -816,11 +811,6 @@
     "description": "getpathname.mac"
   },
   {
-    "title": "hrcplx.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/hrcplx.mac",
-    "description": "hrcplx.mac"
-  },
-  {
     "title": "im27.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/im27.mac",
     "description": "im27.mac"
@@ -1141,11 +1131,6 @@
     "title": "cpjoins.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cpjoins.mac",
     "description": "cpjoins.mac"
-  },
-  {
-    "title": "cycsol.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cycsol.mac",
-    "description": "cycsol.mac"
   },
   {
     "title": "e72to45.mac",

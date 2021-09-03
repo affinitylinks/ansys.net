@@ -58,7 +58,7 @@ Model and animation by Sheldon Imaoka. [ANSYS 8.1]
 
 Zipped AVI animation of % transformationof martensite in a Nitinol stent. A force load is applied axially to a segment of a stent, then unloaded. The axial and radial displacements reveal a nonlinear relationship due to the phase transformation of the material. Use of Shape-Memory Alloy (SMA) constitutive model.
 
-[rachetting](https://github.com/smhrjn/ansys.net/blob/main/9/)
+[rachetting](https://github.com/smhrjn/ansys.net/blob/main/9/chaboche.zip)
 Model and animation by Sheldon Imaoka. [ANSYS 6.1]
 
 Zipped AVI animation of equivalent plastic strains in a notch. A nonlinear kinematic hardening model (Chaboche) is used to simulate rachetting under cyclic non-symmetric loading. Note the development of plastic strains as noted by the graph on the bottom.
