@@ -1,0 +1,36 @@
+/nopr
+immed,0
+
+*get,CPU1 ,active,,time,cpu
+*get,WALL1,active,,time,wall
+
+*get,ARGFLAG,parm,ARG1,type
+*if,ARGFLAG,eq,0,then
+  *get,NCOUNT,node,,count
+  *del,NARRAY
+  *dim,NARRAY,array,NCOUNT,4
+  *set,NEXTNODE,0
+  *do,ICOUNT,1,NCOUNT
+    *get,NEXTNODE,node,NEXTNODE,nxth            ! ndnext()
+    NARRAY(ICOUNT,1)=NEXTNODE
+    *get,NARRAY(ICOUNT,2),node,NEXTNODE,loc,x   ! nx()
+    *get,NARRAY(ICOUNT,3),node,NEXTNODE,loc,y   ! ny()
+    *get,NARRAY(ICOUNT,4),node,NEXTNODE,loc,z   ! nz()
+  *enddo
+
+  /prep7
+  shpp,off
+  *do,ICOUNT,1,NCOUNT
+    nmodif,NARRAY(ICOUNT,1),ARG1*NARRAY(ICOUNT,2),ARG1*NARRAY(ICOUNT,3),ARG1*NARRAY(ICOUNT,4)
+  *enddo
+  shpp,on
+
+*endif
+
+*get,CPU2 ,active,,time,cpu
+*get,WALL2,active,,time,wall
+GETCPUA = CPU2  - CPU1
+GETWALA =(WALL2 - WALL1)*3600
+
+immed,1
+/gopr

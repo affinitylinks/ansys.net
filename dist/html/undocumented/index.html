@@ -1,0 +1,155 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="google-site-verification" content="LDFbsFtoiZlBNqruvC2wK8sObZtsKGqwvzvcPB0y1mE" />
+    <meta name="yandex-verification" content="7c0f79b635678935" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJH9XZY2MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WJH9XZY2MY');
+    </script>
+
+    <title>sheldon&#39;s ansys.net-Undocumented Features</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
+
+    <title>sheldon&#39;s ansys.net</title>
+  </head>
+  <body class="bg-success">
+    <nav class="site-nav family-sans navbar navbar-expand-md bg-success navbar-dark sticky-top py-0">
+  <div class="container-fluid">
+
+    <button type="button" class="navbar-toggler my-2 my-md-0"
+      data-toggle="collapse" data-target="#myTogglerNav"
+      aria-controls="myTogglerNav" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-brand text-uppercase">
+      <a class="text-light" href="/">ANSYS</a>
+    </div>
+
+    <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
+      <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
+        <a class="nav-item nav-link text-warning" href="/"><i class="fas fa-home"></i></a>
+
+        <a class="nav-item nav-link text-warning" href="/macros/0/">macros</a><a class="nav-item nav-link text-warning" href="/examples/0/">examples</a><a class="nav-item nav-link text-warning" href="/resources/0/">resources</a><a class="nav-item nav-link text-warning" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link text-warning" href="/html/0">HTML</a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item text-capitalize" href="/about">About</a>
+            <div class="dropdown-divider"></div><a class="dropdown-item text-capitalize" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+                <i class="fab fa-github text-secondary mr-2"></i>github
+              </a></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <div class="row">
+      <div class="col">
+        <div class="bg-light">
+          <div class="conatainer">
+            <div class="gcse-search">...</div>
+          </div>
+          
+<main class="container py-4">
+  <h2 id="undocumented-features" tabindex="-1">Undocumented Features <a class="direct-link" href="#undocumented-features">#</a></h2>
+<h3 id="(ansys.net)" tabindex="-1"><em>(<a href="http://ansys.net">ansys.net</a>)</em> <a class="direct-link" href="#(ansys.net)">#</a></h3>
+<p>Undocumented commands &amp; features are not guaranteed or supported by ANSYS or the ASDs (they also do not have error reports associated with them), but they are sometimes quite useful. Please use at your own risk. Undocumented commands are collected from ASD websites, ANSYS, Inc., and XANSYS mailing List (esp. John Crawford and John Swanson's contributions), and the author's own findings.</p>
+<p>Some of these commands are present in later versions of ANSYS (e.g., ANSYS 5.6, 5.7). Others are &quot;old&quot; legacy commands which became undocumented in subsequent versions of ANSYS. Additional reasons why commands are undocumented: (a) The feature is either untested or insufficiently tested due to time constraints, (b) The feature has been tested but did not pass sufficiently to warrant release, (c) KEYOPTs, program options, etc. that are requested by specific users but are not deemed useful to the general user community are sometimes included without general release, (d) Features that are &quot;unsupportable&quot; and minimally tested, (e) Options risky to the user (CNVR,,,,,,,-1 for example), (f) Partially completed items that are still &quot;buggy&quot; but of use in a limited sense for experimental Beta testing by select customers. [Taken from ANSYS, Inc.]</p>
+<p>Notes are added to indicate revisions which were verified by the author or others, but this does not necessarily mean that the command is only applicable to a particular revision unless stated as such.</p>
+<h2 id="apdl-commands" tabindex="-1">APDL Commands <a class="direct-link" href="#apdl-commands">#</a></h2>
+<h3 id="_button" tabindex="-1">_BUTTON <a class="direct-link" href="#_button">#</a></h3>
+<pre class="language-txt"><code class="language-txt">Hidden parameter _Button can be used to test whether the user chose OK or Cancel within a MULTIPRO box, but its usefulness probably does not extend to testing actions with other boxes. This is because there are cases where OK can return a 1, the same as cancel.<br><br>For example, suppose you want to prompt the end-user to pick some areas, so you write:<br>ASEL,R,P<br>*IF,_BUTTON,EQ,0,THEN<br>...<br>The problem with this technique is if the user is inclined to use the Apply button (or MMB), and then follow with OK to close the picking dialog, then _BUTTON will equal 1.<br><br>As a point of trivia, _BUTTON equals 2 after Apply is pressed, but this cannot be tested in an APDL macro, since the test will not be executed until the dialog is closed with OK, Cancel or Pick All. The Reset button does not appear to modify _BUTTON</code></pre>
+<h3 id="*del" tabindex="-1">*DEL <a class="direct-link" href="#*del">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*del,array,,NOPR<br>Silently deletes an array using undocumented "NOPR" argument.</code></pre>
+<h3 id="*dowhile" tabindex="-1">*DOWHILE <a class="direct-link" href="#*dowhile">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*DOWHILE,parm<br>*DOWHILE is similar to *DO and performs the commands bracketed by *ENDDO. *DOWHILE,Parm command loops repeatedly through the next *ENDDO command as long as Parm is true (greater than zero).<br>[STI: This is for 6.0]</code></pre>
+<h3 id="*get%2C%2Ccommon" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*get,parm,COMMON,,d3com2,,int,31<br>Gets the status of /UIS,MSGPOP. When writing macros you sometimes don't want those pesky warning messages to pop up all the time, so you use /uis,msgpop,3 to suppress them and put them back on with /uis,msgpop,0. The problem is if your macro is called by a macro that changed the msgpop status, then you kind of mess stuff up. The answer is to get the msgpop status before you change it then set it back.<br><br>Example usage:<br>*get,_oldMPS,COMMON,,d3com2,,int,31<br>/uis,msgpop,3<br>! Do my stuff<br>! ...<br>! ...<br>! ...<br>! Done with the stuff I want to suppress messages on<br>/uis,msgpop,_oldMPS</code></pre>
+<h3 id="*get%2C%2Cparm" tabindex="-1">*GET,,PARM <a class="direct-link" href="#*get%2C%2Cparm">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*GET,Parm,PARM,ARnn,ARTYPE<br>At 5.6.1, this returns the type of the ARxx parameter, not the type of the variable which ARnn is pointing to.</code></pre>
+<h3 id="*moper" tabindex="-1">*MOPER <a class="direct-link" href="#*moper">#</a></h3>
+<h4 id="1" tabindex="-1">1 <a class="direct-link" href="#1">#</a></h4>
+<pre class="language-txt"><code class="language-txt">*MOPER,ResVal(1,1),ResXYZ(1,1),MAP,InVal(1,1),InXYZ(1,1),kDim<br>kDim = 2, 2d (shell) 3, 3d (solid)<br>ANSYS 5.7 has a MAP option which will:<br>Given: A set of points InXYZ(nPt,3) and a value(s) InVal(nPt,nVal) at each point<br>A second Set of points ResXYZ(nOut,3), contained within the geometry of the first set of points.<br>Determine the value(s) ResVal(nOut,nVal) at each point in the second set.<br><br>*MOPER,ResVal(1,1),ResXYZ(1,1),MAP,InVal(1,1),InXYZ(1,1),kDim,Ratio,kOut<br>Ratio = MaxElSize/MaxGridDim of input data (auto default) (was 0.10 default)<br>kOut = 0, use closest point values 1, zero if ouside<br>"Here is the propose new description of the MAP option on *MOPER. The changes are:<br>Ratio will have an automatic default as recommended, based on the number of points. Field 8 is the Ration field (field 1 is the \*MOPER command).<br>kOut is a proposed new option. The kOut setting points outside the field to zero should allow you to use the absolute value of the results as a mask vector. (0.0 will be false, non-zero (absolute value) will be true."<br>"For those of you who are using this command, I have found that the default value of 0.10 in field 8 is much too high for large problems. I suggest you supply a value in this field. A good value is:<br>Value = 1.0 / (sqrt(nIn)), where nin is the number of nodes in the input (known) set. (for kDim = 2)<br>Value = 1.0 / (cuberoot(nin)), where nin is the number of nodes in the input set (for kDim = 3)</code></pre>
+<h4 id="2" tabindex="-1">2 <a class="direct-link" href="#2">#</a></h4>
+<pre class="language-txt"><code class="language-txt">*MOPER,Eloc(1,1),XYZ(1,1),INTP,Elem(1)<br>where:<br>*dim,XYZ,array,nPts,3<br>*dim,Elem,array,nPts<br>\*dim,Eloc,array,nPts,3<br><br>This command finds the element containing the XYZ point, rather than the element with the closest centroid. The Eloc array is the element coordinates of the point.<br>Compare this, for example, with the \*MOPER,,,ENEAR option.</code></pre>
+<h4 id="3" tabindex="-1">3 <a class="direct-link" href="#3">#</a></h4>
+<pre class="language-txt"><code class="language-txt">*MOPER,sval(n),eloc(n,3),SGET,elem(n),label,comp<br>Finds stresses at certain points. This requires use of the \*MOPER,,,INTP undocumented command prior to executing this command.<br>sval(n): output array containing stresses at the points of interest<br>eloc(n,3): input array containing relative locations inside the elements (output from INTP)<br>elem(n): input array containing element numbers related to the relative locations of "eloc" (output from INTP)<br>label,comp: stress component of interest (see PLNSOL,S for examples)</code></pre>
+<h3 id="*return" tabindex="-1">*RETURN <a class="direct-link" href="#*return">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*RETURN,value<br>Break reading from an input file<br>Where value=0 returns to the top level, -n returns n levels, n returns to level n<br>Useful when breaking *DO loops or *IF conditional statements, for example.<br>[STI: Implemented at 5.7?]</code></pre>
+<h3 id="*status" tabindex="-1">*STATUS <a class="direct-link" href="#*status">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*STATUS,_PRM<br>\*STATUS,PRM_<br>Shows parameters which begin or end with an underscore.<br>[STI: Documented at 5.6]</code></pre>
+<h3 id="*vfun" tabindex="-1">*VFUN <a class="direct-link" href="#*vfun">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VFUN,array(1,1),DIRECT,array2(1,1)<br>Gets the direction cosines of a vector. For example:<br>*DIM,STRESS,array,nNodes,6<br>*vget sx,sy,sz, sxy,etc into STRESS(1,1), STRESS(1,2), etc<br>*DIM,DIR,array,nNodes,9<br>*VFUN,DIR(1,1),DIRECT,STRESS(1,1)<br>DIRECT will contain the 3 x 3 matrix of direction cosines<br>[STI: Works for 5.6.2]</code></pre>
+<h3 id="*vfun-1" tabindex="-1">*VFUN <a class="direct-link" href="#*vfun-1">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VFUN,uv(1,1),ACORD,xyz(1,1),areanum<br>Gets (u,v) 'natural' coordinates of a point lying on an area areanum when the global coordinates (x,y,z) are known.<br>uv is dimensioned (npoints,2)<br>xyz is dimensioned (npoints,3)<br>areanum is area number<br><br>\*VFUN,xyz(1,1),GCORD,uv(1,1),areanum<br>The GCORD option is the inverse of the ACORD option.</code></pre>
+<h3 id="*voper" tabindex="-1">*VOPER <a class="direct-link" href="#*voper">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VOPER, ParR, Par1, Oper, Par2, CON1, CON2<br>For \*VOPER, the Oper argument can take the form of and, or, or xor. This is for binary comparison of arrays. Hence, the values in the arrays Par1 and Par2 are taken such that negative numbers or zero is "0" and positive numbers are "1" for comparison.<br>For example, when Oper = and, both values in Par1(i) and Par2(i) need to match to return ParR(i)=1.<br>When Oper = or, if either value in Par1(i) and Par2(i) is "1", then ParR(i)=1.<br>When Oper = xor, both values in Par1(i) and Par2(i) need to be different to return ParR(i)=1.<br>Recall from above that when the comparisons are made, positive numbers are assumed to be "1" and negative (and zero) numbers are assumed to be "0". Hence, for XOR case, "3" and "4" will return "0" since "3->1" and "4->1", they are the same, so XOR returns "0" (false).</code></pre>
+<h3 id="*vput" tabindex="-1">*VPUT <a class="direct-link" href="#*vput">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VPUT, ParR, Entity, ENTNUM, Item1, IT1NUM, Item2, IT2NUM, KLOOP<br>To change selection status of entities, use a format similar to *VGET.<br>Use for Entity = node, elem, kp, line, area, or volu, ENTNUM = 1, and Item1 = nsel, esel, ksel, lsel, asel, or vsel. The array ParR would be similar to the *VGET array, where<br>-1 = unselected<br>0 = undefined<br>1 = selected<br>It is recommended to select all entities with nsel,all (or related command) prior to using \*VPUT.</code></pre>
+<h3 id="*vread" tabindex="-1">*VREAD <a class="direct-link" href="#*vread">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VREAD,array(1,1),filename,ext,dir,ncol,row,column,plane,start_line<br>Undocumented fields are: row, column, plane to allow reading in matrix by row, column, or plane. start_line is the line of the file to start reading from. [STI: documented from 5.7 onwards.]</code></pre>
+<h3 id="*vscfun" tabindex="-1">*VSCFUN <a class="direct-link" href="#*vscfun">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*VSCFUN,LocPar,POS,myarray(1),compare,myvalue,tolerance<br>Determines position in array of value "myvalue" in array "myarray" and returns in LocPar. "compare" can be any comparison operator, such as GE, GT, LE, and LT. The first occurrence will be returned. "1" will be returned for no match. "tolerance" (default 1e-6) sets the tolerance for a match. [Note that EQ comparison is valid for 5.7 and 6.0 but was removed in 6.1 because it returns only first match.]<br><br>Example:<br>*dim,a,,5<br>a(1)=1,2,3,4,5<br>*vscfun,b,POS,a(1),ge,3<br>Returns "3" for third index/position.</code></pre>
+<h3 id="%2Fconfig" tabindex="-1">/CONFIG <a class="direct-link" href="#%2Fconfig">#</a></h3>
+<pre class="language-txt"><code class="language-txt">/CONFIG,RESUPRES,0<br>or<br>RESUPREC=0 in config145.ans<br><br>In ANSYS 14.5, stresses, strains, and other element quantities are written in the result file (.rst) as single precision to save space (DOF solution and reaction forces are still written as double-precision). This command, when invoked before solving, will store all results in double-precision.</code></pre>
+<h3 id="%2Fdirget" tabindex="-1">/DIRGET <a class="direct-link" href="#%2Fdirget">#</a></h3>
+<pre class="language-txt"><code class="language-txt">/dirget,parm,filename,fileext<br>Gets the list of files with the file extension "filename" or "fileext"<br>For example:<br>/dirget,\_str,all,tif<br>Gets all filenames with extension "TIF"<br>[STI: Note: This may only work on UNIX at 5.6.1, not on NT. I keep getting bombed out of ANSYS using this command on NT. Also, for 5.7 and above, look at the /INQUIRE command and strings for same functionality.]</code></pre>
+<h3 id="%2Fencrypt" tabindex="-1">/ENCRYPT <a class="direct-link" href="#%2Fencrypt">#</a></h3>
+<pre class="language-txt"><code class="language-txt">/ENCRYPT,Encryption_key,File_name,File_ext,Directory_Path/<br>The commands /ENCRYPT and /DECRYPT allow one to encrypt macros. See APDL Programmer's Guide for more details.</code></pre>
+<h3 id="%2Fhold" tabindex="-1">/HOLD <a class="direct-link" href="#%2Fhold">#</a></h3>
+<pre class="language-txt"><code class="language-txt">/HOLD,filename,timeint,timeout<br>Read a command from file "filename" if it exists. If it doesn't exist, wait "timeint" seconds, then keep trying again until "timeout" seconds.</code></pre>
+<h3 id="%2Finquire" tabindex="-1">/INQUIRE <a class="direct-link" href="#%2Finquire">#</a></h3>
+<pre class="language-txt"><code class="language-txt">/INQUIRE,strarray,DIRECTORY<br>This gets the working directory ANSYS was launched from.</code></pre>
+<pre class="language-txt"><code class="language-txt">/INQUIRE,strarray,JOBNAME<br>This gets the ANSYS jobname and puts it into a string array called "strarray".<br><br>/INQUIRE<br>/INQUIRE,strarray,TITLE,n<br>This gets the ANSYS title starting from character "n".</code></pre>
+<h3 id="%2Frmtmp" tabindex="-1">/RMTMP <a class="direct-link" href="#%2Frmtmp">#</a></h3>
+<pre class="language-txt"><code class="language-txt">Removes/closes the file specified in /INPUT after it is read. /RMTMP should be the last command in the input file.<br></code></pre>
+<h3 id="arrays" tabindex="-1">Arrays <a class="direct-link" href="#arrays">#</a></h3>
+<pre class="language-txt"><code class="language-txt">Passing arrays as arguments to macros<br>Example from John Swanson:<br>/batch,list<br>*create,macro,mac<br>a = arg1(1)<br>b = arg1(2)<br>c = arg1(3)<br>*stat<br>\*end<br><br>\*dim,xx1,,3<br>xx1(1) = 10<br>xx1(2) = 20<br>xx1(3) = 30<br>macro,'xx1'<br>/exit,nosave<br></code></pre>
+<h3 id="cmwrite" tabindex="-1">CMWRITE <a class="direct-link" href="#cmwrite">#</a></h3>
+<pre class="language-txt"><code class="language-txt">CMWRITE,Fname,Fext,Fdir,ipos,[_ | BLOCK | UNBLOCK]<br>Write component information to file, where ipos = 0,write at beginning of file, 1, write at end of file<br>For 7.0 and later.<br></code></pre>
+<h3 id="dynprompt57.ans" tabindex="-1">dynprompt57.ans <a class="direct-link" href="#dynprompt57.ans">#</a></h3>
+<pre class="language-txt"><code class="language-txt">At 5.7, the dynamic input file prompting was introduced, where the command format was displayed as you typed a command.<br><br>Modify "dynprompt57.ans" to add your own macro argument format, so when you type your own macros, the proper arguments are also displayed.<br>[STI: at 6.0, this file is called "dynprompt60.ans", where the last two numbers indicate the version number.]<br></code></pre>
+<h3 id="keyw" tabindex="-1">KEYW <a class="direct-link" href="#keyw">#</a></h3>
+<pre class="language-txt"><code class="language-txt">KEYW,PR_SGVOF,1<br>When redefining arrays in an interactive session, the user is prompted if they really want to redefine an existing array. The above command disables this prompt in ANSYS 15.0 and above, so if an existing array is redefined with the \*DIM command, it will do so silently.<br><br>See also \*DEL,,NOPR.<br></code></pre>
+<h3 id="rpnnn" tabindex="-1">RPnnn <a class="direct-link" href="#rpnnn">#</a></h3>
+<pre class="language-txt"><code class="language-txt">RPnnn, vinc1, vinc2, ...<br>The RPnnn command works similar to *REPEAT,nnn. For example, instead of using *REPEAT,3 to repeat the previous commands a total of 3 times, one can use RP3 instead. The second argument (value increment) of RPnnn is the same as the third argument of \*REPEAT.<br></code></pre>
+<h3 id="strings" tabindex="-1">Strings <a class="direct-link" href="#strings">#</a></h3>
+<pre class="language-txt"><code class="language-txt">*DIM,StrPar,STRING,nChar,[nString,{nPages]]<br>Defines strings (5.6)<br>strcat(Param1(1,1),Param2(1,1))<br>Concatenation of strings<br>Example:<br>*DIM,Param1,STRING,128<br>*DIM,Param2,STRING,128<br>*DIM,Param3,STRING,128<br>Param1(1,1) = 'THIS IS STRING 1'<br>Param2(1,1)=' THIS IS STRING 2'<br>Param3(1,1) = strcat(Param1(1,1),Param2(1,1))<br>This gives:<br>THIS IS STRING 1THIS IS STRING 2<br><br>strsub(Param1(1,1),location,numchr)<br>Gets substring of numchr long starting from location<br><br>strfill(Param1(1,1),Param2(1,1),location)<br>Fills in Param2 to Param1 starting from location<br><br>strleng(Param1(1,1))<br>Returns length of Param1 as a scalar number<br><br>strpos(Param1(1,1),Param2(1,1))<br>Returns location of Param2 substring in Param1 string as a scalar number<br><br>An example macro can be downloaded which illustrates some of the above points through examples.<br>[STI: Strings will be documented at 5.7]<br></code></pre>
+
+</main>
+
+        </div>
+      </div>
+    </div>
+    <nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
+  <div class="navbar-nav"><a class="nav-item nav-link" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+      <i class="nav-social-icon fab fa-github mr-2"></i>
+      <span class="align-text-bottom text-white d-none d-lg-inline">github</span>
+    </a></div>
+</nav>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
