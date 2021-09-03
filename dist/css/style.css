@@ -15,7 +15,8 @@ pre {
   white-space: -moz-pre-wrap;
   white-space: -pre-wrap;
   white-space: -o-pre-wrap;
-  word-wrap: break-word; }
+  word-wrap: break-word;
+  background-color: beige; }
 
 hr {
-  border-top: 1px dotted #021d0a; }
+  border-top: 1px dotted #253a04; }

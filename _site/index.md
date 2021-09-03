@@ -9,7 +9,7 @@ tags:
 
 ## Sheldon's ansys.net site contents
 
-This repository contains the pdf and ansys files from "ansys.net" website.
+This repository contains the macros, pdf and ansys input files from "ansys.net" website.
 
 ## Organization
 

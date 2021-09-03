@@ -13,13 +13,13 @@
 
     <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
       <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
-        <a class="nav-item nav-link text-warning" href="/"><i class="fas fa-home"></i></a>
+        <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
 
         {% set mainNav = collections.all | eleventyNavigation('main') %}
         {%- for nav in mainNav -%}
-          <a class="nav-item nav-link text-warning" href="{{nav.url}}">{{nav.key}}</a>
+          <a class="nav-item nav-link" href="{{nav.url}}">{{nav.key}}</a>
         {%- endfor -%}
-        <a class="nav-item nav-link text-warning" href="/html/0">HTML</a>
+        <a class="nav-item nav-link" href="/html/0">HTML</a>
         <div class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           </a>
