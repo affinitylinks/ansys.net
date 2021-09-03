@@ -70,4 +70,14 @@
     <loc>https://ansys.netlify.app/html/uidl/</loc>
     <lastmod>2021-09-03</lastmod>
   </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/html/get/</loc>
+    <lastmod>2021-09-03</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://ansys.netlify.app/html/uelem/</loc>
+    <lastmod>2021-09-03</lastmod>
+  </url>
 </urlset>

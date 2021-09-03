@@ -1,0 +1,207 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="google-site-verification" content="LDFbsFtoiZlBNqruvC2wK8sObZtsKGqwvzvcPB0y1mE" />
+    <meta name="yandex-verification" content="7c0f79b635678935" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJH9XZY2MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WJH9XZY2MY');
+    </script>
+
+    <title>sheldon&#39;s ansys.net-Undocumented Elements and Element Features</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
+
+    <title>sheldon&#39;s ansys.net</title>
+  </head>
+  <body class="bg-success">
+    <nav class="site-nav family-sans navbar navbar-expand-md bg-success navbar-dark sticky-top py-0">
+  <div class="container-fluid">
+
+    <button type="button" class="navbar-toggler my-2 my-md-0"
+      data-toggle="collapse" data-target="#myTogglerNav"
+      aria-controls="myTogglerNav" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-brand text-uppercase">
+      <a class="text-light" href="/">ANSYS</a>
+    </div>
+
+    <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
+      <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
+        <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
+
+        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link" href="/html/0">HTML</a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item text-capitalize" href="/about">About</a>
+            <div class="dropdown-divider"></div><a class="dropdown-item text-capitalize" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+                <i class="fab fa-github text-secondary mr-2"></i>github
+              </a></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <div class="row">
+      <div class="col">
+        <div class="bg-light">
+          <div class="conatainer">
+            <div class="gcse-search">...</div>
+          </div>
+          
+<main class="container py-4">
+  <h2 id="undocumented-elements-and-element-features" tabindex="-1">Undocumented Elements and Element Features <a class="direct-link" href="#undocumented-elements-and-element-features">#</a></h2>
+<p><em><a href="http://ansys.net">ansys.net</a></em></p>
+<h3 id="circu125" tabindex="-1">CIRCU125 <a class="direct-link" href="#circu125">#</a></h3>
+<p>Undocumented DIODE element (5.5, 5.6).<br>
+[STI: Documented &amp; released at 5.7]</p>
+<h3 id="conta17x" tabindex="-1">CONTA17x <a class="direct-link" href="#conta17x">#</a></h3>
+<p>Pure thermal contact:<br>
+Use KEYOPT(1)=2 for pure thermal option (TEMP DOF only) for 5.7.<br>
+This pure thermal contact feature is documented at 6.0.</p>
+<h3 id="conta17x-(2)" tabindex="-1">CONTA17x (2) <a class="direct-link" href="#conta17x-(2)">#</a></h3>
+<p>Support of &quot;debonding&quot; for bonded or no-separation contact. Use real constants 27 (max tensile stress) and 28 (max shear stress) to specify limits at which point the bonded or no-separation contact becomes like standard contact.<br>
+[STI: beta at 9.0]</p>
+<h3 id="contac26" tabindex="-1">CONTAC26 <a class="direct-link" href="#contac26">#</a></h3>
+<p>CONTAC26 &quot;2-D Point-to-Ground Contact&quot; was undocumented at ANSYS 8.1. It should be replaced by CONTA175.</p>
+<h3 id="contac48" tabindex="-1">CONTAC48 <a class="direct-link" href="#contac48">#</a></h3>
+<p>CONTAC48 &quot;2-D Point-to-Surface Contact&quot; was undocumented at ANSYS 8.1. It should be replaced by either node-to-surface CONTA175 or surface-to-surface CONTA171-172.</p>
+<h3 id="contac49" tabindex="-1">CONTAC49 <a class="direct-link" href="#contac49">#</a></h3>
+<p>CONTAC49 &quot;2-D Point-to-Surface Contact&quot; was undocumented at ANSYS 8.1. It should be replaced by either node-to-surface CONTA175 or surface-to-surface CONTA173-174.</p>
+<h3 id="fluid66" tabindex="-1">FLUID66 <a class="direct-link" href="#fluid66">#</a></h3>
+<p>FLUID66 &quot;Thermal-Fluid Pipe&quot; was undocumented around 5.6. It should be replaced with FLUID116.</p>
+<h3 id="gcgen" tabindex="-1">GCGEN <a class="direct-link" href="#gcgen">#</a></h3>
+<p>GCGEN, Ccomp, Tcomp, NUMC, RADC, Tlab, Shape</p>
+<p>Ccomp<br>
+Name of the component containing nodes on the contact surface [CM]. Assemblies are not permitted.</p>
+<p>Tcomp<br>
+Name of the component containing nodes on the target surface. Assemblies are not permitted.</p>
+<p>NUMC<br>
+Generate NUMC contact elements whose contact node is closest to the centroid of each target element face. If Shape = TRI, the program will generate 2*NUMC CONTAC49 elements for each quadrilateral target element face. (That is, each triangular contact element base will be connected to NUMC contact nodes.) Defaults to an unlimited number of contact elements generated per target face.</p>
+<p>RADC<br>
+Generate contact elements whose contact node is within a radius of RADC measured from the centroid of each target element face. Defaults to no limit on the radius.</p>
+<p>Tlab<br>
+Label to identify the target surface of line or shell elements. The top surface will be used unless Tlab = BOT. Tlab is ignored if the target elements are solids.</p>
+<p>Shape<br>
+Label that controls the shape of CONTAC49 element bases. Using the TRI feature can sometimes improve contact performance if the target elements have warped quadrilateral faces:<br>
+(blank) --<br>
+The contact element bases will have the same shape (triangular or quadrilateral) as the corresponding target element faces (default).<br>
+TRI --<br>
+The contact element bases will always be triangular.</p>
+<p>Notes:<br>
+Generates 2-D contact (CONTAC48) or 3-D contact (CONTAC49) elements. Each contact element connects nodes on a target element face to a contact node. The &quot;target&quot; end of a contact element is called the contact element base. A target element face is defined as a face on a selected element whose nodes belong to the target component. If the selected element is a solid then the target face must also be external to the model, while for a line or shell element all nodes of the element will belong to the target face. The active element type attribute (TYPE) must be a contact element (CONTAC48 or CONTAC49) and must match the dimensionality of the target element. The other active attributes (MAT, TYPE, REAL, ESYS) will be used for the generated elements. The target elements must be defined before using this command. Midside nodes on target element faces are ignored.</p>
+<p>It is highly recommended to use newer CONTA171-175 elements instead of CONTAC48-49.</p>
+<h3 id="hyper158" tabindex="-1">HYPER158 <a class="direct-link" href="#hyper158">#</a></h3>
+<p>HYPER158 &quot;3-D 10-Node Tetrahedral Mixed u-P Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. SOLID187 should be used instead - it supports more than Mooney-Rivlin with TB,HYPER, and toggles Mixed u-P via KEYOPT(6) (note that Mixed u-P formulations in HYPERxx and 18x elements are slightly different).</p>
+<h3 id="hyper56" tabindex="-1">HYPER56 <a class="direct-link" href="#hyper56">#</a></h3>
+<p>HYPER56 &quot;2-D 4-Node Mixed u-P Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. PLANE182 should be used instead - it supports more than Mooney-Rivlin with TB,HYPER, and toggles Mixed u-P via KEYOPT(6) (note that Mixed u-P formulations in HYPERxx and 18x elements are slightly different).</p>
+<h3 id="hyper58" tabindex="-1">HYPER58 <a class="direct-link" href="#hyper58">#</a></h3>
+<p>HYPER58 &quot;3-D 8-Node Mixed u-P Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. SOLID185 should be used instead - it supports more than Mooney-Rivlin with TB,HYPER, and toggles Mixed u-P via KEYOPT(6) (note that Mixed u-P formulations in HYPERxx and 18x elements are slightly different).</p>
+<h3 id="hyper74" tabindex="-1">HYPER74 <a class="direct-link" href="#hyper74">#</a></h3>
+<p>HYPER74 &quot;2-D 8-Node Mixed u-P Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. PLANE183 should be used instead - it supports more than Mooney-Rivlin with TB,HYPER, and toggles Mixed u-P via KEYOPT(6) (note that Mixed u-P formulations in HYPERxx and 18x elements are slightly different).</p>
+<h3 id="hyper84" tabindex="-1">HYPER84 <a class="direct-link" href="#hyper84">#</a></h3>
+<p>HYPER84 &quot;2-D Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. PLANE182/183 should be used instead - it supports more than Mooney-Rivlin or Blatz-Ko with TB,HYPER.</p>
+<h3 id="hyper86" tabindex="-1">HYPER86 <a class="direct-link" href="#hyper86">#</a></h3>
+<p>HYPER86 &quot;3-D Hyperelastic Solid&quot; was undocumented at ANSYS 10.0. SOLID185 should be used instead - it supports more than Mooney-Rivlin or Blatz-Ko with TB,HYPER.</p>
+<h3 id="pipe20" tabindex="-1">PIPE20 <a class="direct-link" href="#pipe20">#</a></h3>
+<p>NMISC 101 through 104 are S1max, S3min, SINTMAX, SEQVMAX for Node I (NMISC 105 through 108 for Node J).</p>
+<h3 id="pipe60" tabindex="-1">PIPE60 <a class="direct-link" href="#pipe60">#</a></h3>
+<p>NMISC 104 through 107 are S1max, S3min, SINTMAX, SEQVMAX for Node I (NMISC 108 through 111 for Node J).</p>
+<h3 id="plane13" tabindex="-1">PLANE13 <a class="direct-link" href="#plane13">#</a></h3>
+<p>KEYOPT(1)=1 (VOLT only)<br>
+KEYOPT(1)=5 (AZ, TEMP)</p>
+<h3 id="plane2" tabindex="-1">PLANE2 <a class="direct-link" href="#plane2">#</a></h3>
+<p>PLANE2 &quot;2-D 6-Node Triangular Structural Solid&quot; was undocumented at ANSYS 11.0. It should be replaced by PLANE183 with KEYOPT(1)=1.</p>
+<h3 id="plane55%2C-plane77" tabindex="-1">PLANE55, PLANE77 <a class="direct-link" href="#plane55%2C-plane77">#</a></h3>
+<p>Supports planar with thickness with KEYOPT(3)=3<br>
+Use real constant to specify thickness<br>
+ET,2,55<br>
+KEYOPT,2,3,3<br>
+R,2,THICK<br>
+Above sets planar with thickness for PLANE55 as element type 2.<br>
+Thickness of &quot;THICK&quot; parameter specified as real constant 2.<br>
+[STI: Note that for PLANE55, this has become a documented option from ANSYS 8.1 onwards.]</p>
+<h3 id="shell143" tabindex="-1">SHELL143 <a class="direct-link" href="#shell143">#</a></h3>
+<p>SHELL143 &quot;4-Node Plastic Small Strain Shell&quot; was undocumented at ANSYS 11.0. It should be replaced by SHELL181 with KEYOPT(3)=2.</p>
+<h3 id="shell43" tabindex="-1">SHELL43 <a class="direct-link" href="#shell43">#</a></h3>
+<p>SHELL43 &quot;4-Node Plastic Large Strain Shell&quot; is undocumented at ANSYS 12.0.1, namely because SHELL181 has a richer set of features. Use SHELL181 instead of SHELL43.</p>
+<h3 id="shell51" tabindex="-1">SHELL51 <a class="direct-link" href="#shell51">#</a></h3>
+<p>SHELL51 &quot;Axisymmetric Structural Shell&quot; was undocumented at ANSYS 11.0. It should be replaced by SHELL208.</p>
+<h3 id="shell91" tabindex="-1">SHELL91 <a class="direct-link" href="#shell91">#</a></h3>
+<p>SHELL91 &quot;Nonlinear Layered Structural Shell&quot; became undocumented at ANSYS 12.0.1 in order to simplify the shell element offerings. One should use SHELL281 instead since SHELL281 is a current technology element that has layered capabilities.</p>
+<h3 id="shell93" tabindex="-1">SHELL93 <a class="direct-link" href="#shell93">#</a></h3>
+<p>SHELL93 &quot;8-Node Structural Shell&quot; became undocumented at ANSYS 12.0.1 in order to simplify the shell element offerings. One should use SHELL281 instead since SHELL281 is a current technology element with many more features compared with SHELL93.</p>
+<h3 id="shell99" tabindex="-1">SHELL99 <a class="direct-link" href="#shell99">#</a></h3>
+<p>SHELL99 &quot;Linear Layered Structural Shell&quot; became undocumented at ANSYS 12.0.1 in order to simplify the shell element offerings. One should use SHELL281 instead since SHELL281 is a current technology element that has layered capabilities.</p>
+<h3 id="solid191" tabindex="-1">SOLID191 <a class="direct-link" href="#solid191">#</a></h3>
+<p>SOLID191 &quot;3-D 20-Node Layered Structural Solid&quot; has become undocumented in ANSYS 12.0.1 to simplify the element offerings. SOLID186 has layered capabilities along with many more features than SOLID191, so use that element type instead.</p>
+<h3 id="solid45" tabindex="-1">SOLID45 <a class="direct-link" href="#solid45">#</a></h3>
+<p>Keyoption 7 for solid45<br>
+Toggles between temperature property evaluation between centroid and integration points.</p>
+<h3 id="solid46" tabindex="-1">SOLID46 <a class="direct-link" href="#solid46">#</a></h3>
+<p>SOLID46 &quot;3-D 8-Node Layered Structural Solid&quot; has become undocumented in ANSYS 12.0.1 to simplify the element offerings. SOLID185 and SOLSH190 both have layered capabilities along with many more features than SOLID46, so use those elements instead.</p>
+<h3 id="solid5%2C-solid98" tabindex="-1">SOLID5, SOLID98 <a class="direct-link" href="#solid5%2C-solid98">#</a></h3>
+<p>KEYOPT(1)=3 for Piezo option (UX, UY, UZ, VOLT) instead of using KEYOPT(1)=0 for PIEZO.<br>
+[STI: Documented in 5.6.]</p>
+<h3 id="solid64" tabindex="-1">SOLID64 <a class="direct-link" href="#solid64">#</a></h3>
+<p>SOLID64 &quot;3-D Anisotropic Structural Solid&quot; was undocumented at ANSYS 11.0. It should be replaced by SOLID185.</p>
+<h3 id="solid65" tabindex="-1">SOLID65 <a class="direct-link" href="#solid65">#</a></h3>
+<p>KEYOPT(10)=1 is an undocumented keyoption for SOLID65, available starting from ANSYS 12.1.</p>
+<p>Depending on the input concrete constants, the failure surface may have a hole in the transition from compression-compression-compression state to the compression-compression-tension state. This keyoption attempts to patch this hole in the failure surface to help achieve convergence.</p>
+<h3 id="solid72" tabindex="-1">SOLID72 <a class="direct-link" href="#solid72">#</a></h3>
+<p>SOLID72 &quot;3-D 4-Node Tetrahedral Structural Solid with Rotations&quot; was undocumented around ANSYS 5.7 because of the fact that many users incorrectly assumed that the rotational DOF of the solid element was compatible with those of beam or shell elements. There is no replacement except to use higher-order SOLID92 or SOLID187 instead.</p>
+<h3 id="solid73" tabindex="-1">SOLID73 <a class="direct-link" href="#solid73">#</a></h3>
+<p>SOLID73 &quot;3-D 8-Node Structural Solid with Rotations&quot; was undocumented around ANSYS 5.7 because of the fact that many users incorrectly assumed that the rotational DOF of the solid element was compatible with those of beam or shell elements. There is no replacement except to use lower-order SOLID45/185 or higher-order SOLID95/186 instead.</p>
+<h3 id="surf19" tabindex="-1">SURF19 <a class="direct-link" href="#surf19">#</a></h3>
+<p>SURF19 &quot;2-D Surface Effect&quot; was undocumented around 5.6. It should be replaced with either SURF151 (thermal) or SURF153 (structural).</p>
+<h3 id="surf22" tabindex="-1">SURF22 <a class="direct-link" href="#surf22">#</a></h3>
+<p>SURF22 &quot;3-D Surface Effect&quot; was undocumented around 5.6. It should be replaced with either SURF152 (thermal) or SURF154 (structural).</p>
+<h3 id="visco106" tabindex="-1">VISCO106 <a class="direct-link" href="#visco106">#</a></h3>
+<p>VISCO106 &quot;2-D 4-Node Viscoplastic Solid&quot; (Anand Model) has been undocumented at ANSYS 12.0.1 to simplify the element offerings. Consider using PLANE182 with TB,RATE,,,,ANAND instead.</p>
+<h3 id="visco107" tabindex="-1">VISCO107 <a class="direct-link" href="#visco107">#</a></h3>
+<p>VISCO107 &quot;3-D 8-Node Viscoplastic Solid&quot; (Anand Model) has been undocumented at ANSYS 12.0.1 to simplify the element offerings. Consider using SOLID185 with TB,RATE,,,,ANAND instead.</p>
+<h3 id="visco108" tabindex="-1">VISCO108 <a class="direct-link" href="#visco108">#</a></h3>
+<p>VISCO108 &quot;2-D 8-Node Viscoplastic Solid&quot; (Anand Model) has been undocumented at ANSYS 12.0.1 to simplify the element offerings. Consider using PLANE183 with TB,RATE,,,,ANAND instead.</p>
+<h3 id="visco88" tabindex="-1">VISCO88 <a class="direct-link" href="#visco88">#</a></h3>
+<p>VISCO88 &quot;2-D 8-Node Viscoelastic Solid&quot; has been undocumented at ANSYS 12.0.1 to simplify the element offerings. Consider using PLANE183 with TB,SHIFT and TB,PRONY instead.</p>
+<h3 id="visco89" tabindex="-1">VISCO89 <a class="direct-link" href="#visco89">#</a></h3>
+<p>VISCO89 &quot;3-D 20-Node Viscoelastic Solid&quot; has been undocumented at ANSYS 12.0.1 to simplify the element offerings. Consider using SOLID186 with TB,SHIFT and TB,PRONY instead.</p>
+
+</main>
+
+        </div>
+      </div>
+    </div>
+    <nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
+  <div class="navbar-nav"><a class="nav-item nav-link" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+      <i class="nav-social-icon fab fa-github mr-2"></i>
+      <span class="align-text-bottom text-white d-none d-lg-inline">github</span>
+    </a></div>
+</nav>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

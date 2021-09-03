@@ -5,7 +5,6 @@ description: 'Undocumented commands & features'
 tags:
   - html
   - undocumented
-  - inquiry
 ---
 
 ## {{ title }}
@@ -75,8 +74,6 @@ At 5.6.1, this returns the type of the ARxx parameter, not the type of the varia
 
 ### \*MOPER
 
-#### 1
-
 ```txt
 *MOPER,ResVal(1,1),ResXYZ(1,1),MAP,InVal(1,1),InXYZ(1,1),kDim
 kDim = 2, 2d (shell) 3, 3d (solid)
@@ -96,7 +93,7 @@ Value = 1.0 / (sqrt(nIn)), where nin is the number of nodes in the input (known)
 Value = 1.0 / (cuberoot(nin)), where nin is the number of nodes in the input set (for kDim = 3)
 ```
 
-#### 2
+### \*MOPER (2)
 
 ```txt
 *MOPER,Eloc(1,1),XYZ(1,1),INTP,Elem(1)
@@ -109,7 +106,7 @@ This command finds the element containing the XYZ point, rather than the element
 Compare this, for example, with the \*MOPER,,,ENEAR option.
 ```
 
-#### 3
+### \*MOPER (3)
 
 ```txt
 *MOPER,sval(n),eloc(n,3),SGET,elem(n),label,comp
@@ -152,7 +149,7 @@ DIRECT will contain the 3 x 3 matrix of direction cosines
 [STI: Works for 5.6.2]
 ```
 
-### \*VFUN
+### \*VFUN (2)
 
 ```txt
 *VFUN,uv(1,1),ACORD,xyz(1,1),areanum

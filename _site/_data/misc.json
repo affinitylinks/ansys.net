@@ -1,35 +1,5 @@
 [
   {
-    "title": "HYPER158",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_HYPER158.html",
-    "description": "Element Documentation for HYPER158"
-  },
-  {
-    "title": "SHELL51",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_SHELL51.html",
-    "description": "Element Documentation for SHELL51"
-  },
-  {
-    "title": "VISCO88",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Hlp_E_VISCO88.html",
-    "description": "Element Documentation for VISCO88"
-  },
-  {
-    "title": "HYPER56",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_HYPER56.html",
-    "description": "Element Documentation for HYPER56"
-  },
-  {
-    "title": "Hlp_E_SHELL91.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_SHELL91.html",
-    "description": "Hlp_E_SHELL91.html"
-  },
-  {
-    "title": "Hlp_E_VISCO89.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Hlp_E_VISCO89.html",
-    "description": "Hlp_E_VISCO89.html"
-  },
-  {
     "title": "importJPEG1.bas",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas",
     "description": "importJPEG1.bas"
@@ -45,11 +15,6 @@
     "description": "StandardViews.xml"
   },
   {
-    "title": "ES4-19.htm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ES4-19.htm",
-    "description": "ES4-19.htm"
-  },
-  {
     "title": "getfile.tcl",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
     "description": "getfile.tcl"
@@ -58,16 +23,6 @@
     "title": "getfile.tcl",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
     "description": "getfile.tcl"
-  },
-  {
-    "title": "Hlp_E_HYPER58.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Hlp_E_HYPER58.html",
-    "description": "Hlp_E_HYPER58.html"
-  },
-  {
-    "title": "Hlp_E_SHELL93.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Hlp_E_SHELL93.html",
-    "description": "Hlp_E_SHELL93.html"
   },
   {
     "title": "importJPEG2.bas",
@@ -80,25 +35,10 @@
     "description": "plot7.cmap"
   },
   {
-    "title": "ES4-22.htm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ES4-22.htm",
-    "description": "ES4-22.htm"
-  },
-  {
     "title": "greyscl.cmap",
     "author": "John Thompson (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/greyscl.cmap",
     "description": "Color map file to produce grayscale contours. Use /cmap,greyscl.cmap to read this file in."
-  },
-  {
-    "title": "Hlp_E_HYPER74.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Hlp_E_HYPER74.html",
-    "description": "Hlp_E_HYPER74.html"
-  },
-  {
-    "title": "Hlp_E_SHELL99.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Hlp_E_SHELL99.html",
-    "description": "Hlp_E_SHELL99.html"
   },
   {
     "title": "importpara.tcl",
@@ -114,21 +54,6 @@
     "title": "rotate.grn",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rotate.grn",
     "description": "rotate.grn"
-  },
-  {
-    "title": "ES4-66.htm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ES4-66.htm",
-    "description": "ES4-66.htm"
-  },
-  {
-    "title": "Hlp_E_HYPER84.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Hlp_E_HYPER84.html",
-    "description": "Hlp_E_HYPER84.html"
-  },
-  {
-    "title": "Hlp_E_SOLID191.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Hlp_E_SOLID191.html",
-    "description": "Hlp_E_SOLID191.html"
   },
   {
     "title": "importPPT.bas",
@@ -161,21 +86,6 @@
     "description": "cmap_ansys_viridis.cmap"
   },
   {
-    "title": "ES4-72.htm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ES4-72.htm",
-    "description": "ES4-72.htm"
-  },
-  {
-    "title": "Hlp_E_HYPER86.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Hlp_E_HYPER86.html",
-    "description": "Hlp_E_HYPER86.html"
-  },
-  {
-    "title": "Hlp_E_SOLID46.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Hlp_E_SOLID46.html",
-    "description": "Hlp_E_SOLID46.html"
-  },
-  {
     "title": "jkt.cmap",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap",
     "description": "jkt.cmap"
@@ -196,26 +106,6 @@
     "description": "ask.tcl"
   },
   {
-    "title": "ES4-73.htm",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ES4-73.htm",
-    "description": "ES4-73.htm"
-  },
-  {
-    "title": "Hlp_E_CONTAC26.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Hlp_E_CONTAC26.html",
-    "description": "Hlp_E_CONTAC26.html"
-  },
-  {
-    "title": "Hlp_E_PLANE2.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Hlp_E_PLANE2.html",
-    "description": "Hlp_E_PLANE2.html"
-  },
-  {
-    "title": "Hlp_E_SOLID64.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Hlp_E_SOLID64.html",
-    "description": "Hlp_E_SOLID64.html"
-  },
-  {
     "title": "Inventor.vbs",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Inventor.vbs",
     "description": "Inventor.vbs"
@@ -231,21 +121,6 @@
     "description": "APDL.syn"
   },
   {
-    "title": "Hlp_E_CONTAC48.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Hlp_E_CONTAC48.html",
-    "description": "Hlp_E_CONTAC48.html"
-  },
-  {
-    "title": "Hlp_E_SHELL143.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Hlp_E_SHELL143.html",
-    "description": "Hlp_E_SHELL143.html"
-  },
-  {
-    "title": "Hlp_E_VISCO106.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Hlp_E_VISCO106.html",
-    "description": "Hlp_E_VISCO106.html"
-  },
-  {
     "title": "reverse_gray.cmap",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/reverse_gray.cmap",
     "description": "reverse_gray.cmap"
@@ -259,21 +134,6 @@
     "title": "circle.grn",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn",
     "description": "circle.grn"
-  },
-  {
-    "title": "Hlp_E_CONTAC49.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hlp_E_CONTAC49.html",
-    "description": "Hlp_E_CONTAC49.html"
-  },
-  {
-    "title": "Hlp_E_SHELL43.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hlp_E_SHELL43.html",
-    "description": "Hlp_E_SHELL43.html"
-  },
-  {
-    "title": "Hlp_E_VISCO107.html",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hlp_E_VISCO107.html",
-    "description": "Hlp_E_VISCO107.html"
   },
   {
     "title": "script.ps1",

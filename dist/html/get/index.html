@@ -1,0 +1,342 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="google-site-verification" content="LDFbsFtoiZlBNqruvC2wK8sObZtsKGqwvzvcPB0y1mE" />
+    <meta name="yandex-verification" content="7c0f79b635678935" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJH9XZY2MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WJH9XZY2MY');
+    </script>
+
+    <title>sheldon&#39;s ansys.net-*GET commands/functions</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
+
+    <title>sheldon&#39;s ansys.net</title>
+  </head>
+  <body class="bg-success">
+    <nav class="site-nav family-sans navbar navbar-expand-md bg-success navbar-dark sticky-top py-0">
+  <div class="container-fluid">
+
+    <button type="button" class="navbar-toggler my-2 my-md-0"
+      data-toggle="collapse" data-target="#myTogglerNav"
+      aria-controls="myTogglerNav" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-brand text-uppercase">
+      <a class="text-light" href="/">ANSYS</a>
+    </div>
+
+    <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
+      <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
+        <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
+
+        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link" href="/html/0">HTML</a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item text-capitalize" href="/about">About</a>
+            <div class="dropdown-divider"></div><a class="dropdown-item text-capitalize" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+                <i class="fab fa-github text-secondary mr-2"></i>github
+              </a></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <div class="row">
+      <div class="col">
+        <div class="bg-light">
+          <div class="conatainer">
+            <div class="gcse-search">...</div>
+          </div>
+          
+<main class="container py-4">
+  <h2 id="*get-commands%2Ffunctions" tabindex="-1">*GET commands/functions <a class="direct-link" href="#*get-commands%2Ffunctions">#</a></h2>
+<p><em><a href="http://ansys.net">ansys.net</a></em></p>
+<h3 id="_return" tabindex="-1">_RETURN <a class="direct-link" href="#_return">#</a></h3>
+<p>Parameter returns number of geometry entity just created (5.3 does not support _return for the L command)<br>
+[STI: Please see Ch. 4.7 &quot;Using the _STATUS and _RETURN Parameters in Macros&quot; in the ANSYS APDL Guide for more information]</p>
+<h3 id="*get%2C%2Cactive" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive">#</a></h3>
+<p>*GET,Parm,ACTIVE,,SYNAME,,START,1<br>
+Gets the first 8 characters of the OS name (such as INTELNT). For more than 8 characters, use &quot;9&quot; for the START modifier. Note that some platforms may change between 5.4 through 5.6 (such as HPPA 8000).</p>
+<p>A list of returned values for systems are shown below (for 8.0, although some systems listed below may no longer be supported):<br>
+RS6000 64<br>
+RS6000<br>
+HPPA 7000<br>
+HPPA 8000<br>
+HPPA 8000-64<br>
+HP IA64<br>
+SGI32<br>
+SGI64<br>
+SUN-USIII<br>
+FUJITSU<br>
+SOLARIS64<br>
+SOLARIS<br>
+DECAXP-OSF1<br>
+WINDOWS 64<br>
+INTEL NT<br>
+LINUX IA32<br>
+LINUX IA64<br>
+SUN4 SPARC</p>
+<h3 id="*get%2C%2Cactive-1" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive-1">#</a></h3>
+<p>*GET,Parm,ACTIVE,0,SOLU,CNVG<br>
+You can also *GET the convergence indicator, where 0=not converged; 1=converged.</p>
+<h3 id="*get%2C%2Cactive-2" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive-2">#</a></h3>
+<p><em>GET,Parm,active,,date<br>
+Gets current system date (year, month, then day), for example, &quot;20000704.0&quot; for 07/04/2000.<br>
+Where year=nint(currdate/10000); month=nint((currdate-year</em>10000)/100); date=currdate-(year*10000+month*100)<br>
+[STI: I haven't found a way to grab the current time yet...]</p>
+<h3 id="*get%2C%2Cactive-3" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive-3">#</a></h3>
+<p>*GET,Parm,active,,update<br>
+At 5.5, get the current ANSYS version or update number. For example, in 5.5.2, it returns 19990107.0. For 5.5.3, it returns 19990405.0</p>
+<h3 id="*get%2C%2Cactive-4" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive-4">#</a></h3>
+<p>*GET,parm,ACTIVE,,SET,NSET<br>
+Retrieves the total number of results sets which are stored in the results file.</p>
+<h3 id="*get%2C%2Cactive-5" tabindex="-1">*GET,,ACTIVE <a class="direct-link" href="#*get%2C%2Cactive-5">#</a></h3>
+<p>*GET,parm,ACTIVE,,AGREE<br>
+Gets agreement number<br>
+[STI: I found this one for a customer wanting to encrypt a macro for a specific company (agreement number). Kinda cool, IMHO.]</p>
+<h3 id="*get%2C%2Ccdsy" tabindex="-1">*GET,,CDSY <a class="direct-link" href="#*get%2C%2Ccdsy">#</a></h3>
+<p>*GET,Parm,CDSY, ,NUM,MAX<br>
+Gets the max local coord. system number<br>
+You can also use the inquiry function MAXCSYS = csyiqr(0,14)</p>
+<h3 id="*get%2C%2Cce" tabindex="-1">*GET,,CE <a class="direct-link" href="#*get%2C%2Cce">#</a></h3>
+<p>*GET,Parm,CE,CeNum, TERM, num, [COEF | NODE | DOF]<br>
+Gets the node number, DOF, or coefficient in CE #CeNum, #num term.<br>
+The DOF key is as follows: 1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay 9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt, 22=mag, 23=enke, 24=ends, 25=emf, 26=curr</p>
+<h3 id="*get%2C%2Cce-1" tabindex="-1">*GET,,CE <a class="direct-link" href="#*get%2C%2Cce-1">#</a></h3>
+<p>*GET,Parm,CE,CeNum, [NTERM | CONST]<br>
+Gets the total number of terms or the constant for CE</p>
+<h3 id="*get%2C%2Cce-2" tabindex="-1">*GET,,CE <a class="direct-link" href="#*get%2C%2Cce-2">#</a></h3>
+<p>*GET,Parm,CE,0,[MAX | NUM]<br>
+Gets the total #num number of CEs defined or the #max number of CEs.</p>
+<h3 id="*get%2C%2Ccint" tabindex="-1">*GET,,CINT <a class="direct-link" href="#*get%2C%2Ccint">#</a></h3>
+<p>*GET,parm,CINT,cnum,CTIP,node,CONT,cnum,DTYPE,data<br>
+Gets the J-Integral or Stress Intensity Factor values. This is documented in 12.0 but maybe not as clearly as one may like. Upper-case letters are literal values used in this *GET.</p>
+<p>cnum: CINT ID number (same ID as when contour was defined with CINT,NEW,cnum)<br>
+node: node number at crack tip<br>
+cnum: contour number (from 1 to max where max is from CINT,NCON,max)<br>
+data: jint is J-integral value. Use k1, k2, or k3 for stress intensity factors. iin1 through iin3 are the interaction integrals 1-3. Default (if left blank) is jint.</p>
+<h3 id="*get%2C%2Ccommon" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon">#</a></h3>
+<p>*GET,Parm,COMMON,,D3COM,,REAL,num<br>
+Uses #num double precision variable in the D3COM.INC include file (in the /ansys56/custom/include or /ansys56/customize/include directories, included in a &quot;full&quot; installation) Example:<br>
+*GET,_z1,common,,stepcm,,int,16<br>
+Gets number of equilibrium iterations of the last substep of the last load step completed.</p>
+<h3 id="*get%2C%2Ccommon-1" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-1">#</a></h3>
+<p>*GET,parm,common,,stepcm,,int,1<br>
+Newton-Raphson option key</p>
+<h3 id="*get%2C%2Ccommon-2" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-2">#</a></h3>
+<p>*GET,parm,common,,stepcm,,int,69<br>
+Adaptive descent key</p>
+<h3 id="*get%2C%2Ccommon-3" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-3">#</a></h3>
+<p>*GET,parm,common,,soptcm,,int,39<br>
+Equation solver values:<br>
+FRONT = 0, SPARSE=8, JCG=7, JCGOUT=2, ICCG=5, PCG=3, PCGOUT=3, ITER=0, etc.</p>
+<h3 id="*get%2C%2Ccommon-4" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-4">#</a></h3>
+<p>*GET,parm,common,,soptcm,,int,66<br>
+Auto Solve Method</p>
+<h3 id="*get%2C%2Ccommon-5" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-5">#</a></h3>
+<p>PCG common blocks:</p>
+<h4 id="*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C138" tabindex="-1">*GET,parm,common,,stepcm,,int,138 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C138">#</a></h4>
+<p>PCG out-of-core key</p>
+<h4 id="*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C105" tabindex="-1">*GET,parm,common,,stepcm,,int,105 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C105">#</a></h4>
+<p>PCG Single precision key</p>
+<h4 id="*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C134" tabindex="-1">*GET,parm,common,,stepcm,,int,134 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Cstepcm%2C%2Cint%2C134">#</a></h4>
+<p>PCG Elem by Elem key</p>
+<h3 id="*get%2C%2Ccommon-6" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-6">#</a></h3>
+<p>*get,parm,comm,,stepcm,,int,30<br>
+Number of nodal diameters:</p>
+<h3 id="*get%2C%2Ccommon-7" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-7">#</a></h3>
+<p>Time &amp; time step values</p>
+<h4 id="*get%2Ctime_end%2Ccommon%2C%2Cstepcm%2C%2Creal%2C2" tabindex="-1">*get,TIME_END,common,,stepcm,,real,2 <a class="direct-link" href="#*get%2Ctime_end%2Ccommon%2C%2Cstepcm%2C%2Creal%2C2">#</a></h4>
+<p>Get time at end of solve (TIME command)</p>
+<h4 id="*get%2Cdt_init%2Ccommon%2C%2Cstepcm%2C%2Creal%2C23" tabindex="-1">*get,DT_INIT,common,,stepcm,,real,23 <a class="direct-link" href="#*get%2Cdt_init%2Ccommon%2C%2Cstepcm%2C%2Creal%2C23">#</a></h4>
+<p>Get initial time step (DELTIM command)</p>
+<h4 id="*get%2Cdt_min%2Ccommon%2C%2Cstepcm%2C%2Creal%2C24" tabindex="-1">*get,DT_MIN,common,,stepcm,,real,24 <a class="direct-link" href="#*get%2Cdt_min%2Ccommon%2C%2Cstepcm%2C%2Creal%2C24">#</a></h4>
+<p>Get minimum time step (DELTIM command)</p>
+<h4 id="*get%2Cdt_max%2Ccommon%2C%2Cstepcm%2C%2Creal%2C25" tabindex="-1">*get,DT_MAX,common,,stepcm,,real,25 <a class="direct-link" href="#*get%2Cdt_max%2Ccommon%2C%2Cstepcm%2C%2Creal%2C25">#</a></h4>
+<p>Get maximum time step (DELTIM command)</p>
+<h3 id="*get%2C%2Ccommon-8" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-8">#</a></h3>
+<p>Convergence values (CNVTOL):</p>
+<h4 id="*get%2Cparam1%2Ccommon%2C%2Cstepcm%2C%2Creal%2C28%2Bi" tabindex="-1">*GET,param1,common,,stepcm,,real,28+i <a class="direct-link" href="#*get%2Cparam1%2Ccommon%2C%2Cstepcm%2C%2Creal%2C28%2Bi">#</a></h4>
+<p>Reference value of Lab</p>
+<h4 id="*get%2Cparam2%2Ccommon%2C%2Cstepcm%2C%2Creal%2C48%2Bi" tabindex="-1">*GET,param2,common,,stepcm,,real,48+i <a class="direct-link" href="#*get%2Cparam2%2Ccommon%2C%2Cstepcm%2C%2Creal%2C48%2Bi">#</a></h4>
+<p>Tolerance about VALUE</p>
+<h4 id="*get%2Cparam3%2Ccommon%2C%2Cstepcm%2C%2Cint%2C34%2Bi" tabindex="-1">*GET,param3,common,,stepcm,,int,34+i <a class="direct-link" href="#*get%2Cparam3%2Ccommon%2C%2Cstepcm%2C%2Cint%2C34%2Bi">#</a></h4>
+<p>Convergence norm</p>
+<h4 id="*get%2Cparam4%2Ccommon%2C%2Cstepcm%2C%2Creal%2C132%2Bi" tabindex="-1">*GET,param4,common,,stepcm,,real,132+i <a class="direct-link" href="#*get%2Cparam4%2Ccommon%2C%2Cstepcm%2C%2Creal%2C132%2Bi">#</a></h4>
+<p>Minimum reference value</p>
+<p>The parameter &quot;i&quot; to use is based on which criteria you are looking for:<br>
+I = 1 for F convergence<br>
+I = 2 for M convergence<br>
+I = 3 for U convergence<br>
+and there are more...</p>
+<p>I tested some of these out on a model, and they work if you entered a value that is not the default. If you use the default value for any of these items, the *get returns a zero.</p>
+<h3 id="*get%2C%2Ccommon-9" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-9">#</a></h3>
+<p>*GET,_cesha,common,,d3com,,real,178<br>
+This gets the current /ESHAPE setting<br>
+[STI: verified to work (at least) from 5.6 on up]</p>
+<h3 id="*get%2C%2Ccommon-10" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-10">#</a></h3>
+<p>*get,parmname,common,,cfprp7,,real,13<br>
+Gets element edge length by ESIZE</p>
+<p>*get,parmname,common,,cfprp7,,int,63<br>
+Gets number of element divisions specified by ESIZE</p>
+<h3 id="*get%2C%2Ccommon-11" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-11">#</a></h3>
+<p>*get,trf,common,,bfcom,,real,8<br>
+Get defined TREF value.</p>
+<p>*get,tunf,common,,bfcom,,real,10<br>
+Get defined TUNIF value.</p>
+<h3 id="*get%2C%2Ccommon-12" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-12">#</a></h3>
+<p>*GET,XMIN,COMMON,,GRCOM,,REAL,44<br>
+/XRANGE min value</p>
+<p>*GET,XMAX,COMMON,,GRCOM,,REAL,45<br>
+/XRANGE max value</p>
+<p>*GET,YMIN,COMMON,,GRCOM,,REAL,6<br>
+/YRANGE min value</p>
+<p>*GET,YMAX,COMMON,,GRCOM,,REAL,7<br>
+/YRANGE max value</p>
+<h3 id="*get%2C%2Ccommon-13" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-13">#</a></h3>
+<p>*GET,PARM,common,,cmopt,,int,13232<br>
+Gets count of state variables in optimization (/OPT) run.</p>
+<h3 id="*get%2C%2Ccommon-14" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-14">#</a></h3>
+<p>*GET,PARM,common,,cmopt,,int,13235<br>
+Gets count of design variables in optimization (/OPT) run.</p>
+<h3 id="*get%2C%2Ccommon-15" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-15">#</a></h3>
+<p>To retrieve the node number at which the minimum or maximum results value occurs, first plot the nodal results of interest using the PLNSOL command, then execute one of the following:</p>
+<h4 id="*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C107" tabindex="-1">*GET,Parm,COMMON,,CPOST1,,INT,107 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C107">#</a></h4>
+<p>to retrieve the node at which the minimum result value occurs, or</p>
+<h4 id="*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C108" tabindex="-1">*GET,Parm,COMMON,,CPOST1,,INT,108 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C108">#</a></h4>
+<p>to retrieve the node at which the maximum result value occurs.</p>
+<p>To determine whether the results are for the top, middle, or bottom of shells, use the following command:</p>
+<h3 id="*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C5" tabindex="-1">*GET,Parm,COMMON,,CPOST1,,INT,5 <a class="direct-link" href="#*get%2Cparm%2Ccommon%2C%2Ccpost1%2C%2Cint%2C5">#</a></h3>
+<p>Where PARM=1 for top, =2 for middle, =3 for bottom.</p>
+<p>There are many other potential quantities of interest listed in the cpost1.inc file in the custom\include directory.</p>
+<h3 id="*get%2C%2Ccommon-16" tabindex="-1">*GET,,COMMON <a class="direct-link" href="#*get%2C%2Ccommon-16">#</a></h3>
+<p>*GET,parm,COMMON,,BOLCMD,,REAL,16<br>
+Gets the current boolean tolerance value (value assigned to the BTOL command).</p>
+<h3 id="*get%2C%2Ccp" tabindex="-1">*GET,,CP <a class="direct-link" href="#*get%2C%2Ccp">#</a></h3>
+<p>*GET,Parm,CP,CpNum,TERM,num,NODE<br>
+Gets the node number in CP #CpNum, #num term.</p>
+<h3 id="*get%2C%2Ccp-1" tabindex="-1">*GET,,CP <a class="direct-link" href="#*get%2C%2Ccp-1">#</a></h3>
+<p>*GET,Parm,CP,CpNum,[DOF | NTERM]<br>
+Gets the DOF of the CP #CpNum or total number of terms. The DOF key is as follows: 1=ux, 2=uy, 3=uz, 4=rotx, 5=roty, 6=rotz, 7=ax, 8=ay 9=az, 10=vx, 11=vy, 12=vz, 19=pres, 20=temp, 21=volt, 22=mag, 23=enke, 24=ends, 25=emf, 26=curr</p>
+<h3 id="*get%2C%2Ccp-2" tabindex="-1">*GET,,CP <a class="direct-link" href="#*get%2C%2Ccp-2">#</a></h3>
+<p>*GET,Parm,CP,0,[MAX | NUM]<br>
+Gets the total #num number of CPs defined or the #max number of CPs.</p>
+<h3 id="*get%2C%2Celem" tabindex="-1">*GET,,ELEM <a class="direct-link" href="#*get%2C%2Celem">#</a></h3>
+<p>*GET,Parm,ELEM,elementNumber,EFOR,nodeNumber,item<br>
+where item is FX, FY, FZ, MX, etc.<br>
+Gets element nodal forces / moments associated with an element (without using selection and fsum).</p>
+<h3 id="*get%2C%2Cetyp" tabindex="-1">*GET,,ETYP <a class="direct-link" href="#*get%2C%2Cetyp">#</a></h3>
+<p>*GET,Parm,ETYP, ,NUM,MAX<br>
+Gets the max element type number You can also use the inquiry function MAXETYP = etyiqr(0,14)</p>
+<h3 id="*get%2C%2Cnode" tabindex="-1">*GET,,NODE <a class="direct-link" href="#*get%2C%2Cnode">#</a></h3>
+<p>*GET,par,NODE,n,NTEMP<br>
+Gets nodal structural temperatures applied on the model.</p>
+<h3 id="*vget%2Cparm(1)%2C125%2C1%2C12%2C1%2C%2C%2C2" tabindex="-1">*VGET,parm(1),125,1,12,1,,,2 <a class="direct-link" href="#*vget%2Cparm(1)%2C125%2C1%2C12%2C1%2C%2C%2C2">#</a></h3>
+<p>*VGETs nodal structural temperatures into an array.</p>
+<h3 id="*get%2C%2Cnode-1" tabindex="-1">*GET,,NODE <a class="direct-link" href="#*get%2C%2Cnode-1">#</a></h3>
+<p>There is an undocumented *GET/*VGET for reaction forces as follows:<br>
+*GET,par,NODE,n,RF,Lab<br>
+where Lab can be UX,UY,UZ,ROTX,ROTY,ROTZ, or FX,FY,FZ,MX,MY,MZ<br>
+The *VGET is the same.<br>
+[STI: *GET for reaction force is documented at 5.6 but *VGET is not documented at 5.5 or 5.6]</p>
+<h3 id="*get%2C%2Cparm" tabindex="-1">*GET,,PARM <a class="direct-link" href="#*get%2C%2Cparm">#</a></h3>
+<p>*GET,Parm,PARM,ARnn,ARTYPE<br>
+At 5.6.1, this returns the type of the ARxx parameter, not the type of the variable which ARnn is pointing to.</p>
+<h3 id="*get%2C%2Cplab" tabindex="-1">*GET,,PLAB <a class="direct-link" href="#*get%2C%2Cplab">#</a></h3>
+<p>*GET,Parm,PLAB,mat,TEMP,Tvalue<br>
+Gets material value at given temperature.<br>
+For example:<br>
+*GET,EX1,EX,1,TEMP,70.0<br>
+Gets EX for material #1 at TEMP=70 and puts into parameter EX1.</p>
+<h3 id="*get%2C%2Cplnsol" tabindex="-1">*GET,,PLNSOL <a class="direct-link" href="#*get%2C%2Cplnsol">#</a></h3>
+<p>*GET,parm,PLNSOL,,max<br>
+Works on both PLESOL and PLNSOL to obtain min/max values of last contour plot (use bmax/bmin to obtain bound value with Full Graphics on and ERNORM on). Note that the format is still &quot;PLNSOL&quot; as 3rd argument, although your plot may be of element solution (PLESOL).</p>
+<h3 id="*get%2C%2Crcon" tabindex="-1">*GET,,RCON <a class="direct-link" href="#*get%2C%2Crcon">#</a></h3>
+<p>*GET,Parm,RCON, ,NUM,MAX<br>
+Gets the max REAL set number<br>
+You can also use the inquiry function MAXREAL = rlinqr(0,14)</p>
+<h3 id="*get%2C%2Ctblab" tabindex="-1">*GET,,TBLAB <a class="direct-link" href="#*get%2C%2Ctblab">#</a></h3>
+<p>*GET,parm,tblab,mat_number,NTEMP<br>
+Retrieves the number of temperature Tables defined for any TABLE (e.g., MISO)</p>
+<p>*GET,parm,tblab,mat_number,TVAL,pos<br>
+Retrieves the temperature value at position &quot;pos&quot; of any TABLE defined as TBDATA (MISO for example)</p>
+<p>It is useful for retrieving all strain/stress curves from database</p>
+<h3 id="*get%2C%2Ctblab-1" tabindex="-1">*GET,,TBLAB <a class="direct-link" href="#*get%2C%2Ctblab-1">#</a></h3>
+<p>*GET,PARAM,tblab,matid,temp,0,ncon<br>
+Gets the number of constants (data values) for material tblab.<br>
+For example, to get the number of state variables defined for material ID #2, use:<br>
+*GET,param,STATE,2,TEMP,0,NCON</p>
+<h3 id="*vget%2C%2Cid1" tabindex="-1">*VGET,,ID1 <a class="direct-link" href="#*vget%2C%2Cid1">#</a></h3>
+<p>An undocumented *VGET for selecting Lines, Areas and Volumes by &quot;hot spot&quot;<br>
+*VGET,xyzarray,ID1,num,ID2,ID3,,,4<br>
+Xyzarray: 3 row array that the coordinates are stored in<br>
+ID1: Location in ANSYS memory of information - 40 = Line, 60 = Area, 80 = Volume<br>
+ID2: First offset in memory location - 8 = Lines, 6 = Areas and Volumes<br>
+ID3: Second offset in memory location - 3 = Lines, 2 = Areas and Volumes</p>
+<p>for lines:<br>
+*dim,ls_cent,,3<br>
+*vget,ls_cent(1),40,num,8,3,,,4<br>
+lsel,s,loc,x,ls_cent(1)<br>
+lsel,r,loc,y,ls_cent(2)<br>
+lsel,r,loc,z,ls_cent(3)<br>
+for areas:<br>
+*dim,al_cent,,3<br>
+*vget,ls_cent(1),60,num,6,2,,,4<br>
+for volumes:<br>
+*dim,vl_cent,,3<br>
+*vget,vl_cent(1),80,num,6,2,,,4</p>
+<h3 id="%2Finquire" tabindex="-1">/INQUIRE <a class="direct-link" href="#%2Finquire">#</a></h3>
+<p>/INQUIRE,strarray,DIRECTORY<br>
+This gets the working directory ANSYS was launched from.</p>
+<h3 id="%2Finquire-1" tabindex="-1">/INQUIRE <a class="direct-link" href="#%2Finquire-1">#</a></h3>
+<p>/INQUIRE,strarray,JOBNAME<br>
+This gets the ANSYS jobname and puts it into a string array called &quot;strarray&quot;.</p>
+<h3 id="%2Finquire-2" tabindex="-1">/INQUIRE <a class="direct-link" href="#%2Finquire-2">#</a></h3>
+<p>/INQUIRE,strarray,TITLE,n<br>
+This gets the ANSYS title starting from character &quot;n&quot;.</p>
+<h3 id="lsx()" tabindex="-1">LSx() <a class="direct-link" href="#lsx()">#</a></h3>
+<p>LSx(line number, unit distance)<br>
+*GET functions for the slope of a line for LSX, LSY, LSZ where unit distance is between 0 and 1 (0 is slope at keypoint 1, 1 is slope at keypoint 2)</p>
+<h3 id="rlnext()" tabindex="-1">rlnext() <a class="direct-link" href="#rlnext()">#</a></h3>
+<p>RLNEXT(R)</p>
+<p>Next defined real set having a number greater than R. (*GET inline function)</p>
+
+</main>
+
+        </div>
+      </div>
+    </div>
+    <nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
+  <div class="navbar-nav"><a class="nav-item nav-link" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+      <i class="nav-social-icon fab fa-github mr-2"></i>
+      <span class="align-text-bottom text-white d-none d-lg-inline">github</span>
+    </a></div>
+</nav>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>
