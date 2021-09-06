@@ -10,19 +10,16 @@
     "description": "plot33.f"
   },
   {
-    "title": "StandardViews.xml",
+    "title": "12 Predefined Views",
+    "author": "Matthew Pausley (Nuvotronics, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/StandardViews.xml",
-    "description": "StandardViews.xml"
+    "description": "This is an XML file that can be used in Workbench Mechanical to provide 12 common views aligned with the coordinate axes. The naming convention is \"Up-Axis + Axis of viewing\", i.e. \"Z+X\" means \"Z axis is up, looking in the direction of positive X\". To import this XML file into Workbench Mechanical, go to \"View menu > Windows > Manage Views\", then click on the \"Import...\" icon in the Manage Views panel to import this XML file."
   },
   {
     "title": "getfile.tcl",
+    "author": "Matthew Sutton (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
-    "description": "getfile.tcl"
-  },
-  {
-    "title": "getfile.tcl",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
-    "description": "getfile.tcl"
+    "description": "Tcl script which opens a dialog box for a user to select an input file to read from (/INPUT). Use ~eui,'source getfile.tcl' to run the Tcl script, after saving it to your working directory."
   },
   {
     "title": "importJPEG2.bas",
@@ -42,13 +39,9 @@
   },
   {
     "title": "importpara.tcl",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
-    "description": "importpara.tcl"
-  },
-  {
-    "title": "importpara.tcl",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
-    "description": "importpara.tcl"
+    "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
   },
   {
     "title": "rotate.grn",
@@ -97,13 +90,9 @@
   },
   {
     "title": "ask.tcl",
+    "author": "Navtej Singh (Intel)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ask.tcl",
-    "description": "ask.tcl"
-  },
-  {
-    "title": "ask.tcl",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ask.tcl",
-    "description": "ask.tcl"
+    "description": "\"You will be prompted with variable name and value in a single dialouge box. Enter the variable name upto 32 chars long. Enter the variable value upto 128 chars long. Value can be numeric or string. No need to enter quotes for string. On clicking enter this script will set the variable name with the value in ANSYS properly either as a nummeric or string.\""
   },
   {
     "title": "Inventor.vbs",

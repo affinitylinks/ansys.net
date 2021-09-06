@@ -37,8 +37,9 @@
   },
   {
     "title": "acal.mac",
+    "author": "(Tech Inno)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
-    "description": "This macro calculates the sum of areas for all selected elements and stores the result as parameter el_area."
+    "description": "This macro calculates the sum of areas for all selected elements. Macro amended by S. Kukula (Dyson Ltd) with *VMASK to account for non-consecutive area numbering."
   },
   {
     "title": "aface.mac",
@@ -302,8 +303,9 @@
   },
   {
     "title": "a_hydro2.mac",
+    "author": "Ernst Hustedt (AMES Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac",
-    "description": "a_hydro2.mac"
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.\"I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas."
   },
   {
     "title": "acmn.mac",
@@ -328,8 +330,9 @@
   },
   {
     "title": "battle.mac",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac",
-    "description": "battle.mac"
+    "description": "A macro used to play \"Battleship\" on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI) \r\n From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below. \r\n  Enjoy! \r\n \r\n Dave Lindeman \r\n CAE Specialist \r\n 3M Company \r\n 3M Center 235-1F-36 \r\n St. Paul, MN 55144"
   },
   {
     "title": "clean_model.mac",
@@ -367,11 +370,6 @@
     "description": "f3d.mac"
   },
   {
-    "title": "fixit.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/fixit.mac",
-    "description": "fixit.mac"
-  },
-  {
     "title": "gplt.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/gplt.mac",
     "description": "gplt.mac"
@@ -403,8 +401,9 @@
   },
   {
     "title": "kbfocus.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/kbfocus.mac",
-    "description": "kbfocus.mac"
+    "description": "\"Below you will find a little macro that can be run to fix the more common issues with focus on the command line not behaving as expected at 6.1. It is a partial hack that needs to be run after the GUI is up, so you can't put it in your start61.ans file (sorry). It also does not fix focus loss with the picker (which is intentional) or the pan-zoom-rotate dialog (not so intentional). Those will require more than a simple Tcl/Tk script.\""
   },
   {
     "title": "lcolor.mac",
@@ -478,8 +477,9 @@
   },
   {
     "title": "a_num.mac",
+    "author": "Mitch Voehl (CEC Corp)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/a_num.mac",
-    "description": "a_num.mac"
+    "description": "Macro to get area number by keypoint number."
   },
   {
     "title": "acomplot.mac",
@@ -861,11 +861,6 @@
     "description": "round.mac"
   },
   {
-    "title": "set_l.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/set_l.mac",
-    "description": "set_l.mac"
-  },
-  {
     "title": "sort2d.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac",
     "description": "sort2d.mac"
@@ -917,8 +912,9 @@
   },
   {
     "title": "a2comet.mac",
+    "author": "Fern Thomassy (Southwest Research Institute)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac",
-    "description": "a2comet.mac"
+    "description": "Creates a COMET/Acoustics model from an ANSYS model."
   },
   {
     "title": "avgtemp.mac",
@@ -981,11 +977,6 @@
     "description": "im94.mac"
   },
   {
-    "title": "listcm.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/listcm.mac",
-    "description": "listcm.mac"
-  },
-  {
     "title": "m55to54.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/m55to54.mac",
     "description": "m55to54.mac"
@@ -1036,11 +1027,6 @@
     "description": "sasel.mac"
   },
   {
-    "title": "set_l2.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/set_l2.mac",
-    "description": "set_l2.mac"
-  },
-  {
     "title": "siresume.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac",
     "description": "siresume.mac"
@@ -1082,8 +1068,9 @@
   },
   {
     "title": "a2glue.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac",
-    "description": "a2glue.mac"
+    "description": "Work around for standard AGLUE that avoids the \"ungluing\" that can occur"
   },
   {
     "title": "ac_angle.mac",
@@ -1333,11 +1320,6 @@
     "description": "gettris.mac"
   },
   {
-    "title": "guireset.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/guireset.mac",
-    "description": "guireset.mac"
-  },
-  {
     "title": "im5.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/im5.mac",
     "description": "im5.mac"
@@ -1346,11 +1328,6 @@
     "title": "js_curvewrite.mac",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/js_curvewrite.mac",
     "description": "js_curvewrite.mac"
-  },
-  {
-    "title": "lkpzero.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/lkpzero.mac",
-    "description": "lkpzero.mac"
   },
   {
     "title": "makemesh.mac",
@@ -1364,8 +1341,9 @@
   },
   {
     "title": "mwrite.mac",
+    "author": "Matt Sutton (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/mwrite.mac",
-    "description": "mwrite.mac"
+    "description": "Macro to write arrays to file. This macro actually uses Tcl/Tk to write another macro, which is then invoked."
   },
   {
     "title": "ndgroup2.mac",
@@ -1429,8 +1407,9 @@
   },
   {
     "title": "DS_JPDL___User_Fatigue_PNEN13445-3.js",
+    "author": "Przemyslaw Siedlaczek (MESco)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js",
-    "description": "DS_JPDL___User_Fatigue_PNEN13445-3.js"
+    "description": "Workbench macro solves fatigue according to pressure vessel code PN EN 13445-3 and displays results as a User Defined Result."
   },
   {
     "title": "ExportBranchAsShortcut.js",
