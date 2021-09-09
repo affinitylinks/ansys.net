@@ -22,8 +22,9 @@
   },
   {
     "title": "large_rotat.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp",
-    "description": "Shows line search on/off/auto"
+    "description": "Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time."
   },
   {
     "title": "plate_cms.inp",
@@ -74,8 +75,9 @@
   },
   {
     "title": "harm-full-ex.inp",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp",
-    "description": "harm-full-ex.inp"
+    "description": "Direct displacement method (full harmonic with applied displacment). Modal analysis then frequency sweep. Results are scaled to get acceleration, displacement, and g's vs frequency."
   },
   {
     "title": "rigidbody_rotation.inp",
@@ -119,8 +121,9 @@
   },
   {
     "title": "gasket.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/gasket.inp",
-    "description": "gasket.inp"
+    "description": "Very simple example showing how to use element birth & death to include a non-uniform initial gap. Usually, initial gap for gasket material (TB,GASKET,,,,PARA) is assumed to be a uniform input. By using element birth and death while perturbing the nodes, one can include a non-uniform initial gap."
   },
   {
     "title": "harm-lmm-clust.inp",
@@ -228,8 +231,9 @@
   },
   {
     "title": "harm-lmm.inp",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/harm-lmm.inp",
-    "description": "harm-lmm.inp"
+    "description": "Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique."
   },
   {
     "title": "hfth.inp",
@@ -397,8 +401,9 @@
   },
   {
     "title": "cyc_princ.inp",
+    "author": "Christian Semler (Mechanical Dynamics Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/cyc_princ.inp",
-    "description": "cyc_princ.inp"
+    "description": "\"Here is an input file which computes principal stresses for a particular sector from a cyclic symmetry analysis, on all corner nodes, without using the /CYCEXPAND command. This enables the use of the *VGET command, so further manipulations are possible.\""
   },
   {
     "title": "fluid116.inp",
