@@ -146,7 +146,7 @@ Acceleration vs. Time Acceleration:f=ma</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/vortex.inp" target="_blank"> vortex.inp</a></p>
 <p class="font-italic"> Mark Troscinski (ANSYS, Inc.) </p>
-<p>Example of setting up vortex shedding. This is not a complete input file but shows options necessary to set up the problem. Also, a Zipped <a href="https://github.com/affinitylinks/ansys.net/blob/main/9/vortex.zip" target="_blank" rel="noopener noreferrer">AVI animation</a> is available.</p>
+<p>Example of setting up vortex shedding. This is not a complete input file but shows options necessary to set up the problem. Also, a Zipped <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/vortex.zip" target="_blank" rel="noopener noreferrer">AVI animation</a> is available.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp" target="_blank"> coupled-seq.inp</a></p>
 <p class="font-italic"></p>
@@ -206,7 +206,7 @@ In the input file, change the first two parameters as follows:</p>
 <p>For results with many modes included and no residual vector, set MY_FREQUENCY = 1 and MY_RESVECTOR = 0<br>
 For results with few modes included and no residual vector, set MY_FREQUENCY = 0 and MY_RESVECTOR = 0<br>
 For results with few modes included and with residual vectors, set MY_FREQUENCY = 0 and MY_RESVECTOR = 1</p>
-<p>By performing the above, one will see that even at the higher-frequency response, the residual vector method will give results comparable to including many modes even if the user has a smaller set of modes. <a href="https://github.com/affinitylinks/ansys.net/blob/main/9/resvec.xls" target="_blank" rel="noopener noreferrer">An Excel spreadsheet</a> is also available, which tabulates the results (notice the difference in results for higher frequencies - this is where, without residual vector method and fewer modes, one may not accurately capture higher-frequency response).<br>
+<p>By performing the above, one will see that even at the higher-frequency response, the residual vector method will give results comparable to including many modes even if the user has a smaller set of modes. <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/resvec.xls" target="_blank" rel="noopener noreferrer">An Excel spreadsheet</a> is also available, which tabulates the results (notice the difference in results for higher frequencies - this is where, without residual vector method and fewer modes, one may not accurately capture higher-frequency response).<br>
 Note that the residual vector method includes stiffness of higher frequencies, but one should still have enough modes to characterize the mass of the structure (i.e., it's not a panacea for insufficient modes). Also, use of ANSYS 11.0 or higher is required.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp" target="_blank"> simpleshellcontactexample.inp</a></p>
