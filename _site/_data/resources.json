@@ -1515,8 +1515,9 @@
   },
   {
     "title": "sprs_mprs.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/sprs_mprs.zip",
-    "description": "sprs_mprs.zip"
+    "description": "The attached zip file includes a simple example demonstrating the procedure to perform a single-point response spectrum (SPRS), where the excitation in 3 direction is applied together (using SRSS combination), not independently. The procedure for multi-point response spectrum (MPRS) is included as well for the same situation. An Excel spreadsheet shows that the results obtained for this simple model is the same for both methods (compare the mode coefficients for each squared mode in the spreadsheet)."
   },
   {
     "title": "STI02_QR_Damped_Unsymmetric.zip",
@@ -1813,8 +1814,9 @@
   },
   {
     "title": "harmonic_and_random.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip",
-    "description": "harmonic_and_random.zip"
+    "description": "This zip file contains a simple example - single input PSD table for base excitation of a fictitious structure - run as both random vibration and harmonic response analyses. The user can review the contents of the two input files and see how one can relate harmonic analyses (the transfer function) to the response PSD in random vibration analyses. (Actually, one can also look it up in any dynamics textbook, but this just shows how one can do it in ANSYS.) \r\n \r\n (See also TFUN undocumented command to get the transfer function after a random vibration analysis.)"
   },
   {
     "title": "siysdcap.zip",
@@ -1863,8 +1865,9 @@
   },
   {
     "title": "harmonic_cms.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip",
-    "description": "harmonic_cms.zip"
+    "description": "Simple beam example showing procedure for using CMS (component mode synthesis). Same results for the full model (no CMS) and the CMS model."
   },
   {
     "title": "impedance.zip",
