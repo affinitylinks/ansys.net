@@ -1,0 +1,109 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
+    <meta name="google-site-verification" content="LDFbsFtoiZlBNqruvC2wK8sObZtsKGqwvzvcPB0y1mE" />
+    <meta name="yandex-verification" content="7c0f79b635678935" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WJH9XZY2MY"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-WJH9XZY2MY');
+    </script>
+
+    <title>sheldon&#39;s ansys.net-ANSYS and Tcl/Tk Customization</title>
+    <script defer src="https://use.fontawesome.com/releases/v5.7.2/js/all.js" integrity="sha384-0pzryjIRos8mFBWMzSSZApWtPl/5++eIfzYmTgBBmXYdhvxPc+XcFEk+zJwDgWbP" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="/css/style.css"/>
+
+    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+
+    <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
+    <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
+
+    <title>sheldon&#39;s ansys.net</title>
+  </head>
+  <body class="bg-success">
+    <nav class="site-nav family-sans navbar navbar-expand-md bg-success navbar-dark sticky-top py-0">
+  <div class="container-fluid">
+
+    <button type="button" class="navbar-toggler my-2 my-md-0"
+      data-toggle="collapse" data-target="#myTogglerNav"
+      aria-controls="myTogglerNav" aria-label="Toggle Navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-brand text-uppercase">
+      <a class="text-light" href="/">ANSYS</a>
+    </div>
+
+    <div class="collapse navbar-collapse text-center mt-0" id="myTogglerNav">
+      <div class="navbar-nav ml-auto font-weight-regular text-uppercase">
+        <a class="nav-item nav-link" href="/"><i class="fas fa-home"></i></a>
+
+        <a class="nav-item nav-link" href="/macros/0/">macros</a><a class="nav-item nav-link" href="/examples/0/">examples</a><a class="nav-item nav-link" href="/resources/0/">resources</a><a class="nav-item nav-link" href="/miscellaneous/0/">misc</a><a class="nav-item nav-link" href="/html/0">HTML</a>
+        <div class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          </a>
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userDropdown">
+            <a class="dropdown-item text-capitalize" href="/about">About</a>
+            <div class="dropdown-divider"></div><a class="dropdown-item text-capitalize" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+                <i class="fab fa-github text-secondary mr-2"></i>github
+              </a></div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</nav>
+
+    <div class="row">
+      <div class="col">
+        <div class="bg-light">
+          <div class="conatainer">
+            <div class="gcse-search">...</div>
+          </div>
+          
+<main class="container py-4">
+  <h2 id="on-a-tcl%2Ftk-version-of-multipro" tabindex="-1">On a Tcl/Tk version of MULTIPRO <a class="direct-link" href="#on-a-tcl%2Ftk-version-of-multipro">#</a></h2>
+<p>Attached is the <a href="https://github.com/smhrjn/ansys.net/blob/main/9/multiprompt.tk" target="_blank" rel="noopener noreferrer">multiprompt.tk</a> Tcl script which several of you requested. This is the 5.6 version (ans_evalexpr is not supported in 5.5). Also included is a macro <a href="https://github.com/smhrjn/ansys.net/blob/main/9/multi.mac" target="_blank" rel="noopener noreferrer">multi.mac</a> showing how the <a href="https://github.com/smhrjn/ansys.net/blob/main/9/multiprompt.tk" target="_blank" rel="noopener noreferrer">multiprompt.tk</a> TCL script is called.</p>
+<p>There is a 5.5 version of <a href="https://github.com/smhrjn/ansys.net/blob/main/9/multiprompt.tk" target="_blank" rel="noopener noreferrer">multiprompt.tk</a>, as well as a more elaborate demonstration, but the disk on which I stored these has been mislaid during our move to Virginia. I left copies at the ANSYS Distributor's Office in Singapore, and will try to either find my copy or get a copy from Singapore. Anyway, more later.</p>
+<p>I also have a demonstration showing how to put active fields directly on an ansys annotated display, allowing an applicition to run from a completely graphic input. I will include that when I locate it.</p>
+<p>These examples are part of an extended User Programming Course which I hope to assemble, running for 2-3 days, including hands-on problems as well as lecture. If anyone is interested in such a course on-site, let me know.<br>
+<em>Posted by John Swanson on 10.17.1999</em></p>
+<h2 id="presentation-on-ansys-and-tcl%2Ftk" tabindex="-1">Presentation on ANSYS and Tcl/Tk <a class="direct-link" href="#presentation-on-ansys-and-tcl%2Ftk">#</a></h2>
+<p>As I promised in an earlier posting, I would supply some more advanced Tcl Applications as soon as I had recovered (somewhat) from our move. I have located the missing disk, so here goes...</p>
+<p>The <a href="https://github.com/smhrjn/ansys.net/blob/main/9/tcl.zip" target="_blank" rel="noopener noreferrer">attached file</a> is ZIPped. Unzip in into a directory called tcl.dir. There you will find a powerpoint presentation tcl.ppt, which is a preliminary discussion of tcl application development in ANSYS. You will also find a readme.txt file which explains the two applications which are included. Also included are the 5.5 and 5.6 versions of the tcl programmed multiprompt macro.</p>
+<p>Next create subdirectories parablock.dir and shaft.dir. The file decklist will show what files are to be put in each of these subdirectories.</p>
+<p>Finally, go into each of these subdirectories and run ansys55 (ansys56 should also work).</p>
+<p>shaft.dir is a parametric model of a circular stepped shaft under an axial load. You can change the diameters, length, fillet radius, and number of elements meshed in the fillet. Upon OK, the problem will run and show the result. The result display is timed to show for 10 seconds, then cycle back for a new parametric study.</p>
+<p>parablock.dir is a simple block with a circular hole. This is a geometry only. In this model you can change the dimensions directly on the drawing of the block, and the model will be created when the OK is selected.</p>
+<p>All the _.mac and _.tk files are included for these examples.<br>
+<em>Posted by John Swanson on 10.20.1999</em></p>
+<h2 id="details-of-tcl%2Ftk-commands-for-ansys" tabindex="-1">Details of Tcl/Tk Commands for ANSYS <a class="direct-link" href="#details-of-tcl%2Ftk-commands-for-ansys">#</a></h2>
+<p><a href="https://github.com/smhrjn/ansys.net/blob/main/9/5_ANSYS_Program_Interaction.pdf" target="_blank" rel="noopener noreferrer">This comprehensive document</a> outlines all of the tcl commands to interact with ANSYS.<br>
+<em>Posted by Sheldon on 01.09.2002</em></p>
+
+</main>
+
+        </div>
+      </div>
+    </div>
+    <nav class="nav-social navbar navbar-expand navbar-dark justify-content-center">
+  <div class="navbar-nav"><a class="nav-item nav-link" target="_blank" href="https://github.com/affinitylinks/ansys.net">
+      <i class="nav-social-icon fab fa-github mr-2"></i>
+      <span class="align-text-bottom text-white d-none d-lg-inline">github</span>
+    </a></div>
+</nav>
+
+  </body>
+  <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+</html>

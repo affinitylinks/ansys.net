@@ -1,0 +1,20 @@
+{
+  "title": "ansys.net",
+  "url": "https://ansys.netlify.app/",
+  "description": "ansys resources",
+  "feed": {
+    "subtitle": "ansys",
+    "filename": "feed.xml",
+    "path": "/feed/feed.xml",
+    "id": "https://ansys.netlify.app/"
+  },
+  "jsonfeed": {
+    "path": "/feed/feed.json",
+    "url": "https://ansys.netlify.app/feed/feed.json"
+  },
+  "author": {
+    "name": "",
+    "email": "",
+    "url": ""
+  }
+}

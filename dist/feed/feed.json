@@ -1,0 +1,13 @@
+{
+  "version": "https://jsonfeed.org/version/1",
+  "title": "ansys.net",
+  "home_page_url": "https://ansys.netlify.app/",
+  "feed_url": "https://ansys.netlify.app/feed/feed.json",
+  "description": "ansys resources",
+  "author": {
+    "name": "",
+    "url": ""
+  },
+  "items": [
+  ]
+}

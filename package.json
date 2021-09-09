@@ -1,0 +1,46 @@
+{
+  "name": "ansys.net",
+  "version": "1.0.0",
+  "description": "sheldon's ansys.net contents",
+  "main": "index.js",
+  "watches": {
+    "sass": "site/*.scss"
+  },
+  "scripts": {
+    "start": "concurrently \"npm run sass:watch\" \"npm run serve\"",
+    "serve": "eleventy --serve -- quiet",
+    "sass": "node-sass _site/scss -o _site/css",
+    "sass:watch": "npm run sass && npm run sass -- --watch --recursive",
+    "dev": "rerun-script",
+    "surge": "suurge --domain=ansys.surge.sh --project=dist"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/smhrjn/ansys.net.git"
+  },
+  "keywords": [
+    "ansys",
+    "apdl",
+    "ansys.net"
+  ],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/smhrjn/ansys.net/issues"
+  },
+  "homepage": "https://github.com/smhrjn/ansys.net#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^0.12.1",
+    "@11ty/eleventy-navigation": "^0.3.2",
+    "@11ty/eleventy-plugin-rss": "^1.1.1",
+    "@11ty/eleventy-plugin-syntaxhighlight": "^3.1.2",
+    "concurrently": "^6.2.1",
+    "js-yaml": "^3.14.1",
+    "luxon": "^1.28.0",
+    "markdown-it": "^10.0.0",
+    "markdown-it-anchor": "^8.3.0",
+    "markdown-it-for-inline": "^0.1.1",
+    "node-sass": "^6.0.1",
+    "rerun-script": "^0.6.0"
+  }
+}

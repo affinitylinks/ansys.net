@@ -1,0 +1,137 @@
+[
+  {
+    "title": "importJPEG1.bas",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas",
+    "description": "importJPEG1.bas"
+  },
+  {
+    "title": "plot33.f",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/plot33.f",
+    "description": "plot33.f"
+  },
+  {
+    "title": "12 Predefined Views",
+    "author": "Matthew Pausley (Nuvotronics, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/StandardViews.xml",
+    "description": "This is an XML file that can be used in Workbench Mechanical to provide 12 common views aligned with the coordinate axes. The naming convention is \"Up-Axis + Axis of viewing\", i.e. \"Z+X\" means \"Z axis is up, looking in the direction of positive X\". To import this XML file into Workbench Mechanical, go to \"View menu > Windows > Manage Views\", then click on the \"Import...\" icon in the Manage Views panel to import this XML file."
+  },
+  {
+    "title": "getfile.tcl",
+    "author": "Matthew Sutton (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
+    "description": "Tcl script which opens a dialog box for a user to select an input file to read from (/INPUT). Use ~eui,'source getfile.tcl' to run the Tcl script, after saving it to your working directory."
+  },
+  {
+    "title": "importJPEG2.bas",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas",
+    "description": "importJPEG2.bas"
+  },
+  {
+    "title": "plot7.cmap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/plot7.cmap",
+    "description": "plot7.cmap"
+  },
+  {
+    "title": "greyscl.cmap",
+    "author": "John Thompson (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/greyscl.cmap",
+    "description": "Color map file to produce grayscale contours. Use /cmap,greyscl.cmap to read this file in."
+  },
+  {
+    "title": "importpara.tcl",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
+    "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
+  },
+  {
+    "title": "rotate.grn",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rotate.grn",
+    "description": "rotate.grn"
+  },
+  {
+    "title": "importPPT.bas",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/importPPT.bas",
+    "description": "importPPT.bas"
+  },
+  {
+    "title": "Intro05.ppt",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt",
+    "description": "Intro05.ppt"
+  },
+  {
+    "title": "silicon.mat",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/silicon.mat",
+    "description": "silicon.mat"
+  },
+  {
+    "title": "woofer.wbpz",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/woofer.wbpz",
+    "description": "woofer.wbpz"
+  },
+  {
+    "title": "ANS-history.txt",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt",
+    "description": "ANS-history.txt"
+  },
+  {
+    "title": "cmap_ansys_viridis.cmap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap",
+    "description": "cmap_ansys_viridis.cmap"
+  },
+  {
+    "title": "jkt.cmap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap",
+    "description": "jkt.cmap"
+  },
+  {
+    "title": "userelement.tar",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar",
+    "description": "userelement.tar"
+  },
+  {
+    "title": "ask.tcl",
+    "author": "Navtej Singh (Intel)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ask.tcl",
+    "description": "\"You will be prompted with variable name and value in a single dialouge box. Enter the variable name upto 32 chars long. Enter the variable value upto 128 chars long. Value can be numeric or string. No need to enter quotes for string. On clicking enter this script will set the variable name with the value in ANSYS properly either as a nummeric or string.\""
+  },
+  {
+    "title": "Inventor.vbs",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Inventor.vbs",
+    "description": "Inventor.vbs"
+  },
+  {
+    "title": "reverse_color.cmap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/reverse_color.cmap",
+    "description": "reverse_color.cmap"
+  },
+  {
+    "title": "APDL.syn",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn",
+    "description": "APDL.syn"
+  },
+  {
+    "title": "reverse_gray.cmap",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/reverse_gray.cmap",
+    "description": "reverse_gray.cmap"
+  },
+  {
+    "title": "tempdele.bat",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat",
+    "description": "tempdele.bat"
+  },
+  {
+    "title": "circle.grn",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn",
+    "description": "circle.grn"
+  },
+  {
+    "title": "script.ps1",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1",
+    "description": "script.ps1"
+  },
+  {
+    "title": "List of Files",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
+    "description": "List of Files from ansys.net"
+  }
+]

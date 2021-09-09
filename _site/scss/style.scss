@@ -1,0 +1,27 @@
+h1 {
+  font-family: Arial;
+  color: salmon;
+}
+
+h2 {
+  font-family: Arial;
+  color: salmon;
+}
+
+.list-group-item {
+  background: #cef7bb;
+}
+
+pre {
+  overflow-x: auto;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+  background-color: beige;
+}
+
+hr {
+  border-top: 1px dotted rgb(37, 58, 4);
+}

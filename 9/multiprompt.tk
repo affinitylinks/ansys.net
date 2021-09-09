@@ -1,0 +1,197 @@
+# Create a dialog for multiprompt input (5.6 version)
+
+#  This is called from a macro by a statement as follows:
+# )~eui,'source [file join [pwd] multiprompt.tk]
+
+#  The character parameter MultiPro is set to a 4 character Name
+#  The Title is in a string array NameTitl
+#  The Descriptions are in the string array NameDesc
+#  The Parameter names are in the character array NameParm
+#  Help is in a file called NameHelp
+ 
+
+#  Define the top level of the dialog
+set parent [toplevel .dlgMultiprompt -class Ansys]
+
+#  Get the 4 character name of this dialog
+set Name [ans_evalexpr MultiPro]
+
+#  This will come from an ANSYS string array NameTitl
+set dialogTitle $Name
+set dialogTitle [append dialogTitle "TITL"]
+set titletext [ans_evalexpr [append dialogTitle "(1,1)"]]
+set helpTitle $titletext
+set helpTitle [append helpTitle " Help"]
+
+#  This data will come from ANSYS string array NameDesc
+set dialogDesc $Name
+set dialogDesc [append dialogDesc "DESC"]
+
+#  This data will come from an ANSYS character array NameParm
+set dialogParm $Name
+set dialogParm [append dialogParm "PARM"]
+
+#  Get the number of parameters
+set numlabels [ans_getvalue PARM,$dialogParm,DIM,X]
+
+#  Put title on the dialog
+wm title $parent $titletext 
+
+#  Set the text colors
+set textbackground white 
+set textforeground black
+
+# Create a frame for the dialog box 
+frame $parent.frmContain -relief sunken -bd 2 -background blue
+pack $parent.frmContain -fill both -expand 1 -padx 5 -pady 5
+set w $parent.frmContain
+
+#   Display the title inside the dialog block
+label $w.title -relief flat -background $textbackground -width 64 
+    $w.title configure -justify center
+    $w.title configure -textvariable title
+    $w.title configure -foreground $textforeground
+    set title $titletext 
+    grid $w.title -columnspan 3
+    grid $w.title -pady 6
+
+#  Display the Description, Parameter Name, and current Parameter value
+set i 0
+while {$i < $numlabels} {
+    label $w.entLabel$i -relief flat -background $textbackground -width 40 
+         $w.entLabel$i configure -justify center 
+         $w.entLabel$i configure -textvariable label$i
+         $w.entLabel$i configure -foreground $textforeground
+    set root $dialogDesc
+    set j [expr $i + 1]
+    set label$i [ans_evalexpr [append root (1,$j)]]
+
+    label $w.entParm$i -relief flat -background $textbackground -width 10
+         $w.entParm$i configure -justify right
+         $w.entParm$i configure -textvariable names$i
+         $w.entParm$i configure -foreground $textforeground
+    set root $dialogParm
+    set names$i [ans_evalexpr [append root ($j)]]
+
+    entry $w.entValue$i -relief sunken -background $textbackground -width 12
+          $w.entValue$i configure -justify right
+          $w.entValue$i configure -textvariable value$i
+          $w.entValue$i configure -foreground $textforeground
+    set root $dialogParm
+    set parm [ans_evalexpr [append root ($j)]]
+    set value$i [ans_evalexpr $parm]
+
+    grid $w.entLabel$i $w.entParm$i $w.entValue$i
+    grid $w.entLabel$i -padx 3 -pady 2
+    grid $w.entParm$i  -padx 3
+    grid $w.entValue$i -padx 3
+
+    incr i
+}
+
+
+
+# Use an ASCII help file   NameHelp
+set root $Name
+set helpTextFile [append root "Help"]
+set helpHTMLFile {}
+
+# or use an HTML file   NameHelp.html
+#set helpTextFile {}
+#set root $Name
+#set helpHTMLFile [append root "Help.html"]
+#set helpHTMLFile "[file join [pwd] helpHTMLFile]"
+
+
+
+# !!!! DO NOT EDIT BELOW THIS POINT !!!! 
+
+# Create the "standard" action buttons
+set bw [frame $parent.frmButton -class Ansys]
+pack $bw -fill x -side bottom
+button $bw.btnOK -text OK -command [list dlgOK $w] \
+            -width 7
+button $bw.btnCancel -text Cancel -command [list dlgCancel $w] \
+            -width 7
+button $bw.btnHelp -text Help \
+            -command [list dlgHelp $w] \
+            -width 7
+grid $bw.btnOK -column 0 -row 0 -pady 10
+grid $bw.btnCancel -column 1 -row 0 -pady 10
+grid $bw.btnHelp -column 2 -row 0 -pady 10
+grid columnconfigure $bw 0 -weight 1
+grid columnconfigure $bw 1 -weight 1
+grid columnconfigure $bw 2 -weight 1
+
+
+proc dlgOK { w } {
+   global exitDialog
+   global dialogParm
+   # loop the child windows and pick up all of the ansys variables
+   # and send the data back to ANSYS.
+   set j 0
+   foreach entry [winfo child $w] {
+      if [string match [lindex [bindtags $entry] 1] Entry] {
+         incr j
+         set ansVar [$entry cget -textvariable]
+         upvar $ansVar tmp
+         set root $dialogParm
+         set ansVar [ans_evalexpr [append root ($j)]]
+         ans_sendcommand *SET,$ansVar,$tmp
+      }
+   }
+   ans_sendcommand *SET,_BUTTON,0
+   set exitDialog 1
+}
+
+
+proc dlgCancel { w } {
+   global exitDialog
+   ans_sendcommand *SET,_BUTTON,1
+   set exitDialog 1
+}
+   
+proc dlgHelp { win } {
+   global helpTitle
+   global helpText
+   global helpTextFile
+   global helpHTMLFile
+   if {[string match $helpTextFile {}] \
+         && [string match $helpHTMLFile {}]} {
+      set w [toplevel [winfo parent $win].help]
+      wm title $w $helpTitle
+      text $w.txtHelp -wrap word
+      $w.txtHelp insert 1.0 $helpText
+      pack $w.txtHelp -fill both -expand 1 -pady 5 -padx 5
+      # Create the "standard" action buttons
+      set bw [frame $w.frmButton -class Ansys]
+      pack $bw -fill x -side bottom -padx 5 -pady 5
+      button $bw.btnDismiss -text Dismiss -command [list destroy $w] \
+               -width 7
+      grid $bw.btnDismiss -column 0 -row 0 -pady 10
+      grid columnconfigure $bw 0 -weight 1
+      wm geometry $w +[winfo rootx $win]+[winfo rooty $win]
+   } elseif ![string match $helpTextFile {}] {
+      set w [toplevel [winfo parent $win].help]
+      wm title $w $helpTitle
+      text $w.txtHelp -wrap word
+      set fileID [open $helpTextFile r+]
+      $w.txtHelp insert end [read $fileID]
+      close $fileID
+      pack $w.txtHelp -fill both -expand 1 -pady 5 -padx 5
+      # Create the "standard" action buttons
+      set bw [frame $w.frmButton -class Ansys]
+      pack $bw -fill x -side bottom -padx 5 -pady 5
+      button $bw.btnDismiss -text Dismiss -command [list destroy $w] \
+               -width 7
+      grid $bw.btnDismiss -column 0 -row 0 -pady 10
+      grid columnconfigure $bw 0 -weight 1
+      wm geometry $w +[winfo rootx $win]+[winfo rooty $win]
+   } else {
+      callHTML $helpHTMLFile
+   }
+}
+
+tkwait variable exitDialog
+destroy $parent
+

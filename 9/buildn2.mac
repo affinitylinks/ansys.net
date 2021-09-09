@@ -1,0 +1,43 @@
+/nopr
+immed,0
+
+*get,CPU1 ,active,,time,cpu
+*get,WALL1,active,,time,wall
+
+*get,ARGFLAG,parm,ARG1,type
+*if,ARGFLAG,eq,0,then
+  *get,NMAX,node,,num,max
+  *del,NMASK
+  *del,NARRAY
+  *dim,NMASK,array,NMAX
+  *dim,NARRAY,array,NMAX,3
+  *vget,NMASK(1),node,1,nsel
+  *vmask,NMASK(1)
+  *vget,NARRAY(1,1),node,1,loc,x
+  *vmask,NMASK(1)
+  *vget,NARRAY(1,2),node,1,loc,y
+  *vmask,NMASK(1)
+  *vget,NARRAY(1,3),node,1,loc,z
+
+  *vmask,NMASK(1)
+  *voper,NARRAY(1,1),NARRAY(1,1),mult,ARG1
+  *vmask,NMASK(1)
+  *voper,NARRAY(1,2),NARRAY(1,2),mult,ARG1
+  *vmask,NMASK(1)
+  *voper,NARRAY(1,3),NARRAY(1,3),mult,ARG1
+  
+  /prep7
+  shpp,off
+  *vmask,NMASK(1)
+  nmodif,(1:NMAX),NARRAY(1:NMAX,1),NARRAY(1:NMAX,2),NARRAY(1:NMAX,3)
+  shpp,on
+
+*endif
+
+*get,CPU2 ,active,,time,cpu
+*get,WALL2,active,,time,wall
+GETCPUB = CPU2  - CPU1
+GETWALB =(WALL2 - WALL1)*3600
+
+immed,1
+/gopr

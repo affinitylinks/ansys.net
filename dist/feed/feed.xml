@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>ansys.net</title>
+  <subtitle>ansys</subtitle>
+  
+  <link href="https://ansys.netlify.app/feed/feed.xml" rel="self"/>
+  <link href="https://ansys.netlify.app/"/>
+  <updated>2021-09-09T04:52:07Z</updated>
+  <id>https://ansys.netlify.app/</id>
+  <author>
+    <name></name>
+    <email></email>
+  </author>
+</feed>

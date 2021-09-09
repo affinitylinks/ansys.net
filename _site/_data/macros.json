@@ -1,0 +1,1489 @@
+[
+  {
+    "title": "a_filmax.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
+    "author": "Ernst Hustedt (Air New Zealand Engineering)",
+    "description": "Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX."
+  },
+  {
+    "title": "a_hydro1.mac",
+    "author": "Ernst Hustedt (AMES Ltd.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac",
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \r\n \r\n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
+  },
+  {
+    "title": "ans2aba.mac",
+    "author": "Dave Lindeman (3M)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac",
+    "description": "This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: \"Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).\""
+  },
+  {
+    "title": "ACCURATE.zip",
+    "author": "Vladimir Tkach (NPO Energomash)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip",
+    "description": "\"This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).\""
+  },
+  {
+    "title": "anvect.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac",
+    "description": "Animates velocity vectors from Flotran transient results"
+  },
+  {
+    "title": "anvolt.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/anvolt.mac",
+    "description": "Animates voltage results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle."
+  },
+  {
+    "title": "acal.mac",
+    "author": "(Tech Inno)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac",
+    "description": "This macro calculates the sum of areas for all selected elements. Macro amended by S. Kukula (Dyson Ltd) with *VMASK to account for non-consecutive area numbering."
+  },
+  {
+    "title": "aface.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac",
+    "description": "If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC."
+  },
+  {
+    "title": "anfout2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac",
+    "description": "Macro that traverses the solid model and writes an anf file."
+  },
+  {
+    "title": "ans2unv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac",
+    "description": "This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in ansys.net "
+  },
+  {
+    "title": "cmput.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac",
+    "description": "cmput.mac"
+  },
+  {
+    "title": "ctpipe3.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ctpipe3.mac",
+    "description": "ctpipe3.mac"
+  },
+  {
+    "title": "distcalc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/distcalc.mac",
+    "description": "distcalc.mac"
+  },
+  {
+    "title": "elgroup.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/elgroup.mac",
+    "description": "elgroup.mac"
+  },
+  {
+    "title": "erf.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/erf.mac",
+    "description": "erf.mac"
+  },
+  {
+    "title": "fix.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/fix.mac",
+    "description": "fix.mac"
+  },
+  {
+    "title": "g_mur.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/g_mur.mac",
+    "description": "g_mur.mac"
+  },
+  {
+    "title": "geten.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/geten.mac",
+    "description": "geten.mac"
+  },
+  {
+    "title": "getva.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/getva.mac",
+    "description": "getva.mac"
+  },
+  {
+    "title": "im1.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/im1.mac",
+    "description": "im1.mac"
+  },
+  {
+    "title": "im6.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/im6.mac",
+    "description": "im6.mac"
+  },
+  {
+    "title": "initrot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/initrot.mac",
+    "description": "initrot.mac"
+  },
+  {
+    "title": "justmeshit.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/justmeshit.mac",
+    "description": "justmeshit.mac"
+  },
+  {
+    "title": "mapme.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/mapme.mac",
+    "description": "mapme.mac"
+  },
+  {
+    "title": "myanim.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/myanim.mac",
+    "description": "myanim.mac"
+  },
+  {
+    "title": "prnwp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/prnwp.mac",
+    "description": "prnwp.mac"
+  },
+  {
+    "title": "readsi.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/readsi.mac",
+    "description": "readsi.mac"
+  },
+  {
+    "title": "rfor_total.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rfor_total.mac",
+    "description": "rfor_total.mac"
+  },
+  {
+    "title": "select_hexpyra.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/select_hexpyra.mac",
+    "description": "select_hexpyra.mac"
+  },
+  {
+    "title": "sxyz.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/sxyz.mac",
+    "description": "sxyz.mac"
+  },
+  {
+    "title": "trq_msp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/trq_msp.mac",
+    "description": "trq_msp.mac"
+  },
+  {
+    "title": "v2glue.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/v2glue.mac",
+    "description": "v2glue.mac"
+  },
+  {
+    "title": "x_demo_vread.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/x_demo_vread.mac",
+    "description": "x_demo_vread.mac"
+  },
+  {
+    "title": "anglemod.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/anglemod.mac",
+    "description": "anglemod.mac"
+  },
+  {
+    "title": "areacal.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/areacal.mac",
+    "description": "areacal.mac"
+  },
+  {
+    "title": "clean.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac",
+    "description": "clean.mac"
+  },
+  {
+    "title": "cmresu.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/cmresu.mac",
+    "description": "cmresu.mac"
+  },
+  {
+    "title": "distkp2l.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac",
+    "description": "distkp2l.mac"
+  },
+  {
+    "title": "ellipse.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ellipse.mac",
+    "description": "ellipse.mac"
+  },
+  {
+    "title": "ez_rfor.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ez_rfor.mac",
+    "description": "ez_rfor.mac"
+  },
+  {
+    "title": "fixdivs.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/fixdivs.mac",
+    "description": "fixdivs.mac"
+  },
+  {
+    "title": "fxfrm08.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/fxfrm08.mac",
+    "description": "fxfrm08.mac"
+  },
+  {
+    "title": "getface.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/getface.mac",
+    "description": "getface.mac"
+  },
+  {
+    "title": "helix.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/helix.mac",
+    "description": "helix.mac"
+  },
+  {
+    "title": "im10.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/im10.mac",
+    "description": "im10.mac"
+  },
+  {
+    "title": "im60.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/im60.mac",
+    "description": "im60.mac"
+  },
+  {
+    "title": "jwasel.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/jwasel.mac",
+    "description": "jwasel.mac"
+  },
+  {
+    "title": "lproj.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/lproj.mac",
+    "description": "lproj.mac"
+  },
+  {
+    "title": "mg.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/mg.mac",
+    "description": "mg.mac"
+  },
+  {
+    "title": "modeshap.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/modeshap.mac",
+    "description": "modeshap.mac"
+  },
+  {
+    "title": "my_rot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/my_rot.mac",
+    "description": "my_rot.mac"
+  },
+  {
+    "title": "numtog.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/numtog.mac",
+    "description": "numtog.mac"
+  },
+  {
+    "title": "reassign.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/reassign.mac",
+    "description": "reassign.mac"
+  },
+  {
+    "title": "selloc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/selloc.mac",
+    "description": "selloc.mac"
+  },
+  {
+    "title": "skndpth.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/skndpth.mac",
+    "description": "skndpth.mac"
+  },
+  {
+    "title": "subcont.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/subcont.mac",
+    "description": "subcont.mac"
+  },
+  {
+    "title": "varthk.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/varthk.mac",
+    "description": "varthk.mac"
+  },
+  {
+    "title": "vol.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/vol.mac",
+    "description": "vol.mac"
+  },
+  {
+    "title": "x_esum.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/x_esum.mac",
+    "description": "x_esum.mac"
+  },
+  {
+    "title": "a_hydro2.mac",
+    "author": "Ernst Hustedt (AMES Ltd.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac",
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.\"I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas."
+  },
+  {
+    "title": "acmn.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/acmn.mac",
+    "description": "acmn.mac"
+  },
+  {
+    "title": "anharm.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/anharm.mac",
+    "description": "Animates pressure results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle. (While 5.6 has the feature, I like the way Bill has implemented this -- take a look: it's a bit more efficient than the 5.6 macro - STI)"
+  },
+  {
+    "title": "ansys2stl.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ansys2stl.mac",
+    "description": "ansys2stl.mac"
+  },
+  {
+    "title": "areatest.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac",
+    "description": "areatest.mac"
+  },
+  {
+    "title": "battle.mac",
+    "author": "Dave Lindeman (3M)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac",
+    "description": "A macro used to play \"Battleship\" on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI) \r\n From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below. \r\n  Enjoy! \r\n \r\n Dave Lindeman \r\n CAE Specialist \r\n 3M Company \r\n 3M Center 235-1F-36 \r\n St. Paul, MN 55144"
+  },
+  {
+    "title": "clean_model.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/clean_model.mac",
+    "description": "clean_model.mac"
+  },
+  {
+    "title": "cmreview.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/cmreview.mac",
+    "description": "cmreview.mac"
+  },
+  {
+    "title": "cubic.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/cubic.mac",
+    "description": "cubic.mac"
+  },
+  {
+    "title": "distload.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/distload.mac",
+    "description": "distload.mac"
+  },
+  {
+    "title": "efatigue.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/efatigue.mac",
+    "description": "efatigue.mac"
+  },
+  {
+    "title": "emf1.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/emf1.mac",
+    "description": "emf1.mac"
+  },
+  {
+    "title": "f3d.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/f3d.mac",
+    "description": "f3d.mac"
+  },
+  {
+    "title": "gplt.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/gplt.mac",
+    "description": "gplt.mac"
+  },
+  {
+    "title": "helix2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/helix2.mac",
+    "description": "helix2.mac"
+  },
+  {
+    "title": "hole.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/hole.mac",
+    "description": "hole.mac"
+  },
+  {
+    "title": "im12.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/im12.mac",
+    "description": "im12.mac"
+  },
+  {
+    "title": "im63.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/im63.mac",
+    "description": "im63.mac"
+  },
+  {
+    "title": "jb_forc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/jb_forc.mac",
+    "description": "jb_forc.mac"
+  },
+  {
+    "title": "kbfocus.mac",
+    "author": "Eric Miller (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/kbfocus.mac",
+    "description": "\"Below you will find a little macro that can be run to fix the more common issues with focus on the command line not behaving as expected at 6.1. It is a partial hack that needs to be run after the GUI is up, so you can't put it in your start61.ans file (sorry). It also does not fix focus loss with the picker (which is intentional) or the pan-zoom-rotate dialog (not so intentional). Those will require more than a simple Tcl/Tk script.\""
+  },
+  {
+    "title": "lcolor.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/lcolor.mac",
+    "description": "lcolor.mac"
+  },
+  {
+    "title": "lregen.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/lregen.mac",
+    "description": "lregen.mac"
+  },
+  {
+    "title": "mpc_gen.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/mpc_gen.mac",
+    "description": "mpc_gen.mac"
+  },
+  {
+    "title": "nfixdel.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/nfixdel.mac",
+    "description": "nfixdel.mac"
+  },
+  {
+    "title": "para-2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/para-2.mac",
+    "description": "para-2.mac"
+  },
+  {
+    "title": "psdout.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/psdout.mac",
+    "description": "psdout.mac"
+  },
+  {
+    "title": "random.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/random.mac",
+    "description": "random.mac"
+  },
+  {
+    "title": "reformat.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/reformat.mac",
+    "description": "reformat.mac"
+  },
+  {
+    "title": "seqv_max.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/seqv_max.mac",
+    "description": "seqv_max.mac"
+  },
+  {
+    "title": "slicepln.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/slicepln.mac",
+    "description": "slicepln.mac"
+  },
+  {
+    "title": "thickplt.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/thickplt.mac",
+    "description": "thickplt.mac"
+  },
+  {
+    "title": "volsatelem.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/volsatelem.mac",
+    "description": "volsatelem.mac"
+  },
+  {
+    "title": "wfmin107.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/wfmin107.mac",
+    "description": "wfmin107.mac"
+  },
+  {
+    "title": "x_nfor2f.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/x_nfor2f.mac",
+    "description": "x_nfor2f.mac"
+  },
+  {
+    "title": "a_num.mac",
+    "author": "Mitch Voehl (CEC Corp)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/a_num.mac",
+    "description": "Macro to get area number by keypoint number."
+  },
+  {
+    "title": "acomplot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/acomplot.mac",
+    "description": "acomplot.mac"
+  },
+  {
+    "title": "aloop.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/aloop.mac",
+    "description": "aloop.mac"
+  },
+  {
+    "title": "arplot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/arplot.mac",
+    "description": "arplot.mac"
+  },
+  {
+    "title": "bbldiv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/bbldiv.mac",
+    "description": "bbldiv.mac"
+  },
+  {
+    "title": "bilinear.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/bilinear.mac",
+    "description": "bilinear.mac"
+  },
+  {
+    "title": "cmsave.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/cmsave.mac",
+    "description": "cmsave.mac"
+  },
+  {
+    "title": "coupcoin.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/coupcoin.mac",
+    "description": "coupcoin.mac"
+  },
+  {
+    "title": "dcontour.mac",
+    "author": "Doug Woolridge (Mercury Marine)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/dcontour.mac",
+    "description": "Creates a second contour using 2D annotation under the original color contour. The values on the new contour are scaled by 'scale_factor'. \r\n \r\n A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours."
+  },
+  {
+    "title": "emf2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/emf2.mac",
+    "description": "emf2.mac"
+  },
+  {
+    "title": "fldsurf-old1.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/fldsurf-old1.mac",
+    "description": "fldsurf-old1.mac"
+  },
+  {
+    "title": "getlk.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/getlk.mac",
+    "description": "getlk.mac"
+  },
+  {
+    "title": "horz.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/horz.mac",
+    "description": "horz.mac"
+  },
+  {
+    "title": "im21.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/im21.mac",
+    "description": "im21.mac"
+  },
+  {
+    "title": "im7.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/im7.mac",
+    "description": "im7.mac"
+  },
+  {
+    "title": "kcor.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/kcor.mac",
+    "description": "kcor.mac"
+  },
+  {
+    "title": "lstdbdoc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/lstdbdoc.mac",
+    "description": "lstdbdoc.mac"
+  },
+  {
+    "title": "massprop.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/massprop.mac",
+    "description": "massprop.mac"
+  },
+  {
+    "title": "multp2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/multp2.mac",
+    "description": "multp2.mac"
+  },
+  {
+    "title": "PLOT_MAT_AS_TEMP_EN.MAC",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/PLOT_MAT_AS_TEMP_EN.MAC",
+    "description": "PLOT_MAT_AS_TEMP_EN.MAC"
+  },
+  {
+    "title": "pressure.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/pressure.mac",
+    "description": "pressure.mac"
+  },
+  {
+    "title": "put_amp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/put_amp.mac",
+    "description": "put_amp.mac"
+  },
+  {
+    "title": "randseed.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/randseed.mac",
+    "description": "randseed.mac"
+  },
+  {
+    "title": "renam.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/renam.mac",
+    "description": "renam.mac"
+  },
+  {
+    "title": "shownres.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/shownres.mac",
+    "description": "shownres.mac"
+  },
+  {
+    "title": "thicplot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/thicplot.mac",
+    "description": "thicplot.mac"
+  },
+  {
+    "title": "trim1.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/trim1.mac",
+    "description": "trim1.mac"
+  },
+  {
+    "title": "vert.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/vert.mac",
+    "description": "vert.mac"
+  },
+  {
+    "title": "alsm.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/alsm.mac",
+    "description": "alsm.mac"
+  },
+  {
+    "title": "anol.mac",
+    "author": "Bram Weisman (SBM-IMODCO)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac",
+    "description": "\"I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4). \r\n \"Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings. \r\n \"To get a feel for this, try issuing the following: \r\n ANOL,4,,'This is four lines above title','' \r\n ANOL,3,,'This is three lines above title','' \r\n ANOL,2,,'This is two lines above title','' \r\n ANOL,1,,'This is one lines above title',''\r\n \r\n \"Also try the following: \r\n /title,This is the title \r\n ANOL,0,,'This is the title','' \r\n \r\n The two are perfectly overlaid on my system.\""
+  },
+  {
+    "title": "beaforce.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac",
+    "description": "beaforce.mac"
+  },
+  {
+    "title": "closeline.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/closeline.mac",
+    "description": "closeline.mac"
+  },
+  {
+    "title": "cnf_freqresp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/cnf_freqresp.mac",
+    "description": "cnf_freqresp.mac"
+  },
+  {
+    "title": "cvctrl.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/cvctrl.mac",
+    "description": "Prompts for yield stress of material and uses it to set up /CVAL command so that post-processing plots will show elements that exceed the YIELD stress value as red, and elements which have a compressive stress lower than -YIELD as blue. If the minimum stress is not less than -YIELD than the actual minimum is used instead of -YIELD."
+  },
+  {
+    "title": "dnsol_view.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/dnsol_view.mac",
+    "description": "dnsol_view.mac"
+  },
+  {
+    "title": "emtgen.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/emtgen.mac",
+    "description": "emtgen.mac"
+  },
+  {
+    "title": "fclear.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/fclear.mac",
+    "description": "fclear.mac"
+  },
+  {
+    "title": "fldsurf.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/fldsurf.mac",
+    "description": "fldsurf.mac"
+  },
+  {
+    "title": "getmass.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/getmass.mac",
+    "description": "getmass.mac"
+  },
+  {
+    "title": "hpkp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/hpkp.mac",
+    "description": "hpkp.mac"
+  },
+  {
+    "title": "im26.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/im26.mac",
+    "description": "im26.mac"
+  },
+  {
+    "title": "im82.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/im82.mac",
+    "description": "im82.mac"
+  },
+  {
+    "title": "kll.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/kll.mac",
+    "description": "kll.mac"
+  },
+  {
+    "title": "l_nlist.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/l_nlist.mac",
+    "description": "l_nlist.mac"
+  },
+  {
+    "title": "mpscale.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/mpscale.mac",
+    "description": "mpscale.mac"
+  },
+  {
+    "title": "multread.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/multread.mac",
+    "description": "multread.mac"
+  },
+  {
+    "title": "nas2ans.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/nas2ans.mac",
+    "description": "nas2ans.mac"
+  },
+  {
+    "title": "nod2kp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/nod2kp.mac",
+    "description": "nod2kp.mac"
+  },
+  {
+    "title": "p_dirlbl.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/p_dirlbl.mac",
+    "description": "p_dirlbl.mac"
+  },
+  {
+    "title": "plot_tag.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/plot_tag.mac",
+    "description": "plot_tag.mac"
+  },
+  {
+    "title": "rotv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/rotv.mac",
+    "description": "rotv.mac"
+  },
+  {
+    "title": "spiral.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/spiral.mac",
+    "description": "spiral.mac"
+  },
+  {
+    "title": "stiicemflotran.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/stiicemflotran.mac",
+    "description": "stiicemflotran.mac"
+  },
+  {
+    "title": "trim2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/trim2.mac",
+    "description": "trim2.mac"
+  },
+  {
+    "title": "vget_subs.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/vget_subs.mac",
+    "description": "vget_subs.mac"
+  },
+  {
+    "title": "vrange.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/vrange.mac",
+    "description": "vrange.mac"
+  },
+  {
+    "title": "x_plldst.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/x_plldst.mac",
+    "description": "x_plldst.mac"
+  },
+  {
+    "title": "ave_tmp.mac",
+    "author": "Ted Harris (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ave_tmp.mac",
+    "description": "Computes the average temperature (from a thermal analysis) of the selected set of nodes. Example of the use of *VMASK."
+  },
+  {
+    "title": "b188to89.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/b188to89.mac",
+    "description": "b188to89.mac"
+  },
+  {
+    "title": "compten.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/compten.mac",
+    "description": "compten.mac"
+  },
+  {
+    "title": "couple_dof.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/couple_dof.mac",
+    "description": "couple_dof.mac"
+  },
+  {
+    "title": "cycgen.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cycgen.mac",
+    "description": "cycgen.mac"
+  },
+  {
+    "title": "dgnr8.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/dgnr8.mac",
+    "description": "dgnr8.mac"
+  },
+  {
+    "title": "dydxi.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/dydxi.mac",
+    "description": "dydxi.mac"
+  },
+  {
+    "title": "flohgen.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/flohgen.mac",
+    "description": "flohgen.mac"
+  },
+  {
+    "title": "getpathname.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/getpathname.mac",
+    "description": "getpathname.mac"
+  },
+  {
+    "title": "im27.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/im27.mac",
+    "description": "im27.mac"
+  },
+  {
+    "title": "im9.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/im9.mac",
+    "description": "im9.mac"
+  },
+  {
+    "title": "int_areas.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/int_areas.mac",
+    "description": "int_areas.mac"
+  },
+  {
+    "title": "kpmv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/kpmv.mac",
+    "description": "kpmv.mac"
+  },
+  {
+    "title": "midstres.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/midstres.mac",
+    "description": "midstres.mac"
+  },
+  {
+    "title": "nastexp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/nastexp.mac",
+    "description": "nastexp.mac"
+  },
+  {
+    "title": "p_nlist.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/p_nlist.mac",
+    "description": "p_nlist.mac"
+  },
+  {
+    "title": "peri3d.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/peri3d.mac",
+    "description": "peri3d.mac"
+  },
+  {
+    "title": "plrv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/plrv.mac",
+    "description": "plrv.mac"
+  },
+  {
+    "title": "round.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/round.mac",
+    "description": "round.mac"
+  },
+  {
+    "title": "sort2d.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac",
+    "description": "sort2d.mac"
+  },
+  {
+    "title": "spltarcs.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/spltarcs.mac",
+    "description": "spltarcs.mac"
+  },
+  {
+    "title": "strne.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/strne.mac",
+    "description": "strne.mac"
+  },
+  {
+    "title": "tchkplot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/tchkplot.mac",
+    "description": "tchkplot.mac"
+  },
+  {
+    "title": "thread.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/thread.mac",
+    "description": "thread.mac"
+  },
+  {
+    "title": "trim3.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/trim3.mac",
+    "description": "trim3.mac"
+  },
+  {
+    "title": "viewface.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/viewface.mac",
+    "description": "viewface.mac"
+  },
+  {
+    "title": "vslm_bw.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/vslm_bw.mac",
+    "description": "vslm_bw.mac"
+  },
+  {
+    "title": "writearr.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/writearr.mac",
+    "description": "writearr.mac"
+  },
+  {
+    "title": "x_shl2sld.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/x_shl2sld.mac",
+    "description": "x_shl2sld.mac"
+  },
+  {
+    "title": "a2comet.mac",
+    "author": "Fern Thomassy (Southwest Research Institute)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac",
+    "description": "Creates a COMET/Acoustics model from an ANSYS model."
+  },
+  {
+    "title": "avgtemp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/avgtemp.mac",
+    "description": "avgtemp.mac"
+  },
+  {
+    "title": "beamnet.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac",
+    "description": "beamnet.mac"
+  },
+  {
+    "title": "cbc_rmp5.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac",
+    "description": "cbc_rmp5.mac"
+  },
+  {
+    "title": "cmdif.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac",
+    "description": "cmdif.mac"
+  },
+  {
+    "title": "cnvg_time.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac",
+    "description": "cnvg_time.mac"
+  },
+  {
+    "title": "e72to142.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/e72to142.mac",
+    "description": "e72to142.mac"
+  },
+  {
+    "title": "geta4l.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/geta4l.mac",
+    "description": "geta4l.mac"
+  },
+  {
+    "title": "getreal.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/getreal.mac",
+    "description": "getreal.mac"
+  },
+  {
+    "title": "gscontours.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/gscontours.mac",
+    "description": "gscontours.mac"
+  },
+  {
+    "title": "hsarea.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/hsarea.mac",
+    "description": "hsarea.mac"
+  },
+  {
+    "title": "im28.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/im28.mac",
+    "description": "im28.mac"
+  },
+  {
+    "title": "im94.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/im94.mac",
+    "description": "im94.mac"
+  },
+  {
+    "title": "m55to54.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/m55to54.mac",
+    "description": "m55to54.mac"
+  },
+  {
+    "title": "Miners-Rule.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Miners-Rule.mac",
+    "description": "Miners-Rule.mac"
+  },
+  {
+    "title": "mshdvols.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/mshdvols.mac",
+    "description": "mshdvols.mac"
+  },
+  {
+    "title": "mvsum.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/mvsum.mac",
+    "description": "mvsum.mac"
+  },
+  {
+    "title": "p_protec.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/p_protec.mac",
+    "description": "p_protec.mac"
+  },
+  {
+    "title": "picker.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/picker.mac",
+    "description": "picker.mac"
+  },
+  {
+    "title": "plvln.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/plvln.mac",
+    "description": "plvln.mac"
+  },
+  {
+    "title": "rcs2ics.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/rcs2ics.mac",
+    "description": "rcs2ics.mac"
+  },
+  {
+    "title": "rparea.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/rparea.mac",
+    "description": "rparea.mac"
+  },
+  {
+    "title": "sasel.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/sasel.mac",
+    "description": "sasel.mac"
+  },
+  {
+    "title": "siresume.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac",
+    "description": "siresume.mac"
+  },
+  {
+    "title": "sorted.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/sorted.mac",
+    "description": "sorted.mac"
+  },
+  {
+    "title": "spider.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/spider.mac",
+    "description": "spider.mac"
+  },
+  {
+    "title": "spokes.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/spokes.mac",
+    "description": "spokes.mac"
+  },
+  {
+    "title": "strplot.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/strplot.mac",
+    "description": "strplot.mac"
+  },
+  {
+    "title": "trim4.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/trim4.mac",
+    "description": "trim4.mac"
+  },
+  {
+    "title": "vthick.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/vthick.mac",
+    "description": "vthick.mac"
+  },
+  {
+    "title": "x_th2st.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/x_th2st.mac",
+    "description": "x_th2st.mac"
+  },
+  {
+    "title": "a2glue.mac",
+    "author": "Eric Miller (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac",
+    "description": "Work around for standard AGLUE that avoids the \"ungluing\" that can occur"
+  },
+  {
+    "title": "ac_angle.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ac_angle.mac",
+    "description": "ac_angle.mac"
+  },
+  {
+    "title": "aslm_bw.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/aslm_bw.mac",
+    "description": "aslm_bw.mac"
+  },
+  {
+    "title": "avsucd.mac",
+    "author": "Ian Sigal (University of Toronto)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/avsucd.mac",
+    "description": "\"The macro writes an AVS UCD file that can be read by Amira. This allows quick display and post-processing. I use the macro to export a model formed of Solid92 tetrahedrals, but only the results in the four corners are written to the file. The macro also writes the element solutions, although these are not read by Amira, but are accepted in the AVS UCD standard.\""
+  },
+  {
+    "title": "beampres.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac",
+    "description": "beampres.mac"
+  },
+  {
+    "title": "bode01.mac",
+    "author": "Bill Bulat (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/bode01.mac",
+    "description": "Macro produces a bode plot using 2 predefined variables in /post26."
+  },
+  {
+    "title": "checkiges.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac",
+    "description": "checkiges.mac"
+  },
+  {
+    "title": "cmf.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac",
+    "description": "cmf.mac"
+  },
+  {
+    "title": "conts2s.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac",
+    "description": "conts2s.mac"
+  },
+  {
+    "title": "cpjoins.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cpjoins.mac",
+    "description": "cpjoins.mac"
+  },
+  {
+    "title": "e72to45.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/e72to45.mac",
+    "description": "e72to45.mac"
+  },
+  {
+    "title": "elem2pt.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/elem2pt.mac",
+    "description": "elem2pt.mac"
+  },
+  {
+    "title": "ensight.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ensight.mac",
+    "description": "ensight.mac"
+  },
+  {
+    "title": "fildel.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/fildel.mac",
+    "description": "fildel.mac"
+  },
+  {
+    "title": "getal.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/getal.mac",
+    "description": "getal.mac"
+  },
+  {
+    "title": "getseltol.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/getseltol.mac",
+    "description": "getseltol.mac"
+  },
+  {
+    "title": "hsvolu.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/hsvolu.mac",
+    "description": "hsvolu.mac"
+  },
+  {
+    "title": "im29.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/im29.mac",
+    "description": "im29.mac"
+  },
+  {
+    "title": "indctnc0.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/indctnc0.mac",
+    "description": "indctnc0.mac"
+  },
+  {
+    "title": "invtchg.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/invtchg.mac",
+    "description": "invtchg.mac"
+  },
+  {
+    "title": "jobname.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/jobname.mac",
+    "description": "jobname.mac"
+  },
+  {
+    "title": "listtype.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/listtype.mac",
+    "description": "listtype.mac"
+  },
+  {
+    "title": "mavgtemp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mavgtemp.mac",
+    "description": "mavgtemp.mac"
+  },
+  {
+    "title": "mkweb.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mkweb.mac",
+    "description": "mkweb.mac"
+  },
+  {
+    "title": "ndgroup.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ndgroup.mac",
+    "description": "ndgroup.mac"
+  },
+  {
+    "title": "qclear.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/qclear.mac",
+    "description": "qclear.mac"
+  },
+  {
+    "title": "rcyl.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/rcyl.mac",
+    "description": "rcyl.mac"
+  },
+  {
+    "title": "scopy.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/scopy.mac",
+    "description": "scopy.mac"
+  },
+  {
+    "title": "sfmap.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/sfmap.mac",
+    "description": "sfmap.mac"
+  },
+  {
+    "title": "sortem.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/sortem.mac",
+    "description": "sortem.mac"
+  },
+  {
+    "title": "spider2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/spider2.mac",
+    "description": "spider2.mac"
+  },
+  {
+    "title": "spokes_mpc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/spokes_mpc.mac",
+    "description": "spokes_mpc.mac"
+  },
+  {
+    "title": "svsel.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/svsel.mac",
+    "description": "svsel.mac"
+  },
+  {
+    "title": "trim5.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/trim5.mac",
+    "description": "trim5.mac"
+  },
+  {
+    "title": "v_by_2a.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/v_by_2a.mac",
+    "description": "v_by_2a.mac"
+  },
+  {
+    "title": "vlsm.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/vlsm.mac",
+    "description": "vlsm.mac"
+  },
+  {
+    "title": "x_bcslope.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/x_bcslope.mac",
+    "description": "x_bcslope.mac"
+  },
+  {
+    "title": "aext.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aext.mac",
+    "description": "aext.mac"
+  },
+  {
+    "title": "anfout.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/anfout.mac",
+    "description": "anfout.mac"
+  },
+  {
+    "title": "ans2pat.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ans2pat.mac",
+    "description": "ans2pat.mac"
+  },
+  {
+    "title": "aswp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aswp.mac",
+    "description": "aswp.mac"
+  },
+  {
+    "title": "axiget.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/axiget.mac",
+    "description": "axiget.mac"
+  },
+  {
+    "title": "bearing.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/bearing.mac",
+    "description": "bearing.mac"
+  },
+  {
+    "title": "cmget.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac",
+    "description": "cmget.mac"
+  },
+  {
+    "title": "coil_emf.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/coil_emf.mac",
+    "description": "coil_emf.mac"
+  },
+  {
+    "title": "cpquery.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/cpquery.mac",
+    "description": "cpquery.mac"
+  },
+  {
+    "title": "e92to142.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/e92to142.mac",
+    "description": "e92to142.mac"
+  },
+  {
+    "title": "fins.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fins.mac",
+    "description": "fins.mac"
+  },
+  {
+    "title": "getdir.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/getdir.mac",
+    "description": "getdir.mac"
+  },
+  {
+    "title": "gettris.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/gettris.mac",
+    "description": "gettris.mac"
+  },
+  {
+    "title": "im5.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/im5.mac",
+    "description": "im5.mac"
+  },
+  {
+    "title": "js_curvewrite.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/js_curvewrite.mac",
+    "description": "js_curvewrite.mac"
+  },
+  {
+    "title": "makemesh.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/makemesh.mac",
+    "description": "makemesh.mac"
+  },
+  {
+    "title": "mk_mwrite.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/mk_mwrite.mac",
+    "description": "mk_mwrite.mac"
+  },
+  {
+    "title": "mwrite.mac",
+    "author": "Matt Sutton (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/mwrite.mac",
+    "description": "Macro to write arrays to file. This macro actually uses Tcl/Tk to write another macro, which is then invoked."
+  },
+  {
+    "title": "ndgroup2.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ndgroup2.mac",
+    "description": "ndgroup2.mac"
+  },
+  {
+    "title": "pringet.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/pringet.mac",
+    "description": "pringet.mac"
+  },
+  {
+    "title": "qzmulti.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/qzmulti.mac",
+    "description": "qzmulti.mac"
+  },
+  {
+    "title": "skin.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/skin.mac",
+    "description": "skin.mac"
+  },
+  {
+    "title": "sorter.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/sorter.mac",
+    "description": "sorter.mac"
+  },
+  {
+    "title": "spider3.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/spider3.mac",
+    "description": "spider3.mac"
+  },
+  {
+    "title": "swp.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/swp.mac",
+    "description": "swp.mac"
+  },
+  {
+    "title": "text_unix.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/text_unix.mac",
+    "description": "text_unix.mac"
+  },
+  {
+    "title": "togif.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/togif.mac",
+    "description": "togif.mac"
+  },
+  {
+    "title": "v2comet.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/v2comet.mac",
+    "description": "v2comet.mac"
+  },
+  {
+    "title": "x_cecyc.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/x_cecyc.mac",
+    "description": "x_cecyc.mac"
+  },
+  {
+    "title": "yzcurv.mac",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/yzcurv.mac",
+    "description": "yzcurv.mac"
+  },
+  {
+    "title": "DS_JPDL___User_Fatigue_PNEN13445-3.js",
+    "author": "Przemyslaw Siedlaczek (MESco)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js",
+    "description": "Workbench macro solves fatigue according to pressure vessel code PN EN 13445-3 and displays results as a User Defined Result."
+  },
+  {
+    "title": "ExportBranchAsShortcut.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ExportBranchAsShortcut.js",
+    "description": "ExportBranchAsShortcut.js"
+  },
+  {
+    "title": "attrib_2_Load.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/attrib_2_Load.js",
+    "description": "attrib_2_Load.js"
+  },
+  {
+    "title": "DS_MESCO_ContactName_NrTypeAdd.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/DS_MESCO_ContactName_NrTypeAdd.js",
+    "description": "DS_MESCO_ContactName_NrTypeAdd.js"
+  },
+  {
+    "title": "FindContactsAttachedToParts.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/FindContactsAttachedToParts.js",
+    "description": "FindContactsAttachedToParts.js"
+  },
+  {
+    "title": "attrib_2_Load_FEA.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/attrib_2_Load_FEA.js",
+    "description": "attrib_2_Load_FEA.js"
+  },
+  {
+    "title": "DS_MESCO_ContFrictVsTemp_APLD.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/DS_MESCO_ContFrictVsTemp_APLD.js",
+    "description": "DS_MESCO_ContFrictVsTemp_APLD.js"
+  },
+  {
+    "title": "FindFreeStandingPartsInTree.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/FindFreeStandingPartsInTree.js",
+    "description": "FindFreeStandingPartsInTree.js"
+  },
+  {
+    "title": "attrib_2_MeshSizing.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/attrib_2_MeshSizing.js",
+    "description": "attrib_2_MeshSizing.js"
+  },
+  {
+    "title": "DS_MESCO_SelectBodysByMaterial_EN.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DS_MESCO_SelectBodysByMaterial_EN.js",
+    "description": "DS_MESCO_SelectBodysByMaterial_EN.js"
+  },
+  {
+    "title": "FindPartsWithNoContacts.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/FindPartsWithNoContacts.js",
+    "description": "FindPartsWithNoContacts.js"
+  },
+  {
+    "title": "NameContactsByParts.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/NameContactsByParts.js",
+    "description": "NameContactsByParts.js"
+  },
+  {
+    "title": "setLegend.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/setLegend.js",
+    "description": "setLegend.js"
+  },
+  {
+    "title": "setScale.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/setScale.js",
+    "description": "setScale.js"
+  },
+  {
+    "title": "EngineeringChecker.js",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/EngineeringChecker.js",
+    "description": "EngineeringChecker.js"
+  },
+  {
+    "title": "NS_From_Unique_Names.j",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/NS_From_Unique_Names.js",
+    "description": "NS_From_Unique_Names.j"
+  }
+]
