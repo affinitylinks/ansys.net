@@ -118,8 +118,8 @@
 The non-superelement (&quot;full model&quot;) <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/plate_full.inp" target="_blank" rel="noopener noreferrer">input</a> is here, so you can compare the results to see that they are essentially the same.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp" target="_blank"> radairgap.inp</a></p>
-<p class="font-italic"></p>
-<p>radairgap.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Some users wish to define a region with conduction and allow radiation within that region (such as modeling conduction across an air gap). The attached is a simple example showing use of Radiosity solver (left-side model) and contact element radiation (right-side model). Comparison with a thermal resistance network is done to ensure results are correct. (The solution takes a while to solve because of the segregated solution technique with the radiosity solver. The radiation option of contact elements does not require many iterations, but it only assumes radiation in the normal direction, which may be sufficient for thin gaps.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp" target="_blank"> rv-lmm.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
@@ -138,8 +138,8 @@ The non-superelement (&quot;full model&quot;) <a href="https://github.com/affini
 <p>Example of ALE, squeeze-film damping calculations. Requires associated macros <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/mvconn.mac" target="_blank" rel="noopener noreferrer">MVCONN</a> and <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/boxmove.mac" target="_blank" rel="noopener noreferrer">BOXMOVE.</a></p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp" target="_blank"> weld.inp</a></p>
-<p class="font-italic"></p>
-<p>weld.inp</p>
+<p class="font-italic">Karen Dhuyvetter (CSI)</p>
+<p>Transient analysis of a weld (phase change analysis)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp" target="_blank"> dadd.inp</a></p>
 <p class="font-italic"></p>
@@ -162,20 +162,20 @@ The non-superelement (&quot;full model&quot;) <a href="https://github.com/affini
 <p>Example of random vibration, nodal forces.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp" target="_blank"> shell131rdsf.inp</a></p>
-<p class="font-italic"></p>
-<p>shell131rdsf.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple input file demonstrating use of SHELL131 (thermal shell element which allows for in-plane as well as through-thickness conduction) with the Radiosity Solution method.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp" target="_blank"> spec-acc.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
 <p>Example of running a sprectrum analysis in ANSYS. Acceleration Sprectrum.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp" target="_blank"> therm_cont.inp</a></p>
-<p class="font-italic"></p>
-<p>therm_cont.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Simple input file demonstrating thermal contact conductance with surf-to-surf contact elements (not all thermal features of contact elements shown). Note: Thermal contact for 169-174 elements are BETA at 5.6.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp" target="_blank"> compfillet.inp</a></p>
-<p class="font-italic"></p>
-<p>compfillet.inp</p>
+<p class="font-italic">Joe Metrisin (Florida Turbine Technologies, Inc.)</p>
+<p>&quot;One way I've used to create a compound fillet or spline shape during an optimization run is by use of an elliptical coordinate system. You can get a very well behaved ellipse suitable for optimization with only 3-4 parameters. The procedure is to create two keypoints, and a local cylindrical coordinate system with the par1 option. Then, a line created between these two keypoints will have an elliptical shape.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp" target="_blank"> couette.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (CSI)</p>
@@ -217,8 +217,8 @@ The non-superelement (&quot;full model&quot;) <a href="https://github.com/affini
 <p>User can modify the 1/2 sine input amplitude and duration. ANSYS will calculate the fft and give you an input spectrum for later use in a spectrum analysis.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp" target="_blank"> transient2.inp</a></p>
-<p class="font-italic"></p>
-<p>transient2.inp</p>
+<p class="font-italic">Thomas Jin-Chee Liu (National Cheng Kung University)</p>
+<p>Example input of thermal transient analysis with moving heat source.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

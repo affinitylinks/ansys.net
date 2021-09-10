@@ -119,8 +119,10 @@
 <p>&quot;I created an input-file that simulates the skin-effect of a two-dimensional sector of a coax. During postprocessing you can clearly see the effect of the penetrating magnetic field into the metal. One may extend this model to 3D (perhaps coarser).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp" target="_blank"> diffusion.inp</a></p>
-<p class="font-italic"></p>
-<p>diffusion.inp</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;As a starting point, if you can accept the following analogy between thermal and moisture diffusion, I think you will be pleased in solving the time-dependent diffusion using this technique. As far as the temperature-dependent moisture diffusion, alternating between moisture mechanics and thermal mechanics can probably be done by updating material properties.&quot;</p>
+<p>(Csat is saturated moisture concentration and D is diffusion coefficient.)</p>
+<p>&quot;We use this analogy to simulate moisture absorption in multi-material semiconductor packages under various temperature and RH conditions. It works quite well. Ee Hua Wong (Institute of Microelectronics, Singapore) has developed the technique using ANSYS/Thermal simulations. Mr. Wong has produced several papers outlining the technique.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/flotran_therm.inp" target="_blank"> flotran_therm.inp</a></p>
 <p class="font-italic">Brad Lamirand (Cooper Turbocompressor)</p>
@@ -139,28 +141,29 @@
 <p>Structural Transient, full method. Element pressure vs. Time applied as load steps</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp" target="_blank"> yongyi.inp</a></p>
-<p class="font-italic"></p>
-<p>yongyi.inp</p>
+<p class="font-italic">Yongyi Zhu (ANSYS, Inc.)</p>
+<p>Example of pressure-dependent thermal contact (beta at 5.6).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp" target="_blank"> bar.inp</a></p>
-<p class="font-italic"></p>
-<p>bar.inp</p>
+<p class="font-italic">Timothy Berger (UCLA)</p>
+<p>&quot;I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.&quot;</p>
+<p>For additional notes by author, see contents of macro for more details.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/convect.inp" target="_blank"> convect.inp</a></p>
-<p class="font-italic"></p>
-<p>convect.inp</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>Example of using MP data to apply temp-dependent film coefficient. Please note that this macro does not have geometry and will not run by itself. It is meant to serve as an example in applying film coefficients.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cyc_princ.inp" target="_blank"> cyc_princ.inp</a></p>
 <p class="font-italic">Christian Semler (Mechanical Dynamics Ltd.)</p>
 <p>&quot;Here is an input file which computes principal stresses for a particular sector from a cyclic symmetry analysis, on all corner nodes, without using the /CYCEXPAND command. This enables the use of the *VGET command, so further manipulations are possible.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/fluid116.inp" target="_blank"> fluid116.inp</a></p>
-<p class="font-italic"></p>
-<p>fluid116.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>A very simple example showing how to generate FLUID116 and connect it to a thermal solid (SOLID70 in this case) via SURF152 using the AFSURF command.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp" target="_blank"> pipe_pml.inp</a></p>
-<p class="font-italic"></p>
-<p>pipe_pml.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Example of using PML (perfectly matched layers) with acoustic elements, which is a feature new in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 only). The model is a simple pipe with a planar wave - the wave should propagate through the pipe without loss of amplitude, which demonstrates the use of PML in this case.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/revolve.inp" target="_blank"> revolve.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -175,8 +178,8 @@
 <p>spring.inp</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/st_ex3.inp" target="_blank"> st_ex3.inp</a></p>
-<p class="font-italic"></p>
-<p>st_ex3.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Simple example illustrating use of generating, using, and post-processing thermal surface effect elements.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/tr-tb-press-ft.inp" target="_blank"> tr-tb-press-ft.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>

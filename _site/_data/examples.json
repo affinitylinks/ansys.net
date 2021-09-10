@@ -37,8 +37,9 @@
   },
   {
     "title": "radairgap.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp",
-    "description": "radairgap.inp"
+    "description": "Some users wish to define a region with conduction and allow radiation within that region (such as modeling conduction across an air gap). The attached is a simple example showing use of Radiosity solver (left-side model) and contact element radiation (right-side model). Comparison with a thermal resistance network is done to ensure results are correct. (The solution takes a while to solve because of the segregated solution technique with the radiosity solver. The radiation option of contact elements does not require many iterations, but it only assumes radiation in the normal direction, which may be sufficient for thin gaps.)"
   },
   {
     "title": "rv-lmm.inp",
@@ -66,8 +67,9 @@
   },
   {
     "title": "weld.inp",
+    "author": "Karen Dhuyvetter (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp",
-    "description": "weld.inp"
+    "description": "Transient analysis of a weld (phase change analysis)"
   },
   {
     "title": "dadd.inp",
@@ -99,8 +101,9 @@
   },
   {
     "title": "shell131rdsf.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp",
-    "description": "shell131rdsf.inp"
+    "description": "Simple input file demonstrating use of SHELL131 (thermal shell element which allows for in-plane as well as through-thickness conduction) with the Radiosity Solution method."
   },
   {
     "title": "spec-acc.inp",
@@ -110,13 +113,15 @@
   },
   {
     "title": "therm_cont.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp",
-    "description": "therm_cont.inp"
+    "description": "Simple input file demonstrating thermal contact conductance with surf-to-surf contact elements (not all thermal features of contact elements shown). Note: Thermal contact for 169-174 elements are BETA at 5.6."
   },
   {
     "title": "compfillet.inp",
+    "author": "Joe Metrisin (Florida Turbine Technologies, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp",
-    "description": "compfillet.inp"
+    "description": "\"One way I've used to create a compound fillet or spline shape during an optimization run is by use of an elliptical coordinate system. You can get a very well behaved ellipse suitable for optimization with only 3-4 parameters. The procedure is to create two keypoints, and a local cylindrical coordinate system with the par1 option. Then, a line created between these two keypoints will have an elliptical shape.\""
   },
   {
     "title": "couette.inp",
@@ -168,8 +173,9 @@
   },
   {
     "title": "transient2.inp",
+    "author": "Thomas Jin-Chee Liu (National Cheng Kung University)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp",
-    "description": "transient2.inp"
+    "description": "Example input of thermal transient analysis with moving heat source."
   },
   {
     "title": "tr-lmm-acc-mspt-2.inp",
@@ -213,8 +219,9 @@
   },
   {
     "title": "microoven.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp",
-    "description": "microoven.inp"
+    "description": "\"The following input stream worked just fine in ANSYS 6.0 beta with no errors (1 warning for having both solid model and FE model BCs). Please try this file as I had to change your previous input file significantly. This input file should be generic enough to run in ANSYS 5.6. The bigger challenge will be having the appropriate electrical HF excitation model.\""
   },
   {
     "title": "nip.inp",
@@ -229,8 +236,9 @@
   },
   {
     "title": "sphere.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp",
-    "description": "sphere.inp"
+    "description": "Example of acoustic radiating sphere. Comparison w/ hand calculations."
   },
   {
     "title": "tr-lmm-acc-mspt-sin.inp",
@@ -280,8 +288,9 @@
   },
   {
     "title": "block_rad.inp",
+    "author": "Kal Torak",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp",
-    "description": "block_rad.inp"
+    "description": "Simple input file showing radiation between two blocks using /AUX12 radiation matrix method."
   },
   {
     "title": "cnhtxfr2.inp",
@@ -303,8 +312,9 @@
   },
   {
     "title": "hgen.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/hgen.inp",
-    "description": "hgen.inp"
+    "description": "When using spatially-varying tabular loads for heat generation rate, a common mistake is to specify the table name only for VAL1 in the BFE command. If this is done, subsequent values will use the same value as VAL1, giving constant heat generation rate per element. \n\n  Instead, each node should be given its own value with the BFE command by specifying the table name in all values. This is a simple example demonstrating this. \n\n (This issue does not exist if using spatially-varying tables with the BF command since the BF command is directly specifying heat generation rate per node.)"
   },
   {
     "title": "impulse.inp",
@@ -332,8 +342,9 @@
   },
   {
     "title": "control.inp",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp",
-    "description": "control.inp"
+    "description": "\"Listed below are an ANSYS input file, and a UITFIN subroutine that demonstrate the implementation of a PID control system using a simple spring-mass system.\" \n\n [UITFIN.F](https://github.com/affinitylinks/ansys.net/blob/main/10/uitfin.f) subroutine"
   },
   {
     "title": "elbow290.inp",
@@ -388,8 +399,9 @@
   },
   {
     "title": "diffusion.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp",
-    "description": "diffusion.inp"
+    "description": "\"As a starting point, if you can accept the following analogy between thermal and moisture diffusion, I think you will be pleased in solving the time-dependent diffusion using this technique. As far as the temperature-dependent moisture diffusion, alternating between moisture mechanics and thermal mechanics can probably be done by updating material properties.\" \n\n (Csat is saturated moisture concentration and D is diffusion coefficient.) \n\n  \"We use this analogy to simulate moisture absorption in multi-material semiconductor packages under various temperature and RH conditions. It works quite well. Ee Hua Wong (Institute of Microelectronics, Singapore) has developed the technique using ANSYS/Thermal simulations. Mr. Wong has produced several papers outlining the technique.\""
   },
   {
     "title": "flotran_therm.inp",
@@ -417,18 +429,21 @@
   },
   {
     "title": "yongyi.inp",
+    "author": "Yongyi Zhu (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp",
-    "description": "yongyi.inp"
+    "description": "Example of pressure-dependent thermal contact (beta at 5.6)."
   },
   {
     "title": "bar.inp",
+    "author": "Timothy Berger (UCLA)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp",
-    "description": "bar.inp"
+    "description": "\"I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.\" \n\n For additional notes by author, see contents of macro for more details."
   },
   {
     "title": "convect.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/convect.inp",
-    "description": "convect.inp"
+    "description": "Example of using MP data to apply temp-dependent film coefficient. Please note that this macro does not have geometry and will not run by itself. It is meant to serve as an example in applying film coefficients."
   },
   {
     "title": "cyc_princ.inp",
@@ -438,13 +453,15 @@
   },
   {
     "title": "fluid116.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fluid116.inp",
-    "description": "fluid116.inp"
+    "description": "A very simple example showing how to generate FLUID116 and connect it to a thermal solid (SOLID70 in this case) via SURF152 using the AFSURF command."
   },
   {
     "title": "pipe_pml.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp",
-    "description": "pipe_pml.inp"
+    "description": "Example of using PML (perfectly matched layers) with acoustic elements, which is a feature new in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 only). The model is a simple pipe with a planar wave - the wave should propagate through the pipe without loss of amplitude, which demonstrates the use of PML in this case."
   },
   {
     "title": "revolve.inp",
@@ -465,8 +482,9 @@
   },
   {
     "title": "st_ex3.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/st_ex3.inp",
-    "description": "st_ex3.inp"
+    "description": "Simple example illustrating use of generating, using, and post-processing thermal surface effect elements."
   },
   {
     "title": "tr-tb-press-ft.inp",

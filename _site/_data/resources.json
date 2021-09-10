@@ -1546,8 +1546,9 @@
   },
   {
     "title": "batch.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip",
-    "description": "batch.zip"
+    "description": "This is an example of how to drag-and-drop a .db file onto a DOS batch file to initiate an analysis. \n\n Unzip the file and rename \"Run Nonlinear.txt \" to Run Nonlinear.bat\". Place it on your desktop. \n\n Place \"solve_batch.inp\" in your D: drive or edit \"Run Nonlinear.bat\" to change the location of this APDL input file. \n\n Drag and drop any .db file containing a ready-to-solve nonlinear analysis onto \"Run Nonlinear.bat\". \n\n You will find that the solution will initiate in the same working directory, and you can also track the nonlinear solution graphically as the solution is solving in batch. "
   },
   {
     "title": "muffler.zip",
@@ -1871,8 +1872,9 @@
   },
   {
     "title": "impedance.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip",
-    "description": "impedance.zip"
+    "description": "Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined."
   },
   {
     "title": "inistate.zip",

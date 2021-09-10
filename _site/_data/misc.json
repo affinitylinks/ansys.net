@@ -28,8 +28,9 @@
   },
   {
     "title": "plot7.cmap",
+    "author": "Bryan Baskin (Bell Helicopter Textron, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/plot7.cmap",
-    "description": "plot7.cmap"
+    "description": "Color map (contours) which ranges from purple to red. Use /cmap,plot7.cmap to read in file."
   },
   {
     "title": "greyscl.cmap",
@@ -65,8 +66,9 @@
   },
   {
     "title": "woofer.wbpz",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/woofer.wbpz",
-    "description": "woofer.wbpz"
+    "description": "Fictitious example of an acoustic analysis of a speaker in an archived ANSYS Workbench 13.0 project. Voice coil is excited with unit force; pressure is measured in front of speaker. \n\n  In Workbench, turn on beta features in order to be able to postprocess acoustic pressure. \n\n  Instead of performing a harmonic sweep, an analysis of a single frequency is set up. The Workbench Parameter page is then use to run a frequency sweep, where the PML (perfectly matched layers) region and buffer region size, along with mesh density, is adjusted for each frequency. This is done because if a single mesh for a large frequency range is used, the PML region would need to be as large as to accommodate the lowest frequency of interest while the mesh needs to be fine enough to capture the response of the highest frequency of interest — a large domain and small element size would result in inefficient solution times. By using Workbench Parameters, the mesh can be adjusted uniquely for each frequency. Higher-order FLUID220 and FLUID221 are used."
   },
   {
     "title": "ANS-history.txt",
@@ -75,13 +77,15 @@
   },
   {
     "title": "cmap_ansys_viridis.cmap",
+    "author": "Cristóbal Tapia (University Stuttgart)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap",
-    "description": "cmap_ansys_viridis.cmap"
+    "description": "This is a colormap for Viridis, which is the new colormap designed by Nathaniel Smith and Stéfan van der Walt for matplotlib"
   },
   {
     "title": "jkt.cmap",
+    "author": "Juha Tyllinen (KONE Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap",
-    "description": "jkt.cmap"
+    "description": "Color map (contours) which uses grayscale. Use /cmap,jkt,cmap to read in file."
   },
   {
     "title": "userelement.tar",
@@ -101,8 +105,9 @@
   },
   {
     "title": "reverse_color.cmap",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/reverse_color.cmap",
-    "description": "reverse_color.cmap"
+    "description": "Colormap file to have reverse black and white. Use /cmap,reverse.cmap to read this file in. \n\n (This is the same colormap you get when you use \"Utility Menu > PlotCtrls > Style > Color > Reverse Video\")"
   },
   {
     "title": "APDL.syn",
@@ -111,8 +116,9 @@
   },
   {
     "title": "reverse_gray.cmap",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/reverse_gray.cmap",
-    "description": "reverse_gray.cmap"
+    "description": "Colormap file to have reverse black and white with grayscale colors (dark=blue, light=red). Use /cmap,reverse_gray.cmap to read this file in"
   },
   {
     "title": "tempdele.bat",
@@ -128,6 +134,12 @@
     "title": "script.ps1",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1",
     "description": "script.ps1"
+  },
+  {
+    "title": "wirebond",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/9/wirebond.wbpz",
+    "description": "Simple Workbench Mechanical 13.0 example of a ultrasonic wire bonding tool. The piezoelectric stacks are prestressed with a bolt and driven at a given frequency (in this case, resonance is around 59 kHz). Project includes prestressed modal and prestressed harmonic response analyses. \n\n To run this analysis, be sure to set the environment variable WB OLD PRESTRESS first since piezoelectric elements are not supported with the newer PERTURB method."
   },
   {
     "title": "List of Files",

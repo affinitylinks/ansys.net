@@ -125,8 +125,8 @@ Acceleration vs. Time Acceleration:f=ma</p>
 <p>This input file uses BEAM188.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp" target="_blank"> microoven.inp</a></p>
-<p class="font-italic"></p>
-<p>microoven.inp</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;The following input stream worked just fine in ANSYS 6.0 beta with no errors (1 warning for having both solid model and FE model BCs). Please try this file as I had to change your previous input file significantly. This input file should be generic enough to run in ANSYS 5.6. The bigger challenge will be having the appropriate electrical HF excitation model.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp" target="_blank"> nip.inp</a></p>
 <p class="font-italic"></p>
@@ -137,8 +137,8 @@ Acceleration vs. Time Acceleration:f=ma</p>
 <p>Example of random vibration, pressure loading (reduced modal).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp" target="_blank"> sphere.inp</a></p>
-<p class="font-italic"></p>
-<p>sphere.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example of acoustic radiating sphere. Comparison w/ hand calculations.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/tr-lmm-acc-mspt-sin.inp" target="_blank"> tr-lmm-acc-mspt-sin.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
@@ -176,8 +176,8 @@ Acceleration vs. Time Acceleration:f=ma</p>
 <p>Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp" target="_blank"> block_rad.inp</a></p>
-<p class="font-italic"></p>
-<p>block_rad.inp</p>
+<p class="font-italic">Kal Torak</p>
+<p>Simple input file showing radiation between two blocks using /AUX12 radiation matrix method.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cnhtxfr2.inp" target="_blank"> cnhtxfr2.inp</a></p>
 <p class="font-italic">Brad Lamirand (Cooper Turbocompressor, Inc.)</p>
@@ -192,8 +192,10 @@ Acceleration vs. Time Acceleration:f=ma</p>
 <p>Example of a harmonic response analysis (linear sweep) of a plate using mode-superposition method with enforced motion.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/hgen.inp" target="_blank"> hgen.inp</a></p>
-<p class="font-italic"></p>
-<p>hgen.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>When using spatially-varying tabular loads for heat generation rate, a common mistake is to specify the table name only for VAL1 in the BFE command. If this is done, subsequent values will use the same value as VAL1, giving constant heat generation rate per element.</p>
+<p>Instead, each node should be given its own value with the BFE command by specifying the table name in all values. This is a simple example demonstrating this.</p>
+<p>(This issue does not exist if using spatially-varying tables with the BF command since the BF command is directly specifying heat generation rate per node.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/impulse.inp" target="_blank"> impulse.inp</a></p>
 <p class="font-italic"> Brad Lamirand (Cooper Turbocompressor, Inc.) </p>
@@ -218,8 +220,9 @@ Note that the residual vector method includes stiffness of higher frequencies, b
 <p>Structural Transient, mode superposition method, Element pressure vs. Time</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp" target="_blank"> control.inp</a></p>
-<p class="font-italic"></p>
-<p>control.inp</p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>&quot;Listed below are an ANSYS input file, and a UITFIN subroutine that demonstrate the implementation of a PID control system using a simple spring-mass system.&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/10/uitfin.f" target="_blank" rel="noopener noreferrer">UITFIN.F</a> subroutine</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp" target="_blank"> elbow290.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>

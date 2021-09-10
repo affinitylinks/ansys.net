@@ -105,8 +105,8 @@
 <p>importJPEG2.bas</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/plot7.cmap" target="_blank"> plot7.cmap</a></p>
-<p class="font-italic"></p>
-<p>plot7.cmap</p>
+<p class="font-italic">Bryan Baskin (Bell Helicopter Textron, Inc.) </p>
+<p>Color map (contours) which ranges from purple to red. Use /cmap,plot7.cmap to read in file.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/greyscl.cmap" target="_blank"> greyscl.cmap</a></p>
 <p class="font-italic">John Thompson (ANSYS, Inc.)</p>
@@ -133,20 +133,22 @@
 <p>silicon.mat</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/woofer.wbpz" target="_blank"> woofer.wbpz</a></p>
-<p class="font-italic"></p>
-<p>woofer.wbpz</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Fictitious example of an acoustic analysis of a speaker in an archived ANSYS Workbench 13.0 project. Voice coil is excited with unit force; pressure is measured in front of speaker.</p>
+<p>In Workbench, turn on beta features in order to be able to postprocess acoustic pressure.</p>
+<p>Instead of performing a harmonic sweep, an analysis of a single frequency is set up. The Workbench Parameter page is then use to run a frequency sweep, where the PML (perfectly matched layers) region and buffer region size, along with mesh density, is adjusted for each frequency. This is done because if a single mesh for a large frequency range is used, the PML region would need to be as large as to accommodate the lowest frequency of interest while the mesh needs to be fine enough to capture the response of the highest frequency of interest — a large domain and small element size would result in inefficient solution times. By using Workbench Parameters, the mesh can be adjusted uniquely for each frequency. Higher-order FLUID220 and FLUID221 are used.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt" target="_blank"> ANS-history.txt</a></p>
 <p class="font-italic"></p>
 <p>ANS-history.txt</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap" target="_blank"> cmap_ansys_viridis.cmap</a></p>
-<p class="font-italic"></p>
-<p>cmap_ansys_viridis.cmap</p>
+<p class="font-italic">Cristóbal Tapia (University Stuttgart)</p>
+<p>This is a colormap for Viridis, which is the new colormap designed by Nathaniel Smith and Stéfan van der Walt for matplotlib</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap" target="_blank"> jkt.cmap</a></p>
-<p class="font-italic"></p>
-<p>jkt.cmap</p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>Color map (contours) which uses grayscale. Use /cmap,jkt,cmap to read in file.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar" target="_blank"> userelement.tar</a></p>
 <p class="font-italic"></p>
@@ -161,16 +163,17 @@
 <p>Inventor.vbs</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/reverse_color.cmap" target="_blank"> reverse_color.cmap</a></p>
-<p class="font-italic"></p>
-<p>reverse_color.cmap</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Colormap file to have reverse black and white. Use /cmap,reverse.cmap to read this file in.</p>
+<p>(This is the same colormap you get when you use &quot;Utility Menu &gt; PlotCtrls &gt; Style &gt; Color &gt; Reverse Video&quot;)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn" target="_blank"> APDL.syn</a></p>
 <p class="font-italic"></p>
 <p>APDL.syn</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/reverse_gray.cmap" target="_blank"> reverse_gray.cmap</a></p>
-<p class="font-italic"></p>
-<p>reverse_gray.cmap</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Colormap file to have reverse black and white with grayscale colors (dark=blue, light=red). Use /cmap,reverse_gray.cmap to read this file in</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat" target="_blank"> tempdele.bat</a></p>
 <p class="font-italic"></p>
@@ -183,6 +186,11 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1" target="_blank"> script.ps1</a></p>
 <p class="font-italic"></p>
 <p>script.ps1</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/9/wirebond.wbpz" target="_blank"> wirebond</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple Workbench Mechanical 13.0 example of a ultrasonic wire bonding tool. The piezoelectric stacks are prestressed with a bolt and driven at a given frequency (in this case, resonance is around 59 kHz). Project includes prestressed modal and prestressed harmonic response analyses.</p>
+<p>To run this analysis, be sure to set the environment variable WB OLD PRESTRESS first since piezoelectric elements are not supported with the newer PERTURB method.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt" target="_blank"> List of Files</a></p>
 <p class="font-italic"></p>
