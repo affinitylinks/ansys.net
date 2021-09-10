@@ -86,92 +86,37 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/in-3d.inp" target="_blank"> in-3d.inp</a></p>
-<p class="font-italic"></p>
-<p>in-3d.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp" target="_blank"> shell-abd.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example showing how to calculate the A, B, D, and E matrices for general shell input for a single layer (homogenous) shell. The A, B, D, and E matrices are the shell membrane, coupling, bending, and transverse shear stiffness relationships.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/nat_conv3d.inp" target="_blank"> nat_conv3d.inp</a></p>
-<p class="font-italic"> Sheldon Imaoka (CSI) </p>
-<p>Simple natural convection problem of chip on board, 3D hex.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp" target="_blank"> shell131rdsf.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple input file demonstrating use of SHELL131 (thermal shell element which allows for in-plane as well as through-thickness conduction) with the Radiosity Solution method.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp" target="_blank"> outres.inp</a></p>
-<p class="font-italic"></p>
-<p>outres.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/preten_bolt.inp" target="_blank"> preten_bolt.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp" target="_blank"> shell_cont.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>Example demonstrating pretension (bolt) element PRETS179.</p>
+<p>Input file demonstrating plasticity, contact, finite strain. Also shows benefit of line search activated.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/surf_traction.inp" target="_blank"> surf_traction.inp</a></p>
-<p class="font-italic"></p>
-<p>surf_traction.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp" target="_blank"> simpleshellcontactexample.inp</a></p>
+<p class="font-italic">Bob Weathers (Trane)</p>
+<p>Shows a simple example of contact with shells, shell offset key, and pretension elements.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/tr-lsm-f-mspt.inp" target="_blank"> tr-lsm-f-mspt.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp" target="_blank"> spec-acc-vel-mpt.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
-<p>Structural Transient, mode superposition method. Nodal forces vs. Time</p>
+<p>Example of running a sprectrum analysis in ANSYS. Multipoint input sprectrum (acceleration and velocities).</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp" target="_blank"> ballshear.inp</a></p>
-<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
-<p>&quot;I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper's Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/coax.inp" target="_blank"> coax.inp</a></p>
-<p class="font-italic">Johann Riedler (EPCOS)</p>
-<p>&quot;I created an input-file that simulates the skin-effect of a two-dimensional sector of a coax. During postprocessing you can clearly see the effect of the penetrating magnetic field into the metal. One may extend this model to 3D (perhaps coarser).&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp" target="_blank"> diffusion.inp</a></p>
-<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
-<p>&quot;As a starting point, if you can accept the following analogy between thermal and moisture diffusion, I think you will be pleased in solving the time-dependent diffusion using this technique. As far as the temperature-dependent moisture diffusion, alternating between moisture mechanics and thermal mechanics can probably be done by updating material properties.&quot;</p>
-<p>(Csat is saturated moisture concentration and D is diffusion coefficient.)</p>
-<p>&quot;We use this analogy to simulate moisture absorption in multi-material semiconductor packages under various temperature and RH conditions. It works quite well. Ee Hua Wong (Institute of Microelectronics, Singapore) has developed the technique using ANSYS/Thermal simulations. Mr. Wong has produced several papers outlining the technique.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/flotran_therm.inp" target="_blank"> flotran_therm.inp</a></p>
-<p class="font-italic">Brad Lamirand (Cooper Turbocompressor)</p>
-<p>Here is a quick example of sequential fluid [Flotran] to thermal coupled field analysis.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/friction_test2.inp" target="_blank"> friction_test2.inp</a></p>
-<p class="font-italic">Brent Bristol (SpeedFam-IPEC)</p>
-<p>From the author: &quot;The following macro demonstrates a method for obtaining friction forces directly from a contact interface [and restart capability].&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/rv-ba-mp.inp" target="_blank"> rv-ba-mp.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp" target="_blank"> spec-acc.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
-<p>Example of random vibration, base acceleration in two directions.</p>
+<p>Example of running a sprectrum analysis in ANSYS. Acceleration Sprectrum.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/tr-lsm-press-ft.inp" target="_blank"> tr-lsm-press-ft.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/spec-pulse2.inp" target="_blank"> spec-pulse2.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
-<p>Structural Transient, full method. Element pressure vs. Time applied as load steps</p>
+<p>User can modify the 1/2 sine input amplitude and duration. ANSYS will calculate the fft and give you an input spectrum for later use in a spectrum analysis.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp" target="_blank"> yongyi.inp</a></p>
-<p class="font-italic">Yongyi Zhu (ANSYS, Inc.)</p>
-<p>Example of pressure-dependent thermal contact (beta at 5.6).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp" target="_blank"> bar.inp</a></p>
-<p class="font-italic">Timothy Berger (UCLA)</p>
-<p>&quot;I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.&quot;</p>
-<p>For additional notes by author, see contents of macro for more details.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/convect.inp" target="_blank"> convect.inp</a></p>
-<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
-<p>Example of using MP data to apply temp-dependent film coefficient. Please note that this macro does not have geometry and will not run by itself. It is meant to serve as an example in applying film coefficients.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cyc_princ.inp" target="_blank"> cyc_princ.inp</a></p>
-<p class="font-italic">Christian Semler (Mechanical Dynamics Ltd.)</p>
-<p>&quot;Here is an input file which computes principal stresses for a particular sector from a cyclic symmetry analysis, on all corner nodes, without using the /CYCEXPAND command. This enables the use of the *VGET command, so further manipulations are possible.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/fluid116.inp" target="_blank"> fluid116.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>A very simple example showing how to generate FLUID116 and connect it to a thermal solid (SOLID70 in this case) via SURF152 using the AFSURF command.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp" target="_blank"> pipe_pml.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Example of using PML (perfectly matched layers) with acoustic elements, which is a feature new in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 only). The model is a simple pipe with a planar wave - the wave should propagate through the pipe without loss of amplitude, which demonstrates the use of PML in this case.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/revolve.inp" target="_blank"> revolve.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example showing a disk loaded with initial velocity. Disk rotation is defined by MPC184, so this must be run in version 7.0 and above. (Disk rotation could have been defined by other methods such as deformable-rigid contact, but this was meant to illustrate a particular technique.)</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/rv-ba.inp" target="_blank"> rv-ba.inp</a></p>
-<p class="font-italic">David Haberman (CSI)</p>
-<p>Example of random vibration, base acceleration.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp" target="_blank"> sphere.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example of acoustic radiating sphere. Comparison w/ hand calculations.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/spring.inp" target="_blank"> spring.inp</a></p>
 <p class="font-italic"></p>
@@ -181,9 +126,67 @@
 <p class="font-italic">Sheldon Imaoka (CSI)</p>
 <p>Simple example illustrating use of generating, using, and post-processing thermal surface effect elements.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/surf_traction.inp" target="_blank"> surf_traction.inp</a></p>
+<p class="font-italic"></p>
+<p>surf_traction.inp</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp" target="_blank"> therm_cont.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Simple input file demonstrating thermal contact conductance with surf-to-surf contact elements (not all thermal features of contact elements shown). Note: Thermal contact for 169-174 elements are BETA at 5.6.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp" target="_blank"> torsion3.inp</a></p>
+<p class="font-italic"> Deepak Ganjoo (ANSYS, Inc.) </p>
+<p>Example of ALE, squeeze-film damping calculations. Requires associated macros <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/mvconn.mac" target="_blank" rel="noopener noreferrer">MVCONN</a> and <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/boxmove.mac" target="_blank" rel="noopener noreferrer">BOXMOVE.</a></p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/tr-lmm-acc-mspt-2.inp" target="_blank"> tr-lmm-acc-mspt-2.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Structural Transient<br>
+Pre-Stressed Modal Superposition<br>
+Large Mass Method<br>
+Acceleration vs. Time Acceleration:f=ma</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/tr-lmm-acc-mspt-sin.inp" target="_blank"> tr-lmm-acc-mspt-sin.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of a transient modal supperposition. Large mass method applying acceleration vs. time. 1/2 sine wave with 75 g peak over .006 sec</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/tr-lmm-acc-mspt.inp" target="_blank"> tr-lmm-acc-mspt.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Structural Transient<br>
+Modal Superposition<br>
+Large Mass Method<br>
+Acceleration vs. Time Acceleration:f=ma</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/tr-lsm-el-mspt.inp" target="_blank"> tr-lsm-el-mspt.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Structural Transient, mode superposition method, Element pressure vs. Time</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/tr-lsm-f-mspt.inp" target="_blank"> tr-lsm-f-mspt.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Structural Transient, mode superposition method. Nodal forces vs. Time</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/tr-lsm-press-ft.inp" target="_blank"> tr-lsm-press-ft.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Structural Transient, full method. Element pressure vs. Time applied as load steps</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/tr-tb-press-ft.inp" target="_blank"> tr-tb-press-ft.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>
 <p>Structural Transient, full method. Element pressure vs. Time applied as tabular load.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp" target="_blank"> transient2.inp</a></p>
+<p class="font-italic">Thomas Jin-Chee Liu (National Cheng Kung University)</p>
+<p>Example input of thermal transient analysis with moving heat source.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/vortex.inp" target="_blank"> vortex.inp</a></p>
+<p class="font-italic"> Mark Troscinski (ANSYS, Inc.) </p>
+<p>Example of setting up vortex shedding. This is not a complete input file but shows options necessary to set up the problem. Also, a Zipped <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/vortex.zip" target="_blank" rel="noopener noreferrer">AVI animation</a> is available.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp" target="_blank"> weld.inp</a></p>
+<p class="font-italic">Karen Dhuyvetter (CSI)</p>
+<p>Transient analysis of a weld (phase change analysis)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp" target="_blank"> yongyi.inp</a></p>
+<p class="font-italic">Yongyi Zhu (ANSYS, Inc.)</p>
+<p>Example of pressure-dependent thermal contact (beta at 5.6).</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -1,33 +1,39 @@
 [
   {
-    "title": "methods_for_modeling_bolts.pdf",
-    "author": "Jerome Montgomery",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf",
-    "description": "\"Modeling bolts for three-dimensional finite element applications have, and still continue to raise questions. The limitations on model size sometimes make modeling of solid bolts impractical. Therefore, many analysts choose other methods to model bolts. Line elements with coupled nodes and line elements with spider beams are a couple of alternative approaches. This paper looks at a few methods for modeling pretension bolted joints using the finite element method (ANSYS 5.7). Pretension is modeled using ANSYS pretension elements (PRETS179) which can be used on solid or line element types. Surface-to-surface contact elements are used to account for varying contact distribution along flanges. Bolt head and nut behavior is modeled by, coupled nodes, beam elements, rigid body elements (RBE3), or solids. Bolt stud is modeled by solid elements, beam elements, pipe elements, or link elements. The choice of line elements versus solid elements is determined by the degree of complexity sought. The pros and cons of different simulations are also discussed.\""
+    "title": "*GET/*VGET Sheet",
+    "author": "(PADT) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Get_Summary_2005_08_15.pdf",
+    "description": "This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros. "
   },
   {
-    "title": "nonlinear_problems_of_steel_civil_structures.pdf",
-    "author": "Milan Vasek",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf",
-    "description": "\"The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.\""
+    "title": "051805_maug_contact_presentation.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/051805_maug_contact_presentation.pdf",
+    "description": "051805_maug_contact_presentation.pdf"
   },
   {
-    "title": "Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites",
-    "author": "J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf",
-    "description": "\"Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing \"of the shelf\" technology of achieving the same goals. Thus, the \"Z-mat\" and \"Z-Optim\" packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a \"USERMAT\" subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.\""
+    "title": "051805_maug_topology_optimization_presentation.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/051805_maug_topology_optimization_presentation.pdf",
+    "description": "051805_maug_topology_optimization_presentation.pdf"
   },
   {
-    "title": "The Building Blocks of Simulation: A New Family of Elements for Stress Analysis",
-    "author": "(ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf",
-    "description": "Presentation on 18x family of elements (part of the \"Advanced Analysis with ANSYS\" seminar during the 2002 User's Conference)."
+    "title": "10.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/10.pdf",
+    "description": "10.pdf"
   },
   {
-    "title": "Principles of Simulating Contact Between Parts using ANSYS",
-    "author": "David H. Johnson",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf",
-    "description": "\"The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.\""
+    "title": "10_0130_Cross_paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/10_0130_Cross_paper.pdf",
+    "description": "10_0130_Cross_paper.pdf"
+  },
+  {
+    "title": "12.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/12.pdf",
+    "description": "12.pdf"
+  },
+  {
+    "title": "13_4.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/13_4.pdf",
+    "description": "13_4.pdf"
   },
   {
     "title": "180 Series Elements: Why Should One Use Them in Linear Analysis",
@@ -36,16 +42,286 @@
     "description": "Presentation on 18x elements (continuum, beam, shell) and its features related to both linear and nonlinear analyses."
   },
   {
+    "title": "1998imaps_taiwan.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/1998imaps_taiwan.pdf",
+    "description": "1998imaps_taiwan.pdf"
+  },
+  {
+    "title": "1_4_4.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/1_4_4.pdf",
+    "description": "1_4_4.pdf"
+  },
+  {
+    "title": "20010202.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/20010202.pdf",
+    "description": "20010202.pdf"
+  },
+  {
+    "title": "200711956.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/200711956.pdf",
+    "description": "200711956.pdf"
+  },
+  {
+    "title": "2012-optimum_csp_underfill.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/2012-optimum_csp_underfill.pdf",
+    "description": "2012-optimum_csp_underfill.pdf"
+  },
+  {
+    "title": "21.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/21.pdf",
+    "description": "21.pdf"
+  },
+  {
+    "title": "22x Coupled-Field Elements [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0602_Coupled-Field_Elements.pdf",
+    "description": "\"The 22x direct coupled-field elements (PLANE223, SOLID226-227) provide a wide array of material behavior for multiphysics applications - these include piezoelectricity, piezoresistivity, thermoelasticity, and thermoelectricity. This memo hopes to introduce some of the pertinent features of these elements.\""
+  },
+  {
+    "title": "25.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/25.pdf",
+    "description": "25.pdf"
+  },
+  {
+    "title": "2522-3EN.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/2522-3EN.pdf",
+    "description": "2522-3EN.pdf"
+  },
+  {
+    "title": "26.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/26.pdf",
+    "description": "26.pdf"
+  },
+  {
+    "title": "3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf",
+    "description": "A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated >11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs."
+  },
+  {
+    "title": "3964aeng.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/3964aeng.pdf",
+    "description": "3964aeng.pdf"
+  },
+  {
+    "title": "3rdASMO-UK-THLeeKKLee.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/3rdASMO-UK-THLeeKKLee.pdf",
+    "description": "3rdASMO-UK-THLeeKKLee.pdf"
+  },
+  {
+    "title": "51ectc_outstanding_poster.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/51ectc_outstanding_poster.pdf",
+    "description": "51ectc_outstanding_poster.pdf"
+  },
+  {
+    "title": "54.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/54.pdf",
+    "description": "54.pdf"
+  },
+  {
+    "title": "56.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/56.pdf",
+    "description": "56.pdf"
+  },
+  {
+    "title": "587.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/587.pdf",
+    "description": "587.pdf"
+  },
+  {
+    "title": "5B1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/5B1.pdf",
+    "description": "5B1.pdf"
+  },
+  {
+    "title": "772.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/772.pdf",
+    "description": "772.pdf"
+  },
+  {
+    "title": "9.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/9.pdf",
+    "description": "9.pdf"
+  },
+  {
+    "title": "9601-010.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/9601-010.pdf",
+    "description": "9601-010.pdf"
+  },
+  {
+    "title": "98-102.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/98-102.pdf",
+    "description": "98-102.pdf"
+  },
+  {
+    "title": "A23417.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/A23417.pdf",
+    "description": "A23417.pdf"
+  },
+  {
+    "title": "ANSYS Cast Iron Material Model Matches Experimental Data",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cast_iron.doc.pdf",
+    "description": "\"[The purpose of this paper is to] verify the accuracy of the ANSYS cast iron material model. Results from ANSYS are compared with experimental data for a biaxially loaded cruciform geometry.\""
+  },
+  {
+    "title": "ANSYS news",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf",
+    "description": "First Issue of ANSYS News"
+  },
+  {
+    "title": "ANSYS_Function_Builder.pdf",
+    "author": "Achuth Rao (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANSYS_Function_Builder.pdf",
+    "description": "When using the ANSYS Function Editor and Function Loader to define Function Boundary Conditions, a special type of table is used. This document outlines the syntax of the function loading table."
+  },
+  {
+    "title": "ANSYS_University_Support_Program.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ANSYS_University_Support_Program.pdf",
+    "description": "ANSYS_University_Support_Program.pdf"
+  },
+  {
+    "title": "ANSYS_Users_Group_Hyperelastic_Materials.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ANSYS_Users_Group_Hyperelastic_Materials.pdf",
+    "description": "ANSYS_Users_Group_Hyperelastic_Materials.pdf"
+  },
+  {
+    "title": "ANSYS_distributed_tutorial_8.1.zip",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ANSYS_distributed_tutorial_8.1.zip",
+    "description": "This is a document for ANSYS 8.1 distributed solvers and how to set them up, specifically for Windows and Linux."
+  },
+  {
+    "title": "APDL Coding Standards [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI05_APDL_Coding_Standards.pdf",
+    "description": "\"Because of the flexibility and automation APDL (ANSYS Parametric Design Language) provides, many users tend to write input files and macros in addition to using the GUI.\nThere are currently no recognized ‘standards’ of writing APDL macros or input files, although there may exist standards within companies on APDL coding. The lack of APDL coding standards may make inheriting someone else’s input files or macros more difficult. Also, parameter or component conflicts may also arise when using multiple macros.\nThis memo hopes to provide some ideas for groups or individuals wishing to develop APDL standards in writing macros or input files.\""
+  },
+  {
+    "title": "ARTICLE1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ARTICLE1.pdf",
+    "description": "ARTICLE1.pdf"
+  },
+  {
     "title": "Anisotropic Plasticity and Failure Prediction in Wood Composites",
     "author": "David M. Moses, Helmut G.L. Prion",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/anisotropic_plasticity_failure_prediction_wood.pdf",
-    "description": "\"Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.\" \r\n \r\n \"The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.\""
+    "description": "\"Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.\"\r\n \r\n \"The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.\""
   },
   {
-    "title": "conflong_viscoel.pdf",
-    "author": "(ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf",
-    "description": "Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the \"Advanced Analysis with ANSYS\" seminar during the 2002 User's Conference)."
+    "title": "Ans-Mag1b.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Ans-Mag1b.pdf",
+    "description": "Ans-Mag1b.pdf"
+  },
+  {
+    "title": "Ansys_PT_EEC.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Ansys_PT_EEC.pdf",
+    "description": "Ansys_PT_EEC.pdf"
+  },
+  {
+    "title": "Artigo.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Artigo.pdf",
+    "description": "Artigo.pdf"
+  },
+  {
+    "title": "B0-8218-0988-1-03024-7.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/B0-8218-0988-1-03024-7.pdf",
+    "description": "B0-8218-0988-1-03024-7.pdf"
+  },
+  {
+    "title": "BaBar295.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/BaBar295.pdf",
+    "description": "BaBar295.pdf"
+  },
+  {
+    "title": "Basics of ANSYS Macros [PDF]",
+    "author": "David Haberman (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week_28_totw-macros.pdf",
+    "description": "Basics of creating and using macros (APDL) in ANSYS."
+  },
+  {
+    "title": "Bioloch_ICRA04.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Bioloch_ICRA04.pdf",
+    "description": "Bioloch_ICRA04.pdf"
+  },
+  {
+    "title": "Building Parametric Models [PDF]",
+    "author": "David Haberman (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Week_22_totw-parametric-model.pdf",
+    "description": "This memo provides an overview of APDL, defining parameters, and creating parametric models."
+  },
+  {
+    "title": "CADFEM05_anker_paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/CADFEM05_anker_paper.pdf",
+    "description": "CADFEM05_anker_paper.pdf"
+  },
+  {
+    "title": "COMPMENU.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip",
+    "description": "COMPMENU.zip"
+  },
+  {
+    "title": "Coupling low-order elements to high-order elements in ANSYS",
+    "author": "Aaron Acton",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/acton20080620-coupling_low_to_high.pdf",
+    "description": "\"This article presents several methods for obtaining coupling at the interface between low- and high-order elements in ANSYS. This situation can be encountered when modelling the fluid-structure interaction between a solid domain, modelled with quadratic elements, and an acoustic fluid domain, modelled with linear elements. The two methods determined to be most suitable for achieving this coupling are by using either constraint equations or contact elements, both of which are likely more-robust methods than by simply attaching coincident nodes on matching meshes. Examples are provided for each case described herein, and the results from each are compared to the ANSYS 11.0 verification problem VM177.\""
+  },
+  {
+    "title": "Creating APDL Macros [PDF]",
+    "author": "Mike Rife (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/week9-apdl-2.pdf",
+    "description": "The use of the Ansys Parametric Design Language, APDL, to create simple but reusable macros can be a significant time saver. This Tip of the Week will show two examples of macros written for current Ansys users. These macros may be extended or used as templates for future macros."
+  },
+  {
+    "title": "Creating a Helical Path",
+    "author": "Paul McGarry (Galway-Mayo Institute of Technology)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Helical_Path.pdf",
+    "description": "\"A step by step GUI method for creating a left or right-handed helix, in any axis, for any pitch or diameter.\""
+  },
+  {
+    "title": "Customizing GUI Behavior [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI06_Customize_GUI.pdf",
+    "description": "\"The /UIS and /MSTART commands provide the user with control over much of the GUI behavior. At 5.7 and 6.0, this has been extended to include control over the multilegend feature, background color, and mouse button assignment for dynamic rotations. Used in conjunction with the startxx.ans file, this allows the user to change GUI behavior in each ANSYS session.\""
+  },
+  {
+    "title": "DistributedLoad.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DistributedLoad.zip",
+    "description": "DistributedLoad.zip"
+  },
+  {
+    "title": "Don_HemmelgarnITI_Interoperability_Pres.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Don_HemmelgarnITI_Interoperability_Pres.pdf",
+    "description": "Don_HemmelgarnITI_Interoperability_Pres.pdf"
+  },
+  {
+    "title": "Dr_Penzar.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Dr_Penzar.pdf",
+    "description": "Dr_Penzar.pdf"
+  },
+  {
+    "title": "Dutchsensorconf98.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Dutchsensorconf98.pdf",
+    "description": "Dutchsensorconf98.pdf"
+  },
+  {
+    "title": "ECTC2001-paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ECTC2001-paper.pdf",
+    "description": "ECTC2001-paper.pdf"
+  },
+  {
+    "title": "EE245.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/EE245.pdf",
+    "description": "EE245.pdf"
+  },
+  {
+    "title": "EFS.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/EFS.pdf",
+    "description": "EFS.pdf"
+  },
+  {
+    "title": "EPFL_Tutorial.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip",
+    "description": "EPFL_Tutorial.zip"
   },
   {
     "title": "Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package",
@@ -54,76 +330,14 @@
     "description": "\"Ball Grid Array (BGA) is currently the interconnect of choice for attaching microprocessors on a printed circuit board (PCB). The reliability of solder joints is one of the critical issues in BGA surface mount technology (SMT). During reliability testing, BGA fatigue failures were observed on test vehicles (TV). Finite element analysis and physical failure analysis were used to determine the risk to the product in the field. As part of this effort, parametric finite element analysis was carried out to determine the effect of design features like the package size, and BGA pattern on the propensity of fatigue failure. The results of the finite element analysis and physical failure analysis showed that the risk to fatigue failure was much greater on a peripheral / partial grid array package than in a full grid array package.\""
   },
   {
-    "title": "expansion.pdf",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf",
-    "description": "This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground)."
-  },
-  {
-    "title": "roller.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip",
-    "description": "Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model."
-  },
-  {
-    "title": "Reliability Needs",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf",
-    "description": "Overview of Reliability Models and Data Needs"
-  },
-  {
-    "title": "Save Working Loads",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf",
-    "description": "Iterative Determination of Save Working Loads (SWL) for Crawler Cranes"
+    "title": "FFTDFT.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FFTDFT.zip",
+    "description": "FFTDFT.zip"
   },
   {
     "title": "FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf",
     "description": "A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation."
-  },
-  {
-    "title": "3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf",
-    "description": "A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated >11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs."
-  },
-  {
-    "title": "ANSYS news",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf",
-    "description": "First Issue of ANSYS News"
-  },
-  {
-    "title": "ansys_solutions_2003_summer.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_solutions_2003_summer.pdf",
-    "description": "ansys_solutions_2003_summer.pdf"
-  },
-  {
-    "title": "asyed_ectc2004_corrected.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/asyed_ectc2004_corrected.pdf",
-    "description": "asyed_ectc2004_corrected.pdf"
-  },
-  {
-    "title": "barni1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/barni1.pdf",
-    "description": "barni1.pdf"
-  },
-  {
-    "title": "cj21-wai.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cj21-wai.pdf",
-    "description": "cj21-wai.pdf"
-  },
-  {
-    "title": "combined_l_o_smoothing.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/combined_l_o_smoothing.pdf",
-    "description": "combined_l_o_smoothing.pdf"
-  },
-  {
-    "title": "conflong_hyperel.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conflong_hyperel.pdf",
-    "description": "conflong_hyperel.pdf"
-  },
-  {
-    "title": "ECTC2001-paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ECTC2001-paper.pdf",
-    "description": "ECTC2001-paper.pdf"
   },
   {
     "title": "FLUID29andFLUID79.pdf",
@@ -136,19 +350,72 @@
     "description": "FSI.projects.Nabity.paper.pdf"
   },
   {
-    "title": "Helical_Path.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Helical_Path.pdf",
-    "description": "Helical_Path.pdf"
+    "title": "Finet_CAD_04.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Finet_CAD_04.pdf",
+    "description": "Finet_CAD_04.pdf"
   },
   {
-    "title": "hyperelasti_contact_analysis.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/hyperelasti_contact_analysis.pdf",
-    "description": "hyperelasti_contact_analysis.pdf"
+    "title": "Formatting output text of results (PRxxxx family of commands) [PDF]",
+    "author": "Sheldon Imaoka (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week1-formatting-output-text.pdf",
+    "description": "This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output. This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output."
   },
   {
-    "title": "implant_stent.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/implant_stent.pdf",
-    "description": "implant_stent.pdf"
+    "title": "FranzChouly_LN2006.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FranzChouly_LN2006.pdf",
+    "description": "FranzChouly_LN2006.pdf"
+  },
+  {
+    "title": "GSkoro1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/GSkoro1.pdf",
+    "description": "GSkoro1.pdf"
+  },
+  {
+    "title": "General ANSYS Tips (5.5)",
+    "author": "Carl Howard (University of Adelaide) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_tips.pdf",
+    "description": "Where to get help \n  Insufficient disk space \n Bulk compression mode \n Choice of solver \n  Element Normals \n Boolean operations on solid models \n  Meshing \n Loading an array from a file \n Using ETABLE and extracting the results to an array \n Output when using the GUI \n Generating editable WMF figures "
+  },
+  {
+    "title": "Gerard_et_al.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf",
+    "description": "Gerard_et_al.pdf"
+  },
+  {
+    "title": "HE_WB.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/HE_WB.zip",
+    "description": "HE_WB.zip"
+  },
+  {
+    "title": "Hyper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hyper.pdf",
+    "description": "Hyper.pdf"
+  },
+  {
+    "title": "IEEE00_LGC_umirror.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/IEEE00_LGC_umirror.pdf",
+    "description": "IEEE00_LGC_umirror.pdf"
+  },
+  {
+    "title": "IJSS2007.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/IJSS2007.pdf",
+    "description": "IJSS2007.pdf"
+  },
+  {
+    "title": "IMAPS_Shivesh.PDF",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/IMAPS_Shivesh.PDF",
+    "description": "IMAPS_Shivesh.PDF"
+  },
+  {
+    "title": "INTERP.zip",
+    "author": "Vladimir Tkach (NPO Energomash)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/INTERP.zip",
+    "description": "\"This example interpolates stress-strain curve by polynomial function - Strain=A1+A2*StressA3*Stress^2, in temperature area between Proportional, Yield and Ultimate stresses and reads it into ANSYS db-file.\""
+  },
+  {
+    "title": "IPACK2005-73239.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/IPACK2005-73239.pdf",
+    "description": "IPACK2005-73239.pdf"
   },
   {
     "title": "IRS2006_reprint.pdf",
@@ -156,470 +423,10 @@
     "description": "IRS2006_reprint.pdf"
   },
   {
-    "title": "LNCS3078_Chabanas.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/LNCS3078_Chabanas.pdf",
-    "description": "LNCS3078_Chabanas.pdf"
-  },
-  {
-    "title": "mems-thermal-analogy-fsi-damping.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf",
-    "description": "mems-thermal-analogy-fsi-damping.pdf"
-  },
-  {
-    "title": "modeling_disel_engine_cylinder_gaskets.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/modeling_disel_engine_cylinder_gaskets.pdf",
-    "description": "modeling_disel_engine_cylinder_gaskets.pdf"
-  },
-  {
-    "title": "MSM00_ANSYS_trefftz.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/MSM00_ANSYS_trefftz.pdf",
-    "description": "MSM00_ANSYS_trefftz.pdf"
-  },
-  {
-    "title": "MSM99_UMN_ufluidic.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/MSM99_UMN_ufluidic.pdf",
-    "description": "MSM99_UMN_ufluidic.pdf"
-  },
-  {
-    "title": "neighborhood_size_control.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/neighborhood_size_control.pdf",
-    "description": "neighborhood_size_control.pdf"
-  },
-  {
-    "title": "numib695.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/numib695.pdf",
-    "description": "numib695.pdf"
-  },
-  {
-    "title": "PAC1991_2197.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/PAC1991_2197.pdf",
-    "description": "PAC1991_2197.pdf"
-  },
-  {
-    "title": "post_refinement_quad.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/post_refinement_quad.pdf",
-    "description": "post_refinement_quad.pdf"
-  },
-  {
-    "title": "skinner_thesis.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/skinner_thesis.pdf",
-    "description": "skinner_thesis.pdf"
-  },
-  {
-    "title": "SPIE-02-SS-4701-34-horn.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/SPIE-02-SS-4701-34-horn.pdf",
-    "description": "SPIE-02-SS-4701-34-horn.pdf"
-  },
-  {
-    "title": "st_wave00.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/st_wave00.pdf",
-    "description": "st_wave00.pdf"
-  },
-  {
-    "title": "STI04_Sparse_Solver.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI04_Sparse_Solver.pdf",
-    "description": "STI04_Sparse_Solver.pdf"
-  },
-  {
-    "title": "STI0801_Meshing.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI0801_Meshing.pdf",
-    "description": "STI0801_Meshing.pdf"
-  },
-  {
-    "title": "thermal_comfort.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/thermal_comfort.pdf",
-    "description": "thermal_comfort.pdf"
-  },
-  {
-    "title": "Tracqui_AB_04.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Tracqui_AB_04.pdf",
-    "description": "Tracqui_AB_04.pdf"
-  },
-  {
-    "title": "Week_16_Nonlinear_Monitor.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Week_16_Nonlinear_Monitor.pdf",
-    "description": "Week_16_Nonlinear_Monitor.pdf"
-  },
-  {
-    "title": "week1-formatting-output-text.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week1-formatting-output-text.pdf",
-    "description": "week1-formatting-output-text.pdf"
-  },
-  {
-    "title": "week3-Mass_Calculation_Macros.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week3-Mass_Calculation_Macros.pdf",
-    "description": "week3-Mass_Calculation_Macros.pdf"
-  },
-  {
-    "title": "zej-2012-anand-2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/zej-2012-anand-2.pdf",
-    "description": "zej-2012-anand-2.pdf"
-  },
-  {
-    "title": "051805_maug_contact_presentation.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/051805_maug_contact_presentation.pdf",
-    "description": "051805_maug_contact_presentation.pdf"
-  },
-  {
-    "title": "1_4_4.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/1_4_4.pdf",
-    "description": "1_4_4.pdf"
-  },
-  {
-    "title": "3964aeng.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/3964aeng.pdf",
-    "description": "3964aeng.pdf"
-  },
-  {
-    "title": "9.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/9.pdf",
-    "description": "9.pdf"
-  },
-  {
-    "title": "ahieke.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ahieke.pdf",
-    "description": "ahieke.pdf"
-  },
-  {
-    "title": "ansys_news_1996_2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_news_1996_2.pdf",
-    "description": "ansys_news_1996_2.pdf"
-  },
-  {
-    "title": "ansys_tips.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_tips.pdf",
-    "description": "ansys_tips.pdf"
-  },
-  {
-    "title": "ansys25b.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys25b.pdf",
-    "description": "ansys25b.pdf"
-  },
-  {
-    "title": "benchmar_tests_on_ansys_parallel_proc.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/benchmar_tests_on_ansys_parallel_proc.pdf",
-    "description": "benchmar_tests_on_ansys_parallel_proc.pdf"
-  },
-  {
-    "title": "bzahn00.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/bzahn00.pdf",
-    "description": "bzahn00.pdf"
-  },
-  {
-    "title": "comparison_of_biomechanical_breast_models.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/comparison_of_biomechanical_breast_models.pdf",
-    "description": "comparison_of_biomechanical_breast_models.pdf"
-  },
-  {
-    "title": "coolingreview.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/coolingreview.pdf",
-    "description": "coolingreview.pdf"
-  },
-  {
-    "title": "cubeandsphere.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/cubeandsphere.pdf",
-    "description": "cubeandsphere.pdf"
-  },
-  {
-    "title": "EE245.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/EE245.pdf",
-    "description": "EE245.pdf"
-  },
-  {
-    "title": "erfurt02new_detector-reprint.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/erfurt02new_detector-reprint.pdf",
-    "description": "erfurt02new_detector-reprint.pdf"
-  },
-  {
-    "title": "Get_Summary_2005_08_15.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Get_Summary_2005_08_15.pdf",
-    "description": "Get_Summary_2005_08_15.pdf"
-  },
-  {
-    "title": "hyper_elasticcity_curvefitting.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/hyper_elasticcity_curvefitting.pdf",
-    "description": "hyper_elasticcity_curvefitting.pdf"
-  },
-  {
-    "title": "jb99_14.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/jb99_14.pdf",
-    "description": "jb99_14.pdf"
-  },
-  {
-    "title": "lau.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/lau.pdf",
-    "description": "lau.pdf"
-  },
-  {
-    "title": "Marc_Halpern7CVP_mh.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Marc_Halpern7CVP_mh.pdf",
-    "description": "Marc_Halpern7CVP_mh.pdf"
-  },
-  {
-    "title": "memsissue1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/memsissue1.pdf",
-    "description": "memsissue1.pdf"
-  },
-  {
-    "title": "MSM00_ANSYS_tzpcfin.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/MSM00_ANSYS_tzpcfin.pdf",
-    "description": "MSM00_ANSYS_tzpcfin.pdf"
-  },
-  {
-    "title": "painless-conjugate-gradient.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/painless-conjugate-gradient.pdf",
-    "description": "painless-conjugate-gradient.pdf"
-  },
-  {
-    "title": "radiation.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/radiation.pdf",
-    "description": "radiation.pdf"
-  },
-  {
-    "title": "SPIE-02-SS-4701-36-USDC.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/SPIE-02-SS-4701-36-USDC.pdf",
-    "description": "SPIE-02-SS-4701-36-USDC.pdf"
-  },
-  {
-    "title": "STI05_ANSYS_6.0_Contact_Wizard.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI05_ANSYS_6.0_Contact_Wizard.pdf",
-    "description": "STI05_ANSYS_6.0_Contact_Wizard.pdf"
-  },
-  {
-    "title": "STI0802_Drucker_Prager.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0802_Drucker_Prager.pdf",
-    "description": "STI0802_Drucker_Prager.pdf"
-  },
-  {
-    "title": "STI0901_Compiling_UPFs.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0901_Compiling_UPFs.pdf",
-    "description": "STI0901_Compiling_UPFs.pdf"
-  },
-  {
-    "title": "STI12_Cyclic_Symmetry_at_6.0.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI12_Cyclic_Symmetry_at_6.0.pdf",
-    "description": "STI12_Cyclic_Symmetry_at_6.0.pdf"
-  },
-  {
-    "title": "t2107.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/t2107.pdf",
-    "description": "t2107.pdf"
-  },
-  {
-    "title": "transducers-paper_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/transducers-paper_3.pdf",
-    "description": "transducers-paper_3.pdf"
-  },
-  {
-    "title": "Tu.4.7.4.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Tu.4.7.4.pdf",
-    "description": "Tu.4.7.4.pdf"
-  },
-  {
-    "title": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
-    "description": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf"
-  },
-  {
-    "title": "week10-Text_Compression_Utilities.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week10-Text_Compression_Utilities.pdf",
-    "description": "week10-Text_Compression_Utilities.pdf"
-  },
-  {
-    "title": "week4-effective_cte.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week4-effective_cte.pdf",
-    "description": "week4-effective_cte.pdf"
-  },
-  {
-    "title": "WEP125G.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/WEP125G.pdf",
-    "description": "WEP125G.pdf"
-  },
-  {
-    "title": "051805_maug_topology_optimization_presentation.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/051805_maug_topology_optimization_presentation.pdf",
-    "description": "051805_maug_topology_optimization_presentation.pdf"
-  },
-  {
-    "title": "20010202.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/20010202.pdf",
-    "description": "20010202.pdf"
-  },
-  {
-    "title": "3rdASMO-UK-THLeeKKLee.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/3rdASMO-UK-THLeeKKLee.pdf",
-    "description": "3rdASMO-UK-THLeeKKLee.pdf"
-  },
-  {
-    "title": "9601-010.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/9601-010.pdf",
-    "description": "9601-010.pdf"
-  },
-  {
-    "title": "alex-fem.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/alex-fem.pdf",
-    "description": "alex-fem.pdf"
-  },
-  {
-    "title": "ansys_news_1996_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ansys_news_1996_3.pdf",
-    "description": "ansys_news_1996_3.pdf"
-  },
-  {
-    "title": "ANSYS_University_Support_Program.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ANSYS_University_Support_Program.pdf",
-    "description": "ANSYS_University_Support_Program.pdf"
-  },
-  {
-    "title": "bericht92.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/bericht92.pdf",
-    "description": "bericht92.pdf"
-  },
-  {
-    "title": "bzahn_ball_via_fatigue_paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/bzahn_ball_via_fatigue_paper.pdf",
-    "description": "bzahn_ball_via_fatigue_paper.pdf"
-  },
-  {
-    "title": "contact_beta_56.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/contact_beta_56.pdf",
-    "description": "contact_beta_56.pdf"
-  },
-  {
-    "title": "marval_inzen_mech2007.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/marval_inzen_mech2007.pdf",
-    "description": "marval_inzen_mech2007.pdf"
-  },
-  {
-    "title": "memsissue2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/memsissue2.pdf",
-    "description": "memsissue2.pdf"
-  },
-  {
-    "title": "micro3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/micro3.pdf",
-    "description": "micro3.pdf"
-  },
-  {
-    "title": "MSM2001_paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/MSM2001_paper.pdf",
-    "description": "MSM2001_paper.pdf"
-  },
-  {
-    "title": "nafems05c.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/nafems05c.pdf",
-    "description": "nafems05c.pdf"
-  },
-  {
-    "title": "object_oriented_defeaturing.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/object_oriented_defeaturing.pdf",
-    "description": "object_oriented_defeaturing.pdf"
-  },
-  {
-    "title": "PPPL-3321.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/PPPL-3321.pdf",
-    "description": "PPPL-3321.pdf"
-  },
-  {
-    "title": "SPIE-05_Zensheu-USDC-modeling.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/SPIE-05_Zensheu-USDC-modeling.pdf",
-    "description": "SPIE-05_Zensheu-USDC-modeling.pdf"
-  },
-  {
-    "title": "STI03_Customizing_Toolbar.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI03_Customizing_Toolbar.pdf",
-    "description": "STI03_Customizing_Toolbar.pdf"
-  },
-  {
-    "title": "STI05_APDL_Coding_Standards.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI05_APDL_Coding_Standards.pdf",
-    "description": "STI05_APDL_Coding_Standards.pdf"
-  },
-  {
-    "title": "STI0902_Contact_Tips.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0902_Contact_Tips.pdf",
-    "description": "STI0902_Contact_Tips.pdf"
-  },
-  {
-    "title": "STI65_TNT_Radiosity_Solver.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI65_TNT_Radiosity_Solver.pdf",
-    "description": "STI65_TNT_Radiosity_Solver.pdf"
-  },
-  {
-    "title": "T51-01.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/T51-01.pdf",
-    "description": "T51-01.pdf"
-  },
-  {
-    "title": "Tunneling-Accelerometer-Paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Tunneling-Accelerometer-Paper.pdf",
-    "description": "Tunneling-Accelerometer-Paper.pdf"
-  },
-  {
-    "title": "Week_18_multi-plot.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Week_18_multi-plot.pdf",
-    "description": "Week_18_multi-plot.pdf"
-  },
-  {
-    "title": "week12-STI43_TNT_Bolt_preload.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week12-STI43_TNT_Bolt_preload.pdf",
-    "description": "week12-STI43_TNT_Bolt_preload.pdf"
-  },
-  {
-    "title": "week5_Surface_Effect_Elements.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week5_Surface_Effect_Elements.pdf",
-    "description": "week5_Surface_Effect_Elements.pdf"
-  },
-  {
-    "title": "10.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/10.pdf",
-    "description": "10.pdf"
-  },
-  {
-    "title": "200711956.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/200711956.pdf",
-    "description": "200711956.pdf"
-  },
-  {
-    "title": "51ectc_outstanding_poster.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/51ectc_outstanding_poster.pdf",
-    "description": "51ectc_outstanding_poster.pdf"
-  },
-  {
-    "title": "98-102.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/98-102.pdf",
-    "description": "98-102.pdf"
-  },
-  {
-    "title": "ansys_nitinol_paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ansys_nitinol_paper.pdf",
-    "description": "ansys_nitinol_paper.pdf"
-  },
-  {
-    "title": "ANSYS_Users_Group_Hyperelastic_Materials.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ANSYS_Users_Group_Hyperelastic_Materials.pdf",
-    "description": "ANSYS_Users_Group_Hyperelastic_Materials.pdf"
-  },
-  {
-    "title": "ansysconf_paper_2004_CAEA.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ansysconf_paper_2004_CAEA.pdf",
-    "description": "ansysconf_paper_2004_CAEA.pdf"
-  },
-  {
-    "title": "CADFEM05_anker_paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/CADFEM05_anker_paper.pdf",
-    "description": "CADFEM05_anker_paper.pdf"
-  },
-  {
-    "title": "effects_of_nonlinear_geometric.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/effects_of_nonlinear_geometric.pdf",
-    "description": "effects_of_nonlinear_geometric.pdf"
-  },
-  {
-    "title": "gasketed_flanges_ordinary_elements_apdl_control.pdf",
-    "author": "Yasumasa Shoji, Satoshi Nagata",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/gasketed_flanges_ordinary_elements_apdl_control.pdf",
-    "description": "\"The analysis of gasketted flanges is now becoming an essential technique to design pressure vessels or piping, because the design code is being modified. On the other hand, the gasket has an extreme nonlinearity which causes the analysis to be very difficult, especially using linear material properties. A finite element analysis program other than ANSYS has the element library for gasket element, but ANSYS does not have it yet.\" \r\n \r\n \"The authors developed a method to model this nonlinear gasket by using the elements available in ANSYS Rel. 5.5 for 2-dimensional axisymmetric analysis and those in Rel. 5.6 for 3-dimensional analysis. In this paper, the concept and the procedure of the modeling is introduced. The data input is possible using a template, without using any other ANSYS commands. The whole analysis execution is controlled by APDL.\" \r\n \r\n [STI: Gasket elements are available from version 6.1 onwards, after this paper was written]"
+    "title": "Improvements to Time-History Postprocessing at 6.0 [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI08_ANSYS_6.0_Variable_Viewer.pdf",
+    "description": "\"This tips and tricks focuses on improvements at 6.0 on the Time-History postprocessor. (After I did this, I realized that a lot of this was already covered in the 6.0 Update seminar, but, oh well...)\""
   },
   {
     "title": "Jewart_etd_2006.pdf",
@@ -627,9 +434,40 @@
     "description": "Jewart_etd_2006.pdf"
   },
   {
-    "title": "memsissue3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/memsissue3.pdf",
-    "description": "memsissue3.pdf"
+    "title": "LNCS3078_Chabanas.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/LNCS3078_Chabanas.pdf",
+    "description": "LNCS3078_Chabanas.pdf"
+  },
+  {
+    "title": "Legend_Example.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Legend_Example.zip",
+    "description": "Legend_Example.zip"
+  },
+  {
+    "title": "LiPaperECF13.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/LiPaperECF13.pdf",
+    "description": "LiPaperECF13.pdf"
+  },
+  {
+    "title": "Long Parameter and Component Names at 6.0 [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI04_Long_Names_and_Strings.zip",
+    "description": "\"Starting from version 5.7, strings have been introduced to replace character arrays. Strings allow for up to 128 characters for APDL purposes, instead of the 8-letter limit of character parameters. The /INQUIRE command as well as string manipulation functions (see *GET online help) extend the usefulness of strings to retrieve and manipulate data. *VWRITE has also been enhanced to support C-format statements, useful in writing out long strings.\"\n\"At 6.0, the 8-character limitation on parameters, components, and /POST26 variables has been removed. Users can now specify up to 32 character for these items, allowing for much more descriptive names. In /POST26, variables can also be referred to by name when plotting or listing.\""
+  },
+  {
+    "title": "M3302.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/M3302.pdf",
+    "description": "M3302.pdf"
+  },
+  {
+    "title": "MEP_2005.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MEP_2005.pdf",
+    "description": "MEP_2005.pdf"
+  },
+  {
+    "title": "MICROtec2000.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/MICROtec2000.pdf",
+    "description": "MICROtec2000.pdf"
   },
   {
     "title": "MPPH060.pdf",
@@ -637,9 +475,98 @@
     "description": "MPPH060.pdf"
   },
   {
+    "title": "MSM00_ANSYS_pds.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/MSM00_ANSYS_pds.pdf",
+    "description": "MSM00_ANSYS_pds.pdf"
+  },
+  {
+    "title": "MSM00_ANSYS_romfin.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MSM00_ANSYS_romfin.pdf",
+    "description": "MSM00_ANSYS_romfin.pdf"
+  },
+  {
+    "title": "MSM00_ANSYS_trefftz.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/MSM00_ANSYS_trefftz.pdf",
+    "description": "MSM00_ANSYS_trefftz.pdf"
+  },
+  {
+    "title": "MSM00_ANSYS_tzpcfin.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/MSM00_ANSYS_tzpcfin.pdf",
+    "description": "MSM00_ANSYS_tzpcfin.pdf"
+  },
+  {
+    "title": "MSM2001_paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/MSM2001_paper.pdf",
+    "description": "MSM2001_paper.pdf"
+  },
+  {
     "title": "MSM99_ANSYS_trans126.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/MSM99_ANSYS_trans126.pdf",
     "description": "MSM99_ANSYS_trans126.pdf"
+  },
+  {
+    "title": "MSM99_CNRS_umirror.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/MSM99_CNRS_umirror.pdf",
+    "description": "MSM99_CNRS_umirror.pdf"
+  },
+  {
+    "title": "MSM99_IMT_upump.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/MSM99_IMT_upump.pdf",
+    "description": "MSM99_IMT_upump.pdf"
+  },
+  {
+    "title": "MSM99_LIMMS_piezo.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/MSM99_LIMMS_piezo.pdf",
+    "description": "MSM99_LIMMS_piezo.pdf"
+  },
+  {
+    "title": "MSM99_RITS_upump.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/MSM99_RITS_upump.pdf",
+    "description": "MSM99_RITS_upump.pdf"
+  },
+  {
+    "title": "MSM99_ULM_cvd.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MSM99_ULM_cvd.pdf",
+    "description": "MSM99_ULM_cvd.pdf"
+  },
+  {
+    "title": "MSM99_UMN_ufluidic.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/MSM99_UMN_ufluidic.pdf",
+    "description": "MSM99_UMN_ufluidic.pdf"
+  },
+  {
+    "title": "Manipulating FE Mesh [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI04_Manipulating_FE_Mesh.zip",
+    "description": "\"There are some special situations where a user may be required to generate or manipulate a database consisting mainly of finite element entities without solid model geometry. With some careful planning, dealing with mesh-only databases can prove to be relatively easy. \n\n Typical situations that may arise include the following: \n\n Import of mesh from Workbench Simulation or AI*Environment/ICEM CFD \n  Generation of repetitive geometry \n\n This memo hopes to cover these situations in more detail.\""
+  },
+  {
+    "title": "Marc_Halpern7CVP_mh.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Marc_Halpern7CVP_mh.pdf",
+    "description": "Marc_Halpern7CVP_mh.pdf"
+  },
+  {
+    "title": "Mass property calculation methods [PDF]",
+    "author": "Sheldon Imaoka (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week3-Mass_Calculation_Macros.pdf",
+    "description": "This memo covers some ways to determine mass properties of an ANSYS model."
+  },
+  {
+    "title": "Material_XML.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Material_XML.zip",
+    "description": "Material_XML.zip"
+  },
+  {
+    "title": "Meshing in Workbench [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI0801_Meshing.pdf",
+    "description": "\"Mechanical users have long enjoyed access to a variety of powerful meshing tools inside of ANSYS to generate high-quality shell, tetrahedral, and swept meshes. During the past several years, meshing in ANSYS Workbench Simulation has not only grown to encompass traditional meshing algorithms in ANSYS but has also developed many features requested by ANSYS users as well as integrated meshing technologies from ANSYS CFX and ANSYS ICEM CFD.\""
+  },
+  {
+    "title": "Nested macros, local parameters, trailing underscores",
+    "author": "Martin Herrenbruck (Technische Universität München) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Nested_macros-all-files.zip",
+    "description": "\"A macro file is a file which contains Ansys commands. If you save your macro in your working directory or in the macro directory (see /PSEARCH command) you just enter the macro name in the command line and all these commands will be executed. You can even nest macros: from your main file you call e.g. zzmacro1 which again calls zzmacro2. The only problem is that a macro could change - and you would probably not notice that - the value of a parameter you are using in your main input file. This will be the case if the same parameter name is used accidentally in both the macro and your main input. Let's see how one can avoid these nasty errors - just click on the link!\""
   },
   {
     "title": "OBrien-NATO-15-2005.pdf",
@@ -647,19 +574,169 @@
     "description": "OBrien-NATO-15-2005.pdf"
   },
   {
+    "title": "Ohayon_BACAS_05.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Ohayon_BACAS_05.pdf",
+    "description": "Ohayon_BACAS_05.pdf"
+  },
+  {
+    "title": "PA-27.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/PA-27.pdf",
+    "description": "PA-27.pdf"
+  },
+  {
+    "title": "PAC1991_2197.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/PAC1991_2197.pdf",
+    "description": "PAC1991_2197.pdf"
+  },
+  {
     "title": "PDS_Overview.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/PDS_Overview.pdf",
     "description": "PDS_Overview.pdf"
   },
   {
-    "title": "SolderTMC.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/SolderTMC.pdf",
-    "description": "SolderTMC.pdf"
+    "title": "POW2MAT.zip",
+    "author": "Carl Olsard (noiseboard.com) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/POW2MAT.zip",
+    "description": "\"This is a simple program written in Turbo pascal which I find very useful for converting the output from ANSYS (prvar, prnsol, etc) into columns, while removing the headers at the start and between the page listings. The program is used at a DOS prompt and one types in: pow2mat col filein fileout , where col are the number of columns in the output, filein MUST have an extension .val and fileout WILL have an extension .txt. You do NOT type in the extensions, they are default. For example, you would type pow2mat 7 nodelist nodelist which would extract 7 columns from the file nodelist.val and write a stripped file called nodelist.txt . If you have several files to convert, you can use the DOS FOR command as follows: \n FOR %I IN (*.val) DO pow2mat 3 %~nI %~nI\""
   },
   {
-    "title": "spie98.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/spie98.pdf",
-    "description": "spie98.pdf"
+    "title": "PPPL-3321.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/PPPL-3321.pdf",
+    "description": "PPPL-3321.pdf"
+  },
+  {
+    "title": "PRESSURE_MAC.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/PRESSURE_MAC.zip",
+    "description": "PRESSURE_MAC.zip"
+  },
+  {
+    "title": "Parametric Studies in ANSYS [PDF]",
+    "author": "Sean Harvey (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/week26-parametric_studies.pdf",
+    "description": "Automated parametric studies in ANSYS (generating and using parametric input files)."
+  },
+  {
+    "title": "Pilsen00.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Pilsen00.pdf",
+    "description": "Pilsen00.pdf"
+  },
+  {
+    "title": "Plotting Entities and Graphs in Multiple Windows [PDF]",
+    "author": "David Haberman (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Week_18_multi-plot.pdf",
+    "description": "ANSYS 5.4 through 5.6 allow users to plot multiple entities (keypoints, lines, areas, volumes, nodes, and elements) in a given window. Prior to ANSYS 5.4, a user was required to plot entities on top of one another, like transparencies. Furthermore, multi-plotting also allows a user to generate graphs. The following memo discusses how the ANSYS multi-plotting feature works."
+  },
+  {
+    "title": "Postprocessing Harmonic Results [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI03_Harmonic_Postprocessing.zip",
+    "description": "\"In harmonic analyses, due to the fact that results may not be in phase, postprocessing quantities of interest can pose a challenge. Users may need to review non-sinusoidal results, such as equivalent stresses, at different locations, so accounting for phase information may be required.\n    This memo hopes to cover some of the more important points regarding postprocessing structural harmonic analysis results in both the General and Time-History Postprocessors.\""
+  },
+  {
+    "title": "PressureMappingExample.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/PressureMappingExample.zip",
+    "description": "PressureMappingExample.zip"
+  },
+  {
+    "title": "Principles of Simulating Contact Between Parts using ANSYS",
+    "author": "David H. Johnson",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf",
+    "description": "\"The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.\""
+  },
+  {
+    "title": "RDARV_Article1200.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/RDARV_Article1200.pdf",
+    "description": "RDARV_Article1200.pdf"
+  },
+  {
+    "title": "Rayburn_USU_Paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Rayburn_USU_Paper.pdf",
+    "description": "Rayburn_USU_Paper.pdf"
+  },
+  {
+    "title": "Reliability Needs",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf",
+    "description": "Overview of Reliability Models and Data Needs"
+  },
+  {
+    "title": "S42-2_Dauksher.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/S42-2_Dauksher.pdf",
+    "description": "S42-2_Dauksher.pdf"
+  },
+  {
+    "title": "SPIE-02-SS-4701-34-horn.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/SPIE-02-SS-4701-34-horn.pdf",
+    "description": "SPIE-02-SS-4701-34-horn.pdf"
+  },
+  {
+    "title": "SPIE-02-SS-4701-36-USDC.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/SPIE-02-SS-4701-36-USDC.pdf",
+    "description": "SPIE-02-SS-4701-36-USDC.pdf"
+  },
+  {
+    "title": "SPIE-05_Zensheu-USDC-modeling.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/SPIE-05_Zensheu-USDC-modeling.pdf",
+    "description": "SPIE-05_Zensheu-USDC-modeling.pdf"
+  },
+  {
+    "title": "STI01_Acoustic_Elements.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI01_Acoustic_Elements.zip",
+    "description": "STI01_Acoustic_Elements.zip"
+  },
+  {
+    "title": "STI01_Electrical_Contact_Beta_6.0.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI01_Electrical_Contact_Beta_6.0.zip",
+    "description": "STI01_Electrical_Contact_Beta_6.0.zip"
+  },
+  {
+    "title": "STI01_PDS_and_Nonlinear_Runs.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI01_PDS_and_Nonlinear_Runs.zip",
+    "description": "STI01_PDS_and_Nonlinear_Runs.zip"
+  },
+  {
+    "title": "STI01_Remote_Solution_Manager.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI01_Remote_Solution_Manager.pdf",
+    "description": "STI01_Remote_Solution_Manager.pdf"
+  },
+  {
+    "title": "STI02_APDL_and_Vector_Operations.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip",
+    "description": "STI02_APDL_and_Vector_Operations.zip"
+  },
+  {
+    "title": "STI02_Nonlinear_Submodeling.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI02_Nonlinear_Submodeling.zip",
+    "description": "STI02_Nonlinear_Submodeling.zip"
+  },
+  {
+    "title": "STI02_QR_Damped_Unsymmetric.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI02_QR_Damped_Unsymmetric.zip",
+    "description": "STI02_QR_Damped_Unsymmetric.zip"
+  },
+  {
+    "title": "STI02_Rigid_Body_Contact.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI02_Rigid_Body_Contact.zip",
+    "description": "STI02_Rigid_Body_Contact.zip"
+  },
+  {
+    "title": "STI03_PSD_Efficiency.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI03_PSD_Efficiency.pdf",
+    "description": "STI03_PSD_Efficiency.pdf"
+  },
+  {
+    "title": "STI03_Yield_and_Failure.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI03_Yield_and_Failure.pdf",
+    "description": "STI03_Yield_and_Failure.pdf"
+  },
+  {
+    "title": "STI04_PSD_Postprocessing.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI04_PSD_Postprocessing.zip",
+    "description": "STI04_PSD_Postprocessing.zip"
+  },
+  {
+    "title": "STI05_ANSYS_6.0_Contact_Wizard.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI05_ANSYS_6.0_Contact_Wizard.pdf",
+    "description": "STI05_ANSYS_6.0_Contact_Wizard.pdf"
   },
   {
     "title": "STI05_DesignXplorer.pdf",
@@ -667,14 +744,283 @@
     "description": "STI05_DesignXplorer.pdf"
   },
   {
-    "title": "tan_wei_200804_phd.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/tan_wei_200804_phd.pdf",
-    "description": "tan_wei_200804_phd.pdf"
+    "title": "STI05_Pressure_Loading.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI05_Pressure_Loading.zip",
+    "description": "STI05_Pressure_Loading.zip"
   },
   {
-    "title": "ultrasonic2000.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ultrasonic2000.pdf",
-    "description": "ultrasonic2000.pdf"
+    "title": "STI0603_Radiosity_Solver_Simulation.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0603_Radiosity_Solver_Simulation.pdf",
+    "description": "STI0603_Radiosity_Solver_Simulation.pdf"
+  },
+  {
+    "title": "STI0604_Viscous_Behavior.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0604_Viscous_Behavior.zip",
+    "description": "STI0604_Viscous_Behavior.zip"
+  },
+  {
+    "title": "STI06_Undocumented_Hyperelastic_Models.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI06_Undocumented_Hyperelastic_Models.zip",
+    "description": "STI06_Undocumented_Hyperelastic_Models.zip"
+  },
+  {
+    "title": "STI0701_CMS_in_Simulation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip",
+    "description": "STI0701_CMS_in_Simulation.zip"
+  },
+  {
+    "title": "STI0702_External_Pressure_Loading_WB_Simulation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0702_External_Pressure_Loading_WB_Simulation.zip",
+    "description": "STI0702_External_Pressure_Loading_WB_Simulation.zip"
+  },
+  {
+    "title": "STI0703_USERHYPER.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0703_USERHYPER.zip",
+    "description": "STI0703_USERHYPER.zip"
+  },
+  {
+    "title": "STI0704_USERCREEP.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0704_USERCREEP.zip",
+    "description": "STI0704_USERCREEP.zip"
+  },
+  {
+    "title": "STI0705_Buckling.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0705_Buckling.pdf",
+    "description": "STI0705_Buckling.pdf"
+  },
+  {
+    "title": "STI0706_Acoustic_Postprocessing.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0706_Acoustic_Postprocessing.zip",
+    "description": "STI0706_Acoustic_Postprocessing.zip"
+  },
+  {
+    "title": "STI07_CERIG_RBE3_RIGID184.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip",
+    "description": "STI07_CERIG_RBE3_RIGID184.zip"
+  },
+  {
+    "title": "STI07_Lagrange_Multipliers.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI07_Lagrange_Multipliers.pdf",
+    "description": "STI07_Lagrange_Multipliers.pdf"
+  },
+  {
+    "title": "STI0802_Drucker_Prager.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0802_Drucker_Prager.pdf",
+    "description": "STI0802_Drucker_Prager.pdf"
+  },
+  {
+    "title": "STI0803_Residual_Vectors.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0803_Residual_Vectors.zip",
+    "description": "STI0803_Residual_Vectors.zip"
+  },
+  {
+    "title": "STI0804_Damping.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip",
+    "description": "STI0804_Damping.zip"
+  },
+  {
+    "title": "STI0805_Chaboche.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0805_Chaboche.pdf",
+    "description": "STI0805_Chaboche.pdf"
+  },
+  {
+    "title": "STI0806_USEROUT.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0806_USEROUT.zip",
+    "description": "STI0806_USEROUT.zip"
+  },
+  {
+    "title": "STI0807_Viscoelasticity.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0807_Viscoelasticity.zip",
+    "description": "STI0807_Viscoelasticity.zip"
+  },
+  {
+    "title": "STI0808_Hill.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0808_Hill.zip",
+    "description": "STI0808_Hill.zip"
+  },
+  {
+    "title": "STI08_PSOLVE.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI08_PSOLVE.zip",
+    "description": "STI08_PSOLVE.zip"
+  },
+  {
+    "title": "STI0901_Compiling_UPFs.pdf",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0901_Compiling_UPFs.pdf",
+    "description": "\"ANSYS User Programmable Features (UPFs) are quite powerful means of customizing ANSYS beyond the scripting capabilities of the ANSYS Parametric Design Language (APDL). Writing one’s own constitutive models or complex loading functions or even creating a user-defined element are possible with UPFs. \n\n Because some users may find it challenging to get started using UPFs, this memo hopes to discuss general issues related to compiling and linking a customized version of ANSYS for Windows and Linux environments.\"\n\n (Week 51, week of 02/08/09)"
+  },
+  {
+    "title": "STI0902_Contact_Tips.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0902_Contact_Tips.pdf",
+    "description": "STI0902_Contact_Tips.pdf"
+  },
+  {
+    "title": "STI0903_PSD_Postprocessing_2.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0903_PSD_Postprocessing_2.zip",
+    "description": "STI0903_PSD_Postprocessing_2.zip"
+  },
+  {
+    "title": "STI0904_USERFC.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0904_USERFC.zip",
+    "description": "STI0904_USERFC.zip"
+  },
+  {
+    "title": "STI09_Damping.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI09_Damping.zip",
+    "description": "STI09_Damping.zip"
+  },
+  {
+    "title": "STI10_Flotran_Enhancements_at_6.0.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI10_Flotran_Enhancements_at_6.0.pdf",
+    "description": "STI10_Flotran_Enhancements_at_6.0.pdf"
+  },
+  {
+    "title": "STI10_Manual_Calculation_of_SEND.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI10_Manual_Calculation_of_SEND.zip",
+    "description": "STI10_Manual_Calculation_of_SEND.zip"
+  },
+  {
+    "title": "STI11_Plasticity_Hardening_Rules.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI11_Plasticity_Hardening_Rules.zip",
+    "description": "STI11_Plasticity_Hardening_Rules.zip"
+  },
+  {
+    "title": "STI12_Cyclic_Symmetry_at_6.0.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI12_Cyclic_Symmetry_at_6.0.pdf",
+    "description": "STI12_Cyclic_Symmetry_at_6.0.pdf"
+  },
+  {
+    "title": "STI65_TNT_Radiosity_Solver.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI65_TNT_Radiosity_Solver.pdf",
+    "description": "STI65_TNT_Radiosity_Solver.pdf"
+  },
+  {
+    "title": "STI69_TNT_Beam_Elements.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI69_TNT_Beam_Elements.zip",
+    "description": "STI69_TNT_Beam_Elements.zip"
+  },
+  {
+    "title": "Save Working Loads",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf",
+    "description": "Iterative Determination of Save Working Loads (SWL) for Crawler Cranes"
+  },
+  {
+    "title": "Shape_Memory_Alloy.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Shape_Memory_Alloy.pdf",
+    "description": "Shape_Memory_Alloy.pdf"
+  },
+  {
+    "title": "SolderTMC.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/SolderTMC.pdf",
+    "description": "SolderTMC.pdf"
+  },
+  {
+    "title": "Sparse Solver Improvements [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI04_Sparse_Solver.pdf",
+    "description": "\"There have been various sparse solver improvements in each release of ANSYS. This memo hopes to cover some general information on the solvers available in ANSYS as well as performance improvements between ANSYS 5.6 and 6.0 related to linear static analyses.\""
+  },
+  {
+    "title": "Stuparu.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Stuparu.pdf",
+    "description": "Stuparu.pdf"
+  },
+  {
+    "title": "Surface Effect Elements, General Overview",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/surfeff_final1.zip",
+    "description": "An overview presentation and example workshop on generating surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed."
+  },
+  {
+    "title": "T51-01.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/T51-01.pdf",
+    "description": "T51-01.pdf"
+  },
+  {
+    "title": "THOPT.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/THOPT.pdf",
+    "description": "THOPT.pdf"
+  },
+  {
+    "title": "Tabular Boundary Conditions and Function Editor at 6.0 [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI09_ANSYS_6.0_Function_Editor.pdf",
+    "description": "\"This tips and tricks is an introductory memo on the use of tabular and function boundary conditions. The use of the Function Editor is also discussed.\""
+  },
+  {
+    "title": "The Building Blocks of Simulation: A New Family of Elements for Stress Analysis",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf",
+    "description": "Presentation on 18x family of elements (part of the \"Advanced Analysis with ANSYS\"seminar during the 2002 User's Conference)."
+  },
+  {
+    "title": "Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites",
+    "author": "J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf",
+    "description": "\"Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing \"of the shelf\"technology of achieving the same goals. Thus, the \"Z-mat\"and \"Z-Optim\"packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a \"USERMAT\"subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.\""
+  },
+  {
+    "title": "Tracqui_AB_04.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Tracqui_AB_04.pdf",
+    "description": "Tracqui_AB_04.pdf"
+  },
+  {
+    "title": "Tu.4.7.4.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Tu.4.7.4.pdf",
+    "description": "Tu.4.7.4.pdf"
+  },
+  {
+    "title": "Tunneling-Accelerometer-Paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Tunneling-Accelerometer-Paper.pdf",
+    "description": "Tunneling-Accelerometer-Paper.pdf"
+  },
+  {
+    "title": "Using Abbreviations to Customize the Toolbar [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI03_Customizing_Toolbar.pdf",
+    "description": "\"The ANSYS Toolbar provides a useful means of accessing commonly-used functions, especially for users who use the GUI rather than typing in commands.\"\n\n\"This memo hopes to provide a brief introduction to the ANSYS Toolbar and, more importantly, how to assign macros or specific dialog boxes to the Toolbar buttons, including Fnc_ UIDL granules or ~eui Tcl/Tk dialog boxes.\""
+  },
+  {
+    "title": "VectorRotation.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/VectorRotation.zip",
+    "description": "VectorRotation.zip"
+  },
+  {
+    "title": "Visualizing structural matrices in ANSYS using APDL",
+    "author": "Aaron Acton (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/acton20081119-visualizing_matrices.pdf",
+    "description": "\"This article presents a method of visualizing structural matrices used in finite-element analysis using ANSYS and the ANSYS Parametric Design Language (APDL). The information is intended to provide some insight into the nature of structural matrices used in finite-element codes. Some terms used in sparse-matrix arithmetic are discussed, and methods for calculating certain quantities are provided. A test model is constructed to demonstrate how the stiffness, mass, and damping matrices may be visualized for various systems. The effect of element shape, element type (including superelements), element reordering, and equation reordering on structural matrices is briefly investigated.\""
+  },
+  {
+    "title": "WEP125G.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/WEP125G.pdf",
+    "description": "WEP125G.pdf"
+  },
+  {
+    "title": "Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
+    "description": "Conversion of material properties of piezoelectric ceramics (such as PZT) has caused many users confusion because of the difference between manufacturer-supplied data and the format required by ANSYS. This memo hopes to clarify this point and to provide users with information on conversion routines. [Accompanying Spreadsheet]()."
+  },
+  {
+    "title": "Week_11_Surface_Effect_Elements_Thermal.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Week_11_Surface_Effect_Elements_Thermal.pdf",
+    "description": "Week_11_Surface_Effect_Elements_Thermal.pdf"
+  },
+  {
+    "title": "Week_14_Memory_Configuration.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Week_14_Memory_Configuration.pdf",
+    "description": "Week_14_Memory_Configuration.pdf"
+  },
+  {
+    "title": "Week_16_Nonlinear_Monitor.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Week_16_Nonlinear_Monitor.pdf",
+    "description": "Week_16_Nonlinear_Monitor.pdf"
+  },
+  {
+    "title": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
+    "description": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf"
   },
   {
     "title": "Week_19_tip_of_week_restart.pdf",
@@ -682,29 +1028,14 @@
     "description": "Week_19_tip_of_week_restart.pdf"
   },
   {
-    "title": "Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
-    "description": "Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf"
+    "title": "Week_20_Windows_File_Association.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Week_20_Windows_File_Association.pdf",
+    "description": "Week_20_Windows_File_Association.pdf"
   },
   {
-    "title": "week6-compar-lm-dd3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/week6-compar-lm-dd3.pdf",
-    "description": "week6-compar-lm-dd3.pdf"
-  },
-  {
-    "title": "10_0130_Cross_paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/10_0130_Cross_paper.pdf",
-    "description": "10_0130_Cross_paper.pdf"
-  },
-  {
-    "title": "2012-optimum_csp_underfill.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/2012-optimum_csp_underfill.pdf",
-    "description": "2012-optimum_csp_underfill.pdf"
-  },
-  {
-    "title": "54.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/54.pdf",
-    "description": "54.pdf"
+    "title": "Week_8_Structural_Shell_Elements.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Week_8_Structural_Shell_Elements.pdf",
+    "description": "Week_8_Structural_Shell_Elements.pdf"
   },
   {
     "title": "a020.pdf",
@@ -712,14 +1043,106 @@
     "description": "a020.pdf"
   },
   {
-    "title": "acton20080620-coupling_low_to_high.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/acton20080620-coupling_low_to_high.pdf",
-    "description": "acton20080620-coupling_low_to_high.pdf"
+    "title": "aacton20080723-clustering.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aacton20080723-clustering.pdf",
+    "description": "aacton20080723-clustering.pdf"
   },
   {
-    "title": "Ansys_PT_EEC.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Ansys_PT_EEC.pdf",
-    "description": "Ansys_PT_EEC.pdf"
+    "title": "acton20080825-condition_number.pdf",
+    "author": "Aaron Acton (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/acton20080825-condition_number.pdf",
+    "description": "\"This article presents an overview of the condition number for a matrix and the potential effect of ill conditioning on the solution of a system of linear equations. The information is intended to be general, although specific information relevant to finite-element analysis is also included. Vector and matrix norms are introduced before defining the condition number, and the choice of matrix norm in the calculation of the condition number is discussed. A method of estimating the condition number is also provided, including a sample implementation in the ANSYS Parametric Design Language (APDL).\""
+  },
+  {
+    "title": "ahieke.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ahieke.pdf",
+    "description": "ahieke.pdf"
+  },
+  {
+    "title": "alex-fem.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/alex-fem.pdf",
+    "description": "alex-fem.pdf"
+  },
+  {
+    "title": "amg2001.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/amg2001.pdf",
+    "description": "amg2001.pdf"
+  },
+  {
+    "title": "analysis-of-reinforced-concrete.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/analysis-of-reinforced-concrete.pdf",
+    "description": "analysis-of-reinforced-concrete.pdf"
+  },
+  {
+    "title": "andersen.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/andersen.pdf",
+    "description": "andersen.pdf"
+  },
+  {
+    "title": "ansys25b.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys25b.pdf",
+    "description": "ansys25b.pdf"
+  },
+  {
+    "title": "ansys_mechanical_wp.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_mechanical_wp.pdf",
+    "description": "ansys_mechanical_wp.pdf"
+  },
+  {
+    "title": "ansys_news_1995_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_news_1995_3.pdf",
+    "description": "ansys_news_1995_3.pdf"
+  },
+  {
+    "title": "ansys_news_1995_4.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_news_1995_4.pdf",
+    "description": "ansys_news_1995_4.pdf"
+  },
+  {
+    "title": "ansys_news_1996_2.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_news_1996_2.pdf",
+    "description": "ansys_news_1996_2.pdf"
+  },
+  {
+    "title": "ansys_news_1996_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ansys_news_1996_3.pdf",
+    "description": "ansys_news_1996_3.pdf"
+  },
+  {
+    "title": "ansys_nitinol_paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ansys_nitinol_paper.pdf",
+    "description": "ansys_nitinol_paper.pdf"
+  },
+  {
+    "title": "ansys_short_course.pdf",
+    "author": "Tim Langlais (University of Minnesota)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ansys_short_course.pdf",
+    "description": "A short course on ANSYS, using ANSYS 5.4."
+  },
+  {
+    "title": "ansys_solutions_2002_winter.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_solutions_2002_winter.pdf",
+    "description": "ansys_solutions_2002_winter.pdf"
+  },
+  {
+    "title": "ansys_solutions_2003_fall.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_solutions_2003_fall.pdf",
+    "description": "ansys_solutions_2003_fall.pdf"
+  },
+  {
+    "title": "ansys_solutions_2003_spring.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_solutions_2003_spring.pdf",
+    "description": "ansys_solutions_2003_spring.pdf"
+  },
+  {
+    "title": "ansys_solutions_2003_summer.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_solutions_2003_summer.pdf",
+    "description": "ansys_solutions_2003_summer.pdf"
+  },
+  {
+    "title": "ansysconf_paper_2004_CAEA.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ansysconf_paper_2004_CAEA.pdf",
+    "description": "ansysconf_paper_2004_CAEA.pdf"
   },
   {
     "title": "antonova-C2.pdf",
@@ -727,9 +1150,14 @@
     "description": "antonova-C2.pdf"
   },
   {
-    "title": "ARTICLE1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ARTICLE1.pdf",
-    "description": "ARTICLE1.pdf"
+    "title": "app_h.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/app_h.pdf",
+    "description": "app_h.pdf"
+  },
+  {
+    "title": "asyed_ectc2004_corrected.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/asyed_ectc2004_corrected.pdf",
+    "description": "asyed_ectc2004_corrected.pdf"
   },
   {
     "title": "auto_boundary_sizing.pdf",
@@ -737,14 +1165,50 @@
     "description": "auto_boundary_sizing.pdf"
   },
   {
-    "title": "B0-8218-0988-1-03024-7.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/B0-8218-0988-1-03024-7.pdf",
-    "description": "B0-8218-0988-1-03024-7.pdf"
+    "title": "barni1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/barni1.pdf",
+    "description": "barni1.pdf"
   },
   {
-    "title": "Bioloch_ICRA04.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Bioloch_ICRA04.pdf",
-    "description": "Bioloch_ICRA04.pdf"
+    "title": "batch.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip",
+    "description": "This is an example of how to drag-and-drop a .db file onto a DOS batch file to initiate an analysis. \n\n Unzip the file and rename \"Run Nonlinear.txt \"to Run Nonlinear.bat\". Place it on your desktop. \n\n Place \"solve_batch.inp\"in your D: drive or edit \"Run Nonlinear.bat\"to change the location of this APDL input file. \n\n Drag and drop any .db file containing a ready-to-solve nonlinear analysis onto \"Run Nonlinear.bat\". \n\n You will find that the solution will initiate in the same working directory, and you can also track the nonlinear solution graphically as the solution is solving in batch. "
+  },
+  {
+    "title": "benchmar_tests_on_ansys_parallel_proc.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/benchmar_tests_on_ansys_parallel_proc.pdf",
+    "description": "benchmar_tests_on_ansys_parallel_proc.pdf"
+  },
+  {
+    "title": "benchmark_1.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/benchmark_1.zip",
+    "description": "benchmark_1.zip"
+  },
+  {
+    "title": "bericht92.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/bericht92.pdf",
+    "description": "bericht92.pdf"
+  },
+  {
+    "title": "bmsweep.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/bmsweep.pdf",
+    "description": "bmsweep.pdf"
+  },
+  {
+    "title": "boot.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip",
+    "description": "boot.zip"
+  },
+  {
+    "title": "bzahn00.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/bzahn00.pdf",
+    "description": "bzahn00.pdf"
+  },
+  {
+    "title": "bzahn_ball_via_fatigue_paper.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/bzahn_ball_via_fatigue_paper.pdf",
+    "description": "bzahn_ball_via_fatigue_paper.pdf"
   },
   {
     "title": "cardiovascular.pdf",
@@ -752,9 +1216,61 @@
     "description": "cardiovascular.pdf"
   },
   {
+    "title": "cj21-wai.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cj21-wai.pdf",
+    "description": "cj21-wai.pdf"
+  },
+  {
+    "title": "closed_tank.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/closed_tank.zip",
+    "description": "Comparison of FLUID30 (acoustic fluid element) and FLUID80 (contained fluid element) for sloshing in a tank."
+  },
+  {
+    "title": "combined_l_o_smoothing.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/combined_l_o_smoothing.pdf",
+    "description": "combined_l_o_smoothing.pdf"
+  },
+  {
+    "title": "comparison_of_biomechanical_breast_models.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/comparison_of_biomechanical_breast_models.pdf",
+    "description": "comparison_of_biomechanical_breast_models.pdf"
+  },
+  {
     "title": "compressive.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/compressive.pdf",
     "description": "compressive.pdf"
+  },
+  {
+    "title": "conflong_castiron.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/conflong_castiron.pdf",
+    "description": "conflong_castiron.pdf"
+  },
+  {
+    "title": "conflong_creep.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/conflong_creep.pdf",
+    "description": "conflong_creep.pdf"
+  },
+  {
+    "title": "conflong_gasket.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/conflong_gasket.pdf",
+    "description": "conflong_gasket.pdf"
+  },
+  {
+    "title": "conflong_hyperel.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conflong_hyperel.pdf",
+    "description": "conflong_hyperel.pdf"
+  },
+  {
+    "title": "conflong_viscoel.pdf",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf",
+    "description": "Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the \"Advanced Analysis with ANSYS\"seminar during the 2002 User's Conference)."
+  },
+  {
+    "title": "contact_beta_56.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/contact_beta_56.pdf",
+    "description": "contact_beta_56.pdf"
   },
   {
     "title": "contact_tech.pdf",
@@ -762,24 +1278,137 @@
     "description": "contact_tech.pdf"
   },
   {
-    "title": "Dutchsensorconf98.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Dutchsensorconf98.pdf",
-    "description": "Dutchsensorconf98.pdf"
+    "title": "coolingreview.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/coolingreview.pdf",
+    "description": "coolingreview.pdf"
   },
   {
-    "title": "EFS.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/EFS.pdf",
-    "description": "EFS.pdf"
+    "title": "cpainter_SPIE.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cpainter_SPIE.pdf",
+    "description": "cpainter_SPIE.pdf"
   },
   {
-    "title": "Finet_CAD_04.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Finet_CAD_04.pdf",
-    "description": "Finet_CAD_04.pdf"
+    "title": "creating Custom Animations [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI01_Creating_Custom_Animations.zip",
+    "description": "\"Animations are quite useful, both in presenting results of an analysis to others as well as obtaining better insight into the complex response of a system. While ANSYS has many built-in animation capabilities, sometimes, it may be necessary to create a macro for a customized animation. This memo covers one method of generating such animations.\""
+  },
+  {
+    "title": "cubeandsphere.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/cubeandsphere.pdf",
+    "description": "cubeandsphere.pdf"
+  },
+  {
+    "title": "cyclic_symmetry_analysis.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cyclic_symmetry_analysis.pdf",
+    "description": "cyclic_symmetry_analysis.pdf"
+  },
+  {
+    "title": "dakota.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/dakota.zip",
+    "description": "dakota.zip"
+  },
+  {
+    "title": "demotlbr.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/demotlbr.zip",
+    "description": "demotlbr.zip"
+  },
+  {
+    "title": "diemold2001.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/diemold2001.pdf",
+    "description": "diemold2001.pdf"
+  },
+  {
+    "title": "disrpap.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/disrpap.pdf",
+    "description": "disrpap.pdf"
+  },
+  {
+    "title": "dspace_assembly.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/dspace_assembly.zip",
+    "description": "dspace_assembly.zip"
+  },
+  {
+    "title": "dspace_part.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/dspace_part.zip",
+    "description": "dspace_part.zip"
+  },
+  {
+    "title": "effects_of_nonlinear_geometric.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/effects_of_nonlinear_geometric.pdf",
+    "description": "effects_of_nonlinear_geometric.pdf"
+  },
+  {
+    "title": "elastdata_Unix.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/elastdata_Unix.zip",
+    "description": "elastdata_Unix.zip"
+  },
+  {
+    "title": "end02111b_pdf.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/end02111b_pdf.pdf",
+    "description": "end02111b_pdf.pdf"
+  },
+  {
+    "title": "erfurt02new_detector-reprint.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/erfurt02new_detector-reprint.pdf",
+    "description": "erfurt02new_detector-reprint.pdf"
+  },
+  {
+    "title": "estim.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/estim.pdf",
+    "description": "estim.pdf"
+  },
+  {
+    "title": "expansion.pdf",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf",
+    "description": "This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground)."
+  },
+  {
+    "title": "fiber_concrete.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/fiber_concrete.pdf",
+    "description": "fiber_concrete.pdf"
+  },
+  {
+    "title": "finite-element-levator.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/finite-element-levator.pdf",
+    "description": "finite-element-levator.pdf"
+  },
+  {
+    "title": "finite_element_analysis_of_crowning_caps.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/finite_element_analysis_of_crowning_caps.pdf",
+    "description": "finite_element_analysis_of_crowning_caps.pdf"
+  },
+  {
+    "title": "finite_element_based_solder_joint_fatigue.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/finite_element_based_solder_joint_fatigue.pdf",
+    "description": "finite_element_based_solder_joint_fatigue.pdf"
+  },
+  {
+    "title": "flotran_chills_out.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/flotran_chills_out.pdf",
+    "description": "flotran_chills_out.pdf"
   },
   {
     "title": "fp8542.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/fp8542.pdf",
     "description": "fp8542.pdf"
+  },
+  {
+    "title": "frequency_response.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/frequency_response.pdf",
+    "description": "frequency_response.pdf"
+  },
+  {
+    "title": "fsi-ansys.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fsi-ansys.pdf",
+    "description": "fsi-ansys.pdf"
+  },
+  {
+    "title": "gasketed_flanges_ordinary_elements_apdl_control.pdf",
+    "author": "Yasumasa Shoji, Satoshi Nagata",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/gasketed_flanges_ordinary_elements_apdl_control.pdf",
+    "description": "\"The analysis of gasketted flanges is now becoming an essential technique to design pressure vessels or piping, because the design code is being modified. On the other hand, the gasket has an extreme nonlinearity which causes the analysis to be very difficult, especially using linear material properties. A finite element analysis program other than ANSYS has the element library for gasket element, but ANSYS does not have it yet.\"\r\n \r\n \"The authors developed a method to model this nonlinear gasket by using the elements available in ANSYS Rel. 5.5 for 2-dimensional axisymmetric analysis and those in Rel. 5.6 for 3-dimensional analysis. In this paper, the concept and the procedure of the modeling is introduced. The data input is possible using a template, without using any other ANSYS commands. The whole analysis execution is controlled by APDL.\"\r\n \r\n [STI: Gasket elements are available from version 6.1 onwards, after this paper was written]"
   },
   {
     "title": "general_Reports_rptfiles_2005-263.pdf",
@@ -792,170 +1421,41 @@
     "description": "groothuis.pdf"
   },
   {
+    "title": "grph2svg.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/grph2svg.zip",
+    "description": "grph2svg.zip"
+  },
+  {
+    "title": "harmonic-large-mass-method.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/harmonic-large-mass-method.pdf",
+    "description": "harmonic-large-mass-method.pdf"
+  },
+  {
+    "title": "harmonic_and_random.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip",
+    "description": "This zip file contains a simple example - single input PSD table for base excitation of a fictitious structure - run as both random vibration and harmonic response analyses. The user can review the contents of the two input files and see how one can relate harmonic analyses (the transfer function) to the response PSD in random vibration analyses. (Actually, one can also look it up in any dynamics textbook, but this just shows how one can do it in ANSYS.) \r\n \r\n (See also TFUN undocumented command to get the transfer function after a random vibration analysis.)"
+  },
+  {
+    "title": "harmonic_cms.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip",
+    "description": "Simple beam example showing procedure for using CMS (component mode synthesis). Same results for the full model (no CMS) and the CMS model."
+  },
+  {
+    "title": "hyper_elasticcity_curvefitting.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/hyper_elasticcity_curvefitting.pdf",
+    "description": "hyper_elasticcity_curvefitting.pdf"
+  },
+  {
+    "title": "hyperelasti_contact_analysis.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/hyperelasti_contact_analysis.pdf",
+    "description": "hyperelasti_contact_analysis.pdf"
+  },
+  {
     "title": "ibmrd3705C.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ibmrd3705C.pdf",
     "description": "ibmrd3705C.pdf"
-  },
-  {
-    "title": "jhs.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/jhs.pdf",
-    "description": "jhs.pdf"
-  },
-  {
-    "title": "limit_load.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/limit_load.pdf",
-    "description": "limit_load.pdf"
-  },
-  {
-    "title": "mat2001_I1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/mat2001_I1.pdf",
-    "description": "mat2001_I1.pdf"
-  },
-  {
-    "title": "memsissue4.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/memsissue4.pdf",
-    "description": "memsissue4.pdf"
-  },
-  {
-    "title": "MICROtec2000.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/MICROtec2000.pdf",
-    "description": "MICROtec2000.pdf"
-  },
-  {
-    "title": "MSM99_CNRS_umirror.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/MSM99_CNRS_umirror.pdf",
-    "description": "MSM99_CNRS_umirror.pdf"
-  },
-  {
-    "title": "Rayburn_USU_Paper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Rayburn_USU_Paper.pdf",
-    "description": "Rayburn_USU_Paper.pdf"
-  },
-  {
-    "title": "report35.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/report35.pdf",
-    "description": "report35.pdf"
-  },
-  {
-    "title": "solver_2002.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/solver_2002.pdf",
-    "description": "solver_2002.pdf"
-  },
-  {
-    "title": "spice1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/spice1.pdf",
-    "description": "spice1.pdf"
-  },
-  {
-    "title": "STI03_PSD_Efficiency.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI03_PSD_Efficiency.pdf",
-    "description": "STI03_PSD_Efficiency.pdf"
-  },
-  {
-    "title": "STI0805_Chaboche.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0805_Chaboche.pdf",
-    "description": "STI0805_Chaboche.pdf"
-  },
-  {
-    "title": "ta_94-1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ta_94-1.pdf",
-    "description": "ta_94-1.pdf"
-  },
-  {
-    "title": "THOPT.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/THOPT.pdf",
-    "description": "THOPT.pdf"
-  },
-  {
-    "title": "Week_20_Windows_File_Association.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Week_20_Windows_File_Association.pdf",
-    "description": "Week_20_Windows_File_Association.pdf"
-  },
-  {
-    "title": "week2-contact1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week2-contact1.pdf",
-    "description": "week2-contact1.pdf"
-  },
-  {
-    "title": "week7-TNT_License_Reporting.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week7-TNT_License_Reporting.pdf",
-    "description": "week7-TNT_License_Reporting.pdf"
-  },
-  {
-    "title": "12.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/12.pdf",
-    "description": "12.pdf"
-  },
-  {
-    "title": "21.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/21.pdf",
-    "description": "21.pdf"
-  },
-  {
-    "title": "56.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/56.pdf",
-    "description": "56.pdf"
-  },
-  {
-    "title": "A23417.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/A23417.pdf",
-    "description": "A23417.pdf"
-  },
-  {
-    "title": "acton20080825-condition_number.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/acton20080825-condition_number.pdf",
-    "description": "acton20080825-condition_number.pdf"
-  },
-  {
-    "title": "amg2001.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/amg2001.pdf",
-    "description": "amg2001.pdf"
-  },
-  {
-    "title": "ANSYS_Function_Builder.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANSYS_Function_Builder.pdf",
-    "description": "ANSYS_Function_Builder.pdf"
-  },
-  {
-    "title": "ansys_short_course.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ansys_short_course.pdf",
-    "description": "ansys_short_course.pdf"
-  },
-  {
-    "title": "Artigo.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Artigo.pdf",
-    "description": "Artigo.pdf"
-  },
-  {
-    "title": "ANSYS Cast Iron Material Model Matches Experimental Data",
-    "author": "(ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cast_iron.doc.pdf",
-    "description": "\"[The purpose of this paper is to] verify the accuracy of the ANSYS cast iron material model. Results from ANSYS are compared with experimental data for a biaxially loaded cruciform geometry.\""
-  },
-  {
-    "title": "Don_HemmelgarnITI_Interoperability_Pres.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Don_HemmelgarnITI_Interoperability_Pres.pdf",
-    "description": "Don_HemmelgarnITI_Interoperability_Pres.pdf"
-  },
-  {
-    "title": "end02111b_pdf.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/end02111b_pdf.pdf",
-    "description": "end02111b_pdf.pdf"
-  },
-  {
-    "title": "finite-element-levator.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/finite-element-levator.pdf",
-    "description": "finite-element-levator.pdf"
-  },
-  {
-    "title": "FranzChouly_LN2006.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FranzChouly_LN2006.pdf",
-    "description": "FranzChouly_LN2006.pdf"
-  },
-  {
-    "title": "Gerard_et_al.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf",
-    "description": "Gerard_et_al.pdf"
   },
   {
     "title": "ibmrd3705E.pdf",
@@ -963,195 +1463,42 @@
     "description": "ibmrd3705E.pdf"
   },
   {
-    "title": "LiPaperECF13.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/LiPaperECF13.pdf",
-    "description": "LiPaperECF13.pdf"
+    "title": "icpkg.zip",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/icpkg.zip",
+    "description": "\"An example of IC package assembly using element birth and death - a simple 5-step die attach, injection molding, and cool-down processes during IC packaging. (compliments to Bill Bulat on concept)\"\r\n Unzip the file and read in \"icpkg.inp\"."
   },
   {
-    "title": "M3302.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/M3302.pdf",
-    "description": "M3302.pdf"
+    "title": "impedance.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip",
+    "description": "Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined."
   },
   {
-    "title": "mems_1_of_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mems_1_of_3.pdf",
-    "description": "mems_1_of_3.pdf"
+    "title": "implant_stent.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/implant_stent.pdf",
+    "description": "implant_stent.pdf"
   },
   {
-    "title": "mrzyg-ziel-3-06.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mrzyg-ziel-3-06.pdf",
-    "description": "mrzyg-ziel-3-06.pdf"
+    "title": "inistate.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip",
+    "description": "This is a very simple example using Workbench Mechanical 12.0.1 to demonstrate use of the INISTATE command in defining initial stress. \r\n Open Workbench 12.0.1 (or 12.1) and use \"File > Restore Archive ...\"and select the zip file to open the model. Solving should take less than a minute. \r\n  The model is a simple bar. The first analysis branch has 10e3 psi initial stress only in the x-direction. Notice that the block is free to expand - it only has symmetry boundary conditions. The final results show basically zero stress and displacement of -8.1455e-4 inches. Since initial stress is 10e3 and elastic modulus is 29e6 with a length of 2.3622 inches: \r\n 10e3 / 29e6 * 2.3622 = 8.1455e-4 \r\n which is the same answer as given by ANSYS. \r\n \r\n The second analysis branch also has 10e3 psi initial stress only in x-direction. However, there is a Frictionless Support preventing the block from expanding. Final results show displacement basically of zero, and stress of 10e3 psi. This is because the initial stress cannot relax due to the boundary conditions, so the final stress = initial stress in this particular case."
   },
   {
-    "title": "MSM99_IMT_upump.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/MSM99_IMT_upump.pdf",
-    "description": "MSM99_IMT_upump.pdf"
+    "title": "instantaneous_secant_TCE.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip",
+    "description": "instantaneous_secant_TCE.zip"
   },
   {
-    "title": "mutamba2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mutamba2.pdf",
-    "description": "mutamba2.pdf"
+    "title": "jb99_14.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/jb99_14.pdf",
+    "description": "jb99_14.pdf"
   },
   {
-    "title": "nonlinear_domain_decomposition_method.pdf",
-    "author": "Iakov Mordukhovich Klebanov, Andrei Nikolaevich Davydov",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/nonlinear_domain_decomposition_method.pdf",
-    "description": "\"A new domain decomposition technique for parallelization of physically non-linear problems in solid mechanics is developed. It is extended for any stress-strain diagrams. The approach is based on the approximating generalized models of subdomains that leads to a considerably fewer number of iterations requiring updating of substructure parameters. The analytical proof of the convergence of the theoretical iterative procedure and the demonstration of convergence of its numerical implementation with the help of ANSYS are presented.\""
-  },
-  {
-    "title": "Ohayon_BACAS_05.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Ohayon_BACAS_05.pdf",
-    "description": "Ohayon_BACAS_05.pdf"
-  },
-  {
-    "title": "rbcm22.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/rbcm22.pdf",
-    "description": "rbcm22.pdf"
-  },
-  {
-    "title": "S42-2_Dauksher.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/S42-2_Dauksher.pdf",
-    "description": "S42-2_Dauksher.pdf"
-  },
-  {
-    "title": "spice2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/spice2.pdf",
-    "description": "spice2.pdf"
-  },
-  {
-    "title": "STI03_Yield_and_Failure.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI03_Yield_and_Failure.pdf",
-    "description": "STI03_Yield_and_Failure.pdf"
-  },
-  {
-    "title": "STI0602_Coupled-Field_Elements.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0602_Coupled-Field_Elements.pdf",
-    "description": "STI0602_Coupled-Field_Elements.pdf"
-  },
-  {
-    "title": "STI0705_Buckling.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0705_Buckling.pdf",
-    "description": "STI0705_Buckling.pdf"
-  },
-  {
-    "title": "STI09_ANSYS_6.0_Function_Editor.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI09_ANSYS_6.0_Function_Editor.pdf",
-    "description": "STI09_ANSYS_6.0_Function_Editor.pdf"
-  },
-  {
-    "title": "Week_22_totw-parametric-model.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Week_22_totw-parametric-model.pdf",
-    "description": "Week_22_totw-parametric-model.pdf"
-  },
-  {
-    "title": "week23-random_vibrations_tow.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/week23-random_vibrations_tow.pdf",
-    "description": "week23-random_vibrations_tow.pdf"
-  },
-  {
-    "title": "week9-apdl-2.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/week9-apdl-2.pdf",
-    "description": "week9-apdl-2.pdf"
-  },
-  {
-    "title": "13_4.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/13_4.pdf",
-    "description": "13_4.pdf"
-  },
-  {
-    "title": "25.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/25.pdf",
-    "description": "25.pdf"
-  },
-  {
-    "title": "587.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/587.pdf",
-    "description": "587.pdf"
-  },
-  {
-    "title": "acton20081119-visualizing_matrices.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/acton20081119-visualizing_matrices.pdf",
-    "description": "acton20081119-visualizing_matrices.pdf"
-  },
-  {
-    "title": "analysis-of-reinforced-concrete.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/analysis-of-reinforced-concrete.pdf",
-    "description": "analysis-of-reinforced-concrete.pdf"
-  },
-  {
-    "title": "Ans-Mag1b.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Ans-Mag1b.pdf",
-    "description": "Ans-Mag1b.pdf"
-  },
-  {
-    "title": "ansys_mechanical_wp.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_mechanical_wp.pdf",
-    "description": "ansys_mechanical_wp.pdf"
-  },
-  {
-    "title": "ansys_solutions_2002_winter.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_solutions_2002_winter.pdf",
-    "description": "ansys_solutions_2002_winter.pdf"
-  },
-  {
-    "title": "BaBar295.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/BaBar295.pdf",
-    "description": "BaBar295.pdf"
-  },
-  {
-    "title": "bmsweep.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/bmsweep.pdf",
-    "description": "bmsweep.pdf"
-  },
-  {
-    "title": "conflong_castiron.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/conflong_castiron.pdf",
-    "description": "conflong_castiron.pdf"
-  },
-  {
-    "title": "cpainter_SPIE.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cpainter_SPIE.pdf",
-    "description": "cpainter_SPIE.pdf"
-  },
-  {
-    "title": "cyclic_symmetry_analysis.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cyclic_symmetry_analysis.pdf",
-    "description": "cyclic_symmetry_analysis.pdf"
-  },
-  {
-    "title": "diemold2001.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/diemold2001.pdf",
-    "description": "diemold2001.pdf"
-  },
-  {
-    "title": "Dr_Penzar.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Dr_Penzar.pdf",
-    "description": "Dr_Penzar.pdf"
-  },
-  {
-    "title": "fiber_concrete.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/fiber_concrete.pdf",
-    "description": "fiber_concrete.pdf"
-  },
-  {
-    "title": "finite_element_analysis_of_crowning_caps.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/finite_element_analysis_of_crowning_caps.pdf",
-    "description": "finite_element_analysis_of_crowning_caps.pdf"
-  },
-  {
-    "title": "flotran_chills_out.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/flotran_chills_out.pdf",
-    "description": "flotran_chills_out.pdf"
-  },
-  {
-    "title": "frequency_response.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/frequency_response.pdf",
-    "description": "frequency_response.pdf"
-  },
-  {
-    "title": "harmonic-large-mass-method.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/harmonic-large-mass-method.pdf",
-    "description": "harmonic-large-mass-method.pdf"
+    "title": "jhs.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/jhs.pdf",
+    "description": "jhs.pdf"
   },
   {
     "title": "jm0323.pdf",
@@ -1164,264 +1511,9 @@
     "description": "kurian.pdf"
   },
   {
-    "title": "mems_2_of_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/mems_2_of_3.pdf",
-    "description": "mems_2_of_3.pdf"
-  },
-  {
-    "title": "MSM99_LIMMS_piezo.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/MSM99_LIMMS_piezo.pdf",
-    "description": "MSM99_LIMMS_piezo.pdf"
-  },
-  {
-    "title": "nonlinear_finite_element_modeling_titanium.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/nonlinear_finite_element_modeling_titanium.pdf",
-    "description": "nonlinear_finite_element_modeling_titanium.pdf"
-  },
-  {
-    "title": "STI01_Remote_Solution_Manager.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI01_Remote_Solution_Manager.pdf",
-    "description": "STI01_Remote_Solution_Manager.pdf"
-  },
-  {
-    "title": "STI0603_Radiosity_Solver_Simulation.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0603_Radiosity_Solver_Simulation.pdf",
-    "description": "STI0603_Radiosity_Solver_Simulation.pdf"
-  },
-  {
-    "title": "tcontact.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tcontact.pdf",
-    "description": "tcontact.pdf"
-  },
-  {
-    "title": "tmi98.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tmi98.pdf",
-    "description": "tmi98.pdf"
-  },
-  {
-    "title": "usermat.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/usermat.pdf",
-    "description": "Document describing the USERMAT user material subroutine."
-  },
-  {
-    "title": "Week_11_Surface_Effect_Elements_Thermal.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Week_11_Surface_Effect_Elements_Thermal.pdf",
-    "description": "Week_11_Surface_Effect_Elements_Thermal.pdf"
-  },
-  {
-    "title": "week_28_totw-macros.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week_28_totw-macros.pdf",
-    "description": "week_28_totw-macros.pdf"
-  },
-  {
-    "title": "week24-connecting_models_tow.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week24-connecting_models_tow.pdf",
-    "description": "week24-connecting_models_tow.pdf"
-  },
-  {
-    "title": "ws_jss2002.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ws_jss2002.pdf",
-    "description": "ws_jss2002.pdf"
-  },
-  {
-    "title": "2522-3EN.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/2522-3EN.pdf",
-    "description": "2522-3EN.pdf"
-  },
-  {
-    "title": "5B1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/5B1.pdf",
-    "description": "5B1.pdf"
-  },
-  {
-    "title": "andersen.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/andersen.pdf",
-    "description": "andersen.pdf"
-  },
-  {
-    "title": "ansys_news_1995_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_news_1995_3.pdf",
-    "description": "ansys_news_1995_3.pdf"
-  },
-  {
-    "title": "ansys_solutions_2003_fall.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_solutions_2003_fall.pdf",
-    "description": "ansys_solutions_2003_fall.pdf"
-  },
-  {
-    "title": "conflong_creep.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/conflong_creep.pdf",
-    "description": "conflong_creep.pdf"
-  },
-  {
-    "title": "estim.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/estim.pdf",
-    "description": "estim.pdf"
-  },
-  {
-    "title": "finite_element_based_solder_joint_fatigue.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/finite_element_based_solder_joint_fatigue.pdf",
-    "description": "finite_element_based_solder_joint_fatigue.pdf"
-  },
-  {
-    "title": "GSkoro1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/GSkoro1.pdf",
-    "description": "GSkoro1.pdf"
-  },
-  {
-    "title": "IEEE00_LGC_umirror.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/IEEE00_LGC_umirror.pdf",
-    "description": "IEEE00_LGC_umirror.pdf"
-  },
-  {
-    "title": "IMAPS_Shivesh.PDF",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/IMAPS_Shivesh.PDF",
-    "description": "IMAPS_Shivesh.PDF"
-  },
-  {
     "title": "kyshen.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/kyshen.pdf",
     "description": "kyshen.pdf"
-  },
-  {
-    "title": "machdesn_pds.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/machdesn_pds.pdf",
-    "description": "machdesn_pds.pdf"
-  },
-  {
-    "title": "mems_3_of_3.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mems_3_of_3.pdf",
-    "description": "mems_3_of_3.pdf"
-  },
-  {
-    "title": "MSM00_ANSYS_pds.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/MSM00_ANSYS_pds.pdf",
-    "description": "MSM00_ANSYS_pds.pdf"
-  },
-  {
-    "title": "MSM99_RITS_upump.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/MSM99_RITS_upump.pdf",
-    "description": "MSM99_RITS_upump.pdf"
-  },
-  {
-    "title": "mw2000_1031.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mw2000_1031.pdf",
-    "description": "mw2000_1031.pdf"
-  },
-  {
-    "title": "p499-cristello.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/p499-cristello.pdf",
-    "description": "p499-cristello.pdf"
-  },
-  {
-    "title": "Pilsen00.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Pilsen00.pdf",
-    "description": "Pilsen00.pdf"
-  },
-  {
-    "title": "popelar1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/popelar1.pdf",
-    "description": "popelar1.pdf"
-  },
-  {
-    "title": "STI10_Flotran_Enhancements_at_6.0.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI10_Flotran_Enhancements_at_6.0.pdf",
-    "description": "STI10_Flotran_Enhancements_at_6.0.pdf"
-  },
-  {
-    "title": "Stuparu.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Stuparu.pdf",
-    "description": "Stuparu.pdf"
-  },
-  {
-    "title": "tms95.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tms95.pdf",
-    "description": "tms95.pdf"
-  },
-  {
-    "title": "user_def1.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/user_def1.pdf",
-    "description": "user_def1.pdf"
-  },
-  {
-    "title": "Week_14_Memory_Configuration.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Week_14_Memory_Configuration.pdf",
-    "description": "Week_14_Memory_Configuration.pdf"
-  },
-  {
-    "title": "week_29_STI68_TNT_Damped_Modal.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/week_29_STI68_TNT_Damped_Modal.pdf",
-    "description": "week_29_STI68_TNT_Damped_Modal.pdf"
-  },
-  {
-    "title": "week25-ETABLE.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/week25-ETABLE.pdf",
-    "description": "week25-ETABLE.pdf"
-  },
-  {
-    "title": "1998imaps_taiwan.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/1998imaps_taiwan.pdf",
-    "description": "1998imaps_taiwan.pdf"
-  },
-  {
-    "title": "26.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/26.pdf",
-    "description": "26.pdf"
-  },
-  {
-    "title": "772.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/772.pdf",
-    "description": "772.pdf"
-  },
-  {
-    "title": "aacton20080723-clustering.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aacton20080723-clustering.pdf",
-    "description": "aacton20080723-clustering.pdf"
-  },
-  {
-    "title": "ansys_news_1995_4.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_news_1995_4.pdf",
-    "description": "ansys_news_1995_4.pdf"
-  },
-  {
-    "title": "ansys_solutions_2003_spring.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_solutions_2003_spring.pdf",
-    "description": "ansys_solutions_2003_spring.pdf"
-  },
-  {
-    "title": "app_h.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/app_h.pdf",
-    "description": "app_h.pdf"
-  },
-  {
-    "title": "conflong_gasket.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/conflong_gasket.pdf",
-    "description": "conflong_gasket.pdf"
-  },
-  {
-    "title": "disrpap.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/disrpap.pdf",
-    "description": "disrpap.pdf"
-  },
-  {
-    "title": "fsi-ansys.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fsi-ansys.pdf",
-    "description": "fsi-ansys.pdf"
-  },
-  {
-    "title": "Hyper.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hyper.pdf",
-    "description": "Hyper.pdf"
-  },
-  {
-    "title": "IJSS2007.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/IJSS2007.pdf",
-    "description": "IJSS2007.pdf"
-  },
-  {
-    "title": "IPACK2005-73239.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/IPACK2005-73239.pdf",
-    "description": "IPACK2005-73239.pdf"
   },
   {
     "title": "large_area_heinemann.pdf",
@@ -1429,29 +1521,172 @@
     "description": "large_area_heinemann.pdf"
   },
   {
+    "title": "lau.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/lau.pdf",
+    "description": "lau.pdf"
+  },
+  {
+    "title": "limit_load.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/limit_load.pdf",
+    "description": "limit_load.pdf"
+  },
+  {
+    "title": "machdesn_pds.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/machdesn_pds.pdf",
+    "description": "machdesn_pds.pdf"
+  },
+  {
+    "title": "marval_inzen_mech2007.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/marval_inzen_mech2007.pdf",
+    "description": "marval_inzen_mech2007.pdf"
+  },
+  {
+    "title": "mat2001_I1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/mat2001_I1.pdf",
+    "description": "mat2001_I1.pdf"
+  },
+  {
+    "title": "matlab.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip",
+    "description": "matlab.zip"
+  },
+  {
     "title": "meis.pdf",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/meis.pdf",
     "description": "meis.pdf"
   },
   {
-    "title": "MEP_2005.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MEP_2005.pdf",
-    "description": "MEP_2005.pdf"
+    "title": "mems-thermal-analogy-fsi-damping.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf",
+    "description": "mems-thermal-analogy-fsi-damping.pdf"
   },
   {
-    "title": "MSM00_ANSYS_romfin.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MSM00_ANSYS_romfin.pdf",
-    "description": "MSM00_ANSYS_romfin.pdf"
+    "title": "mems_1_of_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mems_1_of_3.pdf",
+    "description": "mems_1_of_3.pdf"
   },
   {
-    "title": "MSM99_ULM_cvd.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MSM99_ULM_cvd.pdf",
-    "description": "MSM99_ULM_cvd.pdf"
+    "title": "mems_2_of_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/mems_2_of_3.pdf",
+    "description": "mems_2_of_3.pdf"
   },
   {
-    "title": "PA-27.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/PA-27.pdf",
-    "description": "PA-27.pdf"
+    "title": "mems_3_of_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mems_3_of_3.pdf",
+    "description": "mems_3_of_3.pdf"
+  },
+  {
+    "title": "memsissue1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/memsissue1.pdf",
+    "description": "memsissue1.pdf"
+  },
+  {
+    "title": "memsissue2.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/memsissue2.pdf",
+    "description": "memsissue2.pdf"
+  },
+  {
+    "title": "memsissue3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/memsissue3.pdf",
+    "description": "memsissue3.pdf"
+  },
+  {
+    "title": "memsissue4.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/memsissue4.pdf",
+    "description": "memsissue4.pdf"
+  },
+  {
+    "title": "methods_for_modeling_bolts.pdf",
+    "author": "Jerome Montgomery",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf",
+    "description": "\"Modeling bolts for three-dimensional finite element applications have, and still continue to raise questions. The limitations on model size sometimes make modeling of solid bolts impractical. Therefore, many analysts choose other methods to model bolts. Line elements with coupled nodes and line elements with spider beams are a couple of alternative approaches. This paper looks at a few methods for modeling pretension bolted joints using the finite element method (ANSYS 5.7). Pretension is modeled using ANSYS pretension elements (PRETS179) which can be used on solid or line element types. Surface-to-surface contact elements are used to account for varying contact distribution along flanges. Bolt head and nut behavior is modeled by, coupled nodes, beam elements, rigid body elements (RBE3), or solids. Bolt stud is modeled by solid elements, beam elements, pipe elements, or link elements. The choice of line elements versus solid elements is determined by the degree of complexity sought. The pros and cons of different simulations are also discussed.\""
+  },
+  {
+    "title": "micro3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/micro3.pdf",
+    "description": "micro3.pdf"
+  },
+  {
+    "title": "modeling_disel_engine_cylinder_gaskets.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/modeling_disel_engine_cylinder_gaskets.pdf",
+    "description": "modeling_disel_engine_cylinder_gaskets.pdf"
+  },
+  {
+    "title": "mrzyg-ziel-3-06.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mrzyg-ziel-3-06.pdf",
+    "description": "mrzyg-ziel-3-06.pdf"
+  },
+  {
+    "title": "muffler.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip",
+    "description": "muffler.zip"
+  },
+  {
+    "title": "mutamba2.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mutamba2.pdf",
+    "description": "mutamba2.pdf"
+  },
+  {
+    "title": "mw2000_1031.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/mw2000_1031.pdf",
+    "description": "mw2000_1031.pdf"
+  },
+  {
+    "title": "nafems05c.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/nafems05c.pdf",
+    "description": "nafems05c.pdf"
+  },
+  {
+    "title": "neighborhood_size_control.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/neighborhood_size_control.pdf",
+    "description": "neighborhood_size_control.pdf"
+  },
+  {
+    "title": "nonlinear_domain_decomposition_method.pdf",
+    "author": "Iakov Mordukhovich Klebanov, Andrei Nikolaevich Davydov",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/nonlinear_domain_decomposition_method.pdf",
+    "description": "\"A new domain decomposition technique for parallelization of physically non-linear problems in solid mechanics is developed. It is extended for any stress-strain diagrams. The approach is based on the approximating generalized models of subdomains that leads to a considerably fewer number of iterations requiring updating of substructure parameters. The analytical proof of the convergence of the theoretical iterative procedure and the demonstration of convergence of its numerical implementation with the help of ANSYS are presented.\""
+  },
+  {
+    "title": "nonlinear_finite_element_modeling_titanium.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/nonlinear_finite_element_modeling_titanium.pdf",
+    "description": "nonlinear_finite_element_modeling_titanium.pdf"
+  },
+  {
+    "title": "nonlinear_problems_of_steel_civil_structures.pdf",
+    "author": "Milan Vasek",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf",
+    "description": "\"The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.\""
+  },
+  {
+    "title": "numib695.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/numib695.pdf",
+    "description": "numib695.pdf"
+  },
+  {
+    "title": "object_oriented_defeaturing.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/object_oriented_defeaturing.pdf",
+    "description": "object_oriented_defeaturing.pdf"
+  },
+  {
+    "title": "p499-cristello.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/p499-cristello.pdf",
+    "description": "p499-cristello.pdf"
+  },
+  {
+    "title": "painless-conjugate-gradient.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/painless-conjugate-gradient.pdf",
+    "description": "painless-conjugate-gradient.pdf"
+  },
+  {
+    "title": "penny3d.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip",
+    "description": "penny3d.zip"
+  },
+  {
+    "title": "popelar1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/popelar1.pdf",
+    "description": "popelar1.pdf"
   },
   {
     "title": "popelar3.pdf",
@@ -1459,59 +1694,65 @@
     "description": "popelar3.pdf"
   },
   {
-    "title": "RDARV_Article1200.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/RDARV_Article1200.pdf",
-    "description": "RDARV_Article1200.pdf"
+    "title": "post_refinement_quad.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/post_refinement_quad.pdf",
+    "description": "post_refinement_quad.pdf"
   },
   {
-    "title": "Shape_Memory_Alloy.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Shape_Memory_Alloy.pdf",
-    "description": "Shape_Memory_Alloy.pdf"
+    "title": "prony.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip",
+    "description": "prony.zip"
   },
   {
-    "title": "STI06_Customize_GUI.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI06_Customize_GUI.pdf",
-    "description": "STI06_Customize_GUI.pdf"
+    "title": "radiation.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/radiation.pdf",
+    "description": "radiation.pdf"
   },
   {
-    "title": "STI07_Lagrange_Multipliers.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI07_Lagrange_Multipliers.pdf",
-    "description": "STI07_Lagrange_Multipliers.pdf"
+    "title": "rbcm22.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/rbcm22.pdf",
+    "description": "rbcm22.pdf"
   },
   {
-    "title": "STI08_ANSYS_6.0_Variable_Viewer.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI08_ANSYS_6.0_Variable_Viewer.pdf",
-    "description": "STI08_ANSYS_6.0_Variable_Viewer.pdf"
+    "title": "report35.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/report35.pdf",
+    "description": "report35.pdf"
   },
   {
-    "title": "tristano03.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/tristano03.pdf",
-    "description": "tristano03.pdf"
+    "title": "roller.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip",
+    "description": "Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model."
   },
   {
-    "title": "wam95_ufluidics.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/wam95_ufluidics.pdf",
-    "description": "wam95_ufluidics.pdf"
+    "title": "siysdcap.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip",
+    "description": "siysdcap.zip"
   },
   {
-    "title": "Vector Operations and Commands",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/week_15_STI50_TNT_Vector_operations.pdf",
-    "description": "Vector notation/functions in ANSYS allow the user to execute some of these *DO loops in a much more efficient manner. Instead of looping through individual functions, vector functions act upon arrays, resulting in faster execution times.  This memo will provide some basic/introductory examples on the use of *VGET as well as the undocumented vector notation.<br><a href=\"?mycat=uf_vector\">HTML Version here</a>.<br><a href=\"tips/buildn.inp\">Accompanying input file</a>, <a href=\"tips/buildn1.mac\">BUILDN1 macro</a>, and <a href=\"tips/buildn2.mac\">BUILDN2 macro</a>.<p></p>    In the memo, in Section 2, please note that there is a typo.  The section with the following lines:<br>   <tt>*vget,NARRAY(1,1),node,1,u,x<br>    *vmask,NMASK(1)<br>  *vget,NARRAY(1,2),node,2,u,y<br>    *vmask,NMASK(1)<br>   *vget,NARRAY(1,3),node,3,u,z<br>  </tt>  should be replaced as follows:<br>    <tt>  *vget,NARRAY(1,1),node,1,u,x<br> *vmask,NMASK(1)<br>   *vget,NARRAY(1,2),node,1,u,y<br>    *vmask,NMASK(1)<br>    *vget,NARRAY(1,3),node,1,u,z<br> </tt>"
+    "title": "skinner_thesis.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/skinner_thesis.pdf",
+    "description": "skinner_thesis.pdf"
   },
   {
-    "title": "Week_8_Structural_Shell_Elements.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Week_8_Structural_Shell_Elements.pdf",
-    "description": "Week_8_Structural_Shell_Elements.pdf"
+    "title": "solver_2002.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/solver_2002.pdf",
+    "description": "solver_2002.pdf"
   },
   {
-    "title": "week26-parametric_studies.pdf",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/week26-parametric_studies.pdf",
-    "description": "week26-parametric_studies.pdf"
+    "title": "spice1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/spice1.pdf",
+    "description": "spice1.pdf"
   },
   {
-    "title": "benchmark_1.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/benchmark_1.zip",
-    "description": "benchmark_1.zip"
+    "title": "spice2.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/spice2.pdf",
+    "description": "spice2.pdf"
+  },
+  {
+    "title": "spie98.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/spie98.pdf",
+    "description": "spie98.pdf"
   },
   {
     "title": "sprs_mprs.zip",
@@ -1520,90 +1761,9 @@
     "description": "The attached zip file includes a simple example demonstrating the procedure to perform a single-point response spectrum (SPRS), where the excitation in 3 direction is applied together (using SRSS combination), not independently. The procedure for multi-point response spectrum (MPRS) is included as well for the same situation. An Excel spreadsheet shows that the results obtained for this simple model is the same for both methods (compare the mode coefficients for each squared mode in the spreadsheet)."
   },
   {
-    "title": "STI02_QR_Damped_Unsymmetric.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI02_QR_Damped_Unsymmetric.zip",
-    "description": "STI02_QR_Damped_Unsymmetric.zip"
-  },
-  {
-    "title": "STI06_Undocumented_Hyperelastic_Models.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI06_Undocumented_Hyperelastic_Models.zip",
-    "description": "STI06_Undocumented_Hyperelastic_Models.zip"
-  },
-  {
-    "title": "STI08_PSOLVE.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI08_PSOLVE.zip",
-    "description": "STI08_PSOLVE.zip"
-  },
-  {
-    "title": "STI11_Plasticity_Hardening_Rules.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI11_Plasticity_Hardening_Rules.zip",
-    "description": "STI11_Plasticity_Hardening_Rules.zip"
-  },
-  {
-    "title": "vm267.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/vm267.zip",
-    "description": "vm267.zip"
-  },
-  {
-    "title": "batch.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip",
-    "description": "This is an example of how to drag-and-drop a .db file onto a DOS batch file to initiate an analysis. \n\n Unzip the file and rename \"Run Nonlinear.txt \" to Run Nonlinear.bat\". Place it on your desktop. \n\n Place \"solve_batch.inp\" in your D: drive or edit \"Run Nonlinear.bat\" to change the location of this APDL input file. \n\n Drag and drop any .db file containing a ready-to-solve nonlinear analysis onto \"Run Nonlinear.bat\". \n\n You will find that the solution will initiate in the same working directory, and you can also track the nonlinear solution graphically as the solution is solving in batch. "
-  },
-  {
-    "title": "muffler.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip",
-    "description": "muffler.zip"
-  },
-  {
-    "title": "Nested_macros-all-files.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Nested_macros-all-files.zip",
-    "description": "Nested_macros-all-files.zip"
-  },
-  {
-    "title": "POW2MAT.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/POW2MAT.zip",
-    "description": "POW2MAT.zip"
-  },
-  {
-    "title": "prony.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip",
-    "description": "prony.zip"
-  },
-  {
-    "title": "STI02_Rigid_Body_Contact.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI02_Rigid_Body_Contact.zip",
-    "description": "STI02_Rigid_Body_Contact.zip"
-  },
-  {
-    "title": "STI0701_CMS_in_Simulation.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip",
-    "description": "STI0701_CMS_in_Simulation.zip"
-  },
-  {
-    "title": "dakota.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/dakota.zip",
-    "description": "dakota.zip"
-  },
-  {
-    "title": "instantaneous_secant_TCE.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip",
-    "description": "instantaneous_secant_TCE.zip"
-  },
-  {
-    "title": "STI01_Acoustic_Elements.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI01_Acoustic_Elements.zip",
-    "description": "STI01_Acoustic_Elements.zip"
-  },
-  {
-    "title": "STI0702_External_Pressure_Loading_WB_Simulation.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0702_External_Pressure_Loading_WB_Simulation.zip",
-    "description": "STI0702_External_Pressure_Loading_WB_Simulation.zip"
-  },
-  {
-    "title": "STI0803_Residual_Vectors.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0803_Residual_Vectors.zip",
-    "description": "STI0803_Residual_Vectors.zip"
+    "title": "st_wave00.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/st_wave00.pdf",
+    "description": "st_wave00.pdf"
   },
   {
     "title": "substr-fullpost.zip",
@@ -1611,161 +1771,9 @@
     "description": "substr-fullpost.zip"
   },
   {
-    "title": "VectorRotation.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/VectorRotation.zip",
-    "description": "VectorRotation.zip"
-  },
-  {
-    "title": "closed_tank.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/closed_tank.zip",
-    "description": "Comparison of FLUID30 (acoustic fluid element) and FLUID80 (contained fluid element) for sloshing in a tank."
-  },
-  {
-    "title": "COMPMENU.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip",
-    "description": "COMPMENU.zip"
-  },
-  {
-    "title": "DistributedLoad.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DistributedLoad.zip",
-    "description": "DistributedLoad.zip"
-  },
-  {
-    "title": "HE_WB.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/HE_WB.zip",
-    "description": "HE_WB.zip"
-  },
-  {
-    "title": "INTERP.zip",
-    "author": "Vladimir Tkach (NPO Energomash)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/INTERP.zip",
-    "description": "\"This example interpolates stress-strain curve by polynomial function - Strain=A1+A2*StressA3*Stress^2, in temperature area between Proportional, Yield and Ultimate stresses and reads it into ANSYS db-file.\""
-  },
-  {
-    "title": "Legend_Example.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Legend_Example.zip",
-    "description": "Legend_Example.zip"
-  },
-  {
-    "title": "STI01_Creating_Custom_Animations.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI01_Creating_Custom_Animations.zip",
-    "description": "STI01_Creating_Custom_Animations.zip"
-  },
-  {
-    "title": "STI03_Harmonic_Postprocessing.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI03_Harmonic_Postprocessing.zip",
-    "description": "STI03_Harmonic_Postprocessing.zip"
-  },
-  {
-    "title": "STI0703_USERHYPER.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0703_USERHYPER.zip",
-    "description": "STI0703_USERHYPER.zip"
-  },
-  {
-    "title": "STI0804_Damping.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip",
-    "description": "STI0804_Damping.zip"
-  },
-  {
-    "title": "STI0903_PSD_Postprocessing_2.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0903_PSD_Postprocessing_2.zip",
-    "description": "STI0903_PSD_Postprocessing_2.zip"
-  },
-  {
-    "title": "STI69_TNT_Beam_Elements.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI69_TNT_Beam_Elements.zip",
-    "description": "STI69_TNT_Beam_Elements.zip"
-  },
-  {
-    "title": "surfeff_final1.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/surfeff_final1.zip",
-    "description": "surfeff_final1.zip"
-  },
-  {
-    "title": "ANSYS_distributed_tutorial_8.1.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ANSYS_distributed_tutorial_8.1.zip",
-    "description": "ANSYS_distributed_tutorial_8.1.zip"
-  },
-  {
-    "title": "demotlbr.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/demotlbr.zip",
-    "description": "demotlbr.zip"
-  },
-  {
-    "title": "penny3d.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip",
-    "description": "penny3d.zip"
-  },
-  {
-    "title": "PressureMappingExample.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/PressureMappingExample.zip",
-    "description": "PressureMappingExample.zip"
-  },
-  {
-    "title": "STI01_Electrical_Contact_Beta_6.0.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI01_Electrical_Contact_Beta_6.0.zip",
-    "description": "STI01_Electrical_Contact_Beta_6.0.zip"
-  },
-  {
-    "title": "STI05_Pressure_Loading.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI05_Pressure_Loading.zip",
-    "description": "STI05_Pressure_Loading.zip"
-  },
-  {
-    "title": "STI0704_USERCREEP.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0704_USERCREEP.zip",
-    "description": "STI0704_USERCREEP.zip"
-  },
-  {
-    "title": "STI0904_USERFC.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0904_USERFC.zip",
-    "description": "STI0904_USERFC.zip"
-  },
-  {
     "title": "surfeff_final2.zip",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/surfeff_final2.zip",
     "description": "surfeff_final2.zip"
-  },
-  {
-    "title": "user01.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip",
-    "description": "user01.zip"
-  },
-  {
-    "title": "elastdata_Unix.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/elastdata_Unix.zip",
-    "description": "elastdata_Unix.zip"
-  },
-  {
-    "title": "FFTDFT.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FFTDFT.zip",
-    "description": "FFTDFT.zip"
-  },
-  {
-    "title": "grph2svg.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/grph2svg.zip",
-    "description": "grph2svg.zip"
-  },
-  {
-    "title": "Material_XML.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Material_XML.zip",
-    "description": "Material_XML.zip"
-  },
-  {
-    "title": "PRESSURE_MAC.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/PRESSURE_MAC.zip",
-    "description": "PRESSURE_MAC.zip"
-  },
-  {
-    "title": "STI01_PDS_and_Nonlinear_Runs.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI01_PDS_and_Nonlinear_Runs.zip",
-    "description": "STI01_PDS_and_Nonlinear_Runs.zip"
-  },
-  {
-    "title": "STI0806_USEROUT.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0806_USEROUT.zip",
-    "description": "STI0806_USEROUT.zip"
   },
   {
     "title": "surfeff_final3.zip",
@@ -1773,35 +1781,69 @@
     "description": "surfeff_final3.zip"
   },
   {
-    "title": "icpkg.zip",
-    "author": "Steve Groothuis (Micron Technology, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/icpkg.zip",
-    "description": "\"An example of IC package assembly using element birth and death - a simple 5-step die attach, injection molding, and cool-down processes during IC packaging. (compliments to Bill Bulat on concept)\" \r\n Unzip the file and read in \"icpkg.inp\"."
+    "title": "t2107.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/t2107.pdf",
+    "description": "t2107.pdf"
   },
   {
-    "title": "matlab.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip",
-    "description": "matlab.zip"
+    "title": "ta_94-1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ta_94-1.pdf",
+    "description": "ta_94-1.pdf"
   },
   {
-    "title": "STI04_Long_Names_and_Strings.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI04_Long_Names_and_Strings.zip",
-    "description": "STI04_Long_Names_and_Strings.zip"
+    "title": "tan_wei_200804_phd.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/tan_wei_200804_phd.pdf",
+    "description": "tan_wei_200804_phd.pdf"
   },
   {
-    "title": "STI0706_Acoustic_Postprocessing.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0706_Acoustic_Postprocessing.zip",
-    "description": "STI0706_Acoustic_Postprocessing.zip"
+    "title": "tcontact.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tcontact.pdf",
+    "description": "tcontact.pdf"
   },
   {
-    "title": "STI0807_Viscoelasticity.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0807_Viscoelasticity.zip",
-    "description": "STI0807_Viscoelasticity.zip"
+    "title": "thermal_comfort.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/thermal_comfort.pdf",
+    "description": "thermal_comfort.pdf"
   },
   {
-    "title": "STI09_Damping.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI09_Damping.zip",
-    "description": "STI09_Damping.zip"
+    "title": "tmi98.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tmi98.pdf",
+    "description": "tmi98.pdf"
+  },
+  {
+    "title": "tms95.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tms95.pdf",
+    "description": "tms95.pdf"
+  },
+  {
+    "title": "transducers-paper_3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/transducers-paper_3.pdf",
+    "description": "transducers-paper_3.pdf"
+  },
+  {
+    "title": "tristano03.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/tristano03.pdf",
+    "description": "tristano03.pdf"
+  },
+  {
+    "title": "ultrasonic2000.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ultrasonic2000.pdf",
+    "description": "ultrasonic2000.pdf"
+  },
+  {
+    "title": "user01.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip",
+    "description": "user01.zip"
+  },
+  {
+    "title": "user_def1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/user_def1.pdf",
+    "description": "user_def1.pdf"
+  },
+  {
+    "title": "usermat.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/usermat.pdf",
+    "description": "Document describing the USERMAT user material subroutine."
   },
   {
     "title": "visco_harmonic.zip",
@@ -1809,97 +1851,84 @@
     "description": "visco_harmonic.zip"
   },
   {
-    "title": "dspace_assembly.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/dspace_assembly.zip",
-    "description": "dspace_assembly.zip"
-  },
-  {
-    "title": "harmonic_and_random.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip",
-    "description": "This zip file contains a simple example - single input PSD table for base excitation of a fictitious structure - run as both random vibration and harmonic response analyses. The user can review the contents of the two input files and see how one can relate harmonic analyses (the transfer function) to the response PSD in random vibration analyses. (Actually, one can also look it up in any dynamics textbook, but this just shows how one can do it in ANSYS.) \r\n \r\n (See also TFUN undocumented command to get the transfer function after a random vibration analysis.)"
-  },
-  {
-    "title": "siysdcap.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip",
-    "description": "siysdcap.zip"
-  },
-  {
-    "title": "STI02_APDL_and_Vector_Operations.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip",
-    "description": "STI02_APDL_and_Vector_Operations.zip"
-  },
-  {
-    "title": "STI04_Manipulating_FE_Mesh.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI04_Manipulating_FE_Mesh.zip",
-    "description": "STI04_Manipulating_FE_Mesh.zip"
-  },
-  {
-    "title": "STI0604_Viscous_Behavior.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0604_Viscous_Behavior.zip",
-    "description": "STI0604_Viscous_Behavior.zip"
-  },
-  {
-    "title": "STI07_CERIG_RBE3_RIGID184.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip",
-    "description": "STI07_CERIG_RBE3_RIGID184.zip"
-  },
-  {
-    "title": "STI0808_Hill.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0808_Hill.zip",
-    "description": "STI0808_Hill.zip"
-  },
-  {
-    "title": "boot.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip",
-    "description": "boot.zip"
-  },
-  {
-    "title": "dspace_part.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/dspace_part.zip",
-    "description": "dspace_part.zip"
-  },
-  {
-    "title": "EPFL_Tutorial.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip",
-    "description": "EPFL_Tutorial.zip"
-  },
-  {
-    "title": "harmonic_cms.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip",
-    "description": "Simple beam example showing procedure for using CMS (component mode synthesis). Same results for the full model (no CMS) and the CMS model."
-  },
-  {
-    "title": "impedance.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip",
-    "description": "Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined."
-  },
-  {
-    "title": "inistate.zip",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip",
-    "description": "This is a very simple example using Workbench Mechanical 12.0.1 to demonstrate use of the INISTATE command in defining initial stress. \r\n Open Workbench 12.0.1 (or 12.1) and use \"File > Restore Archive ...\" and select the zip file to open the model. Solving should take less than a minute. \r\n  The model is a simple bar. The first analysis branch has 10e3 psi initial stress only in the x-direction. Notice that the block is free to expand - it only has symmetry boundary conditions. The final results show basically zero stress and displacement of -8.1455e-4 inches. Since initial stress is 10e3 and elastic modulus is 29e6 with a length of 2.3622 inches: \r\n 10e3 / 29e6 * 2.3622 = 8.1455e-4 \r\n which is the same answer as given by ANSYS. \r\n \r\n The second analysis branch also has 10e3 psi initial stress only in x-direction. However, there is a Frictionless Support preventing the block from expanding. Final results show displacement basically of zero, and stress of 10e3 psi. This is because the initial stress cannot relax due to the boundary conditions, so the final stress = initial stress in this particular case."
-  },
-  {
-    "title": "STI02_Nonlinear_Submodeling.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI02_Nonlinear_Submodeling.zip",
-    "description": "STI02_Nonlinear_Submodeling.zip"
-  },
-  {
-    "title": "STI04_PSD_Postprocessing.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI04_PSD_Postprocessing.zip",
-    "description": "STI04_PSD_Postprocessing.zip"
-  },
-  {
-    "title": "STI10_Manual_Calculation_of_SEND.zip",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI10_Manual_Calculation_of_SEND.zip",
-    "description": "STI10_Manual_Calculation_of_SEND.zip"
-  },
-  {
     "title": "vm256.zip",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip",
     "description": "vm256.zip"
+  },
+  {
+    "title": "vm267.zip",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/vm267.zip",
+    "description": "vm267.zip"
+  },
+  {
+    "title": "wam95_ufluidics.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/wam95_ufluidics.pdf",
+    "description": "wam95_ufluidics.pdf"
+  },
+  {
+    "title": "week10-Text_Compression_Utilities.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week10-Text_Compression_Utilities.pdf",
+    "description": "week10-Text_Compression_Utilities.pdf"
+  },
+  {
+    "title": "week12-STI43_TNT_Bolt_preload.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week12-STI43_TNT_Bolt_preload.pdf",
+    "description": "week12-STI43_TNT_Bolt_preload.pdf"
+  },
+  {
+    "title": "week2-contact1.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week2-contact1.pdf",
+    "description": "week2-contact1.pdf"
+  },
+  {
+    "title": "week23-random_vibrations_tow.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/week23-random_vibrations_tow.pdf",
+    "description": "week23-random_vibrations_tow.pdf"
+  },
+  {
+    "title": "week24-connecting_models_tow.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week24-connecting_models_tow.pdf",
+    "description": "week24-connecting_models_tow.pdf"
+  },
+  {
+    "title": "week25-ETABLE.pdf",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/week25-ETABLE.pdf",
+    "description": "Short description on the usage and features of element tables in ANSYS."
+  },
+  {
+    "title": "week4-effective_cte.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week4-effective_cte.pdf",
+    "description": "week4-effective_cte.pdf"
+  },
+  {
+    "title": "week5_Surface_Effect_Elements.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week5_Surface_Effect_Elements.pdf",
+    "description": "week5_Surface_Effect_Elements.pdf"
+  },
+  {
+    "title": "week6-compar-lm-dd3.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/week6-compar-lm-dd3.pdf",
+    "description": "week6-compar-lm-dd3.pdf"
+  },
+  {
+    "title": "week7-TNT_License_Reporting.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week7-TNT_License_Reporting.pdf",
+    "description": "week7-TNT_License_Reporting.pdf"
+  },
+  {
+    "title": "week_29_STI68_TNT_Damped_Modal.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/week_29_STI68_TNT_Damped_Modal.pdf",
+    "description": "week_29_STI68_TNT_Damped_Modal.pdf"
+  },
+  {
+    "title": "ws_jss2002.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ws_jss2002.pdf",
+    "description": "ws_jss2002.pdf"
+  },
+  {
+    "title": "zej-2012-anand-2.pdf",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/zej-2012-anand-2.pdf",
+    "description": "zej-2012-anand-2.pdf"
   }
 ]

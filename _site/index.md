@@ -119,7 +119,7 @@ The following pages contain the links to the respective files in the repository.
 
 <a href="{{item.url | url }}">{{ item.data.title }}</a>
 
-<p class="font-italic">{{ item.author }}</p>
+<p class="font-italic">{{ item.data.author }}</p>
 
 {{ item.data.description }}
 
