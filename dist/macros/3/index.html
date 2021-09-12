@@ -113,8 +113,8 @@
 &quot;I coded this version only for the win32C (X11c) Graphics device. <strong>Will not work at all with the default win32 (X11)</strong>. Contours in contour plots should have 100 shades of grey with the default input. Parameters can be changed in the code to darken, lighten and/or make more/less shades of grey.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/helix.mac" target="_blank"> helix.mac</a></p>
-<p class="font-italic"></p>
-<p>helix.mac</p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;Here is a helix macro worked up from some xansys discussions several years ago. Several others on the list contributed parts of this.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/helix2.mac" target="_blank"> helix2.mac</a></p>
 <p class="font-italic"></p>
@@ -133,12 +133,14 @@
 <p>hpkp.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/hsarea.mac" target="_blank"> hsarea.mac</a></p>
-<p class="font-italic"></p>
-<p>hsarea.mac</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Macro to get 'hotspot' of selected areas. Puts (x,y,z) and area numbers in an array, which can be used for selection, etc. of areas via APDL.</p>
+<p>Note that while the 'hotspot' of areas should be the centroid, the actual hotspot slightly differs from this. Consequently, no ASUM/GSUM is required, and that is why an undocumented *VGET is used for obtaining hotspot locations.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/hsvolu.mac" target="_blank"> hsvolu.mac</a></p>
-<p class="font-italic"></p>
-<p>hsvolu.mac</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Macro to get 'hotspot' of selected volumes. Puts (x,y,z) and volume numbers in an array, which can be used for selection, etc. of volumes via APDL.</p>
+<p>Note that while the 'hotspot' of volumes should be the centroid, the actual hotspot slightly differs from this. Consequently, no VSUM/GSUM is required, and that is why an undocumented *VGET is used for obtaining hotspot locations.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/im1.mac" target="_blank"> im1.mac</a></p>
 <p class="font-italic"></p>
@@ -153,8 +155,8 @@
 <p>im12.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/im21.mac" target="_blank"> im21.mac</a></p>
-<p class="font-italic"></p>
-<p>im21.mac</p>
+<p class="font-italic">(IDAC)</p>
+<p>IM21 is a general utility that is used to obtain maximum numbers of all entities, with the option to merge and/or compress entity numbers before. This is useful when creating entity generation macros that work on an existing model.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/im26.mac" target="_blank"> im26.mac</a></p>
 <p class="font-italic"></p>
@@ -193,8 +195,8 @@
 <p>im7.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/im82.mac" target="_blank"> im82.mac</a></p>
-<p class="font-italic"></p>
-<p>im82.mac</p>
+<p class="font-italic">(IDAC)</p>
+<p>&quot;A macro that avoids the need for repetitive work when creating areas from many closed loops of Line geometry in ANSYS. This is particularly useful when the analyst has been supplied Line geometry containing many closed loops via CAD or has created closed loops that need to be converted to Areas for element meshing purposes.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/im9.mac" target="_blank"> im9.mac</a></p>
 <p class="font-italic"></p>
@@ -225,20 +227,22 @@
 <p>jb_forc.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/jobname.mac" target="_blank"> jobname.mac</a></p>
-<p class="font-italic"></p>
-<p>jobname.mac</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Gets jobname, title, subtitle and puts in arrays</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/js_curvewrite.mac" target="_blank"> js_curvewrite.mac</a></p>
-<p class="font-italic"></p>
-<p>js_curvewrite.mac</p>
+<p class="font-italic">Jeff Strain (PADT</p>
+<p>&quot;A macro to write output PSD data at selected nodes with the number of selected nodes varying with each run. I did the &quot;write a macro from a macro&quot; thing and took advantage of two fairly recently added capabilities: C formatting in *VWRITE and string arrays, mainly for the 128 character capability.</p>
+<p>&quot;My macro creates a character array called p (I needed to conserve characters). The top row of the array starting at the second column contains selected node numbers. The second row starting at the second column contains GRMS values at each node. Starting in the third row, the first column is filled with frequency breakpoints; the second column over contains output PSD data for each of the selected nodes.&quot;</p>
+<p>This can be used as an example of writing output to a file.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/justmeshit.mac" target="_blank"> justmeshit.mac</a></p>
 <p class="font-italic"></p>
 <p>justmeshit.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/jwasel.mac" target="_blank"> jwasel.mac</a></p>
-<p class="font-italic"></p>
-<p>jwasel.mac</p>
+<p class="font-italic">Joe Woodward (PADT)</p>
+<p>This macro allows you to select the 'inside' surface of a volume, in case your volume has a 'void' inside of it.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/kbfocus.mac" target="_blank"> kbfocus.mac</a></p>
 <p class="font-italic">Eric Miller (PADT)</p>

@@ -128,7 +128,7 @@
 <p>This input file uses SHELL181.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp" target="_blank"> ibeam_188.inp</a></p>
-<p class="font-italic"></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
 <p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
 <ul>
 <li>BEAM188 (Unrestrained warping) -- 387.3</li>
@@ -159,16 +159,16 @@
 <p>Simple natural convection problem of chip on board, 3D hex.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp" target="_blank"> nip.inp</a></p>
-<p class="font-italic"></p>
-<p>nip.inp</p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>Example analysis of a head/media/roller NIP (structural nonlinear). Shows use of *VWRITE to write out an ABAQUS input deck.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/offset.inp" target="_blank"> offset.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>Shows difference between geometric offset and contact offset (CNOF real constant), useful in interference fit problems (so you don't have to modify geometry iteratively).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp" target="_blank"> outres.inp</a></p>
-<p class="font-italic"></p>
-<p>outres.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a simple example of using OUTRES with an array parameter to define at what time points results will be saved. This is useful if you want to control exactly when results will be stored, even with the automatic timestepping algorithm present.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp" target="_blank"> pipe_pml.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -202,8 +202,8 @@ Note that the residual vector method includes stiffness of higher frequencies, b
 <p>Simple example showing a disk loaded with initial velocity. Disk rotation is defined by MPC184, so this must be run in version 7.0 and above. (Disk rotation could have been defined by other methods such as deformable-rigid contact, but this was meant to illustrate a particular technique.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp" target="_blank"> rigidbody_rotation.inp</a></p>
-<p class="font-italic"></p>
-<p>rigidbody_rotation.inp</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a very simple example of using RBE3 or force-distributed type of surface constraint to track an averaged sense of the rotation or translation of a part within an assembly. By listing the displacements or rotations at the pilot node, one can obtain these quantities. (Remember that rotations are reported in radians, not degrees.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/rv-ba-mp.inp" target="_blank"> rv-ba-mp.inp</a></p>
 <p class="font-italic">David Haberman (CSI)</p>

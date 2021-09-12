@@ -228,6 +228,7 @@
   },
   {
     "title": "ibeam_188.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp",
     "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \n * BEAM188 (Unrestrained warping) -- 387.3 \n * BEAM188 (Restrained warping) -- 569.6 \n * SHELL181 (concentrated load) -- 560.8 \n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \n \n This input file uses BEAM188."
   },
@@ -263,8 +264,9 @@
   },
   {
     "title": "nip.inp",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp",
-    "description": "nip.inp"
+    "description": "Example analysis of a head/media/roller NIP (structural nonlinear). Shows use of *VWRITE to write out an ABAQUS input deck."
   },
   {
     "title": "offset.inp",
@@ -274,8 +276,9 @@
   },
   {
     "title": "outres.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp",
-    "description": "outres.inp"
+    "description": "This is a simple example of using OUTRES with an array parameter to define at what time points results will be saved. This is useful if you want to control exactly when results will be stored, even with the automatic timestepping algorithm present. "
   },
   {
     "title": "pipe_pml.inp",
@@ -315,8 +318,9 @@
   },
   {
     "title": "rigidbody_rotation.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp",
-    "description": "rigidbody_rotation.inp"
+    "description": "This is a very simple example of using RBE3 or force-distributed type of surface constraint to track an averaged sense of the rotation or translation of a part within an assembly. By listing the displacements or rotations at the pilot node, one can obtain these quantities. (Remember that rotations are reported in radians, not degrees.)"
   },
   {
     "title": "rv-ba-mp.inp",
@@ -404,8 +408,9 @@
   },
   {
     "title": "spring.inp",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/spring.inp",
-    "description": "spring.inp"
+    "description": "Attached is an input file that sets up and runs an analysis for a variable radius (hyperbolic) compression spring. You should be able to modify it for your needs."
   },
   {
     "title": "st_ex3.inp",
@@ -415,8 +420,9 @@
   },
   {
     "title": "surf_traction.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/surf_traction.inp",
-    "description": "surf_traction.inp"
+    "description": "Shows surface effect element for traction load application."
   },
   {
     "title": "therm_cont.inp",

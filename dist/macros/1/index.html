@@ -101,8 +101,16 @@
 <p>Macro applies pressure distribution for approximation of bearing force. See contents of macro for details.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac" target="_blank"> beamnet.mac</a></p>
-<p class="font-italic"></p>
-<p>beamnet.mac</p>
+<p class="font-italic">Artem Kulachenko (Mid Sweden University)</p>
+<p>Adds beam elements on outer edges of shell elements. From the author:<br>
+Attached please find a macro that creates a net of beam/link elements on 4/3 node shells.</p>
+<p>An example of its use:<br>
+/prep7<br>
+et,1,41<br>
+rect,0,1,0,1<br>
+amesh,1<br>
+et,2,4<br>
+beamnet,41,2</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac" target="_blank"> beampres.mac</a></p>
 <p class="font-italic"> Bram Weisman (Alan C. McClure Associates, Inc.) </p>
@@ -113,8 +121,8 @@
 <p>&quot;Applies a bearing load using discreet forces. Written primarily to apply a bearing load to a model that has been tet meshed where using a pressure gradient would require rebuilding the model.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bilinear.mac" target="_blank"> bilinear.mac</a></p>
-<p class="font-italic"></p>
-<p>bilinear.mac</p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Used when specifying a material which has different tensile and compressive moduli. A test input file is also available.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/bode01.mac" target="_blank"> bode01.mac</a></p>
 <p class="font-italic">Bill Bulat (CSI)</p>
@@ -125,20 +133,22 @@
 <p>Macro for defining a cubic ramp for use w/ ANSYS/LS-Dyna for performing quasi-static explicit analyses.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac" target="_blank"> checkiges.mac</a></p>
-<p class="font-italic"></p>
-<p>checkiges.mac</p>
+<p class="font-italic">Julián Díaz (ITR México)</p>
+<p>&quot;This is a very simple macro, but I've found it very useful when I have an iges file with common errors of duplicate geometry and small lines. All it does is look for lines smaller that .1 inches and plots them along with the attached areas, this can be useful to have a glipse of where could the problems be.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac" target="_blank"> clean.mac</a></p>
 <p class="font-italic">Tom Glade (PACCAR Technical Center)</p>
 <p>&quot;Here's a macro I use to clean up TYPEs, REALs, and MPs.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/clean_model.mac" target="_blank"> clean_model.mac</a></p>
-<p class="font-italic"></p>
-<p>clean_model.mac</p>
+<p class="font-italic">René Fiege (Meyer Werft GmbH)</p>
+<p>&quot;The macro deletes not used attributes (real, mat, type, section), similar to the clean macro from Tom Glade, but with vector operations. It can easily be enlarged to document the used attributes (see macro).<br>
+&quot;Do not use the macro with referencing attributes, like tapered beams. All attributes, which are not an attribute of an element will be deleted.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/closeline.mac" target="_blank"> closeline.mac</a></p>
-<p class="font-italic"></p>
-<p>closeline.mac</p>
+<p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
+<p>The macro selects those lines that surround a picked point, or those lines that are exterior, depending on the case. Try the attached igs file and pick completely outside, inside but close to an outer line, inside outer loop but close to an inner line etc. and see what happens.&quot;</p>
+<p>&quot;Extending it to 3-D should be possible by starting with the WP aligned with the screen csys or so.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac" target="_blank"> cmdif.mac</a></p>
 <p class="font-italic">Eric Miller (PADT)</p>
@@ -168,8 +178,8 @@ Found: 100 11 21.</p>
 *get,_mxlnsz,common,,cfprp7,,int,100&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac" target="_blank"> cmf.mac</a></p>
-<p class="font-italic"></p>
-<p>cmf.mac</p>
+<p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
+<p>Make a compound fillet at two straight lines.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac" target="_blank"> cmget.mac</a></p>
 <p class="font-italic"> John Crawford (Honeywell) </p>
@@ -196,24 +206,24 @@ Found: 100 11 21.</p>
 <p>Outputs velocities for a single frequency analysis in COMET/Acoustics from an ANSYS harmonic analysis.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac" target="_blank"> cnvg_time.mac</a></p>
-<p class="font-italic"></p>
-<p>cnvg_time.mac</p>
+<p class="font-italic">Mitch Voehl (CEC Corp)</p>
+<p>Macro to get last converged substep.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/coil_emf.mac" target="_blank"> coil_emf.mac</a></p>
 <p class="font-italic"></p>
 <p>coil_emf.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/compten.mac" target="_blank"> compten.mac</a></p>
-<p class="font-italic"></p>
-<p>compten.mac</p>
+<p class="font-italic">Carl Ostervig (Tech Inno)</p>
+<p>This macro analysis iteratively structures with different material properties (Youngs modulus) in tension and compression. [STI: Please note that this macro looks at SX and SY. See BILINEAR macro for a more general compression/tension macro based on principal stresses.]</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac" target="_blank"> conts2s.mac</a></p>
-<p class="font-italic"></p>
-<p>conts2s.mac</p>
+<p class="font-italic">G. N. S. Prakash </p>
+<p>&quot;'conts2s.mac' macro creates surface to surface contact elements between nodal components with the default options. Only nodal components(target &amp; contact), material number and coefficient of friction can be given as arguments. Use Contact wizard or your custom code to modify other properties. This macro is helpful when number of components in Ansys models are large or sometimes when the Contact wizard becomes slow with large db files and if we need to create a lot of contact pairs.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/coupcoin.mac" target="_blank"> coupcoin.mac</a></p>
-<p class="font-italic"></p>
-<p>coupcoin.mac</p>
+<p class="font-italic">Alex Komissarov (GEAE)</p>
+<p>A macro used to couple DOF of nodes in a given cylindrical coordinate system within a specified tolerance.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/couple_dof.mac" target="_blank"> couple_dof.mac</a></p>
 <p class="font-italic"></p>

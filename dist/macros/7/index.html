@@ -91,17 +91,29 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/vthick.mac" target="_blank"> vthick.mac</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/vslm_bw.mac" target="_blank"> vslm_bw.mac</a></p>
 <p class="font-italic"></p>
-<p>vthick.mac</p>
+<p>vslm_bw.mac</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/vthick.mac" target="_blank"> vthick.mac</a></p>
+<p class="font-italic">Rick Fischer (Marconi Communications)</p>
+<p>&quot;This macro sets variable shell thickness based on thicknesses at corners of a surface. Only problem is that the attributes are being applied as a real constant. But, rthick creates r cards, one for each element, with real numbers the same as the argument. This could overwrite the reals used for the attributes, depending on how the model is numbered.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/wfmin107.mac" target="_blank"> wfmin107.mac</a></p>
 <p class="font-italic"></p>
 <p>wfmin107.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/writearr.mac" target="_blank"> writearr.mac</a></p>
-<p class="font-italic"></p>
-<p>writearr.mac</p>
+<p class="font-italic">Carl Olsard (noiseboard.com)</p>
+<p>&quot;One command that is severely lacking from ANSYS is a simple way to export a matrix to a file, so that it can be imported into MATLAB. This script writearr.mac should be used with the companion MATLAB script readansysarray.m to export a matrix from ANSYS and import the array into MATLAB. At the moment the script is written to export 2D arrays of MxN (don't need to specify the dimensions). The output file contains the data i,j,data(i,j) where i and j are the array indices. The usage of the macro is:<br>
+writearr,'array','filename','ext'&quot;</p>
+<p>Here is the companion MATLAB script:<br>
+READANSYSARRAY</p>
+<p>&quot;This is the second part of the script, which uses the file exported by writearr.mac. This matlab script will import the file, and reshape the matrix into the correct format. The function is used as follows:</p>
+<ol>
+<li>load the file into MATLAB: load press.txt</li>
+<li>convert the matrix into the correct format: press2=readansysarray(press);&quot;</li>
+</ol>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/x_bcslope.mac" target="_blank"> x_bcslope.mac</a></p>
 <p class="font-italic"></p>
@@ -112,8 +124,8 @@
 <p>x_cecyc.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/x_demo_vread.mac" target="_blank"> x_demo_vread.mac</a></p>
-<p class="font-italic"></p>
-<p>x_demo_vread.mac</p>
+<p class="font-italic">Shen-Yeh Chen (Honeywell)</p>
+<p>&quot;This macro will demonstrate how to read in a matrix ZREAD(ZNNODE,3) in one *VREAD command. The macro will get coordianates from the current model first, write them into the file x_demo_vread.tmp, and read the data from the file&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/x_esum.mac" target="_blank"> x_esum.mac</a></p>
 <p class="font-italic"></p>
@@ -128,16 +140,16 @@
 <p>x_plldst.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/x_shl2sld.mac" target="_blank"> x_shl2sld.mac</a></p>
-<p class="font-italic"></p>
-<p>x_shl2sld.mac</p>
+<p class="font-italic">Shen-Yeh Chen (Honeywell)</p>
+<p>&quot;This macro will sweep the currently selected or assigned SHELL elements into SOLID elements.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/x_th2st.mac" target="_blank"> x_th2st.mac</a></p>
 <p class="font-italic"></p>
 <p>x_th2st.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/yzcurv.mac" target="_blank"> yzcurv.mac</a></p>
-<p class="font-italic"></p>
-<p>yzcurv.mac</p>
+<p class="font-italic">Bill Bulat (OMM)</p>
+<p>&quot;Here's something I used recently (NOT FULLY TESTED!!). Edit as needed to obtain curvature in other global planes (I wrote this to obtain curvature in global yz plane - a symmetry plane in a half symmetry model I recently created). Also reports the average radius of curvature if you're inclined to ignore the speed control bumps. My intention was to make this applicable to arbitrarily large deformations.&quot;</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

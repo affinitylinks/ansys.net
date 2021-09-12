@@ -6,9 +6,10 @@
     "description": "This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros."
   },
   {
-    "title": "051805_maug_contact_presentation.pdf",
+    "title": "Techniques for Successfully Using ANSYS Contact Elements",
+    "author": "Rich Bothmann",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/051805_maug_contact_presentation.pdf",
-    "description": "051805_maug_contact_presentation.pdf"
+    "description": "Presentation from the Midwest ANSYS User Group\n[ANSYS Nonlinear, version 9.0]"
   },
   {
     "title": "051805_maug_topology_optimization_presentation.pdf",
@@ -180,9 +181,10 @@
     "description": "ANSYS_University_Support_Program.pdf"
   },
   {
-    "title": "ANSYS_Users_Group_Hyperelastic_Materials.pdf",
+    "title": "Analyzing Hyperelastic Materials w/ Some Practical Considerations",
+    "author": "Paris Altidis and Vince Adams",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ANSYS_Users_Group_Hyperelastic_Materials.pdf",
-    "description": "ANSYS_Users_Group_Hyperelastic_Materials.pdf"
+    "description": "Presentation from the Midwest ANSYS User Group\n[ANSYS Nonlinear, version unspecified]"
   },
   {
     "title": "ANSYS_distributed_tutorial_8.1.zip",
@@ -192,7 +194,7 @@
   },
   {
     "title": "APDL Coding Standards [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI05_APDL_Coding_Standards.pdf",
     "description": "\"Because of the flexibility and automation APDL (ANSYS Parametric Design Language) provides, many users tend to write input files and macros in addition to using the GUI.\nThere are currently no recognized ‘standards’ of writing APDL macros or input files, although there may exist standards within companies on APDL coding. The lack of APDL coding standards may make inheriting someone else’s input files or macros more difficult. Also, parameter or component conflicts may also arise when using multiple macros.\nThis memo hopes to provide some ideas for groups or individuals wishing to develop APDL standards in writing macros or input files.\""
   },
@@ -234,7 +236,7 @@
   },
   {
     "title": "Basics of ANSYS Macros [PDF]",
-    "author": "David Haberman (CSI) ",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week_28_totw-macros.pdf",
     "description": "Basics of creating and using macros (APDL) in ANSYS."
   },
@@ -245,7 +247,7 @@
   },
   {
     "title": "Building Parametric Models [PDF]",
-    "author": "David Haberman (CSI) ",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Week_22_totw-parametric-model.pdf",
     "description": "This memo provides an overview of APDL, defining parameters, and creating parametric models."
   },
@@ -256,9 +258,9 @@
   },
   {
     "title": "COMPMENU.zip",
-    "author": " Jim Patterson (Hendrickson Trailer Suspension Systems) ",
+    "author": "Jim Patterson (Hendrickson Trailer Suspension Systems)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip",
-    "description": "\"I have a set of macros to generate toolbars based on the defined components in the db. You can then call these toolbars from the main toolbar to aid in the selecting of the components. This includes \"select\", \"also select\", and \"unselect\". You can also \"remake\" the components from the toolbar. As someone who works with assemblies of shell models almost constantly, this has been a huge time saver for me.\"\n Tested on 5.7 through 6.1. Unzip the file and read the supplied Word document for instructions."
+    "description": "\"I have a set of macros to generate toolbars based on the defined components in the db. You can then call these toolbars from the main toolbar to aid in the selecting of the components. This includes \"select\", \"also select\", and \"unselect\". You can also \"remake\"the components from the toolbar. As someone who works with assemblies of shell models almost constantly, this has been a huge time saver for me.\"\n Tested on 5.7 through 6.1. Unzip the file and read the supplied Word document for instructions."
   },
   {
     "title": "Coupling low-order elements to high-order elements in ANSYS",
@@ -280,7 +282,7 @@
   },
   {
     "title": "Customizing GUI Behavior [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI06_Customize_GUI.pdf",
     "description": "\"The /UIS and /MSTART commands provide the user with control over much of the GUI behavior. At 5.7 and 6.0, this has been extended to include control over the multilegend feature, background color, and mouse button assignment for dynamic rotations. Used in conjunction with the startxx.ans file, this allows the user to change GUI behavior in each ANSYS session.\""
   },
@@ -316,14 +318,15 @@
   },
   {
     "title": "Elastic Foundation Stiffness",
-    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/EFS.pdf",
-    "description": " Short explanation of what elastic foundation stiffness (SURF154) is and how to calculate the resulting stiffness for non-planar cases. In Workbench Mechanical, this feature is referred to as an \"Elastic Support\"."
+    "description": "Short explanation of what elastic foundation stiffness (SURF154) is and how to calculate the resulting stiffness for non-planar cases. In Workbench Mechanical, this feature is referred to as an \"Elastic Support\"."
   },
   {
-    "title": "EPFL_Tutorial.zip",
+    "title": "Various MEMS Examples Using ANSYS [ZIP]",
+    "author": "(EPFL, The Swiss Federal Institute of Technology Lausanne)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip",
-    "description": "EPFL_Tutorial.zip"
+    "description": "Tutorials on using ANSYS with various MEMS examples. This was originally taken from EPFL's website."
   },
   {
     "title": "Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package",
@@ -343,9 +346,10 @@
     "description": "A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation."
   },
   {
-    "title": "FLUID29andFLUID79.pdf",
+    "title": "Comparison of FLUID29 and FLUID79 Elements",
+    "author": "Carl Howard (University of Adelaide)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/FLUID29andFLUID79.pdf",
-    "description": "FLUID29andFLUID79.pdf"
+    "description": "\"Analyses were conducted to verify that similar results could be obtained by using the displacement formulated fluid elements FLUID79 or the pressure formulated fluid elements FLUID29.\""
   },
   {
     "title": "FSI.projects.Nabity.paper.pdf",
@@ -359,7 +363,7 @@
   },
   {
     "title": "Formatting output text of results (PRxxxx family of commands) [PDF]",
-    "author": "Sheldon Imaoka (CSI) ",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week1-formatting-output-text.pdf",
     "description": "This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output. This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output."
   },
@@ -375,7 +379,7 @@
   },
   {
     "title": "General ANSYS Tips (5.5)",
-    "author": "Carl Howard (University of Adelaide) ",
+    "author": "Carl Howard (University of Adelaide)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_tips.pdf",
     "description": "Where to get help \n  Insufficient disk space \n Bulk compression mode \n Choice of solver \n  Element Normals \n Boolean operations on solid models \n  Meshing \n Loading an array from a file \n Using ETABLE and extracting the results to an array \n Output when using the GUI \n Generating editable WMF figures "
   },
@@ -385,9 +389,10 @@
     "description": "Gerard_et_al.pdf"
   },
   {
-    "title": "HE_WB.zip",
+    "title": "High End Workbench Tip",
+    "author": "PADT",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/HE_WB.zip",
-    "description": "HE_WB.zip"
+    "description": "Taken from PADT's SWAU group meeting on performing high-end analyses with Workbench Simulation."
   },
   {
     "title": "Hyper.pdf",
@@ -427,7 +432,7 @@
   },
   {
     "title": "Improvements to Time-History Postprocessing at 6.0 [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI08_ANSYS_6.0_Variable_Viewer.pdf",
     "description": "\"This tips and tricks focuses on improvements at 6.0 on the Time-History postprocessor. (After I did this, I realized that a lot of this was already covered in the 6.0 Update seminar, but, oh well...)\""
   },
@@ -443,8 +448,9 @@
   },
   {
     "title": "Legend_Example.zip",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Legend_Example.zip",
-    "description": "Legend_Example.zip"
+    "description": "Example of customizing legend with annotations. See \"Read Me\"file for details, along with AVI animation.\"Essentially, I turn off the legend and write annotations into this area. It gives me considerable control over what appears there. I have also found that I can better communicate results to my customers by, say, having a legend that's reads 1.23 mils rather than 0.123E-02 inches or by referencing drawing and revision numbers, test results, material properties, and so on.\"\n\"You might need to change some of the character size and line spacing dimensions in the macros. Again, though, they work just fine for my hardware.\""
   },
   {
     "title": "LiPaperECF13.pdf",
@@ -453,7 +459,7 @@
   },
   {
     "title": "Long Parameter and Component Names at 6.0 [ZIP]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI04_Long_Names_and_Strings.zip",
     "description": "\"Starting from version 5.7, strings have been introduced to replace character arrays. Strings allow for up to 128 characters for APDL purposes, instead of the 8-letter limit of character parameters. The /INQUIRE command as well as string manipulation functions (see *GET online help) extend the usefulness of strings to retrieve and manipulate data. *VWRITE has also been enhanced to support C-format statements, useful in writing out long strings.\"\n\"At 6.0, the 8-character limitation on parameters, components, and /POST26 variables has been removed. Users can now specify up to 32 character for these items, allowing for much more descriptive names. In /POST26, variables can also be referred to by name when plotting or listing.\""
   },
@@ -539,7 +545,7 @@
   },
   {
     "title": "Manipulating FE Mesh [ZIP]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI04_Manipulating_FE_Mesh.zip",
     "description": "\"There are some special situations where a user may be required to generate or manipulate a database consisting mainly of finite element entities without solid model geometry. With some careful planning, dealing with mesh-only databases can prove to be relatively easy. \n\n Typical situations that may arise include the following: \n\n Import of mesh from Workbench Simulation or AI*Environment/ICEM CFD \n  Generation of repetitive geometry \n\n This memo hopes to cover these situations in more detail.\""
   },
@@ -550,24 +556,25 @@
   },
   {
     "title": "Mass property calculation methods [PDF]",
-    "author": "Sheldon Imaoka (CSI) ",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/week3-Mass_Calculation_Macros.pdf",
     "description": "This memo covers some ways to determine mass properties of an ANSYS model."
   },
   {
-    "title": "Material_XML.zip",
+    "title": "Workbench XML Material Format",
+    "author": "ANSYS, Inc.",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Material_XML.zip",
-    "description": "Material_XML.zip"
+    "description": "ANSYS Workbench Engineering Data module (e.g., Workbench Simulation, Workbench FE Modeler) can import/export material data as XML files. These XML files utilize the MatML format, and this zip file contains an example. This can be useful for users wishing to generate their own material libraries in XML format outside of Workbench Engineering Data."
   },
   {
     "title": "Meshing in Workbench [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI0801_Meshing.pdf",
     "description": "\"Mechanical users have long enjoyed access to a variety of powerful meshing tools inside of ANSYS to generate high-quality shell, tetrahedral, and swept meshes. During the past several years, meshing in ANSYS Workbench Simulation has not only grown to encompass traditional meshing algorithms in ANSYS but has also developed many features requested by ANSYS users as well as integrated meshing technologies from ANSYS CFX and ANSYS ICEM CFD.\""
   },
   {
     "title": "Nested macros, local parameters, trailing underscores",
-    "author": "Martin Herrenbruck (Technische Universität München) ",
+    "author": "Martin Herrenbruck (Technische Universität München)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Nested_macros-all-files.zip",
     "description": "\"A macro file is a file which contains Ansys commands. If you save your macro in your working directory or in the macro directory (see /PSEARCH command) you just enter the macro name in the command line and all these commands will be executed. You can even nest macros: from your main file you call e.g. zzmacro1 which again calls zzmacro2. The only problem is that a macro could change - and you would probably not notice that - the value of a parameter you are using in your main input file. This will be the case if the same parameter name is used accidentally in both the macro and your main input. Let's see how one can avoid these nasty errors - just click on the link!\""
   },
@@ -598,7 +605,7 @@
   },
   {
     "title": "POW2MAT.zip",
-    "author": "Carl Olsard (noiseboard.com) ",
+    "author": "Carl Olsard (noiseboard.com)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/POW2MAT.zip",
     "description": "\"This is a simple program written in Turbo pascal which I find very useful for converting the output from ANSYS (prvar, prnsol, etc) into columns, while removing the headers at the start and between the page listings. The program is used at a DOS prompt and one types in: pow2mat col filein fileout , where col are the number of columns in the output, filein MUST have an extension .val and fileout WILL have an extension .txt. You do NOT type in the extensions, they are default. For example, you would type pow2mat 7 nodelist nodelist which would extract 7 columns from the file nodelist.val and write a stripped file called nodelist.txt . If you have several files to convert, you can use the DOS FOR command as follows: \n FOR %I IN (*.val) DO pow2mat 3 %~nI %~nI\""
   },
@@ -614,7 +621,7 @@
   },
   {
     "title": "Parametric Studies in ANSYS [PDF]",
-    "author": "Sean Harvey (CSI) ",
+    "author": "Sean Harvey (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/week26-parametric_studies.pdf",
     "description": "Automated parametric studies in ANSYS (generating and using parametric input files)."
   },
@@ -625,20 +632,21 @@
   },
   {
     "title": "Plotting Entities and Graphs in Multiple Windows [PDF]",
-    "author": "David Haberman (CSI) ",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/Week_18_multi-plot.pdf",
     "description": "ANSYS 5.4 through 5.6 allow users to plot multiple entities (keypoints, lines, areas, volumes, nodes, and elements) in a given window. Prior to ANSYS 5.4, a user was required to plot entities on top of one another, like transparencies. Furthermore, multi-plotting also allows a user to generate graphs. The following memo discusses how the ANSYS multi-plotting feature works."
   },
   {
     "title": "Postprocessing Harmonic Results [ZIP]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI03_Harmonic_Postprocessing.zip",
     "description": "\"In harmonic analyses, due to the fact that results may not be in phase, postprocessing quantities of interest can pose a challenge. Users may need to review non-sinusoidal results, such as equivalent stresses, at different locations, so accounting for phase information may be required.\n    This memo hopes to cover some of the more important points regarding postprocessing structural harmonic analysis results in both the General and Time-History Postprocessors.\""
   },
   {
-    "title": "PressureMappingExample.zip",
+    "title": "Pressure Mapping Example",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/PressureMappingExample.zip",
-    "description": "PressureMappingExample.zip"
+    "description": "An example which demonstrates mapping between dissimilar meshes and element types.\n\nAt the bottom of the macro is an example of how to apply the mapped results from the first model onto the second using a TABLe. The TABLe uses the second model's node numbers (sorted and stored in ascending order) to index into the TABLe. This results in a very efficient way to map boundary conditions that's fast and uses minimum memory."
   },
   {
     "title": "Principles of Simulating Contact Between Parts using ANSYS",
@@ -682,228 +690,268 @@
     "description": "SPIE-05_Zensheu-USDC-modeling.pdf"
   },
   {
-    "title": "STI01_Acoustic_Elements.zip",
+    "title": "Acoustic Elements [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI01_Acoustic_Elements.zip",
-    "description": "STI01_Acoustic_Elements.zip"
+    "description": "\"For many years, ANSYS has 2D and 3D acoustic elements, including those used to model an “infinite” boundary. These elements can be used in modal, harmonic, and transient analyses, and fluid-structural interaction can also be accounted for in these simulations.\n\nThis memo hopes to review the following topics related to harmonic acoustic analyses: basic comparison of structural and acoustic elements, modeling complex impedance boundary conditions, and defining complex pressure loading. A set of input files, which analyze the case of a simple radiating sphere, is included with this memo.\""
   },
   {
-    "title": "STI01_Electrical_Contact_Beta_6.0.zip",
+    "title": "Beta Electrical Contact Features at 6.0 [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI01_Electrical_Contact_Beta_6.0.zip",
-    "description": "STI01_Electrical_Contact_Beta_6.0.zip"
+    "description": "\"This issue describes a beta feature at 6.0, which is electrical contact capability of 17x surface-to-surface contact elements. This new capability allows contact in thermal-electric and structural-thermal-electric problems.\"\n(Week 13, week of 01/07/02.)"
   },
   {
-    "title": "STI01_PDS_and_Nonlinear_Runs.zip",
+    "title": "PDS and Nonlinear Runs [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI01_PDS_and_Nonlinear_Runs.zip",
-    "description": "STI01_PDS_and_Nonlinear_Runs.zip"
+    "description": "\"The Probabilistic Design System (PDS) of ANSYS provides a very powerful tool in understanding the effect of uncertainties in one’s design. The details of PDS are covered in the online help, so this memo will discuss the specific case of setting up serial and parallel PDS runs as well as performing nonlinear analyses with PDS.\""
   },
   {
-    "title": "STI01_Remote_Solution_Manager.pdf",
+    "title": "Using the WB Simulation Remote Solution Manager [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI01_Remote_Solution_Manager.pdf",
-    "description": "STI01_Remote_Solution_Manager.pdf"
+    "description": "\"Workbench Simulation has the ability to allow the user to solve multiple jobs locally or remotely. These capabilities are defined within the \"Solution” branch of WB Simulation as well as in the WB Remote Solution Manager.\n \"This memo hopes to introduce this capability, especially with regards to solving multiple jobs locally on a Windows machine.\"\n(Week 33, week of 04/02/06.)"
   },
   {
-    "title": "STI02_APDL_and_Vector_Operations.zip",
+    "title": "APDL and Vector Operations [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip",
-    "description": "STI02_APDL_and_Vector_Operations.zip"
+    "description": "\"Vector and matrix operations in APDL are an invaluable method of manipulating array data, as they provide very fast, computationally efficient means of helping the user perform pre- or post-processing operations on the model.\nThere are many ways of storing data, ranging from arrays to tables to strings. Moreover, manipulation of numerical data can be in the form of vectors or matrices via the *Vxxx and *Mxxx commands, respectively. The user is referred to the APDL Programmer’s Guide in the ANSYS online help for a thorough discussion of the capabilities of APDL, but, in this memo, a basic introduction to vector operations will be covered.\""
   },
   {
-    "title": "STI02_Nonlinear_Submodeling.zip",
+    "title": "Nonlinear Submodeling [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI02_Nonlinear_Submodeling.zip",
-    "description": "STI02_Nonlinear_Submodeling.zip"
+    "description": "\"Submodeling is often used to efficiently obtain solutions at local areas. Although submodeling may be commonly thought of as being applicable to linear static structural solutions, it can also be applied to nonlinear and transient analyses, as well as other disciplines. This memo hopes to cover the specific case of nonlinear static structural submodeling.\"\n(Week 14, week of 01/14/02.)"
   },
   {
-    "title": "STI02_QR_Damped_Unsymmetric.zip",
+    "title": "QR Damped and Unsymmetric Stiffness [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI02_QR_Damped_Unsymmetric.zip",
-    "description": "STI02_QR_Damped_Unsymmetric.zip"
+    "description": "\"There have been significant enhancements to the QR Damped eigenvalue extraction method in the past several releases of ANSYS. At 8.0, the capability of including unsymmetric damping [C] matrix was introduced, along with support of damping defined via the DMPRAT and MDAMP commands.\nANSYS 8.1, the material-based constant damping ratio MP,DMPR allowed users to specify constant damping ratios per material ID in mode-superposition harmonic analyses, when used with the QRDAMP eigensolver. With the release of 9.0, QRDAMP also supports unsymmetric stiffness [K] matrix, output of complex eigenvectors, and the use of the PSOLVE command. This memo hopes to cover the use of QR Damped eigenvalue extraction method in friction problems, where an unsymmetric stiffness [K] matrix may be present. An example of this type of problem is brake squeal analyses, where the combination of ANSYS 17x contact elements and the QRDAMP eigensolver provide an easy-to-use, efficient means of determining unstable modes.\""
   },
   {
-    "title": "STI02_Rigid_Body_Contact.zip",
+    "title": "Preventing Rigid-Body Motion in Contact Problems [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI02_Rigid_Body_Contact.zip",
-    "description": "STI02_Rigid_Body_Contact.zip"
+    "description": "\"In contact problems run in a static manner, controlling rigid-body motion may sometimes be an issue under the following circumstances: (a) force-controlled systems or (b) multiple bodies with some parts unconstrained.\"\n\n\"This memo hopes to address some ways of controlling rigid-body motion in contact problems through the use of options available with the surface-to-surface contact elements.\""
   },
   {
-    "title": "STI03_PSD_Efficiency.pdf",
+    "title": "PSD Calculation Efficiency [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI03_PSD_Efficiency.pdf",
-    "description": "STI03_PSD_Efficiency.pdf"
+    "description": "\"A very common use of PSD analyses is to look at the response of a system under a single base excitation, such as the case with many aerospace and civil applications. The default PSD settings are very general in nature and may consequently be inefficient for such a situation. This memo hopes to outline some ways in which the user may obtain more efficient PSD solutions for the specific instance of single base excitation with relatively flat spectrum (although some techniques may be extrapolated for other cases).\"…An older doc I recently reanimated and updated…"
   },
   {
-    "title": "STI03_Yield_and_Failure.pdf",
+    "title": "Review of Anisotropy, Yield Criteria, Failure Criteria [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI03_Yield_and_Failure.pdf",
-    "description": "STI03_Yield_and_Failure.pdf"
+    "description": "\"This memo hopes to serve as a review of the basics of anisotropy, yield criteria, failure criteria, and the ANSYS procedure related to these topics.\"\n(Week 15, week of 01/21/02.)"
   },
   {
-    "title": "STI04_PSD_Postprocessing.zip",
+    "title": "PSD Postprocessing [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI04_PSD_Postprocessing.zip",
-    "description": "STI04_PSD_Postprocessing.zip"
+    "description": "\"PSD, or random vibration, analyses present some interesting challenges in postprocessing due to the nature of the assumptions related to the analysis. This memo hopes to address some of these items, including evaluation of derived stresses and calculation of response power spectral density.\"\n…An older doc I recently reanimated and updated…"
   },
   {
-    "title": "STI05_ANSYS_6.0_Contact_Wizard.pdf",
+    "title": "Contact Wizard Enhancements at 6.0 [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI05_ANSYS_6.0_Contact_Wizard.pdf",
-    "description": "STI05_ANSYS_6.0_Contact_Wizard.pdf"
+    "description": "Describes some of the enhancements made to the Contact Wizard at ANSYS 6.0, including support of 17x contact elements' thermal features and ability to edit contact pair options through same interface.\n(Week 5, week of 10/22/01.)"
   },
   {
-    "title": "STI05_DesignXplorer.pdf",
+    "title": "Understanding the Response Surface Method in DesignXplorer [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI05_DesignXplorer.pdf",
-    "description": "STI05_DesignXplorer.pdf"
+    "description": "\"ANSYS DesignXplorer enables the user to perform optimization studies based on multiple objectives, to account for uncertainties in product design and use, and to determine how best to improve product reliability. These tasks are accomplished through the use of response surfaces, and this memo hopes to cover some of the basics of DesignXplorer operation.\""
   },
   {
-    "title": "STI05_Pressure_Loading.zip",
+    "title": "Pressure Load Macro [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI05_Pressure_Loading.zip",
-    "description": "STI05_Pressure_Loading.zip"
+    "description": "\"In ANSYS, pressure loading via the SFx family of commands allows users to apply a force per unit area in a direction normal to the surface. Structural surface effect elements SURF153 and SURF154 extend pressure loading capabilities by allowing users to specify normal, tangential, or arbitrary distributed loading. In fact, for an arbitrary ‘distributed loading vector,’ the full or projected area may be used, with or without the tangential component of load. This type of loading can be useful in mimicking a bearing load (include tangential component) or wind loading (no tangential component), to name a couple of examples.\n\"Because of the fact that the vector-type of pressure loading can be based on full or projected area, with or without the tangential component, trying to determine an appropriate value for the loading can be cumbersome. The author has written a simple macro which can be used as an example in utilizing surface effects more effectively by allowing the user to specify the total force instead of pressure – the macro calculates the appropriate pressure value to be applied on the surface effect elements.\"\n(Week 27, week of 07/04/04.)"
   },
   {
-    "title": "STI0603_Radiosity_Solver_Simulation.pdf",
+    "title": "Using the Radiosity Solver in Workbench Simulation [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0603_Radiosity_Solver_Simulation.pdf",
-    "description": "STI0603_Radiosity_Solver_Simulation.pdf"
+    "description": "Please note that in Workbench Mechanical 12.1, surface-to-surface radiation (using the Radiosity Solution Method) has been introduced in the GUI, so this memo is obsolete if you use version 12.1 and higher.\n\"Radiation can play an important role in heat transfer analyses. In Workbench Simulation 10.0, a “Radiation” load has been added to allow users to account for losses to the surroundings, although this does not include radiation exchange between surfaces.\n    For users wishing to utilize the ANSYS surface-to-surface radiation capabilities, this memo hopes to introduce an easy method to include these effects within Workbench Simulation via Named Selections and Command objects.\n  This type of methodology can be extended to include any other advanced solution feature of ANSYS which the user may wish to incorporate inside of Workbench Simulation.\""
   },
   {
-    "title": "STI0604_Viscous_Behavior.zip",
+    "title": "Modeling Viscous Behavior [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0604_Viscous_Behavior.zip",
-    "description": "STI0604_Viscous_Behavior.zip"
+    "description": "\"Amorphous solids or solids at elevated temperatures may exhibit viscous behavior. It may be difficult for some users to determine how best to model such behavior. This memo hopes to describe some available options in ANSYS and to differentiate between viscoelastic and viscoplastic constitutive models.\""
   },
   {
-    "title": "STI06_Undocumented_Hyperelastic_Models.zip",
+    "title": "Undocumented Hyperelastic Material Models at 5.7-6.1 [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI06_Undocumented_Hyperelastic_Models.zip",
-    "description": "STI06_Undocumented_Hyperelastic_Models.zip"
+    "description": "\"From 5.7, the 18x series of elements support a variety of hyperelastic constitutive models, namely general polynomial, Mooney-Rivlin, Neo-Hookean, Arruda-Boyce, and Ogden. Four other models have been included in 5.7 onwards, although these are undocumented options for TB,HYPER. These four models consist of the Yeoh and Gent models for incompressible behavior and the Hyperfoam and Blatz-Ko options for compressible rubbers. This memo hopes to provide a summary of these material models and of the required input.\""
   },
   {
-    "title": "STI0701_CMS_in_Simulation.zip",
+    "title": " Using CMS in Workbench Simulation [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip",
-    "description": "STI0701_CMS_in_Simulation.zip"
+    "description": "\"At Workbench 11.0, the ANSYS Rigid Dynamics add-on module enables users to model complex kinematic assemblies, whereby system-level performance as well as accurate force loading on components can be obtained.\n    Although the parts in the assembly may initially be considered rigid, an interesting, related method is the use of component mode synthesis (CMS) to account for the flexibility of parts. This memo will attempt to cover a way in which users can incorporate CMS in their multibody analyses in Workbench Simulation.\"\n[For version 12.0, use supplied \"cms_use_v12.mac\" instead of \"cms_use.mac\" - courtesy of D. Creech.]"
   },
   {
-    "title": "STI0702_External_Pressure_Loading_WB_Simulation.zip",
+    "title": "Spatially-Varying Pressure Loading in Workbench Simulation [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0702_External_Pressure_Loading_WB_Simulation.zip",
-    "description": "STI0702_External_Pressure_Loading_WB_Simulation.zip"
+    "description": "\"Workbench Simulation 11.0 allows users not only to apply constant pressure loads or force vectors per unit area but also to utilize hydrostatic pressure loads and line pressure loads (force per unit length), and these can be defined as a function of time. Moreover, fluid pressures can be mapped from a steady-state or transient ANSYS CFX solution.\nDespite these options, there may be situations where a user may want to import a predefined, spatially-varying pressure field from an external text file. This can be accomplished through the use of a “Commands” object and APDL tables, which this memo will introduce.\"\n(Week 38, week of 07/01/07.) "
   },
   {
-    "title": "STI0703_USERHYPER.zip",
+    "title": "User-Defined Hyperelasticity with USERHYPER [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0703_USERHYPER.zip",
-    "description": "STI0703_USERHYPER.zip"
+    "description": "\"User-Programmable Features (UPFs) are an extremely useful feature for analysts that need additional advanced functionality, especially in the area of constitutive modeling.\nTB,HYPER allows users to include many incompressible and compressible hyperelastic material behavior – Ogden, Arruda-Boyce, Gent, Yeoh, Blatz-Ko are but some of the available models. However, for those wishing to use a customized strain energy function, the USERHYPER.F subroutine is available.\""
   },
   {
-    "title": "STI0704_USERCREEP.zip",
+    "title": "User-Defined Creep Laws with USERCREEP [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0704_USERCREEP.zip",
-    "description": "STI0704_USERCREEP.zip"
+    "description": "\"ANSYS provides 13 creep equations for use with implicit creep – these range from the simple Norton law to the hyperbolic sine form to the Blackburn model to a rational polynomial expression, to name a few – that can be used to model a range of creep behavior for metals. The TBFT command provides curve-fitting functionality for the user wishing to evaluate creep material parameters from test data. Also, the user can model anisotropic creep as well as combine implicit creep with rate-independent plasticity to model a wide range of complex material response.\nDespite this wealth of features, however, one may wish to incorporate one’s own creep law into ANSYS. For example, a company may have their own creep equation with material parameters already defined and validated through testing. The built-in creep laws in ANSYS assume creep used in design rather than failure analysis, so the available creep laws are meant to model primary and secondary creep – consequently, another need to incorporate a user-defined creep law would arise when a user wants to include tertiary creep and/or to evaluate creep damage.\nThis memo will hope to address some aspects of writing one’s own user-defined creep law with the USERCREEP.F subroutine to address this issue.\"\nExample using Anand's model."
   },
   {
-    "title": "STI0705_Buckling.pdf",
+    "title": "Buckling in Workbench Simulation [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0705_Buckling.pdf",
-    "description": "STI0705_Buckling.pdf"
+    "description": "\"Buckling may be a concern for some situations, where a user may need to modify the design to prevent buckling within a given load range. Conversely, failure analysis may need to be performed when a structure has collapsed.\nANSYS and Workbench Simulation have many tools to aid users in solving geometric instability problems, ranging from linear (eigenvalue) buckling to nonlinear, post-buckling analyses.\"\n(Week 41, week of 10/14/07)"
   },
   {
-    "title": "STI0706_Acoustic_Postprocessing.zip",
+    "title": "Acoustic Postprocessing [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0706_Acoustic_Postprocessing.zip",
-    "description": "STI0706_Acoustic_Postprocessing.zip"
+    "description": "\"Acoustic analyses in ANSYS provides insight to the propagation of sound, and both visual and aural postprocessing can aid in this objective. This memo hopes to cover postprocessing methods for acoustic problems other than standard contour and XY plots.\""
   },
   {
     "title": "CERIG vs RBE3, RIGID184 [ZIP]",
-    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip",
     "description": "\"Constraint equations provide many useful features in ANSYS, such as tying together dissimilar meshes, representing parts of the system not explicitly modeled, or distributing loads. Two automated methods of generating constraint equations are the CERIG and RBE3 commands. Because there is often confusion over their use, this memo hopes to provide some information on differences between the two methods.\n\"Constraint equations in ANSYS are linear, so they are not valid for large-rotation analyses. RIGID184 is a beta element in version 6.1 which provides rigid link/beam capabilities, valid for large-rotation problems. The latter part of this memo will cover some details of this undocumented feature, available in 6.1.\""
   },
   {
-    "title": "STI07_Lagrange_Multipliers.pdf",
+    "title": "Understanding Lagrange Multipliers [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI07_Lagrange_Multipliers.pdf",
-    "description": "STI07_Lagrange_Multipliers.pdf"
+    "description": "\"Lagrange multipliers are a general term used in different areas of ANSYS, specifically contact and element formulation. This memo hopes to provide the user with a simplified introduction to the most important concepts in using elements with Lagrange multipliers, in hopes that some of the element options and solver selection can be better understood.\nCurrently, at ANSYS 6.0, the node-to-node gap element CONTA178 and the Mixed U-P formulation of the 18x elements (i.e., KEYOPT(6)>0) utilize Lagrange multipliers, so the discussion will focus on these elements.\""
   },
   {
-    "title": "STI0802_Drucker_Prager.pdf",
+    "title": "Drucker-Prager Models [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0802_Drucker_Prager.pdf",
-    "description": "STI0802_Drucker_Prager.pdf"
+    "description": "\"The Drucker-Prager material model is used for pressure-dependent inelastic behavior of materials such as soils, rock, concrete, and powder. Because ANSYS offers three different Drucker-Prager constitutive models, this memo hopes to provide a comparison of the available options.\"\n(Week 44, week of 03/16/08)"
   },
   {
-    "title": "STI0803_Residual_Vectors.zip",
+    "title": "Introduction to the Residual Vector Method [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0803_Residual_Vectors.zip",
-    "description": "STI0803_Residual_Vectors.zip"
+    "description": "\"The residual vector method can improve the accuracy of mode-superposition harmonic response or transient analyses, especially when the high-frequency content of the structure is excited. This memo provides details on how users can take advantage of this analysis technique introduced in ANSYS 11.0.\""
   },
   {
-    "title": "STI0804_Damping.zip",
+    "title": "Basics on Structural Damping (Addendum) [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip",
-    "description": "STI0804_Damping.zip"
+    "description": "\"Since ANSYS 5.6, there have been numerous enhancements as well as facets of the software program that have changed, including treatment of damping. This article is meant to serve as an addendum to Section 6 of the author’s \"Structural Damping\" memo, which was written in October, 2000.\""
   },
   {
-    "title": "STI0805_Chaboche.pdf",
+    "title": "Chaboche Nonlinear Kinematic Hardening Model [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0805_Chaboche.pdf",
-    "description": "STI0805_Chaboche.pdf"
+    "description": "\"The Chaboche nonlinear kinematic hardening model was added in ANSYS 5.6 to complement the existing isotropic and kinematic hardening rules that users relied on. Despite its availability for nearly ten years as of the time of this writing, the Chaboche model has enjoyed limited popularity, in part because of the perceived complexity of calibrating the material parameters. This memo hopes to introduce the basics related to the Chaboche nonlinear kinematic model.\"\n(Week 47, week of 05/04/08)"
   },
   {
-    "title": "STI0806_USEROUT.zip",
+    "title": "User-Defined Output with USEROUT.F [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI0806_USEROUT.zip",
-    "description": "STI0806_USEROUT.zip"
+    "description": "\"There are various situations where a user may wish to define specific type of output to postprocess — this can range from simple evaluation of safety factors to more involved damage calculations. While APDL, the ANSYS command language, allows users to manipulate results in any manner one sees fit, user-programmable features (UPFs) also provide a means for users to calculate specific output results efficiently at the solution level.\"\nExample of calculating fatigue and Cap (Extended Drucker-Prager) output."
   },
   {
-    "title": "STI0807_Viscoelasticity.zip",
+    "title": "Viscoelasticity [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI0807_Viscoelasticity.zip",
-    "description": "STI0807_Viscoelasticity.zip"
+    "description": "\"Viscoelastic constitutive models allow users to analyze the time-dependent relaxation or creep behavior of materials, including glass, polymers, solid rocket propellants, to name a few. One may view viscoelastic materials as containing an elastic and viscous component, similar to a spring and dashpot in series. This memo will introduce viscoelastic input in ANSYS and as well as cover curve-fitting procedures.\""
   },
   {
-    "title": "STI0808_Hill.zip",
+    "title": "Hill's Potential [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI0808_Hill.zip",
-    "description": "STI0808_Hill.zip"
+    "description": "\"Anisotropic plasticity using Hill’s yield criterion was introduced in ANSYS 5.7, and the extensions to anisotropic creep and viscoplasticity were added in ANSYS 6.0. While Hill’s stress potential is most commonly used for rolled sheets, it can be used for other situations where three orthogonal planes of symmetry are preserved. This memo will introduce details of the usage of Hill’s potential in ANSYS.\"\n(Week 50, week of 08/31/08)"
   },
   {
-    "title": "STI08_PSOLVE.zip",
+    "title": "Using PSOLVE [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI08_PSOLVE.zip",
-    "description": "STI08_PSOLVE.zip"
+    "description": "Although most often used for large-deflection prestressed modal analyses, PSOLVE has other applications which make it attractive to use, especially for large models.\n\nPSOLVE can be used for the following situations:\n\nPrecise mass calculations\nDetailed listing of contact pair information\nEvaluation of tabular boundary conditions and loads\n\nSince PSOLVE is a partial solution (namely, calculation of element matrices), it is usually much faster than performing an actual solution. Hence, the user may obtain any (or all) of the above three types of information prior to running an actual analysis, which can be a valuable way of verifying model input and settings prior to solution.\n\n(Week 20, week of 07/14/02.)"
   },
   {
-    "title": "STI0901_Compiling_UPFs.pdf",
+    "title": "Compiling UPFs and Creating Customized ANSYS Executables [PDF]",
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0901_Compiling_UPFs.pdf",
     "description": "\"ANSYS User Programmable Features (UPFs) are quite powerful means of customizing ANSYS beyond the scripting capabilities of the ANSYS Parametric Design Language (APDL). Writing one’s own constitutive models or complex loading functions or even creating a user-defined element are possible with UPFs. \n\n Because some users may find it challenging to get started using UPFs, this memo hopes to discuss general issues related to compiling and linking a customized version of ANSYS for Windows and Linux environments.\"\n\n (Week 51, week of 02/08/09)"
   },
   {
     "title": "Contact Analysis Tips [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0902_Contact_Tips.pdf",
     "description": "\"Generally speaking, nonlinear analyses involving contact can be quite challenging to solve when the contacting area changes during the load history. However, ANSYS Workbench Simulation has very robust contact technology, along with diagnostic tools that can help the user obtain converged, accurate solutions. This memo hopes to discuss some tips related to contact analyses in hopes of aiding the user who encounters difficulties when solving contact analyses.\""
   },
   {
-    "title": "STI0903_PSD_Postprocessing_2.zip",
-    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
+    "title": "PSD Postprocessing of Relative Displacement [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0903_PSD_Postprocessing_2.zip",
-    "description": "STI0903_PSD_Postprocessing_2.zip"
+    "description": "\"PSD users may wish to determine the relative 1-sigma results between two points. This memo covers three methods to perform this operation, in hopes that it will give users more familiarity with PSD postprocessing in ANSYS.\""
   },
   {
     "title": "STI0904_USERFC.zip",
-    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0904_USERFC.zip",
     "description": "\"The FC command provides users with the ability to predict first-ply failure using maximum strain, maximum stress, or Tsai-wu failure criteria. In ANSYS 12.0.1, users can also take advantage of the userfc subroutine to define up to nine different criteria.\nThis memo reviews the userfc subroutine, and a sample implementation of the Hashin criterion is included.\""
   },
   {
-    "title": "STI09_Damping.zip",
+    "title": "Basics on Structural Damping [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/STI09_Damping.zip",
-    "description": "STI09_Damping.zip"
+    "description": "This is an old document I wrote a while ago on damping which I sometimes use. Although written back at version 5.6, it is still applicable at version 7.0.\n\"Damping is required in many dynamic applications, yet because there are many ways to include it, there is often confusion regarding the implementation of damping in ANSYS. This memo hopes to provide a general summary of the representation of damping available in ANSYS.\""
   },
   {
-    "title": "STI10_Flotran_Enhancements_at_6.0.pdf",
+    "title": "Flotran Enhancements at 6.0 [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI10_Flotran_Enhancements_at_6.0.pdf",
-    "description": "STI10_Flotran_Enhancements_at_6.0.pdf"
+    "description": "\"There have been several enhancements to Flotran at 6.0. These changes include more robust default settings, an additional advection scheme, a new coupling algorithm, and improvements to the ALE mesh morpher.\""
   },
   {
-    "title": "STI10_Manual_Calculation_of_SEND.zip",
+    "title": "Manual Calculation of Strain Energy Density [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/STI10_Manual_Calculation_of_SEND.zip",
-    "description": "STI10_Manual_Calculation_of_SEND.zip"
+    "description": "\"Output of elastic, plastic, and creep strain energy densities (SEND) was introduced in ANSYS 6.0, although this is limited to 18x elements in nonlinear analyses. Users whose models include core elements with plasticity and creep may also wish to obtain these quantities, and this memo hopes to review this procedure.\"\n(Week 22, week of 12/22/02.)"
   },
   {
-    "title": "STI11_Plasticity_Hardening_Rules.zip",
+    "title": "Plasticity Hardening Rules [ZIP]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI11_Plasticity_Hardening_Rules.zip",
-    "description": "STI11_Plasticity_Hardening_Rules.zip"
+    "description": "\"ANSYS has a wide range of constitutive models and element technology available to the user. In this memo, the basics of isotropic and kinematic hardening for plasticity will be discussed, specifically related to proportional/non-proportional, monotonic/cyclic loading, and finite strain applications.\""
   },
   {
-    "title": "STI12_Cyclic_Symmetry_at_6.0.pdf",
+    "title": "Modal Cyclic Symmetry Enhancements at 6.0 [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI12_Cyclic_Symmetry_at_6.0.pdf",
-    "description": "STI12_Cyclic_Symmetry_at_6.0.pdf"
+    "description": "\"At ANSYS 6.0, the modal cyclic symmetry procedure has been significantly improved. New commands, CYCLIC and CYCOPT, replace the older CYCGEN and CYCSOL macros and provide more flexibility and ease-of-use.\""
   },
   {
-    "title": "STI65_TNT_Radiosity_Solver.pdf",
+    "title": "Radiosity Solver [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI65_TNT_Radiosity_Solver.pdf",
-    "description": "STI65_TNT_Radiosity_Solver.pdf"
+    "description": "Information on radiation capabilities of ANSYS, focusing on the radiosity solution method.\nAccompanying input files 1, 2, 3 and 4"
   },
   {
-    "title": "STI69_TNT_Beam_Elements.zip",
+    "title": "Structural Beam Elements Overview [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI69_TNT_Beam_Elements.zip",
-    "description": "STI69_TNT_Beam_Elements.zip"
+    "description": "An overview of beam elements available in ANSYS, including the new BEAM188/189 elements and differences between thin and thick beams."
   },
   {
     "title": "Save Working Loads",
@@ -911,9 +959,10 @@
     "description": "Iterative Determination of Save Working Loads (SWL) for Crawler Cranes"
   },
   {
-    "title": "Shape_Memory_Alloy.pdf",
+    "title": "Shape Memory Alloy",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Shape_Memory_Alloy.pdf",
-    "description": "Shape_Memory_Alloy.pdf"
+    "description": "Short PDF describing differences between the superelastic and shape memory effect options for Shape Memory Alloy (SMA) material model. Simple input file can be downloaded here."
   },
   {
     "title": "SolderTMC.pdf",
@@ -922,7 +971,7 @@
   },
   {
     "title": "Sparse Solver Improvements [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/STI04_Sparse_Solver.pdf",
     "description": "\"There have been various sparse solver improvements in each release of ANSYS. This memo hopes to cover some general information on the solvers available in ANSYS as well as performance improvements between ANSYS 5.6 and 6.0 related to linear static analyses.\""
   },
@@ -933,7 +982,7 @@
   },
   {
     "title": "Surface Effect Elements, General Overview",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/surfeff_final1.zip",
     "description": "An overview presentation and example workshop on generating surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed."
   },
@@ -943,13 +992,14 @@
     "description": "T51-01.pdf"
   },
   {
-    "title": "THOPT.pdf",
+    "title": "Fast Nonlinear Transient Thermal Solver [PDF]",
+    "author": "(ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/THOPT.pdf",
-    "description": "THOPT.pdf"
+    "description": "Information on the fast nonlinear thermal solution method (THOPT), beta in 5.6 and documented in 5.7"
   },
   {
     "title": "Tabular Boundary Conditions and Function Editor at 6.0 [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/STI09_ANSYS_6.0_Function_Editor.pdf",
     "description": "\"This tips and tricks is an introductory memo on the use of tabular and function boundary conditions. The use of the Function Editor is also discussed.\""
   },
@@ -982,18 +1032,19 @@
   },
   {
     "title": "Using Abbreviations to Customize the Toolbar [PDF]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI03_Customizing_Toolbar.pdf",
     "description": "\"The ANSYS Toolbar provides a useful means of accessing commonly-used functions, especially for users who use the GUI rather than typing in commands.\"\n\n\"This memo hopes to provide a brief introduction to the ANSYS Toolbar and, more importantly, how to assign macros or specific dialog boxes to the Toolbar buttons, including Fnc_ UIDL granules or ~eui Tcl/Tk dialog boxes.\""
   },
   {
     "title": "VectorRotation.zip",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/VectorRotation.zip",
-    "description": "VectorRotation.zip"
+    "description": "\"These macros rotate a matrix of vectors from one set of Euler angles to another. One macro creates the rotation matrix and a second does the rotation. To test the macros, a pressurized cylinder (or optionally a sphere) is built, meshed, and solved in 6 different coordinate systems. To check accuracy, results are rotated from one CSYS to another by the macros and then compared to ANSYS. Set your text editor's tab stops to 2 for macro readability.\"\n\nIn the zip file, \"zTestRotationVector.mac\"is the test model macro, and \"zRotateVector.mac\"is the main macro to rotate vectors.\n\nUpdate 02/07/2009: correction to zRotateVector.mac provided by David Creech."
   },
   {
     "title": "Visualizing structural matrices in ANSYS using APDL",
-    "author": "Aaron Acton (ANSYS, Inc.) ",
+    "author": "Aaron Acton (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/acton20081119-visualizing_matrices.pdf",
     "description": "\"This article presents a method of visualizing structural matrices used in finite-element analysis using ANSYS and the ANSYS Parametric Design Language (APDL). The information is intended to provide some insight into the nature of structural matrices used in finite-element codes. Some terms used in sparse-matrix arithmetic are discussed, and methods for calculating certain quantities are provided. A test model is constructed to demonstrate how the stiffness, mass, and damping matrices may be visualized for various systems. The effect of element shape, element type (including superelements), element reordering, and equation reordering on structural matrices is briefly investigated.\""
   },
@@ -1003,46 +1054,52 @@
     "description": "WEP125G.pdf"
   },
   {
-    "title": "Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
+    "title": "Converting piezoelectric data [PDF]",
     "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Week13_TNT_Conversion_of_Piezoelectric_Material_Data.pdf",
     "description": "Conversion of material properties of piezoelectric ceramics (such as PZT) has caused many users confusion because of the difference between manufacturer-supplied data and the format required by ANSYS. This memo hopes to clarify this point and to provide users with information on conversion routines. [Accompanying Spreadsheet]()."
   },
   {
-    "title": "Week_11_Surface_Effect_Elements_Thermal.pdf",
+    "title": "Thermal Surface Effect Elements Intro [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Week_11_Surface_Effect_Elements_Thermal.pdf",
-    "description": "Week_11_Surface_Effect_Elements_Thermal.pdf"
+    "description": " Introduction to thermal surface effect elements (SURF151/152)."
   },
   {
-    "title": "Week_14_Memory_Configuration.pdf",
+    "title": "Memory management and configuration [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Week_14_Memory_Configuration.pdf",
-    "description": "Week_14_Memory_Configuration.pdf"
+    "description": "Memo on memory management and configuration, especially in conjunction with the PCG solver and options in linear static analyses."
   },
   {
-    "title": "Week_16_Nonlinear_Monitor.pdf",
+    "title": "Nonlinear monitoring [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Week_16_Nonlinear_Monitor.pdf",
-    "description": "Week_16_Nonlinear_Monitor.pdf"
+    "description": "Memo covering the benefits of the jobname.mntr file and the MONITOR command in nonlinear analyses."
   },
   {
     "title": "Converting pressures to nodal forces [PDF]",
-    "author": " Sheldon Imaoka (CSI)",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
     "description": "Tip on converting element pressures to nodal forces. This can be useful for mode superposition methods where LVSCALE may not be suitable.\n SI_P2F Macro and test input file."
   },
   {
-    "title": "Week_19_tip_of_week_restart.pdf",
+    "title": "Multiframe Restarts [PDF]",
+    "author": "Sean Harvey (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/Week_19_tip_of_week_restart.pdf",
-    "description": "Week_19_tip_of_week_restart.pdf"
+    "description": "Memo covering the multiframe restart capability (RESCON) in ANSYS.\nAccompanying input file"
   },
   {
-    "title": "Week_20_Windows_File_Association.pdf",
+    "title": "Windows file association for ANSYS files [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Week_20_Windows_File_Association.pdf",
-    "description": "Week_20_Windows_File_Association.pdf"
+    "description": "How to associate database, graphics, and input files with ANSYS under Windows, so one can launch ANSYS more easily without the ANSYS launcher."
   },
   {
-    "title": "Week_8_Structural_Shell_Elements.pdf",
+    "title": "Structural Shell Elements Overview [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Week_8_Structural_Shell_Elements.pdf",
-    "description": "Week_8_Structural_Shell_Elements.pdf"
+    "description": "Overview of structural shell elements in ANSYS, including differences between thin and thick shells, drilling DOF, etc."
   },
   {
     "title": "a020.pdf",
@@ -1050,9 +1107,10 @@
     "description": "a020.pdf"
   },
   {
-    "title": "aacton20080723-clustering.pdf",
+    "title": "Clustering Results Around Peaks for Full-Harmonic Analyses in ANSYS",
+    "author": "Aaron Acton (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aacton20080723-clustering.pdf",
-    "description": "aacton20080723-clustering.pdf"
+    "description": "\"This article presents a method for obtaining full harmonic solutions clustered around potential peak responses. Full harmonic analyses provide exact solutions, typically calculated at equally spaced intervals over the desired frequency range. Mode-superposition analyses, however, provide approximate solutions, but can be clustered around potential resonant peaks. The hybrid method discussed in this article uses a modal solution to determine natural frequencies, which are then used to calculate clusters of points surrounding those frequencies. Full harmonic solutions can then be performed at these clustered points. Examples and input les are provided in order to utilize this method.\""
   },
   {
     "title": "acton20080825-condition_number.pdf",
@@ -1204,8 +1262,9 @@
   },
   {
     "title": "boot.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip",
-    "description": "boot.zip"
+    "description": "Old model originally created back in ANSYS 6.0. Recently tested and seems to solve fine as-is in ANSYS 12.1, so I expect all versions in-between should run fine, too. Hyperelasticity, self-contact, rigid-deformable contact are present. Animation of same model (with finer mesh) is on the gallery page."
   },
   {
     "title": "bzahn00.pdf",
@@ -1275,9 +1334,10 @@
     "description": "Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the \"Advanced Analysis with ANSYS\"seminar during the 2002 User's Conference)."
   },
   {
-    "title": "contact_beta_56.pdf",
+    "title": "PDF file summarizing beta contact features at 5.6.1 [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/contact_beta_56.pdf",
-    "description": "contact_beta_56.pdf"
+    "description": "Presentation on the thermal contact and fluid pressure capabilities of the surface-to-surface contact elements. This was written when these capabilities were beta at 5.6. Thermal capabilites are documented at 5.7.\nAccompanying thermal contact example and fluid pressure example"
   },
   {
     "title": "contact_tech.pdf",
@@ -1296,14 +1356,15 @@
   },
   {
     "title": "creating Custom Animations [ZIP]",
-    "author": "Sheldon Imaoka (ANSYS, Inc.) ",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI01_Creating_Custom_Animations.zip",
     "description": "\"Animations are quite useful, both in presenting results of an analysis to others as well as obtaining better insight into the complex response of a system. While ANSYS has many built-in animation capabilities, sometimes, it may be necessary to create a macro for a customized animation. This memo covers one method of generating such animations.\""
   },
   {
-    "title": "cubeandsphere.pdf",
+    "title": "Comparison of Rectangular and Spherical Models",
+    "author": "Carl Howard (University of Adelaide)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/cubeandsphere.pdf",
-    "description": "cubeandsphere.pdf"
+    "description": "\"The purpose of this investigation was to compare the two modelling techniques for an infinite boundary. The first technique involves setting the elements on the edges of the model to have an absorptive property by changing the material properties so that mu=1. The second technique involves the use of infinite elements (infinite129) that must be placed on a constant radius curvature.\""
   },
   {
     "title": "cyclic_symmetry_analysis.pdf",
@@ -1333,14 +1394,16 @@
     "description": "disrpap.pdf"
   },
   {
-    "title": "dspace_assembly.zip",
+    "title": "DesignSpace Tutorial 2",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/dspace_assembly.zip",
-    "description": "dspace_assembly.zip"
+    "description": "Simple tutorial on analyzing assemblies using DesignSpace with focus on compatibility with SolidWorks."
   },
   {
-    "title": "dspace_part.zip",
+    "title": "DesignSpace Tutorial 1",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/dspace_part.zip",
-    "description": "dspace_part.zip"
+    "description": "Simple tutorial on analyzing parts using DesignSpace with focus on compatibility with SolidWorks."
   },
   {
     "title": "effects_of_nonlinear_geometric.pdf",
@@ -1437,9 +1500,10 @@
     "description": "This is a quick hack I did to generate SVG files from within ANSYS. There are 3 macros contained in the zip file: GRPH2SVG.MAC is the main one, and the other two are called by GRPH2SVG.\n\n The macro redirects the plot to an ANSYS Graphics file \"stiplot.grph\". Then, the macro parses through the GRPH file and generates an SVG file called \"stiplot.svg\". You can change the font, font size, etc. as you see fit from within the macro. (For details on the contents of the GRPH file, refer to the ANSYS Programmer's Guide for details.)\n\nBecause this parses the GRPH file from within ANSYS, it is slow for complex plots, so I recommend using it only for XY plots — this is only meant to serve as an example of what can be done with APDL and reading the GRPH file contents. Also, I did not bother including support for raster graphics - this macro only supports vector graphics. (If you want raster graphics, use of PNG is better. SVG is really a vector graphics implementation.)\n\nIf you're running Firefox, or if you use Internet Explorer and have the Adobe SVG Viewer Plug-in, you can see a sample contour plot and sample XY plot generated from this macro.\n\nBecause this was created by hand, there may be mistakes - you can let me know if you encounter any. Otherwise, instead of using this macro, you can create an EPS file and use your favorite illustration software to convert it to an SVG file."
   },
   {
-    "title": "harmonic-large-mass-method.pdf",
+    "title": "Example harmonic analysis using the large mass method [PDF]",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/harmonic-large-mass-method.pdf",
-    "description": "harmonic-large-mass-method.pdf"
+    "description": "Step-by-step instructions on performing an example harmonic analysis using the large mass method."
   },
   {
     "title": "harmonic_and_random.zip",
@@ -1558,8 +1622,9 @@
   },
   {
     "title": "matlab.zip",
+    "author": "Rick Morgans (Adelaide University)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip",
-    "description": "matlab.zip"
+    "description": "\"On this subject, I've been meaning to post these for ages -> we've been using these macros to transfer variables between ansys and matlab for yonks. They write and read variables from ansys and matlab -> you can check them out to see how they do it (i.e. I cant remember off of the top of my head) -> I think they write out a format header then write the rest of the variable as a single column.\n\nvarread.m\nread variable into matlab\n\nvarread.mac\nread variable into ansys\n\nvarreadc.m\nread 2 column ansys variable into matlab as a complex variable\n\nvarreadcp.m\nread \"packed\"2 column variable into matlab as complex variable\n\nvarreadp.m\nread \"packed\"variable into matlab\n\nvarreadp.mac\nread \"packed\"variable into ansys\n\nvarwrite.m\nwrite a variable from matlab\n\nvarwrite.mac\nwrite a variable from ansys\n\nvarwritep.mac\nwrite a variable from ansys in \"packed\"format using a vmask\""
   },
   {
     "title": "meis.pdf",
@@ -1631,7 +1696,7 @@
     "title": "muffler.zip",
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip",
-    "description": " This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated."
+    "description": "This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated."
   },
   {
     "title": "mutamba2.pdf",
@@ -1692,8 +1757,9 @@
   },
   {
     "title": "penny3d.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip",
-    "description": "penny3d.zip"
+    "description": "Simple example using ANSYS Workbench 12.0 to show one way to generate a penny-shaped crack (3D crack) for fracture mechanics (using CINT command to evaluate J-integral and stress intensity factors)."
   },
   {
     "title": "popelar1.pdf",
@@ -1716,9 +1782,10 @@
     "description": "prony.zip"
   },
   {
-    "title": "radiation.pdf",
+    "title": "Radiation article in ANSYS Solutions Magazine [PDF]",
+    "author": "Dave Looman (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/radiation.pdf",
-    "description": "radiation.pdf"
+    "description": "Overview of ANSYS's radiation capabilities, including a discussion on the radiosity solution method."
   },
   {
     "title": "rbcm22.pdf",
@@ -1737,10 +1804,10 @@
     "description": "Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model."
   },
   {
-    "title": "siysdcap.zip",
+    "title": "siysdcap",
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip",
-    "description": " Tip on visualizing the Drucker-Prager Cap model yield surface."
+    "description": "Tip on visualizing the Drucker-Prager Cap model yield surface."
   },
   {
     "title": "skinner_thesis.pdf",
@@ -1780,18 +1847,21 @@
   },
   {
     "title": "substr-fullpost.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/substr-fullpost.zip",
-    "description": "substr-fullpost.zip"
+    "description": "Fictitious model used to demonstrate substructuring. SETRAN and SESYMM are used to translate and reflect a superelement. RSPLIT and RSTOFF are also used, and postprocessing of the entire model (superelements and non-superelements) is shown."
   },
   {
-    "title": "surfeff_final2.zip",
+    "title": "Structural surface Effect Elements, General Overview",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/surfeff_final2.zip",
-    "description": "surfeff_final2.zip"
+    "description": "An overview presentation and example workshop on structural surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed."
   },
   {
-    "title": "surfeff_final3.zip",
+    "title": "Thermal surface Effect Elements, General Overview",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/surfeff_final3.zip",
-    "description": "surfeff_final3.zip"
+    "description": "An overview presentation and example workshop on thermal surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed."
   },
   {
     "title": "t2107.pdf",
@@ -1809,9 +1879,10 @@
     "description": "tan_wei_200804_phd.pdf"
   },
   {
-    "title": "tcontact.pdf",
+    "title": "Thermal contact overview [PDF]",
+    "author": "Yongyi Zhu (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tcontact.pdf",
-    "description": "tcontact.pdf"
+    "description": "Presentation on the thermal contact capabilities of the surface-to-surface contact elements, beta at 5.6.\nInput file for pressure-dependent thermal conductance"
   },
   {
     "title": "thermal_comfort.pdf",
@@ -1845,8 +1916,9 @@
   },
   {
     "title": "user01.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip",
-    "description": "user01.zip"
+    "description": "Very simple example showing use of user-defined command (USER01).\n\nThis UPF command simply reads and interpolates a defined table array. Use of the parevl() is also shown in this simple input."
   },
   {
     "title": "user_def1.pdf",
@@ -1859,19 +1931,22 @@
     "description": "Document describing the USERMAT user material subroutine."
   },
   {
-    "title": "visco_harmonic.zip",
+    "title": "Converting Prony Series to Frequency Domain",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/visco_harmonic.zip",
-    "description": "visco_harmonic.zip"
+    "description": "Simple example showing how to convert Prony series for viscoelasticity from time domain to frequency domain. This is to convert TB,PRONY to TB,ELASTIC/SDAMP for use in harmonic response analyses."
   },
   {
-    "title": "vm256.zip",
+    "title": "VM256 with Workbench Mechanical",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip",
-    "description": "vm256.zip"
+    "description": "Created a Workbench 12.0 version of VM256.\nUseful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for J-integral and stress intensity factor calculations."
   },
   {
-    "title": "vm267.zip",
+    "title": "VM267 with Workbench Mechanical",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/vm267.zip",
-    "description": "vm267.zip"
+    "description": "Created a Workbench 12.0 version of VM267.\nUseful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for stress intensity factor calculations."
   },
   {
     "title": "wam95_ufluidics.pdf",
@@ -1879,30 +1954,34 @@
     "description": "wam95_ufluidics.pdf"
   },
   {
-    "title": "week10-Text_Compression_Utilities.pdf",
+    "title": "Text and compression utilities [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week10-Text_Compression_Utilities.pdf",
-    "description": "week10-Text_Compression_Utilities.pdf"
+    "description": "Memo on text editors which support syntax highlighting, useful in editing input files and/or macros. Also discusses compression utilities to reduce filesize of database and results files. (Also see \"bzip2\" compression utility, not discussed in memo)"
   },
   {
-    "title": "week12-STI43_TNT_Bolt_preload.pdf",
+    "title": "Modeling preloaded bolts [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week12-STI43_TNT_Bolt_preload.pdf",
-    "description": "week12-STI43_TNT_Bolt_preload.pdf"
+    "description": "Modeling preload in bolts via contact offset, thermal contraction, or the new pretension elements PRETS179.\nPRELOAD1, PRELOAD2, and PRELOAD3 input files"
   },
   {
-    "title": "week2-contact1.pdf",
+    "title": "Load vs. displacement control in contact problems [PDF]",
+    "author": "Karen Dhuyvetter (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week2-contact1.pdf",
-    "description": "week2-contact1.pdf"
+    "description": "Discussion on load vs. displacement control for contact problems."
   },
   {
-    "title": "week23-random_vibrations_tow.pdf",
+    "title": "Random Vibration Analysis of a Circuit Board [PDF]",
+    "author": "Sean Harvey (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/week23-random_vibrations_tow.pdf",
-    "description": "week23-random_vibrations_tow.pdf"
+    "description": "Example of random vibration analysis of a circuit board in ANSYS.\nInput files in zip format"
   },
   {
     "title": "Different Methods of Connecting Parts Together [PDF]",
     "author": "Sean Harvey (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week24-connecting_models_tow.pdf",
-    "description": " Connecting Parts - A study of Continuous Mesh versus Bonded Contact versus Constraint Equations."
+    "description": "Connecting Parts - A study of Continuous Mesh versus Bonded Contact versus Constraint Equations."
   },
   {
     "title": "week25-ETABLE.pdf",
@@ -1914,27 +1993,31 @@
     "title": "Calculating effective Coefficient of Thermal Expansion [PDF]",
     "author": "Bill Bulat (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week4-effective_cte.pdf",
-    "description": " Tips on how to define coefficient of thermal expansion and converting that material data to format that ANSYS can use."
+    "description": "Tips on how to define coefficient of thermal expansion and converting that material data to format that ANSYS can use."
   },
   {
-    "title": "week5_Surface_Effect_Elements.pdf",
+    "title": "Structural Surface Effect Elements Intro [PDF]",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/week5_Surface_Effect_Elements.pdf",
-    "description": "week5_Surface_Effect_Elements.pdf"
+    "description": "Introduction to structural surface effect elements (SURF153/154).\nBOLTLOAD input file"
   },
   {
-    "title": "week6-compar-lm-dd3.pdf",
+    "title": "Sine sweep simulation [PDF]",
+    "author": "David Haberman (CSI",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/week6-compar-lm-dd3.pdf",
-    "description": "week6-compar-lm-dd3.pdf"
+    "description": "Discussion on harmonic sweeps, either via the direct displacement method or the large mass method.\nDirect displacement method example input file and Large mass method example input file"
   },
   {
-    "title": "week7-TNT_License_Reporting.pdf",
+    "title": "License monitoring and reporting [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/week7-TNT_License_Reporting.pdf",
-    "description": "week7-TNT_License_Reporting.pdf"
+    "description": "Information on license monitoring and reporting for Elan (ANSYS 5.4-5.6). At 5.7, licensing has reverted back to FlexLM, and this document is not applicable."
   },
   {
-    "title": "week_29_STI68_TNT_Damped_Modal.pdf",
+    "title": "QR Damped Modal Analysis [PDF]",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/week_29_STI68_TNT_Damped_Modal.pdf",
-    "description": "week_29_STI68_TNT_Damped_Modal.pdf"
+    "description": "Presentation on different damped eigenvalue extraction methods in ANSYS, focusing on the newer QR Damped method.\nInput files in zip format"
   },
   {
     "title": "ws_jss2002.pdf",

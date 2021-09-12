@@ -13,8 +13,8 @@
   },
   {
     "title": "a_filmax.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
     "author": "Ernst Hustedt (Air New Zealand Engineering)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac",
     "description": "Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX."
   },
   {
@@ -54,43 +54,51 @@
   },
   {
     "title": "acmn.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/acmn.mac",
-    "description": "acmn.mac"
+    "description": "Looks for and then plots and lists any areas shared by two volumes"
   },
   {
     "title": "acomplot.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/acomplot.mac",
-    "description": "acomplot.mac"
+    "description": "Finds any areas that are shared by the selected set of volumes and plots them. Useful to check VGLUEs"
   },
   {
     "title": "aext.mac",
+    "author": "Juha Tyllinen (KONE Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aext.mac",
-    "description": "aext.mac"
+    "description": "This macro creates an area by 'extruding' line - Similar to ANSYS command VEXT."
   },
   {
     "title": "aface.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac",
     "description": "If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC."
   },
   {
     "title": "aloop.mac",
+    "author": "Stefano Lucarelli (Mannesmann VDO AG)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/aloop.mac",
-    "description": "aloop.mac"
+    "description": "This input file asks for selection of one or more areas and loops until all areas directly or indirectly connected to the original ones are selected then plots them"
   },
   {
     "title": "alsm.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/alsm.mac",
-    "description": "alsm.mac"
+    "description": "I ended up writing a macro that selects/reselects/unselects meshed areas, and then copied it and modified it for doing the same with volumes."
   },
   {
     "title": "anfout.mac",
+    "author": "John Swanson (SAS, Inc./ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/anfout.mac",
-    "description": "anfout.mac"
+    "description": "Macro that traverses the solid model and writes an anf file.\n    Posted by Eric Miller (PADT)"
   },
   {
     "title": "anfout2.mac",
+    "author": "John Swanson (SAS, Inc./ANSYS, Inc.), slightly modified by John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac",
-    "description": "Macro that traverses the solid model and writes an anf file."
+    "description": "Macro that traverses the solid model and writes an anf file. Modified by John Crawford to include not just highest level component (i.e., write both volumes and 'free' areas which are selected)."
   },
   {
     "title": "anglemod.mac",
@@ -118,8 +126,9 @@
   },
   {
     "title": "ans2pat.mac",
+    "author": "Gordon May (Rolls Royce Compressor Key System)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ans2pat.mac",
-    "description": "ans2pat.mac"
+    "description": "ANSYS to Patran 2 Neutral File translator: this macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Patran 2 Neutral File (PNF) format."
   },
   {
     "title": "ans2unv.mac",
@@ -129,8 +138,9 @@
   },
   {
     "title": "ansys2stl.mac",
+    "author": "Iker Gómez Vázquez (ITP)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ansys2stl.mac",
-    "description": "ansys2stl.mac"
+    "description": "This is a macro to convert an ANSYS structural mesh into an ASCI STL (stereolithography) file.\n\nSince the STL format is based on a triangular surface mesh, this macro selects all external nodes, generates SURF154 elements, then exports these to the STL file.\n\nMacro updated on 03/17/2009."
   },
   {
     "title": "anvect.mac",
@@ -146,13 +156,15 @@
   },
   {
     "title": "areacal.mac",
+    "author": "Carl Ostervig (Tech Inno)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/areacal.mac",
-    "description": "areacal.mac"
+    "description": "This macro calculates the number and area for all selected elements."
   },
   {
     "title": "areatest.mac",
+    "author": "(ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac",
-    "description": "areatest.mac"
+    "description": "Tests areas for consistent normals (not needed at 5.6 since /PSYM,ADIR,1 allows plotting of normals). Also, you may need to rename this macro \"ATEST\" or \"NORMALS\" since \"AREAS\" is a status topic command."
   },
   {
     "title": "arplot.mac",
@@ -162,13 +174,15 @@
   },
   {
     "title": "aslm_bw.mac",
+    "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/aslm_bw.mac",
-    "description": "aslm_bw.mac"
+    "description": "Based on ALSM macro, created by John Crawford to select/reselect/unselect meshed areas. Written to take advantage of vectors to execute faster. "
   },
   {
     "title": "aswp.mac",
+    "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/aswp.mac",
-    "description": "aswp.mac"
+    "description": "Divides a picked area with the working plane, retaining the area attributes for the newly-created areas."
   },
   {
     "title": "attrib_2_Load.js",
@@ -193,8 +207,9 @@
   },
   {
     "title": "avgtemp.mac",
+    "author": "David Power (Mallett Technology Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/avgtemp.mac",
-    "description": "avgtemp.mac"
+    "description": "\"Get average element temperature for each element from nodal body loads.\nUnfortunately it's pretty slow for large models, and I haven't had any time to restructure it to make it run faster, although I'm sure I could make better use of the array operations.\""
   },
   {
     "title": "avsucd.mac",
@@ -204,13 +219,15 @@
   },
   {
     "title": "axiget.mac",
+    "author": "Rod Scholl (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/axiget.mac",
-    "description": "axiget.mac"
+    "description": "Selects axi-symmetric elements based upon their keyopts. (PLANE42/82 Only)"
   },
   {
     "title": "b188to89.mac",
+    "author": "René Fiege (Jos. L. Meyer GmbH)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/b188to89.mac",
-    "description": "b188to89.mac"
+    "description": "\"I attached a little macro to define new BEAM189s on the nodes and properties of the existing 188 elements.\""
   },
   {
     "title": "battle.mac",
@@ -232,8 +249,9 @@
   },
   {
     "title": "beamnet.mac",
+    "author": "Artem Kulachenko (Mid Sweden University)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac",
-    "description": "beamnet.mac"
+    "description": "Adds beam elements on outer edges of shell elements. From the author:\nAttached please find a macro that creates a net of beam/link elements on 4/3 node shells.\n\nAn example of its use:\n/prep7\net,1,41\nrect,0,1,0,1\namesh,1\net,2,4\nbeamnet,41,2"
   },
   {
     "title": "beampres.mac",
@@ -249,8 +267,9 @@
   },
   {
     "title": "bilinear.mac",
+    "author": "John Swanson (SAS, Inc./ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/bilinear.mac",
-    "description": "bilinear.mac"
+    "description": "Used when specifying a material which has different tensile and compressive moduli. A test input file is also available."
   },
   {
     "title": "bode01.mac",
@@ -266,8 +285,9 @@
   },
   {
     "title": "checkiges.mac",
+    "author": "Julián Díaz (ITR México)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac",
-    "description": "checkiges.mac"
+    "description": "\"This is a very simple macro, but I've found it very useful when I have an iges file with common errors of duplicate geometry and small lines. All it does is look for lines smaller that .1 inches and plots them along with the attached areas, this can be useful to have a glipse of where could the problems be.\""
   },
   {
     "title": "clean.mac",
@@ -277,13 +297,15 @@
   },
   {
     "title": "clean_model.mac",
+    "author": "René Fiege (Meyer Werft GmbH)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/clean_model.mac",
-    "description": "clean_model.mac"
+    "description": "\"The macro deletes not used attributes (real, mat, type, section), similar to the clean macro from Tom Glade, but with vector operations. It can easily be enlarged to document the used attributes (see macro).\n\"Do not use the macro with referencing attributes, like tapered beams. All attributes, which are not an attribute of an element will be deleted.\""
   },
   {
     "title": "closeline.mac",
+    "author": "Ernst Hustedt (Air New Zealand Engineering)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/closeline.mac",
-    "description": "closeline.mac"
+    "description": "The macro selects those lines that surround a picked point, or those lines that are exterior, depending on the case. Try the attached igs file and pick completely outside, inside but close to an outer line, inside outer loop but close to an inner line etc. and see what happens.\"\n\n\"Extending it to 3-D should be possible by starting with the WP aligned with the screen csys or so.\""
   },
   {
     "title": "cmdif.mac",
@@ -293,8 +315,9 @@
   },
   {
     "title": "cmf.mac",
+    "author": "Ernst Hustedt (Air New Zealand Engineering)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac",
-    "description": "cmf.mac"
+    "description": "Make a compound fillet at two straight lines."
   },
   {
     "title": "cmget.mac",
@@ -334,8 +357,9 @@
   },
   {
     "title": "cnvg_time.mac",
+    "author": "Mitch Voehl (CEC Corp)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac",
-    "description": "cnvg_time.mac"
+    "description": "Macro to get last converged substep."
   },
   {
     "title": "coil_emf.mac",
@@ -344,18 +368,21 @@
   },
   {
     "title": "compten.mac",
+    "author": "Carl Ostervig (Tech Inno)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/compten.mac",
-    "description": "compten.mac"
+    "description": "This macro analysis iteratively structures with different material properties (Youngs modulus) in tension and compression. [STI: Please note that this macro looks at SX and SY. See BILINEAR macro for a more general compression/tension macro based on principal stresses.]"
   },
   {
     "title": "conts2s.mac",
+    "author": "G. N. S. Prakash ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac",
-    "description": "conts2s.mac"
+    "description": "\"'conts2s.mac' macro creates surface to surface contact elements between nodal components with the default options. Only nodal components(target & contact), material number and coefficient of friction can be given as arguments. Use Contact wizard or your custom code to modify other properties. This macro is helpful when number of components in Ansys models are large or sometimes when the Contact wizard becomes slow with large db files and if we need to create a lot of contact pairs.\""
   },
   {
     "title": "coupcoin.mac",
+    "author": "Alex Komissarov (GEAE)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/coupcoin.mac",
-    "description": "coupcoin.mac"
+    "description": "A macro used to couple DOF of nodes in a given cylindrical coordinate system within a specified tolerance."
   },
   {
     "title": "couple_dof.mac",
@@ -675,8 +702,9 @@
   },
   {
     "title": "helix.mac",
+    "author": "Don Shaffer (Siemens Westinghouse Power Corp)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/helix.mac",
-    "description": "helix.mac"
+    "description": "\"Here is a helix macro worked up from some xansys discussions several years ago. Several others on the list contributed parts of this.\""
   },
   {
     "title": "helix2.mac",
@@ -700,13 +728,15 @@
   },
   {
     "title": "hsarea.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/hsarea.mac",
-    "description": "hsarea.mac"
+    "description": "Macro to get 'hotspot' of selected areas. Puts (x,y,z) and area numbers in an array, which can be used for selection, etc. of areas via APDL.\n\n Note that while the 'hotspot' of areas should be the centroid, the actual hotspot slightly differs from this. Consequently, no ASUM/GSUM is required, and that is why an undocumented *VGET is used for obtaining hotspot locations."
   },
   {
     "title": "hsvolu.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/hsvolu.mac",
-    "description": "hsvolu.mac"
+    "description": "Macro to get 'hotspot' of selected volumes. Puts (x,y,z) and volume numbers in an array, which can be used for selection, etc. of volumes via APDL.\n\n Note that while the 'hotspot' of volumes should be the centroid, the actual hotspot slightly differs from this. Consequently, no VSUM/GSUM is required, and that is why an undocumented *VGET is used for obtaining hotspot locations."
   },
   {
     "title": "im1.mac",
@@ -725,8 +755,9 @@
   },
   {
     "title": "im21.mac",
+    "author": "(IDAC)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/im21.mac",
-    "description": "im21.mac"
+    "description": "IM21 is a general utility that is used to obtain maximum numbers of all entities, with the option to merge and/or compress entity numbers before. This is useful when creating entity generation macros that work on an existing model."
   },
   {
     "title": "im26.mac",
@@ -775,8 +806,9 @@
   },
   {
     "title": "im82.mac",
+    "author": "(IDAC)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/im82.mac",
-    "description": "im82.mac"
+    "description": "\"A macro that avoids the need for repetitive work when creating areas from many closed loops of Line geometry in ANSYS. This is particularly useful when the analyst has been supplied Line geometry containing many closed loops via CAD or has created closed loops that need to be converted to Areas for element meshing purposes.\""
   },
   {
     "title": "im9.mac",
@@ -815,13 +847,15 @@
   },
   {
     "title": "jobname.mac",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/jobname.mac",
-    "description": "jobname.mac"
+    "description": "Gets jobname, title, subtitle and puts in arrays"
   },
   {
     "title": "js_curvewrite.mac",
+    "author": "Jeff Strain (PADT",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/js_curvewrite.mac",
-    "description": "js_curvewrite.mac"
+    "description": "\"A macro to write output PSD data at selected nodes with the number of selected nodes varying with each run. I did the \"write a macro from a macro\" thing and took advantage of two fairly recently added capabilities: C formatting in *VWRITE and string arrays, mainly for the 128 character capability.\n\n\"My macro creates a character array called p (I needed to conserve characters). The top row of the array starting at the second column contains selected node numbers. The second row starting at the second column contains GRMS values at each node. Starting in the third row, the first column is filled with frequency breakpoints; the second column over contains output PSD data for each of the selected nodes.\"\n\nThis can be used as an example of writing output to a file."
   },
   {
     "title": "justmeshit.mac",
@@ -830,8 +864,9 @@
   },
   {
     "title": "jwasel.mac",
+    "author": "Joe Woodward (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/jwasel.mac",
-    "description": "jwasel.mac"
+    "description": " This macro allows you to select the 'inside' surface of a volume, in case your volume has a 'void' inside of it."
   },
   {
     "title": "kbfocus.mac",
@@ -856,18 +891,27 @@
   },
   {
     "title": "l_nlist.mac",
+    "author": "Chris Bridge (2H Offshore Engineering Ltd)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/l_nlist.mac",
-    "description": "l_nlist.mac"
+    "description": "A macro to list selected nodes but in a specified format without repeated header information."
   },
   {
     "title": "lcolor.mac",
+    "author": "Jimmy Carlsson (AF Group)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/lcolor.mac",
-    "description": "lcolor.mac"
+    "description": "This macro colors lines as follows:\n\n Red: Line connected only to one of selected areas\nYellow: Line connected to two of the selected areas\n  Blue: Line connected to three or more selected areas\nMagenta: Line is not connected to any of the selected areas"
   },
   {
     "title": "listtype.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/listtype.mac",
-    "description": "listtype.mac"
+    "description": "Macro used to list all unique combinations of element type, real constant, section type, and material properties of currently selected elements. Useful, for example, when importing mesh from Workbench or other software into ANSYS and confirming settings."
+  },
+  {
+    "title": "listcm.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/listcm.mac",
+    "description": "At 7.0, the CMLIST command only lists selected components rather than all existing components in the database (pre-7.0 behavior). This macro provides a listing of all components in the database, regardless of their selection status. May be useful to get pre-7.0 behavior of CMLIST"
   },
   {
     "title": "lproj.mac",
@@ -881,13 +925,15 @@
   },
   {
     "title": "lstdbdoc.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/lstdbdoc.mac",
-    "description": "lstdbdoc.mac"
+    "description": "This macro finds all :LBL constructs in the database. A :LBL can be any valid Ansys characters following a colon \":\". Therefore you can have different labels for different aspects of your model, such as :MAT for material info, :REAL for real constant information, :INFO for general notes about the analysis, etc. Labels can be repeated."
   },
   {
     "title": "m55to54.mac",
+    "author": "(ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/m55to54.mac",
-    "description": "m55to54.mac"
+    "description": "Converts 5.5 CDB file to 5.4 format (for backwards compatibility)."
   },
   {
     "title": "makemesh.mac",
@@ -896,8 +942,9 @@
   },
   {
     "title": "mapme.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/mapme.mac",
-    "description": "mapme.mac"
+    "description": "General macro used to map one set of values & (x,y,z) coordinates to another. Uses *MOPER,,,MAP.\n\nExample input file can be found here which uses this macro. In this input example, *VPUT is used to compare mapping UX, UY, and UZ from one mesh to another. This can be used to map pressures, heat flux, convection, etc. from CFD codes to ANSYS, for example."
   },
   {
     "title": "massprop.mac",
@@ -911,8 +958,9 @@
   },
   {
     "title": "mg.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/mg.mac",
-    "description": "mg.mac"
+    "description": "Zooms in, out or autoscales images then does a replot\n\"When I want to zoom in by a factor of two I enter MG,2. If I want to zoom out I enter something like MG,.1. If I want to autoscale I just enter MG. It replots the last display, which is usually what I want to do anyway.\""
   },
   {
     "title": "midstres.mac",
@@ -926,8 +974,9 @@
   },
   {
     "title": "mk_mwrite.mac",
+    "author": "Matt Sutton (PADT, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/mk_mwrite.mac",
-    "description": "mk_mwrite.mac"
+    "description": "This is a macro to write out arrays of user-specified width. Usually, when writing a macro, one has to specify the format of *MWRITE beforehand. This is a technique of a macro writing a macro for formatting purposes.\n\nThe history of this is from XANSYS on the following post (search for \"mk_mwrite\")."
   },
   {
     "title": "mkweb.mac",
@@ -997,13 +1046,15 @@
   },
   {
     "title": "nas2ans.mac",
+    "author": "Diego Gorriz (Skycross Engineers)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/nas2ans.mac",
-    "description": "nas2ans.mac"
+    "description": "Example of a macro to convert Nastran input to ANSYS input. Works on shells only, so it should be used as an example."
   },
   {
     "title": "nastexp.mac",
+    "author": "Barry O'Donnell (ODCS Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/nastexp.mac",
-    "description": "nastexp.mac"
+    "description": "\"The macro uses logic (primariliy extracted from a previously published macro) to identify the unique combinations of ETYPE, REAL and MAT for non-section based elements and ETYPE, SECTYPE and MAT for secrion based elements. It then gathers the relevant data into arrays (primarily vector based arrays), and outputs the following NASTRAN cards:\n\n CONM2 (mass21 element)\nPSHELL (based on real data only, i.e. shell63)\nCTRIA3 (shell63 degenerate elements recognised)\nCQUAD4 (shell63 elements)\nPBAR (beam4 element or beam188 element, A/Iyy/Izz supported)\nCBAR (beam4 element or beam188 element, orientation node exported if it exists and default vector of <0 1 0> exported otherwise)\n    CELAS2 (combin14, spring option, linear 2 node version only)\nPROD (link180 element, A supported)\nCROD (link180 element)\nPSOLID (solid element property definition card, fully supported)\nCHEXA (solid 185 and solid 45 fully supported, solid 186 & solid 95 not working correctly)\nCPENTA (solid 185/45/186/95 fully supported, degenerate elements recognised)\nCTETRA (solid 185/45/186/95 & solid 186 & 95 fully supported)\nGRID (nodal coordinates, note: nodal csys = 0) MAT1 (E, nu, dens supported - non temp dependent, initial value supported only)\""
   },
   {
     "title": "ndgroup.mac",
@@ -1012,8 +1063,9 @@
   },
   {
     "title": "ndgroup2.mac",
+    "author": "Joe Woodward (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/ndgroup2.mac",
-    "description": "ndgroup2.mac"
+    "description": "\"A macro which creates a macro of nsel commands for the currently selected nodes. this group of nodes can be recovered by running the macro that this macro creates. The macro will prompt the user for the name of the file which will be created. The default name is 'ndgroup.mac'.\"\nOriginal macro by John Crawford, vectorized by Joe Woodward."
   },
   {
     "title": "nfixdel.mac",
@@ -1037,8 +1089,9 @@
   },
   {
     "title": "p_dirlbl.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/p_dirlbl.mac",
-    "description": "p_dirlbl.mac"
+    "description": "From the author:\nYou can use the attached macro. This is supplied without warranty, etc.\nIt places the directory, date, time, hostname at the top of the graphics window.... There are additional args that can also extract and post the jobname. Read the macro (at least the top of it.)\n P_LOGO2 is a macro that places my company logo on the screen. You can remove that command.... unless you want it! :-)"
   },
   {
     "title": "p_nlist.mac",
@@ -1047,8 +1100,9 @@
   },
   {
     "title": "p_protec.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/p_protec.mac",
-    "description": "p_protec.mac"
+    "description": "Used as a \"wrapper\" for SAVE and RESUME in Toolbar, so one doesn't inadvertantly overwrite stuff in memory."
   },
   {
     "title": "para-2.mac",
@@ -1067,8 +1121,9 @@
   },
   {
     "title": "plot_tag.mac",
+    "author": "Mark Tate (Hamilton Sundstrand)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/plot_tag.mac",
-    "description": "plot_tag.mac"
+    "description": "This macro will tag your plots with directory and jobname."
   },
   {
     "title": "plrv.mac",
@@ -1107,8 +1162,9 @@
   },
   {
     "title": "qclear.mac",
+    "author": "Rod Scholl (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/qclear.mac",
-    "description": "qclear.mac"
+    "description": "Does a /CLEAR without prompting the user for an OK"
   },
   {
     "title": "qzmulti.mac",
@@ -1122,8 +1178,9 @@
   },
   {
     "title": "randseed.mac",
+    "author": "Stefan Reh (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/randseed.mac",
-    "description": "randseed.mac"
+    "description": "\"All random number generators are only pseudo-random number generators. They use what is called a \"seed\" value to calculate a random number. The result is only pseudo-random because with the same seed value you will always end up with the same \"random\" number. So whenever you start ANSYS it initializes the seed value. If you start generating random numbers then you will always get the same sequence of \"random\" numbers. The solution to this problem is to randomize the seed value itself using the system-time. Enclosed is the macro \"randseed\" that will exactly do that. You will get \"real\" random numbers after you run \"randseed\". You might want to run this macro every time before you start with your random number generation. You can also include the macro in your \"start.ans\" procedure so it will be executed each time you start ANSYS.\"\nIt effectively randomizes the seed by executing the RAND an arbitrary number of times."
   },
   {
     "title": "rcs2ics.mac",
@@ -1142,8 +1199,9 @@
   },
   {
     "title": "reassign.mac",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/reassign.mac",
-    "description": "reassign.mac"
+    "description": "Example of reassigning matrix scratch files to another directory. For this example, I also differentiate between the platform type when specifying a scratch directory since Windows and UNIX file systems are assigned differently.\nRequires jobname macro."
   },
   {
     "title": "reformat.mac",
@@ -1152,8 +1210,9 @@
   },
   {
     "title": "renam.mac",
+    "author": "John Swanson (SAS, Inc./ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/renam.mac",
-    "description": "renam.mac"
+    "description": "Renames files in working directory. For example, using \"renam,'tif',_1\" renames all TIF files in working directory and adds prefix \"_1\". Useful to rename graphics files. (Note: At 5.6.1, the undocumented command /DIRGET which this macro uses does not work on Windows and will result in an abort.)"
   },
   {
     "title": "rfor_total.mac",
@@ -1167,8 +1226,9 @@
   },
   {
     "title": "round.mac",
+    "author": "Gordon May (Rolls Royce Compressor Key System)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/round.mac",
-    "description": "round.mac"
+    "description": "Macro to round a parameter to a specified number of digits."
   },
   {
     "title": "rparea.mac",
@@ -1177,8 +1237,9 @@
   },
   {
     "title": "sasel.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/sasel.mac",
-    "description": "sasel.mac"
+    "description": "Macro used to select areas based on the value of the area itself (=length^2). Can be used to select all areas of a certain surface area or a range of surface area (with tolerance)."
   },
   {
     "title": "scopy.mac",
@@ -1187,13 +1248,15 @@
   },
   {
     "title": "select_hexpyra.mac",
+    "author": "SELECT_HEXPYRA",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/select_hexpyra.mac",
-    "description": "select_hexpyra.mac"
+    "description": "Simple example to unselect tetrahedral and wedge-shaped SOLID164 degenerate elements, leaving only hexahedral and pyramid SOLID164 selected.\n\nWhile this macro has limited usefulness by itself, it can be used as an example of selecting certain element shapes by nodal connectivity - very useful if you have a single element type but multiple degenerate element shapes and want to differentiate between them in your model."
   },
   {
     "title": "selloc.mac",
+    "author": "Don Shaffer (Siemens Westinghouse Power Corp)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/selloc.mac",
-    "description": "selloc.mac"
+    "description": "\"This is a utility tool to speed up selection of model entities by location.\" Please read the comments in the macro file for more details on usage."
   },
   {
     "title": "seqv_max.mac",
@@ -1223,8 +1286,9 @@
   },
   {
     "title": "siresume.mac",
+    "author": "Sheldon Imaoka (CSI",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac",
-    "description": "siresume.mac"
+    "description": "Use this for the RESUM_DB abbreviation in the Toolbar to prevent accidental resuming (which clears contents of current database). This macro will not prompt user for confirmation is database is blank. Otherwise, it will prompt user to verify that he/she wants to resume."
   },
   {
     "title": "skin.mac",
@@ -1238,23 +1302,27 @@
   },
   {
     "title": "slicepln.mac",
+    "author": "Don Shaffer (Siemens Westinghouse Power Corp)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/slicepln.mac",
-    "description": "slicepln.mac"
+    "description": "\"This macro moves the working plane origin to the specified keypoint and orients it with wz normal to the specified cartesian axis with x=1,y=2 and z=3.\""
   },
   {
     "title": "sort2d.mac",
+    "author": "Ashok K. (EACoE, Bangalore)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac",
-    "description": "sort2d.mac"
+    "description": "Ansys macro to sort a given numeric array (2d)\n\nI usually get all the nodal coordinates into an array (call it NodeInfo) with node numbers in col 1; X,Y and Z coords in columns 2, 3 and 4 respectively.\n\nThen lets say I want to sort by the Z- coord followed by the X-coord and then the Y-coord I call the macro\n\nsort_by_cols, 'NodeInfo', 4,2,3\n\nThe tolerance is something which you may or may not need. Depends on your application. If you just want to compare upto full decimal accuracy leave the tolerance value at zero."
   },
   {
     "title": "sorted.mac",
+    "author": "Gordon May (Rolls Royce Compressor Key System)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/sorted.mac",
-    "description": "sorted.mac"
+    "description": "Example of sorting arrays using *MOPER."
   },
   {
     "title": "sortem.mac",
+    "author": "Rick Fischer (Marconi Communications",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/sortem.mac",
-    "description": "sortem.mac"
+    "description": "Another similar example of sorting arrays using *MOPER."
   },
   {
     "title": "sorter.mac",
@@ -1263,8 +1331,9 @@
   },
   {
     "title": "spider.mac",
+    "author": "Marco Perucchi (Delta JS AG)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/spider.mac",
-    "description": "spider.mac"
+    "description": "\"I have a macro that might be useful for you. It creates spider webs between 1 center and a group of surrounding nodes. Before starting the macro you have to collect the center node in one component and the group of surrounding nodes in another component. If you are able to do that with your model you should be able to create the link elements without problems.\""
   },
   {
     "title": "spider2.mac",
@@ -1298,8 +1367,9 @@
   },
   {
     "title": "stiicemflotran.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/stiicemflotran.mac",
-    "description": "stiicemflotran.mac"
+    "description": "MESH200 supports a 4-node tetrahedral option (KEYOPT(1)=8), but the node numbering is different from a degenerate 8-node tetrahedral element, such as FLUID142.\nIf a user exports a lower-order tetrahedral mesh using MESH200, conversion to an actual element, such as FLUID142, may be required. Use of this macro allows a user to perform this relatively easily (it is customized to convert 4-node MESH200 tetrahedral elements to Flotran FLUID142 tetrahedral elements, although the user can modify the macro to suit his/her needs)."
   },
   {
     "title": "strne.mac",
@@ -1319,8 +1389,9 @@
   },
   {
     "title": "svsel.mac",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/svsel.mac",
-    "description": "svsel.mac"
+    "description": "Macro used to select solids based on the value of the volume itself (=length^3). Can be used to select all volumes of a certain value or a range of values (with tolerance)."
   },
   {
     "title": "swp.mac",
@@ -1334,33 +1405,39 @@
   },
   {
     "title": "tchkplot.mac",
+    "author": "Sung-Chul Lee (Engineering Systems & Consulting, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/tchkplot.mac",
-    "description": "tchkplot.mac"
+    "description": " Macro to create shell thickness plot into 8-color contour band by respecifying element color properties."
   },
   {
     "title": "text_unix.mac",
+    "author": "John Swanson (SAS, Inc./ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/text_unix.mac",
-    "description": "text_unix.mac"
+    "description": "This macro launches a text editor and creates a file called \"jobname.inp\" in the current working directory."
   },
   {
     "title": "thickplt.mac",
+    "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/thickplt.mac",
-    "description": "thickplt.mac"
+    "description": "\"Plots shell element thickness by utilizing surface pressures. I recommend plotting nodes with a contour or outline plot of pressure for best results. Element plot can also be used, but pressure colors will conflict with element colors.\""
   },
   {
     "title": "thicplot.mac",
+    "author": "Bill Newland (Bell Helicopter)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/thicplot.mac",
-    "description": "thicplot.mac"
+    "description": "\"This macro assigns pressures based on real constant thickness values of shell elements. The shell elements are then plotted with pressure contours having the same values as the thicknesses.\"\n\"Select the desired shell elements to be plotted before running macro. After running macro, DO NOT SAVE. Exit without saving as erronious pressures will be applied to model.\""
   },
   {
     "title": "thread.mac",
+    "author": "Ernst Hustedt (Air New Zealand Engineering)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/thread.mac",
-    "description": "thread.mac"
+    "description": "\"For what it's worth, here is a macro I made some years ago ('94) for doing thread profiles for axisym analysis. Looking at it now, I am not sure if the UN thread option works correctly, I can't remember that I actually used it, but the ISO should be O.K. You can spin the profile along Don's helix.\""
   },
   {
     "title": "togif.mac",
+    "author": "Charles Wong (Goodrich Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/togif.mac",
-    "description": "togif.mac"
+    "description": "\"I have a macro that creates small high resolution GIF files for Windows only. It calls out a shareware program pvw32con.exe. GIF's are much smaller and higher quality than tiff or jpeg.\""
   },
   {
     "title": "trim1.mac",
@@ -1394,8 +1471,9 @@
   },
   {
     "title": "v2comet.mac",
+    "author": "Fern Thomassy (Southwest Research Institute)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/v2comet.mac",
-    "description": "v2comet.mac"
+    "description": " Creates a COMET/Acoustics results file of velocity results."
   },
   {
     "title": "v2glue.mac",
@@ -1419,13 +1497,15 @@
   },
   {
     "title": "vget_subs.mac",
+    "author": "Kiran Sreeram (GE Power Systems)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/vget_subs.mac",
-    "description": "vget_subs.mac"
+    "description": "\"This macro stores the information requested by the user for a selected set of nodes or elements in an array called RESULT_COMP. This information can be any thing that is in the command *vget,for nodes & elements. The reason for this macro is that when using *vget the node or elem numbers must be sequential, in order to get any information. This macro deals with that i.e. by using *vmask, one can always do this manually, however this macro is helpful when needed to use regularly.\n\nThis macro also creates a txt file for the requested information.\""
   },
   {
     "title": "viewface.mac",
+    "author": "Tim Atchison (IDAC)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/viewface.mac",
-    "description": "viewface.mac"
+    "description": "\"This ANSYS macro orientates your model to view a selected geometry face parallel to the screen. This is a must for analysts who regularly need to instantly orientate models to positions other than the standard views allowed. Simply click the face you want to view.\""
   },
   {
     "title": "vlsm.mac",
@@ -1444,8 +1524,9 @@
   },
   {
     "title": "vrange.mac",
+    "author": "Mitch Voehl (CEC Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/vrange.mac",
-    "description": "vrange.mac"
+    "description": "Macro which creates a mask vector for array values which fall between specified minimuim and maximum values. Will also return parameters containing the index location of the first and last array elements meeting the criteria, as well as the number of array elements which meet the criteria."
   },
   {
     "title": "vslm_bw.mac",
@@ -1454,8 +1535,9 @@
   },
   {
     "title": "vthick.mac",
+    "author": "Rick Fischer (Marconi Communications)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/vthick.mac",
-    "description": "vthick.mac"
+    "description": "\"This macro sets variable shell thickness based on thicknesses at corners of a surface. Only problem is that the attributes are being applied as a real constant. But, rthick creates r cards, one for each element, with real numbers the same as the argument. This could overwrite the reals used for the attributes, depending on how the model is numbered.\""
   },
   {
     "title": "wfmin107.mac",
@@ -1464,8 +1546,9 @@
   },
   {
     "title": "writearr.mac",
+    "author": "Carl Olsard (noiseboard.com)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/writearr.mac",
-    "description": "writearr.mac"
+    "description": "\"One command that is severely lacking from ANSYS is a simple way to export a matrix to a file, so that it can be imported into MATLAB. This script writearr.mac should be used with the companion MATLAB script readansysarray.m to export a matrix from ANSYS and import the array into MATLAB. At the moment the script is written to export 2D arrays of MxN (don't need to specify the dimensions). The output file contains the data i,j,data(i,j) where i and j are the array indices. The usage of the macro is:\nwritearr,'array','filename','ext'\"\n\nHere is the companion MATLAB script:\nREADANSYSARRAY\n\n\"This is the second part of the script, which uses the file exported by writearr.mac. This matlab script will import the file, and reshape the matrix into the correct format. The function is used as follows:\n1. load the file into MATLAB: load press.txt\n 2. convert the matrix into the correct format: press2=readansysarray(press);\""
   },
   {
     "title": "x_bcslope.mac",
@@ -1479,8 +1562,9 @@
   },
   {
     "title": "x_demo_vread.mac",
+    "author": "Shen-Yeh Chen (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/x_demo_vread.mac",
-    "description": "x_demo_vread.mac"
+    "description": "\"This macro will demonstrate how to read in a matrix ZREAD(ZNNODE,3) in one *VREAD command. The macro will get coordianates from the current model first, write them into the file x_demo_vread.tmp, and read the data from the file\""
   },
   {
     "title": "x_esum.mac",
@@ -1499,8 +1583,9 @@
   },
   {
     "title": "x_shl2sld.mac",
+    "author": "Shen-Yeh Chen (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/x_shl2sld.mac",
-    "description": "x_shl2sld.mac"
+    "description": "\"This macro will sweep the currently selected or assigned SHELL elements into SOLID elements.\""
   },
   {
     "title": "x_th2st.mac",
@@ -1509,7 +1594,8 @@
   },
   {
     "title": "yzcurv.mac",
+    "author": "Bill Bulat (OMM)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/yzcurv.mac",
-    "description": "yzcurv.mac"
+    "description": "\"Here's something I used recently (NOT FULLY TESTED!!). Edit as needed to obtain curvature in other global planes (I wrote this to obtain curvature in global yz plane - a symmetry plane in a half symmetry model I recently created). Also reports the average radius of curvature if you're inclined to ignore the speed control bumps. My intention was to make this applicable to arbitrarily large deformations.\""
   }
 ]

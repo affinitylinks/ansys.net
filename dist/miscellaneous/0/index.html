@@ -92,8 +92,8 @@
 <p class="font-italic"></p>
 <p>ANS-history.txt</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn" target="_blank"> aPDL.syn</a></p>
-<p class="font-italic"></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn" target="_blank"> apdl.syn</a></p>
+<p class="font-italic">Bob Weathers (Trane)</p>
 <p>APDL.syn</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/ask.tcl" target="_blank"> ask.tcl</a></p>
@@ -101,8 +101,18 @@
 <p>&quot;You will be prompted with variable name and value in a single dialouge box. Enter the variable name upto 32 chars long. Enter the variable value upto 128 chars long. Value can be numeric or string. No need to enter quotes for string. On clicking enter this script will set the variable name with the value in ANSYS properly either as a nummeric or string.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn" target="_blank"> circle.grn</a></p>
-<p class="font-italic"></p>
-<p>circle.grn</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>A UIDL function (granule file) to create circles by picking. To change the menu put the following in a menu granule:<br>
+:!<br>
+:N Men_CIRC<br>
+:S 0, 0, 0<br>
+:T Menu<br>
+:A Circles<br>
+:D Circles<br>
+Fnc_CIRCLEWP<br>
+Fnc_CIRCLEKP<br>
+:E END<br>
+:!</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap" target="_blank"> cmap_ansys_viridis.cmap</a></p>
 <p class="font-italic">Cristóbal Tapia (University Stuttgart)</p>
@@ -117,16 +127,16 @@
 <p>Color map file to produce grayscale contours. Use /cmap,greyscl.cmap to read this file in.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas" target="_blank"> importJPEG1.bas</a></p>
-<p class="font-italic"></p>
-<p>importJPEG1.bas</p>
+<p class="font-italic">Mark Tate (Hamilton Sundstrand)</p>
+<p>&quot;Here is a Word Macro that I hacked together a while back that copies a group of graphic files into Word, two per page, with figure numbers. You can change the extension from jpg to png. It looks for files with a root name and add numbers to form the full name, i.e. root001.jpg, root002.jpg, etc.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas" target="_blank"> importJPEG2.bas</a></p>
-<p class="font-italic"></p>
-<p>importJPEG2.bas</p>
+<p class="font-italic">Gary Betts (Metso Minerals Ltd)</p>
+<p>&quot;Here is a macro for MS Word that will count and import all the jpegs in a defined folder into Word.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/importPPT.bas" target="_blank"> importPPT.bas</a></p>
-<p class="font-italic"></p>
-<p>importPPT.bas</p>
+<p class="font-italic">Mark Tate (Hamilton Sundstrand)</p>
+<p>A visual basic PowerPoint macro to import JPEG files into PowerPoint, one image per slide. Edit the file in a text editor to change variables or directory locations, etc.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl" target="_blank"> importpara.tcl</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -174,16 +184,16 @@
 <p>script.ps1</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/silicon.mat" target="_blank"> silicon.mat</a></p>
-<p class="font-italic"></p>
-<p>silicon.mat</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>Although strictly not an input file, the &quot;silicon.mat&quot; file contains temp-dependent properties of silicon. See this email from S. Groothuis for more informaiton.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat" target="_blank"> tempdele.bat</a></p>
-<p class="font-italic"></p>
-<p>tempdele.bat</p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>&quot;Caution: This batch file is very powerful. It searches the current folder and all subfolders for known ANSYS temporary files and deletes them without sending them to the recycle bin. Therefore I would recommend that you do not execute this in the root folder of any drive which has program files. It would be O.K. to execute this one folder down in a folder where you keep your ANSYS project files. Also, you should familiarize your with the list of file extensions which this batch files deletes and be sure you agree with it. Do not run this in an ANSYS folder if you plan to do any RESTART from existing results files.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar" target="_blank"> userelement.tar</a></p>
-<p class="font-italic"></p>
-<p>userelement.tar</p>
+<p class="font-italic">Roger Young (Industrial Research Ltd.)</p>
+<p>&quot;This package contains a number of examples of the Ansys user element &lt;uel&gt; which may be further adapted for personal use. The examples given here are for a 4-node planar element USER101 with linear shape functions similar to the Ansys element PLANE42. However USER101 may easily be extended to a 3D 8-node element and/or to quadratic shape functions by changing the specifications in lib/PAR.NML. In addition there is a simple extension to general large strain non-linear deformation which is illustrated in uel3/ex2.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/9/wirebond.wbpz" target="_blank"> wirebond</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>

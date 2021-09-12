@@ -91,6 +91,10 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/p_protec.mac" target="_blank"> p_protec.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>Used as a &quot;wrapper&quot; for SAVE and RESUME in Toolbar, so one doesn't inadvertantly overwrite stuff in memory.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/para-2.mac" target="_blank"> para-2.mac</a></p>
 <p class="font-italic"></p>
 <p>para-2.mac</p>
@@ -104,8 +108,8 @@
 <p>picker.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/plot_tag.mac" target="_blank"> plot_tag.mac</a></p>
-<p class="font-italic"></p>
-<p>plot_tag.mac</p>
+<p class="font-italic">Mark Tate (Hamilton Sundstrand)</p>
+<p>This macro will tag your plots with directory and jobname.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/plrv.mac" target="_blank"> plrv.mac</a></p>
 <p class="font-italic"></p>
@@ -136,8 +140,8 @@
 <p>put_amp.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/qclear.mac" target="_blank"> qclear.mac</a></p>
-<p class="font-italic"></p>
-<p>qclear.mac</p>
+<p class="font-italic">Rod Scholl (PADT)</p>
+<p>Does a /CLEAR without prompting the user for an OK</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/qzmulti.mac" target="_blank"> qzmulti.mac</a></p>
 <p class="font-italic"></p>
@@ -148,8 +152,9 @@
 <p>random.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/randseed.mac" target="_blank"> randseed.mac</a></p>
-<p class="font-italic"></p>
-<p>randseed.mac</p>
+<p class="font-italic">Stefan Reh (ANSYS, Inc.)</p>
+<p>&quot;All random number generators are only pseudo-random number generators. They use what is called a &quot;seed&quot; value to calculate a random number. The result is only pseudo-random because with the same seed value you will always end up with the same &quot;random&quot; number. So whenever you start ANSYS it initializes the seed value. If you start generating random numbers then you will always get the same sequence of &quot;random&quot; numbers. The solution to this problem is to randomize the seed value itself using the system-time. Enclosed is the macro &quot;randseed&quot; that will exactly do that. You will get &quot;real&quot; random numbers after you run &quot;randseed&quot;. You might want to run this macro every time before you start with your random number generation. You can also include the macro in your &quot;start.ans&quot; procedure so it will be executed each time you start ANSYS.&quot;<br>
+It effectively randomizes the seed by executing the RAND an arbitrary number of times.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/rcs2ics.mac" target="_blank"> rcs2ics.mac</a></p>
 <p class="font-italic"></p>
@@ -164,16 +169,17 @@
 <p>readsi.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/reassign.mac" target="_blank"> reassign.mac</a></p>
-<p class="font-italic"></p>
-<p>reassign.mac</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example of reassigning matrix scratch files to another directory. For this example, I also differentiate between the platform type when specifying a scratch directory since Windows and UNIX file systems are assigned differently.<br>
+Requires jobname macro.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/reformat.mac" target="_blank"> reformat.mac</a></p>
 <p class="font-italic"></p>
 <p>reformat.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/renam.mac" target="_blank"> renam.mac</a></p>
-<p class="font-italic"></p>
-<p>renam.mac</p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Renames files in working directory. For example, using &quot;renam,'tif',_1&quot; renames all TIF files in working directory and adds prefix &quot;_1&quot;. Useful to rename graphics files. (Note: At 5.6.1, the undocumented command /DIRGET which this macro uses does not work on Windows and will result in an abort.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rfor_total.mac" target="_blank"> rfor_total.mac</a></p>
 <p class="font-italic"></p>
@@ -184,28 +190,29 @@
 <p>rotv.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/round.mac" target="_blank"> round.mac</a></p>
-<p class="font-italic"></p>
-<p>round.mac</p>
+<p class="font-italic">Gordon May (Rolls Royce Compressor Key System)</p>
+<p>Macro to round a parameter to a specified number of digits.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/rparea.mac" target="_blank"> rparea.mac</a></p>
 <p class="font-italic"></p>
 <p>rparea.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/sasel.mac" target="_blank"> sasel.mac</a></p>
-<p class="font-italic"></p>
-<p>sasel.mac</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Macro used to select areas based on the value of the area itself (=length^2). Can be used to select all areas of a certain surface area or a range of surface area (with tolerance).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/scopy.mac" target="_blank"> scopy.mac</a></p>
 <p class="font-italic"></p>
 <p>scopy.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/select_hexpyra.mac" target="_blank"> select_hexpyra.mac</a></p>
-<p class="font-italic"></p>
-<p>select_hexpyra.mac</p>
+<p class="font-italic">SELECT_HEXPYRA</p>
+<p>Simple example to unselect tetrahedral and wedge-shaped SOLID164 degenerate elements, leaving only hexahedral and pyramid SOLID164 selected.</p>
+<p>While this macro has limited usefulness by itself, it can be used as an example of selecting certain element shapes by nodal connectivity - very useful if you have a single element type but multiple degenerate element shapes and want to differentiate between them in your model.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/selloc.mac" target="_blank"> selloc.mac</a></p>
-<p class="font-italic"></p>
-<p>selloc.mac</p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;This is a utility tool to speed up selection of model entities by location.&quot; Please read the comments in the macro file for more details on usage.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/seqv_max.mac" target="_blank"> seqv_max.mac</a></p>
 <p class="font-italic"></p>
@@ -229,8 +236,8 @@ Useful example of the use of *MOPER,,,MAP.</p>
 <p>shownres.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac" target="_blank"> siresume.mac</a></p>
-<p class="font-italic"></p>
-<p>siresume.mac</p>
+<p class="font-italic">Sheldon Imaoka (CSI</p>
+<p>Use this for the RESUM_DB abbreviation in the Toolbar to prevent accidental resuming (which clears contents of current database). This macro will not prompt user for confirmation is database is blank. Otherwise, it will prompt user to verify that he/she wants to resume.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/skin.mac" target="_blank"> skin.mac</a></p>
 <p class="font-italic"></p>
@@ -241,16 +248,16 @@ Useful example of the use of *MOPER,,,MAP.</p>
 <p>skndpth.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/slicepln.mac" target="_blank"> slicepln.mac</a></p>
-<p class="font-italic"></p>
-<p>slicepln.mac</p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;This macro moves the working plane origin to the specified keypoint and orients it with wz normal to the specified cartesian axis with x=1,y=2 and z=3.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac" target="_blank"> sort2d.mac</a></p>
-<p class="font-italic"></p>
-<p>sort2d.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/sorted.mac" target="_blank"> sorted.mac</a></p>
-<p class="font-italic"></p>
-<p>sorted.mac</p>
+<p class="font-italic">Ashok K. (EACoE, Bangalore)</p>
+<p>Ansys macro to sort a given numeric array (2d)</p>
+<p>I usually get all the nodal coordinates into an array (call it NodeInfo) with node numbers in col 1; X,Y and Z coords in columns 2, 3 and 4 respectively.</p>
+<p>Then lets say I want to sort by the Z- coord followed by the X-coord and then the Y-coord I call the macro</p>
+<p>sort_by_cols, 'NodeInfo', 4,2,3</p>
+<p>The tolerance is something which you may or may not need. Depends on your application. If you just want to compare upto full decimal accuracy leave the tolerance value at zero.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -11,7 +11,8 @@
     "description": "ANS-history.txt"
   },
   {
-    "title": "aPDL.syn",
+    "title": "apdl.syn",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn",
     "description": "APDL.syn"
   },
@@ -23,8 +24,9 @@
   },
   {
     "title": "circle.grn",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn",
-    "description": "circle.grn"
+    "description": "A UIDL function (granule file) to create circles by picking. To change the menu put the following in a menu granule:\n:!\n:N Men_CIRC\n:S 0, 0, 0\n:T Menu\n:A Circles\n:D Circles\nFnc_CIRCLEWP\nFnc_CIRCLEKP\n:E END\n:! "
   },
   {
     "title": "cmap_ansys_viridis.cmap",
@@ -46,18 +48,21 @@
   },
   {
     "title": "importJPEG1.bas",
+    "author": "Mark Tate (Hamilton Sundstrand)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas",
-    "description": "importJPEG1.bas"
+    "description": "\"Here is a Word Macro that I hacked together a while back that copies a group of graphic files into Word, two per page, with figure numbers. You can change the extension from jpg to png. It looks for files with a root name and add numbers to form the full name, i.e. root001.jpg, root002.jpg, etc.\""
   },
   {
     "title": "importJPEG2.bas",
+    "author": "Gary Betts (Metso Minerals Ltd)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas",
-    "description": "importJPEG2.bas"
+    "description": "\"Here is a macro for MS Word that will count and import all the jpegs in a defined folder into Word.\""
   },
   {
     "title": "importPPT.bas",
+    "author": "Mark Tate (Hamilton Sundstrand)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/importPPT.bas",
-    "description": "importPPT.bas"
+    "description": "A visual basic PowerPoint macro to import JPEG files into PowerPoint, one image per slide. Edit the file in a text editor to change variables or directory locations, etc."
   },
   {
     "title": "importpara.tcl",
@@ -121,18 +126,21 @@
   },
   {
     "title": "silicon.mat",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/silicon.mat",
-    "description": "silicon.mat"
+    "description": "Although strictly not an input file, the \"silicon.mat\" file contains temp-dependent properties of silicon. See this email from S. Groothuis for more informaiton."
   },
   {
     "title": "tempdele.bat",
+    "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat",
-    "description": "tempdele.bat"
+    "description": "\"Caution: This batch file is very powerful. It searches the current folder and all subfolders for known ANSYS temporary files and deletes them without sending them to the recycle bin. Therefore I would recommend that you do not execute this in the root folder of any drive which has program files. It would be O.K. to execute this one folder down in a folder where you keep your ANSYS project files. Also, you should familiarize your with the list of file extensions which this batch files deletes and be sure you agree with it. Do not run this in an ANSYS folder if you plan to do any RESTART from existing results files.\""
   },
   {
     "title": "userelement.tar",
+    "author": "Roger Young (Industrial Research Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar",
-    "description": "userelement.tar"
+    "description": "\"This package contains a number of examples of the Ansys user element <uel> which may be further adapted for personal use. The examples given here are for a 4-node planar element USER101 with linear shape functions similar to the Ansys element PLANE42. However USER101 may easily be extended to a 3D 8-node element and/or to quadratic shape functions by changing the specifications in lib/PAR.NML. In addition there is a simple extension to general large strain non-linear deformation which is illustrated in uel3/ex2.\""
   },
   {
     "title": "wirebond",

@@ -129,36 +129,37 @@
 <p>&quot;This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/acmn.mac" target="_blank"> acmn.mac</a></p>
-<p class="font-italic"></p>
-<p>acmn.mac</p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Looks for and then plots and lists any areas shared by two volumes</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/acomplot.mac" target="_blank"> acomplot.mac</a></p>
-<p class="font-italic"></p>
-<p>acomplot.mac</p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Finds any areas that are shared by the selected set of volumes and plots them. Useful to check VGLUEs</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/aext.mac" target="_blank"> aext.mac</a></p>
-<p class="font-italic"></p>
-<p>aext.mac</p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>This macro creates an area by 'extruding' line - Similar to ANSYS command VEXT.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac" target="_blank"> aface.mac</a></p>
-<p class="font-italic"></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
 <p>If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/aloop.mac" target="_blank"> aloop.mac</a></p>
-<p class="font-italic"></p>
-<p>aloop.mac</p>
+<p class="font-italic">Stefano Lucarelli (Mannesmann VDO AG)</p>
+<p>This input file asks for selection of one or more areas and loops until all areas directly or indirectly connected to the original ones are selected then plots them</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/alsm.mac" target="_blank"> alsm.mac</a></p>
-<p class="font-italic"></p>
-<p>alsm.mac</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>I ended up writing a macro that selects/reselects/unselects meshed areas, and then copied it and modified it for doing the same with volumes.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/anfout.mac" target="_blank"> anfout.mac</a></p>
-<p class="font-italic"></p>
-<p>anfout.mac</p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Macro that traverses the solid model and writes an anf file.<br>
+Posted by Eric Miller (PADT)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac" target="_blank"> anfout2.mac</a></p>
-<p class="font-italic"></p>
-<p>Macro that traverses the solid model and writes an anf file.</p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.), slightly modified by John Crawford (Honeywell)</p>
+<p>Macro that traverses the solid model and writes an anf file. Modified by John Crawford to include not just highest level component (i.e., write both volumes and 'free' areas which are selected).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/anglemod.mac" target="_blank"> anglemod.mac</a></p>
 <p class="font-italic">John Crawford (Honeywell)</p>
@@ -187,16 +188,18 @@ ANOL,0,,'This is the title',''</p>
 <p>This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: &quot;Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/ans2pat.mac" target="_blank"> ans2pat.mac</a></p>
-<p class="font-italic"></p>
-<p>ans2pat.mac</p>
+<p class="font-italic">Gordon May (Rolls Royce Compressor Key System)</p>
+<p>ANSYS to Patran 2 Neutral File translator: this macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Patran 2 Neutral File (PNF) format.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac" target="_blank"> ans2unv.mac</a></p>
 <p class="font-italic">Rogelio Perez (Schneider Electric Industries SAS)</p>
 <p>This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a></p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ansys2stl.mac" target="_blank"> ansys2stl.mac</a></p>
-<p class="font-italic"></p>
-<p>ansys2stl.mac</p>
+<p class="font-italic">Iker Gómez Vázquez (ITP)</p>
+<p>This is a macro to convert an ANSYS structural mesh into an ASCI STL (stereolithography) file.</p>
+<p>Since the STL format is based on a triangular surface mesh, this macro selects all external nodes, generates SURF154 elements, then exports these to the STL file.</p>
+<p>Macro updated on 03/17/2009.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac" target="_blank"> anvect.mac</a></p>
 <p class="font-italic">Bill Bulat (CSI)</p>
@@ -207,24 +210,24 @@ ANOL,0,,'This is the title',''</p>
 <p>Animates voltage results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/areacal.mac" target="_blank"> areacal.mac</a></p>
-<p class="font-italic"></p>
-<p>areacal.mac</p>
+<p class="font-italic">Carl Ostervig (Tech Inno)</p>
+<p>This macro calculates the number and area for all selected elements.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac" target="_blank"> areatest.mac</a></p>
-<p class="font-italic"></p>
-<p>areatest.mac</p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Tests areas for consistent normals (not needed at 5.6 since /PSYM,ADIR,1 allows plotting of normals). Also, you may need to rename this macro &quot;ATEST&quot; or &quot;NORMALS&quot; since &quot;AREAS&quot; is a status topic command.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/arplot.mac" target="_blank"> arplot.mac</a></p>
 <p class="font-italic">(unknown source)</p>
 <p>Annotates each area with its size (/AN3D)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/aslm_bw.mac" target="_blank"> aslm_bw.mac</a></p>
-<p class="font-italic"></p>
-<p>aslm_bw.mac</p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>Based on ALSM macro, created by John Crawford to select/reselect/unselect meshed areas. Written to take advantage of vectors to execute faster.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/aswp.mac" target="_blank"> aswp.mac</a></p>
-<p class="font-italic"></p>
-<p>aswp.mac</p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>Divides a picked area with the working plane, retaining the area attributes for the newly-created areas.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/attrib_2_Load.js" target="_blank"> attrib_2_Load.js</a></p>
 <p class="font-italic"></p>
@@ -243,20 +246,21 @@ ANOL,0,,'This is the title',''</p>
 <p>Computes the average temperature (from a thermal analysis) of the selected set of nodes. Example of the use of *VMASK.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/avgtemp.mac" target="_blank"> avgtemp.mac</a></p>
-<p class="font-italic"></p>
-<p>avgtemp.mac</p>
+<p class="font-italic">David Power (Mallett Technology Inc.)</p>
+<p>&quot;Get average element temperature for each element from nodal body loads.<br>
+Unfortunately it's pretty slow for large models, and I haven't had any time to restructure it to make it run faster, although I'm sure I could make better use of the array operations.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/avsucd.mac" target="_blank"> avsucd.mac</a></p>
 <p class="font-italic">Ian Sigal (University of Toronto)</p>
 <p>&quot;The macro writes an AVS UCD file that can be read by Amira. This allows quick display and post-processing. I use the macro to export a model formed of Solid92 tetrahedrals, but only the results in the four corners are written to the file. The macro also writes the element solutions, although these are not read by Amira, but are accepted in the AVS UCD standard.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/axiget.mac" target="_blank"> axiget.mac</a></p>
-<p class="font-italic"></p>
-<p>axiget.mac</p>
+<p class="font-italic">Rod Scholl (PADT)</p>
+<p>Selects axi-symmetric elements based upon their keyopts. (PLANE42/82 Only)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/b188to89.mac" target="_blank"> b188to89.mac</a></p>
-<p class="font-italic"></p>
-<p>b188to89.mac</p>
+<p class="font-italic">René Fiege (Jos. L. Meyer GmbH)</p>
+<p>&quot;I attached a little macro to define new BEAM189s on the nodes and properties of the existing 188 elements.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac" target="_blank"> battle.mac</a></p>
 <p class="font-italic">Dave Lindeman (3M)</p>
