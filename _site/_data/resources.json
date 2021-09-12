@@ -1,9 +1,9 @@
 [
   {
     "title": "*GET/*VGET Sheet",
-    "author": "(PADT) ",
+    "author": "(PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Get_Summary_2005_08_15.pdf",
-    "description": "This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros. "
+    "description": "This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros."
   },
   {
     "title": "051805_maug_contact_presentation.pdf",
@@ -256,8 +256,9 @@
   },
   {
     "title": "COMPMENU.zip",
+    "author": " Jim Patterson (Hendrickson Trailer Suspension Systems) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip",
-    "description": "COMPMENU.zip"
+    "description": "\"I have a set of macros to generate toolbars based on the defined components in the db. You can then call these toolbars from the main toolbar to aid in the selecting of the components. This includes \"select\", \"also select\", and \"unselect\". You can also \"remake\" the components from the toolbar. As someone who works with assemblies of shell models almost constantly, this has been a huge time saver for me.\"\n Tested on 5.7 through 6.1. Unzip the file and read the supplied Word document for instructions."
   },
   {
     "title": "Coupling low-order elements to high-order elements in ANSYS",
@@ -314,9 +315,10 @@
     "description": "EE245.pdf"
   },
   {
-    "title": "EFS.pdf",
+    "title": "Elastic Foundation Stiffness",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/EFS.pdf",
-    "description": "EFS.pdf"
+    "description": " Short explanation of what elastic foundation stiffness (SURF154) is and how to calculate the resulting stiffness for non-planar cases. In Workbench Mechanical, this feature is referred to as an \"Elastic Support\"."
   },
   {
     "title": "EPFL_Tutorial.zip",
@@ -331,8 +333,9 @@
   },
   {
     "title": "FFTDFT.zip",
+    "author": "Juan Carlos Lancha (OHL, S.A.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FFTDFT.zip",
-    "description": "FFTDFT.zip"
+    "description": "From the author:\n\n\"These small APDL macros perform Fourier transforms (FFT and DFT) of discrete signals. This procedure decomposes a time domain signal into a sum of harmonic (frequency domain) signals. It’s a useful APDL tool when dealing with dynamic and harmonic problems in ANSYS.\""
   },
   {
     "title": "FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING",
@@ -794,9 +797,10 @@
     "description": "STI0706_Acoustic_Postprocessing.zip"
   },
   {
-    "title": "STI07_CERIG_RBE3_RIGID184.zip",
+    "title": "CERIG vs RBE3, RIGID184 [ZIP]",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip",
-    "description": "STI07_CERIG_RBE3_RIGID184.zip"
+    "description": "\"Constraint equations provide many useful features in ANSYS, such as tying together dissimilar meshes, representing parts of the system not explicitly modeled, or distributing loads. Two automated methods of generating constraint equations are the CERIG and RBE3 commands. Because there is often confusion over their use, this memo hopes to provide some information on differences between the two methods.\n\"Constraint equations in ANSYS are linear, so they are not valid for large-rotation analyses. RIGID184 is a beta element in version 6.1 which provides rigid link/beam capabilities, valid for large-rotation problems. The latter part of this memo will cover some details of this undocumented feature, available in 6.1.\""
   },
   {
     "title": "STI07_Lagrange_Multipliers.pdf",
@@ -850,19 +854,21 @@
     "description": "\"ANSYS User Programmable Features (UPFs) are quite powerful means of customizing ANSYS beyond the scripting capabilities of the ANSYS Parametric Design Language (APDL). Writing one’s own constitutive models or complex loading functions or even creating a user-defined element are possible with UPFs. \n\n Because some users may find it challenging to get started using UPFs, this memo hopes to discuss general issues related to compiling and linking a customized version of ANSYS for Windows and Linux environments.\"\n\n (Week 51, week of 02/08/09)"
   },
   {
-    "title": "STI0902_Contact_Tips.pdf",
+    "title": "Contact Analysis Tips [PDF]",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/STI0902_Contact_Tips.pdf",
-    "description": "STI0902_Contact_Tips.pdf"
+    "description": "\"Generally speaking, nonlinear analyses involving contact can be quite challenging to solve when the contacting area changes during the load history. However, ANSYS Workbench Simulation has very robust contact technology, along with diagnostic tools that can help the user obtain converged, accurate solutions. This memo hopes to discuss some tips related to contact analyses in hopes of aiding the user who encounters difficulties when solving contact analyses.\""
   },
   {
     "title": "STI0903_PSD_Postprocessing_2.zip",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0903_PSD_Postprocessing_2.zip",
     "description": "STI0903_PSD_Postprocessing_2.zip"
   },
   {
     "title": "STI0904_USERFC.zip",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/STI0904_USERFC.zip",
-    "description": "STI0904_USERFC.zip"
+    "description": "\"The FC command provides users with the ability to predict first-ply failure using maximum strain, maximum stress, or Tsai-wu failure criteria. In ANSYS 12.0.1, users can also take advantage of the userfc subroutine to define up to nine different criteria.\nThis memo reviews the userfc subroutine, and a sample implementation of the Hashin criterion is included.\""
   },
   {
     "title": "STI09_Damping.zip",
@@ -1018,9 +1024,10 @@
     "description": "Week_16_Nonlinear_Monitor.pdf"
   },
   {
-    "title": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
+    "title": "Converting pressures to nodal forces [PDF]",
+    "author": " Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf",
-    "description": "Week_17_STI52_TNT_converting_pressures_to_nodal_forces.pdf"
+    "description": "Tip on converting element pressures to nodal forces. This can be useful for mode superposition methods where LVSCALE may not be suitable.\n SI_P2F Macro and test input file."
   },
   {
     "title": "Week_19_tip_of_week_restart.pdf",
@@ -1305,13 +1312,15 @@
   },
   {
     "title": "dakota.zip",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/dakota.zip",
-    "description": "dakota.zip"
+    "description": "\"I recently experimented with coupling ANSYS and DAKOTA, and thought the list might be interested in the results. DAKOTA, if you're not familiar with it, is a public-domain optimization code available from Sandia National Laboratories (see http://endo.sandia.gov/DAKOTA/). It has several advanced optimization algorithms (e.g., genetic algorithms), supports discrete variables, and has several other features that make it a nice complement to the optimization and probabilistic design modules within ANSYS. And it's FREE.\n\n\"Anyways, the procedure for using DAKOTA with ANSYS consists of creating a DAKOTA input file (DAKOTA in the attachments) that identifies the design variables, state variables, optimization method, etc. Also, within this file you identify the command to be issued to execute the code you are using to generate the response variables (analysis_driver = 'ansys.prl', in the attached example). To execute ANSYS I use an intermediate Perl script (ansys.prl) that translates the design variable file generated by DAKOTA (parameters_file = 'dakota.dv') into something ANSYS can understand (written out to ansys.dv). The Perl script then executes ANSYS. Note that the Perl script is general purpose -- it should work for any application. The only thing you should need to change is filenames, in particular the name of your ANSYS script (in my example, 'ANSYS'). The ANSYS script reads in the design variable file using /INPUT, performs the analysis, then outputs the result variables to a file (results_file = 'dakota.rv') using *CFOPEN and *VWRITE.\n\n\"To execute the analysis you use (for example) the command line: dakota -i DAKOTA > dakota.log &\n\n\"That's pretty much it. Pretty straightforward once you figure out the DAKOTA input file syntax. The attached example is the simple beam optimization problem used in the ANSYS documentation.\""
   },
   {
     "title": "demotlbr.zip",
+    "author": "(PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/demotlbr.zip",
-    "description": "demotlbr.zip"
+    "description": "\"To use this demonstration of the ANSYS toolbar capabilities extract these files to your working directory. You must then copy the tlbrlist61.ans file from the ANSYS installation docu/english/tlbrlist61.ans to your working directory. Add DEMO.TLB to the bottom of the file. Run ANSYS and then move the split bar at the bottom up to show the bottom pane where the demo toolbar is embedded.\"\n Example showing how to customize the ANSYS 6.1 Toolbar."
   },
   {
     "title": "diemold2001.pdf",
@@ -1340,8 +1349,9 @@
   },
   {
     "title": "elastdata_Unix.zip",
+    "author": "Hursha Narayan (Robert Bosch Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/elastdata_Unix.zip",
-    "description": "elastdata_Unix.zip"
+    "description": "Macro for a fully automated procedure for calculating M-R coefficients from Test Data\n\"I have developed a macro that fully automates the importing of elastomer test data into ANSYS and calculate the Mooney-Rivlin coefficients. The macro uses Lagrange interpolation technique to calculate the stress data at equal intervals of strain. This can then be read into an array in ANSYS to evaluate the M-R coeffs. I'm sending you Windows and Unix version of the macro. The difference between the two versions are in the awk and script files that I use to manipulate data. The user needs to go through all the files just to change the directories where the files will be located and accessed. The files reformat(Unix) and reformat.csh(windows) should have rwx permissions. The reformat.csh used in windows can be converted to a batch file. Awk utility should be available under windows. The procedure expects Simple Tension, Planar Tension and Biaxial Extension data to be available.\""
   },
   {
     "title": "end02111b_pdf.pdf",
@@ -1422,8 +1432,9 @@
   },
   {
     "title": "grph2svg.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/grph2svg.zip",
-    "description": "grph2svg.zip"
+    "description": "This is a quick hack I did to generate SVG files from within ANSYS. There are 3 macros contained in the zip file: GRPH2SVG.MAC is the main one, and the other two are called by GRPH2SVG.\n\n The macro redirects the plot to an ANSYS Graphics file \"stiplot.grph\". Then, the macro parses through the GRPH file and generates an SVG file called \"stiplot.svg\". You can change the font, font size, etc. as you see fit from within the macro. (For details on the contents of the GRPH file, refer to the ANSYS Programmer's Guide for details.)\n\nBecause this parses the GRPH file from within ANSYS, it is slow for complex plots, so I recommend using it only for XY plots — this is only meant to serve as an example of what can be done with APDL and reading the GRPH file contents. Also, I did not bother including support for raster graphics - this macro only supports vector graphics. (If you want raster graphics, use of PNG is better. SVG is really a vector graphics implementation.)\n\nIf you're running Firefox, or if you use Internet Explorer and have the Adobe SVG Viewer Plug-in, you can see a sample contour plot and sample XY plot generated from this macro.\n\nBecause this was created by hand, there may be mistakes - you can let me know if you encounter any. Otherwise, instead of using this macro, you can create an EPS file and use your favorite illustration software to convert it to an SVG file."
   },
   {
     "title": "harmonic-large-mass-method.pdf",
@@ -1618,8 +1629,9 @@
   },
   {
     "title": "muffler.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip",
-    "description": "muffler.zip"
+    "description": " This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated."
   },
   {
     "title": "mutamba2.pdf",
@@ -1726,8 +1738,9 @@
   },
   {
     "title": "siysdcap.zip",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip",
-    "description": "siysdcap.zip"
+    "description": " Tip on visualizing the Drucker-Prager Cap model yield surface."
   },
   {
     "title": "skinner_thesis.pdf",
@@ -1886,9 +1899,10 @@
     "description": "week23-random_vibrations_tow.pdf"
   },
   {
-    "title": "week24-connecting_models_tow.pdf",
+    "title": "Different Methods of Connecting Parts Together [PDF]",
+    "author": "Sean Harvey (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/week24-connecting_models_tow.pdf",
-    "description": "week24-connecting_models_tow.pdf"
+    "description": " Connecting Parts - A study of Continuous Mesh versus Bonded Contact versus Constraint Equations."
   },
   {
     "title": "week25-ETABLE.pdf",
@@ -1897,9 +1911,10 @@
     "description": "Short description on the usage and features of element tables in ANSYS."
   },
   {
-    "title": "week4-effective_cte.pdf",
+    "title": "Calculating effective Coefficient of Thermal Expansion [PDF]",
+    "author": "Bill Bulat (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week4-effective_cte.pdf",
-    "description": "week4-effective_cte.pdf"
+    "description": " Tips on how to define coefficient of thermal expansion and converting that material data to format that ANSYS can use."
   },
   {
     "title": "week5_Surface_Effect_Elements.pdf",

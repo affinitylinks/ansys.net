@@ -91,8 +91,9 @@
   },
   {
     "title": "coupled-seq.inp",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp",
-    "description": "coupled-seq.inp"
+    "description": "Simple example demonstrating a sequential structural-thermoelectric analysis with plasticity and contact. The thermoelectric side uses UPGEOM to update displacements from the structural analysis."
   },
   {
     "title": "curing.inp",
@@ -114,8 +115,9 @@
   },
   {
     "title": "dadd.inp",
+    "author": "Keith DiRienz (FEA Technologies)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp",
-    "description": "dadd.inp"
+    "description": "Sample input file to demonstrate the use of the undocumented DADD command."
   },
   {
     "title": "diffusion.inp",
@@ -161,8 +163,9 @@
   },
   {
     "title": "foundation.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/foundation.inp",
-    "description": "foundation.inp"
+    "description": "A very simple example comparing use of SURF154 elastic foundation stiffness (EFS real constant) with force-distributed constraints (using MPC-based 17x contact elements) tied to a COMBIN14 spring element."
   },
   {
     "title": "friction_test2.inp",
@@ -208,8 +211,9 @@
   },
   {
     "title": "hfth.inp",
+    "author": "Mark Troscinski (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/hfth.inp",
-    "description": "hfth.inp"
+    "description": "\"Please take a look at this input file. It's a sample problem I've run for someone who was using microwave radiation to heat paper-type products. The model is pretty simple, but it should illustrate the basic steps in running the coupled HF-electromagnetics/thermal problem.\""
   },
   {
     "title": "hgen.inp",
@@ -235,8 +239,9 @@
   },
   {
     "title": "in-3d.inp",
+    "author": "Vladimir Zhulin (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/in-3d.inp",
-    "description": "in-3d.inp"
+    "description": "3D beam under electrostatic load. Coupled-field problem using TRANS126 elements. Requires [EMTGEN](https://github.com/affinitylinks/ansys.net/blob/main/4/emtgen.mac) macro."
   },
   {
     "title": "large_rotat.inp",

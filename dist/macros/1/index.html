@@ -92,24 +92,25 @@
 </nav>
 <ul class="list-group"><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bbldiv.mac" target="_blank"> bbldiv.mac</a></p>
-<p class="font-italic"></p>
-<p>bbldiv.mac</p>
+<p class="font-italic"> Bill Bulat (OMM) </p>
+<p>From the author:<br>
+&quot;I whipped up the following simple macro (I call it bbldiv.mac) to help assign divisions to predefined lines when you don't know their direction, but you do know their end keypoints. Useful for bottom-up modeling with input scripts.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac" target="_blank"> beaforce.mac</a></p>
-<p class="font-italic"></p>
-<p>beaforce.mac</p>
+<p class="font-italic"> Juha Tyllinen (KONE Corporation)</p>
+<p>Macro applies pressure distribution for approximation of bearing force. See contents of macro for details.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac" target="_blank"> beamnet.mac</a></p>
 <p class="font-italic"></p>
 <p>beamnet.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac" target="_blank"> beampres.mac</a></p>
-<p class="font-italic"></p>
-<p>beampres.mac</p>
+<p class="font-italic"> Bram Weisman (Alan C. McClure Associates, Inc.) </p>
+<p>Applies linearly varying pressure on beams.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bearing.mac" target="_blank"> bearing.mac</a></p>
-<p class="font-italic"></p>
-<p>bearing.mac</p>
+<p class="font-italic">Mark Kessler (BAE Systems)</p>
+<p>&quot;Applies a bearing load using discreet forces. Written primarily to apply a bearing load to a model that has been tet meshed where using a pressure gradient would require rebuilding the model.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bilinear.mac" target="_blank"> bilinear.mac</a></p>
 <p class="font-italic"></p>
@@ -120,16 +121,16 @@
 <p>Macro produces a bode plot using 2 predefined variables in /post26.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac" target="_blank"> cbc_rmp5.mac</a></p>
-<p class="font-italic"></p>
-<p>cbc_rmp5.mac</p>
+<p class="font-italic"> Bill Bulat (CSI) </p>
+<p>Macro for defining a cubic ramp for use w/ ANSYS/LS-Dyna for performing quasi-static explicit analyses.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac" target="_blank"> checkiges.mac</a></p>
 <p class="font-italic"></p>
 <p>checkiges.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac" target="_blank"> clean.mac</a></p>
-<p class="font-italic"></p>
-<p>clean.mac</p>
+<p class="font-italic">Tom Glade (PACCAR Technical Center)</p>
+<p>&quot;Here's a macro I use to clean up TYPEs, REALs, and MPs.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/clean_model.mac" target="_blank"> clean_model.mac</a></p>
 <p class="font-italic"></p>
@@ -140,36 +141,59 @@
 <p>closeline.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac" target="_blank"> cmdif.mac</a></p>
-<p class="font-italic"></p>
-<p>cmdif.mac</p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>&quot;ANSYS has a *get,,common command that lets you grab things from memory. The only problem with this is that you can't just give the *get the name of the block, you need to tell it its position (count) in the block. As an example, the 3rd value listed in a common block is at position 3 (or index 3).</p>
+<p>The way you use a common block is you look in the ansys/custom/include directory for the value you want to know.<br>
+In this case I did a search for a file that contained &quot;/cplane&quot; and found it in d3com.inc.<br>
+Looking in the file I found that the value kycpln is what I was looking for and the common block was /d3com/<br>
+Sometimes you can just count to find out what the index is, but this block is huge and has arrays in it. So instead, I used the macro below.</p>
+<p>I did:</p>
+<p>/cplane,0<br>
+cmndif,0,'d3com',0<br>
+/cplane,1<br>
+cmndif,1,'d3com',0</p>
+<p>And the macro wrote:</p>
+<p>Found: 91 0 1.</p>
+<p>So I would then do: *GET,_cpstat,COMMON,,D3COM,,int,91 to retrieve the value.</p>
+<p>Another example would be if I wanted to know what the global minimum and max number of divisions per line was (DESIZE):</p>
+<p>desize,10,11<br>
+cmndif,0,'cfprp7',0<br>
+desize,20,21<br>
+cmndif,1,'cfprp7',0</p>
+<p>Yields:<br>
+Found: 99 10 20.<br>
+Found: 100 11 21.</p>
+<p>For this I would use:<br>
+*get,_mnlnsz,common,,cfprp7,,int,99<br>
+*get,_mxlnsz,common,,cfprp7,,int,100&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac" target="_blank"> cmf.mac</a></p>
 <p class="font-italic"></p>
 <p>cmf.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac" target="_blank"> cmget.mac</a></p>
-<p class="font-italic"></p>
-<p>cmget.mac</p>
+<p class="font-italic"> John Crawford (Honeywell) </p>
+<p>&quot;A macro that retrieves the components saved using cmput.mac.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac" target="_blank"> cmput.mac</a></p>
-<p class="font-italic"></p>
-<p>cmput.mac</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>&quot;A macro that saves all the currently selected entities in components&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/cmresu.mac" target="_blank"> cmresu.mac</a></p>
-<p class="font-italic"></p>
-<p>cmresu.mac</p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>&quot;Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/cmreview.mac" target="_blank"> cmreview.mac</a></p>
-<p class="font-italic"></p>
-<p>cmreview.mac</p>
+<p class="font-italic">Tom Glade (PACCAR Technical Center)</p>
+<p>Reviews defined components of a specific type (node, element, keypoint, line, area, or volume components).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/cmsave.mac" target="_blank"> cmsave.mac</a></p>
-<p class="font-italic"></p>
-<p>cmsave.mac</p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>&quot;Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/cnf_freqresp.mac" target="_blank"> cnf_freqresp.mac</a></p>
-<p class="font-italic"></p>
-<p>cnf_freqresp.mac</p>
+<p class="font-italic">Rick Morgans (Adelaide University)</p>
+<p>Outputs velocities for a single frequency analysis in COMET/Acoustics from an ANSYS harmonic analysis.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac" target="_blank"> cnvg_time.mac</a></p>
 <p class="font-italic"></p>
@@ -200,16 +224,17 @@
 <p>cpjoins.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cpquery.mac" target="_blank"> cpquery.mac</a></p>
-<p class="font-italic"></p>
-<p>cpquery.mac</p>
+<p class="font-italic"> Sheldon Imaoka (ANSYS, Inc.) </p>
+<p>This macro counts the number of coupled sets associated with the current selected set of nodes.</p>
+<p>If the first argument is 1, then the macro will count the total number of coupled sets if any of its nodes are selected. Otherwise, the coupled set will only be counted if all of its nodes are selected.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ctpipe3.mac" target="_blank"> ctpipe3.mac</a></p>
 <p class="font-italic"></p>
 <p>ctpipe3.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/cubic.mac" target="_blank"> cubic.mac</a></p>
-<p class="font-italic"></p>
-<p>cubic.mac</p>
+<p class="font-italic">Bob Weathers (Trane)</p>
+<p>Performs monotonic cubic interpolation in a table.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/cvctrl.mac" target="_blank"> cvctrl.mac</a></p>
 <p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
@@ -225,16 +250,16 @@
 <p>A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/dgnr8.mac" target="_blank"> dgnr8.mac</a></p>
-<p class="font-italic"></p>
-<p>dgnr8.mac</p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>&quot;Finds degenerate 2D and 3D elements (i.e., when nodes 3 and 4 are identical), selects them, and then plots them. This works for many cases, such as SOLID45 or PLANE82, etc. Does not work for lower- or higher-order pyramids, but macro can easily be modified for these cases.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/distcalc.mac" target="_blank"> distcalc.mac</a></p>
 <p class="font-italic"></p>
 <p>distcalc.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac" target="_blank"> distkp2l.mac</a></p>
-<p class="font-italic"></p>
-<p>distkp2l.mac</p>
+<p class="font-italic"> Wangming Lu (Impact Technologies, LLC) </p>
+<p>&quot;I have developed the following macro: Given a key point level component,and a line number, it will evaluate the distance from each key point in this component to the input line. The result is returned in an array called distk (you can change into your name, of course). While using this, pls. be careful, it is not fully tested yet.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/distload.mac" target="_blank"> distload.mac</a></p>
 <p class="font-italic"></p>

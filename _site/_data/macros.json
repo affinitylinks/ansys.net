@@ -21,7 +21,7 @@
     "title": "a_hydro1.mac",
     "author": "Ernst Hustedt (AMES Ltd.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/a_hydro1.mac",
-    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \r\n \r\n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
+    "description": "\"I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.\" \n \n For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches."
   },
   {
     "title": "a_hydro2.mac",
@@ -94,8 +94,9 @@
   },
   {
     "title": "anglemod.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/anglemod.mac",
-    "description": "anglemod.mac"
+    "description": "From ANSYS Solutions article \"Big Insights from Small Macros\", Vol. 2 No. 1 pg. 27. Generates a cantilever beam to determine required elements per fillet for modeling studies"
   },
   {
     "title": "anharm.mac",
@@ -107,7 +108,7 @@
     "title": "anol.mac",
     "author": "Bram Weisman (SBM-IMODCO)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac",
-    "description": "\"I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4). \r\n \"Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings. \r\n \"To get a feel for this, try issuing the following: \r\n ANOL,4,,'This is four lines above title','' \r\n ANOL,3,,'This is three lines above title','' \r\n ANOL,2,,'This is two lines above title','' \r\n ANOL,1,,'This is one lines above title',''\r\n \r\n \"Also try the following: \r\n /title,This is the title \r\n ANOL,0,,'This is the title','' \r\n \r\n The two are perfectly overlaid on my system.\""
+    "description": "\"I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4). \n \"Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings. \n \"To get a feel for this, try issuing the following: \n ANOL,4,,'This is four lines above title','' \n ANOL,3,,'This is three lines above title','' \n ANOL,2,,'This is two lines above title','' \n ANOL,1,,'This is one lines above title',''\n \n \"Also try the following: \n /title,This is the title \n ANOL,0,,'This is the title','' \n \n The two are perfectly overlaid on my system.\""
   },
   {
     "title": "ans2aba.mac",
@@ -122,6 +123,7 @@
   },
   {
     "title": "ans2unv.mac",
+    "author": "Rogelio Perez (Schneider Electric Industries SAS)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac",
     "description": "This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in ansys.net "
   },
@@ -154,8 +156,9 @@
   },
   {
     "title": "arplot.mac",
+    "author": "(unknown source)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/arplot.mac",
-    "description": "arplot.mac"
+    "description": "Annotates each area with its size (/AN3D)"
   },
   {
     "title": "aslm_bw.mac",
@@ -213,17 +216,19 @@
     "title": "battle.mac",
     "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac",
-    "description": "A macro used to play \"Battleship\" on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI) \r\n From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below. \r\n  Enjoy! \r\n \r\n Dave Lindeman \r\n CAE Specialist \r\n 3M Company \r\n 3M Center 235-1F-36 \r\n St. Paul, MN 55144"
+    "description": "A macro used to play \"Battleship\" on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI) \n From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below. \n  Enjoy! \n \n Dave Lindeman \n CAE Specialist \n 3M Company \n 3M Center 235-1F-36 \n St. Paul, MN 55144"
   },
   {
     "title": "bbldiv.mac",
+    "author": " Bill Bulat (OMM) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/bbldiv.mac",
-    "description": "bbldiv.mac"
+    "description": "From the author:\n\"I whipped up the following simple macro (I call it bbldiv.mac) to help assign divisions to predefined lines when you don't know their direction, but you do know their end keypoints. Useful for bottom-up modeling with input scripts.\""
   },
   {
     "title": "beaforce.mac",
+    "author": " Juha Tyllinen (KONE Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac",
-    "description": "beaforce.mac"
+    "description": " Macro applies pressure distribution for approximation of bearing force. See contents of macro for details."
   },
   {
     "title": "beamnet.mac",
@@ -232,13 +237,15 @@
   },
   {
     "title": "beampres.mac",
+    "author": " Bram Weisman (Alan C. McClure Associates, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac",
-    "description": "beampres.mac"
+    "description": " Applies linearly varying pressure on beams."
   },
   {
     "title": "bearing.mac",
+    "author": "Mark Kessler (BAE Systems)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/bearing.mac",
-    "description": "bearing.mac"
+    "description": "\"Applies a bearing load using discreet forces. Written primarily to apply a bearing load to a model that has been tet meshed where using a pressure gradient would require rebuilding the model.\""
   },
   {
     "title": "bilinear.mac",
@@ -253,8 +260,9 @@
   },
   {
     "title": "cbc_rmp5.mac",
+    "author": " Bill Bulat (CSI) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac",
-    "description": "cbc_rmp5.mac"
+    "description": " Macro for defining a cubic ramp for use w/ ANSYS/LS-Dyna for performing quasi-static explicit analyses."
   },
   {
     "title": "checkiges.mac",
@@ -263,8 +271,9 @@
   },
   {
     "title": "clean.mac",
+    "author": "Tom Glade (PACCAR Technical Center)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac",
-    "description": "clean.mac"
+    "description": "\"Here's a macro I use to clean up TYPEs, REALs, and MPs.\""
   },
   {
     "title": "clean_model.mac",
@@ -278,8 +287,9 @@
   },
   {
     "title": "cmdif.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac",
-    "description": "cmdif.mac"
+    "description": "\"ANSYS has a *get,,common command that lets you grab things from memory. The only problem with this is that you can't just give the *get the name of the block, you need to tell it its position (count) in the block. As an example, the 3rd value listed in a common block is at position 3 (or index 3).\n\n The way you use a common block is you look in the ansys/custom/include directory for the value you want to know.\n In this case I did a search for a file that contained \"/cplane\" and found it in d3com.inc.\n Looking in the file I found that the value kycpln is what I was looking for and the common block was /d3com/\n Sometimes you can just count to find out what the index is, but this block is huge and has arrays in it. So instead, I used the macro below.\n\n I did:\n\n /cplane,0\n cmndif,0,'d3com',0\n /cplane,1\n cmndif,1,'d3com',0\n\n And the macro wrote:\n\nFound: 91 0 1.\n\n So I would then do: *GET,_cpstat,COMMON,,D3COM,,int,91 to retrieve the value.\n\n Another example would be if I wanted to know what the global minimum and max number of divisions per line was (DESIZE):\n\n desize,10,11\n cmndif,0,'cfprp7',0\n desize,20,21\n cmndif,1,'cfprp7',0\n\n Yields:\n Found: 99 10 20.\n Found: 100 11 21.\n\n For this I would use:\n *get,_mnlnsz,common,,cfprp7,,int,99\n *get,_mxlnsz,common,,cfprp7,,int,100\""
   },
   {
     "title": "cmf.mac",
@@ -288,33 +298,39 @@
   },
   {
     "title": "cmget.mac",
+    "author": " John Crawford (Honeywell) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac",
-    "description": "cmget.mac"
+    "description": "\"A macro that retrieves the components saved using cmput.mac.\""
   },
   {
     "title": "cmput.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac",
-    "description": "cmput.mac"
+    "description": "\"A macro that saves all the currently selected entities in components\""
   },
   {
     "title": "cmresu.mac",
+    "author": "Juha Tyllinen (KONE Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/cmresu.mac",
-    "description": "cmresu.mac"
+    "description": "\"Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.\""
   },
   {
     "title": "cmreview.mac",
+    "author": "Tom Glade (PACCAR Technical Center)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/cmreview.mac",
-    "description": "cmreview.mac"
+    "description": "Reviews defined components of a specific type (node, element, keypoint, line, area, or volume components)."
   },
   {
     "title": "cmsave.mac",
+    "author": "Juha Tyllinen (KONE Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/cmsave.mac",
-    "description": "cmsave.mac"
+    "description": "\"Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.\""
   },
   {
     "title": "cnf_freqresp.mac",
+    "author": "Rick Morgans (Adelaide University)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/cnf_freqresp.mac",
-    "description": "cnf_freqresp.mac"
+    "description": "Outputs velocities for a single frequency analysis in COMET/Acoustics from an ANSYS harmonic analysis."
   },
   {
     "title": "cnvg_time.mac",
@@ -353,8 +369,9 @@
   },
   {
     "title": "cpquery.mac",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/cpquery.mac",
-    "description": "cpquery.mac"
+    "description": "This macro counts the number of coupled sets associated with the current selected set of nodes.\n\n If the first argument is 1, then the macro will count the total number of coupled sets if any of its nodes are selected. Otherwise, the coupled set will only be counted if all of its nodes are selected."
   },
   {
     "title": "ctpipe3.mac",
@@ -363,8 +380,9 @@
   },
   {
     "title": "cubic.mac",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/cubic.mac",
-    "description": "cubic.mac"
+    "description": " Performs monotonic cubic interpolation in a table."
   },
   {
     "title": "cvctrl.mac",
@@ -381,12 +399,13 @@
     "title": "dcontour.mac",
     "author": "Doug Woolridge (Mercury Marine)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/dcontour.mac",
-    "description": "Creates a second contour using 2D annotation under the original color contour. The values on the new contour are scaled by 'scale_factor'. \r\n \r\n A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours."
+    "description": "Creates a second contour using 2D annotation under the original color contour. The values on the new contour are scaled by 'scale_factor'. \n \n A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours."
   },
   {
     "title": "dgnr8.mac",
+    "author": "Eric Miller (PADT)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/dgnr8.mac",
-    "description": "dgnr8.mac"
+    "description": "\"Finds degenerate 2D and 3D elements (i.e., when nodes 3 and 4 are identical), selects them, and then plots them. This works for many cases, such as SOLID45 or PLANE82, etc. Does not work for lower- or higher-order pyramids, but macro can easily be modified for these cases.\""
   },
   {
     "title": "distcalc.mac",
@@ -395,8 +414,9 @@
   },
   {
     "title": "distkp2l.mac",
+    "author": " Wangming Lu (Impact Technologies, LLC) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac",
-    "description": "distkp2l.mac"
+    "description": "\"I have developed the following macro: Given a key point level component,and a line number, it will evaluate the distance from each key point in this component to the input line. The result is returned in an array called distk (you can change into your name, of course). While using this, pls. be careful, it is not fully tested yet.\""
   },
   {
     "title": "distload.mac",
@@ -431,8 +451,9 @@
   },
   {
     "title": "dydxi.mac",
+    "author": " Bob Weathers (Trane) ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/dydxi.mac",
-    "description": "dydxi.mac"
+    "description": " Calculates first derivative at the ith entry in a table."
   },
   {
     "title": "e72to142.mac",
@@ -456,13 +477,15 @@
   },
   {
     "title": "elem2pt.mac",
+    "author": "S. Evans (University of New South Wales)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/elem2pt.mac",
-    "description": "elem2pt.mac"
+    "description": "\"I made a quick n' dirty macro a while ago for finding the element centroid nearest to a point...it doesn't QUITE solve the problem, since adjacent elements differing greatly in size can screw things up. But here it is anyway...it's a brute-force job (I used it for a couple of thousand elements).\" "
   },
   {
     "title": "elgroup.mac",
+    "author": "John Crawford (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/elgroup.mac",
-    "description": "elgroup.mac"
+    "description": "\"A macro which creates a file of esel commands for the currently selected elements. The macro will prompt the user for the name of the file which will be created. The default name is 'elgroup'.\""
   },
   {
     "title": "ellipse.mac",
@@ -480,24 +503,21 @@
     "description": "emf2.mac"
   },
   {
-    "title": "emtgen.mac",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/emtgen.mac",
-    "description": "emtgen.mac"
-  },
-  {
     "title": "engineeringChecker.js",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/EngineeringChecker.js",
     "description": "EngineeringChecker.js"
   },
   {
     "title": "ensight.mac",
+    "author": "Renato N. Elias (Federal University of Rio de Janeiro)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ensight.mac",
-    "description": "ensight.mac"
+    "description": "This macro can be used to export tetrahedral meshes to EnSight or ParaView. This macro writes out the mesh information to a file called \"jobname.geo\"."
   },
   {
     "title": "erf.mac",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/erf.mac",
-    "description": "erf.mac"
+    "description": " This macro creates a table called ERF with error function values."
   },
   {
     "title": "exportBranchAsShortcut.js",
@@ -516,8 +536,9 @@
   },
   {
     "title": "fclear.mac",
+    "author": "Chris Kennedy (Think PEAK, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/fclear.mac",
-    "description": "fclear.mac"
+    "description": "Fast /CLEAR of ANSYS database."
   },
   {
     "title": "fildel.mac",
@@ -541,8 +562,9 @@
   },
   {
     "title": "fins.mac",
+    "author": "Mike Rife (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fins.mac",
-    "description": "fins.mac"
+    "description": "This macro is used to create a long cylinder with a radial, helical fin"
   },
   {
     "title": "fix.mac",
@@ -591,8 +613,9 @@
   },
   {
     "title": "getdir.mac",
+    "author": "Bob Weathers (Trane)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/getdir.mac",
-    "description": "getdir.mac"
+    "description": "Returns string with current working directory"
   },
   {
     "title": "geten.mac",
@@ -646,8 +669,9 @@
   },
   {
     "title": "gscontours.mac",
+    "author": "Darrel Hill (University of Saskatchewan)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/gscontours.mac",
-    "description": "gscontours.mac"
+    "description": "Macro (not CMAP file) to create grayscale contours.\n\"I coded this version only for the win32C (X11c) Graphics device. **Will not work at all with the default win32 (X11)**. Contours in contour plots should have 100 shades of grey with the default input. Parameters can be changed in the code to darken, lighten and/or make more/less shades of grey.\""
   },
   {
     "title": "helix.mac",
@@ -1188,8 +1212,9 @@
   },
   {
     "title": "sfmap.mac",
+    "author": "(CAEAI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/sfmap.mac",
-    "description": "sfmap.mac"
+    "description": "\"This macro is used to map pressure from a CFD mesh onto a structural mesh. The point XYZ locations from the CFD analysis must exist in an array called cfdxyz(npts,3). A corresponding array called \"cfdpres\" must be exist also. This array contains the pressure values corresponding to the point locations.\" \n Useful example of the use of *MOPER,,,MAP."
   },
   {
     "title": "shownres.mac",
@@ -1288,8 +1313,9 @@
   },
   {
     "title": "subcont.mac",
+    "author": "Joe Metrisin (Florida Turbine Technologies, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/subcont.mac",
-    "description": "subcont.mac"
+    "description": "\"Attached is a macro I wrote years ago which automates substructuring with contact. Just build the complete model with contact elements included, and create the component names as described in the macro header. The macro puts all the linear elements into a superelement and iterates on the contact elements only.\""
   },
   {
     "title": "svsel.mac",
