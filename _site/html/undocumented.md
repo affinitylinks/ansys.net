@@ -1860,7 +1860,7 @@ Plots (or lists) cumulative creep strain. Similar to NL,EPEQ which is cumulative
 
 ```
 (ANSYS, Inc.)
-Old source code (ANSYS 5.4?) for PLOT33 program to read GRPH files (ANSYS Graphics Files)
+Old source code (ANSYS 5.4?) for [PLOT33](https://github.com/affinitylinks/ansys.net/blob/main/1/plot33.f) program to read GRPH files (ANSYS Graphics Files)
 ```
 
 ### PLVECT

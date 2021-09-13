@@ -100,36 +100,40 @@
 <p>Another similar example of sorting arrays using *MOPER.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/sorter.mac" target="_blank"> sorter.mac</a></p>
-<p class="font-italic"></p>
-<p>sorter.mac</p>
+<p class="font-italic">Chris Masterson (University of Toronto)</p>
+<p>A while back I asked Bill Bulat for a pointer to a macro that could be used for meshing skin depths. He gave me some good pointers. I have since been working on a skin depth macro myself. I now have a first working beta&quot;. It is currently pretty crude since I'm relatively new to ANSYS, my geometry is pretty simple and the expansion algorithm I worked out is very simple. It will only mesh a line of rectangular prisms oriented with the current coordinate system. The end result is something similar to what a straight VSWEEP command could accomplish but with the difference that the user can specify exactly the thickness of the skin depth (or boundary layer if it suits) and how many layers of mesh should be contained in that skin depth. Suits my purposes for now so I thought that maybe somebody else might find a use as well. There are actually three macros: skin.mac - the main macro, and sorter.mac and picker.mac that are called from the main macro. The other caveat I guess is to mention that I wrote them for Ansys 5.5 and so some of the command names may be changed or obsolete (which includes jumping to a label which was already technically obsolete in 5.5) in newer versions.&quot;<br>
+&quot;I posted some skin depth meshing macros to the Ansys egroup that you reproduced on your <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a> page. Since then I have updated the macros significantly to make them more usable and a lot less buggy. The macro is now able to mesh full planes of rectangular prisms, instead of just a line of prisms. With the use of an extra coordinate system I use it to expand the mesh in both directions away from the surface of interest. The macros are now updated to Ansys version 5.6 as well (and in fact won't work in 5.5 due to VSWEEP no longer requiring source and target areas). Just thought I would send the new improved versions to save frustration if anyone ever uses them.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/spider.mac" target="_blank"> spider.mac</a></p>
 <p class="font-italic">Marco Perucchi (Delta JS AG)</p>
 <p>&quot;I have a macro that might be useful for you. It creates spider webs between 1 center and a group of surrounding nodes. Before starting the macro you have to collect the center node in one component and the group of surrounding nodes in another component. If you are able to do that with your model you should be able to create the link elements without problems.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/spider2.mac" target="_blank"> spider2.mac</a></p>
-<p class="font-italic"></p>
-<p>spider2.mac</p>
+<p class="font-italic">Donald Cummings (GE Transportation Systems)</p>
+<p>&quot;This macro creates a spider-web that connects a center node with a group of surrounding nodes on the inside surface of a hole with line elements (beam or link). The modeling objective is to provide attachment of a single point to the inside surface of a hole for the transfer of loads or boundary conditions to the model. This is an approximate method of modeling a shaft support in a hole.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/spider3.mac" target="_blank"> spider3.mac</a></p>
-<p class="font-italic"></p>
-<p>spider3.mac</p>
+<p class="font-italic">Barry O&#39;Donnell (ODCS Ltd.)</p>
+<p>&quot;I attach the macro which I was working on, for which I recieved help from the group for. It is called as:<br>
+spider,arg1,arg2<br>
+where arg1 is the washer diameter and arg2 is the centre node number. It is intended to connect all the nodes on the attached area that are within the washer diameter (arg1) to the central node (arg2) using RBE3 eleemnts. Useful if you haven't specific areas which correspond to the bolt head dimension etc. It would be easy to modify, though currently it is intended for bolts aligned with the global x-axis.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/spiral.mac" target="_blank"> spiral.mac</a></p>
-<p class="font-italic"></p>
-<p>spiral.mac</p>
+<p class="font-italic">Keith DiRienz (PADT)</p>
+<p>A macro to generate a spiral.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/spltarcs.mac" target="_blank"> spltarcs.mac</a></p>
-<p class="font-italic"></p>
-<p>spltarcs.mac</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>A macro that splits the selected arcs into two pieces. this is done to avoid problems when using NUMM,KP with circles made from two 180 degree arcs..</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/spokes.mac" target="_blank"> spokes.mac</a></p>
-<p class="font-italic"></p>
-<p>spokes.mac</p>
+<p class="font-italic">Pat Cunningham (CAEAI)</p>
+<p>&quot;The macro will create a connection between a selected set of nodes and a master node typically located at the center of curvature of a line connecting the selected nodes.&quot;<br>
+Used for generating CERIG, MPC184, or RBE3.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/spokes_mpc.mac" target="_blank"> spokes_mpc.mac</a></p>
-<p class="font-italic"></p>
-<p>spokes_mpc.mac</p>
+<p class="font-italic">R. Balasubramanian (Brakes India Ltd - TVS)</p>
+<p>&quot;This Macro forms a 'spider web' like Multipoint constraint for a given set of nodes. The user has to just place the clusters of nodes in separate components by names 'NODES1','NODES2'..etc., The macro automatically finds the 'centre-node' for each node cluster and links it with the surrounding nodes in the cluster to form a 'spokes' pattern using MPC 184 elements with 'Rigid-beam' option (the element option can be changed by user for his/her requirements).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/stiicemflotran.mac" target="_blank"> stiicemflotran.mac</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -137,12 +141,12 @@
 If a user exports a lower-order tetrahedral mesh using MESH200, conversion to an actual element, such as FLUID142, may be required. Use of this macro allows a user to perform this relatively easily (it is customized to convert 4-node MESH200 tetrahedral elements to Flotran FLUID142 tetrahedral elements, although the user can modify the macro to suit his/her needs).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/strne.mac" target="_blank"> strne.mac</a></p>
-<p class="font-italic"></p>
-<p>strne.mac</p>
+<p class="font-italic">Mike Rife (CSI)</p>
+<p>This macro sums the strain energy at every substep for a transient analysis and then plots the values versus time.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/strplot.mac" target="_blank"> strplot.mac</a></p>
-<p class="font-italic"></p>
-<p>strplot.mac</p>
+<p class="font-italic">Peter Bastian (Darmstadt University of Technology)</p>
+<p>This macro displays results as continuos contours using the PLNSOL command. For the display of the numbers in the legend, you can define the number of contours and the number of digits after the decimal point, to be displayed. If you do not want any digits after the decimal point, you can define, how many places should be displayed with a &quot;0&quot;. For example 2100 instead of 2123.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/subcont.mac" target="_blank"> subcont.mac</a></p>
 <p class="font-italic">Joe Metrisin (Florida Turbine Technologies, Inc.)</p>
@@ -153,12 +157,13 @@ If a user exports a lower-order tetrahedral mesh using MESH200, conversion to an
 <p>Macro used to select solids based on the value of the volume itself (=length^3). Can be used to select all volumes of a certain value or a range of values (with tolerance).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/swp.mac" target="_blank"> swp.mac</a></p>
-<p class="font-italic"></p>
-<p>swp.mac</p>
+<p class="font-italic">Barry O&#39;Donnell (ODCS Ltd.)</p>
+<p>&quot;This macro extracts the peak worst principal stress. The worst principal stress can be defined as:<br>
+max(S1,abs(S3)) and should be stored with the appropiate sign, e.g. S1=100,S3=-70,SWP=100 &amp; S1=100,S3=-170,SWP=170.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/sxyz.mac" target="_blank"> sxyz.mac</a></p>
-<p class="font-italic"></p>
-<p>sxyz.mac</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>It is often times nice to be able to get the stress at a specific location in space,whether a node is there or not. By some strange quirk of fate, I just happen to have a macro that does this. Here it is.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/tchkplot.mac" target="_blank"> tchkplot.mac</a></p>
 <p class="font-italic">Sung-Chul Lee (Engineering Systems &amp; Consulting, Inc.)</p>
@@ -166,7 +171,7 @@ If a user exports a lower-order tetrahedral mesh using MESH200, conversion to an
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/text_unix.mac" target="_blank"> text_unix.mac</a></p>
 <p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
-<p>This macro launches a text editor and creates a file called &quot;jobname.inp&quot; in the current working directory.</p>
+<p>This macro launches a text editor and creates a file called &quot;jobname.inp&quot;in the current working directory.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/thickplt.mac" target="_blank"> thickplt.mac</a></p>
 <p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
@@ -186,48 +191,69 @@ If a user exports a lower-order tetrahedral mesh using MESH200, conversion to an
 <p>&quot;I have a macro that creates small high resolution GIF files for Windows only. It calls out a shareware program pvw32con.exe. GIF's are much smaller and higher quality than tiff or jpeg.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/trim1.mac" target="_blank"> trim1.mac</a></p>
-<p class="font-italic"></p>
-<p>trim1.mac</p>
+<p class="font-italic">G.N.S. Prakash</p>
+<p>Macro entry for &quot;APDL Guru&quot; contest by PADT. &quot;Here is the scenario. I have a number of straight lines in the XY plane. I would like a macro that does the following:<br>
+Allows me to select any two lines, but only two.<br>
+If the two lines intersect, they are both divided at the intersection point and the resulting four lines are connected such that they share a common keypoint at the intersection point.<br>
+If the lines do not intersect, the first line is extended until it is tangent to the second line.<br>
+The macro should be capable of handling the special case in which the second line needs to be extended in order for intersection to occur. If this case should occur, the macro should extend both lines to a common intersection point and then join the two lines together. However, if the second line does not require extension, then the macro should divide the second line at the intersection point and join the two pieces of the original second line together with the first line, which has been extended.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/trim2.mac" target="_blank"> trim2.mac</a></p>
-<p class="font-italic"></p>
-<p>trim2.mac</p>
+<p class="font-italic">Vlad Suprunov</p>
+<p>Macro entry for &quot;APDL Guru&quot; contest by PADT. &quot;Here is the scenario. I have a number of straight lines in the XY plane. I would like a macro that does the following:<br>
+Allows me to select any two lines, but only two.<br>
+If the two lines intersect, they are both divided at the intersection point and the resulting four lines are connected such that they share a common keypoint at the intersection point.<br>
+If the lines do not intersect, the first line is extended until it is tangent to the second line.</p>
+<p>The macro should be capable of handling the special case in which the second line needs to be extended in order for intersection to occur. If this case should occur, the macro should extend both lines to a common intersection point and then join the two lines together. However, if the second line does not require extension, then the macro should divide the second line at the intersection point and join the two pieces of the original second line together with the first line, which has been extended.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/trim3.mac" target="_blank"> trim3.mac</a></p>
-<p class="font-italic"></p>
-<p>trim3.mac</p>
+<p class="font-italic">Charles Wong</p>
+<p>Macro entry for &quot;APDL Guru&quot; contest by PADT. &quot;Here is the scenario. I have a number of straight lines in the XY plane. I would like a macro that does the following:<br>
+Allows me to select any two lines, but only two.<br>
+If the two lines intersect, they are both divided at the intersection point and the resulting four lines are connected such that they share a common keypoint at the intersection point.<br>
+If the lines do not intersect, the first line is extended until it is tangent to the second line.</p>
+<p>The macro should be capable of handling the special case in which the second line needs to be extended in order for intersection to occur. If this case should occur, the macro should extend both lines to a common intersection point and then join the two lines together. However, if the second line does not require extension, then the macro should divide the second line at the intersection point and join the two pieces of the original second line together with the first line, which has been extended.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/trim4.mac" target="_blank"> trim4.mac</a></p>
-<p class="font-italic"></p>
-<p>trim4.mac</p>
+<p class="font-italic">Navaneeth Bashyam</p>
+<p>Macro entry for &quot;APDL Guru&quot; contest by PADT. &quot;Here is the scenario. I have a number of straight lines in the XY plane. I would like a macro that does the following:<br>
+Allows me to select any two lines, but only two.<br>
+If the two lines intersect, they are both divided at the intersection point and the resulting four lines are connected such that they share a common keypoint at the intersection point.<br>
+If the lines do not intersect, the first line is extended until it is tangent to the second line.</p>
+<p>The macro should be capable of handling the special case in which the second line needs to be extended in order for intersection to occur. If this case should occur, the macro should extend both lines to a common intersection point and then join the two lines together. However, if the second line does not require extension, then the macro should divide the second line at the intersection point and join the two pieces of the original second line together with the first line, which has been extended.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/trim5.mac" target="_blank"> trim5.mac</a></p>
-<p class="font-italic"></p>
-<p>trim5.mac</p>
+<p class="font-italic">Rod Scholl &amp; Jeff Strain (PADT)</p>
+<p>Macro entry for &quot;APDL Guru&quot; contest by PADT. &quot;Here is the scenario. I have a number of straight lines in the XY plane. I would like a macro that does the following:<br>
+Allows me to select any two lines, but only two.<br>
+If the two lines intersect, they are both divided at the intersection point and the resulting four lines are connected such that they share a common keypoint at the intersection point.<br>
+If the lines do not intersect, the first line is extended until it is tangent to the second line.</p>
+<p>The macro should be capable of handling the special case in which the second line needs to be extended in order for intersection to occur. If this case should occur, the macro should extend both lines to a common intersection point and then join the two lines together. However, if the second line does not require extension, then the macro should divide the second line at the intersection point and join the two pieces of the original second line together with the first line, which has been extended.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/trq_msp.mac" target="_blank"> trq_msp.mac</a></p>
-<p class="font-italic"></p>
-<p>trq_msp.mac</p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Used to calculate torque about global Z axis for 3D MSP analyses.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/v2comet.mac" target="_blank"> v2comet.mac</a></p>
 <p class="font-italic">Fern Thomassy (Southwest Research Institute)</p>
 <p>Creates a COMET/Acoustics results file of velocity results.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/v2glue.mac" target="_blank"> v2glue.mac</a></p>
-<p class="font-italic"></p>
-<p>v2glue.mac</p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Work around for standard VGLUE that avoids the &quot;ungluing&quot; that can occur</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/v_by_2a.mac" target="_blank"> v_by_2a.mac</a></p>
-<p class="font-italic"></p>
-<p>v_by_2a.mac</p>
+<p class="font-italic">Michael W. Hiller (In2 Solutions, Inc.)</p>
+<p>Creates a volume by picking two opposed areas. From the author:<br>
+&quot;It was meant for the case where you have two opposite areas each area having 4 lines (4 keypoints). It will automate volume creation from 2 areas, or you can modify it as necessary. It includes logic to (try to) avoid unnecessary twisting (bowtie).&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/varthk.mac" target="_blank"> varthk.mac</a></p>
-<p class="font-italic"></p>
-<p>varthk.mac</p>
+<p class="font-italic">(CAEAI)</p>
+<p>&quot;This macro applies a varying shell thickness based on a given function.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/vert.mac" target="_blank"> vert.mac</a></p>
-<p class="font-italic"></p>
-<p>vert.mac</p>
+<p class="font-italic">Rod Scholl (PADT)</p>
+<p>Generates a big long vertical line at specified location</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/vget_subs.mac" target="_blank"> vget_subs.mac</a></p>
 <p class="font-italic">Kiran Sreeram (GE Power Systems)</p>
@@ -239,16 +265,16 @@ If a user exports a lower-order tetrahedral mesh using MESH200, conversion to an
 <p>&quot;This ANSYS macro orientates your model to view a selected geometry face parallel to the screen. This is a must for analysts who regularly need to instantly orientate models to positions other than the standard views allowed. Simply click the face you want to view.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/vlsm.mac" target="_blank"> vlsm.mac</a></p>
-<p class="font-italic"></p>
-<p>vlsm.mac</p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>I ended up writing a macro that selects/reselects/unselects meshed areas, and then copied it and modified it for doing the same with volumes.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/vol.mac" target="_blank"> vol.mac</a></p>
-<p class="font-italic"></p>
-<p>vol.mac</p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Used to calculate total volume of selected elements.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/volsatelem.mac" target="_blank"> volsatelem.mac</a></p>
-<p class="font-italic"></p>
-<p>volsatelem.mac</p>
+<p class="font-italic">Doug Scott (Honeywell)</p>
+<p>&quot;This macro basically takes the selected elements (8-noded bricks), creates volumes at the elements, assigns the appropriate attributes to the volumes, and then deletes the selected elements.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/vrange.mac" target="_blank"> vrange.mac</a></p>
 <p class="font-italic">Mitch Voehl (CEC Corporation)</p>

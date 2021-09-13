@@ -7,6 +7,7 @@
   },
   {
     "title": "ans-history.txt",
+    "author": "ansys.net",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt",
     "description": "ANS-history.txt"
   },
@@ -71,14 +72,16 @@
     "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
   },
   {
-    "title": "intro05.ppt",
+    "title": "Shaping Optimization of Turbine Disk and Bearing Seal",
+    "author": "Shen-Yeh Chen",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt",
-    "description": "Intro05.ppt"
+    "description": "Example of use of in-house optimization code with ANSYS to produce optimization of structures without parametric geometric information."
   },
   {
     "title": "inventor.vbs",
+    "author": "Robert SeCaur (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Inventor.vbs",
-    "description": "Inventor.vbs"
+    "description": "In Workbench Design Simulation 8.0, Named Selections can be imported from certain CAD systems. For Inventor, this .vbs file will aid in exporting a group as a Named Selection.\n\n\"Here is the macro code for Inventor. It will create an attribute set on each selected entity (the name for this is immaterial) and an attribute in that set (the name for this is what will be looked at for creating a WB side attribute). More than anything this was a proof of concept script and does not have some of the \"niceties\" one might like (e.g. just adding to an already existing attribute set instead of creating a new one, or modifying an existing value if an attribute already exists of a given name in the given set). However, this script would allow you (with multiple invocations) to create multiple attributes on a given entity. That is something that an entity naming scheme does not allow conveniently. This is particularly significant for named selections, since an entity may need to be included in several named selections (perhaps one for load, one for mesh sizing, etc.).\""
   },
   {
     "title": "jkt.cmap",
@@ -88,13 +91,9 @@
   },
   {
     "title": "list of Files",
+    "author": "ansys.net",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
     "description": "List of Files from ansys.net"
-  },
-  {
-    "title": "plot33.f",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/plot33.f",
-    "description": "plot33.f"
   },
   {
     "title": "plot7.cmap",
@@ -116,11 +115,13 @@
   },
   {
     "title": "rotate.grn",
+    "author": "Joe Metrisin (Florida Turbine Technologies, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rotate.grn",
-    "description": "rotate.grn"
+    "description": "Here's a UIDL function (Granule file) I wrote a while back to rotate any geometric or finite element entity about any local or global coordinate system axis."
   },
   {
     "title": "script.ps1",
+    "author": "unknown",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1",
     "description": "script.ps1"
   },

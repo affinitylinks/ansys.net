@@ -97,7 +97,7 @@
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac" target="_blank"> a2glue.mac</a></p>
 <p class="font-italic">Eric Miller (PADT)</p>
-<p>Work around for standard AGLUE that avoids the &quot;ungluing&quot; that can occur</p>
+<p>Work around for standard AGLUE that avoids the &quot;ungluing&quot;that can occur</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac" target="_blank"> a_filmax.mac</a></p>
 <p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
@@ -110,15 +110,15 @@
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac" target="_blank"> a_hydro2.mac</a></p>
 <p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
-<p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.&quot;I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot; For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas.</p>
+<p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.&quot;I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot;For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/a_num.mac" target="_blank"> a_num.mac</a></p>
 <p class="font-italic">Mitch Voehl (CEC Corp)</p>
 <p>Macro to get area number by keypoint number.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ac_angle.mac" target="_blank"> ac_angle.mac</a></p>
-<p class="font-italic"></p>
-<p>ac_angle.mac</p>
+<p class="font-italic">Mike Yaksh (NAC Int&#39;l)</p>
+<p>Combines the real and imaginary components for a given load set to obtain the field at a specified electrical angle. This will only combine the nodal data and the SMISC element table items. For the NMISC element table items, use ac_anget.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac" target="_blank"> acal.mac</a></p>
 <p class="font-italic">(Tech Inno)</p>
@@ -215,7 +215,7 @@ ANOL,0,,'This is the title',''</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac" target="_blank"> areatest.mac</a></p>
 <p class="font-italic">(ANSYS, Inc.)</p>
-<p>Tests areas for consistent normals (not needed at 5.6 since /PSYM,ADIR,1 allows plotting of normals). Also, you may need to rename this macro &quot;ATEST&quot; or &quot;NORMALS&quot; since &quot;AREAS&quot; is a status topic command.</p>
+<p>Tests areas for consistent normals (not needed at 5.6 since /PSYM,ADIR,1 allows plotting of normals). Also, you may need to rename this macro &quot;ATEST&quot;or &quot;NORMALS&quot;since &quot;AREAS&quot;is a status topic command.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/arplot.mac" target="_blank"> arplot.mac</a></p>
 <p class="font-italic">(unknown source)</p>
@@ -230,16 +230,16 @@ ANOL,0,,'This is the title',''</p>
 <p>Divides a picked area with the working plane, retaining the area attributes for the newly-created areas.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/attrib_2_Load.js" target="_blank"> attrib_2_Load.js</a></p>
-<p class="font-italic"></p>
-<p>attrib_2_Load.js</p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;This script will apply a force load (magnitude 1000) on each entity that is flagged with an attribute beginning with DSA in the first assembly. There are two mechanisms by which this is done; one via the part manager the other via the DS tree.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/attrib_2_Load_FEA.js" target="_blank"> attrib_2_Load_FEA.js</a></p>
-<p class="font-italic"></p>
-<p>attrib_2_Load_FEA.js</p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;This script will apply load and boundary conditions based on attributes that exist on the model. They are filtered by an attribute prefix and divided by parts by a seperator.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/attrib_2_MeshSizing.js" target="_blank"> attrib_2_MeshSizing.js</a></p>
-<p class="font-italic"></p>
-<p>attrib_2_MeshSizing.js</p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;attributePrefix is intended to be the prefix of the attribute used in the CAD to represent mesh-sizing.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ave_tmp.mac" target="_blank"> ave_tmp.mac</a></p>
 <p class="font-italic">Ted Harris (PADT)</p>
@@ -264,7 +264,7 @@ Unfortunately it's pretty slow for large models, and I haven't had any time to r
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac" target="_blank"> battle.mac</a></p>
 <p class="font-italic">Dave Lindeman (3M)</p>
-<p>A macro used to play &quot;Battleship&quot; on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI)<br>
+<p>A macro used to play &quot;Battleship&quot;on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI)<br>
 From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below.<br>
 Enjoy!</p>
 <p>Dave Lindeman<br>

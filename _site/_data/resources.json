@@ -12,9 +12,10 @@
     "description": "Presentation from the Midwest ANSYS User Group\n[ANSYS Nonlinear, version 9.0]"
   },
   {
-    "title": "051805_maug_topology_optimization_presentation.pdf",
+    "title": "Topology Optimization in ANSYS",
+    "author": "Brian King (IMPACT Engineering Solutions, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/051805_maug_topology_optimization_presentation.pdf",
-    "description": "051805_maug_topology_optimization_presentation.pdf"
+    "description": "Presentation from Midwest ANSYS User Group on Topological Optimization capability in ANSYS and Workbench Simulation."
   },
   {
     "title": "10.pdf",
@@ -105,9 +106,10 @@
     "description": "3964aeng.pdf"
   },
   {
-    "title": "3rdASMO-UK-THLeeKKLee.pdf",
+    "title": "Multi-Criteria Shape Optimization of a Funnel in Cathode Ray Tubes Using Response Surface Model",
+    "author": "Tae Hee Lee, Kwangki Lee, Kwang Soon Lee",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/3rdASMO-UK-THLeeKKLee.pdf",
-    "description": "3rdASMO-UK-THLeeKKLee.pdf"
+    "description": "\"The ultimate goal of simulation that represents the behaviour of structures is to optimize their response performances within the specific requirements and needs with respect to the design variables. The first step of the design of cathode ray tubes is to design the glass geometry, called funnel geometry, to endure the vacuum stress because it is a main structure of cathode ray tubes. In order to create 3-dimensional funnel geometry in the cathode ray tubes, higher order response surface model is used instead of NURBS (non-uniform rational B-splines) or Bezier curve because it is more robust for understanding the geometry change in finite element analysis. By combining finite element analysis, response surface model and sequential quadratic programming within the process integration framework, the shape optimization of a funnel is successfully performed and the maximum stress is reduced to almost half of the current one.\""
   },
   {
     "title": "51ectc_outstanding_poster.pdf",
@@ -213,9 +215,10 @@
     "description": "\"Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.\"\r\n \r\n \"The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.\""
   },
   {
-    "title": "Ans-Mag1b.pdf",
+    "title": "Integrating ANSYS with Modern Numerical Optimization Technologies",
+    "author": "Shen-Yeh Chen",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Ans-Mag1b.pdf",
-    "description": "Ans-Mag1b.pdf"
+    "description": "\"Design automation with finite element analysis as a simulation and evaluation tool is becoming more and more desired. The ability to do automatic design iteration has constantly been a popular research and engineering topic. In this article, we will show how Honeywell Engines & Systems took advantage of the flexible environment of ANSYS to achieve this goal.\" (Optimization, APDL)"
   },
   {
     "title": "Ansys_PT_EEC.pdf",
@@ -228,9 +231,10 @@
     "description": "Artigo.pdf"
   },
   {
-    "title": "B0-8218-0988-1-03024-7.pdf",
+    "title": "An Efficient FETI Implementation on Distributed Shared Memory Machines with Independent Numbers of Subdomains and Processors",
+    "author": "Michel Lesoinne and Kendall Pierson",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/B0-8218-0988-1-03024-7.pdf",
-    "description": "B0-8218-0988-1-03024-7.pdf"
+    "description": "\"Until now, many implementations of the FETI method have been designed either as sequential codes on a single CPU, or as parallel implementations with a One Subdomain per Processor approach. This approach has been particularly typical of implementations on distributed memory architectures such as the IBM SP2. In the last couple of years, several computer manufacturers have introduced new machines with a Distributed Shared Memory (DSM) programming model {e.g. SGI Origin 2000, or HP Exemplar. In such architectures, the physical memory is distributed among the processors or CPU boards but any memory location can be accessed logically by any CPU independently of where the particular memory page being accessed has physically been allocated. As more and more machines of this type are available with a relatively small number of processors, the interest in implementing FETI with an independent number of subdomains and processor has increased. We report on such an implementation of FETI and highlight the benefits of this feature. We have found that medium size to large problems can be solved even on a sequential machine with time and memory requirements that are one to two order of magnitude better than a direct solver.\""
   },
   {
     "title": "BaBar295.pdf",
@@ -605,9 +609,10 @@
     "description": "PAC1991_2197.pdf"
   },
   {
-    "title": "PDS_Overview.pdf",
+    "title": "ANSYS PDS overview [PDF]",
+    "author": "Stefan Reh",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/PDS_Overview.pdf",
-    "description": "PDS_Overview.pdf"
+    "description": "A three-page overview/summary sent on the XANSYS Mailing list on PDS, beta in ANSYS 5.6, officially released at 5.7."
   },
   {
     "title": "POW2MAT.zip",
@@ -622,8 +627,9 @@
   },
   {
     "title": "PRESSURE_MAC.zip",
+    "author": "Hursha Narayan (Robert Bosch Corporation)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/PRESSURE_MAC.zip",
-    "description": "PRESSURE_MAC.zip"
+    "description": "\"I have written a macro that calculates the total force along the three axes from applied pressure. I find this macro to be useful just to make sure that the pressure I'm applying on a curved surface is accurate and also it gives a feel for the mesh discretization where the pressure is applied. The user has to basically identify the elements with a particular magnitude of pressure and save the list file (SFELIS.lis). The macro does everything else automatically. The downside to the macro is:\n1. Right now it only handles 10 node tet elements.\n2. The pressure has to be uniform\nThe user will have to modify some of the fields in the macro as well as the c-shell file prescalc.\""
   },
   {
     "title": "Parametric Studies in ANSYS [PDF]",
@@ -1136,9 +1142,10 @@
     "description": "alex-fem.pdf"
   },
   {
-    "title": "amg2001.pdf",
+    "title": "Advancing Analysis Capabilities In ANSYS Through Solver Technology",
+    "author": "Gene Poole, Yong-Cheng Liu, and Jan Mandel",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/amg2001.pdf",
-    "description": "amg2001.pdf"
+    "description": "\"This paper will describe implementation considerations for the addition of new solver technology to a large legacy code, compare resource requirements for the various solver choices and present some comparative results from several customer generated problems. The AMG solver benefits, both in improved robustness and parallel processing efficiency will be described. The paper will also discuss some of the implementation challenges that have been overcome to add new solver technology to a large existing code. The role of solver technology in meeting current and future demands of large scale commercial analysis codes will be discussed.\""
   },
   {
     "title": "analysis-of-reinforced-concrete.pdf",
@@ -1249,9 +1256,10 @@
     "description": "This is an example of how to drag-and-drop a .db file onto a DOS batch file to initiate an analysis. \n\n Unzip the file and rename \"Run Nonlinear.txt \"to Run Nonlinear.bat\". Place it on your desktop. \n\n Place \"solve_batch.inp\"in your D: drive or edit \"Run Nonlinear.bat\"to change the location of this APDL input file. \n\n Drag and drop any .db file containing a ready-to-solve nonlinear analysis onto \"Run Nonlinear.bat\". \n\n You will find that the solution will initiate in the same working directory, and you can also track the nonlinear solution graphically as the solution is solving in batch. "
   },
   {
-    "title": "benchmar_tests_on_ansys_parallel_proc.pdf",
+    "title": "Benchmark Tests on ANSYS Parallel Processing Technology",
+    "author": "Kentaro Suzuki",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/benchmar_tests_on_ansys_parallel_proc.pdf",
-    "description": "benchmar_tests_on_ansys_parallel_proc.pdf"
+    "description": "\"ANSYS Inc. has released parallel processing solvers, DDS (Distributed Domain Solver) and AMG (Algebraic Multigrid Solver) in ANSYS version 5.7 in order to meet the requirements from the market.\"\n\n\"In this paper, simple tests are first carried out to confirm the features and capabilities of DDS and AMG for different types of analyses. Furthermore, real-life problems such as thermal stress of an engine block (7.3 million DOF) and elastic-plastic-creep behavior of an IC packaging (about 84,000 DOF) are analyzed. The effectiveness of ANSYS parallel processing solvers is also studied.\""
   },
   {
     "title": "benchmark_1.zip",
@@ -1439,9 +1447,10 @@
     "description": "erfurt02new_detector-reprint.pdf"
   },
   {
-    "title": "estim.pdf",
+    "title": "Local Approximation Estimators For Algebraic Multigrid",
+    "author": "Jan Mandel",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/estim.pdf",
-    "description": "estim.pdf"
+    "description": "\"We are concerned with the development of Algebraic Multigrid (AMG) for symmetric, positive definite linear systems arizing from finite element discretization of elliptic partial differential equations. AMG methods attempt to create coarse levels from the algebraic system automatically, using no or only a minimum of additional information. The basic idea of the multigrid algorithm is that fine level error on which the smoothing process is not effective should be reduced by the coarse correction. Therefore, a-priori estimates of the approximation of fine level functions by coarse level function are important to guide the design of robust AMG methods.\""
   },
   {
     "title": "expansion.pdf",
@@ -1496,9 +1505,10 @@
     "description": "\"The analysis of gasketted flanges is now becoming an essential technique to design pressure vessels or piping, because the design code is being modified. On the other hand, the gasket has an extreme nonlinearity which causes the analysis to be very difficult, especially using linear material properties. A finite element analysis program other than ANSYS has the element library for gasket element, but ANSYS does not have it yet.\"\r\n \r\n \"The authors developed a method to model this nonlinear gasket by using the elements available in ANSYS Rel. 5.5 for 2-dimensional axisymmetric analysis and those in Rel. 5.6 for 3-dimensional analysis. In this paper, the concept and the procedure of the modeling is introduced. The data input is possible using a template, without using any other ANSYS commands. The whole analysis execution is controlled by APDL.\"\r\n \r\n [STI: Gasket elements are available from version 6.1 onwards, after this paper was written]"
   },
   {
-    "title": "general_Reports_rptfiles_2005-263.pdf",
+    "title": "A DOS-Enhanced Numerical Simulation of Heat Transfer and Fluid Flow Through an Array of Offset Fins with Conjugate Heating in the Bounding Solid",
+    "author": "E.M. Sparrow, J.P. Abraham, P.W. Chevalier",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/general_Reports_rptfiles_2005-263.pdf",
-    "description": "general_Reports_rptfiles_2005-263.pdf"
+    "description": "\"The method of Design of Simulation (DOS) was used to guide and enhance a numerical simulation of fluid flow and heat transfer through offset-fin arrays which form the interior geometry of a cold plate. The basic problem involved 11 independent parameters. This prohibitive parametric burden was lessened by the creative use of nondimensionalization that was brought to fruition by a special transformation of the boundary conditions. Subsequent to the reduction of the number of parameters, the DOS method was employed to limit the number of simulation runs while maintaining an accurate representation of the parameter space. The DOS method also provided excellent correlations of both the dimensionless heat transfer and pressure drop results. The results were evaluated with respect to the Colburn Analogy for heat and momentum transfer. It was found that the offseting of the fins created a larger increase in the friction factor than that which was realized for the dimensionless heat transfer coefficient.\"\n\nSimilar paper can be found here.\n[ANSYS Flotran, version unknown]"
   },
   {
     "title": "groothuis.pdf",
@@ -1574,8 +1584,9 @@
   },
   {
     "title": "instantaneous_secant_TCE.zip",
+    "author": "Bill Bulat (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip",
-    "description": "instantaneous_secant_TCE.zip"
+    "description": "Macro to convert instantaneous thermal coefficients of expansion to secant values, with example input file. (This is a zipped file)"
   },
   {
     "title": "jb99_14.pdf",
@@ -1618,9 +1629,10 @@
     "description": "limit_load.pdf"
   },
   {
-    "title": "machdesn_pds.pdf",
+    "title": "ANSYS PDS article in Machine Design [PDF]",
+    "author": "Stefan Reh",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/machdesn_pds.pdf",
-    "description": "machdesn_pds.pdf"
+    "description": "While this may not be a conventional technical paper, it presents information on ANSYS PDS (Probabilistic Design System), a beta feature in 5.6 and officially released in 5.7. Instead of a deterministic approach, a stochastic method provides better product reliability measures"
   },
   {
     "title": "marval_inzen_mech2007.pdf",
@@ -1639,9 +1651,10 @@
     "description": "\"On this subject, I've been meaning to post these for ages -> we've been using these macros to transfer variables between ansys and matlab for yonks. They write and read variables from ansys and matlab -> you can check them out to see how they do it (i.e. I cant remember off of the top of my head) -> I think they write out a format header then write the rest of the variable as a single column.\n\nvarread.m\nread variable into matlab\n\nvarread.mac\nread variable into ansys\n\nvarreadc.m\nread 2 column ansys variable into matlab as a complex variable\n\nvarreadcp.m\nread \"packed\"2 column variable into matlab as complex variable\n\nvarreadp.m\nread \"packed\"variable into matlab\n\nvarreadp.mac\nread \"packed\"variable into ansys\n\nvarwrite.m\nwrite a variable from matlab\n\nvarwrite.mac\nwrite a variable from ansys\n\nvarwritep.mac\nwrite a variable from ansys in \"packed\"format using a vmask\""
   },
   {
-    "title": "meis.pdf",
+    "title": "Algebraic Multigrid By Smoothed Aggregation For Second And Fourth Order Elliptic Problems",
+    "author": "Petr Van Ek, Jan Mandel, and Marian Brezina",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/meis.pdf",
-    "description": "meis.pdf"
+    "description": "\"An algebraic multigrid algorithm for symmetric, positive definite linear systems is developed based on the concept of prolongation by smoothed aggregation. Coarse levels are generated automatically. We present a set of requirements motivated heuristically by a convergence theory. The algorithm then attempts to satisfy the requirements. Input to the method are the coefficient matrix and zero energy modes, which are determined from nodal coordinates and knowledge of the differential equation. Efficiency of the resulting algorithm is demonstrated by computational results on real world problems from solid elasticity, plate bending, and shells.\""
   },
   {
     "title": "mems-thermal-analogy-fsi-damping.pdf",
@@ -1769,9 +1782,10 @@
     "description": "\"This paper presents the shape optimization of an automotive universal joint, by simultaneously considering manufacturing cost, maximum drivable joint angle and part volume. Comprised of three main components - two yokes and a cross trunnion - a universal joint is a linkage used to transmit rotational motion from one shaft to another when the axes are coplanar, but not coinciding. In this research, universal joint designs are analyzed and compared using a weighted sum of three objective functions: minimization of machining cost, maximization of adjoining shaft joint angle, and minimization of total part volume. Part modeling and analysis is conducted using the Finite Element Analysis package ANSYS and optimization is implemented using MATLAB. The results show Pareto frontiers for both the flange and weld yoke, constructed using the Adaptive Weighted Sum technique. These frontiers clearly illustrate the trade-off between machining cost and joint angle; that is, to increase the joint angle, a corresponding increase in the cost of the part is required. It has been shown that maximization of driveable joint angle requires a simultaneous increase in machining cost of 4.4% and 2.7% for the flange and weld yoke, respectively.\"\n[ANSYS Structural, version 9.0]"
   },
   {
-    "title": "painless-conjugate-gradient.pdf",
+    "title": "An Introduction to the Conjugate Gradient Method Without the Agonizing Pain",
+    "author": "Jonathan R. Shewchuk",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/painless-conjugate-gradient.pdf",
-    "description": "painless-conjugate-gradient.pdf"
+    "description": "This paper presents a very well-written explanation of conjugate gradient methods. It is helpful in understanding better the idea behind CG solvers in ANSYS (PCG, JCG, ICCG, AMG, etc.)."
   },
   {
     "title": "penny3d.zip",
@@ -1797,8 +1811,9 @@
   },
   {
     "title": "prony.zip",
+    "author": "John Thompson (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip",
-    "description": "prony.zip"
+    "description": "Macro to do curve-fitting for TB,PRONY constants for given relaxation data.\n[STI: Note that, at 8.0 and above, curve-fitting of TB,PRONY is directly available in ANSYS with the TBFT command.]"
   },
   {
     "title": "Radiation article in ANSYS Solutions Magazine [PDF]",
@@ -1835,9 +1850,10 @@
     "description": "skinner_thesis.pdf"
   },
   {
-    "title": "solver_2002.pdf",
+    "title": "ANSYS Equation Solvers: Usage and Guidelines",
+    "author": "Gene Poole (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/solver_2002.pdf",
-    "description": "solver_2002.pdf"
+    "description": "Discussion of ANSYS solvers, focusing on the sparse direct solver and PCG iterative solver.\nOriginally presented at the 2002 Conference."
   },
   {
     "title": "spice1.pdf",

@@ -92,12 +92,12 @@
 </nav>
 <ul class="list-group"><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bbldiv.mac" target="_blank"> bbldiv.mac</a></p>
-<p class="font-italic"> Bill Bulat (OMM) </p>
+<p class="font-italic">Bill Bulat (OMM)</p>
 <p>From the author:<br>
 &quot;I whipped up the following simple macro (I call it bbldiv.mac) to help assign divisions to predefined lines when you don't know their direction, but you do know their end keypoints. Useful for bottom-up modeling with input scripts.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac" target="_blank"> beaforce.mac</a></p>
-<p class="font-italic"> Juha Tyllinen (KONE Corporation)</p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
 <p>Macro applies pressure distribution for approximation of bearing force. See contents of macro for details.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac" target="_blank"> beamnet.mac</a></p>
@@ -113,7 +113,7 @@ et,2,4<br>
 beamnet,41,2</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac" target="_blank"> beampres.mac</a></p>
-<p class="font-italic"> Bram Weisman (Alan C. McClure Associates, Inc.) </p>
+<p class="font-italic">Bram Weisman (Alan C. McClure Associates, Inc.)</p>
 <p>Applies linearly varying pressure on beams.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bearing.mac" target="_blank"> bearing.mac</a></p>
@@ -129,7 +129,7 @@ beamnet,41,2</p>
 <p>Macro produces a bode plot using 2 predefined variables in /post26.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac" target="_blank"> cbc_rmp5.mac</a></p>
-<p class="font-italic"> Bill Bulat (CSI) </p>
+<p class="font-italic">Bill Bulat (CSI)</p>
 <p>Macro for defining a cubic ramp for use w/ ANSYS/LS-Dyna for performing quasi-static explicit analyses.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac" target="_blank"> checkiges.mac</a></p>
@@ -154,7 +154,7 @@ beamnet,41,2</p>
 <p class="font-italic">Eric Miller (PADT)</p>
 <p>&quot;ANSYS has a *get,,common command that lets you grab things from memory. The only problem with this is that you can't just give the *get the name of the block, you need to tell it its position (count) in the block. As an example, the 3rd value listed in a common block is at position 3 (or index 3).</p>
 <p>The way you use a common block is you look in the ansys/custom/include directory for the value you want to know.<br>
-In this case I did a search for a file that contained &quot;/cplane&quot; and found it in d3com.inc.<br>
+In this case I did a search for a file that contained &quot;/cplane&quot;and found it in d3com.inc.<br>
 Looking in the file I found that the value kycpln is what I was looking for and the common block was /d3com/<br>
 Sometimes you can just count to find out what the index is, but this block is huge and has arrays in it. So instead, I used the macro below.</p>
 <p>I did:</p>
@@ -182,7 +182,7 @@ Found: 100 11 21.</p>
 <p>Make a compound fillet at two straight lines.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac" target="_blank"> cmget.mac</a></p>
-<p class="font-italic"> John Crawford (Honeywell) </p>
+<p class="font-italic">John Crawford (Honeywell)</p>
 <p>&quot;A macro that retrieves the components saved using cmput.mac.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac" target="_blank"> cmput.mac</a></p>
@@ -210,15 +210,15 @@ Found: 100 11 21.</p>
 <p>Macro to get last converged substep.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/coil_emf.mac" target="_blank"> coil_emf.mac</a></p>
-<p class="font-italic"></p>
-<p>coil_emf.mac</p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Used to report per-turn EMF induced in predefined closed loop paths.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/compten.mac" target="_blank"> compten.mac</a></p>
 <p class="font-italic">Carl Ostervig (Tech Inno)</p>
 <p>This macro analysis iteratively structures with different material properties (Youngs modulus) in tension and compression. [STI: Please note that this macro looks at SX and SY. See BILINEAR macro for a more general compression/tension macro based on principal stresses.]</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac" target="_blank"> conts2s.mac</a></p>
-<p class="font-italic">G. N. S. Prakash </p>
+<p class="font-italic">G. N. S. Prakash</p>
 <p>&quot;'conts2s.mac' macro creates surface to surface contact elements between nodal components with the default options. Only nodal components(target &amp; contact), material number and coefficient of friction can be given as arguments. Use Contact wizard or your custom code to modify other properties. This macro is helpful when number of components in Ansys models are large or sometimes when the Contact wizard becomes slow with large db files and if we need to create a lot of contact pairs.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/coupcoin.mac" target="_blank"> coupcoin.mac</a></p>
@@ -234,7 +234,7 @@ Found: 100 11 21.</p>
 <p>&quot;A macro to create couples at coincident locations.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cpquery.mac" target="_blank"> cpquery.mac</a></p>
-<p class="font-italic"> Sheldon Imaoka (ANSYS, Inc.) </p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>This macro counts the number of coupled sets associated with the current selected set of nodes.</p>
 <p>If the first argument is 1, then the macro will count the total number of coupled sets if any of its nodes are selected. Otherwise, the coupled set will only be counted if all of its nodes are selected.</p>
 </li><li class="list-group-item">
@@ -268,24 +268,26 @@ Found: 100 11 21.</p>
 <p>This macro calculates the distance between two nodes, selected by picking. Normally this facility is available in the preprocessor only. This macro works in all processors.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac" target="_blank"> distkp2l.mac</a></p>
-<p class="font-italic"> Wangming Lu (Impact Technologies, LLC) </p>
+<p class="font-italic">Wangming Lu (Impact Technologies, LLC)</p>
 <p>&quot;I have developed the following macro: Given a key point level component,and a line number, it will evaluate the distance from each key point in this component to the input line. The result is returned in an array called distk (you can change into your name, of course). While using this, pls. be careful, it is not fully tested yet.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/distload.mac" target="_blank"> distload.mac</a></p>
-<p class="font-italic"></p>
-<p>distload.mac</p>
+<p class="font-italic">Nick Veikos (CAEAI), modified by Jim Kosloski (CAEAI)</p>
+<p>Attached is a macro for applying surface loads. You have to create a file with your own equation defining the load distribution as a function of x,y,z coordinates. You can use any equation possible with ADPL commands.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/dnsol_view.mac" target="_blank"> dnsol_view.mac</a></p>
-<p class="font-italic"></p>
-<p>dnsol_view.mac</p>
+<p class="font-italic">Adam Shinbrot (Spine-Tech Inc.)</p>
+<p>&quot;GLOBAL INFO: This macro is basically just a couple of routines that use dnsol to align two nodes (arg1 and arg2) on the theoretically fixed body, and adjusts the rest of the nodal results accordingly.<br>
+I needed to do this with a multi-body model where I wanted to look at the motion of one body relative to another with the motion of the first body subtracted from the global result.&quot;<br>
+Example input file can be downloaded here.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js" target="_blank"> ds_JPDL___User_Fatigue_PNEN13445-3.js</a></p>
 <p class="font-italic">Przemyslaw Siedlaczek (MESco)</p>
 <p>Workbench macro solves fatigue according to pressure vessel code PN EN 13445-3 and displays results as a User Defined Result.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/DS_MESCO_ContFrictVsTemp_APLD.js" target="_blank"> ds_MESCO_ContFrictVsTemp_APLD.js</a></p>
-<p class="font-italic"></p>
-<p>DS_MESCO_ContFrictVsTemp_APLD.js</p>
+<p class="font-italic">Przemyslaw Siedlaczek (MESco)</p>
+<p>Workbench macro adds APDL code to the contact branches to define temperature-dependent coefficient of friction.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">
