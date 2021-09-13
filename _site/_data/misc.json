@@ -6,7 +6,7 @@
     "description": "This is an XML file that can be used in Workbench Mechanical to provide 12 common views aligned with the coordinate axes. The naming convention is \"Up-Axis + Axis of viewing\", i.e. \"Z+X\" means \"Z axis is up, looking in the direction of positive X\". To import this XML file into Workbench Mechanical, go to \"View menu > Windows > Manage Views\", then click on the \"Import...\" icon in the Manage Views panel to import this XML file."
   },
   {
-    "title": "aNS-history.txt",
+    "title": "ans-history.txt",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt",
     "description": "ANS-history.txt"
   },

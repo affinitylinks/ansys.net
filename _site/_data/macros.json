@@ -386,13 +386,15 @@
   },
   {
     "title": "couple_dof.mac",
+    "author": "Jyotis Sardar (IIT MADRAS)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/couple_dof.mac",
-    "description": "couple_dof.mac"
+    "description": "\"Here's a macro I created, that will generate couples in the required DOF's, merely by prompting the user to pick the source and target lines.\""
   },
   {
     "title": "cpjoins.mac",
+    "author": "Mark Kessler (BAE Systems)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/cpjoins.mac",
-    "description": "cpjoins.mac"
+    "description": "\"A macro to create couples at coincident locations.\""
   },
   {
     "title": "cpquery.mac",
@@ -402,8 +404,9 @@
   },
   {
     "title": "ctpipe3.mac",
+    "author": "Mark Kessler (BAE Systems)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/ctpipe3.mac",
-    "description": "ctpipe3.mac"
+    "description": "\"A macro to create a series of elements from one picked node to all other selected nodes.\""
   },
   {
     "title": "cubic.mac",
@@ -436,8 +439,9 @@
   },
   {
     "title": "distcalc.mac",
+    "author": "Carl Ostervig (Tech Inno)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/distcalc.mac",
-    "description": "distcalc.mac"
+    "description": "This macro calculates the distance between two nodes, selected by picking. Normally this facility is available in the preprocessor only. This macro works in all processors."
   },
   {
     "title": "distkp2l.mac",
@@ -484,8 +488,9 @@
   },
   {
     "title": "e72to142.mac",
+    "author": "Tim Lansberry",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/e72to142.mac",
-    "description": "e72to142.mac"
+    "description": "This is an ANSYS macro that converts solid72 elements to fluid142 elements. It defines a new element type for the fluid elements. Useful for creating models for FLOTRAN converted from other CAD packages which use a solid element type."
   },
   {
     "title": "e72to45.mac",

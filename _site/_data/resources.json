@@ -22,9 +22,10 @@
     "description": "10.pdf"
   },
   {
-    "title": "10_0130_Cross_paper.pdf",
+    "title": "An Architecture for Fluid/Structure Analysis of Turbomachinery Blading",
+    "author": "David A. Johnston, Charles J. Cross, J. Mitch Wolff",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/10_0130_Cross_paper.pdf",
-    "description": "10_0130_Cross_paper.pdf"
+    "description": "\"Aeroelastic stability and response analyses used in the design of turbomachinery blading are typically uncoupled: the unsteady aerodynamics and structural dynamics are treated in separate models, with boundary conditions sequentially updated after stationary periodic convergence is met. Higher fidelity simulations are achieved by coupling the fluid and structure domains such that boundary conditions are updated once or several times per physical time step of the simulation.\"\"As a starting point, the turbomachinery CFD research code TURBO (Chen and Briley, 2001) and the commercial structural solver ANSYSŪ has been chosen for coupling, although FSI is designed with modularity for future inclusion of other fluid and structural solvers.\"\n[ANSYS Dynamics, version unspecified]"
   },
   {
     "title": "12.pdf",
@@ -114,9 +115,10 @@
     "description": "51ectc_outstanding_poster.pdf"
   },
   {
-    "title": "54.pdf",
+    "title": "Understanding Accuracy and Discretization Error in an FEA Model",
+    "author": "Jon Pointer",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/54.pdf",
-    "description": "54.pdf"
+    "description": "\"The often-ignored topic of mesh discretization error is examined to identify a simple set of rules that the average user can enlist to determine solution accuracy. The sources of discretization error are explained, tools to quantify it are introduced and an example is given. The purpose is to bring an understanding of these issues and usable tools to the common user who is not proficient in the mathematical basis of FEA.\"\n\n[ANSYS 7.1, 2004 Conference]"
   },
   {
     "title": "56.pdf",
@@ -139,9 +141,10 @@
     "description": "772.pdf"
   },
   {
-    "title": "9.pdf",
+    "title": "Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions",
+    "author": "Chandresh Shah",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/9.pdf",
-    "description": "9.pdf"
+    "description": "\"Any finite element analysis performed by an engineer is subject to several types of errors that can compromise the validity of the results. These errors can be broadly classified under the following categories: 1) user error - incorrect usage of FE software or input by the FE analyst, 2) errors due to assumptions and simplifications used in the model and 3) errors due to insufficient mesh discretization. User errors can be prevented by developing and utilizing a comprehensive pre and post processing checklist and by appropriate training in the basics of finite element analysis and usage of FE software. Errors due to modeling assumptions and simplifications can be alleviated by adding complexity to the model so that it better represents the physics of the problem being analyzed. Errors due to the inadequacy or coarseness of the mesh are often overlooked by the analyst. These errors due to mesh discretization can be fixed by evaluating the quality of the mesh and by developing and utilizing criteria that characterize the accuracy of the FE solution. This paper describes the source of mesh discretization error and presents several criteria that can be used by an FE analyst to evaluate the accuracy of the FE solution.\"\n\n[ANSYS 5.7, 2002 Conference] "
   },
   {
     "title": "9601-010.pdf",
@@ -252,9 +255,10 @@
     "description": "This memo provides an overview of APDL, defining parameters, and creating parametric models."
   },
   {
-    "title": "CADFEM05_anker_paper.pdf",
+    "title": "An Interpretation of the Physics of Fluid-Structure Interaction in the Frequency Domain",
+    "author": "Jan Christian Anker",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/CADFEM05_anker_paper.pdf",
-    "description": "CADFEM05_anker_paper.pdf"
+    "description": "\"This paper constitutes an attempt to interpret the physics of FSI where the structure is vibrating. The structure considered is a very simple physical device, namely a flat cantilever plate. Many presumably important details are only briefly mentioned, other are left completely out of the discussion. The intention with the paper is to emphasize that there are cases where Fluid - Structure Interaction can be successfully simulated without having to utilize a Navier-Stokes Solver coupled with a (non-linear) Structural Analysis Program, a concept that requires vast amounts of computer time for linear vibrations (but is highly relevant for other applications).\""
   },
   {
     "title": "COMPMENU.zip",
@@ -288,8 +292,9 @@
   },
   {
     "title": "DistributedLoad.zip",
+    "author": "Paris Altidis (Borg Warner)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/DistributedLoad.zip",
-    "description": "DistributedLoad.zip"
+    "description": "Zip file containing two example macros of applying distributed pressures."
   },
   {
     "title": "Don_HemmelgarnITI_Interoperability_Pres.pdf",
@@ -297,9 +302,10 @@
     "description": "Don_HemmelgarnITI_Interoperability_Pres.pdf"
   },
   {
-    "title": "Dr_Penzar.pdf",
+    "title": "Finite Element Analysis at Mannesmann VDO Fuel Systems [PDF]",
+    "author": "Zlatko Penzar",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Dr_Penzar.pdf",
-    "description": "Dr_Penzar.pdf"
+    "description": "Finite Element Analysis at Mannesmann VDO Fuel Systems - ppt presentation"
   },
   {
     "title": "Dutchsensorconf98.pdf",
@@ -660,9 +666,10 @@
     "description": "RDARV_Article1200.pdf"
   },
   {
-    "title": "Rayburn_USU_Paper.pdf",
+    "title": "Constellation Pathfinder: A University Nanosatellite",
+    "author": "C.D. Rayburn, H.E. Spence, H.E. Petschek, M. Bellino, J. Vickers, M. Murphy",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Rayburn_USU_Paper.pdf",
-    "description": "Rayburn_USU_Paper.pdf"
+    "description": "\"This paper updates the progress of the Constellation Pathfinder Mission (CPM) design. Specifically, preliminary results in areas including satellite design, orbital mechanics, thermal design, structural design, and attitude determination and control are discussed.\""
   },
   {
     "title": "Reliability Needs",
@@ -792,10 +799,10 @@
     "description": "\"From 5.7, the 18x series of elements support a variety of hyperelastic constitutive models, namely general polynomial, Mooney-Rivlin, Neo-Hookean, Arruda-Boyce, and Ogden. Four other models have been included in 5.7 onwards, although these are undocumented options for TB,HYPER. These four models consist of the Yeoh and Gent models for incompressible behavior and the Hyperfoam and Blatz-Ko options for compressible rubbers. This memo hopes to provide a summary of these material models and of the required input.\""
   },
   {
-    "title": " Using CMS in Workbench Simulation [ZIP]",
+    "title": "Using CMS in Workbench Simulation [ZIP]",
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip",
-    "description": "\"At Workbench 11.0, the ANSYS Rigid Dynamics add-on module enables users to model complex kinematic assemblies, whereby system-level performance as well as accurate force loading on components can be obtained.\n    Although the parts in the assembly may initially be considered rigid, an interesting, related method is the use of component mode synthesis (CMS) to account for the flexibility of parts. This memo will attempt to cover a way in which users can incorporate CMS in their multibody analyses in Workbench Simulation.\"\n[For version 12.0, use supplied \"cms_use_v12.mac\" instead of \"cms_use.mac\" - courtesy of D. Creech.]"
+    "description": "\"At Workbench 11.0, the ANSYS Rigid Dynamics add-on module enables users to model complex kinematic assemblies, whereby system-level performance as well as accurate force loading on components can be obtained.\n    Although the parts in the assembly may initially be considered rigid, an interesting, related method is the use of component mode synthesis (CMS) to account for the flexibility of parts. This memo will attempt to cover a way in which users can incorporate CMS in their multibody analyses in Workbench Simulation.\"\n[For version 12.0, use supplied \"cms_use_v12.mac\"instead of \"cms_use.mac\"- courtesy of D. Creech.]"
   },
   {
     "title": "Spatially-Varying Pressure Loading in Workbench Simulation [ZIP]",
@@ -855,7 +862,7 @@
     "title": "Basics on Structural Damping (Addendum) [ZIP]",
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip",
-    "description": "\"Since ANSYS 5.6, there have been numerous enhancements as well as facets of the software program that have changed, including treatment of damping. This article is meant to serve as an addendum to Section 6 of the author’s \"Structural Damping\" memo, which was written in October, 2000.\""
+    "description": "\"Since ANSYS 5.6, there have been numerous enhancements as well as facets of the software program that have changed, including treatment of damping. This article is meant to serve as an addendum to Section 6 of the author’s \"Structural Damping\"memo, which was written in October, 2000.\""
   },
   {
     "title": "Chaboche Nonlinear Kinematic Hardening Model [PDF]",
@@ -1063,7 +1070,7 @@
     "title": "Thermal Surface Effect Elements Intro [PDF]",
     "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Week_11_Surface_Effect_Elements_Thermal.pdf",
-    "description": " Introduction to thermal surface effect elements (SURF151/152)."
+    "description": "Introduction to thermal surface effect elements (SURF151/152)."
   },
   {
     "title": "Memory management and configuration [PDF]",
@@ -1225,9 +1232,10 @@
     "description": "asyed_ectc2004_corrected.pdf"
   },
   {
-    "title": "auto_boundary_sizing.pdf",
+    "title": "Smartsizing: Automatic Boundary Sizing for 2D and 3D meshes [PDF]",
+    "author": "Alexandre L. Cunha, Sunil Saigal, Scott A. Canann",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/auto_boundary_sizing.pdf",
-    "description": "auto_boundary_sizing.pdf"
+    "description": "\"We present in this paper a simple technique, called smart sizing, which automatically computes high quality initial element sizing on curves for triangular, quadrilateral and tetrahedral elements.\""
   },
   {
     "title": "barni1.pdf",
@@ -1256,9 +1264,10 @@
     "description": "bericht92.pdf"
   },
   {
-    "title": "bmsweep.pdf",
+    "title": "BMSweep: Locating Interior Nodes During Sweeping [PDF]",
+    "author": "Matthew L. Staten, Scott A. Canann, and Steve J. Owen",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/bmsweep.pdf",
-    "description": "bmsweep.pdf"
+    "description": "\"BMSweep is a new algorithm to determine the location of interior nodes while volume sweeping.\""
   },
   {
     "title": "boot.zip",
@@ -1293,9 +1302,10 @@
     "description": "Comparison of FLUID30 (acoustic fluid element) and FLUID80 (contained fluid element) for sloshing in a tank."
   },
   {
-    "title": "combined_l_o_smoothing.pdf",
+    "title": "An Approach to Combined Laplacian and Optimization-Based Smoothing for Triangular, Quadrilateral, and Quad-Dominant Meshes [PDF]",
+    "author": "Scott A. Canann, Joseph R. Tristano, Matthew L. Staten",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/combined_l_o_smoothing.pdf",
-    "description": "combined_l_o_smoothing.pdf"
+    "description": "\"In this paper, an overall mesh smoothing scheme is presented for meshes consisting of triangular, quadrilateral, or mixed triangular and quadrilateral elements. This paper describes an efficient and robust combination of constrained Laplacian smoothing together with an optimization-based smoothing algorithm.\""
   },
   {
     "title": "comparison_of_biomechanical_breast_models.pdf",
@@ -1367,9 +1377,10 @@
     "description": "\"The purpose of this investigation was to compare the two modelling techniques for an infinite boundary. The first technique involves setting the elements on the edges of the model to have an absorptive property by changing the material properties so that mu=1. The second technique involves the use of infinite elements (infinite129) that must be placed on a constant radius curvature.\""
   },
   {
-    "title": "cyclic_symmetry_analysis.pdf",
+    "title": "Cyclic Symmetry Analysis",
+    "author": "(ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/cyclic_symmetry_analysis.pdf",
-    "description": "cyclic_symmetry_analysis.pdf"
+    "description": "Presentation on cyclic symmetry enhancements at ANSYS 6.1 (part of the \"Advanced Analysis with ANSYS\"seminar during the 2002 User's Conference)."
   },
   {
     "title": "dakota.zip",
@@ -1417,9 +1428,10 @@
     "description": "Macro for a fully automated procedure for calculating M-R coefficients from Test Data\n\"I have developed a macro that fully automates the importing of elastomer test data into ANSYS and calculate the Mooney-Rivlin coefficients. The macro uses Lagrange interpolation technique to calculate the stress data at equal intervals of strain. This can then be read into an array in ANSYS to evaluate the M-R coeffs. I'm sending you Windows and Unix version of the macro. The difference between the two versions are in the awk and script files that I use to manipulate data. The user needs to go through all the files just to change the directories where the files will be located and accessed. The files reformat(Unix) and reformat.csh(windows) should have rwx permissions. The reformat.csh used in windows can be converted to a batch file. Awk utility should be available under windows. The procedure expects Simple Tension, Planar Tension and Biaxial Extension data to be available.\""
   },
   {
-    "title": "end02111b_pdf.pdf",
+    "title": "Physics first, using ANSYS to define the design: Real-life examples from the automotive supplier company Mannesmann VDO",
+    "author": "Zlatko Penzar",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/end02111b_pdf.pdf",
-    "description": "end02111b_pdf.pdf"
+    "description": "\"In many non-standard engineering development applications it strongly pays off to invest an effort into understanding the physics of the problem prior to undertaking complex numerical simulations. The better the knowledge of the leading physical effects in a complex system, the simpler and more cost-efficient the analytical model can be. Moreover, the understanding of the most important physical driving effects often enables one to build a simplified, closed-form mathematical effective model. Such models usually give insight into the interplay of various parameters governing the physical behavior of the complex system. In this way, a fast pre-optimization of the desired features is often possible. Subsequently, the rich arsenal of ANSYS multiphysics capabilities can be used to refine the judgements and obtain the desired quantitative solutions.\""
   },
   {
     "title": "erfurt02new_detector-reprint.pdf",
@@ -1683,14 +1695,16 @@
     "description": "micro3.pdf"
   },
   {
-    "title": "modeling_disel_engine_cylinder_gaskets.pdf",
+    "title": "Modeling Diesel Engine Cylinder Head Gaskets using the Gasket Material Option of the SOLID185 Element",
+    "author": "Jonathan Raub",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/modeling_disel_engine_cylinder_gaskets.pdf",
-    "description": "modeling_disel_engine_cylinder_gaskets.pdf"
+    "description": "\"The modeling of diesel engine cylinder head gasket joints is complicated by the nonlinear response of the head gasket’s materials. Linearization of these material responses can lead to significant errors in the solution’s results. The 1-dimensional nonlinear approximation made by the Gasket material option of the SOLID185 element sufficiently captures the response of the nonlinear gasket materials while maintaining practical solution times for the large model sizes associated with multi-cylinder head gasket joint models. This paper will give an overview of the model building and assembly process used to create a head gasket joint model, describe the nonlinear nature of the materials used in the model, and present comparisons of the model’s results with experimental measurements.\"\n\n[STI: There is a gasket-specific material & element in 6.1, not available at the time of the writing]"
   },
   {
-    "title": "mrzyg-ziel-3-06.pdf",
+    "title": "Numerial Implementation of Multiaxial High-Cycle Fatigue Criterion to Structural Optimization",
+    "author": "Miroslaw Mrzyglód, Andrzej P. Zielinski",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/mrzyg-ziel-3-06.pdf",
-    "description": "mrzyg-ziel-3-06.pdf"
+    "description": "\"Modern multiaxial high-cycle fatigue criteria were investigated with respect to their application in structural optimization procedures coupled with finite element codes. As a result of tests carried out for several fatigue criteria, the Dang Van hypothesis was used for the detailed numerical study. A way of respective adapting the high-cycle load history was also suggested. The complete algorithm of the fatigue optimization was illustrated by applying the proposed procedures to vehicle parts which are subject to high-cycle loadings. The finite element code ANSYS was used in the structural modeling.\"\n\n[ANSYS Structural, version 8.1]"
   },
   {
     "title": "muffler.zip",
@@ -1709,14 +1723,16 @@
     "description": "mw2000_1031.pdf"
   },
   {
-    "title": "nafems05c.pdf",
+    "title": "Construction Machinery Cab Vibro-Acoustic Analysis and Optimisation",
+    "author": "L. Bregant, G. Miccoli, M. Seppi",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/nafems05c.pdf",
-    "description": "nafems05c.pdf"
+    "description": "\"A 3D cavity representing the earth-moving machine cab has been modelled by means of a FE structural mesh (Ansys), reproducing the characteristics of the real structure. Starting from the cab vibration load experimental acquisition, a BEM coupled analysis (Sysnoise) has been carried out to evaluate the cab inner vibro-acoustic field as a function of the physical properties of each structural element. A multi-objective design optimisation code (modeFrontier) drives the analysis process flow taking into account the cab parameter structural modifications and carrying out the vibro-acoustic field optimisation.\"\n[ANSYS Dynamics, version unspecified]"
   },
   {
-    "title": "neighborhood_size_control.pdf",
+    "title": "Neighborhood-based Element Sizing Control for Finite Element Surface Meshing [PDF]",
+    "author": "Steven Owen, and Sunil Saigal",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/neighborhood_size_control.pdf",
-    "description": "neighborhood_size_control.pdf"
+    "description": "\"A method is presented for controlling element sizes on the interior of areas during surface meshing. A Delaunay background mesh is defined over which a neighborhood based interpolation scheme is used to interpolate element sizes.\""
   },
   {
     "title": "nonlinear_domain_decomposition_method.pdf",
@@ -1741,14 +1757,16 @@
     "description": "numib695.pdf"
   },
   {
-    "title": "object_oriented_defeaturing.pdf",
+    "title": "An Object Oriented Approach to Geometry Defeaturing for Finite Element Meshing [PDF]",
+    "author": "Anton V. Mobley, Michael P. Carroll, and Scott A. Canann",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/object_oriented_defeaturing.pdf",
-    "description": "object_oriented_defeaturing.pdf"
+    "description": "\"In this paper, an object-oriented approach to automatic geometry defeaturing is presented. The geometric and finite element data abstractions are given, along with the basic algorithms used.\""
   },
   {
-    "title": "p499-cristello.pdf",
+    "title": "Design Optimization of an Automotive Universal Joint Considering Manufacturing Cost",
+    "author": "Nick Cristello and Il Yong Kim",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/p499-cristello.pdf",
-    "description": "p499-cristello.pdf"
+    "description": "\"This paper presents the shape optimization of an automotive universal joint, by simultaneously considering manufacturing cost, maximum drivable joint angle and part volume. Comprised of three main components - two yokes and a cross trunnion - a universal joint is a linkage used to transmit rotational motion from one shaft to another when the axes are coplanar, but not coinciding. In this research, universal joint designs are analyzed and compared using a weighted sum of three objective functions: minimization of machining cost, maximization of adjoining shaft joint angle, and minimization of total part volume. Part modeling and analysis is conducted using the Finite Element Analysis package ANSYS and optimization is implemented using MATLAB. The results show Pareto frontiers for both the flange and weld yoke, constructed using the Adaptive Weighted Sum technique. These frontiers clearly illustrate the trade-off between machining cost and joint angle; that is, to increase the joint angle, a corresponding increase in the cost of the part is required. It has been shown that maximization of driveable joint angle requires a simultaneous increase in machining cost of 4.4% and 2.7% for the flange and weld yoke, respectively.\"\n[ANSYS Structural, version 9.0]"
   },
   {
     "title": "painless-conjugate-gradient.pdf",
@@ -1772,9 +1790,10 @@
     "description": "popelar3.pdf"
   },
   {
-    "title": "post_refinement_quad.pdf",
+    "title": "Post Refinement Element Shape Improvement for Quadrilaterial Meshes [PDF]",
+    "author": "Matthew L. Staten and Scott A. Canann",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/post_refinement_quad.pdf",
-    "description": "post_refinement_quad.pdf"
+    "description": "\"This paper presents techniques for improving the quality of quadrilateral meshes after Schneiders' refinement. Improvement techniques use topology and node valence optimization rather than shape metrics. Hence, improvement is computationally inexpensive.\""
   },
   {
     "title": "prony.zip",
@@ -1793,9 +1812,10 @@
     "description": "rbcm22.pdf"
   },
   {
-    "title": "report35.pdf",
+    "title": "Creep Resistance and Creep Bending Resistance of Light Metal Matrix Composites for Research in Airframe Structural Effiency",
+    "author": "E. Neubauer and H.Peter Degischer",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/report35.pdf",
-    "description": "report35.pdf"
+    "description": "\"Main aim of the research in the frame of the AMTT programme was the testing of a fiber reinforced Al-alloy. For investigation of the creep behaviour of this material, creep tests under bending were performed. The tested material was Al99.85+0.1%Mg reinforced with Al2O3 fibers (Altex/Sumitomo), which was prepared by means of gas pressure infiltration. Main benefit of such a material for application would be the lowering of the weight of the material without a loss of properties.\"(see Appendix A for ANSYS use in this document)"
   },
   {
     "title": "roller.zip",
@@ -1885,9 +1905,10 @@
     "description": "Presentation on the thermal contact capabilities of the surface-to-surface contact elements, beta at 5.6.\nInput file for pressure-dependent thermal conductance"
   },
   {
-    "title": "thermal_comfort.pdf",
+    "title": "Predicting Human Thermal Comfort in a Transient Nonuniform Thermal Environment",
+    "author": "J.P. Rugh, R.B. Farrington, D. Bharathan, A. Vlahinos, R. Burke, C. Huizenga, and H. Zhang",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/thermal_comfort.pdf",
-    "description": "thermal_comfort.pdf"
+    "description": "\"The National Renewable Energy Laboratory (NREL) has developed a suite of thermal comfort tools to assist in the development of smaller and more efficient climate control systems in automobiles. These tools, which include a 126-segment sweating manikin, a finite element physiological model of the human body, and a psychological model based on human subject testing, are designed to predict human thermal comfort in transient nonuniform thermal environments such as automobiles. The manikin measures the heat loss from the human body in the vehicle environment and sends the heat flux from each segment to the physiological model. The physiological model predicts the body’s response to the environment, determines 126 segment skin temperatures, sweat rates, and breathing rate, and transmits the data to the manikin. The psychological model uses temperature data from the physiological model to predict the local and global thermal comfort as a function of local skin and core temperatures and their rates of change. Results of initial integration testing show the thermal response of a manikin segment to transient environmental conditions.\"\n\n[ANSYS Thermal, version unknown]"
   },
   {
     "title": "tmi98.pdf",
@@ -1905,9 +1926,10 @@
     "description": "transducers-paper_3.pdf"
   },
   {
-    "title": "tristano03.pdf",
+    "title": "Fully Automatic Adaptive Mesh Refinement Integrated into the Solution Process",
+    "author": "Joseph R. Tristano, Zhijan Chen, D. Alfred Hancq, Wa Kwok",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/tristano03.pdf",
-    "description": "tristano03.pdf"
+    "description": "\"Finite element analysts and designers need to feel confident in the results of their analyses before sending a product to prototype or production. Mesh discretization can greatly influence the desired results. In this paper we present framework for adaptive mesh refinement to obtain FEA results with a desired accuracy. The process involves adaptively refining the mesh based on solution error norms until the result desired converges to certain accuracy. The adaptive refinement/meshing process must be fully automatic and very robust. We present an exhaustive method to create a fully automatic and integrated process that takes advantage of many of the mesh refinement and mesh optimization algorithms found in literature. The results of the process provide the user with the desired accuracy in the smallest number of iterations possible.\"\n\n[Workbench Simulation, version 7.1]"
   },
   {
     "title": "ultrasonic2000.pdf",
@@ -1921,9 +1943,10 @@
     "description": "Very simple example showing use of user-defined command (USER01).\n\nThis UPF command simply reads and interpolates a defined table array. Use of the parevl() is also shown in this simple input."
   },
   {
-    "title": "user_def1.pdf",
+    "title": "Advanced Tools for Design and Analyses of High Temperature Cyclic Loaded Turbine Components",
+    "author": "U. Gampe, I. Martynov, J. Keyser",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/user_def1.pdf",
-    "description": "user_def1.pdf"
+    "description": "\"The paper presents a new concept to predict viscoplastic deformations in components under thermal mechanical loading. This approach is based both on material data from uniaxial creep tests and additional laboratory component tests to consider the influence of multiaxiality. This concept was used for analysis of feature tests of flat tensile specimens with central hole. The maximum test temperature was 600 °C and the surface of the hole was attacked by cyclic thermal shocks.\"(This paper refers to use of ANSYS User-Defined Materials. A related paper is Laboratory Component Testing for Investigation of Material Degradation from Creep-Fatigue Interaction.)"
   },
   {
     "title": "usermat.pdf",
@@ -1957,7 +1980,7 @@
     "title": "Text and compression utilities [PDF]",
     "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/week10-Text_Compression_Utilities.pdf",
-    "description": "Memo on text editors which support syntax highlighting, useful in editing input files and/or macros. Also discusses compression utilities to reduce filesize of database and results files. (Also see \"bzip2\" compression utility, not discussed in memo)"
+    "description": "Memo on text editors which support syntax highlighting, useful in editing input files and/or macros. Also discusses compression utilities to reduce filesize of database and results files. (Also see \"bzip2\"compression utility, not discussed in memo)"
   },
   {
     "title": "Modeling preloaded bolts [PDF]",
