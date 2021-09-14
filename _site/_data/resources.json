@@ -91,9 +91,10 @@
     "description": "2522-3EN.pdf"
   },
   {
-    "title": "26.pdf",
+    "title": "Off-Axis Loads Cause Failure of the Distal Radius at Lower Magnitudes than Axial Loads: A Finite Element Analysis",
+    "author": "Karen L. Troy and Mark D. Grabiner",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/26.pdf",
-    "description": "26.pdf"
+    "description": "\"Distal radius fractures are among the most common fall-related injuries in older women. Numerous studies have quantified upper extremity fall biomechanics with the goal of identifying possible interventions to reduce the peak force on the wrists, thereby reducing the number of fractures. Fracture initiation depends both on the force applied to the bone and upon the strength of the bone itself; thus, poor bone quality has been implicated as a factor in distal radius fractures. Generally, an intervention to improve bone quality (such as antiresorptive therapy) is considered successful if bone mineral density (BMD) can be increased by 2-4%.\nCadaver and finite element studies have previously quantified the force required to cause a distal radius fracture. To date, however, only simple axial loads on the radius have been considered. Because most falls onto the hands result in off-axis loads, we considered the possibility that a combination of loading modes would significantly influence the fracture strength of the distal radius. Here, we used a validated finite element model of the distal radius, scaphoid, and lunate, to explore the effects of loading direction and changes in BMD on predicted fracture strength.\"\n[ANSYS Structural, version 10.0]"
   },
   {
     "title": "3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers",
@@ -159,9 +160,10 @@
     "description": "98-102.pdf"
   },
   {
-    "title": "A23417.pdf",
+    "title": "Developing The Basis For Target Injection And Tracking In Inertial Fusion Energy Power Plants",
+    "author": "D.T. Goodin, C.R. Gibson, R.W. Petzoldt, N.P. Siegel, L. Thompson, A. Nobile, G.E. Besenbruch, K.R.",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/A23417.pdf",
-    "description": "A23417.pdf"
+    "description": "The use of ANSYS's thermal and CFD capabilities to analyze the target injection and tracking of an Inertial Fusion Energy power plant"
   },
   {
     "title": "ANSYS Cast Iron Material Model Matches Experimental Data",
@@ -204,9 +206,10 @@
     "description": "\"Because of the flexibility and automation APDL (ANSYS Parametric Design Language) provides, many users tend to write input files and macros in addition to using the GUI.\nThere are currently no recognized ‘standards’ of writing APDL macros or input files, although there may exist standards within companies on APDL coding. The lack of APDL coding standards may make inheriting someone else’s input files or macros more difficult. Also, parameter or component conflicts may also arise when using multiple macros.\nThis memo hopes to provide some ideas for groups or individuals wishing to develop APDL standards in writing macros or input files.\""
   },
   {
-    "title": "ARTICLE1.pdf",
+    "title": "Transient Thermal Analysis of Spot Welding Electrodes",
+    "author": "K. S. Yeung, P. H. Thornton",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ARTICLE1.pdf",
-    "description": "ARTICLE1.pdf"
+    "description": "\"The accurate thermal simulation of a spot welding electrode cap could permit critical design parameters to be identified for improved electrode life. In this study, a parametric model has been developed to predict the transient thermal behavior of a typical spot welding electrode cap. The model employs the technique of conjugate heat transfer analysis to avoid the problem of estimating a value for the heat transfer coefficient that arises with conventional heat transfer analysis.\""
   },
   {
     "title": "Anisotropic Plasticity and Failure Prediction in Wood Composites",
@@ -226,9 +229,10 @@
     "description": "Ansys_PT_EEC.pdf"
   },
   {
-    "title": "Artigo.pdf",
+    "title": "Design and Implementation of a Flow Microsensor by using Silicon Microelectronics Technology",
+    "author": "Roberto Rodrigues and Rogerio Furlan",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Artigo.pdf",
-    "description": "Artigo.pdf"
+    "description": "\"This work presents the design of a gas flow microsensor that was implemented by using silicon microelectronics technology. Its main features are a low power consumption (tens of mW) and the possibility of integration in flow microactuators. It was adopted a calorimetric device with free-standing microfilaments and thermoresistive sensor elements. Analytical and numerical modeling were developed for device analyses and design. The free-standing microfilaments were fabricated using surface micromachining. Characteristic curves, of output voltage vs. flow, were obtained by using a commercial flow sensor for calibration. A good agreement was obtained comparing the flow microsensor experimental characteristic curves with numerical simulation results.\""
   },
   {
     "title": "An Efficient FETI Implementation on Distributed Shared Memory Machines with Independent Numbers of Subdomains and Processors",
@@ -367,9 +371,10 @@
     "description": "FSI.projects.Nabity.paper.pdf"
   },
   {
-    "title": "Finet_CAD_04.pdf",
+    "title": "Biomechanical Interaction Between Cap Thickness, Lipid Core Composition and Blood Pressure in Vulnerable Coronary Plaque: Impact on Stability or Insta",
+    "author": "Gerard Finet, Jacques Ohayon and Gilles Rioufo",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Finet_CAD_04.pdf",
-    "description": "Finet_CAD_04.pdf"
+    "description": "\"A ‘thin’ fibrous cap atheroma is the typical morphological characteristic of vulnerable plaque. Yet the very pathological studies that have provided these descriptions have also shown the actual prediction of plaque rupture to be rather less exact. Other relevant characteristics must be involved in the mechanisms of plaque rupture—blood pressure loading (P) and the material properties of the soft atheromatous core—as predictors of the distribution of the peak circumferential stress (PCS) locations.\"\n[ANSYS Structural, version 5.7]"
   },
   {
     "title": "Formatting output text of results (PRxxxx family of commands) [PDF]",
@@ -378,9 +383,10 @@
     "description": "This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output. This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output."
   },
   {
-    "title": "FranzChouly_LN2006.pdf",
+    "title": "Simulation of the Retroglossal Fluid-Structure Interaction During Obstructive Sleep Apnea",
+    "author": "Franz Chouly, Annemie Van Hirtum, Pierre-Yves Lagr´ee, Jean-Roch Paoli, Xavier Pelorson, and Yohan P",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/FranzChouly_LN2006.pdf",
-    "description": "FranzChouly_LN2006.pdf"
+    "description": "\"A method for computing the interaction between the airflow and the soft tissue during an Obstructive Apnea is presented. It is based on simplifications of the full continuum formulation (Navier- Stokes and finite elasticity) to ensure computation time compatible with clinical applications. Linear elasticity combined with a precomputation method allows fast prediction of the tissue deformation, while an asymptotic formulation of the full Navier-Stokes equations (Reduced Navier- Stokes/Prandtl equations) has been chosen for the flow. The accuracy of the method has already been assessed experimentally. Then, simulations of the complete collapsus at the retroglossal level in the upper airway have been carried out, on geometries extracted from pre-operative radiographies of two apneic patients. Post-operative geometries have been also used to check qualitatively if the predictions from the simulations are in agreement with the effects of the surgery.\"\n[ANSYS Structural, version unspecified]"
   },
   {
     "title": "GSkoro1.pdf",
@@ -394,9 +400,10 @@
     "description": "Where to get help \n  Insufficient disk space \n Bulk compression mode \n Choice of solver \n  Element Normals \n Boolean operations on solid models \n  Meshing \n Loading an array from a file \n Using ETABLE and extracting the results to an array \n Output when using the GUI \n Generating editable WMF figures "
   },
   {
-    "title": "Gerard_et_al.pdf",
+    "title": "A 3D Dynamical Biomechanical Tongue Model to Study Speech Motor Control",
+    "author": "Jean-Michel Gérard, Reiner Wilhelms-Tricarico, Pascal Perrier & Yohan Payan",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf",
-    "description": "Gerard_et_al.pdf"
+    "description": "\"A 3D biomechanical dynamical model of human tongue is presented, that is elaborated in the aim to test hypotheses about speech motor control. Tissue elastic properties are accounted for in Finite Element Modeling (FEM). The FEM mesh was designed in order to facilitate the implementation of muscle arrangement within the tongue. Therefore, its structure was determined on the basis of accurate anatomical data about the tongue. Mechanically, the hypothesis of hyperelasticity was adopted with the Mooney-Rivlin formulation of the strain energy function. Muscles are modeled as general force generators that act on anatomically specified sets of nodes of the FEM structure. The 8 muscles that are known to be largely involved in the production of basic speech movements are modeled. The model and the solving of the Lagrangian equations of movement are implemented using the ANSYS™ software. Simulations of the influence of muscle activations onto the tongue shape are presented and analyzed.\""
   },
   {
     "title": "High End Workbench Tip",
@@ -405,9 +412,10 @@
     "description": "Taken from PADT's SWAU group meeting on performing high-end analyses with Workbench Simulation."
   },
   {
-    "title": "Hyper.pdf",
+    "title": "On Stress Analysis For a Hyperelastic Material [PDF]",
+    "author": "Xiao-Yan Gong and Riyand Moe",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/Hyper.pdf",
-    "description": "Hyper.pdf"
+    "description": "Paper using ANSYS 5.5 for characterizing hyperelastic materials with Mooney-Rivlin"
   },
   {
     "title": "IEEE00_LGC_umirror.pdf",
@@ -452,9 +460,10 @@
     "description": "Jewart_etd_2006.pdf"
   },
   {
-    "title": "LNCS3078_Chabanas.pdf",
+    "title": "Comparison of Linear and Non-linear Soft Tissue Models with Post-operative CT Scan in Maxillofacial Surgery",
+    "author": "Matthieu Chabanas, Yohan Payan, Christophe Marecaux, Pascal Swider, and Franck Boutault",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/LNCS3078_Chabanas.pdf",
-    "description": "LNCS3078_Chabanas.pdf"
+    "description": "\"A Finite Element model of the face soft tissue is proposed to simulate the morphological outcomes of maxillofacial surgery. Three modelling options are implemented: a linear elastic model with small and large deformation hypothesis, and an hyperelastic Mooney-Rivlin model. An evaluation procedure based on a qualitative and quantitative comparison of the simulations with a post-operative CT scan is detailed. It is then applied to one clinical case to evaluate the differences between the three models, and with the actual patient morphology. First results shows in particular that for a “simple” clinical procedure where stress is less than 20%, a linear model seams sufficient for a correct modelling.\""
   },
   {
     "title": "Legend_Example.zip",
@@ -479,9 +488,10 @@
     "description": "M3302.pdf"
   },
   {
-    "title": "MEP_2005.pdf",
+    "title": "Non-Linear Elastic Properties of the Lingual and Facial Tissues Assessed by Indentation Technique: Application to the Biomechanics of Speech Production",
+    "author": "J.M. Gerard, J. Ohayon, V. Luboz, P. Perrier, Y. Paya",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/MEP_2005.pdf",
-    "description": "MEP_2005.pdf"
+    "description": "\"This paper aims at characterizing the mechanical behavior of two human anatomical structures, namely the tongue and the cheek. For this, an indentation experiment was provided, by measuring the mechanical response of tongue and cheek tissues removed from the fresh cadaver of a 74 year old woman. Non-linear relationships were observed between the force applied to the tissues and the corresponding displacements. To infer the mechanical constitutive laws from these measurements, a finite element (FE) analysis was provided. This analysis aimed at simulating the indentation experiment. An optimization process was used to determine the FE constitutive laws that provided the non-linear force/displacements observed during the indentation experiments. The tongue constitutive law was used for simulations provided by a 3D FE biomechanical model of the human tongue. This dynamical model was designed to study speech production. Given a set of tongue muscular commands, which levels correspond to the force classically measured during speech production, the FE model successfully simulated the main tongue movements observed during speech data.\"\n[ANSYS Nonlinear, version 5.7]"
   },
   {
     "title": "MICROtec2000.pdf",
@@ -539,9 +549,10 @@
     "description": "MSM99_LIMMS_piezo.pdf"
   },
   {
-    "title": "MSM99_RITS_upump.pdf",
+    "title": "Numerical Simulations of Flat-walled Diffuser Elements for Valveless Micropumps [PDF]",
+    "author": "Anders Olsson, Goran Stemme, and Erik Stemme",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/MSM99_RITS_upump.pdf",
-    "description": "MSM99_RITS_upump.pdf"
+    "description": "Use of ANSYS/Flotran for analysis of micropump. (MEMS)"
   },
   {
     "title": "MSM99_ULM_cvd.pdf",
@@ -589,19 +600,22 @@
     "description": "\"A macro file is a file which contains Ansys commands. If you save your macro in your working directory or in the macro directory (see /PSEARCH command) you just enter the macro name in the command line and all these commands will be executed. You can even nest macros: from your main file you call e.g. zzmacro1 which again calls zzmacro2. The only problem is that a macro could change - and you would probably not notice that - the value of a parameter you are using in your main input file. This will be the case if the same parameter name is used accidentally in both the macro and your main input. Let's see how one can avoid these nasty errors - just click on the link!\""
   },
   {
-    "title": "OBrien-NATO-15-2005.pdf",
+    "title": "Evaluation of Acoustic Propagation Paths into the Human Head",
+    "author": "William D. O’Brien, Jr. and Yuhui Liu",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/OBrien-NATO-15-2005.pdf",
-    "description": "OBrien-NATO-15-2005.pdf"
+    "description": "\"The overall goal has been to develop an acoustic wave propagation model using well-understood and documented computational techniques that track and quantify an air-borne incident acoustic wave propagated around, into and in the human head. This model serves as a computational tool to elucidate the acoustic wave propagation around, into and in the human head. Specifically, the model determines two features: (1) alternate acoustic propagation paths to the cochlear shell that exist besides the normal air-borne acoustic propagation path (eardrum-ossical path) through the auditory canal and (2) sound pressure amplitude in the cochlear shell (relative to the air-borne sound pressure amplitude) via the alternate propagation paths. A 3D finite-element solid mesh was constructed using a digital image database of an adult male head. Coupled acoustic-mechanical finite-element analysis (FEA) was used to model the wave propagation through the fluid-solid-fluid media.\"\n[ANSYS Acoustics, version 6.1]"
   },
   {
-    "title": "Ohayon_BACAS_05.pdf",
+    "title": "A Three-Dimensional Finite Element Analysis of Stress Distribution in a Coronary Atherosclerotic Plaque: In-Vivo Prediction of Plaque Rupture Location",
+    "author": "Jacques Ohayon, Gérard Finet, François Treyve, Gilles Rioufol and Olivier Dubreuil",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/Ohayon_BACAS_05.pdf",
-    "description": "Ohayon_BACAS_05.pdf"
+    "description": "\"This paper aims at predicting the plaque rupture location of one patient with stable angina and scheduled to undergo percutaneous coronary intervention. The peak circumferential stress (PCS) is considered as the determining biomechanical factor in the mechanisms leading to rupture of the atherosclerotic plaque and is often used as a predictor of atherosclerotic plaque rupture location. Up to now, to define the site of PCS concentrations, twodimensional (2D) finite element (FE) analyses were performed on the smallest luminal cross-sectional area of the coronary plaque. In-vivo three-dimensional (3D) FE modeling of atherosclerotic coronaries may be very valuable and more accurate than the 2D FE analysis in helping cardiologists evaluate the risk of spontaneous plaque rupture in a patient. In this work, the performances of the 2D and 3D FE approaches have been compared and the limits of the 2D structural analysis has been pointed out.\"\n[ANSYS Structural, version 8.0]"
   },
   {
-    "title": "PA-27.pdf",
+    "title": "The Control Of The Thermal Environment Of Perimeter Spaces In Buildings To Prevent Cold Drafts",
+    "author": "Yuji Hukushima, Yasuo Utsumi, Hiroshi Kobayashi, Yoshimi Ishikawa, Mitsuo Suzuki, And Tatsuya Yamash",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/PA-27.pdf",
-    "description": "PA-27.pdf"
+    "description": "\"This paper is focused on the evaluation of simulation system using the experiment result and the configuration of pericounter which is the part of counter unit setting at bottom of window side with heat panel to avoid the influence of cold draft, utilizing simulation system. The simulation shows similar flow pattern to full scale experiment and consequent simulations indicate that cold draft does not flow into interior zone when the heat generation rate exceeds heat loss from the window in most cases. When the heat generation portion is 75% of heat loss from the window, some cases which have certain configuration of pericounter successfully avoids the influence of draft without fan.\""
   },
   {
     "title": "PAC1991_2197.pdf",
@@ -989,9 +1003,10 @@
     "description": "\"There have been various sparse solver improvements in each release of ANSYS. This memo hopes to cover some general information on the solvers available in ANSYS as well as performance improvements between ANSYS 5.6 and 6.0 related to linear static analyses.\""
   },
   {
-    "title": "Stuparu.pdf",
+    "title": "Human Heart Valves. Hyperelastic Material Modeling",
+    "author": "Mihai Stuparu",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/Stuparu.pdf",
-    "description": "Stuparu.pdf"
+    "description": "\"Performing a finite element analysis (FEA) on a hyperelastic material is difficult due to nonlinearity, large deformation, and material instability. This paper provides a brief review of the hyperelastic theory and discusses several important issues that should be addressed when using ANSYS. Analysis on a fatigue specimen is used as an example of one of our product development challenges upon which these issues were illuminated. We believe that a stable material model in combination with a good understanding of structural instability for traditional materials is the key to success in simulating hyperelastic materials using ANSYS.\""
   },
   {
     "title": "Surface Effect Elements, General Overview",
@@ -1029,9 +1044,10 @@
     "description": "\"Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing \"of the shelf\"technology of achieving the same goals. Thus, the \"Z-mat\"and \"Z-Optim\"packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a \"USERMAT\"subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.\""
   },
   {
-    "title": "Tracqui_AB_04.pdf",
+    "title": "Transmission of Mechanical Stresses within the Cytoskeleton of Adherent Cells: a Theoretical Analysis Based on a Multi-Component Cell Model",
+    "author": "Philippe Tracqui and Jacques Ohayon",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/Tracqui_AB_04.pdf",
-    "description": "Tracqui_AB_04.pdf"
+    "description": "\"We investigate here the spatial distributions of intracellular stresses when adherent cells are probed by magnetic twisting cytometry. The influence of the cell nucleus stiffness on the simulated nonlinear torque-bead rotation response is analyzed by considering a finite element multi-component cell model in which the cell and its nucleus are considered as different hyperelastic materials. We additionally take into account the mechanical properties of the basal cell cortex, which can be affected by the interaction of the basal cell membrane with the extracellular substrate. In agreement with data obtained on epithelial cells, the simulated behaviour of the cell model relates the hyperelastic response observed at the entire cell scale to the distribution of stresses and strains within the nucleus and the cytoskeleton, up to cell adhesion areas. These results, which indicate how mechanical forces are transmitted at distant points through the cytoskeleton, are compared to recent data imaging the highly localized distribution of intracellular stresses.\"[ANSYS Nonlinear, version 6.0]"
   },
   {
     "title": "Tu.4.7.4.pdf",
@@ -1115,9 +1131,10 @@
     "description": "Overview of structural shell elements in ANSYS, including differences between thin and thick shells, drilling DOF, etc."
   },
   {
-    "title": "a020.pdf",
+    "title": "Patient Specific Spine Models - Development Of A Laboratory Intervertebral Disc For Validation Of The Models",
+    "author": "A. Mohsen, D. J. Siddall, P. Gillespie, S. Julian and M. J. Fagan ",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/a020.pdf",
-    "description": "a020.pdf"
+    "description": "\"This research project is aimed at evaluating the feasibility of the modelling technique through the development of an artificial validation spine. The validation spine will be tested under controlled laboratory conditions and the results used to verify those found from analysis of the computer model. The intervertebral disc is the most critical component in the spine. Thus, the initial aim of this research was to develop a representative artificial disc. Concurrent development of a finite element model of the disc permits development theories to be analysed and laboratory results to be verified.\""
   },
   {
     "title": "Clustering Results Around Peaks for Full-Harmonic Analyses in ANSYS",
@@ -1137,9 +1154,10 @@
     "description": "ahieke.pdf"
   },
   {
-    "title": "alex-fem.pdf",
+    "title": "Finite Element Analysis To Investigate The Significance Of Functional Gradients In Dental Restorations [PDF]",
+    "author": "Tan Kok Wai, Alex and Anand Asundi",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/alex-fem.pdf",
-    "description": "alex-fem.pdf"
+    "description": "Use of SOLID46 element."
   },
   {
     "title": "Advancing Analysis Capabilities In ANSYS Through Solver Technology",
@@ -1188,9 +1206,10 @@
     "description": "ansys_news_1996_3.pdf"
   },
   {
-    "title": "ansys_nitinol_paper.pdf",
+    "title": "User Implemented Nitinol Material Model in ANSYS",
+    "author": "Peter R. Barrett and Daniel Fridline",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ansys_nitinol_paper.pdf",
-    "description": "ansys_nitinol_paper.pdf"
+    "description": "\"Nitinol is an acronym for NIckel TItanium Naval Ordinance Laboratory since the alloy was originally developed at the Naval Lab. It is used to describe a family of materials, which contain a nearly equal mixture of nickel and titanium. Nitinol alloys are attractive to the medical device industry because they are biocompatible and when processed correctly, are at their optimum superelastic behavior at body temperature.\n\"Nitinol exhibits a different stress-strain curve for loading and unloading that cannot be modeled with existing material models in ANSYS. This paper describes the implementation of a unique user material model in ANSYS that simulates the nitinol superelastic behavior. Example analyses are provided demonstrating the application of this material model for medical implant devices called stents.\"[ANSYS Nonlinear, version unspecified]\nNote that TB,SMA allows users to access built-in shape memory alloy constitutive model in ANSYS. "
   },
   {
     "title": "ansys_short_course.pdf",
@@ -1294,9 +1313,10 @@
     "description": "bzahn_ball_via_fatigue_paper.pdf"
   },
   {
-    "title": "cardiovascular.pdf",
+    "title": "Use Of Finite Element Analysis To Simulate The Hyperelastic Behaviour Of Cardiovascular Tissue [PDF]",
+    "author": "S. Daly, P.J. Prendergast, F. Dolan, T.C. Lee",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/cardiovascular.pdf",
-    "description": "cardiovascular.pdf"
+    "description": "Examination of Mooney-Rivlin."
   },
   {
     "title": "cj21-wai.pdf",
@@ -1316,9 +1336,10 @@
     "description": "\"In this paper, an overall mesh smoothing scheme is presented for meshes consisting of triangular, quadrilateral, or mixed triangular and quadrilateral elements. This paper describes an efficient and robust combination of constrained Laplacian smoothing together with an optimization-based smoothing algorithm.\""
   },
   {
-    "title": "comparison_of_biomechanical_breast_models.pdf",
+    "title": "The Comparison of Biomechanical Breast Models: Initial Results",
+    "author": "C. Tanner, J.A. Schnabel, A. Castellano Smith, L.I. Sonoda, D.L.G. Hill, D.J. Hawkes, A. Degenhard",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/comparison_of_biomechanical_breast_models.pdf",
-    "description": "comparison_of_biomechanical_breast_models.pdf"
+    "description": "\"We present initial results from evaluating the accuracy with which biomechanical breast models based on finite element methods can predict the displacements of tissue within the breast. We investigate the influence of different tissue elasticity values, Poisson’s ratios, boundary conditions, finite element solvers and mesh resolutions on one data set. MR images were acquired before and after compressing a volunteer’s breast gently. These images were aligned using a 3D non-rigid registration algorithm. The boundary conditions (surface displacements) were derived from the result of the non-rigid registration or by assuming no patient motion at the posterior or medial side. Three linear and two non-linear elastic material models were tested.\""
   },
   {
     "title": "compressive.pdf",
@@ -1464,9 +1485,10 @@
     "description": "fiber_concrete.pdf"
   },
   {
-    "title": "finite-element-levator.pdf",
+    "title": "Subject Specific Finite Element Modelling of the Levator Ani",
+    "author": "Su-Lin Lee1, Ara Darzi, Guang-Zhong Yang",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/finite-element-levator.pdf",
-    "description": "finite-element-levator.pdf"
+    "description": "\"Understanding of the dynamic behaviour of the levator ani is important to the assessment of pelvic floor dysfunction. Whilst shape modelling allows the depiction of 3D morphological variation of the levator ani between different patient groups, it is insufficient to determine the underlying behaviour of how the muscle deforms during contraction and strain. The purpose of this study is to perform a subject specific finite element analysis of the levator ani with open access magnetic resonance imaging. The method is based on a Mooney-Rivlin hyperelastic model and permits dynamic study of subjects under natural physiological loadings. The value of the proposed modelling framework is demonstrated with dynamic 3D data from nulliparous, female subjects\"[ANSYS Nonlinear, version unspecified]"
   },
   {
     "title": "finite_element_analysis_of_crowning_caps.pdf",
@@ -1479,14 +1501,16 @@
     "description": "finite_element_based_solder_joint_fatigue.pdf"
   },
   {
-    "title": "flotran_chills_out.pdf",
+    "title": "FLOTRAN Chills Out Hot Aerospace Electronics",
+    "author": "Mark Troscinski, Jiang Guangnan, Zhang Minyi",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/flotran_chills_out.pdf",
-    "description": "flotran_chills_out.pdf"
+    "description": "Examples of use of Flotran for electronics applications.\nFrom ANSYS Solutions, Vol. 4 Number 2."
   },
   {
-    "title": "fp8542.pdf",
+    "title": "A Finite Element Model For Pre- And Post-Test Calculations of the FOREVER-Experiments",
+    "author": "H. G. Willschuetz, E. Altstadt, F. P. Weiss, B. R. Sehgal",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/fp8542.pdf",
-    "description": "fp8542.pdf"
+    "description": "\"An axis-symmetric Finite Element (FE) model is developed based on the multi-purpose code ANSYS/Multiphysics. Using the Computational Fluid Dynamics (CFD) module the temperature field within the melt pool and within the vessel wall is evaluated. The transient structural mechanical calculations are then performed applying a creep model which takes into account large temperature, stress and strain variations.\" (Document 2)"
   },
   {
     "title": "frequency_response.pdf",
@@ -1572,9 +1596,10 @@
     "description": "Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined."
   },
   {
-    "title": "implant_stent.pdf",
+    "title": "Finite Element Method Analysis Of Non-Linear Behaviour Of Implants And Stents [PDF]",
+    "author": "J. Awrejcewicz, M. Ciach, K. Wlodarczyk",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/implant_stent.pdf",
-    "description": "implant_stent.pdf"
+    "description": "Example of using ANSYS for stent application (Mooney-Rivlin and kinematic hardening plasticity)."
   },
   {
     "title": "inistate.zip",
@@ -1589,9 +1614,10 @@
     "description": "Macro to convert instantaneous thermal coefficients of expansion to secant values, with example input file. (This is a zipped file)"
   },
   {
-    "title": "jb99_14.pdf",
+    "title": "Analysis Of The FOREVER-Experiments Using A Finite Element Model",
+    "author": "Eberhard Altstadt, Thomas Moessner, Baj Ral Sehgal, Hans-Georg Willschütz",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/jb99_14.pdf",
-    "description": "jb99_14.pdf"
+    "description": "\"An axis-symmetric Finite Element (FE) model is developed based on the multi-purpose code ANSYS/Multiphysics. Using the Computational Fluid Dynamics (CFD) module the temperature field within the melt pool and within the vessel wall is evaluated. The transient structural mechanical calculations are then performed applying a creep model which takes into account large temperature, stress and strain variations.\" (Document 1)"
   },
   {
     "title": "jhs.pdf",
@@ -1927,9 +1953,10 @@
     "description": "\"The National Renewable Energy Laboratory (NREL) has developed a suite of thermal comfort tools to assist in the development of smaller and more efficient climate control systems in automobiles. These tools, which include a 126-segment sweating manikin, a finite element physiological model of the human body, and a psychological model based on human subject testing, are designed to predict human thermal comfort in transient nonuniform thermal environments such as automobiles. The manikin measures the heat loss from the human body in the vehicle environment and sends the heat flux from each segment to the physiological model. The physiological model predicts the body’s response to the environment, determines 126 segment skin temperatures, sweat rates, and breathing rate, and transmits the data to the manikin. The psychological model uses temperature data from the physiological model to predict the local and global thermal comfort as a function of local skin and core temperatures and their rates of change. Results of initial integration testing show the thermal response of a manikin segment to transient environmental conditions.\"\n\n[ANSYS Thermal, version unknown]"
   },
   {
-    "title": "tmi98.pdf",
+    "title": "A Vision-Based Technique for Objective Assessment of Burn Scars",
+    "author": "Leonid V. Tsap, Dmitry B. Goldgof, Sudeep Sarkar, and Pauline S. Powers",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tmi98.pdf",
-    "description": "tmi98.pdf"
+    "description": "\"In this paper a method for the objective assessment of burn scars is proposed. The quantitative measures developed in this research provide an objective way to calculate elastic properties of burn scars relative to the surrounding areas. The approach combines range data and the mechanics and motion dynamics of human tissues. Active contours are employed to locate regions of interest and to find displacements of feature points using automatically established correspondences. Changes in strain distribution over time are evaluated. Given images at two time instances and their corresponding features, the finite element method is used to synthesize strain distributions of the underlying tissues.\""
   },
   {
     "title": "tms95.pdf",
@@ -1988,9 +2015,10 @@
     "description": "Created a Workbench 12.0 version of VM267.\nUseful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for stress intensity factor calculations."
   },
   {
-    "title": "wam95_ufluidics.pdf",
+    "title": "Design, Fabrication, and Testing of Fixed-Valve Micro-Pumps [PDF]",
+    "author": "F. Forster, R. Bardell, M. Afromowitz, N. Sharma, and A. Blanchard",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/wam95_ufluidics.pdf",
-    "description": "wam95_ufluidics.pdf"
+    "description": "Use of Flotran for micropump analysis. (MEMS"
   },
   {
     "title": "Text and compression utilities [PDF]",
