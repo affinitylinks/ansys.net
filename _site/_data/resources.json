@@ -29,9 +29,10 @@
     "description": "\"Aeroelastic stability and response analyses used in the design of turbomachinery blading are typically uncoupled: the unsteady aerodynamics and structural dynamics are treated in separate models, with boundary conditions sequentially updated after stationary periodic convergence is met. Higher fidelity simulations are achieved by coupling the fluid and structure domains such that boundary conditions are updated once or several times per physical time step of the simulation.\"\"As a starting point, the turbomachinery CFD research code TURBO (Chen and Briley, 2001) and the commercial structural solver ANSYSŪ has been chosen for coupling, although FSI is designed with modularity for future inclusion of other fluid and structural solvers.\"\n[ANSYS Dynamics, version unspecified]"
   },
   {
-    "title": "12.pdf",
+    "title": "Dynamic FEA and Simulation for A Series of Blast-Resist-door",
+    "author": "Lu Xinzheng and Jiang Jianjing",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/12.pdf",
-    "description": "12.pdf"
+    "description": "\"A series of blast-resist-door were used widely. In order to know the behavior of the doors under blast load and verify the safety of the doors, dynamic finite element analysis and simulation are carried out with advanced FEA software, ANSYS/LS-DYNA and SAP. Contact surfaces are introduced to simulate the relation between the door leaf and doorframe, as well as the relation between the door hinges and bearings. Altogether 24 different load cases are analyzed to simulate various load conditions.\"\n[ANSYS LS-DYNA, version unspecified]"
   },
   {
     "title": "13_4.pdf",
@@ -70,9 +71,10 @@
     "description": "2012-optimum_csp_underfill.pdf"
   },
   {
-    "title": "21.pdf",
+    "title": "Analysis and Testing of Graphite/Epoxy Concrete Bridge Girders Under Static Loading",
+    "author": "B. M. Kavlicoglu, F. Gordaninejad, M. Saiidi, Y. Jiang",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/21.pdf",
-    "description": "21.pdf"
+    "description": "\"An innovative graphite/epoxy-concrete (G/E-C) cross-section was developed and tested under two-point static loading. Finite element analysis and theoretical modeling of the cross-section was performed. The cross-section was a box girder with an outer G/E U-beam and inner G/E box beam with concrete webs and flange in between. Shear connection between G/E box beam and concrete slab was provided by a two-part structural epoxy resin. Additional shear connection was provided by steel stirrups located at 254 mm (10 in.) spacing along longitudinal axis of the test specimen. It was observed that, steel stirrups contributed the load carrying capacity after initiation of slippage between G/E beams and concrete. Moreover, a series of bond strength tests were performed to examine the behavior of structural epoxy resin for connection between G/E and concrete. Six G/E strips were subjected to tensile tests to evaluate the longitudinal and transverse elastic moduli of the laminate. Using the proper material properties and assumptions, it was possible to demonstrate the behavior of the section under static loads theoretically and in finite element analysis.\"\n[ANSYS Structural, version 5.5]"
   },
   {
     "title": "22x Coupled-Field Elements [PDF]",
@@ -86,9 +88,10 @@
     "description": "25.pdf"
   },
   {
-    "title": "2522-3EN.pdf",
+    "title": "Element for Modelling of Interaction Between Foundations and Bedrock in ANSYS Software",
+    "author": "Radim Cajka, Ondrej Víta",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/2522-3EN.pdf",
-    "description": "2522-3EN.pdf"
+    "description": "\"Ansys provides standard solutions to contact tasks. It is a high-performing computing tool that offers several modifications, making it possible to create a new element and adjust the calculation to individual requirements. When dealing with specific problems relating to the contact between the foundation and the foundation soil, it is possible to create an element that will take into account the behaviour of a soil layer under the foundation exposed to shear. The shearing load can be caused by undermining, concrete creep, or concrete shrinkage.\"\nExample of user-defined element (older USER100-105)\n[ANSYS Nonlinear, version 5.7.1] "
   },
   {
     "title": "Off-Axis Loads Cause Failure of the Distal Radius at Lower Magnitudes than Axial Loads: A Finite Element Analysis",
@@ -444,9 +447,10 @@
     "description": "IPACK2005-73239.pdf"
   },
   {
-    "title": "IRS2006_reprint.pdf",
+    "title": "A 64-Pixel Linear Thermopile Array Chip Designed for Vacuum Environment",
+    "author": "U. Dillner, E. Kessler, V. Baier, A. Berger, T. Eick, D. Behrendt, H. Urban",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/IRS2006_reprint.pdf",
-    "description": "IRS2006_reprint.pdf"
+    "description": "\"We report on the development of a 64-pixel high performance linear thermopile array chip designed for vacuum environment based on a silicon nitride membrane as substrate, Bi0.87Sb0.13/Sb as thermoelectric materials combination and an Ag-black broadband absorber layer. The array chip was mounted on a ceramic substrate and placed on the socket of a commercial hybrid package with 64 pins. Measurements of the linear array chip in vacuum environment and in absence of an entrance filter delivered a responsivity of 245 V/W, a sensitivity of 166 µVm˛/W, a specific detectivity of 1.6x109 cmHz1/2/W at an electrical resistance of 9 k and a thermal time constant of 150 ms. The pixelto- pixel cross-talk was reduced to less than 0.4 % due to slits in the membrane between adjacent pixels made by dry etching.\"\n[ANSYS Thermal, version unknown]"
   },
   {
     "title": "Improvements to Time-History Postprocessing at 6.0 [PDF]",
@@ -1166,9 +1170,10 @@
     "description": "\"This paper will describe implementation considerations for the addition of new solver technology to a large legacy code, compare resource requirements for the various solver choices and present some comparative results from several customer generated problems. The AMG solver benefits, both in improved robustness and parallel processing efficiency will be described. The paper will also discuss some of the implementation challenges that have been overcome to add new solver technology to a large existing code. The role of solver technology in meeting current and future demands of large scale commercial analysis codes will be discussed.\""
   },
   {
-    "title": "analysis-of-reinforced-concrete.pdf",
+    "title": "Analysis Of Reinforced Concrete Structures Using ANSYS Nonlinear Concrete Model",
+    "author": "Antonio F. Barbosa and Gabriel O. Ribeiro",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/analysis-of-reinforced-concrete.pdf",
-    "description": "analysis-of-reinforced-concrete.pdf"
+    "description": "\"This paper considers the practical application of nonlinear models in the analysis of reinforced concrete structures. The results of some analyses performed using the reinforced concrete model of the general purpose finite element code ANSYS are presented and discussed.\""
   },
   {
     "title": "andersen.pdf",
@@ -1181,9 +1186,10 @@
     "description": "ansys25b.pdf"
   },
   {
-    "title": "ansys_mechanical_wp.pdf",
+    "title": "ANSYS Mechanical - A Powerful Nonlinear Simulation Tool",
+    "author": "Grama Bhashyam (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_mechanical_wp.pdf",
-    "description": "ansys_mechanical_wp.pdf"
+    "description": "A whitepaper describing various ANSYS features in the area of nonlinear mechanics, including element formulation, constitutive models, and contact technology."
   },
   {
     "title": "ansys_news_1995_3.pdf",
@@ -1446,9 +1452,10 @@
     "description": "Simple tutorial on analyzing parts using DesignSpace with focus on compatibility with SolidWorks."
   },
   {
-    "title": "effects_of_nonlinear_geometric.pdf",
+    "title": "Effects of Nonlinear Geometric and Material Properties on the Seismic Response of Fluid/Tank Systems",
+    "author": "He Liu, Daniel H. Schubert",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/effects_of_nonlinear_geometric.pdf",
-    "description": "effects_of_nonlinear_geometric.pdf"
+    "description": "\"To explore the effects large deformation and nonlinear material properties have on the seismic response of fluid/tank systems, the computer program ANSYS was selected to develop a Finite Element Analysis (FEA) model of a ground level, cylindrical steel shell and roof tank structure with contained fluid under seismic load. The ANSYS program was selected for its ability to include shell and structural steel elements, contained fluid elements, fluid-structure interactions, material and geometric nonlinearities, and contact type elements. For purposes of this study, analysis results from a linear elastic, small deformation fixed base model are compared with an elasto-plastic material property model with large deformation assumptions. Results show the significant difference in results based on the assumptions used and indicate that current design code based values may not be conservative in resultant loading calculations.\""
   },
   {
     "title": "elastdata_Unix.zip",
@@ -1513,9 +1520,10 @@
     "description": "\"An axis-symmetric Finite Element (FE) model is developed based on the multi-purpose code ANSYS/Multiphysics. Using the Computational Fluid Dynamics (CFD) module the temperature field within the melt pool and within the vessel wall is evaluated. The transient structural mechanical calculations are then performed applying a creep model which takes into account large temperature, stress and strain variations.\" (Document 2)"
   },
   {
-    "title": "frequency_response.pdf",
+    "title": "FE Analysis of ATLAS: End Cap Support Structure - PSD Spectrum Analysis",
+    "author": "C.J.Nelson",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/frequency_response.pdf",
-    "description": "frequency_response.pdf"
+    "description": "\"This report investigates the effect of a PSD (Power Spectral Density) random input load on an early FE model of the ATLAS EndCap Support Structure. Statistical predictions of the maximum displacement are presented.\"[ANSYS Structural, version 5.3]"
   },
   {
     "title": "fsi-ansys.pdf",
@@ -1523,7 +1531,7 @@
     "description": "fsi-ansys.pdf"
   },
   {
-    "title": "gasketed_flanges_ordinary_elements_apdl_control.pdf",
+    "title": "Analysis Of Gasketed Flanges With Ordinary Elements Using APDL Control",
     "author": "Yasumasa Shoji, Satoshi Nagata",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/gasketed_flanges_ordinary_elements_apdl_control.pdf",
     "description": "\"The analysis of gasketted flanges is now becoming an essential technique to design pressure vessels or piping, because the design code is being modified. On the other hand, the gasket has an extreme nonlinearity which causes the analysis to be very difficult, especially using linear material properties. A finite element analysis program other than ANSYS has the element library for gasket element, but ANSYS does not have it yet.\"\r\n \r\n \"The authors developed a method to model this nonlinear gasket by using the elements available in ANSYS Rel. 5.5 for 2-dimensional axisymmetric analysis and those in Rel. 5.6 for 3-dimensional analysis. In this paper, the concept and the procedure of the modeling is introduced. The data input is possible using a template, without using any other ANSYS commands. The whole analysis execution is controlled by APDL.\"\r\n \r\n [STI: Gasket elements are available from version 6.1 onwards, after this paper was written]"
@@ -1630,9 +1638,10 @@
     "description": "jm0323.pdf"
   },
   {
-    "title": "kurian.pdf",
+    "title": "Analytical Modeling Of Glued Laminated Girder Bridges Using ANSYS",
+    "author": "Anil Kurian",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/kurian.pdf",
-    "description": "kurian.pdf"
+    "description": "\"This paper aims at developing a finite element model of glued laminated girder bridges that can predict accurately the analytical behavior of the bridges. Two models have been developed to study the characteristics of this type of bridge. Two case studies have been considered to validate the accuracy of the models. The first case study is a long span single-lane bridge, the Tuscaloosa Bridge, in Alabama. The second case study is a medium span two-lane bridge, the Cow Gu lch Bridge, in Montana. The models show good correlation with the experimental data and hence, the models can be used to find the maximum deflections in the bridge.\"Use of ANSYS 5.0 (1992 version)"
   },
   {
     "title": "kyshen.pdf",
@@ -1774,7 +1783,7 @@
     "description": "\"A method is presented for controlling element sizes on the interior of areas during surface meshing. A Delaunay background mesh is defined over which a neighborhood based interpolation scheme is used to interpolate element sizes.\""
   },
   {
-    "title": "nonlinear_domain_decomposition_method.pdf",
+    "title": "A Non-Linear Domain Decomposition Method",
     "author": "Iakov Mordukhovich Klebanov, Andrei Nikolaevich Davydov",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/nonlinear_domain_decomposition_method.pdf",
     "description": "\"A new domain decomposition technique for parallelization of physically non-linear problems in solid mechanics is developed. It is extended for any stress-strain diagrams. The approach is based on the approximating generalized models of subdomains that leads to a considerably fewer number of iterations requiring updating of substructure parameters. The analytical proof of the convergence of the theoretical iterative procedure and the demonstration of convergence of its numerical implementation with the help of ANSYS are presented.\""
@@ -1903,9 +1912,10 @@
     "description": "The attached zip file includes a simple example demonstrating the procedure to perform a single-point response spectrum (SPRS), where the excitation in 3 direction is applied together (using SRSS combination), not independently. The procedure for multi-point response spectrum (MPRS) is included as well for the same situation. An Excel spreadsheet shows that the results obtained for this simple model is the same for both methods (compare the mode coefficients for each squared mode in the spreadsheet)."
   },
   {
-    "title": "st_wave00.pdf",
+    "title": "Dynamic Pile Testing and Finite Element Calculations for the Bearing Capacity of a Quay Wall Foundation",
+    "author": "F. Kirsch, B. Plaßmann, T. Huch, W. Rodatz",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/st_wave00.pdf",
-    "description": "st_wave00.pdf"
+    "description": "\"In April 1999 the construction of a new quay wall in the port of Hamburg started. In a first stage two new berths with an overall length of 1400 m will be built. In order to proof the bearing capacity of the foundation dynamic pile testing is performed to a great extent. To date more than thirty different piles were tested by the Institute for Foundation Engineering and Soil Mechanics of the Technical University of Braunschweig. In order to check for possible set-up effects redriven tests were performed. For comparison reasons static load tests were also carried out, one of which was done with an instrumented pile to allow skin friction and end bearing to be evaluated separately. The CAPWAP results proofed to be very helpful especially in those cases where the testing situation differed from the later service condition. Special questions called for detailed finite element analysis of the load-settlement behaviour of single piles in certain construction stages.\"\nAlthough ANSYS is not explicitly mentioned, F. Kirsch also used ANSYS in two related papers, Stability of the vault developing over Soilcrete bodies and Ground Improvement and Its Numerical Analysis. "
   },
   {
     "title": "substr-fullpost.zip",
@@ -1931,9 +1941,10 @@
     "description": "t2107.pdf"
   },
   {
-    "title": "ta_94-1.pdf",
+    "title": "Parameter Studies For Enhanced Integrity Of Reciprocating Compressor Foundation Blocks",
+    "author": "Jayant S. Mandke, Anthony J. Smalley",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/ta_94-1.pdf",
-    "description": "ta_94-1.pdf"
+    "description": "\"The model development and analyses of reinforced concrete block used the ANSYS finite element program.\""
   },
   {
     "title": "tan_wei_200804_phd.pdf",
