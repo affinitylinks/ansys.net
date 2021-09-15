@@ -93,21 +93,83 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/Ans-Mag1b.pdf" target="_blank"> Integrating ANSYS with Modern Numerical Optimization Technologies</a></p>
-<p class="font-italic">Shen-Yeh Chen</p>
-<p>&quot;Design automation with finite element analysis as a simulation and evaluation tool is becoming more and more desired. The ability to do automatic design iteration has constantly been a popular research and engineering topic. In this article, we will show how Honeywell Engines &amp; Systems took advantage of the flexible environment of ANSYS to achieve this goal.&quot; (Optimization, APDL)</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/user_def1.pdf" target="_blank"> Advanced Tools for Design and Analyses of High Temperature Cyclic Loaded Turbine Components</a></p>
+<p class="font-italic">U. Gampe, I. Martynov, J. Keyser</p>
+<p>&quot;The paper presents a new concept to predict viscoplastic deformations in components under thermal mechanical loading. This approach is based both on material data from uniaxial creep tests and additional laboratory component tests to consider the influence of multiaxiality. This concept was used for analysis of feature tests of flat tensile specimens with central hole. The maximum test temperature was 600 °C and the surface of the hole was attacked by cyclic thermal shocks.&quot;(This paper refers to use of ANSYS User-Defined Materials. A related paper is Laboratory Component Testing for Investigation of Material Degradation from Creep-Fatigue Interaction.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/amg2001.pdf" target="_blank"> Advancing Analysis Capabilities In ANSYS Through Solver Technology</a></p>
+<p class="font-italic">Gene Poole, Yong-Cheng Liu, and Jan Mandel</p>
+<p>&quot;This paper will describe implementation considerations for the addition of new solver technology to a large legacy code, compare resource requirements for the various solver choices and present some comparative results from several customer generated problems. The AMG solver benefits, both in improved robustness and parallel processing efficiency will be described. The paper will also discuss some of the implementation challenges that have been overcome to add new solver technology to a large existing code. The role of solver technology in meeting current and future demands of large scale commercial analysis codes will be discussed.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/meis.pdf" target="_blank"> Algebraic Multigrid By Smoothed Aggregation For Second And Fourth Order Elliptic Problems</a></p>
+<p class="font-italic">Petr Van Ek, Jan Mandel, and Marian Brezina</p>
+<p>&quot;An algebraic multigrid algorithm for symmetric, positive definite linear systems is developed based on the concept of prolongation by smoothed aggregation. Coarse levels are generated automatically. We present a set of requirements motivated heuristically by a convergence theory. The algorithm then attempts to satisfy the requirements. Input to the method are the coefficient matrix and zero energy modes, which are determined from nodal coordinates and knowledge of the differential equation. Efficiency of the resulting algorithm is demonstrated by computational results on real world problems from solid elasticity, plate bending, and shells.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/combined_l_o_smoothing.pdf" target="_blank"> An Approach to Combined Laplacian and Optimization-Based Smoothing for Triangular, Quadrilateral, and Quad-Dominant Meshes [PDF]</a></p>
+<p class="font-italic">Scott A. Canann, Joseph R. Tristano, Matthew L. Staten</p>
+<p>&quot;In this paper, an overall mesh smoothing scheme is presented for meshes consisting of triangular, quadrilateral, or mixed triangular and quadrilateral elements. This paper describes an efficient and robust combination of constrained Laplacian smoothing together with an optimization-based smoothing algorithm.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/10_0130_Cross_paper.pdf" target="_blank"> An Architecture for Fluid/Structure Analysis of Turbomachinery Blading</a></p>
+<p class="font-italic">David A. Johnston, Charles J. Cross, J. Mitch Wolff</p>
+<p>&quot;Aeroelastic stability and response analyses used in the design of turbomachinery blading are typically uncoupled: the unsteady aerodynamics and structural dynamics are treated in separate models, with boundary conditions sequentially updated after stationary periodic convergence is met. Higher fidelity simulations are achieved by coupling the fluid and structure domains such that boundary conditions are updated once or several times per physical time step of the simulation.&quot;&quot;As a starting point, the turbomachinery CFD research code TURBO (Chen and Briley, 2001) and the commercial structural solver ANSYSŪ has been chosen for coupling, although FSI is designed with modularity for future inclusion of other fluid and structural solvers.&quot;<br>
+[ANSYS Dynamics, version unspecified]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/B0-8218-0988-1-03024-7.pdf" target="_blank"> An Efficient FETI Implementation on Distributed Shared Memory Machines with Independent Numbers of Subdomains and Processors</a></p>
+<p class="font-italic">Michel Lesoinne and Kendall Pierson</p>
+<p>&quot;Until now, many implementations of the FETI method have been designed either as sequential codes on a single CPU, or as parallel implementations with a One Subdomain per Processor approach. This approach has been particularly typical of implementations on distributed memory architectures such as the IBM SP2. In the last couple of years, several computer manufacturers have introduced new machines with a Distributed Shared Memory (DSM) programming model {e.g. SGI Origin 2000, or HP Exemplar. In such architectures, the physical memory is distributed among the processors or CPU boards but any memory location can be accessed logically by any CPU independently of where the particular memory page being accessed has physically been allocated. As more and more machines of this type are available with a relatively small number of processors, the interest in implementing FETI with an independent number of subdomains and processor has increased. We report on such an implementation of FETI and highlight the benefits of this feature. We have found that medium size to large problems can be solved even on a sequential machine with time and memory requirements that are one to two order of magnitude better than a direct solver.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/CADFEM05_anker_paper.pdf" target="_blank"> An Interpretation of the Physics of Fluid-Structure Interaction in the Frequency Domain</a></p>
+<p class="font-italic">Jan Christian Anker</p>
+<p>&quot;This paper constitutes an attempt to interpret the physics of FSI where the structure is vibrating. The structure considered is a very simple physical device, namely a flat cantilever plate. Many presumably important details are only briefly mentioned, other are left completely out of the discussion. The intention with the paper is to emphasize that there are cases where Fluid - Structure Interaction can be successfully simulated without having to utilize a Navier-Stokes Solver coupled with a (non-linear) Structural Analysis Program, a concept that requires vast amounts of computer time for linear vibrations (but is highly relevant for other applications).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/painless-conjugate-gradient.pdf" target="_blank"> An Introduction to the Conjugate Gradient Method Without the Agonizing Pain</a></p>
+<p class="font-italic">Jonathan R. Shewchuk</p>
+<p>This paper presents a very well-written explanation of conjugate gradient methods. It is helpful in understanding better the idea behind CG solvers in ANSYS (PCG, JCG, ICCG, AMG, etc.).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/object_oriented_defeaturing.pdf" target="_blank"> An Object Oriented Approach to Geometry Defeaturing for Finite Element Meshing [PDF]</a></p>
+<p class="font-italic">Anton V. Mobley, Michael P. Carroll, and Scott A. Canann</p>
+<p>&quot;In this paper, an object-oriented approach to automatic geometry defeaturing is presented. The geometric and finite element data abstractions are given, along with the basic algorithms used.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/gasketed_flanges_ordinary_elements_apdl_control.pdf" target="_blank"> Analysis Of Gasketed Flanges With Ordinary Elements Using APDL Control</a></p>
+<p class="font-italic">Yasumasa Shoji, Satoshi Nagata</p>
+<p>&quot;The analysis of gasketted flanges is now becoming an essential technique to design pressure vessels or piping, because the design code is being modified. On the other hand, the gasket has an extreme nonlinearity which causes the analysis to be very difficult, especially using linear material properties. A finite element analysis program other than ANSYS has the element library for gasket element, but ANSYS does not have it yet.&quot;</p>
+<p>&quot;The authors developed a method to model this nonlinear gasket by using the elements available in ANSYS Rel. 5.5 for 2-dimensional axisymmetric analysis and those in Rel. 5.6 for 3-dimensional analysis. In this paper, the concept and the procedure of the modeling is introduced. The data input is possible using a template, without using any other ANSYS commands. The whole analysis execution is controlled by APDL.&quot;</p>
+<p>[STI: Gasket elements are available from version 6.1 onwards, after this paper was written]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/analysis-of-reinforced-concrete.pdf" target="_blank"> Analysis Of Reinforced Concrete Structures Using ANSYS Nonlinear Concrete Model</a></p>
+<p class="font-italic">Antonio F. Barbosa and Gabriel O. Ribeiro</p>
+<p>&quot;This paper considers the practical application of nonlinear models in the analysis of reinforced concrete structures. The results of some analyses performed using the reinforced concrete model of the general purpose finite element code ANSYS are presented and discussed.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/jb99_14.pdf" target="_blank"> Analysis Of The FOREVER-Experiments Using A Finite Element Model</a></p>
+<p class="font-italic">Eberhard Altstadt, Thomas Moessner, Baj Ral Sehgal, Hans-Georg Willschütz</p>
+<p>&quot;An axis-symmetric Finite Element (FE) model is developed based on the multi-purpose code ANSYS/Multiphysics. Using the Computational Fluid Dynamics (CFD) module the temperature field within the melt pool and within the vessel wall is evaluated. The transient structural mechanical calculations are then performed applying a creep model which takes into account large temperature, stress and strain variations.&quot; (Document 1)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/21.pdf" target="_blank"> Analysis and Testing of Graphite/Epoxy Concrete Bridge Girders Under Static Loading</a></p>
+<p class="font-italic">B. M. Kavlicoglu, F. Gordaninejad, M. Saiidi, Y. Jiang</p>
+<p>&quot;An innovative graphite/epoxy-concrete (G/E-C) cross-section was developed and tested under two-point static loading. Finite element analysis and theoretical modeling of the cross-section was performed. The cross-section was a box girder with an outer G/E U-beam and inner G/E box beam with concrete webs and flange in between. Shear connection between G/E box beam and concrete slab was provided by a two-part structural epoxy resin. Additional shear connection was provided by steel stirrups located at 254 mm (10 in.) spacing along longitudinal axis of the test specimen. It was observed that, steel stirrups contributed the load carrying capacity after initiation of slippage between G/E beams and concrete. Moreover, a series of bond strength tests were performed to examine the behavior of structural epoxy resin for connection between G/E and concrete. Six G/E strips were subjected to tensile tests to evaluate the longitudinal and transverse elastic moduli of the laminate. Using the proper material properties and assumptions, it was possible to demonstrate the behavior of the section under static loads theoretically and in finite element analysis.&quot;<br>
+[ANSYS Structural, version 5.5]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/kurian.pdf" target="_blank"> Analytical Modeling Of Glued Laminated Girder Bridges Using ANSYS</a></p>
+<p class="font-italic">Anil Kurian</p>
+<p>&quot;This paper aims at developing a finite element model of glued laminated girder bridges that can predict accurately the analytical behavior of the bridges. Two models have been developed to study the characteristics of this type of bridge. Two case studies have been considered to validate the accuracy of the models. The first case study is a long span single-lane bridge, the Tuscaloosa Bridge, in Alabama. The second case study is a medium span two-lane bridge, the Cow Gu lch Bridge, in Montana. The models show good correlation with the experimental data and hence, the models can be used to find the maximum deflections in the bridge.&quot;Use of ANSYS 5.0 (1992 version)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/ANSYS_Users_Group_Hyperelastic_Materials.pdf" target="_blank"> Analyzing Hyperelastic Materials w/ Some Practical Considerations</a></p>
+<p class="font-italic">Paris Altidis and Vince Adams</p>
+<p>Presentation from the Midwest ANSYS User Group<br>
+[ANSYS Nonlinear, version unspecified]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/anisotropic_plasticity_failure_prediction_wood.pdf" target="_blank"> Anisotropic Plasticity and Failure Prediction in Wood Composites</a></p>
+<p class="font-italic">David M. Moses, Helmut G.L. Prion</p>
+<p>&quot;Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.&quot;</p>
+<p>&quot;The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Ansys_PT_EEC.pdf" target="_blank"> Ansys_PT_EEC.pdf</a></p>
 <p class="font-italic"></p>
 <p>Ansys_PT_EEC.pdf</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Artigo.pdf" target="_blank"> Design and Implementation of a Flow Microsensor by using Silicon Microelectronics Technology</a></p>
-<p class="font-italic">Roberto Rodrigues and Rogerio Furlan</p>
-<p>&quot;This work presents the design of a gas flow microsensor that was implemented by using silicon microelectronics technology. Its main features are a low power consumption (tens of mW) and the possibility of integration in flow microactuators. It was adopted a calorimetric device with free-standing microfilaments and thermoresistive sensor elements. Analytical and numerical modeling were developed for device analyses and design. The free-standing microfilaments were fabricated using surface micromachining. Characteristic curves, of output voltage vs. flow, were obtained by using a commercial flow sensor for calibration. A good agreement was obtained comparing the flow microsensor experimental characteristic curves with numerical simulation results.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/B0-8218-0988-1-03024-7.pdf" target="_blank"> An Efficient FETI Implementation on Distributed Shared Memory Machines with Independent Numbers of Subdomains and Processors</a></p>
-<p class="font-italic">Michel Lesoinne and Kendall Pierson</p>
-<p>&quot;Until now, many implementations of the FETI method have been designed either as sequential codes on a single CPU, or as parallel implementations with a One Subdomain per Processor approach. This approach has been particularly typical of implementations on distributed memory architectures such as the IBM SP2. In the last couple of years, several computer manufacturers have introduced new machines with a Distributed Shared Memory (DSM) programming model {e.g. SGI Origin 2000, or HP Exemplar. In such architectures, the physical memory is distributed among the processors or CPU boards but any memory location can be accessed logically by any CPU independently of where the particular memory page being accessed has physically been allocated. As more and more machines of this type are available with a relatively small number of processors, the interest in implementing FETI with an independent number of subdomains and processor has increased. We report on such an implementation of FETI and highlight the benefits of this feature. We have found that medium size to large problems can be solved even on a sequential machine with time and memory requirements that are one to two order of magnitude better than a direct solver.&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/bmsweep.pdf" target="_blank"> BMSweep: Locating Interior Nodes During Sweeping [PDF]</a></p>
+<p class="font-italic">Matthew L. Staten, Scott A. Canann, and Steve J. Owen</p>
+<p>&quot;BMSweep is a new algorithm to determine the location of interior nodes while volume sweeping.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/BaBar295.pdf" target="_blank"> BaBar295.pdf</a></p>
 <p class="font-italic"></p>
@@ -117,155 +179,96 @@
 <p class="font-italic">David Haberman (CSI)</p>
 <p>Basics of creating and using macros (APDL) in ANSYS.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Bioloch_ICRA04.pdf" target="_blank"> Bioloch_ICRA04.pdf</a></p>
-<p class="font-italic"></p>
-<p>Bioloch_ICRA04.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Week_22_totw-parametric-model.pdf" target="_blank"> Building Parametric Models [PDF]</a></p>
-<p class="font-italic">David Haberman (CSI)</p>
-<p>This memo provides an overview of APDL, defining parameters, and creating parametric models.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/CADFEM05_anker_paper.pdf" target="_blank"> An Interpretation of the Physics of Fluid-Structure Interaction in the Frequency Domain</a></p>
-<p class="font-italic">Jan Christian Anker</p>
-<p>&quot;This paper constitutes an attempt to interpret the physics of FSI where the structure is vibrating. The structure considered is a very simple physical device, namely a flat cantilever plate. Many presumably important details are only briefly mentioned, other are left completely out of the discussion. The intention with the paper is to emphasize that there are cases where Fluid - Structure Interaction can be successfully simulated without having to utilize a Navier-Stokes Solver coupled with a (non-linear) Structural Analysis Program, a concept that requires vast amounts of computer time for linear vibrations (but is highly relevant for other applications).&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip" target="_blank"> COMPMENU.zip</a></p>
-<p class="font-italic">Jim Patterson (Hendrickson Trailer Suspension Systems)</p>
-<p>&quot;I have a set of macros to generate toolbars based on the defined components in the db. You can then call these toolbars from the main toolbar to aid in the selecting of the components. This includes &quot;select&quot;, &quot;also select&quot;, and &quot;unselect&quot;. You can also &quot;remake&quot;the components from the toolbar. As someone who works with assemblies of shell models almost constantly, this has been a huge time saver for me.&quot;<br>
-Tested on 5.7 through 6.1. Unzip the file and read the supplied Word document for instructions.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/acton20080620-coupling_low_to_high.pdf" target="_blank"> Coupling low-order elements to high-order elements in ANSYS</a></p>
-<p class="font-italic">Aaron Acton</p>
-<p>&quot;This article presents several methods for obtaining coupling at the interface between low- and high-order elements in ANSYS. This situation can be encountered when modelling the fluid-structure interaction between a solid domain, modelled with quadratic elements, and an acoustic fluid domain, modelled with linear elements. The two methods determined to be most suitable for achieving this coupling are by using either constraint equations or contact elements, both of which are likely more-robust methods than by simply attaching coincident nodes on matching meshes. Examples are provided for each case described herein, and the results from each are compared to the ANSYS 11.0 verification problem VM177.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/week9-apdl-2.pdf" target="_blank"> Creating APDL Macros [PDF]</a></p>
-<p class="font-italic">Mike Rife (CSI)</p>
-<p>The use of the Ansys Parametric Design Language, APDL, to create simple but reusable macros can be a significant time saver. This Tip of the Week will show two examples of macros written for current Ansys users. These macros may be extended or used as templates for future macros.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Helical_Path.pdf" target="_blank"> Creating a Helical Path</a></p>
-<p class="font-italic">Paul McGarry (Galway-Mayo Institute of Technology)</p>
-<p>&quot;A step by step GUI method for creating a left or right-handed helix, in any axis, for any pitch or diameter.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/STI06_Customize_GUI.pdf" target="_blank"> Customizing GUI Behavior [PDF]</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/STI0804_Damping.zip" target="_blank"> Basics on Structural Damping (Addendum) [ZIP]</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>&quot;The /UIS and /MSTART commands provide the user with control over much of the GUI behavior. At 5.7 and 6.0, this has been extended to include control over the multilegend feature, background color, and mouse button assignment for dynamic rotations. Used in conjunction with the startxx.ans file, this allows the user to change GUI behavior in each ANSYS session.&quot;</p>
+<p>&quot;Since ANSYS 5.6, there have been numerous enhancements as well as facets of the software program that have changed, including treatment of damping. This article is meant to serve as an addendum to Section 6 of the author’s &quot;Structural Damping&quot;memo, which was written in October, 2000.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/DistributedLoad.zip" target="_blank"> DistributedLoad.zip</a></p>
-<p class="font-italic">Paris Altidis (Borg Warner)</p>
-<p>Zip file containing two example macros of applying distributed pressures.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Don_HemmelgarnITI_Interoperability_Pres.pdf" target="_blank"> Don_HemmelgarnITI_Interoperability_Pres.pdf</a></p>
-<p class="font-italic"></p>
-<p>Don_HemmelgarnITI_Interoperability_Pres.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/Dr_Penzar.pdf" target="_blank"> Finite Element Analysis at Mannesmann VDO Fuel Systems [PDF]</a></p>
-<p class="font-italic">Zlatko Penzar</p>
-<p>Finite Element Analysis at Mannesmann VDO Fuel Systems - ppt presentation</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Dutchsensorconf98.pdf" target="_blank"> Dutchsensorconf98.pdf</a></p>
-<p class="font-italic"></p>
-<p>Dutchsensorconf98.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ECTC2001-paper.pdf" target="_blank"> ECTC2001-paper.pdf</a></p>
-<p class="font-italic"></p>
-<p>ECTC2001-paper.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/EE245.pdf" target="_blank"> EE245.pdf</a></p>
-<p class="font-italic"></p>
-<p>EE245.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/EFS.pdf" target="_blank"> Elastic Foundation Stiffness</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/STI09_Damping.zip" target="_blank"> Basics on Structural Damping [ZIP]</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Short explanation of what elastic foundation stiffness (SURF154) is and how to calculate the resulting stiffness for non-planar cases. In Workbench Mechanical, this feature is referred to as an &quot;Elastic Support&quot;.</p>
+<p>This is an old document I wrote a while ago on damping which I sometimes use. Although written back at version 5.6, it is still applicable at version 7.0.<br>
+&quot;Damping is required in many dynamic applications, yet because there are many ways to include it, there is often confusion regarding the implementation of damping in ANSYS. This memo hopes to provide a general summary of the representation of damping available in ANSYS.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip" target="_blank"> Various MEMS Examples Using ANSYS [ZIP]</a></p>
-<p class="font-italic">(EPFL, The Swiss Federal Institute of Technology Lausanne)</p>
-<p>Tutorials on using ANSYS with various MEMS examples. This was originally taken from EPFL's website.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/benchmar_tests_on_ansys_parallel_proc.pdf" target="_blank"> Benchmark Tests on ANSYS Parallel Processing Technology</a></p>
+<p class="font-italic">Kentaro Suzuki</p>
+<p>&quot;ANSYS Inc. has released parallel processing solvers, DDS (Distributed Domain Solver) and AMG (Algebraic Multigrid Solver) in ANSYS version 5.7 in order to meet the requirements from the market.&quot;</p>
+<p>&quot;In this paper, simple tests are first carried out to confirm the features and capabilities of DDS and AMG for different types of analyses. Furthermore, real-life problems such as thermal stress of an engine block (7.3 million DOF) and elastic-plastic-creep behavior of an IC packaging (about 84,000 DOF) are analyzed. The effectiveness of ANSYS parallel processing solvers is also studied.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/s30p5a.pdf" target="_blank"> Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package</a></p>
-<p class="font-italic">Biju Chandran, Deepak Goyal, and Jeffrey Thomas</p>
-<p>&quot;Ball Grid Array (BGA) is currently the interconnect of choice for attaching microprocessors on a printed circuit board (PCB). The reliability of solder joints is one of the critical issues in BGA surface mount technology (SMT). During reliability testing, BGA fatigue failures were observed on test vehicles (TV). Finite element analysis and physical failure analysis were used to determine the risk to the product in the field. As part of this effort, parametric finite element analysis was carried out to determine the effect of design features like the package size, and BGA pattern on the propensity of fatigue failure. The results of the finite element analysis and physical failure analysis showed that the risk to fatigue failure was much greater on a peripheral / partial grid array package than in a full grid array package.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/FFTDFT.zip" target="_blank"> FFTDFT.zip</a></p>
-<p class="font-italic">Juan Carlos Lancha (OHL, S.A.)</p>
-<p>From the author:</p>
-<p>&quot;These small APDL macros perform Fourier transforms (FFT and DFT) of discrete signals. This procedure decomposes a time domain signal into a sum of harmonic (frequency domain) signals. It’s a useful APDL tool when dealing with dynamic and harmonic problems in ANSYS.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf" target="_blank"> FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING</a></p>
-<p class="font-italic"></p>
-<p>A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/FLUID29andFLUID79.pdf" target="_blank"> Comparison of FLUID29 and FLUID79 Elements</a></p>
-<p class="font-italic">Carl Howard (University of Adelaide)</p>
-<p>&quot;Analyses were conducted to verify that similar results could be obtained by using the displacement formulated fluid elements FLUID79 or the pressure formulated fluid elements FLUID29.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/FSI.projects.Nabity.paper.pdf" target="_blank"> FSI.projects.Nabity.paper.pdf</a></p>
-<p class="font-italic"></p>
-<p>FSI.projects.Nabity.paper.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/STI01_Electrical_Contact_Beta_6.0.zip" target="_blank"> Beta Electrical Contact Features at 6.0 [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;This issue describes a beta feature at 6.0, which is electrical contact capability of 17x surface-to-surface contact elements. This new capability allows contact in thermal-electric and structural-thermal-electric problems.&quot;<br>
+(Week 13, week of 01/07/02.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Finet_CAD_04.pdf" target="_blank"> Biomechanical Interaction Between Cap Thickness, Lipid Core Composition and Blood Pressure in Vulnerable Coronary Plaque: Impact on Stability or Insta</a></p>
 <p class="font-italic">Gerard Finet, Jacques Ohayon and Gilles Rioufo</p>
 <p>&quot;A ‘thin’ fibrous cap atheroma is the typical morphological characteristic of vulnerable plaque. Yet the very pathological studies that have provided these descriptions have also shown the actual prediction of plaque rupture to be rather less exact. Other relevant characteristics must be involved in the mechanisms of plaque rupture—blood pressure loading (P) and the material properties of the soft atheromatous core—as predictors of the distribution of the peak circumferential stress (PCS) locations.&quot;<br>
 [ANSYS Structural, version 5.7]</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/week1-formatting-output-text.pdf" target="_blank"> Formatting output text of results (PRxxxx family of commands) [PDF]</a></p>
-<p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output. This memo outlines some of the options available in ANSYS to produce and to format output listings: (1) the use of the /FORMAT statement with the PRxxxx series of commands and (2) the application of *VWRITE to create custom output.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/STI0705_Buckling.pdf" target="_blank"> Buckling in Workbench Simulation [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Buckling may be a concern for some situations, where a user may need to modify the design to prevent buckling within a given load range. Conversely, failure analysis may need to be performed when a structure has collapsed.<br>
+ANSYS and Workbench Simulation have many tools to aid users in solving geometric instability problems, ranging from linear (eigenvalue) buckling to nonlinear, post-buckling analyses.&quot;<br>
+(Week 41, week of 10/14/07)</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/FranzChouly_LN2006.pdf" target="_blank"> Simulation of the Retroglossal Fluid-Structure Interaction During Obstructive Sleep Apnea</a></p>
-<p class="font-italic">Franz Chouly, Annemie Van Hirtum, Pierre-Yves Lagr´ee, Jean-Roch Paoli, Xavier Pelorson, and Yohan P</p>
-<p>&quot;A method for computing the interaction between the airflow and the soft tissue during an Obstructive Apnea is presented. It is based on simplifications of the full continuum formulation (Navier- Stokes and finite elasticity) to ensure computation time compatible with clinical applications. Linear elasticity combined with a precomputation method allows fast prediction of the tissue deformation, while an asymptotic formulation of the full Navier-Stokes equations (Reduced Navier- Stokes/Prandtl equations) has been chosen for the flow. The accuracy of the method has already been assessed experimentally. Then, simulations of the complete collapsus at the retroglossal level in the upper airway have been carried out, on geometries extracted from pre-operative radiographies of two apneic patients. Post-operative geometries have been also used to check qualitatively if the predictions from the simulations are in agreement with the effects of the surgery.&quot;<br>
-[ANSYS Structural, version unspecified]</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Week_22_totw-parametric-model.pdf" target="_blank"> Building Parametric Models [PDF]</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>This memo provides an overview of APDL, defining parameters, and creating parametric models.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/GSkoro1.pdf" target="_blank"> GSkoro1.pdf</a></p>
-<p class="font-italic"></p>
-<p>GSkoro1.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip" target="_blank"> CERIG vs RBE3, RIGID184 [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Constraint equations provide many useful features in ANSYS, such as tying together dissimilar meshes, representing parts of the system not explicitly modeled, or distributing loads. Two automated methods of generating constraint equations are the CERIG and RBE3 commands. Because there is often confusion over their use, this memo hopes to provide some information on differences between the two methods.<br>
+&quot;Constraint equations in ANSYS are linear, so they are not valid for large-rotation analyses. RIGID184 is a beta element in version 6.1 which provides rigid link/beam capabilities, valid for large-rotation problems. The latter part of this memo will cover some details of this undocumented feature, available in 6.1.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_tips.pdf" target="_blank"> General ANSYS Tips (5.5)</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/COMPMENU.zip" target="_blank"> COMPMENU.zip</a></p>
+<p class="font-italic">Jim Patterson (Hendrickson Trailer Suspension Systems)</p>
+<p>&quot;I have a set of macros to generate toolbars based on the defined components in the db. You can then call these toolbars from the main toolbar to aid in the selecting of the components. This includes &quot;select&quot;, &quot;also select&quot;, and &quot;unselect&quot;. You can also &quot;remake&quot;the components from the toolbar. As someone who works with assemblies of shell models almost constantly, this has been a huge time saver for me.&quot;<br>
+Tested on 5.7 through 6.1. Unzip the file and read the supplied Word document for instructions.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/week4-effective_cte.pdf" target="_blank"> Calculating effective Coefficient of Thermal Expansion [PDF]</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Tips on how to define coefficient of thermal expansion and converting that material data to format that ANSYS can use.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/conflong_castiron.pdf" target="_blank"> Cast Iron Plasticity</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Presentation on Cast Iron plasticity model introduced in ANSYS 6.1 (part of the &quot;Advanced Analysis with ANSYS&quot; seminar during the 2002 User's Conference).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/STI0805_Chaboche.pdf" target="_blank"> Chaboche Nonlinear Kinematic Hardening Model [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;The Chaboche nonlinear kinematic hardening model was added in ANSYS 5.6 to complement the existing isotropic and kinematic hardening rules that users relied on. Despite its availability for nearly ten years as of the time of this writing, the Chaboche model has enjoyed limited popularity, in part because of the perceived complexity of calibrating the material parameters. This memo hopes to introduce the basics related to the Chaboche nonlinear kinematic model.&quot;<br>
+(Week 47, week of 05/04/08)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Don_HemmelgarnITI_Interoperability_Pres.pdf" target="_blank"> Closing the Gaps on Data Interoperability [PDF]</a></p>
+<p class="font-italic">Don Hemmelgarn</p>
+<p>PowerPoint presentation</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/aacton20080723-clustering.pdf" target="_blank"> Clustering Results Around Peaks for Full-Harmonic Analyses in ANSYS</a></p>
+<p class="font-italic">Aaron Acton (ANSYS, Inc.)</p>
+<p>&quot;This article presents a method for obtaining full harmonic solutions clustered around potential peak responses. Full harmonic analyses provide exact solutions, typically calculated at equally spaced intervals over the desired frequency range. Mode-superposition analyses, however, provide approximate solutions, but can be clustered around potential resonant peaks. The hybrid method discussed in this article uses a modal solution to determine natural frequencies, which are then used to calculate clusters of points surrounding those frequencies. Full harmonic solutions can then be performed at these clustered points. Examples and input les are provided in order to utilize this method.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Marc_Halpern7CVP_mh.pdf" target="_blank"> Collaborative Virtual Prototyping: A Product Development Imperative [PDF]</a></p>
+<p class="font-italic">Marc Halpern</p>
+<p>PowerPoint presentation</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/FLUID29andFLUID79.pdf" target="_blank"> Comparison of FLUID29 and FLUID79 Elements</a></p>
 <p class="font-italic">Carl Howard (University of Adelaide)</p>
-<p>Where to get help<br>
-Insufficient disk space<br>
-Bulk compression mode<br>
-Choice of solver<br>
-Element Normals<br>
-Boolean operations on solid models<br>
-Meshing<br>
-Loading an array from a file<br>
-Using ETABLE and extracting the results to an array<br>
-Output when using the GUI<br>
-Generating editable WMF figures</p>
+<p>&quot;Analyses were conducted to verify that similar results could be obtained by using the displacement formulated fluid elements FLUID79 or the pressure formulated fluid elements FLUID29.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf" target="_blank"> A 3D Dynamical Biomechanical Tongue Model to Study Speech Motor Control</a></p>
-<p class="font-italic">Jean-Michel Gérard, Reiner Wilhelms-Tricarico, Pascal Perrier &amp; Yohan Payan</p>
-<p>&quot;A 3D biomechanical dynamical model of human tongue is presented, that is elaborated in the aim to test hypotheses about speech motor control. Tissue elastic properties are accounted for in Finite Element Modeling (FEM). The FEM mesh was designed in order to facilitate the implementation of muscle arrangement within the tongue. Therefore, its structure was determined on the basis of accurate anatomical data about the tongue. Mechanically, the hypothesis of hyperelasticity was adopted with the Mooney-Rivlin formulation of the strain energy function. Muscles are modeled as general force generators that act on anatomically specified sets of nodes of the FEM structure. The 8 muscles that are known to be largely involved in the production of basic speech movements are modeled. The model and the solving of the Lagrangian equations of movement are implemented using the ANSYS™ software. Simulations of the influence of muscle activations onto the tongue shape are presented and analyzed.&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/LNCS3078_Chabanas.pdf" target="_blank"> Comparison of Linear and Non-linear Soft Tissue Models with Post-operative CT Scan in Maxillofacial Surgery</a></p>
+<p class="font-italic">Matthieu Chabanas, Yohan Payan, Christophe Marecaux, Pascal Swider, and Franck Boutault</p>
+<p>&quot;A Finite Element model of the face soft tissue is proposed to simulate the morphological outcomes of maxillofacial surgery. Three modelling options are implemented: a linear elastic model with small and large deformation hypothesis, and an hyperelastic Mooney-Rivlin model. An evaluation procedure based on a qualitative and quantitative comparison of the simulations with a post-operative CT scan is detailed. It is then applied to one clinical case to evaluate the differences between the three models, and with the actual patient morphology. First results shows in particular that for a “simple” clinical procedure where stress is less than 20%, a linear model seams sufficient for a correct modelling.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/HE_WB.zip" target="_blank"> High End Workbench Tip</a></p>
-<p class="font-italic">PADT</p>
-<p>Taken from PADT's SWAU group meeting on performing high-end analyses with Workbench Simulation.</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/cubeandsphere.pdf" target="_blank"> Comparison of Rectangular and Spherical Models</a></p>
+<p class="font-italic">Carl Howard (University of Adelaide)</p>
+<p>&quot;The purpose of this investigation was to compare the two modelling techniques for an infinite boundary. The first technique involves setting the elements on the edges of the model to have an absorptive property by changing the material properties so that mu=1. The second technique involves the use of infinite elements (infinite129) that must be placed on a constant radius curvature.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/Hyper.pdf" target="_blank"> On Stress Analysis For a Hyperelastic Material [PDF]</a></p>
-<p class="font-italic">Xiao-Yan Gong and Riyand Moe</p>
-<p>Paper using ANSYS 5.5 for characterizing hyperelastic materials with Mooney-Rivlin</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/STI0901_Compiling_UPFs.pdf" target="_blank"> Compiling UPFs and Creating Customized ANSYS Executables [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;ANSYS User Programmable Features (UPFs) are quite powerful means of customizing ANSYS beyond the scripting capabilities of the ANSYS Parametric Design Language (APDL). Writing one’s own constitutive models or complex loading functions or even creating a user-defined element are possible with UPFs.</p>
+<p>Because some users may find it challenging to get started using UPFs, this memo hopes to discuss general issues related to compiling and linking a customized version of ANSYS for Windows and Linux environments.&quot;</p>
+<p>(Week 51, week of 02/08/09)</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/IEEE00_LGC_umirror.pdf" target="_blank"> IEEE00_LGC_umirror.pdf</a></p>
-<p class="font-italic"></p>
-<p>IEEE00_LGC_umirror.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/IJSS2007.pdf" target="_blank"> IJSS2007.pdf</a></p>
-<p class="font-italic"></p>
-<p>IJSS2007.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/IMAPS_Shivesh.PDF" target="_blank"> IMAPS_Shivesh.PDF</a></p>
-<p class="font-italic"></p>
-<p>IMAPS_Shivesh.PDF</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/INTERP.zip" target="_blank"> INTERP.zip</a></p>
-<p class="font-italic">Vladimir Tkach (NPO Energomash)</p>
-<p>&quot;This example interpolates stress-strain curve by polynomial function - Strain=A1+A2<em>StressA3</em>Stress^2, in temperature area between Proportional, Yield and Ultimate stresses and reads it into ANSYS db-file.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/IPACK2005-73239.pdf" target="_blank"> IPACK2005-73239.pdf</a></p>
-<p class="font-italic"></p>
-<p>IPACK2005-73239.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Rayburn_USU_Paper.pdf" target="_blank"> Constellation Pathfinder: A University Nanosatellite</a></p>
+<p class="font-italic">C.D. Rayburn, H.E. Spence, H.E. Petschek, M. Bellino, J. Vickers, M. Murphy</p>
+<p>&quot;This paper updates the progress of the Constellation Pathfinder Mission (CPM) design. Specifically, preliminary results in areas including satellite design, orbital mechanics, thermal design, structural design, and attitude determination and control are discussed.&quot;</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

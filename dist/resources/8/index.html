@@ -93,6 +93,151 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip" target="_blank"> harmonic_and_random.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This zip file contains a simple example - single input PSD table for base excitation of a fictitious structure - run as both random vibration and harmonic response analyses. The user can review the contents of the two input files and see how one can relate harmonic analyses (the transfer function) to the response PSD in random vibration analyses. (Actually, one can also look it up in any dynamics textbook, but this just shows how one can do it in ANSYS.)</p>
+<p>(See also TFUN undocumented command to get the transfer function after a random vibration analysis.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip" target="_blank"> harmonic_cms.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple beam example showing procedure for using CMS (component mode synthesis). Same results for the full model (no CMS) and the CMS model.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/hyper_elasticcity_curvefitting.pdf" target="_blank"> hyper_elasticcity_curvefitting.pdf</a></p>
+<p class="font-italic"></p>
+<p>hyper_elasticcity_curvefitting.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/ibmrd3705C.pdf" target="_blank"> ibmrd3705C.pdf</a></p>
+<p class="font-italic"></p>
+<p>ibmrd3705C.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ibmrd3705E.pdf" target="_blank"> ibmrd3705E.pdf</a></p>
+<p class="font-italic"></p>
+<p>ibmrd3705E.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/icpkg.zip" target="_blank"> icpkg.zip</a></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;An example of IC package assembly using element birth and death - a simple 5-step die attach, injection molding, and cool-down processes during IC packaging. (compliments to Bill Bulat on concept)&quot;<br>
+Unzip the file and read in &quot;icpkg.inp&quot;.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip" target="_blank"> impedance.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip" target="_blank"> inistate.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a very simple example using Workbench Mechanical 12.0.1 to demonstrate use of the INISTATE command in defining initial stress.<br>
+Open Workbench 12.0.1 (or 12.1) and use &quot;File &gt; Restore Archive ...&quot;and select the zip file to open the model. Solving should take less than a minute.<br>
+The model is a simple bar. The first analysis branch has 10e3 psi initial stress only in the x-direction. Notice that the block is free to expand - it only has symmetry boundary conditions. The final results show basically zero stress and displacement of -8.1455e-4 inches. Since initial stress is 10e3 and elastic modulus is 29e6 with a length of 2.3622 inches:<br>
+10e3 / 29e6 * 2.3622 = 8.1455e-4<br>
+which is the same answer as given by ANSYS.</p>
+<p>The second analysis branch also has 10e3 psi initial stress only in x-direction. However, there is a Frictionless Support preventing the block from expanding. Final results show displacement basically of zero, and stress of 10e3 psi. This is because the initial stress cannot relax due to the boundary conditions, so the final stress = initial stress in this particular case.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip" target="_blank"> instantaneous_secant_TCE.zip</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Macro to convert instantaneous thermal coefficients of expansion to secant values, with example input file. (This is a zipped file)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/jhs.pdf" target="_blank"> jhs.pdf</a></p>
+<p class="font-italic"></p>
+<p>jhs.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/jm0323.pdf" target="_blank"> jm0323.pdf</a></p>
+<p class="font-italic"></p>
+<p>jm0323.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/kyshen.pdf" target="_blank"> kyshen.pdf</a></p>
+<p class="font-italic"></p>
+<p>kyshen.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/large_area_heinemann.pdf" target="_blank"> large_area_heinemann.pdf</a></p>
+<p class="font-italic"></p>
+<p>large_area_heinemann.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/lau.pdf" target="_blank"> lau.pdf</a></p>
+<p class="font-italic"></p>
+<p>lau.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/limit_load.pdf" target="_blank"> limit_load.pdf</a></p>
+<p class="font-italic"></p>
+<p>limit_load.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/marval_inzen_mech2007.pdf" target="_blank"> marval_inzen_mech2007.pdf</a></p>
+<p class="font-italic"></p>
+<p>marval_inzen_mech2007.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/mat2001_I1.pdf" target="_blank"> mat2001_I1.pdf</a></p>
+<p class="font-italic"></p>
+<p>mat2001_I1.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip" target="_blank"> matlab.zip</a></p>
+<p class="font-italic">Rick Morgans (Adelaide University)</p>
+<p>&quot;On this subject, I've been meaning to post these for ages -&gt; we've been using these macros to transfer variables between ansys and matlab for yonks. They write and read variables from ansys and matlab -&gt; you can check them out to see how they do it (i.e. I cant remember off of the top of my head) -&gt; I think they write out a format header then write the rest of the variable as a single column.</p>
+<p>varread.m<br>
+read variable into matlab</p>
+<p>varread.mac<br>
+read variable into ansys</p>
+<p>varreadc.m<br>
+read 2 column ansys variable into matlab as a complex variable</p>
+<p>varreadcp.m<br>
+read &quot;packed&quot;2 column variable into matlab as complex variable</p>
+<p>varreadp.m<br>
+read &quot;packed&quot;variable into matlab</p>
+<p>varreadp.mac<br>
+read &quot;packed&quot;variable into ansys</p>
+<p>varwrite.m<br>
+write a variable from matlab</p>
+<p>varwrite.mac<br>
+write a variable from ansys</p>
+<p>varwritep.mac<br>
+write a variable from ansys in &quot;packed&quot;format using a vmask&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf" target="_blank"> mems-thermal-analogy-fsi-damping.pdf</a></p>
+<p class="font-italic"></p>
+<p>mems-thermal-analogy-fsi-damping.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mems_1_of_3.pdf" target="_blank"> mems_1_of_3.pdf</a></p>
+<p class="font-italic"></p>
+<p>mems_1_of_3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/mems_2_of_3.pdf" target="_blank"> mems_2_of_3.pdf</a></p>
+<p class="font-italic"></p>
+<p>mems_2_of_3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mems_3_of_3.pdf" target="_blank"> mems_3_of_3.pdf</a></p>
+<p class="font-italic"></p>
+<p>mems_3_of_3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/memsissue1.pdf" target="_blank"> memsissue1.pdf</a></p>
+<p class="font-italic"></p>
+<p>memsissue1.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/memsissue2.pdf" target="_blank"> memsissue2.pdf</a></p>
+<p class="font-italic"></p>
+<p>memsissue2.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/memsissue3.pdf" target="_blank"> memsissue3.pdf</a></p>
+<p class="font-italic"></p>
+<p>memsissue3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/memsissue4.pdf" target="_blank"> memsissue4.pdf</a></p>
+<p class="font-italic"></p>
+<p>memsissue4.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/micro3.pdf" target="_blank"> micro3.pdf</a></p>
+<p class="font-italic"></p>
+<p>micro3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip" target="_blank"> muffler.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mutamba2.pdf" target="_blank"> mutamba2.pdf</a></p>
+<p class="font-italic"></p>
+<p>mutamba2.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mw2000_1031.pdf" target="_blank"> mw2000_1031.pdf</a></p>
+<p class="font-italic"></p>
+<p>mw2000_1031.pdf</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf" target="_blank"> nonlinear_problems_of_steel_civil_structures.pdf</a></p>
 <p class="font-italic">Milan Vasek</p>
 <p>&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;</p>
@@ -100,19 +245,6 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/numib695.pdf" target="_blank"> numib695.pdf</a></p>
 <p class="font-italic"></p>
 <p>numib695.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/object_oriented_defeaturing.pdf" target="_blank"> An Object Oriented Approach to Geometry Defeaturing for Finite Element Meshing [PDF]</a></p>
-<p class="font-italic">Anton V. Mobley, Michael P. Carroll, and Scott A. Canann</p>
-<p>&quot;In this paper, an object-oriented approach to automatic geometry defeaturing is presented. The geometric and finite element data abstractions are given, along with the basic algorithms used.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/p499-cristello.pdf" target="_blank"> Design Optimization of an Automotive Universal Joint Considering Manufacturing Cost</a></p>
-<p class="font-italic">Nick Cristello and Il Yong Kim</p>
-<p>&quot;This paper presents the shape optimization of an automotive universal joint, by simultaneously considering manufacturing cost, maximum drivable joint angle and part volume. Comprised of three main components - two yokes and a cross trunnion - a universal joint is a linkage used to transmit rotational motion from one shaft to another when the axes are coplanar, but not coinciding. In this research, universal joint designs are analyzed and compared using a weighted sum of three objective functions: minimization of machining cost, maximization of adjoining shaft joint angle, and minimization of total part volume. Part modeling and analysis is conducted using the Finite Element Analysis package ANSYS and optimization is implemented using MATLAB. The results show Pareto frontiers for both the flange and weld yoke, constructed using the Adaptive Weighted Sum technique. These frontiers clearly illustrate the trade-off between machining cost and joint angle; that is, to increase the joint angle, a corresponding increase in the cost of the part is required. It has been shown that maximization of driveable joint angle requires a simultaneous increase in machining cost of 4.4% and 2.7% for the flange and weld yoke, respectively.&quot;<br>
-[ANSYS Structural, version 9.0]</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/painless-conjugate-gradient.pdf" target="_blank"> An Introduction to the Conjugate Gradient Method Without the Agonizing Pain</a></p>
-<p class="font-italic">Jonathan R. Shewchuk</p>
-<p>This paper presents a very well-written explanation of conjugate gradient methods. It is helpful in understanding better the idea behind CG solvers in ANSYS (PCG, JCG, ICCG, AMG, etc.).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip" target="_blank"> penny3d.zip</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -126,26 +258,14 @@
 <p class="font-italic"></p>
 <p>popelar3.pdf</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/post_refinement_quad.pdf" target="_blank"> Post Refinement Element Shape Improvement for Quadrilaterial Meshes [PDF]</a></p>
-<p class="font-italic">Matthew L. Staten and Scott A. Canann</p>
-<p>&quot;This paper presents techniques for improving the quality of quadrilateral meshes after Schneiders' refinement. Improvement techniques use topology and node valence optimization rather than shape metrics. Hence, improvement is computationally inexpensive.&quot;</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip" target="_blank"> prony.zip</a></p>
 <p class="font-italic">John Thompson (ANSYS, Inc.)</p>
 <p>Macro to do curve-fitting for TB,PRONY constants for given relaxation data.<br>
 [STI: Note that, at 8.0 and above, curve-fitting of TB,PRONY is directly available in ANSYS with the TBFT command.]</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/radiation.pdf" target="_blank"> Radiation article in ANSYS Solutions Magazine [PDF]</a></p>
-<p class="font-italic">Dave Looman (ANSYS, Inc.)</p>
-<p>Overview of ANSYS's radiation capabilities, including a discussion on the radiosity solution method.</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/rbcm22.pdf" target="_blank"> rbcm22.pdf</a></p>
 <p class="font-italic"></p>
 <p>rbcm22.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/report35.pdf" target="_blank"> Creep Resistance and Creep Bending Resistance of Light Metal Matrix Composites for Research in Airframe Structural Effiency</a></p>
-<p class="font-italic">E. Neubauer and H.Peter Degischer</p>
-<p>&quot;Main aim of the research in the frame of the AMTT programme was the testing of a fiber reinforced Al-alloy. For investigation of the creep behaviour of this material, creep tests under bending were performed. The tested material was Al99.85+0.1%Mg reinforced with Al2O3 fibers (Altex/Sumitomo), which was prepared by means of gas pressure infiltration. Main benefit of such a material for application would be the lowering of the weight of the material without a loss of properties.&quot;(see Appendix A for ANSYS use in this document)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip" target="_blank"> roller.zip</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
@@ -158,109 +278,6 @@
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/skinner_thesis.pdf" target="_blank"> skinner_thesis.pdf</a></p>
 <p class="font-italic"></p>
 <p>skinner_thesis.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/solver_2002.pdf" target="_blank"> ANSYS Equation Solvers: Usage and Guidelines</a></p>
-<p class="font-italic">Gene Poole (ANSYS, Inc.)</p>
-<p>Discussion of ANSYS solvers, focusing on the sparse direct solver and PCG iterative solver.<br>
-Originally presented at the 2002 Conference.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/spice1.pdf" target="_blank"> spice1.pdf</a></p>
-<p class="font-italic"></p>
-<p>spice1.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/spice2.pdf" target="_blank"> spice2.pdf</a></p>
-<p class="font-italic"></p>
-<p>spice2.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/spie98.pdf" target="_blank"> spie98.pdf</a></p>
-<p class="font-italic"></p>
-<p>spie98.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/sprs_mprs.zip" target="_blank"> sprs_mprs.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>The attached zip file includes a simple example demonstrating the procedure to perform a single-point response spectrum (SPRS), where the excitation in 3 direction is applied together (using SRSS combination), not independently. The procedure for multi-point response spectrum (MPRS) is included as well for the same situation. An Excel spreadsheet shows that the results obtained for this simple model is the same for both methods (compare the mode coefficients for each squared mode in the spreadsheet).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/st_wave00.pdf" target="_blank"> Dynamic Pile Testing and Finite Element Calculations for the Bearing Capacity of a Quay Wall Foundation</a></p>
-<p class="font-italic">F. Kirsch, B. Plaßmann, T. Huch, W. Rodatz</p>
-<p>&quot;In April 1999 the construction of a new quay wall in the port of Hamburg started. In a first stage two new berths with an overall length of 1400 m will be built. In order to proof the bearing capacity of the foundation dynamic pile testing is performed to a great extent. To date more than thirty different piles were tested by the Institute for Foundation Engineering and Soil Mechanics of the Technical University of Braunschweig. In order to check for possible set-up effects redriven tests were performed. For comparison reasons static load tests were also carried out, one of which was done with an instrumented pile to allow skin friction and end bearing to be evaluated separately. The CAPWAP results proofed to be very helpful especially in those cases where the testing situation differed from the later service condition. Special questions called for detailed finite element analysis of the load-settlement behaviour of single piles in certain construction stages.&quot;<br>
-Although ANSYS is not explicitly mentioned, F. Kirsch also used ANSYS in two related papers, Stability of the vault developing over Soilcrete bodies and Ground Improvement and Its Numerical Analysis.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/substr-fullpost.zip" target="_blank"> substr-fullpost.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Fictitious model used to demonstrate substructuring. SETRAN and SESYMM are used to translate and reflect a superelement. RSPLIT and RSTOFF are also used, and postprocessing of the entire model (superelements and non-superelements) is shown.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/surfeff_final2.zip" target="_blank"> Structural surface Effect Elements, General Overview</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>An overview presentation and example workshop on structural surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/surfeff_final3.zip" target="_blank"> Thermal surface Effect Elements, General Overview</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>An overview presentation and example workshop on thermal surface effect elements. This is an old presentation I did at ANSYS 5.6.1, so if you use later versions of ANSYS, some of the menus and dialog boxes may have changed.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/t2107.pdf" target="_blank"> t2107.pdf</a></p>
-<p class="font-italic"></p>
-<p>t2107.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/ta_94-1.pdf" target="_blank"> Parameter Studies For Enhanced Integrity Of Reciprocating Compressor Foundation Blocks</a></p>
-<p class="font-italic">Jayant S. Mandke, Anthony J. Smalley</p>
-<p>&quot;The model development and analyses of reinforced concrete block used the ANSYS finite element program.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/tan_wei_200804_phd.pdf" target="_blank"> tan_wei_200804_phd.pdf</a></p>
-<p class="font-italic"></p>
-<p>tan_wei_200804_phd.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/tcontact.pdf" target="_blank"> Thermal contact overview [PDF]</a></p>
-<p class="font-italic">Yongyi Zhu (ANSYS, Inc.)</p>
-<p>Presentation on the thermal contact capabilities of the surface-to-surface contact elements, beta at 5.6.<br>
-Input file for pressure-dependent thermal conductance</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/thermal_comfort.pdf" target="_blank"> Predicting Human Thermal Comfort in a Transient Nonuniform Thermal Environment</a></p>
-<p class="font-italic">J.P. Rugh, R.B. Farrington, D. Bharathan, A. Vlahinos, R. Burke, C. Huizenga, and H. Zhang</p>
-<p>&quot;The National Renewable Energy Laboratory (NREL) has developed a suite of thermal comfort tools to assist in the development of smaller and more efficient climate control systems in automobiles. These tools, which include a 126-segment sweating manikin, a finite element physiological model of the human body, and a psychological model based on human subject testing, are designed to predict human thermal comfort in transient nonuniform thermal environments such as automobiles. The manikin measures the heat loss from the human body in the vehicle environment and sends the heat flux from each segment to the physiological model. The physiological model predicts the body’s response to the environment, determines 126 segment skin temperatures, sweat rates, and breathing rate, and transmits the data to the manikin. The psychological model uses temperature data from the physiological model to predict the local and global thermal comfort as a function of local skin and core temperatures and their rates of change. Results of initial integration testing show the thermal response of a manikin segment to transient environmental conditions.&quot;</p>
-<p>[ANSYS Thermal, version unknown]</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/tmi98.pdf" target="_blank"> A Vision-Based Technique for Objective Assessment of Burn Scars</a></p>
-<p class="font-italic">Leonid V. Tsap, Dmitry B. Goldgof, Sudeep Sarkar, and Pauline S. Powers</p>
-<p>&quot;In this paper a method for the objective assessment of burn scars is proposed. The quantitative measures developed in this research provide an objective way to calculate elastic properties of burn scars relative to the surrounding areas. The approach combines range data and the mechanics and motion dynamics of human tissues. Active contours are employed to locate regions of interest and to find displacements of feature points using automatically established correspondences. Changes in strain distribution over time are evaluated. Given images at two time instances and their corresponding features, the finite element method is used to synthesize strain distributions of the underlying tissues.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/tms95.pdf" target="_blank"> tms95.pdf</a></p>
-<p class="font-italic"></p>
-<p>tms95.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/transducers-paper_3.pdf" target="_blank"> transducers-paper_3.pdf</a></p>
-<p class="font-italic"></p>
-<p>transducers-paper_3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/tristano03.pdf" target="_blank"> Fully Automatic Adaptive Mesh Refinement Integrated into the Solution Process</a></p>
-<p class="font-italic">Joseph R. Tristano, Zhijan Chen, D. Alfred Hancq, Wa Kwok</p>
-<p>&quot;Finite element analysts and designers need to feel confident in the results of their analyses before sending a product to prototype or production. Mesh discretization can greatly influence the desired results. In this paper we present framework for adaptive mesh refinement to obtain FEA results with a desired accuracy. The process involves adaptively refining the mesh based on solution error norms until the result desired converges to certain accuracy. The adaptive refinement/meshing process must be fully automatic and very robust. We present an exhaustive method to create a fully automatic and integrated process that takes advantage of many of the mesh refinement and mesh optimization algorithms found in literature. The results of the process provide the user with the desired accuracy in the smallest number of iterations possible.&quot;</p>
-<p>[Workbench Simulation, version 7.1]</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/ultrasonic2000.pdf" target="_blank"> ultrasonic2000.pdf</a></p>
-<p class="font-italic"></p>
-<p>ultrasonic2000.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip" target="_blank"> user01.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Very simple example showing use of user-defined command (USER01).</p>
-<p>This UPF command simply reads and interpolates a defined table array. Use of the parevl() is also shown in this simple input.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/user_def1.pdf" target="_blank"> Advanced Tools for Design and Analyses of High Temperature Cyclic Loaded Turbine Components</a></p>
-<p class="font-italic">U. Gampe, I. Martynov, J. Keyser</p>
-<p>&quot;The paper presents a new concept to predict viscoplastic deformations in components under thermal mechanical loading. This approach is based both on material data from uniaxial creep tests and additional laboratory component tests to consider the influence of multiaxiality. This concept was used for analysis of feature tests of flat tensile specimens with central hole. The maximum test temperature was 600 °C and the surface of the hole was attacked by cyclic thermal shocks.&quot;(This paper refers to use of ANSYS User-Defined Materials. A related paper is Laboratory Component Testing for Investigation of Material Degradation from Creep-Fatigue Interaction.)</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/usermat.pdf" target="_blank"> usermat.pdf</a></p>
-<p class="font-italic"></p>
-<p>Document describing the USERMAT user material subroutine.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/visco_harmonic.zip" target="_blank"> Converting Prony Series to Frequency Domain</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example showing how to convert Prony series for viscoelasticity from time domain to frequency domain. This is to convert TB,PRONY to TB,ELASTIC/SDAMP for use in harmonic response analyses.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip" target="_blank"> VM256 with Workbench Mechanical</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Created a Workbench 12.0 version of VM256.<br>
-Useful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for J-integral and stress intensity factor calculations.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">
