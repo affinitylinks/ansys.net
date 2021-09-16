@@ -6,10 +6,16 @@
     "description": "This is an XML file that can be used in Workbench Mechanical to provide 12 common views aligned with the coordinate axes. The naming convention is \"Up-Axis + Axis of viewing\", i.e. \"Z+X\" means \"Z axis is up, looking in the direction of positive X\". To import this XML file into Workbench Mechanical, go to \"View menu > Windows > Manage Views\", then click on the \"Import...\" icon in the Manage Views panel to import this XML file."
   },
   {
-    "title": "ans-history.txt",
-    "author": "ansys.net",
+    "title": "Shaping Optimization of Turbine Disk and Bearing Seal",
+    "author": "Shen-Yeh Chen",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt",
+    "description": "Example of use of in-house optimization code with ANSYS to produce optimization of structures without parametric geometric information."
+  },
+  {
+    "title": "Unofficial History of ANSYS",
+    "author": "Shen-Yeh Chen (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt",
-    "description": "ANS-history.txt"
+    "description": "This is an unofficial history of Dr. Swanson and ANSYS."
   },
   {
     "title": "apdl.syn",
@@ -70,12 +76,6 @@
     "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
     "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
-  },
-  {
-    "title": "Shaping Optimization of Turbine Disk and Bearing Seal",
-    "author": "Shen-Yeh Chen",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt",
-    "description": "Example of use of in-house optimization code with ANSYS to produce optimization of structures without parametric geometric information."
   },
   {
     "title": "inventor.vbs",

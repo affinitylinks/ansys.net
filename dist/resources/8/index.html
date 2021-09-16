@@ -93,6 +93,187 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/STI0701_CMS_in_Simulation.zip" target="_blank"> Using CMS in Workbench Simulation [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;At Workbench 11.0, the ANSYS Rigid Dynamics add-on module enables users to model complex kinematic assemblies, whereby system-level performance as well as accurate force loading on components can be obtained.<br>
+Although the parts in the assembly may initially be considered rigid, an interesting, related method is the use of component mode synthesis (CMS) to account for the flexibility of parts. This memo will attempt to cover a way in which users can incorporate CMS in their multibody analyses in Workbench Simulation.&quot;<br>
+[For version 12.0, use supplied &quot;cms_use_v12.mac&quot;instead of &quot;cms_use.mac&quot;- courtesy of D. Creech.]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/STI08_PSOLVE.zip" target="_blank"> Using PSOLVE [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Although most often used for large-deflection prestressed modal analyses, PSOLVE has other applications which make it attractive to use, especially for large models.</p>
+<p>PSOLVE can be used for the following situations:</p>
+<p>Precise mass calculations<br>
+Detailed listing of contact pair information<br>
+Evaluation of tabular boundary conditions and loads</p>
+<p>Since PSOLVE is a partial solution (namely, calculation of element matrices), it is usually much faster than performing an actual solution. Hence, the user may obtain any (or all) of the above three types of information prior to running an actual analysis, which can be a valuable way of verifying model input and settings prior to solution.</p>
+<p>(Week 20, week of 07/14/02.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf" target="_blank"> Using a Heat Transfer Analogy to Solve for Squeeze Film Damping and Stiffness Coefficients in MEMS Structures</a></p>
+<p class="font-italic">Dale Ostergaard, Jan Mehner</p>
+<p>This paper provides background information on using a heat transfer analogy to solve the Reynolds equation (squeeze film damping). Although ANSYS now has FLUID136 and FLUID138 to solve such problems, this paper can be useful in gaining a better understanding of these types of analyses.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/STI0603_Radiosity_Solver_Simulation.pdf" target="_blank"> Using the Radiosity Solver in Workbench Simulation [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Please note that in Workbench Mechanical 12.1, surface-to-surface radiation (using the Radiosity Solution Method) has been introduced in the GUI, so this memo is obsolete if you use version 12.1 and higher.<br>
+&quot;Radiation can play an important role in heat transfer analyses. In Workbench Simulation 10.0, a “Radiation” load has been added to allow users to account for losses to the surroundings, although this does not include radiation exchange between surfaces.<br>
+For users wishing to utilize the ANSYS surface-to-surface radiation capabilities, this memo hopes to introduce an easy method to include these effects within Workbench Simulation via Named Selections and Command objects.<br>
+This type of methodology can be extended to include any other advanced solution feature of ANSYS which the user may wish to incorporate inside of Workbench Simulation.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/STI01_Remote_Solution_Manager.pdf" target="_blank"> Using the WB Simulation Remote Solution Manager [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Workbench Simulation has the ability to allow the user to solve multiple jobs locally or remotely. These capabilities are defined within the &quot;Solution” branch of WB Simulation as well as in the WB Remote Solution Manager.<br>
+&quot;This memo hopes to introduce this capability, especially with regards to solving multiple jobs locally on a Windows machine.&quot;<br>
+(Week 33, week of 04/02/06.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip" target="_blank"> VM256 with Workbench Mechanical</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Created a Workbench 12.0 version of VM256.<br>
+Useful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for J-integral and stress intensity factor calculations.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/vm267.zip" target="_blank"> VM267 with Workbench Mechanical</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Created a Workbench 12.0 version of VM267.<br>
+Useful for users who may wish to get a better understanding of implementing the CINT command inside of Workbench Mechanical for stress intensity factor calculations.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip" target="_blank"> Various MEMS Examples Using ANSYS [ZIP]</a></p>
+<p class="font-italic">(EPFL, The Swiss Federal Institute of Technology Lausanne)</p>
+<p>Tutorials on using ANSYS with various MEMS examples. This was originally taken from EPFL's website.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/VectorRotation.zip" target="_blank"> VectorRotation.zip</a></p>
+<p class="font-italic">Bob Weathers (Trane)</p>
+<p>&quot;These macros rotate a matrix of vectors from one set of Euler angles to another. One macro creates the rotation matrix and a second does the rotation. To test the macros, a pressurized cylinder (or optionally a sphere) is built, meshed, and solved in 6 different coordinate systems. To check accuracy, results are rotated from one CSYS to another by the macros and then compared to ANSYS. Set your text editor's tab stops to 2 for macro readability.&quot;</p>
+<p>In the zip file, &quot;zTestRotationVector.mac&quot;is the test model macro, and &quot;zRotateVector.mac&quot;is the main macro to rotate vectors.</p>
+<p>Update 02/07/2009: correction to zRotateVector.mac provided by David Creech.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/10.pdf" target="_blank"> Vibration Prediction in Switched Reluctance Motors With Transfer Function Identification From Shaker and Force Hammer Tests</a></p>
+<p class="font-italic">Zhangjun Tang, Pragasen Pillay, and Avoki M. Omekanda</p>
+<p>&quot;A vibration prediction model for the switched reluctance motor is constructed in this paper. Shaker and force hammer tests for vibration measurement are used for measuring crucial parameters like modal frequency and damping ratio for the transfer function. A detailed lookup table of normal force versus phase current and rotor angle is constructed based on finite-element calculations. The model is then verified by experiments, with acceptable accuracy.&quot;<br>
+[ANSYS Low-Frequency Electromagnetics, version unspecified]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/marval_inzen_mech2007.pdf" target="_blank"> Viscoelastic Properties of Filled Rubber. Experimental Observations and Material Modelling</a></p>
+<p class="font-italic">Bohdana Marvalova</p>
+<p>&quot;The paper presents an application of a phenomenological material model for a viscoelastic stress response at large strains. The model is used for the simulation of carbon-black filled rubber in monotonic and cyclic deformation processes under isothermal conditions. The material stress response is decomposed into two constitutive parts which act in parallel: an elastic equilibrium stress response and a rate-dependent viscoelastic overstress response. The response of a particular filled rubber in the cyclic and relaxation tests was measured experimentally. The parameters of the constitutive functions are determined from the experimental data by an identification process employing nonlinear optimization methods. The paper concludes with a simulation by FEM of the cyclic loading of a simple rubber specimen.&quot;<br>
+[ANSYS Nonlinear, version 10]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf" target="_blank"> Viscoelasticity</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the &quot;Advanced Analysis with ANSYS&quot;seminar during the 2002 User's Conference).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/STI0807_Viscoelasticity.zip" target="_blank"> Viscoelasticity [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Viscoelastic constitutive models allow users to analyze the time-dependent relaxation or creep behavior of materials, including glass, polymers, solid rocket propellants, to name a few. One may view viscoelastic materials as containing an elastic and viscous component, similar to a spring and dashpot in series. This memo will introduce viscoelastic input in ANSYS and as well as cover curve-fitting procedures.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/acton20081119-visualizing_matrices.pdf" target="_blank"> Visualizing structural matrices in ANSYS using APDL</a></p>
+<p class="font-italic">Aaron Acton (ANSYS, Inc.)</p>
+<p>&quot;This article presents a method of visualizing structural matrices used in finite-element analysis using ANSYS and the ANSYS Parametric Design Language (APDL). The information is intended to provide some insight into the nature of structural matrices used in finite-element codes. Some terms used in sparse-matrix arithmetic are discussed, and methods for calculating certain quantities are provided. A test model is constructed to demonstrate how the stiffness, mass, and damping matrices may be visualized for various systems. The effect of element shape, element type (including superelements), element reordering, and equation reordering on structural matrices is briefly investigated.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Week_20_Windows_File_Association.pdf" target="_blank"> Windows file association for ANSYS files [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>How to associate database, graphics, and input files with ANSYS under Windows, so one can launch ANSYS more easily without the ANSYS launcher.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/IMAPS_Shivesh.PDF" target="_blank"> Wire Bond Temperature Sensor</a></p>
+<p class="font-italic">Shivesh Suman, Michael Gaitan, Yogendra Joshi, George Harman</p>
+<p>&quot;This work reports the first demonstration of a bond pad test structure with embedded thermopile sensors for the measurement of the transient temperature response during the wire bonding operation. This paper will present the design and operation of the bond pad test structure and show and discuss temperature measurements during the wire bonding operation.&quot;<br>
+[ANSYS Thermal, version unknown]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Material_XML.zip" target="_blank"> Workbench XML Material Format</a></p>
+<p class="font-italic">ANSYS, Inc.</p>
+<p>ANSYS Workbench Engineering Data module (e.g., Workbench Simulation, Workbench FE Modeler) can import/export material data as XML files. These XML files utilize the MatML format, and this zip file contains an example. This can be useful for users wishing to generate their own material libraries in XML format outside of Workbench Engineering Data.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/acton20080825-condition_number.pdf" target="_blank"> acton20080825-condition_number.pdf</a></p>
+<p class="font-italic">Aaron Acton (ANSYS, Inc.)</p>
+<p>&quot;This article presents an overview of the condition number for a matrix and the potential effect of ill conditioning on the solution of a system of linear equations. The information is intended to be general, although specific information relevant to finite-element analysis is also included. Vector and matrix norms are introduced before defining the condition number, and the choice of matrix norm in the calculation of the condition number is discussed. A method of estimating the condition number is also provided, including a sample implementation in the ANSYS Parametric Design Language (APDL).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ansys25b.pdf" target="_blank"> ansys25b.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys25b.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_news_1995_3.pdf" target="_blank"> ansys_news_1995_3.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_news_1995_3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_news_1995_4.pdf" target="_blank"> ansys_news_1995_4.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_news_1995_4.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ansys_news_1996_2.pdf" target="_blank"> ansys_news_1996_2.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_news_1996_2.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ansys_news_1996_3.pdf" target="_blank"> ansys_news_1996_3.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_news_1996_3.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ansys_short_course.pdf" target="_blank"> ansys_short_course.pdf</a></p>
+<p class="font-italic">Tim Langlais (University of Minnesota)</p>
+<p>A short course on ANSYS, using ANSYS 5.4.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_solutions_2002_winter.pdf" target="_blank"> ansys_solutions_2002_winter.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_solutions_2002_winter.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ansys_solutions_2003_fall.pdf" target="_blank"> ansys_solutions_2003_fall.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_solutions_2003_fall.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/ansys_solutions_2003_spring.pdf" target="_blank"> ansys_solutions_2003_spring.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_solutions_2003_spring.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_solutions_2003_summer.pdf" target="_blank"> ansys_solutions_2003_summer.pdf</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>ansys_solutions_2003_summer.pdf</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/batch.zip" target="_blank"> batch.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is an example of how to drag-and-drop a .db file onto a DOS batch file to initiate an analysis.</p>
+<p>Unzip the file and rename &quot;Run Nonlinear.txt &quot;to Run Nonlinear.bat&quot;. Place it on your desktop.</p>
+<p>Place &quot;solve_batch.inp&quot;in your D: drive or edit &quot;Run Nonlinear.bat&quot;to change the location of this APDL input file.</p>
+<p>Drag and drop any .db file containing a ready-to-solve nonlinear analysis onto &quot;Run Nonlinear.bat&quot;.</p>
+<p>You will find that the solution will initiate in the same working directory, and you can also track the nonlinear solution graphically as the solution is solving in batch.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip" target="_blank"> boot.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Old model originally created back in ANSYS 6.0. Recently tested and seems to solve fine as-is in ANSYS 12.1, so I expect all versions in-between should run fine, too. Hyperelasticity, self-contact, rigid-deformable contact are present. Animation of same model (with finer mesh) is on the gallery page.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/closed_tank.zip" target="_blank"> closed_tank.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Comparison of FLUID30 (acoustic fluid element) and FLUID80 (contained fluid element) for sloshing in a tank.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/STI01_Creating_Custom_Animations.zip" target="_blank"> creating Custom Animations [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Animations are quite useful, both in presenting results of an analysis to others as well as obtaining better insight into the complex response of a system. While ANSYS has many built-in animation capabilities, sometimes, it may be necessary to create a macro for a customized animation. This memo covers one method of generating such animations.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/dakota.zip" target="_blank"> dakota.zip</a></p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>&quot;I recently experimented with coupling ANSYS and DAKOTA, and thought the list might be interested in the results. DAKOTA, if you're not familiar with it, is a public-domain optimization code available from Sandia National Laboratories (see <a href="http://endo.sandia.gov/DAKOTA/" target="_blank" rel="noopener noreferrer">http://endo.sandia.gov/DAKOTA/</a>). It has several advanced optimization algorithms (e.g., genetic algorithms), supports discrete variables, and has several other features that make it a nice complement to the optimization and probabilistic design modules within ANSYS. And it's FREE.</p>
+<p>&quot;Anyways, the procedure for using DAKOTA with ANSYS consists of creating a DAKOTA input file (DAKOTA in the attachments) that identifies the design variables, state variables, optimization method, etc. Also, within this file you identify the command to be issued to execute the code you are using to generate the response variables (analysis_driver = 'ansys.prl', in the attached example). To execute ANSYS I use an intermediate Perl script (ansys.prl) that translates the design variable file generated by DAKOTA (parameters_file = 'dakota.dv') into something ANSYS can understand (written out to ansys.dv). The Perl script then executes ANSYS. Note that the Perl script is general purpose -- it should work for any application. The only thing you should need to change is filenames, in particular the name of your ANSYS script (in my example, 'ANSYS'). The ANSYS script reads in the design variable file using /INPUT, performs the analysis, then outputs the result variables to a file (results_file = 'dakota.rv') using *CFOPEN and *VWRITE.</p>
+<p>&quot;To execute the analysis you use (for example) the command line: dakota -i DAKOTA &gt; dakota.log &amp;</p>
+<p>&quot;That's pretty much it. Pretty straightforward once you figure out the DAKOTA input file syntax. The attached example is the simple beam optimization problem used in the ANSYS documentation.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/demotlbr.zip" target="_blank"> demotlbr.zip</a></p>
+<p class="font-italic">(PADT)</p>
+<p>&quot;To use this demonstration of the ANSYS toolbar capabilities extract these files to your working directory. You must then copy the tlbrlist61.ans file from the ANSYS installation docu/english/tlbrlist61.ans to your working directory. Add DEMO.TLB to the bottom of the file. Run ANSYS and then move the split bar at the bottom up to show the bottom pane where the demo toolbar is embedded.&quot;<br>
+Example showing how to customize the ANSYS 6.1 Toolbar.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/elastdata_Unix.zip" target="_blank"> elastdata_Unix.zip</a></p>
+<p class="font-italic">Hursha Narayan (Robert Bosch Corporation)</p>
+<p>Macro for a fully automated procedure for calculating M-R coefficients from Test Data<br>
+&quot;I have developed a macro that fully automates the importing of elastomer test data into ANSYS and calculate the Mooney-Rivlin coefficients. The macro uses Lagrange interpolation technique to calculate the stress data at equal intervals of strain. This can then be read into an array in ANSYS to evaluate the M-R coeffs. I'm sending you Windows and Unix version of the macro. The difference between the two versions are in the awk and script files that I use to manipulate data. The user needs to go through all the files just to change the directories where the files will be located and accessed. The files reformat(Unix) and reformat.csh(windows) should have rwx permissions. The reformat.csh used in windows can be converted to a batch file. Awk utility should be available under windows. The procedure expects Simple Tension, Planar Tension and Biaxial Extension data to be available.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf" target="_blank"> expansion.pdf</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/grph2svg.zip" target="_blank"> grph2svg.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a quick hack I did to generate SVG files from within ANSYS. There are 3 macros contained in the zip file: GRPH2SVG.MAC is the main one, and the other two are called by GRPH2SVG.</p>
+<p>The macro redirects the plot to an ANSYS Graphics file &quot;stiplot.grph&quot;. Then, the macro parses through the GRPH file and generates an SVG file called &quot;stiplot.svg&quot;. You can change the font, font size, etc. as you see fit from within the macro. (For details on the contents of the GRPH file, refer to the ANSYS Programmer's Guide for details.)</p>
+<p>Because this parses the GRPH file from within ANSYS, it is slow for complex plots, so I recommend using it only for XY plots — this is only meant to serve as an example of what can be done with APDL and reading the GRPH file contents. Also, I did not bother including support for raster graphics - this macro only supports vector graphics. (If you want raster graphics, use of PNG is better. SVG is really a vector graphics implementation.)</p>
+<p>If you're running Firefox, or if you use Internet Explorer and have the Adobe SVG Viewer Plug-in, you can see a sample contour plot and sample XY plot generated from this macro.</p>
+<p>Because this was created by hand, there may be mistakes - you can let me know if you encounter any. Otherwise, instead of using this macro, you can create an EPS file and use your favorite illustration software to convert it to an SVG file.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/harmonic_and_random.zip" target="_blank"> harmonic_and_random.zip</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>This zip file contains a simple example - single input PSD table for base excitation of a fictitious structure - run as both random vibration and harmonic response analyses. The user can review the contents of the two input files and see how one can relate harmonic analyses (the transfer function) to the response PSD in random vibration analyses. (Actually, one can also look it up in any dynamics textbook, but this just shows how one can do it in ANSYS.)</p>
@@ -102,182 +283,10 @@
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>Simple beam example showing procedure for using CMS (component mode synthesis). Same results for the full model (no CMS) and the CMS model.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/hyper_elasticcity_curvefitting.pdf" target="_blank"> hyper_elasticcity_curvefitting.pdf</a></p>
-<p class="font-italic"></p>
-<p>hyper_elasticcity_curvefitting.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/ibmrd3705C.pdf" target="_blank"> ibmrd3705C.pdf</a></p>
-<p class="font-italic"></p>
-<p>ibmrd3705C.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ibmrd3705E.pdf" target="_blank"> ibmrd3705E.pdf</a></p>
-<p class="font-italic"></p>
-<p>ibmrd3705E.pdf</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/icpkg.zip" target="_blank"> icpkg.zip</a></p>
 <p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
 <p>&quot;An example of IC package assembly using element birth and death - a simple 5-step die attach, injection molding, and cool-down processes during IC packaging. (compliments to Bill Bulat on concept)&quot;<br>
 Unzip the file and read in &quot;icpkg.inp&quot;.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip" target="_blank"> impedance.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip" target="_blank"> inistate.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>This is a very simple example using Workbench Mechanical 12.0.1 to demonstrate use of the INISTATE command in defining initial stress.<br>
-Open Workbench 12.0.1 (or 12.1) and use &quot;File &gt; Restore Archive ...&quot;and select the zip file to open the model. Solving should take less than a minute.<br>
-The model is a simple bar. The first analysis branch has 10e3 psi initial stress only in the x-direction. Notice that the block is free to expand - it only has symmetry boundary conditions. The final results show basically zero stress and displacement of -8.1455e-4 inches. Since initial stress is 10e3 and elastic modulus is 29e6 with a length of 2.3622 inches:<br>
-10e3 / 29e6 * 2.3622 = 8.1455e-4<br>
-which is the same answer as given by ANSYS.</p>
-<p>The second analysis branch also has 10e3 psi initial stress only in x-direction. However, there is a Frictionless Support preventing the block from expanding. Final results show displacement basically of zero, and stress of 10e3 psi. This is because the initial stress cannot relax due to the boundary conditions, so the final stress = initial stress in this particular case.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip" target="_blank"> instantaneous_secant_TCE.zip</a></p>
-<p class="font-italic">Bill Bulat (CSI)</p>
-<p>Macro to convert instantaneous thermal coefficients of expansion to secant values, with example input file. (This is a zipped file)</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/jhs.pdf" target="_blank"> jhs.pdf</a></p>
-<p class="font-italic"></p>
-<p>jhs.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/jm0323.pdf" target="_blank"> jm0323.pdf</a></p>
-<p class="font-italic"></p>
-<p>jm0323.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/kyshen.pdf" target="_blank"> kyshen.pdf</a></p>
-<p class="font-italic"></p>
-<p>kyshen.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/large_area_heinemann.pdf" target="_blank"> large_area_heinemann.pdf</a></p>
-<p class="font-italic"></p>
-<p>large_area_heinemann.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/lau.pdf" target="_blank"> lau.pdf</a></p>
-<p class="font-italic"></p>
-<p>lau.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/limit_load.pdf" target="_blank"> limit_load.pdf</a></p>
-<p class="font-italic"></p>
-<p>limit_load.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/marval_inzen_mech2007.pdf" target="_blank"> marval_inzen_mech2007.pdf</a></p>
-<p class="font-italic"></p>
-<p>marval_inzen_mech2007.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/mat2001_I1.pdf" target="_blank"> mat2001_I1.pdf</a></p>
-<p class="font-italic"></p>
-<p>mat2001_I1.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip" target="_blank"> matlab.zip</a></p>
-<p class="font-italic">Rick Morgans (Adelaide University)</p>
-<p>&quot;On this subject, I've been meaning to post these for ages -&gt; we've been using these macros to transfer variables between ansys and matlab for yonks. They write and read variables from ansys and matlab -&gt; you can check them out to see how they do it (i.e. I cant remember off of the top of my head) -&gt; I think they write out a format header then write the rest of the variable as a single column.</p>
-<p>varread.m<br>
-read variable into matlab</p>
-<p>varread.mac<br>
-read variable into ansys</p>
-<p>varreadc.m<br>
-read 2 column ansys variable into matlab as a complex variable</p>
-<p>varreadcp.m<br>
-read &quot;packed&quot;2 column variable into matlab as complex variable</p>
-<p>varreadp.m<br>
-read &quot;packed&quot;variable into matlab</p>
-<p>varreadp.mac<br>
-read &quot;packed&quot;variable into ansys</p>
-<p>varwrite.m<br>
-write a variable from matlab</p>
-<p>varwrite.mac<br>
-write a variable from ansys</p>
-<p>varwritep.mac<br>
-write a variable from ansys in &quot;packed&quot;format using a vmask&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf" target="_blank"> mems-thermal-analogy-fsi-damping.pdf</a></p>
-<p class="font-italic"></p>
-<p>mems-thermal-analogy-fsi-damping.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mems_1_of_3.pdf" target="_blank"> mems_1_of_3.pdf</a></p>
-<p class="font-italic"></p>
-<p>mems_1_of_3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/mems_2_of_3.pdf" target="_blank"> mems_2_of_3.pdf</a></p>
-<p class="font-italic"></p>
-<p>mems_2_of_3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mems_3_of_3.pdf" target="_blank"> mems_3_of_3.pdf</a></p>
-<p class="font-italic"></p>
-<p>mems_3_of_3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/memsissue1.pdf" target="_blank"> memsissue1.pdf</a></p>
-<p class="font-italic"></p>
-<p>memsissue1.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/memsissue2.pdf" target="_blank"> memsissue2.pdf</a></p>
-<p class="font-italic"></p>
-<p>memsissue2.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/memsissue3.pdf" target="_blank"> memsissue3.pdf</a></p>
-<p class="font-italic"></p>
-<p>memsissue3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/memsissue4.pdf" target="_blank"> memsissue4.pdf</a></p>
-<p class="font-italic"></p>
-<p>memsissue4.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/micro3.pdf" target="_blank"> micro3.pdf</a></p>
-<p class="font-italic"></p>
-<p>micro3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip" target="_blank"> muffler.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mutamba2.pdf" target="_blank"> mutamba2.pdf</a></p>
-<p class="font-italic"></p>
-<p>mutamba2.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mw2000_1031.pdf" target="_blank"> mw2000_1031.pdf</a></p>
-<p class="font-italic"></p>
-<p>mw2000_1031.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf" target="_blank"> nonlinear_problems_of_steel_civil_structures.pdf</a></p>
-<p class="font-italic">Milan Vasek</p>
-<p>&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/numib695.pdf" target="_blank"> numib695.pdf</a></p>
-<p class="font-italic"></p>
-<p>numib695.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip" target="_blank"> penny3d.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example using ANSYS Workbench 12.0 to show one way to generate a penny-shaped crack (3D crack) for fracture mechanics (using CINT command to evaluate J-integral and stress intensity factors).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/popelar1.pdf" target="_blank"> popelar1.pdf</a></p>
-<p class="font-italic"></p>
-<p>popelar1.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/popelar3.pdf" target="_blank"> popelar3.pdf</a></p>
-<p class="font-italic"></p>
-<p>popelar3.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip" target="_blank"> prony.zip</a></p>
-<p class="font-italic">John Thompson (ANSYS, Inc.)</p>
-<p>Macro to do curve-fitting for TB,PRONY constants for given relaxation data.<br>
-[STI: Note that, at 8.0 and above, curve-fitting of TB,PRONY is directly available in ANSYS with the TBFT command.]</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/rbcm22.pdf" target="_blank"> rbcm22.pdf</a></p>
-<p class="font-italic"></p>
-<p>rbcm22.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip" target="_blank"> roller.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip" target="_blank"> siysdcap</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Tip on visualizing the Drucker-Prager Cap model yield surface.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/skinner_thesis.pdf" target="_blank"> skinner_thesis.pdf</a></p>
-<p class="font-italic"></p>
-<p>skinner_thesis.pdf</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">
