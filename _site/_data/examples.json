@@ -3,253 +3,19 @@
     "title": "arch_buck.inp",
     "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/arch_buck.inp",
-    "description": "Buckling of arch (example of use of pressure load stiffness matrix). For many eigenvalue (and nonlinear) buckling problems, inclusion of the pressure load stiffness matrix (BEAM188/189, SHELL181, SURF154) significantly affects results. For nonlinear buckling problems, this may also affect convergence rate. \r\n -Theoretical: 771.12 \r\n -SHELL93 only (1st eig 840.73) \r\n -SHELL181 only (1st eig 771.72) \r\n -SHELL93 & SURF154 (1st eig 771.07) \r\n -SHELL93 & SURF154, face 4 (1st eig 840.78) \r\n \r\n Change \"COMPTYPE\" parameter to run above 4 cases."
+    "description": "Buckling of arch (example of use of pressure load stiffness matrix). For many eigenvalue (and nonlinear) buckling problems, inclusion of the pressure load stiffness matrix (BEAM188/189, SHELL181, SURF154) significantly affects results. For nonlinear buckling problems, this may also affect convergence rate. \n -Theoretical: 771.12 \n -SHELL93 only (1st eig 840.73) \n -SHELL181 only (1st eig 771.72) \n -SHELL93 & SURF154 (1st eig 771.07) \n -SHELL93 & SURF154, face 4 (1st eig 840.78) \n \n Change \"COMPTYPE\" parameter to run above 4 cases."
   },
   {
-    "title": "bow.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp",
-    "description": "Bowshock Benchmark"
-  },
-  {
-    "title": "conv_fins.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp",
-    "description": "Natural convection problem (2D tri) three \"fins\" heated"
-  },
-  {
-    "title": "cylinflo.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp",
-    "description": "simple cylinder in open air"
-  },
-  {
-    "title": "large_rotat.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp",
-    "description": "Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time."
-  },
-  {
-    "title": "plate_cms.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp",
-    "description": "plate_cms.inp"
-  },
-  {
-    "title": "radairgap.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp",
-    "description": "radairgap.inp"
-  },
-  {
-    "title": "rv-lmm.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp",
-    "description": "rv-lmm.inp"
-  },
-  {
-    "title": "shell-abd.inp",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp",
-    "description": "Simple example showing how to calculate the A, B, D, and E matrices for general shell input for a single layer (homogenous) shell. The A, B, D, and E matrices are the shell membrane, coupling, bending, and transverse shear stiffness relationships."
-  },
-  {
-    "title": "spec-acc-vel-mpt.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp",
-    "description": "spec-acc-vel-mpt.inp"
-  },
-  {
-    "title": "torsion3.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp",
-    "description": "torsion3.inp"
-  },
-  {
-    "title": "weld.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp",
-    "description": "weld.inp"
-  },
-  {
-    "title": "dadd.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp",
-    "description": "dadd.inp"
-  },
-  {
-    "title": "fluid_pres.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp",
-    "description": "Example showing 'fluid pressure' contact, beta at 5.6."
-  },
-  {
-    "title": "harm-full-ex.inp",
-    "author": "David Haberman (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp",
-    "description": "Direct displacement method (full harmonic with applied displacment). Modal analysis then frequency sweep. Results are scaled to get acceleration, displacement, and g's vs frequency."
-  },
-  {
-    "title": "rigidbody_rotation.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp",
-    "description": "rigidbody_rotation.inp"
-  },
-  {
-    "title": "rv-nf.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/rv-nf.inp",
-    "description": "rv-nf.inp"
-  },
-  {
-    "title": "shell131rdsf.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp",
-    "description": "shell131rdsf.inp"
-  },
-  {
-    "title": "spec-acc.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp",
-    "description": "spec-acc.inp"
-  },
-  {
-    "title": "therm_cont.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp",
-    "description": "therm_cont.inp"
-  },
-  {
-    "title": "compfillet.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp",
-    "description": "compfillet.inp"
-  },
-  {
-    "title": "couette.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp",
-    "description": "couette.inp"
-  },
-  {
-    "title": "forced_conv.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/forced_conv.inp",
-    "description": "forced_conv.inp"
-  },
-  {
-    "title": "gasket.inp",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/gasket.inp",
-    "description": "Very simple example showing how to use element birth & death to include a non-uniform initial gap. Usually, initial gap for gasket material (TB,GASKET,,,,PARA) is assumed to be a uniform input. By using element birth and death while perturbing the nodes, one can include a non-uniform initial gap."
-  },
-  {
-    "title": "harm-lmm-clust.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/harm-lmm-clust.inp",
-    "description": "harm-lmm-clust.inp"
-  },
-  {
-    "title": "ibeam_181.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp",
-    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \r\n * BEAM188 (Unrestrained warping) -- 387.3 \r\n * BEAM188 (Restrained warping) -- 569.6 \r\n * SHELL181 (concentrated load) -- 560.8 \r\n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \r\n \r\n This input file uses SHELL181."
-  },
-  {
-    "title": "rv-press-fm.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp",
-    "description": "rv-press-fm.inp"
-  },
-  {
-    "title": "shell_cont.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp",
-    "description": "Input file demonstrating plasticity, contact, finite strain. Also shows benefit of line search activated."
-  },
-  {
-    "title": "spec-pulse2.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/spec-pulse2.inp",
-    "description": "spec-pulse2.inp"
-  },
-  {
-    "title": "transient2.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp",
-    "description": "transient2.inp"
-  },
-  {
-    "title": "tr-lmm-acc-mspt-2.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/tr-lmm-acc-mspt-2.inp",
-    "description": "tr-lmm-acc-mspt-2.inp"
-  },
-  {
-    "title": "contact_shell.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp",
-    "description": "Shows rigid-flexible contact w/ shell offset."
-  },
-  {
-    "title": "curing.inp",
+    "title": "ballshear.inp",
     "author": "Steve Groothuis (Micron Technology, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp",
-    "description": "\"Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (\"Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.\", PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).\""
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp",
+    "description": "\"I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper's Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).\""
   },
   {
-    "title": "fanbox2.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/fanbox2.inp",
-    "description": "fanbox2.inp"
-  },
-  {
-    "title": "foundation.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/foundation.inp",
-    "description": "foundation.inp"
-  },
-  {
-    "title": "harm-lmm-spec.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/harm-lmm-spec.inp",
-    "description": "harm-lmm-spec.inp"
-  },
-  {
-    "title": "ibeam_188.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp",
-    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \r\n * BEAM188 (Unrestrained warping) -- 387.3 \r\n * BEAM188 (Restrained warping) -- 569.6 \r\n * SHELL181 (concentrated load) -- 560.8 \r\n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \r\n \r\n This input file uses BEAM188."
-  },
-  {
-    "title": "microoven.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp",
-    "description": "microoven.inp"
-  },
-  {
-    "title": "nip.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp",
-    "description": "nip.inp"
-  },
-  {
-    "title": "rv-press-rm.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rv-press-rm.inp",
-    "description": "rv-press-rm.inp"
-  },
-  {
-    "title": "sphere.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp",
-    "description": "sphere.inp"
-  },
-  {
-    "title": "tr-lmm-acc-mspt-sin.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/tr-lmm-acc-mspt-sin.inp",
-    "description": "tr-lmm-acc-mspt-sin.inp"
-  },
-  {
-    "title": "vortex.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/vortex.inp",
-    "description": "vortex.inp"
-  },
-  {
-    "title": "coupled-seq.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp",
-    "description": "coupled-seq.inp"
-  },
-  {
-    "title": "harm-lmm.inp",
-    "author": "David Haberman (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/harm-lmm.inp",
-    "description": "Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique."
-  },
-  {
-    "title": "hfth.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/hfth.inp",
-    "description": "hfth.inp"
-  },
-  {
-    "title": "offset.inp",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/offset.inp",
-    "description": "Shows difference between geometric offset and contact offset (CNOF real constant), useful in interference fit problems (so you don't have to modify geometry iteratively)."
-  },
-  {
-    "title": "tr-lmm-acc-mspt.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/tr-lmm-acc-mspt.inp",
-    "description": "tr-lmm-acc-mspt.inp"
+    "title": "bar.inp",
+    "author": "Timothy Berger (UCLA)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp",
+    "description": "\"I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.\" \n\n For additional notes by author, see contents of macro for more details."
   },
   {
     "title": "beam176cross.inp",
@@ -259,98 +25,21 @@
   },
   {
     "title": "block_rad.inp",
+    "author": "Kal Torak",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp",
-    "description": "block_rad.inp"
+    "description": "Simple input file showing radiation between two blocks using /AUX12 radiation matrix method."
+  },
+  {
+    "title": "bow.inp",
+    "author": "Mark Troscinski (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp",
+    "description": "Example of bowshock on cylinder."
   },
   {
     "title": "cnhtxfr2.inp",
+    "author": "Brad Lamirand (Cooper Turbocompressor, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cnhtxfr2.inp",
-    "description": "cnhtxfr2.inp"
-  },
-  {
-    "title": "contpres.inp",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp",
-    "description": "Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements)."
-  },
-  {
-    "title": "HARMC_EMM.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/HARMC_EMM.inp",
-    "description": "HARMC_EMM.inp"
-  },
-  {
-    "title": "hgen.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/hgen.inp",
-    "description": "hgen.inp"
-  },
-  {
-    "title": "impulse.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/impulse.inp",
-    "description": "impulse.inp"
-  },
-  {
-    "title": "resvec.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/resvec.inp",
-    "description": "resvec.inp"
-  },
-  {
-    "title": "simpleshellcontactexample.inp",
-    "author": "Bob Weathers (Trane)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp",
-    "description": "Shows a simple example of contact with shells, shell offset key, and pretension elements."
-  },
-  {
-    "title": "tr-lsm-el-mspt.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/tr-lsm-el-mspt.inp",
-    "description": "tr-lsm-el-mspt.inp"
-  },
-  {
-    "title": "control.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp",
-    "description": "control.inp"
-  },
-  {
-    "title": "elbow290.inp",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp",
-    "description": "Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs."
-  },
-  {
-    "title": "in-3d.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/in-3d.inp",
-    "description": "in-3d.inp"
-  },
-  {
-    "title": "nat_conv3d.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/nat_conv3d.inp",
-    "description": "nat_conv3d.inp"
-  },
-  {
-    "title": "outres.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp",
-    "description": "outres.inp"
-  },
-  {
-    "title": "preten_bolt.inp",
-    "author": "Sheldon Imaoka (CSI)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/preten_bolt.inp",
-    "description": "Example demonstrating pretension (bolt) element PRETS179."
-  },
-  {
-    "title": "surf_traction.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/surf_traction.inp",
-    "description": "surf_traction.inp"
-  },
-  {
-    "title": "tr-lsm-f-mspt.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tr-lsm-f-mspt.inp",
-    "description": "tr-lsm-f-mspt.inp"
-  },
-  {
-    "title": "ballshear.inp",
-    "author": "Steve Groothuis (Micron Technology, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp",
-    "description": "\"I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper's Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).\""
+    "description": "Steady state conjugate heat transfer in a pipe."
   },
   {
     "title": "coax.inp",
@@ -359,45 +48,58 @@
     "description": "\"I created an input-file that simulates the skin-effect of a two-dimensional sector of a coax. During postprocessing you can clearly see the effect of the penetrating magnetic field into the metal. One may extend this model to 3D (perhaps coarser).\""
   },
   {
-    "title": "diffusion.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp",
-    "description": "diffusion.inp"
+    "title": "compfillet.inp",
+    "author": "Joe Metrisin (Florida Turbine Technologies, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp",
+    "description": "\"One way I've used to create a compound fillet or spline shape during an optimization run is by use of an elliptical coordinate system. You can get a very well behaved ellipse suitable for optimization with only 3-4 parameters. The procedure is to create two keypoints, and a local cylindrical coordinate system with the par1 option. Then, a line created between these two keypoints will have an elliptical shape.\""
   },
   {
-    "title": "flotran_therm.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/flotran_therm.inp",
-    "description": "flotran_therm.inp"
+    "title": "contact_shell.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp",
+    "description": "Shows rigid-flexible contact w/ shell offset."
   },
   {
-    "title": "friction_test2.inp",
-    "author": "Brent Bristol (SpeedFam-IPEC)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/friction_test2.inp",
-    "description": "From the author: \"The following macro demonstrates a method for obtaining friction forces directly from a contact interface [and restart capability].\""
+    "title": "contpres.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp",
+    "description": "Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements)."
   },
   {
-    "title": "rv-ba-mp.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/rv-ba-mp.inp",
-    "description": "rv-ba-mp.inp"
+    "title": "control.inp",
+    "author": "Dave Lindeman (3M)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp",
+    "description": "\"Listed below are an ANSYS input file, and a UITFIN subroutine that demonstrate the implementation of a PID control system using a simple spring-mass system.\" \n\n [UITFIN.F](https://github.com/affinitylinks/ansys.net/blob/main/10/uitfin.f) subroutine"
   },
   {
-    "title": "tr-lsm-press-ft.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tr-lsm-press-ft.inp",
-    "description": "tr-lsm-press-ft.inp"
-  },
-  {
-    "title": "yongyi.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp",
-    "description": "yongyi.inp"
-  },
-  {
-    "title": "bar.inp",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp",
-    "description": "bar.inp"
+    "title": "conv_fins.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp",
+    "description": "Simple natural convection problem of heated fins, 2D tri."
   },
   {
     "title": "convect.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/convect.inp",
-    "description": "convect.inp"
+    "description": "Example of using MP data to apply temp-dependent film coefficient. Please note that this macro does not have geometry and will not run by itself. It is meant to serve as an example in applying film coefficients."
+  },
+  {
+    "title": "couette.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp",
+    "description": "Example of couette flow, viscous heating option for incompressible flow at Flotran 5.6.p"
+  },
+  {
+    "title": "coupled-seq.inp",
+    "author": " Sheldon Imaoka (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp",
+    "description": "Simple example demonstrating a sequential structural-thermoelectric analysis with plasticity and contact. The thermoelectric side uses UPGEOM to update displacements from the structural analysis."
+  },
+  {
+    "title": "curing.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp",
+    "description": "\"Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (\"Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.\", PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).\""
   },
   {
     "title": "cyc_princ.inp",
@@ -406,38 +108,398 @@
     "description": "\"Here is an input file which computes principal stresses for a particular sector from a cyclic symmetry analysis, on all corner nodes, without using the /CYCEXPAND command. This enables the use of the *VGET command, so further manipulations are possible.\""
   },
   {
+    "title": "cylinflo.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp",
+    "description": "Simple example of natural convection of horizontal cylinder."
+  },
+  {
+    "title": "dadd.inp",
+    "author": "Keith DiRienz (FEA Technologies)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp",
+    "description": "Sample input file to demonstrate the use of the undocumented DADD command."
+  },
+  {
+    "title": "diffusion.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp",
+    "description": "\"As a starting point, if you can accept the following analogy between thermal and moisture diffusion, I think you will be pleased in solving the time-dependent diffusion using this technique. As far as the temperature-dependent moisture diffusion, alternating between moisture mechanics and thermal mechanics can probably be done by updating material properties.\" \n\n (Csat is saturated moisture concentration and D is diffusion coefficient.) \n\n  \"We use this analogy to simulate moisture absorption in multi-material semiconductor packages under various temperature and RH conditions. It works quite well. Ee Hua Wong (Institute of Microelectronics, Singapore) has developed the technique using ANSYS/Thermal simulations. Mr. Wong has produced several papers outlining the technique.\""
+  },
+  {
+    "title": "elbow290.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp",
+    "description": "Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs."
+  },
+  {
+    "title": "fanbox2.inp",
+    "author": "(ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/fanbox2.inp",
+    "description": "Example of use of fan model and forced convection."
+  },
+  {
+    "title": "flotran_therm.inp",
+    "author": "Brad Lamirand (Cooper Turbocompressor)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/flotran_therm.inp",
+    "description": "Here is a quick example of sequential fluid [Flotran] to thermal coupled field analysis."
+  },
+  {
     "title": "fluid116.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/fluid116.inp",
-    "description": "fluid116.inp"
+    "description": "A very simple example showing how to generate FLUID116 and connect it to a thermal solid (SOLID70 in this case) via SURF152 using the AFSURF command."
+  },
+  {
+    "title": "fluid_pres.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp",
+    "description": "Example showing 'fluid pressure' contact, beta at 5.6."
+  },
+  {
+    "title": "forced_conv.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/forced_conv.inp",
+    "description": " Simple forced convection problem of heated fins, 2D tri. Just modified CONV_FINS example."
+  },
+  {
+    "title": "foundation.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/foundation.inp",
+    "description": "A very simple example comparing use of SURF154 elastic foundation stiffness (EFS real constant) with force-distributed constraints (using MPC-based 17x contact elements) tied to a COMBIN14 spring element."
+  },
+  {
+    "title": "friction_test2.inp",
+    "author": "Brent Bristol (SpeedFam-IPEC)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/friction_test2.inp",
+    "description": "From the author: \"The following macro demonstrates a method for obtaining friction forces directly from a contact interface [and restart capability].\""
+  },
+  {
+    "title": "gasket.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/gasket.inp",
+    "description": "Very simple example showing how to use element birth & death to include a non-uniform initial gap. Usually, initial gap for gasket material (TB,GASKET,,,,PARA) is assumed to be a uniform input. By using element birth and death while perturbing the nodes, one can include a non-uniform initial gap."
+  },
+  {
+    "title": "harm-full-ex.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp",
+    "description": "Direct displacement method (full harmonic with applied displacment). Modal analysis then frequency sweep. Results are scaled to get acceleration, displacement, and g's vs frequency."
+  },
+  {
+    "title": "harm-lmm-clust.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/harm-lmm-clust.inp",
+    "description": "Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique. The cluster option was used to allow for enough resolution around the natural freq."
+  },
+  {
+    "title": "harm-lmm-spec.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/harm-lmm-spec.inp",
+    "description": "Harmonic Log Sweep Example. Allows a user to input varibles that are consistent with design spec. Modal super position with the large mass method was the solution technique."
+  },
+  {
+    "title": "harm-lmm.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/harm-lmm.inp",
+    "description": "Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique."
+  },
+  {
+    "title": "harmc_emm.inp",
+    "author": "Mohammad Gharaibeh (State University of New York at Binghamton)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/HARMC_EMM.inp",
+    "description": "Example of a harmonic response analysis (linear sweep) of a plate using mode-superposition method with enforced motion."
+  },
+  {
+    "title": "hfth.inp",
+    "author": "Mark Troscinski (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/hfth.inp",
+    "description": "\"Please take a look at this input file. It's a sample problem I've run for someone who was using microwave radiation to heat paper-type products. The model is pretty simple, but it should illustrate the basic steps in running the coupled HF-electromagnetics/thermal problem.\""
+  },
+  {
+    "title": "hgen.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "description": "When using spatially-varying tabular loads for heat generation rate, a common mistake is to specify the table name only for VAL1 in the BFE command. If this is done, subsequent values will use the same value as VAL1, giving constant heat generation rate per element. \n\n  Instead, each node should be given its own value with the BFE command by specifying the table name in all values. This is a simple example demonstrating this. \n\n (This issue does not exist if using spatially-varying tables with the BF command since the BF command is directly specifying heat generation rate per node.)"
+  },
+  {
+    "title": "ibeam_181.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp",
+    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \n * BEAM188 (Unrestrained warping) -- 387.3 \n * BEAM188 (Restrained warping) -- 569.6 \n * SHELL181 (concentrated load) -- 560.8 \n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \n \n This input file uses SHELL181."
+  },
+  {
+    "title": "ibeam_188.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp",
+    "description": "Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181: \n * BEAM188 (Unrestrained warping) -- 387.3 \n * BEAM188 (Restrained warping) -- 569.6 \n * SHELL181 (concentrated load) -- 560.8 \n * SHELL181 (distributed load) -- 564.1 (similar to beam case) \n \n This input file uses BEAM188."
+  },
+  {
+    "title": "impulse.inp",
+    "author": " Brad Lamirand (Cooper Turbocompressor, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/impulse.inp",
+    "description": " Example of Flotran model which solves a sinusoidally varying flow from pi/4 to 7*pi/4."
+  },
+  {
+    "title": "in-3d.inp",
+    "author": "Vladimir Zhulin (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/in-3d.inp",
+    "description": "3D beam under electrostatic load. Coupled-field problem using TRANS126 elements. Requires [EMTGEN](https://github.com/affinitylinks/ansys.net/blob/main/4/emtgen.mac) macro."
+  },
+  {
+    "title": "large_rotat.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp",
+    "description": "Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time."
+  },
+  {
+    "title": "microoven.inp",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp",
+    "description": "\"The following input stream worked just fine in ANSYS 6.0 beta with no errors (1 warning for having both solid model and FE model BCs). Please try this file as I had to change your previous input file significantly. This input file should be generic enough to run in ANSYS 5.6. The bigger challenge will be having the appropriate electrical HF excitation model.\""
+  },
+  {
+    "title": "nat_conv3d.inp",
+    "author": " Sheldon Imaoka (CSI) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/nat_conv3d.inp",
+    "description": " Simple natural convection problem of chip on board, 3D hex."
+  },
+  {
+    "title": "nip.inp",
+    "author": "Dave Lindeman (3M)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp",
+    "description": "Example analysis of a head/media/roller NIP (structural nonlinear). Shows use of *VWRITE to write out an ABAQUS input deck."
+  },
+  {
+    "title": "offset.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/offset.inp",
+    "description": "Shows difference between geometric offset and contact offset (CNOF real constant), useful in interference fit problems (so you don't have to modify geometry iteratively)."
+  },
+  {
+    "title": "outres.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp",
+    "description": "This is a simple example of using OUTRES with an array parameter to define at what time points results will be saved. This is useful if you want to control exactly when results will be stored, even with the automatic timestepping algorithm present. "
   },
   {
     "title": "pipe_pml.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp",
-    "description": "pipe_pml.inp"
+    "description": "Example of using PML (perfectly matched layers) with acoustic elements, which is a feature new in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 only). The model is a simple pipe with a planar wave - the wave should propagate through the pipe without loss of amplitude, which demonstrates the use of PML in this case."
+  },
+  {
+    "title": "plate_cms.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp",
+    "description": "Example showing how to use CMS (component mode synthesis) with Response Spectrum analysis (single-point response spectrum). \n The non-superelement (\"full model\") [input](https://github.com/affinitylinks/ansys.net/blob/main/10/plate_full.inp) is here, so you can compare the results to see that they are essentially the same."
+  },
+  {
+    "title": "preten_bolt.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/preten_bolt.inp",
+    "description": "Example demonstrating pretension (bolt) element PRETS179."
+  },
+  {
+    "title": "radairgap.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp",
+    "description": "Some users wish to define a region with conduction and allow radiation within that region (such as modeling conduction across an air gap). The attached is a simple example showing use of Radiosity solver (left-side model) and contact element radiation (right-side model). Comparison with a thermal resistance network is done to ensure results are correct. (The solution takes a while to solve because of the segregated solution technique with the radiosity solver. The radiation option of contact elements does not require many iterations, but it only assumes radiation in the normal direction, which may be sufficient for thin gaps.)"
+  },
+  {
+    "title": "resvec.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/resvec.inp",
+    "description": "This input file is a simple demonstration of the usefulness of the residual vector method in capturing accurate higher-frequency response in mode-superposition analyses. \n In the input file, change the first two parameters as follows: \n\n  For results with many modes included and no residual vector, set MY_FREQUENCY = 1 and MY_RESVECTOR = 0 \n For results with few modes included and no residual vector, set MY_FREQUENCY = 0 and MY_RESVECTOR = 0 \n For results with few modes included and with residual vectors, set MY_FREQUENCY = 0 and MY_RESVECTOR = 1 \n\n By performing the above, one will see that even at the higher-frequency response, the residual vector method will give results comparable to including many modes even if the user has a smaller set of modes. [An Excel spreadsheet](https://github.com/affinitylinks/ansys.net/blob/main/10/resvec.xls) is also available, which tabulates the results (notice the difference in results for higher frequencies - this is where, without residual vector method and fewer modes, one may not accurately capture higher-frequency response). \n  Note that the residual vector method includes stiffness of higher frequencies, but one should still have enough modes to characterize the mass of the structure (i.e., it's not a panacea for insufficient modes). Also, use of ANSYS 11.0 or higher is required."
   },
   {
     "title": "revolve.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/revolve.inp",
-    "description": "revolve.inp"
+    "description": "Simple example showing a disk loaded with initial velocity. Disk rotation is defined by MPC184, so this must be run in version 7.0 and above. (Disk rotation could have been defined by other methods such as deformable-rigid contact, but this was meant to illustrate a particular technique.)"
+  },
+  {
+    "title": "rigidbody_rotation.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp",
+    "description": "This is a very simple example of using RBE3 or force-distributed type of surface constraint to track an averaged sense of the rotation or translation of a part within an assembly. By listing the displacements or rotations at the pilot node, one can obtain these quantities. (Remember that rotations are reported in radians, not degrees.)"
+  },
+  {
+    "title": "rv-ba-mp.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/rv-ba-mp.inp",
+    "description": "Example of random vibration, base acceleration in two directions."
   },
   {
     "title": "rv-ba.inp",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/rv-ba.inp",
-    "description": "rv-ba.inp"
+    "description": "Example of random vibration, base acceleration."
+  },
+  {
+    "title": "rv-lmm.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp",
+    "description": "Example of random vibration, large mass method."
+  },
+  {
+    "title": "rv-nf.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/rv-nf.inp",
+    "description": "Example of random vibration, nodal forces."
+  },
+  {
+    "title": "rv-press-fm.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp",
+    "description": "Example of random vibration, pressure loading."
+  },
+  {
+    "title": "rv-press-rm.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rv-press-rm.inp",
+    "description": "Example of random vibration, pressure loading (reduced modal)."
+  },
+  {
+    "title": "shell-abd.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp",
+    "description": "Simple example showing how to calculate the A, B, D, and E matrices for general shell input for a single layer (homogenous) shell. The A, B, D, and E matrices are the shell membrane, coupling, bending, and transverse shear stiffness relationships."
+  },
+  {
+    "title": "shell131rdsf.inp",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp",
+    "description": "Simple input file demonstrating use of SHELL131 (thermal shell element which allows for in-plane as well as through-thickness conduction) with the Radiosity Solution method."
+  },
+  {
+    "title": "shell_cont.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp",
+    "description": "Input file demonstrating plasticity, contact, finite strain. Also shows benefit of line search activated."
+  },
+  {
+    "title": "simpleshellcontactexample.inp",
+    "author": "Bob Weathers (Trane)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp",
+    "description": "Shows a simple example of contact with shells, shell offset key, and pretension elements."
+  },
+  {
+    "title": "spec-acc-vel-mpt.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp",
+    "description": "Example of running a sprectrum analysis in ANSYS. Multipoint input sprectrum (acceleration and velocities)."
+  },
+  {
+    "title": "spec-acc.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp",
+    "description": "Example of running a sprectrum analysis in ANSYS. Acceleration Sprectrum."
+  },
+  {
+    "title": "spec-pulse2.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/spec-pulse2.inp",
+    "description": "User can modify the 1/2 sine input amplitude and duration. ANSYS will calculate the fft and give you an input spectrum for later use in a spectrum analysis."
+  },
+  {
+    "title": "sphere.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp",
+    "description": "Example of acoustic radiating sphere. Comparison w/ hand calculations."
   },
   {
     "title": "spring.inp",
+    "author": "Dave Lindeman (3M)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/spring.inp",
-    "description": "spring.inp"
+    "description": "Attached is an input file that sets up and runs an analysis for a variable radius (hyperbolic) compression spring. You should be able to modify it for your needs."
   },
   {
     "title": "st_ex3.inp",
+    "author": "Sheldon Imaoka (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/st_ex3.inp",
-    "description": "st_ex3.inp"
+    "description": "Simple example illustrating use of generating, using, and post-processing thermal surface effect elements."
+  },
+  {
+    "title": "surf_traction.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/surf_traction.inp",
+    "description": "Shows surface effect element for traction load application."
+  },
+  {
+    "title": "therm_cont.inp",
+    "author": "Sheldon Imaoka (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp",
+    "description": "Simple input file demonstrating thermal contact conductance with surf-to-surf contact elements (not all thermal features of contact elements shown). Note: Thermal contact for 169-174 elements are BETA at 5.6."
+  },
+  {
+    "title": "torsion3.inp",
+    "author": " Deepak Ganjoo (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp",
+    "description": " Example of ALE, squeeze-film damping calculations. Requires associated macros [MVCONN](https://github.com/affinitylinks/ansys.net/blob/main/10/mvconn.mac) and [BOXMOVE.](https://github.com/affinitylinks/ansys.net/blob/main/10/boxmove.mac)"
+  },
+  {
+    "title": "tr-lmm-acc-mspt-2.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/tr-lmm-acc-mspt-2.inp",
+    "description": "Structural Transient \n Pre-Stressed Modal Superposition \n Large Mass Method \n  Acceleration vs. Time Acceleration:f=ma"
+  },
+  {
+    "title": "tr-lmm-acc-mspt-sin.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/tr-lmm-acc-mspt-sin.inp",
+    "description": "Example of a transient modal supperposition. Large mass method applying acceleration vs. time. 1/2 sine wave with 75 g peak over .006 sec"
+  },
+  {
+    "title": "tr-lmm-acc-mspt.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/tr-lmm-acc-mspt.inp",
+    "description": "Structural Transient \n Modal Superposition \n  Large Mass Method \n Acceleration vs. Time Acceleration:f=ma"
+  },
+  {
+    "title": "tr-lsm-el-mspt.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/tr-lsm-el-mspt.inp",
+    "description": "Structural Transient, mode superposition method, Element pressure vs. Time"
+  },
+  {
+    "title": "tr-lsm-f-mspt.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/tr-lsm-f-mspt.inp",
+    "description": "Structural Transient, mode superposition method. Nodal forces vs. Time"
+  },
+  {
+    "title": "tr-lsm-press-ft.inp",
+    "author": "David Haberman (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tr-lsm-press-ft.inp",
+    "description": "Structural Transient, full method. Element pressure vs. Time applied as load steps"
   },
   {
     "title": "tr-tb-press-ft.inp",
+    "author": "David Haberman (CSI)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/tr-tb-press-ft.inp",
-    "description": "tr-tb-press-ft.inp"
+    "description": "Structural Transient, full method. Element pressure vs. Time applied as tabular load."
+  },
+  {
+    "title": "transient2.inp",
+    "author": "Thomas Jin-Chee Liu (National Cheng Kung University)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp",
+    "description": "Example input of thermal transient analysis with moving heat source."
+  },
+  {
+    "title": "vortex.inp",
+    "author": " Mark Troscinski (ANSYS, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/vortex.inp",
+    "description": " Example of setting up vortex shedding. This is not a complete input file but shows options necessary to set up the problem. Also, a Zipped [AVI animation](https://github.com/affinitylinks/ansys.net/blob/main/10/vortex.zip) is available."
+  },
+  {
+    "title": "weld.inp",
+    "author": "Karen Dhuyvetter (CSI)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp",
+    "description": "Transient analysis of a weld (phase change analysis)"
+  },
+  {
+    "title": "yongyi.inp",
+    "author": "Yongyi Zhu (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/yongyi.inp",
+    "description": "Example of pressure-dependent thermal contact (beta at 5.6)."
   }
 ]

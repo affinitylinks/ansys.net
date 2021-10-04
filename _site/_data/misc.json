@@ -1,92 +1,27 @@
 [
   {
-    "title": "importJPEG1.bas",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas",
-    "description": "importJPEG1.bas"
-  },
-  {
-    "title": "plot33.f",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/plot33.f",
-    "description": "plot33.f"
-  },
-  {
     "title": "12 Predefined Views",
     "author": "Matthew Pausley (Nuvotronics, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/StandardViews.xml",
     "description": "This is an XML file that can be used in Workbench Mechanical to provide 12 common views aligned with the coordinate axes. The naming convention is \"Up-Axis + Axis of viewing\", i.e. \"Z+X\" means \"Z axis is up, looking in the direction of positive X\". To import this XML file into Workbench Mechanical, go to \"View menu > Windows > Manage Views\", then click on the \"Import...\" icon in the Manage Views panel to import this XML file."
   },
   {
-    "title": "getfile.tcl",
-    "author": "Matthew Sutton (PADT)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
-    "description": "Tcl script which opens a dialog box for a user to select an input file to read from (/INPUT). Use ~eui,'source getfile.tcl' to run the Tcl script, after saving it to your working directory."
-  },
-  {
-    "title": "importJPEG2.bas",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas",
-    "description": "importJPEG2.bas"
-  },
-  {
-    "title": "plot7.cmap",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/plot7.cmap",
-    "description": "plot7.cmap"
-  },
-  {
-    "title": "greyscl.cmap",
-    "author": "John Thompson (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/greyscl.cmap",
-    "description": "Color map file to produce grayscale contours. Use /cmap,greyscl.cmap to read this file in."
-  },
-  {
-    "title": "importpara.tcl",
-    "author": "Sheldon Imaoka (ANSYS, Inc.)",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
-    "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
-  },
-  {
-    "title": "rotate.grn",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rotate.grn",
-    "description": "rotate.grn"
-  },
-  {
-    "title": "importPPT.bas",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/importPPT.bas",
-    "description": "importPPT.bas"
-  },
-  {
-    "title": "Intro05.ppt",
+    "title": "Shaping Optimization of Turbine Disk and Bearing Seal",
+    "author": "Shen-Yeh Chen",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt",
-    "description": "Intro05.ppt"
+    "description": "Example of use of in-house optimization code with ANSYS to produce optimization of structures without parametric geometric information."
   },
   {
-    "title": "silicon.mat",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/silicon.mat",
-    "description": "silicon.mat"
-  },
-  {
-    "title": "woofer.wbpz",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/woofer.wbpz",
-    "description": "woofer.wbpz"
-  },
-  {
-    "title": "ANS-history.txt",
+    "title": "Unofficial History of ANSYS",
+    "author": "Shen-Yeh Chen (Honeywell)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt",
-    "description": "ANS-history.txt"
+    "description": "This is an unofficial history of Dr. Swanson and ANSYS."
   },
   {
-    "title": "cmap_ansys_viridis.cmap",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap",
-    "description": "cmap_ansys_viridis.cmap"
-  },
-  {
-    "title": "jkt.cmap",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap",
-    "description": "jkt.cmap"
-  },
-  {
-    "title": "userelement.tar",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar",
-    "description": "userelement.tar"
+    "title": "apdl.syn",
+    "author": "Bob Weathers (Trane)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn",
+    "description": "APDL.syn"
   },
   {
     "title": "ask.tcl",
@@ -95,43 +30,129 @@
     "description": "\"You will be prompted with variable name and value in a single dialouge box. Enter the variable name upto 32 chars long. Enter the variable value upto 128 chars long. Value can be numeric or string. No need to enter quotes for string. On clicking enter this script will set the variable name with the value in ANSYS properly either as a nummeric or string.\""
   },
   {
-    "title": "Inventor.vbs",
+    "title": "circle.grn",
+    "author": "John Crawford (Honeywell)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn",
+    "description": "A UIDL function (granule file) to create circles by picking. To change the menu put the following in a menu granule:\n:!\n:N Men_CIRC\n:S 0, 0, 0\n:T Menu\n:A Circles\n:D Circles\nFnc_CIRCLEWP\nFnc_CIRCLEKP\n:E END\n:! "
+  },
+  {
+    "title": "cmap_ansys_viridis.cmap",
+    "author": "Cristóbal Tapia (University Stuttgart)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/cmap_ansys_viridis.cmap",
+    "description": "This is a colormap for Viridis, which is the new colormap designed by Nathaniel Smith and Stéfan van der Walt for matplotlib"
+  },
+  {
+    "title": "getfile.tcl",
+    "author": "Matthew Sutton (PADT)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl",
+    "description": "Tcl script which opens a dialog box for a user to select an input file to read from (/INPUT). Use ~eui,'source getfile.tcl' to run the Tcl script, after saving it to your working directory."
+  },
+  {
+    "title": "greyscl.cmap",
+    "author": "John Thompson (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/greyscl.cmap",
+    "description": "Color map file to produce grayscale contours. Use /cmap,greyscl.cmap to read this file in."
+  },
+  {
+    "title": "importJPEG1.bas",
+    "author": "Mark Tate (Hamilton Sundstrand)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas",
+    "description": "\"Here is a Word Macro that I hacked together a while back that copies a group of graphic files into Word, two per page, with figure numbers. You can change the extension from jpg to png. It looks for files with a root name and add numbers to form the full name, i.e. root001.jpg, root002.jpg, etc.\""
+  },
+  {
+    "title": "importJPEG2.bas",
+    "author": "Gary Betts (Metso Minerals Ltd)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas",
+    "description": "\"Here is a macro for MS Word that will count and import all the jpegs in a defined folder into Word.\""
+  },
+  {
+    "title": "importPPT.bas",
+    "author": "Mark Tate (Hamilton Sundstrand)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/importPPT.bas",
+    "description": "A visual basic PowerPoint macro to import JPEG files into PowerPoint, one image per slide. Edit the file in a text editor to change variables or directory locations, etc."
+  },
+  {
+    "title": "importpara.tcl",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/importpara.tcl",
+    "description": "Example of use of Tcl/Tk to bring up custom dialog box to import parasolid files. This could be used in an input file to automatically prompt the user to import a particular parasolid file through a dialog box. It can be easily extended to include any Connection Kit product (ACIS/SAT, Pro/E, UG, CATIA, etc.)."
+  },
+  {
+    "title": "inventor.vbs",
+    "author": "Robert SeCaur (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/Inventor.vbs",
-    "description": "Inventor.vbs"
+    "description": "In Workbench Design Simulation 8.0, Named Selections can be imported from certain CAD systems. For Inventor, this .vbs file will aid in exporting a group as a Named Selection.\n\n\"Here is the macro code for Inventor. It will create an attribute set on each selected entity (the name for this is immaterial) and an attribute in that set (the name for this is what will be looked at for creating a WB side attribute). More than anything this was a proof of concept script and does not have some of the \"niceties\" one might like (e.g. just adding to an already existing attribute set instead of creating a new one, or modifying an existing value if an attribute already exists of a given name in the given set). However, this script would allow you (with multiple invocations) to create multiple attributes on a given entity. That is something that an entity naming scheme does not allow conveniently. This is particularly significant for named selections, since an entity may need to be included in several named selections (perhaps one for load, one for mesh sizing, etc.).\""
+  },
+  {
+    "title": "jkt.cmap",
+    "author": "Juha Tyllinen (KONE Corporation)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/jkt.cmap",
+    "description": "Color map (contours) which uses grayscale. Use /cmap,jkt,cmap to read in file."
+  },
+  {
+    "title": "list of Files",
+    "author": "ansys.net",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
+    "description": "List of Files from ansys.net"
+  },
+  {
+    "title": "plot7.cmap",
+    "author": "Bryan Baskin (Bell Helicopter Textron, Inc.) ",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/2/plot7.cmap",
+    "description": "Color map (contours) which ranges from purple to red. Use /cmap,plot7.cmap to read in file."
   },
   {
     "title": "reverse_color.cmap",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/6/reverse_color.cmap",
-    "description": "reverse_color.cmap"
-  },
-  {
-    "title": "APDL.syn",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn",
-    "description": "APDL.syn"
+    "description": "Colormap file to have reverse black and white. Use /cmap,reverse.cmap to read this file in. \n\n (This is the same colormap you get when you use \"Utility Menu > PlotCtrls > Style > Color > Reverse Video\")"
   },
   {
     "title": "reverse_gray.cmap",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/reverse_gray.cmap",
-    "description": "reverse_gray.cmap"
+    "description": "Colormap file to have reverse black and white with grayscale colors (dark=blue, light=red). Use /cmap,reverse_gray.cmap to read this file in"
   },
   {
-    "title": "tempdele.bat",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat",
-    "description": "tempdele.bat"
-  },
-  {
-    "title": "circle.grn",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/circle.grn",
-    "description": "circle.grn"
+    "title": "rotate.grn",
+    "author": "Joe Metrisin (Florida Turbine Technologies, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/3/rotate.grn",
+    "description": "Here's a UIDL function (Granule file) I wrote a while back to rotate any geometric or finite element entity about any local or global coordinate system axis."
   },
   {
     "title": "script.ps1",
+    "author": "unknown",
     "url": "https://github.com/affinitylinks/ansys.net/blob/main/8/script.ps1",
     "description": "script.ps1"
   },
   {
-    "title": "List of Files",
-    "url": "https://github.com/affinitylinks/ansys.net/blob/main/0/files.txt",
-    "description": "List of Files from ansys.net"
+    "title": "silicon.mat",
+    "author": "Steve Groothuis (Micron Technology, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/silicon.mat",
+    "description": "Although strictly not an input file, the \"silicon.mat\" file contains temp-dependent properties of silicon. See this email from S. Groothuis for more informaiton."
+  },
+  {
+    "title": "tempdele.bat",
+    "author": "Bram Weisman (SBM-IMODCO)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/7/tempdele.bat",
+    "description": "\"Caution: This batch file is very powerful. It searches the current folder and all subfolders for known ANSYS temporary files and deletes them without sending them to the recycle bin. Therefore I would recommend that you do not execute this in the root folder of any drive which has program files. It would be O.K. to execute this one folder down in a folder where you keep your ANSYS project files. Also, you should familiarize your with the list of file extensions which this batch files deletes and be sure you agree with it. Do not run this in an ANSYS folder if you plan to do any RESTART from existing results files.\""
+  },
+  {
+    "title": "userelement.tar",
+    "author": "Roger Young (Industrial Research Ltd.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/5/userelement.tar",
+    "description": "\"This package contains a number of examples of the Ansys user element <uel> which may be further adapted for personal use. The examples given here are for a 4-node planar element USER101 with linear shape functions similar to the Ansys element PLANE42. However USER101 may easily be extended to a 3D 8-node element and/or to quadratic shape functions by changing the specifications in lib/PAR.NML. In addition there is a simple extension to general large strain non-linear deformation which is illustrated in uel3/ex2.\""
+  },
+  {
+    "title": "wirebond",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/9/wirebond.wbpz",
+    "description": "Simple Workbench Mechanical 13.0 example of a ultrasonic wire bonding tool. The piezoelectric stacks are prestressed with a bolt and driven at a given frequency (in this case, resonance is around 59 kHz). Project includes prestressed modal and prestressed harmonic response analyses. \n\n To run this analysis, be sure to set the environment variable WB OLD PRESTRESS first since piezoelectric elements are not supported with the newer PERTURB method."
+  },
+  {
+    "title": "woofer.wbpz",
+    "author": "Sheldon Imaoka (ANSYS, Inc.)",
+    "url": "https://github.com/affinitylinks/ansys.net/blob/main/4/woofer.wbpz",
+    "description": "Fictitious example of an acoustic analysis of a speaker in an archived ANSYS Workbench 13.0 project. Voice coil is excited with unit force; pressure is measured in front of speaker. \n\n  In Workbench, turn on beta features in order to be able to postprocess acoustic pressure. \n\n  Instead of performing a harmonic sweep, an analysis of a single frequency is set up. The Workbench Parameter page is then use to run a frequency sweep, where the PML (perfectly matched layers) region and buffer region size, along with mesh density, is adjusted for each frequency. This is done because if a single mesh for a large frequency range is used, the PML region would need to be as large as to accommodate the lowest frequency of interest while the mesh needs to be fine enough to capture the response of the highest frequency of interest — a large domain and small element size would result in inefficient solution times. By using Workbench Parameters, the mesh can be adjusted uniquely for each frequency. Higher-order FLUID220 and FLUID221 are used."
   }
 ]

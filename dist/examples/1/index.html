@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Examples</h1>
@@ -86,32 +86,49 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/tr-lmm-acc-mspt-2.inp" target="_blank"> tr-lmm-acc-mspt-2.inp</a></p>
-<p class="font-italic"></p>
-<p>tr-lmm-acc-mspt-2.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp" target="_blank"> harm-full-ex.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Direct displacement method (full harmonic with applied displacment). Modal analysis then frequency sweep. Results are scaled to get acceleration, displacement, and g's vs frequency.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp" target="_blank"> contact_shell.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>Shows rigid-flexible contact w/ shell offset.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp" target="_blank"> curing.inp</a></p>
-<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
-<p>&quot;Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (&quot;Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.&quot;, PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/fanbox2.inp" target="_blank"> fanbox2.inp</a></p>
-<p class="font-italic"></p>
-<p>fanbox2.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/foundation.inp" target="_blank"> foundation.inp</a></p>
-<p class="font-italic"></p>
-<p>foundation.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/harm-lmm-clust.inp" target="_blank"> harm-lmm-clust.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique. The cluster option was used to allow for enough resolution around the natural freq.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/harm-lmm-spec.inp" target="_blank"> harm-lmm-spec.inp</a></p>
-<p class="font-italic"></p>
-<p>harm-lmm-spec.inp</p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Harmonic Log Sweep Example. Allows a user to input varibles that are consistent with design spec. Modal super position with the large mass method was the solution technique.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/harm-lmm.inp" target="_blank"> harm-lmm.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/HARMC_EMM.inp" target="_blank"> harmc_emm.inp</a></p>
+<p class="font-italic">Mohammad Gharaibeh (State University of New York at Binghamton)</p>
+<p>Example of a harmonic response analysis (linear sweep) of a plate using mode-superposition method with enforced motion.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/hfth.inp" target="_blank"> hfth.inp</a></p>
+<p class="font-italic">Mark Troscinski (ANSYS, Inc.)</p>
+<p>&quot;Please take a look at this input file. It's a sample problem I've run for someone who was using microwave radiation to heat paper-type products. The model is pretty simple, but it should illustrate the basic steps in running the coupled HF-electromagnetics/thermal problem.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="." target="_blank"> hgen.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>When using spatially-varying tabular loads for heat generation rate, a common mistake is to specify the table name only for VAL1 in the BFE command. If this is done, subsequent values will use the same value as VAL1, giving constant heat generation rate per element.</p>
+<p>Instead, each node should be given its own value with the BFE command by specifying the table name in all values. This is a simple example demonstrating this.</p>
+<p>(This issue does not exist if using spatially-varying tables with the BF command since the BF command is directly specifying heat generation rate per node.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp" target="_blank"> ibeam_181.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
+<ul>
+<li>BEAM188 (Unrestrained warping) -- 387.3</li>
+<li>BEAM188 (Restrained warping) -- 569.6</li>
+<li>SHELL181 (concentrated load) -- 560.8</li>
+<li>SHELL181 (distributed load) -- 564.1 (similar to beam case)</li>
+</ul>
+<p>This input file uses SHELL181.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/ibeam_188.inp" target="_blank"> ibeam_188.inp</a></p>
-<p class="font-italic"></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
 <p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
 <ul>
 <li>BEAM188 (Unrestrained warping) -- 387.3</li>
@@ -121,97 +138,96 @@
 </ul>
 <p>This input file uses BEAM188.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/impulse.inp" target="_blank"> impulse.inp</a></p>
+<p class="font-italic"> Brad Lamirand (Cooper Turbocompressor, Inc.) </p>
+<p>Example of Flotran model which solves a sinusoidally varying flow from pi/4 to 7*pi/4.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/in-3d.inp" target="_blank"> in-3d.inp</a></p>
+<p class="font-italic">Vladimir Zhulin (ANSYS, Inc.)</p>
+<p>3D beam under electrostatic load. Coupled-field problem using TRANS126 elements. Requires <a href="https://github.com/affinitylinks/ansys.net/blob/main/4/emtgen.mac" target="_blank" rel="noopener noreferrer">EMTGEN</a> macro.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp" target="_blank"> large_rotat.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/microoven.inp" target="_blank"> microoven.inp</a></p>
-<p class="font-italic"></p>
-<p>microoven.inp</p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;The following input stream worked just fine in ANSYS 6.0 beta with no errors (1 warning for having both solid model and FE model BCs). Please try this file as I had to change your previous input file significantly. This input file should be generic enough to run in ANSYS 5.6. The bigger challenge will be having the appropriate electrical HF excitation model.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/nat_conv3d.inp" target="_blank"> nat_conv3d.inp</a></p>
+<p class="font-italic"> Sheldon Imaoka (CSI) </p>
+<p>Simple natural convection problem of chip on board, 3D hex.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/nip.inp" target="_blank"> nip.inp</a></p>
-<p class="font-italic"></p>
-<p>nip.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/rv-press-rm.inp" target="_blank"> rv-press-rm.inp</a></p>
-<p class="font-italic"></p>
-<p>rv-press-rm.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/sphere.inp" target="_blank"> sphere.inp</a></p>
-<p class="font-italic"></p>
-<p>sphere.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/tr-lmm-acc-mspt-sin.inp" target="_blank"> tr-lmm-acc-mspt-sin.inp</a></p>
-<p class="font-italic"></p>
-<p>tr-lmm-acc-mspt-sin.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/vortex.inp" target="_blank"> vortex.inp</a></p>
-<p class="font-italic"></p>
-<p>vortex.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp" target="_blank"> coupled-seq.inp</a></p>
-<p class="font-italic"></p>
-<p>coupled-seq.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/harm-lmm.inp" target="_blank"> harm-lmm.inp</a></p>
-<p class="font-italic">David Haberman (CSI)</p>
-<p>Harmonic linear Sweep Example. Modal super position with the large mass method was the solution technique.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/hfth.inp" target="_blank"> hfth.inp</a></p>
-<p class="font-italic"></p>
-<p>hfth.inp</p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>Example analysis of a head/media/roller NIP (structural nonlinear). Shows use of *VWRITE to write out an ABAQUS input deck.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/offset.inp" target="_blank"> offset.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>Shows difference between geometric offset and contact offset (CNOF real constant), useful in interference fit problems (so you don't have to modify geometry iteratively).</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/tr-lmm-acc-mspt.inp" target="_blank"> tr-lmm-acc-mspt.inp</a></p>
-<p class="font-italic"></p>
-<p>tr-lmm-acc-mspt.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/beam176cross.inp" target="_blank"> beam176cross.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/outres.inp" target="_blank"> outres.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)</p>
+<p>This is a simple example of using OUTRES with an array parameter to define at what time points results will be saved. This is useful if you want to control exactly when results will be stored, even with the automatic timestepping algorithm present.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp" target="_blank"> block_rad.inp</a></p>
-<p class="font-italic"></p>
-<p>block_rad.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cnhtxfr2.inp" target="_blank"> cnhtxfr2.inp</a></p>
-<p class="font-italic"></p>
-<p>cnhtxfr2.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp" target="_blank"> contpres.inp</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/pipe_pml.inp" target="_blank"> pipe_pml.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements).</p>
+<p>Example of using PML (perfectly matched layers) with acoustic elements, which is a feature new in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 only). The model is a simple pipe with a planar wave - the wave should propagate through the pipe without loss of amplitude, which demonstrates the use of PML in this case.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/HARMC_EMM.inp" target="_blank"> HARMC_EMM.inp</a></p>
-<p class="font-italic"></p>
-<p>HARMC_EMM.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp" target="_blank"> plate_cms.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Example showing how to use CMS (component mode synthesis) with Response Spectrum analysis (single-point response spectrum).<br>
+The non-superelement (&quot;full model&quot;) <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/plate_full.inp" target="_blank" rel="noopener noreferrer">input</a> is here, so you can compare the results to see that they are essentially the same.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/hgen.inp" target="_blank"> hgen.inp</a></p>
-<p class="font-italic"></p>
-<p>hgen.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/preten_bolt.inp" target="_blank"> preten_bolt.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example demonstrating pretension (bolt) element PRETS179.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/impulse.inp" target="_blank"> impulse.inp</a></p>
-<p class="font-italic"></p>
-<p>impulse.inp</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp" target="_blank"> radairgap.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Some users wish to define a region with conduction and allow radiation within that region (such as modeling conduction across an air gap). The attached is a simple example showing use of Radiosity solver (left-side model) and contact element radiation (right-side model). Comparison with a thermal resistance network is done to ensure results are correct. (The solution takes a while to solve because of the segregated solution technique with the radiosity solver. The radiation option of contact elements does not require many iterations, but it only assumes radiation in the normal direction, which may be sufficient for thin gaps.)</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/resvec.inp" target="_blank"> resvec.inp</a></p>
-<p class="font-italic"></p>
-<p>resvec.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/simpleshellcontactexample.inp" target="_blank"> simpleshellcontactexample.inp</a></p>
-<p class="font-italic">Bob Weathers (Trane)</p>
-<p>Shows a simple example of contact with shells, shell offset key, and pretension elements.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/tr-lsm-el-mspt.inp" target="_blank"> tr-lsm-el-mspt.inp</a></p>
-<p class="font-italic"></p>
-<p>tr-lsm-el-mspt.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp" target="_blank"> control.inp</a></p>
-<p class="font-italic"></p>
-<p>control.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp" target="_blank"> elbow290.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs.</p>
+<p>This input file is a simple demonstration of the usefulness of the residual vector method in capturing accurate higher-frequency response in mode-superposition analyses.<br>
+In the input file, change the first two parameters as follows:</p>
+<p>For results with many modes included and no residual vector, set MY_FREQUENCY = 1 and MY_RESVECTOR = 0<br>
+For results with few modes included and no residual vector, set MY_FREQUENCY = 0 and MY_RESVECTOR = 0<br>
+For results with few modes included and with residual vectors, set MY_FREQUENCY = 0 and MY_RESVECTOR = 1</p>
+<p>By performing the above, one will see that even at the higher-frequency response, the residual vector method will give results comparable to including many modes even if the user has a smaller set of modes. <a href="https://github.com/affinitylinks/ansys.net/blob/main/10/resvec.xls" target="_blank" rel="noopener noreferrer">An Excel spreadsheet</a> is also available, which tabulates the results (notice the difference in results for higher frequencies - this is where, without residual vector method and fewer modes, one may not accurately capture higher-frequency response).<br>
+Note that the residual vector method includes stiffness of higher frequencies, but one should still have enough modes to characterize the mass of the structure (i.e., it's not a panacea for insufficient modes). Also, use of ANSYS 11.0 or higher is required.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/revolve.inp" target="_blank"> revolve.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example showing a disk loaded with initial velocity. Disk rotation is defined by MPC184, so this must be run in version 7.0 and above. (Disk rotation could have been defined by other methods such as deformable-rigid contact, but this was meant to illustrate a particular technique.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp" target="_blank"> rigidbody_rotation.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This is a very simple example of using RBE3 or force-distributed type of surface constraint to track an averaged sense of the rotation or translation of a part within an assembly. By listing the displacements or rotations at the pilot node, one can obtain these quantities. (Remember that rotations are reported in radians, not degrees.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/rv-ba-mp.inp" target="_blank"> rv-ba-mp.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, base acceleration in two directions.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/rv-ba.inp" target="_blank"> rv-ba.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, base acceleration.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp" target="_blank"> rv-lmm.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, large mass method.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rv-nf.inp" target="_blank"> rv-nf.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, nodal forces.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp" target="_blank"> rv-press-fm.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, pressure loading.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/rv-press-rm.inp" target="_blank"> rv-press-rm.inp</a></p>
+<p class="font-italic">David Haberman (CSI)</p>
+<p>Example of random vibration, pressure loading (reduced modal).</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

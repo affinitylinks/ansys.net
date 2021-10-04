@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h2 id="sheldon's-ansys.net-site-contents" tabindex="-1">Sheldon's <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a> site contents <a class="direct-link" href="#sheldon's-ansys.net-site-contents">#</a></h2>
@@ -80,49 +80,65 @@
 <h2 class="text-center"> Resources <a href="/resources/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 <!-- <ul class="list-group"><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf" target="_blank">methods_for_modeling_bolts.pdf</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Get_Summary_2005_08_15.pdf" target="_blank">*GET/*VGET Sheet</a>
 
-<p class="font-italic">Jerome Montgomery</p>
+<p class="font-italic">(PADT)</p>
 
-&quot;Modeling bolts for three-dimensional finite element applications have, and still continue to raise questions. The limitations on model size sometimes make modeling of solid bolts impractical. Therefore, many analysts choose other methods to model bolts. Line elements with coupled nodes and line elements with spider beams are a couple of alternative approaches. This paper looks at a few methods for modeling pretension bolted joints using the finite element method (ANSYS 5.7). Pretension is modeled using ANSYS pretension elements (PRETS179) which can be used on solid or line element types. Surface-to-surface contact elements are used to account for varying contact distribution along flanges. Bolt head and nut behavior is modeled by, coupled nodes, beam elements, rigid body elements (RBE3), or solids. Bolt stud is modeled by solid elements, beam elements, pipe elements, or link elements. The choice of line elements versus solid elements is determined by the degree of complexity sought. The pros and cons of different simulations are also discussed.&quot;
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf" target="_blank">nonlinear_problems_of_steel_civil_structures.pdf</a>
-
-<p class="font-italic">Milan Vasek</p>
-
-&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;
+This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros.
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf" target="_blank">Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites</a>
-
-<p class="font-italic">J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch</p>
-
-&quot;Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing &quot;of the shelf&quot; technology of achieving the same goals. Thus, the &quot;Z-mat&quot; and &quot;Z-Optim&quot; packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a &quot;USERMAT&quot; subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS&#39; non-linear element library. The geometry of the single notched specimen of NRL&#39;s In Plane has been used for developing and verifying the process.&quot;
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf" target="_blank">The Building Blocks of Simulation: A New Family of Elements for Stress Analysis</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/180xAdvantages.pdf" target="_blank">180 Series Elements: Why Should One Use Them in Linear Analysis</a>
 
 <p class="font-italic">(ANSYS, Inc.)</p>
 
-Presentation on 18x family of elements (part of the &quot;Advanced Analysis with ANSYS&quot; seminar during the 2002 User&#39;s Conference).
+Presentation on 18x elements (continuum, beam, shell) and its features related to both linear and nonlinear analyses.
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf" target="_blank">Principles of Simulating Contact Between Parts using ANSYS</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/STI0602_Coupled-Field_Elements.pdf" target="_blank">22x Coupled-Field Elements [PDF]</a>
 
-<p class="font-italic">David H. Johnson</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 
-&quot;The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.&quot;
+&quot;The 22x direct coupled-field elements (PLANE223, SOLID226-227) provide a wide array of material behavior for multiphysics applications - these include piezoelectricity, piezoresistivity, thermoelasticity, and thermoelectricity. This memo hopes to introduce some of the pertinent features of these elements.&quot;
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf" target="_blank">3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers</a>
+
+<p class="font-italic">L. Li, H. Li, T. Qiu, V. L. Temyanko, M. M. Morrell, and A. Schülzgen</p>
+
+A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated &gt;11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs.
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf" target="_blank">A 3D Dynamical Biomechanical Tongue Model to Study Speech Motor Control</a>
+
+<p class="font-italic">Jean-Michel Gérard, Reiner Wilhelms-Tricarico, Pascal Perrier &amp; Yohan Payan</p>
+
+&quot;A 3D biomechanical dynamical model of human tongue is presented, that is elaborated in the aim to test hypotheses about speech motor control. Tissue elastic properties are accounted for in Finite Element Modeling (FEM). The FEM mesh was designed in order to facilitate the implementation of muscle arrangement within the tongue. Therefore, its structure was determined on the basis of accurate anatomical data about the tongue. Mechanically, the hypothesis of hyperelasticity was adopted with the Mooney-Rivlin formulation of the strain energy function. Muscles are modeled as general force generators that act on anatomically specified sets of nodes of the FEM structure. The 8 muscles that are known to be largely involved in the production of basic speech movements are modeled. The model and the solving of the Lagrangian equations of movement are implemented using the ANSYS™ software. Simulations of the influence of muscle activations onto the tongue shape are presented and analyzed.&quot;
 
 </li></ul> -->
 </div>
 <div>
 <h2 class="text-center"> Macros <a href="/macros/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 <!-- <ul class="list-group"><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac" target="_blank">a2comet.mac</a>
+
+<p class="font-italic">Fern Thomassy (Southwest Research Institute)</p>
+
+Creates a COMET/Acoustics model from an ANSYS model.
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac" target="_blank">a2glue.mac</a>
+
+<p class="font-italic">Eric Miller (PADT)</p>
+
+Work around for standard AGLUE that avoids the &quot;ungluing&quot;that can occur
+
+</li><li class="list-group-item">
 
 <a href="https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac" target="_blank">a_filmax.mac</a>
 
@@ -136,33 +152,17 @@ Calculate maximum possible fillet radius for lines 1 and 2 and store in variable
 
 <p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
 
-&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it&#39;s worth. It did the job for me at the time.&quot; 
+&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it&#39;s worth. It did the job for me at the time.&quot;
  
  For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches.
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac" target="_blank">ans2aba.mac</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac" target="_blank">a_hydro2.mac</a>
 
-<p class="font-italic">Dave Lindeman (3M)</p>
+<p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
 
-This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: &quot;Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).&quot;
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip" target="_blank">ACCURATE.zip</a>
-
-<p class="font-italic">Vladimir Tkach (NPO Energomash)</p>
-
-&quot;This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).&quot;
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac" target="_blank">anvect.mac</a>
-
-<p class="font-italic">Bill Bulat (CSI)</p>
-
-Animates velocity vectors from Flotran transient results
+&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.&quot;I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it&#39;s worth. It did the job for me at the time.&quot;For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas.
 
 </li></ul> -->
 </div>
@@ -185,57 +185,43 @@ Buckling of arch (example of use of pressure load stiffness matrix). For many ei
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp" target="_blank">bow.inp</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp" target="_blank">ballshear.inp</a>
 
-<p class="font-italic"></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
 
-Bowshock Benchmark
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp" target="_blank">conv_fins.inp</a>
-
-<p class="font-italic"></p>
-
-Natural convection problem (2D tri) three &quot;fins&quot; heated
+&quot;I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper&#39;s Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).&quot;
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp" target="_blank">cylinflo.inp</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp" target="_blank">bar.inp</a>
 
-<p class="font-italic"></p>
+<p class="font-italic">Timothy Berger (UCLA)</p>
 
-simple cylinder in open air
+&quot;I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.&quot; 
+
+ For additional notes by author, see contents of macro for more details.
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp" target="_blank">large_rotat.inp</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/beam176cross.inp" target="_blank">beam176cross.inp</a>
 
-<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 
-Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time.
+Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp" target="_blank">block_rad.inp</a>
+
+<p class="font-italic">Kal Torak</p>
+
+Simple input file showing radiation between two blocks using /AUX12 radiation matrix method.
 
 </li></ul> -->
 </div>
 <div>
 <h2 class="text-center"> Miscellaneous <a href="/miscellaneous/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
 <!-- <ul class="list-group"><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/1/importJPEG1.bas" target="_blank">importJPEG1.bas</a>
-
-<p class="font-italic"></p>
-
-importJPEG1.bas
-
-</li><li class="list-group-item">
-
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/1/plot33.f" target="_blank">plot33.f</a>
-
-<p class="font-italic"></p>
-
-plot33.f
-
-</li><li class="list-group-item">
 
 <a href="https://github.com/affinitylinks/ansys.net/blob/main/1/StandardViews.xml" target="_blank">12 Predefined Views</a>
 
@@ -245,65 +231,87 @@ This is an XML file that can be used in Workbench Mechanical to provide 12 commo
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/2/getfile.tcl" target="_blank">getfile.tcl</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Intro05.ppt" target="_blank">Shaping Optimization of Turbine Disk and Bearing Seal</a>
 
-<p class="font-italic">Matthew Sutton (PADT)</p>
+<p class="font-italic">Shen-Yeh Chen</p>
 
-Tcl script which opens a dialog box for a user to select an input file to read from (/INPUT). Use ~eui,&#39;source getfile.tcl&#39; to run the Tcl script, after saving it to your working directory.
+Example of use of in-house optimization code with ANSYS to produce optimization of structures without parametric geometric information.
 
 </li><li class="list-group-item">
 
-<a href="https://github.com/affinitylinks/ansys.net/blob/main/2/importJPEG2.bas" target="_blank">importJPEG2.bas</a>
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ANS-history.txt" target="_blank">Unofficial History of ANSYS</a>
 
-<p class="font-italic"></p>
+<p class="font-italic">Shen-Yeh Chen (Honeywell)</p>
 
-importJPEG2.bas
+This is an unofficial history of Dr. Swanson and ANSYS.
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/7/APDL.syn" target="_blank">apdl.syn</a>
+
+<p class="font-italic">Bob Weathers (Trane)</p>
+
+APDL.syn
+
+</li><li class="list-group-item">
+
+<a href="https://github.com/affinitylinks/ansys.net/blob/main/6/ask.tcl" target="_blank">ask.tcl</a>
+
+<p class="font-italic">Navtej Singh (Intel)</p>
+
+&quot;You will be prompted with variable name and value in a single dialouge box. Enter the variable name upto 32 chars long. Enter the variable value upto 128 chars long. Value can be numeric or string. No need to enter quotes for string. On clicking enter this script will set the variable name with the value in ANSYS properly either as a nummeric or string.&quot;
 
 </li></ul> -->
 </div>
+<hr>
 <div>
-<h2 class="text-center"> Html (in-site) <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
-<!-- <ul class="list-group"><li class="list-group-item">
-
-<a href="/html/inquiry/">Inquiry Functions</a>
-
-<p class="font-italic"></p>
-
-Inquiry functions are similar to *GET functions, used to retreive information about the current database. These can be used in macros to automate procedures and obtain information in a simple manner
-
+<!-- <h2 class="text-center"> Html (in-site) <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2> -->
+<h2 class="text-center"> Html </h2>
+<ul class="list-group"><li class="list-group-item">
+<p><a href="/html/inquiry/">Inquiry Functions</a></p>
+<p class="font-italic">John Crawford</p>
+<p>Inquiry functions are similar to *GET functions, used to retreive information about the current database. These can be used in macros to automate procedures and obtain information in a simple manner</p>
 </li><li class="list-group-item">
-
-<a href="/html/undocumented/">Undocumented Features</a>
-
-<p class="font-italic"></p>
-
-Undocumented commands &amp; features
-
+<p><a href="/html/undocumented/">Undocumented Features</a></p>
+<p class="font-italic">ansys.net</p>
+<p>Undocumented commands &amp; features</p>
 </li><li class="list-group-item">
-
-<a href="/html/vector/">Vector operations and commands</a>
-
-<p class="font-italic"></p>
-
-Vector notation/functions in ANSYS allow the user to execute some of these *DO loops in a much more efficient manner. Instead of looping through individual functions, vector functions act upon arrays, resulting in faster execution times. This memo will provide some basic/introductory examples on the use of *VGET as well as the undocumented vector notation.
-
+<p><a href="/html/vector/">Vector operations and commands</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Vector notation/functions in ANSYS allow the user to execute some of these *DO loops in a much more efficient manner. Instead of looping through individual functions, vector functions act upon arrays, resulting in faster execution times. This memo will provide some basic/introductory examples on the use of *VGET as well as the undocumented vector notation.</p>
 </li><li class="list-group-item">
-
-<a href="/html/hidden/">Introduction to Hidden Parameters</a>
-
-<p class="font-italic"></p>
-
-An introduction to hidden parameters, those which begin or end with an underscore. Use of parameters with a trailing underscore can be used to &quot;hide&quot; macro parameters if they are to be shared by several users.
-
+<p><a href="/html/hidden/">Introduction to Hidden Parameters</a></p>
+<p class="font-italic">John Crawford</p>
+<p>An introduction to hidden parameters, those which begin or end with an underscore. Use of parameters with a trailing underscore can be used to &quot;hide&quot; macro parameters if they are to be shared by several users.</p>
 </li><li class="list-group-item">
-
-<a href="/html/tcl/">ANSYS and Tcl/Tk Customization</a>
-
-<p class="font-italic"></p>
-
-Information on using Tcl/Tk with ANSYS to create customized GUI. Tcl/Tk is used in ANSYS, such as the Contact Wizard, Solution Control Wizard, or Materials GUI at 5.7/6.0.
-
-</li></ul> -->
+<p><a href="/html/tcl/">ANSYS and Tcl/Tk Customization</a></p>
+<p class="font-italic">John Swanson</p>
+<p>Information on using Tcl/Tk with ANSYS to create customized GUI. Tcl/Tk is used in ANSYS, such as the Contact Wizard, Solution Control Wizard, or Materials GUI at 5.7/6.0.</p>
+</li><li class="list-group-item">
+<p><a href="/html/uidl/">ANSYS and UIDL Customization</a></p>
+<p class="font-italic">ansys.net</p>
+<p>The UIDL Programmers Guide is part of the ANSYS Programmers Set manuals.</p>
+</li><li class="list-group-item">
+<p><a href="/html/get/">*GET commands/functions</a></p>
+<p class="font-italic">ansys.net</p>
+<p>Undocumented *GET commands</p>
+</li><li class="list-group-item">
+<p><a href="/html/uelem/">Undocumented Elements and Element Features</a></p>
+<p class="font-italic">ansys.net</p>
+<p>Undocumented elements and element features</p>
+</li><li class="list-group-item">
+<p><a href="/html/books/">Textbook and Journal References</a></p>
+<p class="font-italic">ansys.net</p>
+<p>list of useful literature</p>
+</li><li class="list-group-item">
+<p><a href="/html/animation/">Animation Gallery</a></p>
+<p class="font-italic">ansys.net</p>
+<p>Animations of ANSYS Analyses</p>
+</li><li class="list-group-item">
+<p><a href="/html/fullpowergraphics/">The REAL Power in Using PowerGraphics</a></p>
+<p class="font-italic">John Crawford, Stress Analyst, Honeywell</p>
+<p>Comparision between Full and Power Graphics for Results Display</p>
+</li></ul>
 </div>
 <hr>
 <div>
@@ -316,6 +324,10 @@ Information on using Tcl/Tk with ANSYS to create customized GUI. Tcl/Tk is used 
 <p><a href="/extra/pyNS/">Python Named Selection Macro - Mechanical Workbench</a></p>
 <p class="font-italic"></p>
 <p>In mechanical workbench, creates named selection of the bodies containing the string in an array. The name of the named selection is the string in an array.</p>
+</li><li class="list-group-item">
+<p><a href="/extra/helpful/">Helpful Links</a></p>
+<p class="font-italic"></p>
+<p>List of resources online.</p>
 </li></ul>
 </div>
 <div id="disqus_thread"></div>

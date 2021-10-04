@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Macros</h1>
@@ -91,165 +91,198 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/im9.mac" target="_blank"> im9.mac</a></p>
-<p class="font-italic"></p>
-<p>im9.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/int_areas.mac" target="_blank"> int_areas.mac</a></p>
-<p class="font-italic"></p>
-<p>int_areas.mac</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/kpmv.mac" target="_blank"> kpmv.mac</a></p>
-<p class="font-italic"></p>
-<p>kpmv.mac</p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;Macro moves keypoint arg1 to the location of keypoint arg2 and if arg3 equals 1 merges them.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/midstres.mac" target="_blank"> midstres.mac</a></p>
-<p class="font-italic"></p>
-<p>midstres.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/l_nlist.mac" target="_blank"> l_nlist.mac</a></p>
+<p class="font-italic">Chris Bridge (2H Offshore Engineering Ltd)</p>
+<p>A macro to list selected nodes but in a specified format without repeated header information.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/nastexp.mac" target="_blank"> nastexp.mac</a></p>
-<p class="font-italic"></p>
-<p>nastexp.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/lcolor.mac" target="_blank"> lcolor.mac</a></p>
+<p class="font-italic">Jimmy Carlsson (AF Group)</p>
+<p>This macro colors lines as follows:</p>
+<p>Red: Line connected only to one of selected areas<br>
+Yellow: Line connected to two of the selected areas<br>
+Blue: Line connected to three or more selected areas<br>
+Magenta: Line is not connected to any of the selected areas</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/p_nlist.mac" target="_blank"> p_nlist.mac</a></p>
-<p class="font-italic"></p>
-<p>p_nlist.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/listtype.mac" target="_blank"> listtype.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Macro used to list all unique combinations of element type, real constant, section type, and material properties of currently selected elements. Useful, for example, when importing mesh from Workbench or other software into ANSYS and confirming settings.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/peri3d.mac" target="_blank"> peri3d.mac</a></p>
-<p class="font-italic"></p>
-<p>peri3d.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/listcm.mac" target="_blank"> listcm.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>At 7.0, the CMLIST command only lists selected components rather than all existing components in the database (pre-7.0 behavior). This macro provides a listing of all components in the database, regardless of their selection status. May be useful to get pre-7.0 behavior of CMLIST</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/plrv.mac" target="_blank"> plrv.mac</a></p>
-<p class="font-italic"></p>
-<p>plrv.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/lproj.mac" target="_blank"> lproj.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>Here is a macro I wrote several years ago that projects lines onto the working plane. It's a little crude, but works okay. I use it all the time to project IGES geometry onto the working plane (placed at global Z=0) to straighten lines that are slightly bent or not at Z=0. You still have to recreate your areas and all that sort of stuff, which is kind of a pain.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/round.mac" target="_blank"> round.mac</a></p>
-<p class="font-italic"></p>
-<p>round.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/lregen.mac" target="_blank"> lregen.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>Recreates selected lines by fitting b-splines through points on line. Useful with some imported IGES geometry</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac" target="_blank"> sort2d.mac</a></p>
-<p class="font-italic"></p>
-<p>sort2d.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/spltarcs.mac" target="_blank"> spltarcs.mac</a></p>
-<p class="font-italic"></p>
-<p>spltarcs.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/strne.mac" target="_blank"> strne.mac</a></p>
-<p class="font-italic"></p>
-<p>strne.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/tchkplot.mac" target="_blank"> tchkplot.mac</a></p>
-<p class="font-italic"></p>
-<p>tchkplot.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/thread.mac" target="_blank"> thread.mac</a></p>
-<p class="font-italic"></p>
-<p>thread.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/trim3.mac" target="_blank"> trim3.mac</a></p>
-<p class="font-italic"></p>
-<p>trim3.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/viewface.mac" target="_blank"> viewface.mac</a></p>
-<p class="font-italic"></p>
-<p>viewface.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/vslm_bw.mac" target="_blank"> vslm_bw.mac</a></p>
-<p class="font-italic"></p>
-<p>vslm_bw.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/writearr.mac" target="_blank"> writearr.mac</a></p>
-<p class="font-italic"></p>
-<p>writearr.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/x_shl2sld.mac" target="_blank"> x_shl2sld.mac</a></p>
-<p class="font-italic"></p>
-<p>x_shl2sld.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac" target="_blank"> a2comet.mac</a></p>
-<p class="font-italic">Fern Thomassy (Southwest Research Institute)</p>
-<p>Creates a COMET/Acoustics model from an ANSYS model.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/avgtemp.mac" target="_blank"> avgtemp.mac</a></p>
-<p class="font-italic"></p>
-<p>avgtemp.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac" target="_blank"> beamnet.mac</a></p>
-<p class="font-italic"></p>
-<p>beamnet.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac" target="_blank"> cbc_rmp5.mac</a></p>
-<p class="font-italic"></p>
-<p>cbc_rmp5.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac" target="_blank"> cmdif.mac</a></p>
-<p class="font-italic"></p>
-<p>cmdif.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac" target="_blank"> cnvg_time.mac</a></p>
-<p class="font-italic"></p>
-<p>cnvg_time.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/e72to142.mac" target="_blank"> e72to142.mac</a></p>
-<p class="font-italic"></p>
-<p>e72to142.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/geta4l.mac" target="_blank"> geta4l.mac</a></p>
-<p class="font-italic"></p>
-<p>geta4l.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/getreal.mac" target="_blank"> getreal.mac</a></p>
-<p class="font-italic"></p>
-<p>getreal.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/gscontours.mac" target="_blank"> gscontours.mac</a></p>
-<p class="font-italic"></p>
-<p>gscontours.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/hsarea.mac" target="_blank"> hsarea.mac</a></p>
-<p class="font-italic"></p>
-<p>hsarea.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/im28.mac" target="_blank"> im28.mac</a></p>
-<p class="font-italic"></p>
-<p>im28.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/im94.mac" target="_blank"> im94.mac</a></p>
-<p class="font-italic"></p>
-<p>im94.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/lstdbdoc.mac" target="_blank"> lstdbdoc.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>This macro finds all :LBL constructs in the database. A :LBL can be any valid Ansys characters following a colon &quot;:&quot;. Therefore you can have different labels for different aspects of your model, such as :MAT for material info, :REAL for real constant information, :INFO for general notes about the analysis, etc. Labels can be repeated.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/m55to54.mac" target="_blank"> m55to54.mac</a></p>
-<p class="font-italic"></p>
-<p>m55to54.mac</p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Converts 5.5 CDB file to 5.4 format (for backwards compatibility).</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/Miners-Rule.mac" target="_blank"> Miners-Rule.mac</a></p>
-<p class="font-italic"></p>
-<p>Miners-Rule.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/makemesh.mac" target="_blank"> makemesh.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>Recreates selected lines by fitting b-splines through points on line. Useful with some imported IGES geometry</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mapme.mac" target="_blank"> mapme.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>General macro used to map one set of values &amp; (x,y,z) coordinates to another. Uses *MOPER,,,MAP.</p>
+<p>Example input file can be found here which uses this macro. In this input example, *VPUT is used to compare mapping UX, UY, and UZ from one mesh to another. This can be used to map pressures, heat flux, convection, etc. from CFD codes to ANSYS, for example.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/massprop.mac" target="_blank"> massprop.mac</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Calculates accurate mass properties via inertial relief method.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mavgtemp.mac" target="_blank"> mavgtemp.mac</a></p>
+<p class="font-italic">Joe Metrisin (Florida Turbine Technologies, Inc.)</p>
+<p>&quot;Here is a macro to calculate the mass average temperature of the selected elements.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/mg.mac" target="_blank"> mg.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>Zooms in, out or autoscales images then does a replot<br>
+&quot;When I want to zoom in by a factor of two I enter MG,2. If I want to zoom out I enter something like MG,.1. If I want to autoscale I just enter MG. It replots the last display, which is usually what I want to do anyway.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/midstres.mac" target="_blank"> midstres.mac</a></p>
+<p class="font-italic">Peter Budgell (Innovative Steam Technologies)</p>
+<p>From Analysis Solutions article &quot;MIDSTRES: An ANSYS macro to aid mid-plane shell stress and load flow evaluation&quot;, Vol. 2 Issue 4 pg. 14. Useful for postprocessing shells, modifies results such that mid-plane stresses (or load/length) is copied to shell exterior. Used with PowerGraphics averaging/noaveraging.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/Miners-Rule.mac" target="_blank"> miners-Rule.mac</a></p>
+<p class="font-italic">Larry Bryant</p>
+<p>&quot;I have attached a script to compute a Miners Rule summation of structural results from three different data bases.</p>
+<p>It is not general for any case, however, one can see the logic and apply this to their specific case as required.</p>
+<p>I also have a simple script here that can be used to dump out a table of results for an independent check of your results.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/mk_mwrite.mac" target="_blank"> mk_mwrite.mac</a></p>
+<p class="font-italic">Matt Sutton (PADT, Inc.)</p>
+<p>This is a macro to write out arrays of user-specified width. Usually, when writing a macro, one has to specify the format of *MWRITE beforehand. This is a technique of a macro writing a macro for formatting purposes.</p>
+<p>The history of this is from XANSYS on the following post (search for &quot;mk_mwrite&quot;).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mkweb.mac" target="_blank"> mkweb.mac</a></p>
+<p class="font-italic">Mark Krueger (Goodrich Corporation)</p>
+<p>&quot;Macro to connect a single node by a 'web' of beams using an area&quot;<br>
+Be sure that you have defined the beam element type and made it active (TYPE, REAL/SECNUM, MAT) prior to using this macro.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/modeshap.mac" target="_blank"> modeshap.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Plots four modes on screen and annotates plots</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/mpc_gen.mac" target="_blank"> mpc_gen.mac</a></p>
+<p class="font-italic">Ted Harris (PADT)</p>
+<p>Creates MPC184 elements between a master node and the other selected nodes. Can be modified for other 2-node line element types. Example of the use of *VMASK.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/mpscale.mac" target="_blank"> mpscale.mac</a></p>
+<p class="font-italic">(CAEAI)</p>
+<p>Macro to scale linear material property and put into new material number.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/mshdvols.mac" target="_blank"> mshdvols.mac</a></p>
-<p class="font-italic"></p>
-<p>mshdvols.mac</p>
+<p class="font-italic">Bob Weathers (Trane)</p>
+<p>Selects meshed volumes.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/multp2.mac" target="_blank"> multp2.mac</a></p>
+<p class="font-italic">Sean Harvey (CSI)</p>
+<p>Macro that facilitates importing multiple parts using the Connection product for Pro/E at 5.5.x. Note that from 5.6.1, importing of Pro/E assembly is supported (it is a beta feature in 5.6.0)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/multread.mac" target="_blank"> multread.mac</a></p>
+<p class="font-italic">Sean Harvey (CSI)</p>
+<p>Macro that facilitates importing multiple part iges files into ANSYS at 5.5.x</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/mvsum.mac" target="_blank"> mvsum.mac</a></p>
-<p class="font-italic"></p>
-<p>mvsum.mac</p>
+<p class="font-italic">Alex Ng (ASM Assembly Automation Ltd.)</p>
+<p>Calculates total mass of selected volumes.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/p_protec.mac" target="_blank"> p_protec.mac</a></p>
-<p class="font-italic"></p>
-<p>p_protec.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/mwrite.mac" target="_blank"> mwrite.mac</a></p>
+<p class="font-italic">Matt Sutton (PADT)</p>
+<p>Macro to write arrays to file. This macro actually uses Tcl/Tk to write another macro, which is then invoked.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/picker.mac" target="_blank"> picker.mac</a></p>
-<p class="font-italic"></p>
-<p>picker.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/my_rot.mac" target="_blank"> my_rot.mac</a></p>
+<p class="font-italic">Peter Budgell (Innovative Steam Technologies)</p>
+<p>A quick and dirty animation of rotation</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/plvln.mac" target="_blank"> plvln.mac</a></p>
-<p class="font-italic"></p>
-<p>plvln.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/myanim.mac" target="_blank"> myanim.mac</a></p>
+<p class="font-italic">Peter Budgell (Innovative Steam Technologies)</p>
+<p>The following simple animation macro has worked for me with user-set contour level values. The user indicates the time delay for each frame, and the number of substeps to plot.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/rcs2ics.mac" target="_blank"> rcs2ics.mac</a></p>
-<p class="font-italic"></p>
-<p>rcs2ics.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/NS_From_Unique_Names.js" target="_blank"> nS_From_Unique_Names.js</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>In Design Simulation 8.0, Named Selections can be imported from Pro/E. However, only one surface is given a name...</p>
+<p>&quot;Attribute transfer from Pro/E is particularly limited since each entity within a part needs to have a unique name. That means that our processing for named selections becomes particularly ineffective since we group entities of like name (exact match only) for named selections. These same attributes can be imported as general attributes and then &quot;grouped&quot; by a different paradigm with the use of the script attached.</p>
+<p>Here the expectation is that user would create a common naming structure (beginning with NS, though this could be modified with a simple script change) for the entities that would belong to a named selection and make them unique based on a &quot;_N&quot; suffix. N here is meant to be some counting number though it could be any unique string.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/NameContactsByParts.js" target="_blank"> nameContactsByParts.js</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Macro to change all contact regions in Workbench to names of its contact parts.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/nas2ans.mac" target="_blank"> nas2ans.mac</a></p>
+<p class="font-italic">Diego Gorriz (Skycross Engineers)</p>
+<p>Example of a macro to convert Nastran input to ANSYS input. Works on shells only, so it should be used as an example.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/nastexp.mac" target="_blank"> nastexp.mac</a></p>
+<p class="font-italic">Barry O&#39;Donnell (ODCS Ltd.)</p>
+<p>&quot;The macro uses logic (primariliy extracted from a previously published macro) to identify the unique combinations of ETYPE, REAL and MAT for non-section based elements and ETYPE, SECTYPE and MAT for secrion based elements. It then gathers the relevant data into arrays (primarily vector based arrays), and outputs the following NASTRAN cards:</p>
+<p>CONM2 (mass21 element)<br>
+PSHELL (based on real data only, i.e. shell63)<br>
+CTRIA3 (shell63 degenerate elements recognised)<br>
+CQUAD4 (shell63 elements)<br>
+PBAR (beam4 element or beam188 element, A/Iyy/Izz supported)<br>
+CBAR (beam4 element or beam188 element, orientation node exported if it exists and default vector of &lt;0 1 0&gt; exported otherwise)<br>
+CELAS2 (combin14, spring option, linear 2 node version only)<br>
+PROD (link180 element, A supported)<br>
+CROD (link180 element)<br>
+PSOLID (solid element property definition card, fully supported)<br>
+CHEXA (solid 185 and solid 45 fully supported, solid 186 &amp; solid 95 not working correctly)<br>
+CPENTA (solid 185/45/186/95 fully supported, degenerate elements recognised)<br>
+CTETRA (solid 185/45/186/95 &amp; solid 186 &amp; 95 fully supported)<br>
+GRID (nodal coordinates, note: nodal csys = 0) MAT1 (E, nu, dens supported - non temp dependent, initial value supported only)&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ndgroup.mac" target="_blank"> ndgroup.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>From the author:<br>
+&quot;ndgroup.mac a macro which creates a macro of nsel commands for the currently selected nodes. this group of nodes can be recovered by running the macro that this macro creates.<br>
+The macro will prompt the user for the name of the file which will be created. The default name is 'ndgrp1.mac'.<br>
+You might check the implementation of *ASK to see if it works okay. I think they changed the way *ASK uses character parameters a few revisions ago and I may not have updated this macro. There is a chance that it will always create a file named &quot;fname.mac&quot; regardless of the name you entered at the *ASK prompt.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/ndgroup2.mac" target="_blank"> ndgroup2.mac</a></p>
+<p class="font-italic">Joe Woodward (PADT)</p>
+<p>&quot;A macro which creates a macro of nsel commands for the currently selected nodes. this group of nodes can be recovered by running the macro that this macro creates. The macro will prompt the user for the name of the file which will be created. The default name is 'ndgroup.mac'.&quot;<br>
+Original macro by John Crawford, vectorized by Joe Woodward.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/nfixdel.mac" target="_blank"> nfixdel.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>&quot;A macro that removes the selected nodes that are mistakenly associated with nonexistent geometry in ANSYS.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/nod2kp.mac" target="_blank"> nod2kp.mac</a></p>
+<p class="font-italic">(EMI)</p>
+<p>This is an ANSYS macro to move an existing node to the location of an existing keypoint. User picks single node to be moved, then picks single keypoint to move it to.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/numtog.mac" target="_blank"> numtog.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>A macro that toggles ID numbers off and on for keypoints, lines, areas, volumes, nodes, and elements.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/PLOT_MAT_AS_TEMP_EN.MAC" target="_blank"> plot_mat_AS_TEMP_EN.MAC</a></p>
+<p class="font-italic">Przemyslaw Siedlaczek (MESco)</p>
+<p>Macro to plot material properties as temperatures. (Note that this macro will apply boundary conditions to your model, so save your model first prior to using this macro.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/p_dirlbl.mac" target="_blank"> p_dirlbl.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>From the author:<br>
+You can use the attached macro. This is supplied without warranty, etc.<br>
+It places the directory, date, time, hostname at the top of the graphics window.... There are additional args that can also extract and post the jobname. Read the macro (at least the top of it.)<br>
+P_LOGO2 is a macro that places my company logo on the screen. You can remove that command.... unless you want it! :-)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/p_nlist.mac" target="_blank"> p_nlist.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>A special version of NLIST to list nodes in the active coordinate system.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Resources</h1>
@@ -93,74 +93,90 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip" target="_blank"> siysdcap.zip</a></p>
-<p class="font-italic"></p>
-<p>siysdcap.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip" target="_blank"> STI02_APDL_and_Vector_Operations.zip</a></p>
-<p class="font-italic"></p>
-<p>STI02_APDL_and_Vector_Operations.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI04_Manipulating_FE_Mesh.zip" target="_blank"> STI04_Manipulating_FE_Mesh.zip</a></p>
-<p class="font-italic"></p>
-<p>STI04_Manipulating_FE_Mesh.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI0604_Viscous_Behavior.zip" target="_blank"> STI0604_Viscous_Behavior.zip</a></p>
-<p class="font-italic"></p>
-<p>STI0604_Viscous_Behavior.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI07_CERIG_RBE3_RIGID184.zip" target="_blank"> STI07_CERIG_RBE3_RIGID184.zip</a></p>
-<p class="font-italic"></p>
-<p>STI07_CERIG_RBE3_RIGID184.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI0808_Hill.zip" target="_blank"> STI0808_Hill.zip</a></p>
-<p class="font-italic"></p>
-<p>STI0808_Hill.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/boot.zip" target="_blank"> boot.zip</a></p>
-<p class="font-italic"></p>
-<p>boot.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/dspace_part.zip" target="_blank"> dspace_part.zip</a></p>
-<p class="font-italic"></p>
-<p>dspace_part.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/EPFL_Tutorial.zip" target="_blank"> EPFL_Tutorial.zip</a></p>
-<p class="font-italic"></p>
-<p>EPFL_Tutorial.zip</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/harmonic_cms.zip" target="_blank"> harmonic_cms.zip</a></p>
-<p class="font-italic"></p>
-<p>harmonic_cms.zip</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/impedance.zip" target="_blank"> impedance.zip</a></p>
-<p class="font-italic"></p>
-<p>impedance.zip</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Example of the use of complex impedance at a surface, which is a new feature in version 13.0 (for 3D FLUID30, FLUID220, FLUID221 acoustic elements). This is a radiating monopole source. Comparison with infinite FLUID130 shows same results with appropriate value of SF,,IMPD defined.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/inistate.zip" target="_blank"> inistate.zip</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>This is a very simple example using Workbench Mechanical 12.0.1 to demonstrate use of the INISTATE command in defining initial stress.<br>
-Open Workbench 12.0.1 (or 12.1) and use &quot;File &gt; Restore Archive ...&quot; and select the zip file to open the model. Solving should take less than a minute.<br>
+Open Workbench 12.0.1 (or 12.1) and use &quot;File &gt; Restore Archive ...&quot;and select the zip file to open the model. Solving should take less than a minute.<br>
 The model is a simple bar. The first analysis branch has 10e3 psi initial stress only in the x-direction. Notice that the block is free to expand - it only has symmetry boundary conditions. The final results show basically zero stress and displacement of -8.1455e-4 inches. Since initial stress is 10e3 and elastic modulus is 29e6 with a length of 2.3622 inches:<br>
 10e3 / 29e6 * 2.3622 = 8.1455e-4<br>
 which is the same answer as given by ANSYS.</p>
 <p>The second analysis branch also has 10e3 psi initial stress only in x-direction. However, there is a Frictionless Support preventing the block from expanding. Final results show displacement basically of zero, and stress of 10e3 psi. This is because the initial stress cannot relax due to the boundary conditions, so the final stress = initial stress in this particular case.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/STI02_Nonlinear_Submodeling.zip" target="_blank"> STI02_Nonlinear_Submodeling.zip</a></p>
-<p class="font-italic"></p>
-<p>STI02_Nonlinear_Submodeling.zip</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/instantaneous_secant_TCE.zip" target="_blank"> instantaneous_secant_TCE.zip</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Macro to convert instantaneous thermal coefficients of expansion to secant values, with example input file. (This is a zipped file)</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/STI04_PSD_Postprocessing.zip" target="_blank"> STI04_PSD_Postprocessing.zip</a></p>
-<p class="font-italic"></p>
-<p>STI04_PSD_Postprocessing.zip</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/matlab.zip" target="_blank"> matlab.zip</a></p>
+<p class="font-italic">Rick Morgans (Adelaide University)</p>
+<p>&quot;On this subject, I've been meaning to post these for ages -&gt; we've been using these macros to transfer variables between ansys and matlab for yonks. They write and read variables from ansys and matlab -&gt; you can check them out to see how they do it (i.e. I cant remember off of the top of my head) -&gt; I think they write out a format header then write the rest of the variable as a single column.</p>
+<p>varread.m<br>
+read variable into matlab</p>
+<p>varread.mac<br>
+read variable into ansys</p>
+<p>varreadc.m<br>
+read 2 column ansys variable into matlab as a complex variable</p>
+<p>varreadcp.m<br>
+read &quot;packed&quot;2 column variable into matlab as complex variable</p>
+<p>varreadp.m<br>
+read &quot;packed&quot;variable into matlab</p>
+<p>varreadp.mac<br>
+read &quot;packed&quot;variable into ansys</p>
+<p>varwrite.m<br>
+write a variable from matlab</p>
+<p>varwrite.mac<br>
+write a variable from ansys</p>
+<p>varwritep.mac<br>
+write a variable from ansys in &quot;packed&quot;format using a vmask&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/STI10_Manual_Calculation_of_SEND.zip" target="_blank"> STI10_Manual_Calculation_of_SEND.zip</a></p>
-<p class="font-italic"></p>
-<p>STI10_Manual_Calculation_of_SEND.zip</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/muffler.zip" target="_blank"> muffler.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This memo provides basic instruction on performing acoustic analyses in Workbench Mechanical 14.0. An example of calculation of transmission loss in a muffler is demonstrated.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/vm256.zip" target="_blank"> vm256.zip</a></p>
-<p class="font-italic"></p>
-<p>vm256.zip</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf" target="_blank"> nonlinear_problems_of_steel_civil_structures.pdf</a></p>
+<p class="font-italic">Milan Vasek</p>
+<p>&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/penny3d.zip" target="_blank"> penny3d.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example using ANSYS Workbench 12.0 to show one way to generate a penny-shaped crack (3D crack) for fracture mechanics (using CINT command to evaluate J-integral and stress intensity factors).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/prony.zip" target="_blank"> prony.zip</a></p>
+<p class="font-italic">John Thompson (ANSYS, Inc.)</p>
+<p>Macro to do curve-fitting for TB,PRONY constants for given relaxation data.<br>
+[STI: Note that, at 8.0 and above, curve-fitting of TB,PRONY is directly available in ANSYS with the TBFT command.]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip" target="_blank"> roller.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/siysdcap.zip" target="_blank"> siysdcap</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Tip on visualizing the Drucker-Prager Cap model yield surface.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/sprs_mprs.zip" target="_blank"> sprs_mprs.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>The attached zip file includes a simple example demonstrating the procedure to perform a single-point response spectrum (SPRS), where the excitation in 3 direction is applied together (using SRSS combination), not independently. The procedure for multi-point response spectrum (MPRS) is included as well for the same situation. An Excel spreadsheet shows that the results obtained for this simple model is the same for both methods (compare the mode coefficients for each squared mode in the spreadsheet).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/substr-fullpost.zip" target="_blank"> substr-fullpost.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Fictitious model used to demonstrate substructuring. SETRAN and SESYMM are used to translate and reflect a superelement. RSPLIT and RSTOFF are also used, and postprocessing of the entire model (superelements and non-superelements) is shown.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/user01.zip" target="_blank"> user01.zip</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Very simple example showing use of user-defined command (USER01).</p>
+<p>This UPF command simply reads and interpolates a defined table array. Use of the parevl() is also shown in this simple input.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/usermat.pdf" target="_blank"> usermat.pdf</a></p>
+<p class="font-italic">unknown</p>
+<p>Document describing the USERMAT user material subroutine.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/week25-ETABLE.pdf" target="_blank"> week25-ETABLE.pdf</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Short description on the usage and features of element tables in ANSYS.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

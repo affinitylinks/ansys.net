@@ -105,18 +105,21 @@ The following pages contain the links to the respective files in the repository.
 </ul> -->
 </div>
 
+<hr>
+
 <div>
-<h2 class="text-center"> Html (in-site) <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2>
+<!-- <h2 class="text-center"> Html (in-site) <a href="/html/0" class="btn btn-sm btn-outline-primary">see all</a></h2> -->
+<h2 class="text-center"> Html </h2>
 
-<!-- <ul class="list-group">
+<ul class="list-group">
 
-{%- for item in collections.html | limit(5) -%}
+{%- for item in collections.html -%}
 
 <li class="list-group-item">
 
 <a href="{{item.url | url }}">{{ item.data.title }}</a>
 
-<p class="font-italic">{{ item.author }}</p>
+<p class="font-italic">{{ item.data.author }}</p>
 
 {{ item.data.description }}
 
@@ -124,7 +127,7 @@ The following pages contain the links to the respective files in the repository.
 
 {%- endfor -%}
 
-</ul> -->
+</ul>
 </div>
 
 <hr>

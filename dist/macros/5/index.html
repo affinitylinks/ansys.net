@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Macros</h1>
@@ -91,165 +91,191 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/p_protec.mac" target="_blank"> p_protec.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>Used as a &quot;wrapper&quot;for SAVE and RESUME in Toolbar, so one doesn't inadvertantly overwrite stuff in memory.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/para-2.mac" target="_blank"> para-2.mac</a></p>
+<p class="font-italic">Mike Rife (CSI)</p>
+<p>Creates parabola, ellipse, or hyperbola.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/peri3d.mac" target="_blank"> peri3d.mac</a></p>
+<p class="font-italic">(EMI)</p>
+<p>This is an ANSYS macro that creates periodic boundary conditions for a 3D model. It is a modified version of Peri.mac that automatically determines the DOF per node and active coordinate system, therefore it can be used to couple structural symmetry model boundaries as well as FLOTRAN periodic boundaries.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/picker.mac" target="_blank"> picker.mac</a></p>
+<p class="font-italic">Chris Masterson (University of Toronto)</p>
+<p>A while back I asked Bill Bulat for a pointer to a macro that could be used for meshing skin depths. He gave me some good pointers. I have since been working on a skin depth macro myself. I now have a first working beta&quot;. It is currently pretty crude since I'm relatively new to ANSYS, my geometry is pretty simple and the expansion algorithm I worked out is very simple. It will only mesh a line of rectangular prisms oriented with the current coordinate system. The end result is something similar to what a straight VSWEEP command could accomplish but with the difference that the user can specify exactly the thickness of the skin depth (or boundary layer if it suits) and how many layers of mesh should be contained in that skin depth. Suits my purposes for now so I thought that maybe somebody else might find a use as well. There are actually three macros: skin.mac - the main macro, and sorter.mac and picker.mac that are called from the main macro. The other caveat I guess is to mention that I wrote them for Ansys 5.5 and so some of the command names may be changed or obsolete (which includes jumping to a label which was already technically obsolete in 5.5) in newer versions.&quot;<br>
+&quot;I posted some skin depth meshing macros to the Ansys egroup that you reproduced on your <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a> page. Since then I have updated the macros significantly to make them more usable and a lot less buggy. The macro is now able to mesh full planes of rectangular prisms, instead of just a line of prisms. With the use of an extra coordinate system I use it to expand the mesh in both directions away from the surface of interest. The macros are now updated to Ansys version 5.6 as well (and in fact won't work in 5.5 due to VSWEEP no longer requiring source and target areas). Just thought I would send the new improved versions to save frustration if anyone ever uses them.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/plot_tag.mac" target="_blank"> plot_tag.mac</a></p>
+<p class="font-italic">Mark Tate (Hamilton Sundstrand)</p>
+<p>This macro will tag your plots with directory and jobname.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/plrv.mac" target="_blank"> plrv.mac</a></p>
+<p class="font-italic">Rick Fischer (Marconi Communications)</p>
+<p>&quot;This macro reduces the number of vectors plotted so that a velocity vector plot on a model with a fine mesh will be more ledgible. It works great for plotting velocity in the middle of a flat rectangular duct on a plane of symmetry. It creates a grid of points in the active coordinate system, finds an element that contains that point, and plots a velocity vector from that element's centroid.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/plvln.mac" target="_blank"> plvln.mac</a></p>
+<p class="font-italic">Mike Yaksh (NAC Int&#39;l)</p>
+<p>Macro for displaying vector plots with element outline overlay.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/pressure.mac" target="_blank"> pressure.mac</a></p>
+<p class="font-italic">Imad Tabsh (CompuSIM Inc.)</p>
+<p>Applies pressure from an equation onto a node or an area. User must modify macro with their own equation.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/pringet.mac" target="_blank"> pringet.mac</a></p>
+<p class="font-italic">Mike Yaksh (NAC Int&#39;l)</p>
+<p>&quot;This macro computes the principle stresses and SI for the maximum node number or for the stress input by the input arguements.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/prnwp.mac" target="_blank"> prnwp.mac</a></p>
+<p class="font-italic">James Kosloski (CAEAI)</p>
+<p>&quot;Macro to align working plane with principal stress directions at a node&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/psdout.mac" target="_blank"> psdout.mac</a></p>
+<p class="font-italic">Jeff Strain (PADT)</p>
+<p>&quot;psdout.mac retrieves PSD data, in G^2/Hz, at picked nodes and stores them as variables in the Time History postprocessor as well as the array parameter PSDDATA. PSDDATA excludes data for modes lying outside the input PSD spectrum. The user also has the options of plotting the PSD curves and/or exporting the data to the text file, psddata.txt.<br>
+Usage: psdout,dir,plot,list where dir = 'x', 'y', or 'z' (defaults to 'x'); plot = 1 to plot the PSD curves in ANSYS (defaults to 0); and list = 1 to export the data to psddata.txt (defaults to 0).<br>
+Acceleration results (load step 5) must be available for this macro to work.&quot;<br>
+Example output plot as PNG file</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/put_amp.mac" target="_blank"> put_amp.mac</a></p>
+<p class="font-italic">Mike Yaksh (NAC Int&#39;l)</p>
+<p>Applies J to selected elements for a specified current input (A). Model is assumed to be in SI units.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/qclear.mac" target="_blank"> qclear.mac</a></p>
+<p class="font-italic">Rod Scholl (PADT)</p>
+<p>Does a /CLEAR without prompting the user for an OK</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/qzmulti.mac" target="_blank"> qzmulti.mac</a></p>
+<p class="font-italic">Peter Budgell (Innovative Steam Technologies)</p>
+<p>The following APDL code can do a stress plot for a Working Plane slice on top of a capped hidden display of the underlying elements. You will need to change the two /TYPE commands if you want to use a Z-Buffer approach. You may want to add a /TYPE command at the end to change back to a conventional hidden surface method. You have to be in /POST1 before calling this macro, and have defined the position of your Working Plane inside the body of your model. Customize as you wish.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/random.mac" target="_blank"> random.mac</a></p>
+<p class="font-italic">Jeff Strain (PADT)</p>
+<p>&quot;Performs PSD base excitation analysis on a component in units of G^2/Hz.<br>
+Execute random,1 to perform a modal analysis prior to the PSD analysis. Execute random with no arguments to run the PSD solution only.<br>
+Apply constraints before running this macro&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/randseed.mac" target="_blank"> randseed.mac</a></p>
+<p class="font-italic">Stefan Reh (ANSYS, Inc.)</p>
+<p>&quot;All random number generators are only pseudo-random number generators. They use what is called a &quot;seed&quot;value to calculate a random number. The result is only pseudo-random because with the same seed value you will always end up with the same &quot;random&quot;number. So whenever you start ANSYS it initializes the seed value. If you start generating random numbers then you will always get the same sequence of &quot;random&quot;numbers. The solution to this problem is to randomize the seed value itself using the system-time. Enclosed is the macro &quot;randseed&quot;that will exactly do that. You will get &quot;real&quot;random numbers after you run &quot;randseed&quot;. You might want to run this macro every time before you start with your random number generation. You can also include the macro in your &quot;start.ans&quot;procedure so it will be executed each time you start ANSYS.&quot;<br>
+It effectively randomizes the seed by executing the RAND an arbitrary number of times.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/rcs2ics.mac" target="_blank"> rcs2ics.mac</a></p>
+<p class="font-italic">Mark Troscinski (ANSYS, Inc.)</p>
+<p>&quot;Macro RCS2ICS transforms FLOTRAN velocities, computed in a rotating coordinate system (or frame of reference), into an inertial coordinate system, for post-processing purposes.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/rcyl.mac" target="_blank"> rcyl.mac</a></p>
+<p class="font-italic">Steve Hale (CAEAI)</p>
+<p>&quot;A macro has been developed that calculates the actual radial and tangential displacements for a large rotation analysis in ANSYS. The macro, named RCYL.MAC , stores the actual radial and circumferential displacements in the following results quantities:<br>
+EPTOT,XY = radial displacement<br>
+EPTOT,YZ = circumferential displacement<br>
+The macro is valid for up to 180 degrees of rotation and it correctly handles the case when a node rotates from one quadrant to the next. Full Graphics mode must be used when plotting these results because a *VPUT command is used in the macro.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/readsi.mac" target="_blank"> readsi.mac</a></p>
+<p class="font-italic">David Gross (Dominion Engineering, Inc.)</p>
+<p>Example of a macro for stress intensity extraction. Dumps results of PRSECT to file, then *VREADs results into array.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/reassign.mac" target="_blank"> reassign.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example of reassigning matrix scratch files to another directory. For this example, I also differentiate between the platform type when specifying a scratch directory since Windows and UNIX file systems are assigned differently.<br>
+Requires jobname macro.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/reformat.mac" target="_blank"> reformat.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Provides a longer format listing for /POST1 (PRxxxx commands) with longer &quot;pages&quot;. Makes for nicer-looking listings to import into third-party spreadsheets or programs such as Excel or Tecplot.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/renam.mac" target="_blank"> renam.mac</a></p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Renames files in working directory. For example, using &quot;renam,'tif',_1&quot;renames all TIF files in working directory and adds prefix &quot;_1&quot;. Useful to rename graphics files. (Note: At 5.6.1, the undocumented command /DIRGET which this macro uses does not work on Windows and will result in an abort.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rfor_total.mac" target="_blank"> rfor_total.mac</a></p>
+<p class="font-italic">Adam Shinbrot (Zimmer Spine)</p>
+<p>&quot;For a selected nodal set, macro creates vector r_f of dimension arg1 x 1 and fills it with successive values of reaction forces in y for successive time steps, the total number of which is specified by arg1.<br>
+&quot;This macro assumes ultimate time step is number 1; this is easily changed, however.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/rotv.mac" target="_blank"> rotv.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>A macro to rotate the currently selected volumes about an axis.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/round.mac" target="_blank"> round.mac</a></p>
+<p class="font-italic">Gordon May (Rolls Royce Compressor Key System)</p>
+<p>Macro to round a parameter to a specified number of digits.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/rparea.mac" target="_blank"> rparea.mac</a></p>
 <p class="font-italic"></p>
 <p>rparea.mac</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/sasel.mac" target="_blank"> sasel.mac</a></p>
-<p class="font-italic"></p>
-<p>sasel.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac" target="_blank"> siresume.mac</a></p>
-<p class="font-italic"></p>
-<p>siresume.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/sorted.mac" target="_blank"> sorted.mac</a></p>
-<p class="font-italic"></p>
-<p>sorted.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/spider.mac" target="_blank"> spider.mac</a></p>
-<p class="font-italic"></p>
-<p>spider.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/spokes.mac" target="_blank"> spokes.mac</a></p>
-<p class="font-italic"></p>
-<p>spokes.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/strplot.mac" target="_blank"> strplot.mac</a></p>
-<p class="font-italic"></p>
-<p>strplot.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/trim4.mac" target="_blank"> trim4.mac</a></p>
-<p class="font-italic"></p>
-<p>trim4.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/vthick.mac" target="_blank"> vthick.mac</a></p>
-<p class="font-italic"></p>
-<p>vthick.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/x_th2st.mac" target="_blank"> x_th2st.mac</a></p>
-<p class="font-italic"></p>
-<p>x_th2st.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac" target="_blank"> a2glue.mac</a></p>
-<p class="font-italic">Eric Miller (PADT)</p>
-<p>Work around for standard AGLUE that avoids the &quot;ungluing&quot; that can occur</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ac_angle.mac" target="_blank"> ac_angle.mac</a></p>
-<p class="font-italic"></p>
-<p>ac_angle.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/aslm_bw.mac" target="_blank"> aslm_bw.mac</a></p>
-<p class="font-italic"></p>
-<p>aslm_bw.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/avsucd.mac" target="_blank"> avsucd.mac</a></p>
-<p class="font-italic">Ian Sigal (University of Toronto)</p>
-<p>&quot;The macro writes an AVS UCD file that can be read by Amira. This allows quick display and post-processing. I use the macro to export a model formed of Solid92 tetrahedrals, but only the results in the four corners are written to the file. The macro also writes the element solutions, although these are not read by Amira, but are accepted in the AVS UCD standard.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac" target="_blank"> beampres.mac</a></p>
-<p class="font-italic"></p>
-<p>beampres.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/bode01.mac" target="_blank"> bode01.mac</a></p>
-<p class="font-italic">Bill Bulat (CSI)</p>
-<p>Macro produces a bode plot using 2 predefined variables in /post26.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac" target="_blank"> checkiges.mac</a></p>
-<p class="font-italic"></p>
-<p>checkiges.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac" target="_blank"> cmf.mac</a></p>
-<p class="font-italic"></p>
-<p>cmf.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac" target="_blank"> conts2s.mac</a></p>
-<p class="font-italic"></p>
-<p>conts2s.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cpjoins.mac" target="_blank"> cpjoins.mac</a></p>
-<p class="font-italic"></p>
-<p>cpjoins.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/e72to45.mac" target="_blank"> e72to45.mac</a></p>
-<p class="font-italic"></p>
-<p>e72to45.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/elem2pt.mac" target="_blank"> elem2pt.mac</a></p>
-<p class="font-italic"></p>
-<p>elem2pt.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ensight.mac" target="_blank"> ensight.mac</a></p>
-<p class="font-italic"></p>
-<p>ensight.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/fildel.mac" target="_blank"> fildel.mac</a></p>
-<p class="font-italic"></p>
-<p>fildel.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/getal.mac" target="_blank"> getal.mac</a></p>
-<p class="font-italic"></p>
-<p>getal.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/getseltol.mac" target="_blank"> getseltol.mac</a></p>
-<p class="font-italic"></p>
-<p>getseltol.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/hsvolu.mac" target="_blank"> hsvolu.mac</a></p>
-<p class="font-italic"></p>
-<p>hsvolu.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/im29.mac" target="_blank"> im29.mac</a></p>
-<p class="font-italic"></p>
-<p>im29.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/indctnc0.mac" target="_blank"> indctnc0.mac</a></p>
-<p class="font-italic"></p>
-<p>indctnc0.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/invtchg.mac" target="_blank"> invtchg.mac</a></p>
-<p class="font-italic"></p>
-<p>invtchg.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/jobname.mac" target="_blank"> jobname.mac</a></p>
-<p class="font-italic"></p>
-<p>jobname.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/listtype.mac" target="_blank"> listtype.mac</a></p>
-<p class="font-italic"></p>
-<p>listtype.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mavgtemp.mac" target="_blank"> mavgtemp.mac</a></p>
-<p class="font-italic"></p>
-<p>mavgtemp.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mkweb.mac" target="_blank"> mkweb.mac</a></p>
-<p class="font-italic"></p>
-<p>mkweb.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ndgroup.mac" target="_blank"> ndgroup.mac</a></p>
-<p class="font-italic"></p>
-<p>ndgroup.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/qclear.mac" target="_blank"> qclear.mac</a></p>
-<p class="font-italic"></p>
-<p>qclear.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/rcyl.mac" target="_blank"> rcyl.mac</a></p>
-<p class="font-italic"></p>
-<p>rcyl.mac</p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Macro used to select areas based on the value of the area itself (=length^2). Can be used to select all areas of a certain surface area or a range of surface area (with tolerance).</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/scopy.mac" target="_blank"> scopy.mac</a></p>
-<p class="font-italic"></p>
-<p>scopy.mac</p>
+<p class="font-italic">Dave Rea (ANSYS, Inc.)</p>
+<p>Macro used to copy a meshed sector to a full 360 degree model. Copies meshed solid model and merges nodes (can also edit to merge keypoints). Also, an example file is supplied.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/select_hexpyra.mac" target="_blank"> select_hexpyra.mac</a></p>
+<p class="font-italic">SELECT_HEXPYRA</p>
+<p>Simple example to unselect tetrahedral and wedge-shaped SOLID164 degenerate elements, leaving only hexahedral and pyramid SOLID164 selected.</p>
+<p>While this macro has limited usefulness by itself, it can be used as an example of selecting certain element shapes by nodal connectivity - very useful if you have a single element type but multiple degenerate element shapes and want to differentiate between them in your model.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/selloc.mac" target="_blank"> selloc.mac</a></p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;This is a utility tool to speed up selection of model entities by location.&quot;Please read the comments in the macro file for more details on usage.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/seqv_max.mac" target="_blank"> seqv_max.mac</a></p>
+<p class="font-italic">Adam Shinbrot (Zimmer Spine)</p>
+<p>&quot;For a selected nodal set, macro creates vector s_eqv of dimension arg1 x 1 and fills it with successive values of SEQV (Von-Mises stress) max for successive time steps, the total number of which is specified by arg1.<br>
+&quot;This macro assumes ultimate time step is number 1; this is easily changed, however.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/setLegend.js" target="_blank"> setLegend.js</a></p>
+<p class="font-italic">Al Hancq (ANSYS, Inc.)</p>
+<p>&quot;The macro below will set the legend of the current result in DesignSpace. (Note that this and any legend setting will get wiped out after a resolve)&quot;</p>
+<p>put the contents below into a script file (like setLegend.js), setting the legend min/max as desired<br>
+select your desired result.<br>
+run this macro via Tools-&gt;Run Macro</p>
+<p>&quot;You can make this macro to be more elaborate such as walking down the tree and setting all result legends at once.&quot;</p>
+<p>&quot;I have verified this macro in DesignSpace 6.0.1 but it should work in DesignSpace 6.0 as well.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/setScale.js" target="_blank"> setScale.js</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Attached is a quick hack of a macro to change the scaling for the deformed shape in DesignSpace v6. Edit the file and put in the scale factor you want, then use &quot;Tools &gt; Run Macro...&quot; to run this.<br>
+Please note that your Results toolbar will not be updated with this macro, and it will show whatever you had previously (like &quot;0.5:1 Automatic&quot;). What I'd suggest doing is changing to 'undeformed' and then running this macro, so you know that it's your own specified scale factor, even though the Results toolbar says 'undeformed.'&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/sfmap.mac" target="_blank"> sfmap.mac</a></p>
-<p class="font-italic"></p>
-<p>sfmap.mac</p>
+<p class="font-italic">(CAEAI)</p>
+<p>&quot;This macro is used to map pressure from a CFD mesh onto a structural mesh. The point XYZ locations from the CFD analysis must exist in an array called cfdxyz(npts,3). A corresponding array called &quot;cfdpres&quot;must be exist also. This array contains the pressure values corresponding to the point locations.&quot;<br>
+Useful example of the use of *MOPER,,,MAP.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/sortem.mac" target="_blank"> sortem.mac</a></p>
-<p class="font-italic"></p>
-<p>sortem.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/shownres.mac" target="_blank"> shownres.mac</a></p>
+<p class="font-italic">Hursha Narayan (Robert Bosch Corporation)</p>
+<p>&quot;This macro takes an result parameter as input and shows the value at the corresponding group of nodes selected in the model.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/siresume.mac" target="_blank"> siresume.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Use this for the RESUM_DB abbreviation in the Toolbar to prevent accidental resuming (which clears contents of current database). This macro will not prompt user for confirmation is database is blank. Otherwise, it will prompt user to verify that he/she wants to resume.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/skin.mac" target="_blank"> skin.mac</a></p>
+<p class="font-italic">Chris Masterson (University of Toronto)</p>
+<p>A while back I asked Bill Bulat for a pointer to a macro that could be used for meshing skin depths. He gave me some good pointers. I have since been working on a skin depth macro myself. I now have a first working beta&quot;. It is currently pretty crude since I'm relatively new to ANSYS, my geometry is pretty simple and the expansion algorithm I worked out is very simple. It will only mesh a line of rectangular prisms oriented with the current coordinate system. The end result is something similar to what a straight VSWEEP command could accomplish but with the difference that the user can specify exactly the thickness of the skin depth (or boundary layer if it suits) and how many layers of mesh should be contained in that skin depth. Suits my purposes for now so I thought that maybe somebody else might find a use as well. There are actually three macros: skin.mac - the main macro, and sorter.mac and picker.mac that are called from the main macro. The other caveat I guess is to mention that I wrote them for Ansys 5.5 and so some of the command names may be changed or obsolete (which includes jumping to a label which was already technically obsolete in 5.5) in newer versions.&quot;<br>
+&quot;I posted some skin depth meshing macros to the Ansys egroup that you reproduced on your <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a> page. Since then I have updated the macros significantly to make them more usable and a lot less buggy. The macro is now able to mesh full planes of rectangular prisms, instead of just a line of prisms. With the use of an extra coordinate system I use it to expand the mesh in both directions away from the surface of interest. The macros are now updated to Ansys version 5.6 as well (and in fact won't work in 5.5 due to VSWEEP no longer requiring source and target areas). Just thought I would send the new improved versions to save frustration if anyone ever uses them.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/skndpth.mac" target="_blank"> skndpth.mac</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Used to calculate skin depth. Prompts for resistivity, relative permeability, and frequency.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/slicepln.mac" target="_blank"> slicepln.mac</a></p>
+<p class="font-italic">Don Shaffer (Siemens Westinghouse Power Corp)</p>
+<p>&quot;This macro moves the working plane origin to the specified keypoint and orients it with wz normal to the specified cartesian axis with x=1,y=2 and z=3.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/sort2d.mac" target="_blank"> sort2d.mac</a></p>
+<p class="font-italic">Ashok K. (EACoE, Bangalore)</p>
+<p>Ansys macro to sort a given numeric array (2d)</p>
+<p>I usually get all the nodal coordinates into an array (call it NodeInfo) with node numbers in col 1; X,Y and Z coords in columns 2, 3 and 4 respectively.</p>
+<p>Then lets say I want to sort by the Z- coord followed by the X-coord and then the Y-coord I call the macro</p>
+<p>sort_by_cols, 'NodeInfo', 4,2,3</p>
+<p>The tolerance is something which you may or may not need. Depends on your application. If you just want to compare upto full decimal accuracy leave the tolerance value at zero.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Resources</h1>
@@ -93,166 +93,181 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/methods_for_modeling_bolts.pdf" target="_blank"> methods_for_modeling_bolts.pdf</a></p>
-<p class="font-italic">Jerome Montgomery</p>
-<p>&quot;Modeling bolts for three-dimensional finite element applications have, and still continue to raise questions. The limitations on model size sometimes make modeling of solid bolts impractical. Therefore, many analysts choose other methods to model bolts. Line elements with coupled nodes and line elements with spider beams are a couple of alternative approaches. This paper looks at a few methods for modeling pretension bolted joints using the finite element method (ANSYS 5.7). Pretension is modeled using ANSYS pretension elements (PRETS179) which can be used on solid or line element types. Surface-to-surface contact elements are used to account for varying contact distribution along flanges. Bolt head and nut behavior is modeled by, coupled nodes, beam elements, rigid body elements (RBE3), or solids. Bolt stud is modeled by solid elements, beam elements, pipe elements, or link elements. The choice of line elements versus solid elements is determined by the degree of complexity sought. The pros and cons of different simulations are also discussed.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/nonlinear_problems_of_steel_civil_structures.pdf" target="_blank"> nonlinear_problems_of_steel_civil_structures.pdf</a></p>
-<p class="font-italic">Milan Vasek</p>
-<p>&quot;The civil engineering structures are today designed with respect to the limit state of serviceability and limit states of the strength and stability. The design of more efficient and light structures leads to the nonlinear analysis of deflections and stresses. Some parts of structure could reach the yield point under the design load. Some parts of structure could lose their local stability. These complex problems of a different nature are possible to solve by FEM methods.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/towards_automated_determination.pdf" target="_blank"> Towards Automated Determination of USERMAT for the Nonlinear Constitutive Behavior of Composites</a></p>
-<p class="font-italic">J. Michopoulos, P. Mast, R. Badaliance, L. Gause, T. Chwastyk, R. Foerch</p>
-<p>&quot;Recent advances in finite element techniques and design optimization integration technologies along with the parallel hardware and software evolution have directed the CMS group to turn its attention to utilizing &quot;of the shelf&quot; technology of achieving the same goals. Thus, the &quot;Z-mat&quot; and &quot;Z-Optim&quot; packages from Northwest Numerics, Inc., have been utilized to extract the non-linear constitutive response from the available experimental data in an integrated and automated manner and in conjunction with the ANSYS/Mechanical infrastructure. The automation lies on the fact that the process automatically generates the code of a &quot;USERMAT&quot; subroutine that it can be subsequently used with any geometry and loading specification definable within the limits of ANSYS' non-linear element library. The geometry of the single notched specimen of NRL's In Plane has been used for developing and verifying the process.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/elements-18x.pdf" target="_blank"> The Building Blocks of Simulation: A New Family of Elements for Stress Analysis</a></p>
-<p class="font-italic">(ANSYS, Inc.)</p>
-<p>Presentation on 18x family of elements (part of the &quot;Advanced Analysis with ANSYS&quot; seminar during the 2002 User's Conference).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/principles_of_simulating_contact_between.pdf" target="_blank"> Principles of Simulating Contact Between Parts using ANSYS</a></p>
-<p class="font-italic">David H. Johnson</p>
-<p>&quot;The ANSYS finite element analysis (FEA) program offers a variety of elements designed to treat cases of changing mechanical contact between the parts of an assembly or between different faces of a single part. These elements range from simple, limited idealizations to complex and sophisticated, general purpose algorithms. FEA analysts are frequently faced with modeling situations where changing contact cannot be assumed negligible and ignored. Finding the best choices for contact elements, element options, solver, and solution options can drastically improve the model’s performance and reduce the analyst’s frustration with a contact simulation model.&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/Get_Summary_2005_08_15.pdf" target="_blank"> *GET/*VGET Sheet</a></p>
+<p class="font-italic">(PADT)</p>
+<p>This is a handy sheet with *GET and *VGET items. A user can print this out as a reference sheet when writing APDL macros.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/180xAdvantages.pdf" target="_blank"> 180 Series Elements: Why Should One Use Them in Linear Analysis</a></p>
 <p class="font-italic">(ANSYS, Inc.)</p>
 <p>Presentation on 18x elements (continuum, beam, shell) and its features related to both linear and nonlinear analyses.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/anisotropic_plasticity_failure_prediction_wood.pdf" target="_blank"> Anisotropic Plasticity and Failure Prediction in Wood Composites</a></p>
-<p class="font-italic">David M. Moses, Helmut G.L. Prion</p>
-<p>&quot;Two case studies are summarized using anisotropic plasticity and the Weibull weakest link failure model to predict the behavior of wood and wood composites. The linear elastic orthotropic model normally used for wood is shown to be insufficient for the prediction of ultimate strength in wood. Non-linear, non-recoverable behavior in compression in each of the orthogonal material directions is of particular interest in cases where localized crushing governs the load-displacement behavior of wood.&quot;</p>
-<p>&quot;The anisotropic plasticity option in ANSYS was used to predict yielding and post-yield behavior for the wood composite used in this study because yield stresses in orthogonal directions were found to be in the ratio of 1:1.2:5. A user-programmable Fortran subroutine was developed for ANSYS to carry out the failure analysis (and to calculate the volume integration of the stresses) at each load-step in post-processing. The model was verified using two cases: I) the ASTM D143 shear block test, and II) bolted connections.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/conflong_viscoel.pdf" target="_blank"> conflong_viscoel.pdf</a></p>
-<p class="font-italic">(ANSYS, Inc.)</p>
-<p>Presentation on the viscoelasticity model, introduced in ANSYS 6.1, available for both hypo- and hyper-elasticity (part of the &quot;Advanced Analysis with ANSYS&quot; seminar during the 2002 User's Conference).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/s30p5a.pdf" target="_blank"> Effect of Package Design and Layout on BGA Solder Joint Reliability of an Organic C4 Package</a></p>
-<p class="font-italic">Biju Chandran, Deepak Goyal, and Jeffrey Thomas</p>
-<p>&quot;Ball Grid Array (BGA) is currently the interconnect of choice for attaching microprocessors on a printed circuit board (PCB). The reliability of solder joints is one of the critical issues in BGA surface mount technology (SMT). During reliability testing, BGA fatigue failures were observed on test vehicles (TV). Finite element analysis and physical failure analysis were used to determine the risk to the product in the field. As part of this effort, parametric finite element analysis was carried out to determine the effect of design features like the package size, and BGA pattern on the propensity of fatigue failure. The results of the finite element analysis and physical failure analysis showed that the risk to fatigue failure was much greater on a peripheral / partial grid array package than in a full grid array package.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/expansion.pdf" target="_blank"> expansion.pdf</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/STI0602_Coupled-Field_Elements.pdf" target="_blank"> 22x Coupled-Field Elements [PDF]</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>This is a description of an ANSYS Workbench 13.0 project and the use of the HSFLD242 (hydrostatic fluid) element. It is a fictitious model of the expansion of a tire and subsequent displacement-loading to a rigid surface (e.g., ground).</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/roller.zip" target="_blank"> roller.zip</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example of a hollow metal pipe being bent by rollers. Rigid-deformable contact, metal plasticity, use of Joints (MPC184) are in the Workbench Mechanical 12.1 model.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/021501Syed.pdf" target="_blank"> Reliability Needs</a></p>
-<p class="font-italic"></p>
-<p>Overview of Reliability Models and Data Needs</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/1_1_4.pdf" target="_blank"> Save Working Loads</a></p>
-<p class="font-italic"></p>
-<p>Iterative Determination of Save Working Loads (SWL) for Crawler Cranes</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/306.pdf" target="_blank"> FINITE ELEMENT MODELING OF DAMAGE ACCUMULATION IN BOLTED COMPOSITE JOINTS UNDER INCREMENTAL TENSILE LOADING</a></p>
-<p class="font-italic"></p>
-<p>A three-dimensional progressive damage model was developed in order to simulate the damage accumulation of bolted single-lap composite joints under in-plane tensile loading. This model is capable of predicting the residual strength and residual stiffness of laminates with arbitrary lay-ups, geometries and bolt positions. The parametric study includes stress analysis, failure analysis and material property degradation. Stress analysis of the three-dimensional geometry was performed using the ANSYS FE code. Failure analysis and degradation of material properties were implemented using a progressive damage model, which is incorporated in an ANSYS macro-routine. The progressive model utilizes a set of stress-based Hashin-type criteria and a set of appropriate degradation rules. A parametric study was performed to examine the effect of bolt position and friction upon residual strength and damage accumulation.</p>
+<p>&quot;The 22x direct coupled-field elements (PLANE223, SOLID226-227) provide a wide array of material behavior for multiphysics applications - these include piezoelectricity, piezoresistivity, thermoelasticity, and thermoelectricity. This memo hopes to introduce some of the pertinent features of these elements.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/89E56210-BDB9-137E-C5E99E1403B17F75_83733.pdf" target="_blank"> 3-Dimensional thermal analysis and active cooling of short-length high-power fiber lasers</a></p>
-<p class="font-italic"></p>
+<p class="font-italic">L. Li, H. Li, T. Qiu, V. L. Temyanko, M. M. Morrell, and A. Schülzgen</p>
 <p>A fully 3-dimensional finite element model has been developed that simulates the internal temperature distribution of short-length high-power fiber lasers. We have validated the numerical model by building a short, cladding-pumped, Er-Yb-codoped fiber laser and measuring the core temperature during laser operation. A dual-end-pumped, actively cooled, fiber laser has generated &gt;11 W CW output power at 1535 nm from only 11.9 cm of active fiber. Simulations indicate power-scaling possibilities with improved fiber and cooling designs.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Gerard_et_al.pdf" target="_blank"> A 3D Dynamical Biomechanical Tongue Model to Study Speech Motor Control</a></p>
+<p class="font-italic">Jean-Michel Gérard, Reiner Wilhelms-Tricarico, Pascal Perrier &amp; Yohan Payan</p>
+<p>&quot;A 3D biomechanical dynamical model of human tongue is presented, that is elaborated in the aim to test hypotheses about speech motor control. Tissue elastic properties are accounted for in Finite Element Modeling (FEM). The FEM mesh was designed in order to facilitate the implementation of muscle arrangement within the tongue. Therefore, its structure was determined on the basis of accurate anatomical data about the tongue. Mechanically, the hypothesis of hyperelasticity was adopted with the Mooney-Rivlin formulation of the strain energy function. Muscles are modeled as general force generators that act on anatomically specified sets of nodes of the FEM structure. The 8 muscles that are known to be largely involved in the production of basic speech movements are modeled. The model and the solving of the Lagrangian equations of movement are implemented using the ANSYS™ software. Simulations of the influence of muscle activations onto the tongue shape are presented and analyzed.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/IRS2006_reprint.pdf" target="_blank"> A 64-Pixel Linear Thermopile Array Chip Designed for Vacuum Environment</a></p>
+<p class="font-italic">U. Dillner, E. Kessler, V. Baier, A. Berger, T. Eick, D. Behrendt, H. Urban</p>
+<p>&quot;We report on the development of a 64-pixel high performance linear thermopile array chip designed for vacuum environment based on a silicon nitride membrane as substrate, Bi0.87Sb0.13/Sb as thermoelectric materials combination and an Ag-black broadband absorber layer. The array chip was mounted on a ceramic substrate and placed on the socket of a commercial hybrid package with 64 pins. Measurements of the linear array chip in vacuum environment and in absence of an entrance filter delivered a responsivity of 245 V/W, a sensitivity of 166 µVm˛/W, a specific detectivity of 1.6x109 cmHz1/2/W at an electrical resistance of 9 k and a thermal time constant of 150 ms. The pixelto- pixel cross-talk was reduced to less than 0.4 % due to slits in the membrane between adjacent pixels made by dry etching.&quot;<br>
+[ANSYS Thermal, version unknown]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/zej-2012-anand-2.pdf" target="_blank"> A Compilation of Anand Parameters for Selected SnPb and Pb-free Solder Alloys</a></p>
+<p class="font-italic">Zane Johnson (University of Minnesota)</p>
+<p>&quot;Finite-element (FE) simulation is widely used in electronic packaging. It is particularly useful in the design of solder joint attachments. To ensure fidelity, FE simulation must capture the highly nonlinear behavior of solder. One useful material model for solder is Anand’s viscoplastic model. A compilation of Anand parameters reported in the literature for a variety of solder alloys is provided.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/general_Reports_rptfiles_2005-263.pdf" target="_blank"> A DOS-Enhanced Numerical Simulation of Heat Transfer and Fluid Flow Through an Array of Offset Fins with Conjugate Heating in the Bounding Solid</a></p>
+<p class="font-italic">E.M. Sparrow, J.P. Abraham, P.W. Chevalier</p>
+<p>&quot;The method of Design of Simulation (DOS) was used to guide and enhance a numerical simulation of fluid flow and heat transfer through offset-fin arrays which form the interior geometry of a cold plate. The basic problem involved 11 independent parameters. This prohibitive parametric burden was lessened by the creative use of nondimensionalization that was brought to fruition by a special transformation of the boundary conditions. Subsequent to the reduction of the number of parameters, the DOS method was employed to limit the number of simulation runs while maintaining an accurate representation of the parameter space. The DOS method also provided excellent correlations of both the dimensionless heat transfer and pressure drop results. The results were evaluated with respect to the Colburn Analogy for heat and momentum transfer. It was found that the offseting of the fins created a larger increase in the friction factor than that which was realized for the dimensionless heat transfer coefficient.&quot;</p>
+<p>Similar paper can be found here.<br>
+[ANSYS Flotran, version unknown]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/fp8542.pdf" target="_blank"> A Finite Element Model For Pre- And Post-Test Calculations of the FOREVER-Experiments</a></p>
+<p class="font-italic">H. G. Willschuetz, E. Altstadt, F. P. Weiss, B. R. Sehgal</p>
+<p>&quot;An axis-symmetric Finite Element (FE) model is developed based on the multi-purpose code ANSYS/Multiphysics. Using the Computational Fluid Dynamics (CFD) module the temperature field within the melt pool and within the vessel wall is evaluated. The transient structural mechanical calculations are then performed applying a creep model which takes into account large temperature, stress and strain variations.&quot; (Document 2)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/Tunneling-Accelerometer-Paper.pdf" target="_blank"> A High-Performance Tunneling Accelerometer</a></p>
+<p class="font-italic">Edward Boyden, Osamah El Rifai, Brian Hubert, Maurice Karpman, Dave Roberts</p>
+<p>Design of a MEMS tunneling accelerometer. Uses ANSYS for part of the design verification. In Acrobat, search for occurences of &quot;ANSYS&quot; in the PDF file.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/Jewart_etd_2006.pdf" target="_blank"> A Highly-sensitive fiber bragg grating transverse strain sensor using micro-structure fibers</a></p>
+<p class="font-italic">Charles M. Jewart</p>
+<p>A Highly-sensitive fiber bragg grating transverse strain sensor using micro-structure fibers</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/kyshen.pdf" target="_blank"> A Microchip-Based PCR Device Using Flexible Printed Circuit Technology</a></p>
+<p class="font-italic">Keyue Shen, Xiaofang Chen, Min Guo, Jing Cheng</p>
+<p>&quot;Rapid heat transfer is crucial for an efficient polymerase chain reaction (PCR), and this makes temperature control one of the most essential features in a micro-PCR system, which always includes a heater and a sensor composing a closed-loop. Yet, the fabrication of the heater and the sensor often prevented micro-PCR systems from achieving both cost-effectiveness and fabrication-easiness. For most of the early researches micromachining techniques were used to allow sensors and heaters be integrated on a silicon or glass chip. However, the cost prevented them from wide applications. The work described in this paper is part of our effort to solve the cost/fabrication dilemma. An innovative digital temperature control system was developed by introducing a heater/sensor switching procedure. Only one temperature controlling element fabricated by flexible printed circuit technology was utilized in the constructed PCR device with minimum fabrication steps. The glass chip-based device was made from low cost materials and assembled with adhesive bonding. Through seemingly simple steps, we obtained both disposability and portability at the same time. Temperature stability within ±0.3 ?C and a transitional rate of 8 ?C/s during heating/cooling was achieved. A 244 bp DNA fragment of hepatitis C virus was successfully amplified in our device by a three-stage thermal cycling process. Further improvement was assisted by finite element analysis, and demonstrated by experiment.&quot;<br>
+[ANSYS Thermal, version 7.0]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/erfurt02new_detector-reprint.pdf" target="_blank"> A New High Resolution Thermal Detector Array</a></p>
+<p class="font-italic">U. Dillner, R. Riesenberg</p>
+<p>&quot;The performance of the new thermal detector array arrangement is calculated using thermal finite element analysis. The influence of the thermal intra- and inter-subarray cross-talk on the resolution in dependence on some geometrical dimensions of the array is presented.&quot;<br>
+[ANSYS Thermal, version 5.7]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/ws_jss2002.pdf" target="_blank"> A New Type of High Bandwidth RF MEMS Switch - Toggle Switch</a></p>
+<p class="font-italic">Bernd Schauwecker, Karl M. Strohm, Winfried Simon, Jan Mehner, and Johann-Friedrich Luy</p>
+<p>&quot;A new type of RF MEMS switch for low voltage actuation, high broadband application and high power capability is presented. Mechanical and electromagnetic simulations of this new RF MEMS switch type are shown and the fabrication process and measurement results are given. The switching element consists of a cantilever which is fixed by a suspension spring to the ground of the coplanar line. The closing voltage is 16V. The switches exhibit low insertion loss (&lt;0.85dB@30GHz) with good isolation (&gt;22dB@30GHz). I.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/nonlinear_domain_decomposition_method.pdf" target="_blank"> A Non-Linear Domain Decomposition Method</a></p>
+<p class="font-italic">Iakov Mordukhovich Klebanov, Andrei Nikolaevich Davydov</p>
+<p>&quot;A new domain decomposition technique for parallelization of physically non-linear problems in solid mechanics is developed. It is extended for any stress-strain diagrams. The approach is based on the approximating generalized models of subdomains that leads to a considerably fewer number of iterations requiring updating of substructure parameters. The analytical proof of the convergence of the theoretical iterative procedure and the demonstration of convergence of its numerical implementation with the help of ANSYS are presented.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/MICROtec2000.pdf" target="_blank"> A Novel Micromachined 2x128-Element Linear Themoelectric Infrared Radiation Sensor Array</a></p>
+<p class="font-italic">Jurgen Muller, Volker Baier, Ulrich Dillner, Rudolf Guttich, Ernst Kessler</p>
+<p>&quot;As a component for infrared spectrometric analytical instruments a 2x128-element thin-film thermopile linear array sensor with a staggered pixel arrangement was constructed. Contrary to most of the known 1-dimensional and 2-dimensional thermoelectric infrared sensor arrays working all on the base of doped polysilicon, we use the material group Bi-Sb-Te to obtain highest values of thermoelectric efficiency and specific detectivity to realize an optimum of spectral wavelength resolution.&quot;[ANSYS Thermal, version unknown]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/popelar1.pdf" target="_blank"> A Parametric Study of Flip Chip Reliability Based on Solder Fatigue Modelling</a></p>
+<p class="font-italic">Scott Popelar</p>
+<p>&quot;The solder fatigue model has been utilized to investigate the reliability of flip chip joints subjected to thermal cycling. In particular, a parametric study had been performed which shows how various flip chip design parameters will affect solder joint fatigue. Finite element models have been developed to analyze the effect of die size, die thickness, solder joint height, cap diameter and underfill properties on solder fatigue.&quot; (This is Part I of the study. Part II of this paper is available here.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/Bioloch_ICRA04.pdf" target="_blank"> A SMA Actuated Artificial Earthworm</a></p>
+<p class="font-italic">A. Menciassi, S. Gorini, G. Pernorio, P. Dario</p>
+<p>&quot;This paper presents the design and development of a microrobot which aims to replicate the locomotion principle of earthworms. The undulatory locomotion of living earthworms has been investigated deeply from the biological point of view, but attempts of replication of earthworm models in real size are limited. The authors designed an artificial earthworm with four modules which can be driven independently according to defined undulatory patterns with a typical frequency of 0.5 Hz. Each module is actuated by one or more SMA springs whose configuration has been designed in order to limit the wiring problems and optimizing working frequency. The robot is covered by a shaped silicone material which can be used as a platform to insert tiny legs for obtaining differential friction conditions. Preliminary tests demonstrate that the earthworm prototypes can move with a speed of 0.22 mm/s, thus approximating the behavior of biological earthworms. earthworms. Hopefully, the artificial moving earthworm will constitute a platform for improving the knowledge of mechanisms regulating motion and perception abilities of these creatures.&quot;<br>
+Model in paper does not use TB,SMA constitutive model.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/PAC1991_2197.pdf" target="_blank"> A Software Package Linking PE2D and ANSYS for SSC Magnet Design</a></p>
+<p class="font-italic">Nick Kallas, Chris Haddock, Jay Jayakumar, David Orrell, Greg Snitchler, Giancarlo Spigo, Jon Turner</p>
+<p>&quot;The design of the Cold Mass(CM) of superconducting magnets at the Magnet Systems Division(MSD) of the Superconducting Super Collider Laboratory(SSCL) involves among others the optimization of field quality and structural performance as related to the quench behavior of the magnets. It is desirable to be able to study the changes in field quality due to dimensional changes of the cold mass components under stress as the magnet is cooled and energized. This document describes a software package of functions which enable the computer aided study of this aspect of cold mass design.&quot;<br>
+[ANSYS Structural, version 4.4a]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/EE245.pdf" target="_blank"> A Stress-Induced Thermal Actuator for Optical Purpose</a></p>
+<p class="font-italic">Gang Liu, Sebaek Oh</p>
+<p>&quot;We present a micromachined, stress-induced, thermal bimorph actuator for optical purpose. Piston motions of more than 3um are demonstrated by FEM simulation. Upon the release from the substrate, the actuators lift off the substrate due to a large built-in bending moment arising from the compressive residual stress in the poly-silicon layer and tensile residual stress in the metal layer. Large displacement and low operating voltage (&lt;2V) are obtained simultaneously.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/Ohayon_BACAS_05.pdf" target="_blank"> A Three-Dimensional Finite Element Analysis of Stress Distribution in a Coronary Atherosclerotic Plaque: In-Vivo Prediction of Plaque Rupture Location</a></p>
+<p class="font-italic">Jacques Ohayon, Gérard Finet, François Treyve, Gilles Rioufol and Olivier Dubreuil</p>
+<p>&quot;This paper aims at predicting the plaque rupture location of one patient with stable angina and scheduled to undergo percutaneous coronary intervention. The peak circumferential stress (PCS) is considered as the determining biomechanical factor in the mechanisms leading to rupture of the atherosclerotic plaque and is often used as a predictor of atherosclerotic plaque rupture location. Up to now, to define the site of PCS concentrations, twodimensional (2D) finite element (FE) analyses were performed on the smallest luminal cross-sectional area of the coronary plaque. In-vivo three-dimensional (3D) FE modeling of atherosclerotic coronaries may be very valuable and more accurate than the 2D FE analysis in helping cardiologists evaluate the risk of spontaneous plaque rupture in a patient. In this work, the performances of the 2D and 3D FE approaches have been compared and the limits of the 2D structural analysis has been pointed out.&quot;<br>
+[ANSYS Structural, version 8.0]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/tmi98.pdf" target="_blank"> A Vision-Based Technique for Objective Assessment of Burn Scars</a></p>
+<p class="font-italic">Leonid V. Tsap, Dmitry B. Goldgof, Sudeep Sarkar, and Pauline S. Powers</p>
+<p>&quot;In this paper a method for the objective assessment of burn scars is proposed. The quantitative measures developed in this research provide an objective way to calculate elastic properties of burn scars relative to the surrounding areas. The approach combines range data and the mechanics and motion dynamics of human tissues. Active contours are employed to locate regions of interest and to find displacements of feature points using automatically established correspondences. Changes in strain distribution over time are evaluated. Given images at two time instances and their corresponding features, the finite element method is used to synthesize strain distributions of the underlying tissues.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cast_iron.doc.pdf" target="_blank"> ANSYS Cast Iron Material Model Matches Experimental Data</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;[The purpose of this paper is to] verify the accuracy of the ANSYS cast iron material model. Results from ANSYS are compared with experimental data for a biaxially loaded cruciform geometry.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/solver_2002.pdf" target="_blank"> ANSYS Equation Solvers: Usage and Guidelines</a></p>
+<p class="font-italic">Gene Poole (ANSYS, Inc.)</p>
+<p>Discussion of ANSYS solvers, focusing on the sparse direct solver and PCG iterative solver.<br>
+Originally presented at the 2002 Conference.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/hyper_elasticcity_curvefitting.pdf" target="_blank"> ANSYS Material Modeling: Hyperelastic Material Characterization</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Overview of the hyperelastic curve-fitting capabilities introduced in ANSYS 7.0.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/ansys_mechanical_wp.pdf" target="_blank"> ANSYS Mechanical - A Powerful Nonlinear Simulation Tool</a></p>
+<p class="font-italic">Grama Bhashyam (ANSYS, Inc.)</p>
+<p>A whitepaper describing various ANSYS features in the area of nonlinear mechanics, including element formulation, constitutive models, and contact technology.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mems_1_of_3.pdf" target="_blank"> ANSYS Multiphysics Capabilities for MEMS Modeling and Simulation - Part 1 of 3</a></p>
+<p class="font-italic">Jan Mehner, Juergen Wibbeler</p>
+<p>Part 1 of 3: Analyzing electrostatic-structural interactions in Micro Electro Mechanical Systems<br>
+ANSYS Solutions Vol. 3, Number 2</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/mems_2_of_3.pdf" target="_blank"> ANSYS Multiphysics Capabilities for MEMS Modeling and Simulation - Part 2 of 3</a></p>
+<p class="font-italic">Jan Mehner, Juergen Wibbeler</p>
+<p>Part 2 of 3: Analyzing fluid-structural interactions<br>
+ANSYS Solutions Vol. 3, Number 3</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/mems_3_of_3.pdf" target="_blank"> ANSYS Multiphysics Capabilities for MEMS Modeling and Simulation - Part 3 of 3</a></p>
+<p class="font-italic">Jan Mehner, Juergen Wibbeler, Fouad Bennini</p>
+<p>Part 3 of 3: Exporting macromodels for circuit and system simulation tools.<br>
+ANSYS Solutions Vol. 3, Number 4</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/machdesn_pds.pdf" target="_blank"> ANSYS PDS article in Machine Design [PDF]</a></p>
+<p class="font-italic">Stefan Reh</p>
+<p>While this may not be a conventional technical paper, it presents information on ANSYS PDS (Probabilistic Design System), a beta feature in 5.6 and officially released in 5.7. Instead of a deterministic approach, a stochastic method provides better product reliability measures</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/PDS_Overview.pdf" target="_blank"> ANSYS PDS overview [PDF]</a></p>
+<p class="font-italic">Stefan Reh</p>
+<p>A three-page overview/summary sent on the XANSYS Mailing list on PDS, beta in ANSYS 5.6, officially released at 5.7.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_news_1996_1.pdf" target="_blank"> ANSYS news</a></p>
-<p class="font-italic"></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
 <p>First Issue of ANSYS News</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ansys_solutions_2003_summer.pdf" target="_blank"> ansys_solutions_2003_summer.pdf</a></p>
-<p class="font-italic"></p>
-<p>ansys_solutions_2003_summer.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/mutamba2.pdf" target="_blank"> ANSYS-Structural Design of Micromachined Fabry-Pérot Filters for WDM Applications</a></p>
+<p class="font-italic">K. Mutamba, J. Pfeiffer, J. Peerlings, R. Riemenschneider and N. Dragojevic</p>
+<p>&quot;Due to the recent progress in the fabrication of micro-optical devices and the maturity reached in the integration of electromechanical functions on various semiconductor micro-devices, new concepts for optical microelectromechanical systems (OMEMS) have emerged... Analyses have been carried out with the ANSYS FEM (Finite Elements Method) Program for two types of electrostatically actuated Fabry-Pérot filters.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/asyed_ectc2004_corrected.pdf" target="_blank"> asyed_ectc2004_corrected.pdf</a></p>
-<p class="font-italic"></p>
-<p>asyed_ectc2004_corrected.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ANSYS_Function_Builder.pdf" target="_blank"> ANSYS_Function_Builder.pdf</a></p>
+<p class="font-italic">Achuth Rao (ANSYS, Inc.)</p>
+<p>When using the ANSYS Function Editor and Function Loader to define Function Boundary Conditions, a special type of table is used. This document outlines the syntax of the function loading table.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/barni1.pdf" target="_blank"> barni1.pdf</a></p>
-<p class="font-italic"></p>
-<p>barni1.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/ANSYS_distributed_tutorial_8.1.zip" target="_blank"> ANSYS_distributed_tutorial_8.1.zip</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>This is a document for ANSYS 8.1 distributed solvers and how to set them up, specifically for Windows and Linux.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cj21-wai.pdf" target="_blank"> cj21-wai.pdf</a></p>
-<p class="font-italic"></p>
-<p>cj21-wai.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/STI05_APDL_Coding_Standards.pdf" target="_blank"> APDL Coding Standards [PDF]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Because of the flexibility and automation APDL (ANSYS Parametric Design Language) provides, many users tend to write input files and macros in addition to using the GUI.<br>
+There are currently no recognized ‘standards’ of writing APDL macros or input files, although there may exist standards within companies on APDL coding. The lack of APDL coding standards may make inheriting someone else’s input files or macros more difficult. Also, parameter or component conflicts may also arise when using multiple macros.<br>
+This memo hopes to provide some ideas for groups or individuals wishing to develop APDL standards in writing macros or input files.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/combined_l_o_smoothing.pdf" target="_blank"> combined_l_o_smoothing.pdf</a></p>
-<p class="font-italic"></p>
-<p>combined_l_o_smoothing.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ahieke.pdf" target="_blank"> APDL Implementation of a 3D FEM Capacitance Simulator for Arbitrarily Shaped Interconnects [PDF]</a></p>
+<p class="font-italic">Andreas Hieke</p>
+<p>Alternative download link here<br>
+An alternate CMATRIX macro created by A. Hieke called CAMACO.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/conflong_hyperel.pdf" target="_blank"> conflong_hyperel.pdf</a></p>
-<p class="font-italic"></p>
-<p>conflong_hyperel.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/STI02_APDL_and_Vector_Operations.zip" target="_blank"> APDL and Vector Operations [ZIP]</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>&quot;Vector and matrix operations in APDL are an invaluable method of manipulating array data, as they provide very fast, computationally efficient means of helping the user perform pre- or post-processing operations on the model.<br>
+There are many ways of storing data, ranging from arrays to tables to strings. Moreover, manipulation of numerical data can be in the form of vectors or matrices via the *Vxxx and *Mxxx commands, respectively. The user is referred to the APDL Programmer’s Guide in the ANSYS online help for a thorough discussion of the capabilities of APDL, but, in this memo, a basic introduction to vector operations will be covered.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ECTC2001-paper.pdf" target="_blank"> ECTC2001-paper.pdf</a></p>
-<p class="font-italic"></p>
-<p>ECTC2001-paper.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/coolingreview.pdf" target="_blank"> ATLAS TRT Barrel Electronics Cooling: Duke mockup measurements and FEA calculations</a></p>
+<p class="font-italic">W. Ebenstein, J. Fowler, S. Oh, V. Vassilakopoulos, and C. Wang</p>
+<p>&quot;This report summarizes measurements and calculations using the most recently proposed cooling scheme. Heat generated by the ASDBLR and DTMROC stamp boards is conducted to an aluminum plate sandwiched between the upper and lower stamp boards (hereafter referred to as the 'middle cooling plate'). The heat is then carried up through a vertical aluminum post, and finally to a large aluminum plate above all of the upper stamp boards (the 'upper cooling plate'), to which cooling tubes are attached.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/FLUID29andFLUID79.pdf" target="_blank"> FLUID29andFLUID79.pdf</a></p>
-<p class="font-italic"></p>
-<p>FLUID29andFLUID79.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/FSI.projects.Nabity.paper.pdf" target="_blank"> FSI.projects.Nabity.paper.pdf</a></p>
-<p class="font-italic"></p>
-<p>FSI.projects.Nabity.paper.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/Helical_Path.pdf" target="_blank"> Helical_Path.pdf</a></p>
-<p class="font-italic"></p>
-<p>Helical_Path.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/hyperelasti_contact_analysis.pdf" target="_blank"> hyperelasti_contact_analysis.pdf</a></p>
-<p class="font-italic"></p>
-<p>hyperelasti_contact_analysis.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/implant_stent.pdf" target="_blank"> implant_stent.pdf</a></p>
-<p class="font-italic"></p>
-<p>implant_stent.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/IRS2006_reprint.pdf" target="_blank"> IRS2006_reprint.pdf</a></p>
-<p class="font-italic"></p>
-<p>IRS2006_reprint.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/LNCS3078_Chabanas.pdf" target="_blank"> LNCS3078_Chabanas.pdf</a></p>
-<p class="font-italic"></p>
-<p>LNCS3078_Chabanas.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mems-thermal-analogy-fsi-damping.pdf" target="_blank"> mems-thermal-analogy-fsi-damping.pdf</a></p>
-<p class="font-italic"></p>
-<p>mems-thermal-analogy-fsi-damping.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/modeling_disel_engine_cylinder_gaskets.pdf" target="_blank"> modeling_disel_engine_cylinder_gaskets.pdf</a></p>
-<p class="font-italic"></p>
-<p>modeling_disel_engine_cylinder_gaskets.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/MSM00_ANSYS_trefftz.pdf" target="_blank"> MSM00_ANSYS_trefftz.pdf</a></p>
-<p class="font-italic"></p>
-<p>MSM00_ANSYS_trefftz.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/MSM99_UMN_ufluidic.pdf" target="_blank"> MSM99_UMN_ufluidic.pdf</a></p>
-<p class="font-italic"></p>
-<p>MSM99_UMN_ufluidic.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/neighborhood_size_control.pdf" target="_blank"> neighborhood_size_control.pdf</a></p>
-<p class="font-italic"></p>
-<p>neighborhood_size_control.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/numib695.pdf" target="_blank"> numib695.pdf</a></p>
-<p class="font-italic"></p>
-<p>numib695.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/PAC1991_2197.pdf" target="_blank"> PAC1991_2197.pdf</a></p>
-<p class="font-italic"></p>
-<p>PAC1991_2197.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/post_refinement_quad.pdf" target="_blank"> post_refinement_quad.pdf</a></p>
-<p class="font-italic"></p>
-<p>post_refinement_quad.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/skinner_thesis.pdf" target="_blank"> skinner_thesis.pdf</a></p>
-<p class="font-italic"></p>
-<p>skinner_thesis.pdf</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/SPIE-02-SS-4701-34-horn.pdf" target="_blank"> SPIE-02-SS-4701-34-horn.pdf</a></p>
-<p class="font-italic"></p>
-<p>SPIE-02-SS-4701-34-horn.pdf</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/asyed_ectc2004_corrected.pdf" target="_blank"> Accumulated Creep Strain and Energy Density Based Thermal Fatigue Life Prediction Models for SnAgCu Solder Joints</a></p>
+<p class="font-italic">Ahmer Syed</p>
+<p>&quot;This paper describes in detail the life prediction models for SnAgCu solder joints. The models are based on published constitutive equations for this alloy and thermal cycle fatigue data on actual components. The approach uses advance finite element modeling and analysis techniques and is based on mechanics of deformation. Both accumulated creep strain and creep strain energy density based models are developed. The model has been correlated with a number of data points and predicts life within 25% in most cases. The framework of modeling and prediction methodology described here is fully compatible with the framework used for SnPb solder previously.&quot;</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

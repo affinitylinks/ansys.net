@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Examples</h1>
@@ -96,128 +96,125 @@
 -SHELL93 &amp; SURF154, face 4 (1st eig 840.78)</p>
 <p>Change &quot;COMPTYPE&quot; parameter to run above 4 cases.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ballshear.inp" target="_blank"> ballshear.inp</a></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;I have uploaded a nice mechanical contact problem using solder and a shearing ram (original work is found in Huang, et al. ECTC paper). That paper spells out the material properties necessary to perform a rate-dependent mechanical load using ANSYS. Compare the paper's Figure 3 with the /POST26 plvar plot (excellent correlation with minimal data).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bar.inp" target="_blank"> bar.inp</a></p>
+<p class="font-italic">Timothy Berger (UCLA)</p>
+<p>&quot;I have included a rather long input file that I used for my Ph.D. dissertation on an SGI Origin 2000 supercomputer. I believe it is the low density mesh version but if you run into problems, go to lines 157-167 starting from /BATCH and lower the numbers as you see fit for my mesh parameters. I removed all of the constraint equations from the file below as it will slow ANSYS down considerably if they are included.&quot;</p>
+<p>For additional notes by author, see contents of macro for more details.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/beam176cross.inp" target="_blank"> beam176cross.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple example of new beam-to-beam contact capability in ANSYS 10.0 using CONTA176. (Note that version 10.0 or higher must be used.)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/block_rad.inp" target="_blank"> block_rad.inp</a></p>
+<p class="font-italic">Kal Torak</p>
+<p>Simple input file showing radiation between two blocks using /AUX12 radiation matrix method.</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/bow.inp" target="_blank"> bow.inp</a></p>
-<p class="font-italic"></p>
-<p>Bowshock Benchmark</p>
+<p class="font-italic">Mark Troscinski (ANSYS, Inc.)</p>
+<p>Example of bowshock on cylinder.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cnhtxfr2.inp" target="_blank"> cnhtxfr2.inp</a></p>
+<p class="font-italic">Brad Lamirand (Cooper Turbocompressor, Inc.)</p>
+<p>Steady state conjugate heat transfer in a pipe.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/coax.inp" target="_blank"> coax.inp</a></p>
+<p class="font-italic">Johann Riedler (EPCOS)</p>
+<p>&quot;I created an input-file that simulates the skin-effect of a two-dimensional sector of a coax. During postprocessing you can clearly see the effect of the penetrating magnetic field into the metal. One may extend this model to 3D (perhaps coarser).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp" target="_blank"> compfillet.inp</a></p>
+<p class="font-italic">Joe Metrisin (Florida Turbine Technologies, Inc.)</p>
+<p>&quot;One way I've used to create a compound fillet or spline shape during an optimization run is by use of an elliptical coordinate system. You can get a very well behaved ellipse suitable for optimization with only 3-4 parameters. The procedure is to create two keypoints, and a local cylindrical coordinate system with the par1 option. Then, a line created between these two keypoints will have an elliptical shape.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/contact_shell.inp" target="_blank"> contact_shell.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Shows rigid-flexible contact w/ shell offset.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/contpres.inp" target="_blank"> contpres.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Simple 2D example comparing SY (y-component of stress) at contact surface with CONTPRES (contact pressure). With surface-projection-based contact, results match very well, showing benefits of using surface-project-based contact (KEYOPT(4)=3 for 17x contact elements).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/control.inp" target="_blank"> control.inp</a></p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>&quot;Listed below are an ANSYS input file, and a UITFIN subroutine that demonstrate the implementation of a PID control system using a simple spring-mass system.&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/10/uitfin.f" target="_blank" rel="noopener noreferrer">UITFIN.F</a> subroutine</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/conv_fins.inp" target="_blank"> conv_fins.inp</a></p>
-<p class="font-italic"></p>
-<p>Natural convection problem (2D tri) three &quot;fins&quot; heated</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Simple natural convection problem of heated fins, 2D tri.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/convect.inp" target="_blank"> convect.inp</a></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>Example of using MP data to apply temp-dependent film coefficient. Please note that this macro does not have geometry and will not run by itself. It is meant to serve as an example in applying film coefficients.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp" target="_blank"> couette.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Example of couette flow, viscous heating option for incompressible flow at Flotran 5.6.p</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/coupled-seq.inp" target="_blank"> coupled-seq.inp</a></p>
+<p class="font-italic"> Sheldon Imaoka (ANSYS, Inc.) </p>
+<p>Simple example demonstrating a sequential structural-thermoelectric analysis with plasticity and contact. The thermoelectric side uses UPGEOM to update displacements from the structural analysis.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/curing.inp" target="_blank"> curing.inp</a></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;Try this sample input file demonstrating VE cure simulation. The data originated from a Ph.D. dissertation (&quot;Viscoelastic stress analysis and fatigue life prediction of a flip-chip-on-board electronic package.&quot;, PAUL B. KOENEMAN, Thesis (Ph.D.). University of Texas at Austin, Austin, TX 78712, USA, 1999. 113pp.).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cyc_princ.inp" target="_blank"> cyc_princ.inp</a></p>
+<p class="font-italic">Christian Semler (Mechanical Dynamics Ltd.)</p>
+<p>&quot;Here is an input file which computes principal stresses for a particular sector from a cyclic symmetry analysis, on all corner nodes, without using the /CYCEXPAND command. This enables the use of the *VGET command, so further manipulations are possible.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cylinflo.inp" target="_blank"> cylinflo.inp</a></p>
-<p class="font-italic"></p>
-<p>simple cylinder in open air</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/large_rotat.inp" target="_blank"> large_rotat.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>Input file demonstrating large rotation (beam). Also shows that line search takes longer CPU time.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/plate_cms.inp" target="_blank"> plate_cms.inp</a></p>
-<p class="font-italic"></p>
-<p>plate_cms.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/radairgap.inp" target="_blank"> radairgap.inp</a></p>
-<p class="font-italic"></p>
-<p>radairgap.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rv-lmm.inp" target="_blank"> rv-lmm.inp</a></p>
-<p class="font-italic"></p>
-<p>rv-lmm.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/shell-abd.inp" target="_blank"> shell-abd.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
-<p>Simple example showing how to calculate the A, B, D, and E matrices for general shell input for a single layer (homogenous) shell. The A, B, D, and E matrices are the shell membrane, coupling, bending, and transverse shear stiffness relationships.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/spec-acc-vel-mpt.inp" target="_blank"> spec-acc-vel-mpt.inp</a></p>
-<p class="font-italic"></p>
-<p>spec-acc-vel-mpt.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/torsion3.inp" target="_blank"> torsion3.inp</a></p>
-<p class="font-italic"></p>
-<p>torsion3.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/weld.inp" target="_blank"> weld.inp</a></p>
-<p class="font-italic"></p>
-<p>weld.inp</p>
+<p>Simple example of natural convection of horizontal cylinder.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/dadd.inp" target="_blank"> dadd.inp</a></p>
-<p class="font-italic"></p>
-<p>dadd.inp</p>
+<p class="font-italic">Keith DiRienz (FEA Technologies)</p>
+<p>Sample input file to demonstrate the use of the undocumented DADD command.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/diffusion.inp" target="_blank"> diffusion.inp</a></p>
+<p class="font-italic">Steve Groothuis (Micron Technology, Inc.)</p>
+<p>&quot;As a starting point, if you can accept the following analogy between thermal and moisture diffusion, I think you will be pleased in solving the time-dependent diffusion using this technique. As far as the temperature-dependent moisture diffusion, alternating between moisture mechanics and thermal mechanics can probably be done by updating material properties.&quot;</p>
+<p>(Csat is saturated moisture concentration and D is diffusion coefficient.)</p>
+<p>&quot;We use this analogy to simulate moisture absorption in multi-material semiconductor packages under various temperature and RH conditions. It works quite well. Ee Hua Wong (Institute of Microelectronics, Singapore) has developed the technique using ANSYS/Thermal simulations. Mr. Wong has produced several papers outlining the technique.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/elbow290.inp" target="_blank"> elbow290.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>Attached is a simple, made-up example demonstrating use of ELBOW290 elbow element. There are 3 layers defining the pipe (plasticity and hyperelasticity). The pipe is rotated until local buckling occurs.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/fanbox2.inp" target="_blank"> fanbox2.inp</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Example of use of fan model and forced convection.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/flotran_therm.inp" target="_blank"> flotran_therm.inp</a></p>
+<p class="font-italic">Brad Lamirand (Cooper Turbocompressor)</p>
+<p>Here is a quick example of sequential fluid [Flotran] to thermal coupled field analysis.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/fluid116.inp" target="_blank"> fluid116.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>A very simple example showing how to generate FLUID116 and connect it to a thermal solid (SOLID70 in this case) via SURF152 using the AFSURF command.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/fluid_pres.inp" target="_blank"> fluid_pres.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (CSI)</p>
 <p>Example showing 'fluid pressure' contact, beta at 5.6.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/harm-full-ex.inp" target="_blank"> harm-full-ex.inp</a></p>
-<p class="font-italic">David Haberman (CSI)</p>
-<p>Direct displacement method (full harmonic with applied displacment). Modal analysis then frequency sweep. Results are scaled to get acceleration, displacement, and g's vs frequency.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rigidbody_rotation.inp" target="_blank"> rigidbody_rotation.inp</a></p>
-<p class="font-italic"></p>
-<p>rigidbody_rotation.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/rv-nf.inp" target="_blank"> rv-nf.inp</a></p>
-<p class="font-italic"></p>
-<p>rv-nf.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/shell131rdsf.inp" target="_blank"> shell131rdsf.inp</a></p>
-<p class="font-italic"></p>
-<p>shell131rdsf.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/spec-acc.inp" target="_blank"> spec-acc.inp</a></p>
-<p class="font-italic"></p>
-<p>spec-acc.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/therm_cont.inp" target="_blank"> therm_cont.inp</a></p>
-<p class="font-italic"></p>
-<p>therm_cont.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/compfillet.inp" target="_blank"> compfillet.inp</a></p>
-<p class="font-italic"></p>
-<p>compfillet.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/couette.inp" target="_blank"> couette.inp</a></p>
-<p class="font-italic"></p>
-<p>couette.inp</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/forced_conv.inp" target="_blank"> forced_conv.inp</a></p>
-<p class="font-italic"></p>
-<p>forced_conv.inp</p>
+<p class="font-italic">Sheldon Imaoka (CSI)</p>
+<p>Simple forced convection problem of heated fins, 2D tri. Just modified CONV_FINS example.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/foundation.inp" target="_blank"> foundation.inp</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>A very simple example comparing use of SURF154 elastic foundation stiffness (EFS real constant) with force-distributed constraints (using MPC-based 17x contact elements) tied to a COMBIN14 spring element.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/friction_test2.inp" target="_blank"> friction_test2.inp</a></p>
+<p class="font-italic">Brent Bristol (SpeedFam-IPEC)</p>
+<p>From the author: &quot;The following macro demonstrates a method for obtaining friction forces directly from a contact interface [and restart capability].&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/gasket.inp" target="_blank"> gasket.inp</a></p>
 <p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
 <p>Very simple example showing how to use element birth &amp; death to include a non-uniform initial gap. Usually, initial gap for gasket material (TB,GASKET,,,,PARA) is assumed to be a uniform input. By using element birth and death while perturbing the nodes, one can include a non-uniform initial gap.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/harm-lmm-clust.inp" target="_blank"> harm-lmm-clust.inp</a></p>
-<p class="font-italic"></p>
-<p>harm-lmm-clust.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ibeam_181.inp" target="_blank"> ibeam_181.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>Lateral torsional buckling (example of use of WARP DOF for BEAM188/189). For an I-beam, considering WARP DOF (in 5.6) is important (i.e., unrestrained or restrained warping). Consider the I-beam modeled with BEAM188 elements or with SHELL181:</p>
-<ul>
-<li>BEAM188 (Unrestrained warping) -- 387.3</li>
-<li>BEAM188 (Restrained warping) -- 569.6</li>
-<li>SHELL181 (concentrated load) -- 560.8</li>
-<li>SHELL181 (distributed load) -- 564.1 (similar to beam case)</li>
-</ul>
-<p>This input file uses SHELL181.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/rv-press-fm.inp" target="_blank"> rv-press-fm.inp</a></p>
-<p class="font-italic"></p>
-<p>rv-press-fm.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/shell_cont.inp" target="_blank"> shell_cont.inp</a></p>
-<p class="font-italic">Sheldon Imaoka (CSI)</p>
-<p>Input file demonstrating plasticity, contact, finite strain. Also shows benefit of line search activated.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/spec-pulse2.inp" target="_blank"> spec-pulse2.inp</a></p>
-<p class="font-italic"></p>
-<p>spec-pulse2.inp</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/transient2.inp" target="_blank"> transient2.inp</a></p>
-<p class="font-italic"></p>
-<p>transient2.inp</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

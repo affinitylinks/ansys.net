@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Macros</h1>
@@ -91,6 +91,14 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/a2comet.mac" target="_blank"> a2comet.mac</a></p>
+<p class="font-italic">Fern Thomassy (Southwest Research Institute)</p>
+<p>Creates a COMET/Acoustics model from an ANSYS model.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/a2glue.mac" target="_blank"> a2glue.mac</a></p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Work around for standard AGLUE that avoids the &quot;ungluing&quot;that can occur</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/a_filmax.mac" target="_blank"> a_filmax.mac</a></p>
 <p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
 <p>Calculate maximum possible fillet radius for lines 1 and 2 and store in variable FILMAX.</p>
@@ -100,13 +108,98 @@
 <p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node. I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot;</p>
 <p>For A_HYDRO1 (part 1 of 2), this is a macro to calculate hydrostatic loads under an arbitrary profile. The procedure involves calculating the vertical distance from each point to be loaded to a ceiling of arbitrary shape, where the ceiling is defined by triangular patches.</p>
 </li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac" target="_blank"> a_hydro2.mac</a></p>
+<p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
+<p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.&quot;I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot;For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/a_num.mac" target="_blank"> a_num.mac</a></p>
+<p class="font-italic">Mitch Voehl (CEC Corp)</p>
+<p>Macro to get area number by keypoint number.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ac_angle.mac" target="_blank"> ac_angle.mac</a></p>
+<p class="font-italic">Mike Yaksh (NAC Int&#39;l)</p>
+<p>Combines the real and imaginary components for a given load set to obtain the field at a specified electrical angle. This will only combine the nodal data and the SMISC element table items. For the NMISC element table items, use ac_anget.mac</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac" target="_blank"> acal.mac</a></p>
+<p class="font-italic">(Tech Inno)</p>
+<p>This macro calculates the sum of areas for all selected elements. Macro amended by S. Kukula (Dyson Ltd) with *VMASK to account for non-consecutive area numbering.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip" target="_blank"> accurate.zip</a></p>
+<p class="font-italic">Vladimir Tkach (NPO Energomash)</p>
+<p>&quot;This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/acmn.mac" target="_blank"> acmn.mac</a></p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Looks for and then plots and lists any areas shared by two volumes</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/acomplot.mac" target="_blank"> acomplot.mac</a></p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>Finds any areas that are shared by the selected set of volumes and plots them. Useful to check VGLUEs</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/aext.mac" target="_blank"> aext.mac</a></p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>This macro creates an area by 'extruding' line - Similar to ANSYS command VEXT.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac" target="_blank"> aface.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/aloop.mac" target="_blank"> aloop.mac</a></p>
+<p class="font-italic">Stefano Lucarelli (Mannesmann VDO AG)</p>
+<p>This input file asks for selection of one or more areas and loops until all areas directly or indirectly connected to the original ones are selected then plots them</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/alsm.mac" target="_blank"> alsm.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>I ended up writing a macro that selects/reselects/unselects meshed areas, and then copied it and modified it for doing the same with volumes.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/anfout.mac" target="_blank"> anfout.mac</a></p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Macro that traverses the solid model and writes an anf file.<br>
+Posted by Eric Miller (PADT)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac" target="_blank"> anfout2.mac</a></p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.), slightly modified by John Crawford (Honeywell)</p>
+<p>Macro that traverses the solid model and writes an anf file. Modified by John Crawford to include not just highest level component (i.e., write both volumes and 'free' areas which are selected).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/anglemod.mac" target="_blank"> anglemod.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>From ANSYS Solutions article &quot;Big Insights from Small Macros&quot;, Vol. 2 No. 1 pg. 27. Generates a cantilever beam to determine required elements per fillet for modeling studies</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/anharm.mac" target="_blank"> anharm.mac</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Animates pressure results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle. (While 5.6 has the feature, I like the way Bill has implemented this -- take a look: it's a bit more efficient than the 5.6 macro - STI)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/anol.mac" target="_blank"> anol.mac</a></p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>&quot;I wrote some macros to simplify common annotation tasks. They let me place annotation on the screen n lines above the title. This eliminates picking and placement guesswork. Below is the one that places annotation on the left side. Initially, I only had one argument for the actual text (arg3). Then I realized that the /tlab command allows up to 60 characters, but currently only 32 get passed through as arguments to macros. So I added a second one (arg4).<br>
+&quot;Generally for ANOL, I won't use the second argument (the character offset). If you use a zero for ARG1, your text will precisely overlay the /title and I believe this is independent of screen resolution, but might be dependent on certain other text settings.<br>
+&quot;To get a feel for this, try issuing the following:<br>
+ANOL,4,,'This is four lines above title',''<br>
+ANOL,3,,'This is three lines above title',''<br>
+ANOL,2,,'This is two lines above title',''<br>
+ANOL,1,,'This is one lines above title',''</p>
+<p>&quot;Also try the following:<br>
+/title,This is the title<br>
+ANOL,0,,'This is the title',''</p>
+<p>The two are perfectly overlaid on my system.&quot;</p>
+</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/ans2aba.mac" target="_blank"> ans2aba.mac</a></p>
 <p class="font-italic">Dave Lindeman (3M)</p>
 <p>This macro (actually, an input file of an ABAQUS verification problem) provides an example of using ANSYS to preprocess and write out an ABAQUS input deck. From the author: &quot;Note that this is an APDL script that illustrates a translation procedure and NOT an independent macro (i.e., this is just a starting place for others -- customization IS required).&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ACCURATE.zip" target="_blank"> ACCURATE.zip</a></p>
-<p class="font-italic">Vladimir Tkach (NPO Energomash)</p>
-<p>&quot;This macro evaluate Mesh Discretization Error and Criteria for Accuracy of Finite Element Solutions based on Chandresh Shah’s article (2002).&quot;</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/ans2pat.mac" target="_blank"> ans2pat.mac</a></p>
+<p class="font-italic">Gordon May (Rolls Royce Compressor Key System)</p>
+<p>ANSYS to Patran 2 Neutral File translator: this macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Patran 2 Neutral File (PNF) format.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac" target="_blank"> ans2unv.mac</a></p>
+<p class="font-italic">Rogelio Perez (Schneider Electric Industries SAS)</p>
+<p>This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a></p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ansys2stl.mac" target="_blank"> ansys2stl.mac</a></p>
+<p class="font-italic">Iker Gómez Vázquez (ITP)</p>
+<p>This is a macro to convert an ANSYS structural mesh into an ASCI STL (stereolithography) file.</p>
+<p>Since the STL format is based on a triangular surface mesh, this macro selects all external nodes, generates SURF154 elements, then exports these to the STL file.</p>
+<p>Macro updated on 03/17/2009.</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/anvect.mac" target="_blank"> anvect.mac</a></p>
 <p class="font-italic">Bill Bulat (CSI)</p>
@@ -116,141 +209,69 @@
 <p class="font-italic">Bill Bulat (CSI)</p>
 <p>Animates voltage results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/acal.mac" target="_blank"> acal.mac</a></p>
-<p class="font-italic">(Tech Inno)</p>
-<p>This macro calculates the sum of areas for all selected elements. Macro amended by S. Kukula (Dyson Ltd) with *VMASK to account for non-consecutive area numbering.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/aface.mac" target="_blank"> aface.mac</a></p>
-<p class="font-italic"></p>
-<p>If you want to use this macro to create areas on the outside skin of tet elements, use the ESURF command to create shell elements on the outside faces of the tets, then select these shell elements and run AFACE.MAC.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/anfout2.mac" target="_blank"> anfout2.mac</a></p>
-<p class="font-italic"></p>
-<p>Macro that traverses the solid model and writes an anf file.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ans2unv.mac" target="_blank"> ans2unv.mac</a></p>
-<p class="font-italic"></p>
-<p>This macro translates element and nodal data FOR THE CURRENTLY SELECTED SET OF ELEMENTS into Ideas Neutral File (UNV) format. Based on the Ansys to Patran 2 macro developed by G. May and available in <a href="http://ansys.net" target="_blank" rel="noopener noreferrer">ansys.net</a></p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac" target="_blank"> cmput.mac</a></p>
-<p class="font-italic"></p>
-<p>cmput.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ctpipe3.mac" target="_blank"> ctpipe3.mac</a></p>
-<p class="font-italic"></p>
-<p>ctpipe3.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/distcalc.mac" target="_blank"> distcalc.mac</a></p>
-<p class="font-italic"></p>
-<p>distcalc.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/elgroup.mac" target="_blank"> elgroup.mac</a></p>
-<p class="font-italic"></p>
-<p>elgroup.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/erf.mac" target="_blank"> erf.mac</a></p>
-<p class="font-italic"></p>
-<p>erf.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/fix.mac" target="_blank"> fix.mac</a></p>
-<p class="font-italic"></p>
-<p>fix.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/g_mur.mac" target="_blank"> g_mur.mac</a></p>
-<p class="font-italic"></p>
-<p>g_mur.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/geten.mac" target="_blank"> geten.mac</a></p>
-<p class="font-italic"></p>
-<p>geten.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/getva.mac" target="_blank"> getva.mac</a></p>
-<p class="font-italic"></p>
-<p>getva.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/im1.mac" target="_blank"> im1.mac</a></p>
-<p class="font-italic"></p>
-<p>im1.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/im6.mac" target="_blank"> im6.mac</a></p>
-<p class="font-italic"></p>
-<p>im6.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/initrot.mac" target="_blank"> initrot.mac</a></p>
-<p class="font-italic"></p>
-<p>initrot.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/justmeshit.mac" target="_blank"> justmeshit.mac</a></p>
-<p class="font-italic"></p>
-<p>justmeshit.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/mapme.mac" target="_blank"> mapme.mac</a></p>
-<p class="font-italic"></p>
-<p>mapme.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/myanim.mac" target="_blank"> myanim.mac</a></p>
-<p class="font-italic"></p>
-<p>myanim.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/prnwp.mac" target="_blank"> prnwp.mac</a></p>
-<p class="font-italic"></p>
-<p>prnwp.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/readsi.mac" target="_blank"> readsi.mac</a></p>
-<p class="font-italic"></p>
-<p>readsi.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/rfor_total.mac" target="_blank"> rfor_total.mac</a></p>
-<p class="font-italic"></p>
-<p>rfor_total.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/select_hexpyra.mac" target="_blank"> select_hexpyra.mac</a></p>
-<p class="font-italic"></p>
-<p>select_hexpyra.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/sxyz.mac" target="_blank"> sxyz.mac</a></p>
-<p class="font-italic"></p>
-<p>sxyz.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/trq_msp.mac" target="_blank"> trq_msp.mac</a></p>
-<p class="font-italic"></p>
-<p>trq_msp.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/v2glue.mac" target="_blank"> v2glue.mac</a></p>
-<p class="font-italic"></p>
-<p>v2glue.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/x_demo_vread.mac" target="_blank"> x_demo_vread.mac</a></p>
-<p class="font-italic"></p>
-<p>x_demo_vread.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/anglemod.mac" target="_blank"> anglemod.mac</a></p>
-<p class="font-italic"></p>
-<p>anglemod.mac</p>
-</li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/areacal.mac" target="_blank"> areacal.mac</a></p>
-<p class="font-italic"></p>
-<p>areacal.mac</p>
+<p class="font-italic">Carl Ostervig (Tech Inno)</p>
+<p>This macro calculates the number and area for all selected elements.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac" target="_blank"> clean.mac</a></p>
-<p class="font-italic"></p>
-<p>clean.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac" target="_blank"> areatest.mac</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>Tests areas for consistent normals (not needed at 5.6 since /PSYM,ADIR,1 allows plotting of normals). Also, you may need to rename this macro &quot;ATEST&quot;or &quot;NORMALS&quot;since &quot;AREAS&quot;is a status topic command.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/cmresu.mac" target="_blank"> cmresu.mac</a></p>
-<p class="font-italic"></p>
-<p>cmresu.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/arplot.mac" target="_blank"> arplot.mac</a></p>
+<p class="font-italic">(unknown source)</p>
+<p>Annotates each area with its size (/AN3D)</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac" target="_blank"> distkp2l.mac</a></p>
-<p class="font-italic"></p>
-<p>distkp2l.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/aslm_bw.mac" target="_blank"> aslm_bw.mac</a></p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>Based on ALSM macro, created by John Crawford to select/reselect/unselect meshed areas. Written to take advantage of vectors to execute faster.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ellipse.mac" target="_blank"> ellipse.mac</a></p>
-<p class="font-italic"></p>
-<p>ellipse.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/aswp.mac" target="_blank"> aswp.mac</a></p>
+<p class="font-italic">Bram Weisman (SBM-IMODCO)</p>
+<p>Divides a picked area with the working plane, retaining the area attributes for the newly-created areas.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/ez_rfor.mac" target="_blank"> ez_rfor.mac</a></p>
-<p class="font-italic"></p>
-<p>ez_rfor.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/attrib_2_Load.js" target="_blank"> attrib_2_Load.js</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;This script will apply a force load (magnitude 1000) on each entity that is flagged with an attribute beginning with DSA in the first assembly. There are two mechanisms by which this is done; one via the part manager the other via the DS tree.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/attrib_2_Load_FEA.js" target="_blank"> attrib_2_Load_FEA.js</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;This script will apply load and boundary conditions based on attributes that exist on the model. They are filtered by an attribute prefix and divided by parts by a seperator.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/attrib_2_MeshSizing.js" target="_blank"> attrib_2_MeshSizing.js</a></p>
+<p class="font-italic">(ANSYS, Inc.)</p>
+<p>&quot;attributePrefix is intended to be the prefix of the attribute used in the CAD to represent mesh-sizing.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/ave_tmp.mac" target="_blank"> ave_tmp.mac</a></p>
+<p class="font-italic">Ted Harris (PADT)</p>
+<p>Computes the average temperature (from a thermal analysis) of the selected set of nodes. Example of the use of *VMASK.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/avgtemp.mac" target="_blank"> avgtemp.mac</a></p>
+<p class="font-italic">David Power (Mallett Technology Inc.)</p>
+<p>&quot;Get average element temperature for each element from nodal body loads.<br>
+Unfortunately it's pretty slow for large models, and I haven't had any time to restructure it to make it run faster, although I'm sure I could make better use of the array operations.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/avsucd.mac" target="_blank"> avsucd.mac</a></p>
+<p class="font-italic">Ian Sigal (University of Toronto)</p>
+<p>&quot;The macro writes an AVS UCD file that can be read by Amira. This allows quick display and post-processing. I use the macro to export a model formed of Solid92 tetrahedrals, but only the results in the four corners are written to the file. The macro also writes the element solutions, although these are not read by Amira, but are accepted in the AVS UCD standard.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/axiget.mac" target="_blank"> axiget.mac</a></p>
+<p class="font-italic">Rod Scholl (PADT)</p>
+<p>Selects axi-symmetric elements based upon their keyopts. (PLANE42/82 Only)</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/b188to89.mac" target="_blank"> b188to89.mac</a></p>
+<p class="font-italic">René Fiege (Jos. L. Meyer GmbH)</p>
+<p>&quot;I attached a little macro to define new BEAM189s on the nodes and properties of the existing 188 elements.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac" target="_blank"> battle.mac</a></p>
+<p class="font-italic">Dave Lindeman (3M)</p>
+<p>A macro used to play &quot;Battleship&quot;on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI)<br>
+From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below.<br>
+Enjoy!</p>
+<p>Dave Lindeman<br>
+CAE Specialist<br>
+3M Company<br>
+3M Center 235-1F-36<br>
+St. Paul, MN 55144</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">

@@ -12,7 +12,7 @@ tags:
 
 ### _{{author}}_
 
-[Inquiry Function Matrix](https://github.com/affinitylinks/ansys.net/blob/main/1/Inquiry_Matrix_Sheet_2005_10_11.pdf)
+[Inquiry Function Matrix by Jeroen Valensa (Modine Mfg. Co.)](https://github.com/affinitylinks/ansys.net/blob/main/1/Inquiry_Matrix_Sheet_2005_10_11.pdf)
 
 ```md
 Here is just about everything I know about inquiry functions. They are similar to \*GET functions in usage, and have two input arguments. Here's an example.

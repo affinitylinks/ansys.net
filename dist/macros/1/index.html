@@ -21,7 +21,7 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" type="text/css" href="/css/style.css"/>
 
-    <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script>
+    <!-- <script async src="https://cse.google.com/cse.js?cx=904d4317f81cbaf46"></script> -->
 
     <link rel="alternate" href="/feed/feed.xml" type="application/atom+xml" title="ansys.net">
     <link rel="alternate" href="/feed/feed.json" type="application/json" title="ansys.net">
@@ -66,9 +66,9 @@
     <div class="row">
       <div class="col">
         <div class="bg-light">
-          <div class="conatainer">
+          <!-- <div class="container">
             <div class="gcse-search">...</div>
-          </div>
+          </div> -->
           
 <main class="container py-4">
   <h1 class="mb-3 text-center">Macros</h1>
@@ -91,172 +91,203 @@
   </div>
 </nav>
 <ul class="list-group"><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/fixdivs.mac" target="_blank"> fixdivs.mac</a></p>
-<p class="font-italic"></p>
-<p>fixdivs.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bbldiv.mac" target="_blank"> bbldiv.mac</a></p>
+<p class="font-italic">Bill Bulat (OMM)</p>
+<p>From the author:<br>
+&quot;I whipped up the following simple macro (I call it bbldiv.mac) to help assign divisions to predefined lines when you don't know their direction, but you do know their end keypoints. Useful for bottom-up modeling with input scripts.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/fxfrm08.mac" target="_blank"> fxfrm08.mac</a></p>
-<p class="font-italic"></p>
-<p>fxfrm08.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/beaforce.mac" target="_blank"> beaforce.mac</a></p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>Macro applies pressure distribution for approximation of bearing force. See contents of macro for details.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/getface.mac" target="_blank"> getface.mac</a></p>
-<p class="font-italic"></p>
-<p>getface.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/beamnet.mac" target="_blank"> beamnet.mac</a></p>
+<p class="font-italic">Artem Kulachenko (Mid Sweden University)</p>
+<p>Adds beam elements on outer edges of shell elements. From the author:<br>
+Attached please find a macro that creates a net of beam/link elements on 4/3 node shells.</p>
+<p>An example of its use:<br>
+/prep7<br>
+et,1,41<br>
+rect,0,1,0,1<br>
+amesh,1<br>
+et,2,4<br>
+beamnet,41,2</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/helix.mac" target="_blank"> helix.mac</a></p>
-<p class="font-italic"></p>
-<p>helix.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/beampres.mac" target="_blank"> beampres.mac</a></p>
+<p class="font-italic">Bram Weisman (Alan C. McClure Associates, Inc.)</p>
+<p>Applies linearly varying pressure on beams.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/im10.mac" target="_blank"> im10.mac</a></p>
-<p class="font-italic"></p>
-<p>im10.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/bearing.mac" target="_blank"> bearing.mac</a></p>
+<p class="font-italic">Mark Kessler (BAE Systems)</p>
+<p>&quot;Applies a bearing load using discreet forces. Written primarily to apply a bearing load to a model that has been tet meshed where using a pressure gradient would require rebuilding the model.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/im60.mac" target="_blank"> im60.mac</a></p>
-<p class="font-italic"></p>
-<p>im60.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/bilinear.mac" target="_blank"> bilinear.mac</a></p>
+<p class="font-italic">John Swanson (SAS, Inc./ANSYS, Inc.)</p>
+<p>Used when specifying a material which has different tensile and compressive moduli. A test input file is also available.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/jwasel.mac" target="_blank"> jwasel.mac</a></p>
-<p class="font-italic"></p>
-<p>jwasel.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/lproj.mac" target="_blank"> lproj.mac</a></p>
-<p class="font-italic"></p>
-<p>lproj.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/mg.mac" target="_blank"> mg.mac</a></p>
-<p class="font-italic"></p>
-<p>mg.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/modeshap.mac" target="_blank"> modeshap.mac</a></p>
-<p class="font-italic"></p>
-<p>modeshap.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/my_rot.mac" target="_blank"> my_rot.mac</a></p>
-<p class="font-italic"></p>
-<p>my_rot.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/numtog.mac" target="_blank"> numtog.mac</a></p>
-<p class="font-italic"></p>
-<p>numtog.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/reassign.mac" target="_blank"> reassign.mac</a></p>
-<p class="font-italic"></p>
-<p>reassign.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/selloc.mac" target="_blank"> selloc.mac</a></p>
-<p class="font-italic"></p>
-<p>selloc.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/skndpth.mac" target="_blank"> skndpth.mac</a></p>
-<p class="font-italic"></p>
-<p>skndpth.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/subcont.mac" target="_blank"> subcont.mac</a></p>
-<p class="font-italic"></p>
-<p>subcont.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/varthk.mac" target="_blank"> varthk.mac</a></p>
-<p class="font-italic"></p>
-<p>varthk.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/vol.mac" target="_blank"> vol.mac</a></p>
-<p class="font-italic"></p>
-<p>vol.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/x_esum.mac" target="_blank"> x_esum.mac</a></p>
-<p class="font-italic"></p>
-<p>x_esum.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/a_hydro2.mac" target="_blank"> a_hydro2.mac</a></p>
-<p class="font-italic">Ernst Hustedt (AMES Ltd.)</p>
-<p>&quot;I wrote a macro years ago to calculate distributed loads. The idea behind it is to define a profile using 3-noded shells above the surface to be loaded and calculate the height of the profile above each node of the surface. The nodal force is the height calculated for each node. In a second macro the point loads are scaled proportionally to the area associated with each node.&quot;I guess ANSYS has some better functionality now to do this sort of thing. I add the code for what it's worth. It did the job for me at the time.&quot; For A_HYDRO2, this is a macro to modify nodal forces calculated in A_HYDRO1.MAC proportionally to their areas.</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/acmn.mac" target="_blank"> acmn.mac</a></p>
-<p class="font-italic"></p>
-<p>acmn.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/anharm.mac" target="_blank"> anharm.mac</a></p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/bode01.mac" target="_blank"> bode01.mac</a></p>
 <p class="font-italic">Bill Bulat (CSI)</p>
-<p>Animates pressure results of harmonic analysis in /POST1 by contouring the real part of the solution while varying the phase angle. (While 5.6 has the feature, I like the way Bill has implemented this -- take a look: it's a bit more efficient than the 5.6 macro - STI)</p>
+<p>Macro produces a bode plot using 2 predefined variables in /post26.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/ansys2stl.mac" target="_blank"> ansys2stl.mac</a></p>
-<p class="font-italic"></p>
-<p>ansys2stl.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cbc_rmp5.mac" target="_blank"> cbc_rmp5.mac</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Macro for defining a cubic ramp for use w/ ANSYS/LS-Dyna for performing quasi-static explicit analyses.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/areatest.mac" target="_blank"> areatest.mac</a></p>
-<p class="font-italic"></p>
-<p>areatest.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/checkiges.mac" target="_blank"> checkiges.mac</a></p>
+<p class="font-italic">Julián Díaz (ITR México)</p>
+<p>&quot;This is a very simple macro, but I've found it very useful when I have an iges file with common errors of duplicate geometry and small lines. All it does is look for lines smaller that .1 inches and plots them along with the attached areas, this can be useful to have a glipse of where could the problems be.&quot;</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/battle.mac" target="_blank"> battle.mac</a></p>
-<p class="font-italic">Dave Lindeman (3M)</p>
-<p>A macro used to play &quot;Battleship&quot; on ANSYS. (It's a very cool macro. I modified the macro very slightly since the answer was being revealed at 5.5 and 5.6, so /num,0 and /num,1 were added to prevent this from occurring. -- STI)<br>
-From the author: By the way, please note that this is mugware - if you enjoy the game, or are mildly amused by the thought of a game written in APDL, please send one of your company mugs to the address below.<br>
-Enjoy!</p>
-<p>Dave Lindeman<br>
-CAE Specialist<br>
-3M Company<br>
-3M Center 235-1F-36<br>
-St. Paul, MN 55144</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/clean.mac" target="_blank"> clean.mac</a></p>
+<p class="font-italic">Tom Glade (PACCAR Technical Center)</p>
+<p>&quot;Here's a macro I use to clean up TYPEs, REALs, and MPs.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/clean_model.mac" target="_blank"> clean_model.mac</a></p>
-<p class="font-italic"></p>
-<p>clean_model.mac</p>
+<p class="font-italic">René Fiege (Meyer Werft GmbH)</p>
+<p>&quot;The macro deletes not used attributes (real, mat, type, section), similar to the clean macro from Tom Glade, but with vector operations. It can easily be enlarged to document the used attributes (see macro).<br>
+&quot;Do not use the macro with referencing attributes, like tapered beams. All attributes, which are not an attribute of an element will be deleted.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/closeline.mac" target="_blank"> closeline.mac</a></p>
+<p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
+<p>The macro selects those lines that surround a picked point, or those lines that are exterior, depending on the case. Try the attached igs file and pick completely outside, inside but close to an outer line, inside outer loop but close to an inner line etc. and see what happens.&quot;</p>
+<p>&quot;Extending it to 3-D should be possible by starting with the WP aligned with the screen csys or so.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cmdif.mac" target="_blank"> cmdif.mac</a></p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>&quot;ANSYS has a *get,,common command that lets you grab things from memory. The only problem with this is that you can't just give the *get the name of the block, you need to tell it its position (count) in the block. As an example, the 3rd value listed in a common block is at position 3 (or index 3).</p>
+<p>The way you use a common block is you look in the ansys/custom/include directory for the value you want to know.<br>
+In this case I did a search for a file that contained &quot;/cplane&quot;and found it in d3com.inc.<br>
+Looking in the file I found that the value kycpln is what I was looking for and the common block was /d3com/<br>
+Sometimes you can just count to find out what the index is, but this block is huge and has arrays in it. So instead, I used the macro below.</p>
+<p>I did:</p>
+<p>/cplane,0<br>
+cmndif,0,'d3com',0<br>
+/cplane,1<br>
+cmndif,1,'d3com',0</p>
+<p>And the macro wrote:</p>
+<p>Found: 91 0 1.</p>
+<p>So I would then do: *GET,_cpstat,COMMON,,D3COM,,int,91 to retrieve the value.</p>
+<p>Another example would be if I wanted to know what the global minimum and max number of divisions per line was (DESIZE):</p>
+<p>desize,10,11<br>
+cmndif,0,'cfprp7',0<br>
+desize,20,21<br>
+cmndif,1,'cfprp7',0</p>
+<p>Yields:<br>
+Found: 99 10 20.<br>
+Found: 100 11 21.</p>
+<p>For this I would use:<br>
+*get,_mnlnsz,common,,cfprp7,,int,99<br>
+*get,_mxlnsz,common,,cfprp7,,int,100&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cmf.mac" target="_blank"> cmf.mac</a></p>
+<p class="font-italic">Ernst Hustedt (Air New Zealand Engineering)</p>
+<p>Make a compound fillet at two straight lines.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cmget.mac" target="_blank"> cmget.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>&quot;A macro that retrieves the components saved using cmput.mac.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/cmput.mac" target="_blank"> cmput.mac</a></p>
+<p class="font-italic">John Crawford (Honeywell)</p>
+<p>&quot;A macro that saves all the currently selected entities in components&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/cmresu.mac" target="_blank"> cmresu.mac</a></p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>&quot;Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/cmreview.mac" target="_blank"> cmreview.mac</a></p>
-<p class="font-italic"></p>
-<p>cmreview.mac</p>
+<p class="font-italic">Tom Glade (PACCAR Technical Center)</p>
+<p>Reviews defined components of a specific type (node, element, keypoint, line, area, or volume components).</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/cmsave.mac" target="_blank"> cmsave.mac</a></p>
+<p class="font-italic">Juha Tyllinen (KONE Corporation)</p>
+<p>&quot;Here is a fully vectorized version where you can select the entity type you are saving. The saved component (well, select status) is stored as file with 'cmp' extension and includes two header lines: entity type and number of selected entities. CMSave saves the status and CMResu resumes it from the file.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/cnf_freqresp.mac" target="_blank"> cnf_freqresp.mac</a></p>
+<p class="font-italic">Rick Morgans (Adelaide University)</p>
+<p>Outputs velocities for a single frequency analysis in COMET/Acoustics from an ANSYS harmonic analysis.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/6/cnvg_time.mac" target="_blank"> cnvg_time.mac</a></p>
+<p class="font-italic">Mitch Voehl (CEC Corp)</p>
+<p>Macro to get last converged substep.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/coil_emf.mac" target="_blank"> coil_emf.mac</a></p>
+<p class="font-italic">Bill Bulat (CSI)</p>
+<p>Used to report per-turn EMF induced in predefined closed loop paths.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/compten.mac" target="_blank"> compten.mac</a></p>
+<p class="font-italic">Carl Ostervig (Tech Inno)</p>
+<p>This macro analysis iteratively structures with different material properties (Youngs modulus) in tension and compression. [STI: Please note that this macro looks at SX and SY. See BILINEAR macro for a more general compression/tension macro based on principal stresses.]</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/conts2s.mac" target="_blank"> conts2s.mac</a></p>
+<p class="font-italic">G. N. S. Prakash</p>
+<p>&quot;'conts2s.mac' macro creates surface to surface contact elements between nodal components with the default options. Only nodal components(target &amp; contact), material number and coefficient of friction can be given as arguments. Use Contact wizard or your custom code to modify other properties. This macro is helpful when number of components in Ansys models are large or sometimes when the Contact wizard becomes slow with large db files and if we need to create a lot of contact pairs.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/coupcoin.mac" target="_blank"> coupcoin.mac</a></p>
+<p class="font-italic">Alex Komissarov (GEAE)</p>
+<p>A macro used to couple DOF of nodes in a given cylindrical coordinate system within a specified tolerance.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/couple_dof.mac" target="_blank"> couple_dof.mac</a></p>
+<p class="font-italic">Jyotis Sardar (IIT MADRAS)</p>
+<p>&quot;Here's a macro I created, that will generate couples in the required DOF's, merely by prompting the user to pick the source and target lines.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/7/cpjoins.mac" target="_blank"> cpjoins.mac</a></p>
+<p class="font-italic">Mark Kessler (BAE Systems)</p>
+<p>&quot;A macro to create couples at coincident locations.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/8/cpquery.mac" target="_blank"> cpquery.mac</a></p>
+<p class="font-italic">Sheldon Imaoka (ANSYS, Inc.)</p>
+<p>This macro counts the number of coupled sets associated with the current selected set of nodes.</p>
+<p>If the first argument is 1, then the macro will count the total number of coupled sets if any of its nodes are selected. Otherwise, the coupled set will only be counted if all of its nodes are selected.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/ctpipe3.mac" target="_blank"> ctpipe3.mac</a></p>
+<p class="font-italic">Mark Kessler (BAE Systems)</p>
+<p>&quot;A macro to create a series of elements from one picked node to all other selected nodes.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/cubic.mac" target="_blank"> cubic.mac</a></p>
+<p class="font-italic">Bob Weathers (Trane)</p>
+<p>Performs monotonic cubic interpolation in a table.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/cvctrl.mac" target="_blank"> cvctrl.mac</a></p>
+<p class="font-italic">Chris Kennedy (Think PEAK, Inc.)</p>
+<p>Prompts for yield stress of material and uses it to set up /CVAL command so that post-processing plots will show elements that exceed the YIELD stress value as red, and elements which have a compressive stress lower than -YIELD as blue. If the minimum stress is not less than -YIELD than the actual minimum is used instead of -YIELD.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/cycgen.mac" target="_blank"> cycgen.mac</a></p>
 <p class="font-italic"></p>
-<p>cubic.mac</p>
+<p>cycgen.mac</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/3/dcontour.mac" target="_blank"> dcontour.mac</a></p>
+<p class="font-italic">Doug Woolridge (Mercury Marine)</p>
+<p>Creates a second contour using 2D annotation under the original color contour. The values on the new contour are scaled by 'scale_factor'.</p>
+<p>A modified macro DCONTOU2 by Vincent Raillard changes this to have 2 - 9 uniform contours.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/5/dgnr8.mac" target="_blank"> dgnr8.mac</a></p>
+<p class="font-italic">Eric Miller (PADT)</p>
+<p>&quot;Finds degenerate 2D and 3D elements (i.e., when nodes 3 and 4 are identical), selects them, and then plots them. This works for many cases, such as SOLID45 or PLANE82, etc. Does not work for lower- or higher-order pyramids, but macro can easily be modified for these cases.&quot;</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/distcalc.mac" target="_blank"> distcalc.mac</a></p>
+<p class="font-italic">Carl Ostervig (Tech Inno)</p>
+<p>This macro calculates the distance between two nodes, selected by picking. Normally this facility is available in the preprocessor only. This macro works in all processors.</p>
+</li><li class="list-group-item">
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/1/distkp2l.mac" target="_blank"> distkp2l.mac</a></p>
+<p class="font-italic">Wangming Lu (Impact Technologies, LLC)</p>
+<p>&quot;I have developed the following macro: Given a key point level component,and a line number, it will evaluate the distance from each key point in this component to the input line. The result is returned in an array called distk (you can change into your name, of course). While using this, pls. be careful, it is not fully tested yet.&quot;</p>
 </li><li class="list-group-item">
 <p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/distload.mac" target="_blank"> distload.mac</a></p>
-<p class="font-italic"></p>
-<p>distload.mac</p>
+<p class="font-italic">Nick Veikos (CAEAI), modified by Jim Kosloski (CAEAI)</p>
+<p>Attached is a macro for applying surface loads. You have to create a file with your own equation defining the load distribution as a function of x,y,z coordinates. You can use any equation possible with ADPL commands.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/efatigue.mac" target="_blank"> efatigue.mac</a></p>
-<p class="font-italic"></p>
-<p>efatigue.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/4/dnsol_view.mac" target="_blank"> dnsol_view.mac</a></p>
+<p class="font-italic">Adam Shinbrot (Spine-Tech Inc.)</p>
+<p>&quot;GLOBAL INFO: This macro is basically just a couple of routines that use dnsol to align two nodes (arg1 and arg2) on the theoretically fixed body, and adjusts the rest of the nodal results accordingly.<br>
+I needed to do this with a multi-body model where I wanted to look at the motion of one body relative to another with the motion of the first body subtracted from the global result.&quot;<br>
+Example input file can be downloaded here.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/emf1.mac" target="_blank"> emf1.mac</a></p>
-<p class="font-italic"></p>
-<p>emf1.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/0/DS_JPDL___User_Fatigue_PNEN13445-3.js" target="_blank"> ds_JPDL___User_Fatigue_PNEN13445-3.js</a></p>
+<p class="font-italic">Przemyslaw Siedlaczek (MESco)</p>
+<p>Workbench macro solves fatigue according to pressure vessel code PN EN 13445-3 and displays results as a User Defined Result.</p>
 </li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/f3d.mac" target="_blank"> f3d.mac</a></p>
-<p class="font-italic"></p>
-<p>f3d.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/gplt.mac" target="_blank"> gplt.mac</a></p>
-<p class="font-italic"></p>
-<p>gplt.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/helix2.mac" target="_blank"> helix2.mac</a></p>
-<p class="font-italic"></p>
-<p>helix2.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/hole.mac" target="_blank"> hole.mac</a></p>
-<p class="font-italic"></p>
-<p>hole.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/im12.mac" target="_blank"> im12.mac</a></p>
-<p class="font-italic"></p>
-<p>im12.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/im63.mac" target="_blank"> im63.mac</a></p>
-<p class="font-italic"></p>
-<p>im63.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/jb_forc.mac" target="_blank"> jb_forc.mac</a></p>
-<p class="font-italic"></p>
-<p>jb_forc.mac</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/kbfocus.mac" target="_blank"> kbfocus.mac</a></p>
-<p class="font-italic">Eric Miller (PADT)</p>
-<p>&quot;Below you will find a little macro that can be run to fix the more common issues with focus on the command line not behaving as expected at 6.1. It is a partial hack that needs to be run after the GUI is up, so you can't put it in your start61.ans file (sorry). It also does not fix focus loss with the picker (which is intentional) or the pan-zoom-rotate dialog (not so intentional). Those will require more than a simple Tcl/Tk script.&quot;</p>
-</li><li class="list-group-item">
-<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/lcolor.mac" target="_blank"> lcolor.mac</a></p>
-<p class="font-italic"></p>
-<p>lcolor.mac</p>
+<p><a href="https://github.com/affinitylinks/ansys.net/blob/main/2/DS_MESCO_ContFrictVsTemp_APLD.js" target="_blank"> ds_MESCO_ContFrictVsTemp_APLD.js</a></p>
+<p class="font-italic">Przemyslaw Siedlaczek (MESco)</p>
+<p>Workbench macro adds APDL code to the contact branches to define temperature-dependent coefficient of friction.</p>
 </li></ul>
 <nav class="my-3" aria-label="Page navigation">
   <div class="pagination pagination-sm justify-content-center">
